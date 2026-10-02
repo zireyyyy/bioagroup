@@ -30,7 +30,7 @@ const routes = [
   "/blog/white-label-vs-private-label/", "/blog/page/2/", "/blog/page/3/", "/blog/page/4/"
 ];
 
-const routeDefs = withExtraRoutes(routes);
+const routeDefs = [["/","/"]];
 
 const pageTitles = {
   "/": "Gia công mỹ phẩm & phát triển thương hiệu",
@@ -370,29 +370,45 @@ function localize($, route){
 }
 
 async function build(){
+  const started = Date.now();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
-  for (const [route, sourceRoute] of routeDefs) {
-    const res = await fetch(BASE + sourceRoute, {headers:{"user-agent":"BioAGroupPreviewBuilder/3.0"}});
-    if(!res.ok) throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
-    const raw = await res.text();
+  console.log("HOME-FIRST build: fetching only Merywood homepage");
+  const controller = new AbortController();
+  const timer = setTimeout(()=>controller.abort(), 20000);
 
-    for (const lang of ["vi","en"]) {
-      const $ = load(raw, {decodeEntities:false});
-      applyFinalFixes($, route, lang);
-      applyHomeRefinement($, route, lang);
-      const targetRoute = localPath(route, lang);
-      const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
-      await fs.mkdir(path.dirname(target), {recursive:true});
-      await fs.writeFile(target, $.html());
-      console.log("built", lang, targetRoute);
-    }
+  let raw;
+  try {
+    const res = await fetch(BASE + "/", {
+      headers:{"user-agent":"BioAGroupPreviewBuilder/3.1"},
+      signal: controller.signal
+    });
+    if(!res.ok) throw new Error(`/ -> HTTP ${res.status}`);
+    raw = await res.text();
+  } finally {
+    clearTimeout(timer);
+  }
+  console.log("source loaded:", raw.length, "bytes");
+
+  for (const lang of ["vi","en"]) {
+    const t = Date.now();
+    console.log("build", lang, "start");
+    const $ = load(raw, {decodeEntities:false});
+    applyFinalFixes($, "/", lang);
+    applyHomeRefinement($, "/", lang);
+
+    const targetRoute = localPath("/", lang);
+    const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
+    await fs.mkdir(path.dirname(target), {recursive:true});
+    const html = $.html();
+    await fs.writeFile(target, html);
+    console.log("built", lang, targetRoute, html.length, "bytes in", Date.now()-t, "ms");
   }
 
   await fs.cp("assets", path.join(OUT,"assets"), {recursive:true});
-
   await fs.writeFile(path.join(OUT,"_headers"), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
+  console.log("build complete in", Date.now()-started, "ms");
 }
-build().catch(e=>{console.error(e);process.exit(1)});
+build().catch(e=>{console.error("BUILD FAILED:", e);process.exit(1)});
