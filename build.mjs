@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
+import { applyHomeRefinement } from "./bioa-home-refine.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -380,6 +381,7 @@ async function build(){
     for (const lang of ["vi","en"]) {
       const $ = load(raw, {decodeEntities:false});
       applyFinalFixes($, route, lang);
+      applyHomeRefinement($, route, lang);
       const targetRoute = localPath(route, lang);
       const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
       await fs.mkdir(path.dirname(target), {recursive:true});
@@ -387,6 +389,8 @@ async function build(){
       console.log("built", lang, targetRoute);
     }
   }
+
+  await fs.cp("assets", path.join(OUT,"assets"), {recursive:true});
 
   await fs.writeFile(path.join(OUT,"_headers"), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
