@@ -34,7 +34,10 @@ const routes = [
   "/blog/white-label-vs-private-label/", "/blog/page/2/", "/blog/page/3/", "/blog/page/4/"
 ];
 
-const routeDefs = withExtraRoutes(routes);
+// HOME-FIRST MODE:
+ // Chỉ build trang chủ VI + EN trong giai đoạn duyệt Home.
+ // Tránh mỗi commit phải crawl 54 trang Merywood và vượt giới hạn Cloudflare Pages.
+const routeDefs = [["/","/"]];
 
 const pageTitles = {
   "/": "Gia công mỹ phẩm & phát triển thương hiệu",
