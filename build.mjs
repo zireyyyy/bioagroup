@@ -136,6 +136,30 @@ function localize($, route){
   $("head").append("<style>"+css+"</style>");
   $("form").attr("action","#").attr("method","post");
 
+  // Dữ liệu thật lấy từ website Bio-A Group cũ do chủ dự án cung cấp.
+  if(route==="/"){
+    const stats=[
+      ["2.000+","Mẫu R&D"],
+      ["5+","Năm kinh nghiệm"],
+      ["10.000.000","Sản phẩm / năm"],
+      ["1.000 m²","Quy mô nhà máy"],
+      ["OEM/ODM","Gia công trọn gói"]
+    ];
+    $(".info .list").each((_,list)=>{
+      $(list).find(".item").each((i,item)=>{
+        if(!stats[i]) return;
+        $(item).find(".item__number").text(stats[i][0]);
+        $(item).find(".item__text").text(stats[i][1]);
+      });
+    });
+  }
+
+  $(".footer-top__right").each((_,el)=>{
+    if(!$(el).find(".bioa-contact").length){
+      $(el).prepend('<div class="bioa-contact" style="margin-bottom:18px;line-height:1.7"><strong>Bio-A Group</strong><br>'+company.address+'<br><a href="tel:'+company.phoneRaw+'">'+company.phone+'</a></div>');
+    }
+  });
+
   $("a").each((_,el)=>{
     let href=$(el).attr("href")||"";
     if (/^https?:\/\/(www\.)?merywood\.com/i.test(href)) $(el).attr("href",href.replace(/^https?:\/\/(www\.)?merywood\.com/i,"")||"/");
@@ -160,6 +184,8 @@ function localize($, route){
     if(/^To provide the best experiences/i.test(t)){node.data="Website sử dụng cookie cần thiết và công cụ thống kê để cải thiện trải nghiệm. Bạn có thể đồng ý, từ chối hoặc tùy chỉnh theo nhu cầu.";return;}
     if(/^I agree to the processing/i.test(t)){node.data="Tôi đồng ý để Bio-A Group xử lý thông tin đã cung cấp nhằm mục đích tư vấn và liên hệ.";return;}
     if(/^It takes 30 seconds/i.test(t)){node.data="Chỉ mất khoảng 30 giây để gửi yêu cầu tư vấn.";return;}
+    if(/^Launch your brand/i.test(t)){node.data=desc;return;}
+    if(/^© .*Merywood/i.test(t)){node.data="© 2026 Bio-A Group. Bảo lưu mọi quyền.";return;}
     if(!english.test(t)){
       if(/Merywood/i.test(t)) node.data=t.replace(/Merywood/gi,"Bio-A Group");
       return;
