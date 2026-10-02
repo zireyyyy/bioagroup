@@ -373,34 +373,78 @@ function localize($, route){
   $("body").append(`<script id="bioa-preview-form">document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();alert('Form đang ở chế độ xem thử. Vui lòng liên hệ Bio-A Group qua email ${company.email}.')})});</script>`);
 }
 
+const sourceCache = new Map();
+
+async function fetchSource(sourceRoute){
+  if(sourceCache.has(sourceRoute)) return sourceCache.get(sourceRoute);
+
+  const task = (async()=>{
+    let lastError;
+    for(let attempt=1; attempt<=2; attempt++){
+      try{
+        const res = await fetch(BASE + sourceRoute, {
+          headers:{"user-agent":"BioAGroupPreviewBuilder/4.0"},
+          signal: AbortSignal.timeout(20000)
+        });
+        if(!res.ok) throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
+        return await res.text();
+      }catch(err){
+        lastError = err;
+        console.warn("fetch retry", sourceRoute, "attempt", attempt, String(err?.message || err));
+      }
+    }
+    throw lastError;
+  })();
+
+  sourceCache.set(sourceRoute, task);
+  return task;
+}
+
+async function buildRoute(route, sourceRoute){
+  const raw = await fetchSource(sourceRoute);
+
+  for (const lang of ["vi","en"]) {
+    const $ = load(raw, {decodeEntities:false});
+    applyFinalFixes($, route, lang);
+    applyHomeRefinement($, route, lang);
+    applyBrandV4($, route, lang);
+    applyChatV4($, lang);
+    applyHubV4($, route, lang);
+    applyHomeHotfixV5($, route, lang);
+
+    const targetRoute = localPath(route, lang);
+    const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
+    await fs.mkdir(path.dirname(target), {recursive:true});
+    await fs.writeFile(target, $.html());
+    console.log("built", lang, targetRoute);
+  }
+}
+
+async function runPool(items, concurrency=6){
+  let next = 0;
+  const workers = Array.from({length:Math.min(concurrency,items.length)}, async()=>{
+    while(true){
+      const i = next++;
+      if(i >= items.length) return;
+      const [route, sourceRoute] = items[i];
+      await buildRoute(route, sourceRoute);
+    }
+  });
+  await Promise.all(workers);
+}
+
 async function build(){
+  const started = Date.now();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
-  for (const [route, sourceRoute] of routeDefs) {
-    const res = await fetch(BASE + sourceRoute, {headers:{"user-agent":"BioAGroupPreviewBuilder/3.0"}});
-    if(!res.ok) throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
-    const raw = await res.text();
-
-    for (const lang of ["vi","en"]) {
-      const $ = load(raw, {decodeEntities:false});
-      applyFinalFixes($, route, lang);
-      applyHomeRefinement($, route, lang);
-      applyBrandV4($, route, lang);
-      applyChatV4($, lang);
-      applyHubV4($, route, lang);
-      applyHomeHotfixV5($, route, lang);
-      const targetRoute = localPath(route, lang);
-      const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
-      await fs.mkdir(path.dirname(target), {recursive:true});
-      await fs.writeFile(target, $.html());
-      console.log("built", lang, targetRoute);
-    }
-  }
+  console.log("building", routeDefs.length, "routes with concurrency=6");
+  await runPool(routeDefs, 6);
 
   await fs.cp("assets", path.join(OUT,"assets"), {recursive:true});
 
   await fs.writeFile(path.join(OUT,"_headers"), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
+  console.log("build complete in", Math.round((Date.now()-started)/1000), "seconds");
 }
 build().catch(e=>{console.error(e);process.exit(1)});
