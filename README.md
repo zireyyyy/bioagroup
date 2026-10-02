@@ -19,3 +19,6 @@ Cloudflare Pages:
 ## Ghi chú
 Form trong bản preview chưa gửi dữ liệu thật.
 Không commit database/cache/credential từ website cũ.
+
+
+<!-- deploy-trigger: home-v5-2026-10-02 -->
