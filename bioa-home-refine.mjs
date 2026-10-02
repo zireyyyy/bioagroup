@@ -74,11 +74,16 @@ function footerSocials($){
   const s=$('.footer-top__socials a');
   if(!s.length)return;
   const defs=[
-    [company.zalo,'Zalo',icons.zalo],
+    [company.whatsapp,'WhatsApp',icons.whatsapp],
     [company.facebook,'Facebook',icons.facebook],
+    [company.zalo,'Zalo',icons.zalo],
     [company.telegram,'Telegram',icons.telegram]
   ];
-  s.each((i,el)=>{
+  while(s.length<defs.length && s.length){
+    s.last().clone().insertAfter(s.last());
+  }
+  const all=$('.footer-top__socials a');
+  all.each((i,el)=>{
     if(!defs[i])return;
     const [href,label,svg]=defs[i];
     $(el).attr('href',href).attr('target','_blank').attr('rel','noopener noreferrer').attr('aria-label',label).html(svg);
@@ -109,5 +114,9 @@ export function applyHomeRefinement($,route,lang){
   setLogo($);
   fixLang($,route,lang);
   footerSocials($);
+  // Header + CTA dùng Zalo thay vì icon WhatsApp, nhưng giữ nguyên cấu trúc nút gốc.
+  $('.header__socials a,.menu__socials a').attr('href',company.zalo).attr('aria-label','Zalo BIO-A Group').html('<i class="icon">'+icons.zalo+'</i>');
+  $('.whatsapp__btn').attr('href',company.zalo).attr('target','_blank').attr('aria-label','Zalo BIO-A Group');
+  $('.whatsapp__btn .icon').html(icons.zalo);
   addContactLauncher($,lang);
 }
