@@ -3,6 +3,9 @@ import path from "node:path";
 import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
 import { applyHomeRefinement } from "./bioa-home-refine.mjs";
+import { applyBrandV4 } from "./bioa-brand-v4.mjs";
+import { applyChatV4 } from "./bioa-chat-v4.mjs";
+import { applyHubV4 } from "./bioa-hub-v4.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -382,6 +385,9 @@ async function build(){
       const $ = load(raw, {decodeEntities:false});
       applyFinalFixes($, route, lang);
       applyHomeRefinement($, route, lang);
+      applyBrandV4($, route, lang);
+      applyChatV4($, lang);
+      applyHubV4($, route, lang);
       const targetRoute = localPath(route, lang);
       const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
       await fs.mkdir(path.dirname(target), {recursive:true});
