@@ -3,12 +3,8 @@ import path from "node:path";
 import { gunzipSync } from "node:zlib";
 import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
-import { applyHomeRefinement } from "./bioa-home-refine.mjs";
 import { applyBrandV4 } from "./bioa-brand-v4.mjs";
-import { applyChatV4 } from "./bioa-chat-v4.mjs";
-import { applyHubV4 } from "./bioa-hub-v4.mjs";
 import { applyHomeHotfixV6 } from "./bioa-home-hotfix-v6.mjs";
-import { applyHomeHotfixV5 } from "./bioa-home-hotfix-v5.mjs";
 
 const OUT = "dist";
 
@@ -389,20 +385,33 @@ async function loadHomeSnapshot(){
 async function buildHome(raw){
   const route = "/";
   for (const lang of ["vi","en"]) {
+    const stepStarted = Date.now();
+    console.log("HOME", lang, "parse:start");
     const $ = load(raw, {decodeEntities:false});
+    console.log("HOME", lang, "parse:ok", Date.now()-stepStarted, "ms");
+
+    console.log("HOME", lang, "base:start");
     applyFinalFixes($, route, lang);
-    applyHomeRefinement($, route, lang);
+    console.log("HOME", lang, "base:ok");
+
+    // HOME-FIRST: only keep the current authoritative brand/footer layer + latest HOME hotfix.
+    // Older refinement/chat/hotfix layers were cumulative and are intentionally skipped here.
+    console.log("HOME", lang, "brand:start");
     applyBrandV4($, route, lang);
-    applyChatV4($, lang);
-    applyHubV4($, route, lang);
-    applyHomeHotfixV5($, route, lang);
+    console.log("HOME", lang, "brand:ok");
+
+    console.log("HOME", lang, "v6:start");
     applyHomeHotfixV6($, route, lang);
+    console.log("HOME", lang, "v6:ok");
 
     const targetRoute = localPath(route, lang);
     const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
     await fs.mkdir(path.dirname(target), {recursive:true});
-    await fs.writeFile(target, $.html());
-    console.log("built", lang, targetRoute);
+    console.log("HOME", lang, "serialize:start");
+    const output = $.html();
+    console.log("HOME", lang, "serialize:ok", output.length, "bytes");
+    await fs.writeFile(target, output);
+    console.log("built", lang, targetRoute, "in", Date.now()-stepStarted, "ms");
   }
 }
 
