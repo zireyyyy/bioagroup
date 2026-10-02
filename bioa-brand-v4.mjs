@@ -10,7 +10,7 @@ const css=`
 .whatsapp__logo{background:var(--bioa)!important;opacity:.075!important;-webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important}
 .formats__logo{--formats-logo:url("/assets/bioa-monogram.svg")!important;opacity:.055!important}
 .footer-top{background:var(--bioa-deep)!important}.footer-bottom{background:#03271B!important}
-.footer-top__email{display:flex!important;justify-content:flex-end!important;min-width:300px!important}.footer-top__email a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-width:280px!important;max-width:100%!important;height:52px!important;padding:0 22px!important;box-sizing:border-box!important;border-radius:16px!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;font-size:16px!important;font-weight:500!important;line-height:1!important;letter-spacing:0!important;text-decoration:none!important;color:var(--bioa-cream)!important;background:rgba(243,240,228,.09)!important;border:1px solid rgba(243,240,228,.14)!important}
+.footer-top__email a{color:var(--bioa-cream)!important;background:rgba(243,240,228,.16)!important;border-color:rgba(243,240,228,.20)!important}
 .footer-top__nav li:first-child>a{font-weight:600!important;color:var(--bioa-cream)!important}
 .footer-top__nav li:not(:first-child)>a{font-weight:400!important;color:rgba(243,240,228,.88)!important}
 .footer-top__nav a:hover{color:#fff!important}.footer-bottom,.footer-bottom a{color:rgba(243,240,228,.72)!important}
