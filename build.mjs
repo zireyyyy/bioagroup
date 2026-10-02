@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { load } from "cheerio";
+import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -28,12 +29,7 @@ const routes = [
   "/blog/white-label-vs-private-label/", "/blog/page/2/", "/blog/page/3/", "/blog/page/4/"
 ];
 
-const company = {
-  name: "Bio-A Group",
-  email: "bioagroupsale@gmail.com",
-  phone: "0779 399 379",
-  phoneRaw: "0779399379"
-};
+const routeDefs = withExtraRoutes(routes);
 
 const pageTitles = {
   "/": "Gia công mỹ phẩm & phát triển thương hiệu",
@@ -376,19 +372,23 @@ async function build(){
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
-  for(const route of routes){
-    const res = await fetch(BASE + route, {headers:{"user-agent":"BioAGroupPreviewBuilder/2.0"}});
-    if(!res.ok) throw new Error(`${route} -> HTTP ${res.status}`);
-    const $ = load(await res.text(), {decodeEntities:false});
-    localize($, route);
-    const target = route === "/" ? path.join(OUT,"index.html") : path.join(OUT,route,"index.html");
-    await fs.mkdir(path.dirname(target), {recursive:true});
-    await fs.writeFile(target, $.html());
-    console.log("built", route);
+  for (const [route, sourceRoute] of routeDefs) {
+    const res = await fetch(BASE + sourceRoute, {headers:{"user-agent":"BioAGroupPreviewBuilder/3.0"}});
+    if(!res.ok) throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
+    const raw = await res.text();
+
+    for (const lang of ["vi","en"]) {
+      const $ = load(raw, {decodeEntities:false});
+      applyFinalFixes($, route, lang);
+      const targetRoute = localPath(route, lang);
+      const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
+      await fs.mkdir(path.dirname(target), {recursive:true});
+      await fs.writeFile(target, $.html());
+      console.log("built", lang, targetRoute);
+    }
   }
 
   await fs.writeFile(path.join(OUT,"_headers"), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
-  await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\n");
+  await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
 }
-
 build().catch(e=>{console.error(e);process.exit(1)});
