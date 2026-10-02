@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { gunzipSync } from "node:zlib";
 import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
 import { applyHomeRefinement } from "./bioa-home-refine.mjs";
@@ -8,7 +9,6 @@ import { applyChatV4 } from "./bioa-chat-v4.mjs";
 import { applyHubV4 } from "./bioa-hub-v4.mjs";
 import { applyHomeHotfixV5 } from "./bioa-home-hotfix-v5.mjs";
 
-const BASE = "https://merywood.com";
 const OUT = "dist";
 
 const routes = [
@@ -376,36 +376,17 @@ function localize($, route){
   $("body").append(`<script id="bioa-preview-form">document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();alert('Form đang ở chế độ xem thử. Vui lòng liên hệ Bio-A Group qua email ${company.email}.')})});</script>`);
 }
 
-const sourceCache = new Map();
-
-async function fetchSource(sourceRoute){
-  if(sourceCache.has(sourceRoute)) return sourceCache.get(sourceRoute);
-
-  const task = (async()=>{
-    let lastError;
-    for(let attempt=1; attempt<=2; attempt++){
-      try{
-        const res = await fetch(BASE + sourceRoute, {
-          headers:{"user-agent":"BioAGroupPreviewBuilder/4.0"},
-          signal: AbortSignal.timeout(20000)
-        });
-        if(!res.ok) throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
-        return await res.text();
-      }catch(err){
-        lastError = err;
-        console.warn("fetch retry", sourceRoute, "attempt", attempt, String(err?.message || err));
-      }
-    }
-    throw lastError;
-  })();
-
-  sourceCache.set(sourceRoute, task);
-  return task;
+async function loadHomeSnapshot(){
+  const names = Array.from({length:8},(_,i)=>`source/home.${String(i).padStart(2,"0")}.b64`);
+  const parts = await Promise.all(names.map(name=>fs.readFile(name,"utf8")));
+  const encoded = parts.join("").replace(/\s+/g,"");
+  const html = gunzipSync(Buffer.from(encoded,"base64")).toString("utf8");
+  console.log("loaded local Merywood Home snapshot:", html.length, "bytes");
+  return html;
 }
 
-async function buildRoute(route, sourceRoute){
-  const raw = await fetchSource(sourceRoute);
-
+async function buildHome(raw){
+  const route = "/";
   for (const lang of ["vi","en"]) {
     const $ = load(raw, {decodeEntities:false});
     applyFinalFixes($, route, lang);
@@ -423,29 +404,16 @@ async function buildRoute(route, sourceRoute){
   }
 }
 
-async function runPool(items, concurrency=6){
-  let next = 0;
-  const workers = Array.from({length:Math.min(concurrency,items.length)}, async()=>{
-    while(true){
-      const i = next++;
-      if(i >= items.length) return;
-      const [route, sourceRoute] = items[i];
-      await buildRoute(route, sourceRoute);
-    }
-  });
-  await Promise.all(workers);
-}
-
 async function build(){
   const started = Date.now();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
-  console.log("building", routeDefs.length, "routes with concurrency=6");
-  await runPool(routeDefs, 6);
+  console.log("HOME-FIRST local snapshot build: no external HTTP fetch");
+  const raw = await loadHomeSnapshot();
+  await buildHome(raw);
 
   await fs.cp("assets", path.join(OUT,"assets"), {recursive:true});
-
   await fs.writeFile(path.join(OUT,"_headers"), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   console.log("build complete in", Math.round((Date.now()-started)/1000), "seconds");
