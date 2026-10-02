@@ -2,25 +2,25 @@ const C={email:"contact@bioagroup.vn"};
 const lp=(p,l)=>l==="en"?(p==="/"?"/en/":"/en"+p):p;
 const css=`
 :root{--bioa:#116F47;--bioa-dark:#073D29;--bioa-deep:#052F21;--bioa-sage:#A8C8AE;--bioa-mint:#E7F0E8;--bioa-cream:#F3F0E4;--bioa-ivory:#FCFEF1}
-.header{background:rgba(252,254,241,.84)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 1px 0 rgba(5,47,33,.08)!important}
-.header__logo{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 82px!important;width:82px!important;overflow:visible!important}
-.header__logo img{width:70px!important;max-width:70px!important;height:66px!important;max-height:66px!important;object-fit:contain!important}
-.menu__logo img{width:82px!important;height:96px!important;object-fit:contain!important}
+.header{background:rgba(252,254,241,.42)!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 1px 0 rgba(5,47,33,.05)!important}
+.header__logo{display:flex!important;align-items:center!important;justify-content:center!important;flex:0 0 58px!important;width:58px!important;height:58px!important;overflow:visible!important}
+.header__logo img{width:48px!important;max-width:48px!important;height:54px!important;max-height:54px!important;object-fit:contain!important;object-position:center!important}
+.menu__logo img{width:58px!important;height:70px!important;object-fit:contain!important}
 .footer-top__logo img,.footer__logo img{width:112px!important;max-width:112px!important;height:132px!important;object-fit:contain!important}
 .whatsapp__logo{background:var(--bioa)!important;opacity:.075!important;-webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important}
 .formats__logo{--formats-logo:url("/assets/bioa-monogram.svg")!important;opacity:.055!important}
 .footer-top{background:var(--bioa-deep)!important}.footer-bottom{background:#03271B!important}
-.footer-top__email a{color:var(--bioa-cream)!important;background:rgba(243,240,228,.10)!important;border:1px solid rgba(243,240,228,.13)!important}
+.footer-top__email{display:flex!important;justify-content:flex-end!important;min-width:300px!important}.footer-top__email a{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:auto!important;min-width:280px!important;max-width:100%!important;height:52px!important;padding:0 22px!important;box-sizing:border-box!important;border-radius:16px!important;white-space:nowrap!important;overflow:visible!important;text-overflow:clip!important;font-size:16px!important;font-weight:500!important;line-height:1!important;letter-spacing:0!important;text-decoration:none!important;color:var(--bioa-cream)!important;background:rgba(243,240,228,.09)!important;border:1px solid rgba(243,240,228,.14)!important}
 .footer-top__nav li:first-child>a{font-weight:600!important;color:var(--bioa-cream)!important}
 .footer-top__nav li:not(:first-child)>a{font-weight:400!important;color:rgba(243,240,228,.88)!important}
 .footer-top__nav a:hover{color:#fff!important}.footer-bottom,.footer-bottom a{color:rgba(243,240,228,.72)!important}
-@media(max-width:1200px){.header__logo{flex-basis:72px!important;width:72px!important}.header__logo img{width:62px!important;height:58px!important}}
+@media(max-width:1200px){.header__logo{flex-basis:52px!important;width:52px!important;height:52px!important}.header__logo img{width:44px!important;height:48px!important}.footer-top__email{min-width:0!important}.footer-top__email a{min-width:0!important;width:100%!important}}
 `;
 function assets($){
   $("head").append('<style id="bioa-brand-v4">'+css+'</style><link rel="icon" href="/assets/bioa-monogram.svg">');
   $("style").each((_,el)=>{let s=$(el).html()||"";s=s.replace(/https:\/\/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/img\/logo-bg\.svg/gi,"/assets/bioa-monogram.svg");$(el).html(s)});
   $("[style]").each((_,el)=>{let s=$(el).attr("style")||"";if(/logo-bg\.svg|merrywood_/i.test(s))$(el).attr("style",s.replace(/https:\/\/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/img\/logo-bg\.svg/gi,"/assets/bioa-monogram.svg").replace(/merrywood_[^'\")]+\.svg/gi,"bioa-monogram.svg"))});
-  $("img").each((_,el)=>{const x=$(el),src=x.attr("src")||"",alt=x.attr("alt")||"";if(/(?:merrywood|merywood|logo(?:_white)?\.svg)/i.test(src)||/merywood/i.test(alt)){const dark=x.closest(".footer-top,.footer").length>0;x.attr("src",dark?"/assets/bioa-full-light.svg":"/assets/bioa-full.svg").attr("alt","BIO-A Group").removeAttr("srcset").removeAttr("sizes")}});
+  // Chỉ thay đúng các vị trí logo thương hiệu; không đụng ảnh/icon nội dung.
   $(".header__logo img,.menu__logo img").attr("src","/assets/bioa-full.svg");
   $(".footer-top__logo img,.footer__logo img").attr("src","/assets/bioa-full-light.svg");
   $(".formats__logo").attr("style","--formats-logo:url('/assets/bioa-monogram.svg');");
