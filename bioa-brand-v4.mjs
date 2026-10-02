@@ -14,7 +14,13 @@ const css=`
 .footer-top__nav li:first-child>a{font-weight:600!important;color:var(--bioa-cream)!important}
 .footer-top__nav li:not(:first-child)>a{font-weight:400!important;color:rgba(243,240,228,.88)!important}
 .footer-top__nav a:hover{color:#fff!important}.footer-bottom,.footer-bottom a{color:rgba(243,240,228,.72)!important}
-@media(max-width:1200px){.header__logo{flex-basis:52px!important;width:52px!important;height:52px!important}.header__logo img{width:44px!important;height:48px!important}.footer-top__email{min-width:0!important}.footer-top__email a{min-width:0!important;width:100%!important}}
+.block-title .info .list,.block-title-continue .info .list{gap:14px!important}
+.block-title .info .item,.block-title-continue .info .item{min-height:118px!important;padding:22px 28px!important;display:grid!important;grid-template-columns:minmax(0,1.25fr) minmax(130px,.75fr)!important;column-gap:24px!important;align-items:center!important;overflow:visible!important}
+.block-title .info .item__number,.block-title-continue .info .item__number{min-width:0!important;font-size:clamp(38px,3.1vw,62px)!important;line-height:.96!important;letter-spacing:-.035em!important;white-space:nowrap!important;overflow:visible!important}
+.block-title .info .item__text,.block-title-continue .info .item__text{min-width:0!important;font-size:clamp(16px,1.15vw,23px)!important;line-height:1.22!important;white-space:normal!important;overflow:visible!important}
+.block-title .info .item:nth-child(3) .item__number,.block-title .info .item:nth-child(5) .item__number{font-size:clamp(32px,2.55vw,50px)!important}
+@media(max-width:1200px){.header__logo{flex-basis:52px!important;width:52px!important;height:52px!important}.header__logo img{width:44px!important;height:48px!important}.footer-top__email{min-width:0!important}.footer-top__email a{min-width:0!important;width:100%!important}.block-title .info .item{padding:18px 22px!important;grid-template-columns:minmax(0,1.25fr) minmax(112px,.75fr)!important}}
+@media(max-width:768px){.block-title-continue .info .item{min-height:104px!important;padding:18px 20px!important;grid-template-columns:minmax(0,1.1fr) minmax(105px,.9fr)!important}.block-title-continue .info .item__number{font-size:40px!important}.block-title-continue .info .item__text{font-size:16px!important}}
 `;
 function assets($){
   $("head").append('<style id="bioa-brand-v4">'+css+'</style><link rel="icon" href="/assets/bioa-monogram.svg">');
