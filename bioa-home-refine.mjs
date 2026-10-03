@@ -3,7 +3,8 @@ const company = {
   phone:'0779 399 379',
   whatsapp:'https://wa.me/84779399379',
   zalo:'https://zalo.me/84779399379',
-  facebook:'https://www.facebook.com/nhamaysanxuatduocmypham.BioA'
+  facebook:'https://www.facebook.com/nhamaysanxuatduocmypham.BioA',
+  telegram:'https://t.me/bioagroup'
 };
 
 const icons = {
@@ -616,6 +617,207 @@ const patchB2Css = `
 }
 `;
 
+
+const patchMobileMenuCss = `
+/* HOME mobile navigation — adapted from ArtistLookup's inline collapsible header menu.
+   Keep the Merywood header shell; replace only the mobile menu mechanism. */
+.bioa-mobile-nav{display:none}
+
+@media(max-width:768px){
+  /* preserve original header composition: logo left, CTA + original burger right */
+  .bioa-mobile-actions,.bioa-mobile-menu-controls{display:none!important}
+  .bioa-header-actions{
+    display:flex!important;
+    align-items:center!important;
+    margin-left:auto!important;
+    gap:8px!important;
+  }
+  .bioa-header-actions .header__contacts,
+  .bioa-header-actions .bioa-lang{display:none!important}
+  .bioa-header-actions .header__btn{
+    display:inline-flex!important;
+    height:40px!important;
+    min-height:40px!important;
+    margin:0!important;
+    padding:0 15px!important;
+    border-radius:14px!important;
+    font-size:13px!important;
+    line-height:1!important;
+  }
+  .header__wrapper{
+    min-height:62px!important;
+    height:62px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    padding-left:14px!important;
+    padding-right:14px!important;
+    overflow:visible!important;
+  }
+  .header__logo{
+    width:46px!important;
+    height:48px!important;
+    flex:0 0 46px!important;
+    margin:0 auto 0 0!important;
+  }
+  .header__logo img{
+    display:block!important;
+    width:38px!important;
+    max-width:38px!important;
+    height:44px!important;
+    max-height:44px!important;
+    object-fit:contain!important;
+    object-position:left center!important;
+  }
+  .bioa-mobile-menu-button{
+    flex:0 0 auto!important;
+    margin-left:8px!important;
+  }
+
+  /* disable the old Merywood mobile drawer only; desktop remains untouched */
+  .bioa-old-mobile-menu{display:none!important}
+
+  /* ArtistLookup reference mechanism: inline collapsible panel inside header */
+  .bioa-mobile-nav{
+    display:block!important;
+    position:static!important;
+    inset:auto!important;
+    width:100%!important;
+    height:auto!important;
+    max-height:0!important;
+    padding:0!important;
+    overflow:hidden!important;
+    background:#fff!important;
+    border-top:1px solid rgba(5,47,33,.08)!important;
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:none!important;
+    transition:max-height .22s ease!important;
+  }
+  .bioa-mobile-nav.open{
+    max-height:min(38rem,calc(100dvh - 4rem))!important;
+    pointer-events:auto!important;
+    box-shadow:0 16px 36px rgba(0,0,0,.08)!important;
+  }
+  .bioa-mobile-nav-drop{
+    width:100%!important;
+    padding:10px 16px 18px!important;
+    box-sizing:border-box!important;
+  }
+  .bioa-mobile-nav-links{
+    display:grid!important;
+    gap:2px!important;
+    padding:2px 0 10px!important;
+  }
+  .bioa-mobile-nav-links a{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    min-height:44px!important;
+    padding:8px 6px!important;
+    border-bottom:1px solid rgba(5,47,33,.07)!important;
+    color:var(--bioa-deep)!important;
+    text-decoration:none!important;
+    font-size:17px!important;
+    font-weight:400!important;
+    line-height:1.2!important;
+  }
+  .bioa-mobile-nav-links a:after{
+    content:"→";
+    color:var(--bioa-primary);
+    font-size:15px;
+    opacity:.72;
+  }
+  .bioa-mobile-nav-meta{
+    padding-top:10px!important;
+  }
+  .bioa-mobile-nav-label{
+    margin:0 0 8px!important;
+    color:#69766f!important;
+    font-size:12px!important;
+    font-weight:500!important;
+  }
+  .bioa-mobile-contact-grid{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .bioa-mobile-contact-grid a{
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    min-height:42px!important;
+    padding:8px 10px!important;
+    border:1px solid rgba(17,111,71,.10)!important;
+    border-radius:12px!important;
+    background:var(--bioa-cream)!important;
+    color:var(--bioa-deep)!important;
+    text-decoration:none!important;
+    font-size:13px!important;
+    font-weight:500!important;
+    box-sizing:border-box!important;
+  }
+  .bioa-mobile-contact-grid svg{
+    width:18px!important;
+    height:18px!important;
+    flex:0 0 18px!important;
+    fill:currentColor!important;
+  }
+  .bioa-mobile-menu-lang{
+    display:inline-flex!important;
+    align-items:center!important;
+    gap:0!important;
+    height:40px!important;
+    margin-top:10px!important;
+    padding:3px!important;
+    border:1px solid rgba(17,111,71,.12)!important;
+    border-radius:12px!important;
+    background:#F8FAF5!important;
+  }
+  .bioa-mobile-menu-lang a{
+    width:34px!important;
+    height:34px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border-radius:9px!important;
+    color:var(--bioa-deep)!important;
+    text-decoration:none!important;
+    font-size:12px!important;
+  }
+  .bioa-mobile-menu-lang a.is-active{
+    background:var(--bioa-primary)!important;
+    color:#fff!important;
+  }
+
+  /* Mobile We Produce — same BIO-A watermark treatment as desktop, scaled to card */
+  .block-we-produce .bg__decoration{
+    width:68%!important;
+    height:68%!important;
+    top:50%!important;
+    left:50%!important;
+    opacity:.060!important;
+    transform:translate(-50%,-50%) scale(1)!important;
+    -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+    mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  }
+  .block-we-produce .item:hover .bg__decoration{
+    transform:translate(-50%,-50%) scale(1.045)!important;
+    opacity:.085!important;
+  }
+
+  /* keep the full light BIO-A logo proportional in the mobile footer */
+  .footer-top__logo img,.footer__logo img{
+    width:82px!important;
+    max-width:82px!important;
+    height:auto!important;
+    max-height:98px!important;
+    object-fit:contain!important;
+    object-position:left top!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -688,15 +890,12 @@ function mobileLocalPath(route,lang){
 }
 
 function syncMobileHeader($,route,lang){
-  $('.bioa-mobile-actions,.bioa-mobile-menu-controls').remove();
+  $('.bioa-mobile-actions,.bioa-mobile-menu-controls,.bioa-mobile-nav').remove();
 
   const header=$('.header').first();
-  const wrapper=header.find('.header__wrapper').first().length
-    ? header.find('.header__wrapper').first()
-    : header.find('.container').first();
-  if(!header.length||!wrapper.length)return;
+  if(!header.length)return;
 
-  // Find the original Merywood mobile menu trigger without assuming one exact class name.
+  // Keep the source header nodes in place. Only retarget the original burger.
   let burger=header.find('button').filter((_,el)=>{
     const x=$(el);
     const sig=[x.attr('class'),x.attr('id'),x.attr('aria-label'),x.attr('data-target'),x.attr('data-menu')].filter(Boolean).join(' ').toLowerCase();
@@ -704,35 +903,64 @@ function syncMobileHeader($,route,lang){
   }).first();
   if(!burger.length) burger=header.find('button').last();
 
-  const actions=$('<div class="bioa-mobile-actions"></div>');
-  const cta=$('<a class="bioa-mobile-cta"></a>')
-    .attr('href',lang==='vi'?'/contacts/':'/en/contacts/')
-    .text(lang==='vi'?'Nhận tư vấn ↗':'Get a quote ↗');
-  actions.append(cta);
-  if(burger.length) actions.append(burger);
-  wrapper.append(actions);
+  if(burger.length){
+    burger
+      .attr('id','bioaMobileMenuButton')
+      .addClass('bioa-mobile-menu-button')
+      .attr('aria-controls','bioaMobileNav')
+      .attr('aria-expanded','false')
+      .attr('aria-label',lang==='vi'?'Mở trình đơn':'Open menu')
+      .removeAttr('onclick')
+      .removeAttr('data-target')
+      .removeAttr('data-menu');
+  }
 
-  const menuContacts=$('.menu__contacts').first();
-  const menuRoot=$('.menu').first();
-  const target=menuContacts.length?menuContacts:menuRoot;
-  if(!target.length)return;
+  // Hide only the legacy mobile drawer; the desktop source header remains intact.
+  $('.menu').first().addClass('bioa-old-mobile-menu');
 
-  const langSwitch=$('<div class="bioa-lang"></div>');
+  const nav=$('<div id="bioaMobileNav" class="bioa-mobile-nav" role="region"></div>')
+    .attr('aria-label',lang==='vi'?'Điều hướng trên điện thoại':'Mobile navigation')
+    .attr('aria-hidden','true');
+  const drop=$('<div class="bioa-mobile-nav-drop"></div>');
+  const links=$('<nav class="bioa-mobile-nav-links"></nav>');
+
+  $('.header__nav a').each((_,el)=>{
+    const a=$(el);
+    const item=$('<a></a>').attr('href',a.attr('href')||'#').text(a.text().trim());
+    links.append(item);
+  });
+
+  const mailIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2 9 6 9-6H3Zm18 10V9l-9 6-9-6v8h18Z"/></svg>';
+  const telegramIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 3.3 2.9 10.6c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.9 5.8c.2.7.1 1 .9 1 .6 0 .9-.3 1.2-.6l2.7-2.6 5.6 4.1c1 .6 1.8.3 2-.9L24 5c.4-1.5-.6-2.2-2.3-1.7ZM9 13.3l9.4-5.9c.5-.3.9-.1.6.2l-7.8 7.1-.3 3.3L9 13.3Z"/></svg>';
+
+  const meta=$('<div class="bioa-mobile-nav-meta"></div>');
+  meta.append($('<div class="bioa-mobile-nav-label"></div>').text(lang==='vi'?'Liên hệ BIO-A Group':'Contact BIO-A Group'));
+
+  const contacts=$('<div class="bioa-mobile-contact-grid"></div>');
+  contacts.append(
+    $('<a></a>').attr('href','mailto:'+company.email).html(mailIcon+'<span>Email</span>'),
+    $('<a></a>').attr('href',company.whatsapp).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.whatsapp+'<span>WhatsApp</span>'),
+    $('<a></a>').attr('href',company.telegram).attr('target','_blank').attr('rel','noopener noreferrer').html(telegramIcon+'<span>Telegram</span>'),
+    $('<a></a>').attr('href',company.facebook).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.facebook+'<span>Facebook</span>'),
+    $('<a></a>').attr('href',company.zalo).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.zalo+'<span>Zalo</span>')
+  );
+
+  const langSwitch=$('<div class="bioa-mobile-menu-lang"></div>');
   langSwitch.append(
     $('<a>VI</a>').attr('href',mobileLocalPath(route,'vi')).toggleClass('is-active',lang==='vi'),
     $('<a>EN</a>').attr('href',mobileLocalPath(route,'en')).toggleClass('is-active',lang==='en')
   );
 
-  const controls=$('<div class="bioa-mobile-menu-controls"></div>');
-  controls.append(
-    $('<a class="bioa-mobile-contact" aria-label="WhatsApp BIO-A Group"></a>')
-      .attr('href',company.whatsapp)
-      .attr('target','_blank')
-      .attr('rel','noopener noreferrer')
-      .html(icons.whatsapp),
-    langSwitch
-  );
-  target.append(controls);
+  meta.append(contacts,langSwitch);
+  drop.append(links,meta);
+  nav.append(drop);
+  header.append(nav);
+
+  // Translate the section heading in both layouts; visual card treatment remains shared.
+  $('.block-we-produce h2,.block-we-produce .title').first().text(lang==='vi'?'Danh mục gia công':'What We Manufacture');
+
+  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();set(!n.classList.contains('open'));},true);n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});})();";
+  $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
 }
 
 function footerSocials($){
@@ -770,7 +998,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
