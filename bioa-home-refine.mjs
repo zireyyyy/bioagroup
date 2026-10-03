@@ -2218,32 +2218,48 @@ function replaceMobileProduceSection($,lang){
   });
   if(!headings.length)return;
 
-  const heading=headings.last();
-  let section=heading.closest('section');
-
-  if(!section.length){
-    section=heading.parents().filter((_,el)=>{
+  // Merywood ships separate desktop/mobile Produce blocks. The mobile image variant
+  // contains the old Merywood watermark baked into the artwork, so rebuild the
+  // mobile block with the desktop fallback images (then apply the BIO-A watermark).
+  const mobileHeading=headings.last();
+  let mobileSection=mobileHeading.closest('section');
+  if(!mobileSection.length){
+    mobileSection=mobileHeading.parents().filter((_,el)=>{
       const x=$(el);
-      const imgs=x.find('img');
-      const hs=x.find('h1,h2,h3').filter((__,h)=>{
-        const t=$(h).text().replace(/\s+/g,' ').trim();
-        return /^(We Produce|Danh mục sản xuất|Danh mục gia công|What We Manufacture)$/i.test(t);
-      });
-      return imgs.length>=2 && hs.length>=1 && x.find('h1,h2,h3').length<=4;
+      return x.find('img').length>=2 && x.find('h1,h2,h3').length<=4;
     }).first();
   }
-  if(!section.length)return;
+  if(!mobileSection.length)return;
 
-  let imgs=section.find('img').filter((_,el)=>{
-    const x=$(el);
-    const sig=[x.attr('alt'),x.attr('src'),x.attr('data-src')].filter(Boolean).join(' ').toLowerCase();
-    return !/logo|icon|arrow|cookie|avatar/.test(sig);
-  });
-  if(imgs.length<2)imgs=section.find('img');
-  if(imgs.length<2)return;
+  let desktopSection=null;
+  if(headings.length>1){
+    const desktopHeading=$(headings.get(0));
+    desktopSection=desktopHeading.closest('section');
+    if(!desktopSection.length){
+      desktopSection=desktopHeading.parents().filter((_,el)=>{
+        const x=$(el);
+        return x.find('img').length>=2 && x.find('h1,h2,h3').length<=4;
+      }).first();
+    }
+  }
 
-  const img1=$(imgs.get(0));
-  const img2=$(imgs.get(1));
+  function contentImages(root){
+    if(!root||!root.length)return $();
+    let imgs=root.find('img').filter((_,el)=>{
+      const x=$(el);
+      const sig=[x.attr('alt'),x.attr('src'),x.attr('data-src')].filter(Boolean).join(' ').toLowerCase();
+      return !/logo|icon|arrow|cookie|avatar/.test(sig);
+    });
+    if(imgs.length<2)imgs=root.find('img');
+    return imgs;
+  }
+
+  let sourceImgs=contentImages(desktopSection);
+  if(sourceImgs.length<2)sourceImgs=contentImages(mobileSection);
+  if(sourceImgs.length<2)return;
+
+  const img1=$(sourceImgs.get(0));
+  const img2=$(sourceImgs.get(1));
   const vi=lang==='vi';
 
   const data=[
@@ -2259,9 +2275,13 @@ function replaceMobileProduceSection($,lang){
   shell.append($('<h2 class="bioa-produce-mobile-direct__title"></h2>').text(vi?'Danh mục gia công':'What We Manufacture'));
 
   data.forEach(([img,title,copy])=>{
-    let visual=img.closest('picture');
-    if(!visual.length)visual=img;
-    visual=visual.clone();
+    // Clone only the fallback IMG, never the mobile <source> element. This prevents
+    // the old Merywood-branded mobile artwork from being selected by the browser.
+    const visual=img.clone()
+      .removeAttr('srcset')
+      .removeAttr('sizes')
+      .removeAttr('media')
+      .removeAttr('data-srcset');
 
     const media=$('<div class="bioa-produce-mobile-direct__media"></div>').append(visual);
     const card=$('<article class="bioa-produce-mobile-direct__card"></article>');
@@ -2273,7 +2293,7 @@ function replaceMobileProduceSection($,lang){
     shell.append(card);
   });
 
-  section.empty().addClass('bioa-produce-mobile-direct').append(shell);
+  mobileSection.empty().addClass('bioa-produce-mobile-direct').append(shell);
 }
 
 function buildMobileFooterV2($){
