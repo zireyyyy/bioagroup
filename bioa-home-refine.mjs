@@ -52,17 +52,123 @@ html,body{background:var(--bioa-cream)!important}
 @media(max-width:768px){.bioa-contact-fab{right:14px;bottom:14px}.bioa-contact-fab__panel{width:min(320px,calc(100vw - 28px))}.bioa-contact-fab__toggle{width:60px;height:60px}}
 `;
 
+
+const patchACss = \`
+/* HOME Patch A — brand cleanup + compact translucent header */
+.header{
+  background:rgba(252,254,241,.72)!important;
+  backdrop-filter:blur(10px) saturate(108%)!important;
+  -webkit-backdrop-filter:blur(10px) saturate(108%)!important;
+  box-shadow:0 1px 0 rgba(5,47,33,.045)!important;
+}
+.header__inner{
+  height:66px!important;
+  min-height:66px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.header__logo{
+  width:58px!important;
+  height:58px!important;
+  flex:0 0 58px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:visible!important;
+  margin-right:14px!important;
+}
+.header__logo img{
+  display:block!important;
+  width:48px!important;
+  max-width:48px!important;
+  height:56px!important;
+  max-height:56px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.menu__logo img{
+  width:62px!important;
+  max-width:62px!important;
+  height:74px!important;
+  object-fit:contain!important;
+}
+.header__nav ul{gap:28px!important}
+.header__nav a{
+  font-size:15px!important;
+  line-height:1.1!important;
+  font-weight:400!important;
+  letter-spacing:-.01em!important;
+}
+.header__contacts{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+.header__email,.header__socials{margin-left:0!important;margin-right:0!important}
+.bioa-lang{margin-left:2px!important;gap:4px!important}
+.header__btn{margin-left:2px!important}
+
+/* Merywood brand-watermark replacements only — do not touch product/UI artwork */
+.formats__logo{
+  --formats-logo:url("/assets/bioa-monogram.svg")!important;
+  opacity:.055!important;
+}
+.whatsapp__logo{
+  background:var(--bioa-primary)!important;
+  opacity:.065!important;
+  -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+}
+@media(max-width:1200px){
+  .header__inner{height:64px!important;min-height:64px!important}
+  .header__logo{width:54px!important;height:54px!important;flex-basis:54px!important;margin-right:10px!important}
+  .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
+  .header__nav ul{gap:20px!important}
+  .header__nav a{font-size:14px!important}
+  .header__contacts{gap:8px!important}
+}
+\`;
+
 function setLogo($){
-  const headerSel='.header__logo img,.menu__logo img';
-  const footerSel='.footer-top__logo img,.footer__logo img';
-  $(headerSel).attr('src','/assets/bioa-wordmark.svg').attr('alt','BIO-A Group').removeAttr('srcset').removeAttr('sizes');
-  $(footerSel).attr('src','/assets/bioa-wordmark-light.svg').attr('alt','BIO-A Group').removeAttr('srcset').removeAttr('sizes');
-  $('img[alt*="Merywood" i]').each((_,el)=>{
-    const x=$(el);
-    if(x.closest('.footer-top,.footer').length) x.attr('src','/assets/bioa-wordmark-light.svg');
-    else x.attr('src','/assets/bioa-wordmark.svg');
-    x.attr('alt','BIO-A Group').removeAttr('srcset').removeAttr('sizes');
+  // Explicit brand slots only. Keep every non-brand image/icon untouched.
+  $('.header__logo img,.menu__logo img')
+    .attr('src','/assets/bioa-full.svg')
+    .attr('alt','BIO-A Group')
+    .removeAttr('srcset')
+    .removeAttr('sizes');
+
+  $('.footer-top__logo img,.footer__logo img')
+    .attr('src','/assets/bioa-full-light.svg')
+    .attr('alt','BIO-A Group')
+    .removeAttr('srcset')
+    .removeAttr('sizes');
+}
+
+function replaceBrandWatermarks($){
+  const green='/assets/bioa-monogram.svg';
+  const patterns=[
+    /https:\/\/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/img\/logo-bg\.svg/gi,
+    /(?:https?:\/\/[^"'() ]+\/)?[^"'() ]*merywood_[^"'() ]+\.svg/gi,
+    /(?:https?:\/\/[^"'() ]+\/)?[^"'() ]*merywood-logo[^"'() ]+\.svg/gi
+  ];
+  const swap=(value)=>{
+    let out=String(value||'');
+    for(const re of patterns) out=out.replace(re,green);
+    return out;
+  };
+
+  $('style').each((_,el)=>{
+    const before=$(el).html()||'';
+    const after=swap(before);
+    if(after!==before) $(el).html(after);
   });
+  $('[style]').each((_,el)=>{
+    const before=$(el).attr('style')||'';
+    const after=swap(before);
+    if(after!==before) $(el).attr('style',after);
+  });
+
+  $('.formats__logo').attr('style',"--formats-logo:url('/assets/bioa-monogram.svg');");
 }
 
 function fixLang($,route,lang){
@@ -108,8 +214,9 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+'</style>');
   setLogo($);
+  replaceBrandWatermarks($);
   fixLang($,route,lang);
   footerSocials($);
   addContactLauncher($,lang);
