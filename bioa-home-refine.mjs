@@ -321,6 +321,54 @@ const patchA7Css = `
 }
 `;
 
+
+const patchA8Css = `
+/* HOME Patch A8 — fix email pill shell + enlarge contained We Produce watermark */
+.bioa-header-actions .header__email{
+  margin:0!important;
+  padding:0!important;
+  width:auto!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.bioa-header-actions .header__email a{
+  height:42px!important;
+  min-height:42px!important;
+  padding:0 18px!important;
+  border-radius:14px!important;
+  background:rgba(252,254,241,.72)!important;
+  border:1px solid rgba(17,111,71,.12)!important;
+  box-shadow:none!important;
+  color:var(--bioa-primary)!important;
+  line-height:1!important;
+}
+
+/* Keep the full BIO-A monogram visible while making it fill the card more naturally */
+.block-we-produce .bg__decoration{
+  width:62%!important;
+  height:72%!important;
+  top:50%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  opacity:.070!important;
+  transform:translate(-50%,-50%) scale(1)!important;
+  transform-origin:center!important;
+  -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+}
+.block-we-produce .item:hover .bg__decoration{
+  transform:translate(-50%,-50%) scale(1.055)!important;
+  opacity:.095!important;
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -421,7 +469,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
