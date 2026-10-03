@@ -369,6 +369,82 @@ const patchA8Css = `
 }
 `;
 
+
+const patchBCss = `
+/* HOME Patch B — widen hero stats to the left and keep every value fully visible */
+.block-title .info.desctop{
+  width:clamp(410px,24vw,470px)!important;
+  max-width:470px!important;
+  min-width:410px!important;
+}
+.block-title .info .item{
+  width:100%!important;
+  min-height:108px!important;
+  padding:18px 24px!important;
+  display:grid!important;
+  grid-template-columns:minmax(235px,1.35fr) minmax(125px,.65fr)!important;
+  column-gap:20px!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
+}
+.block-title .info .item__number{
+  min-width:0!important;
+  max-width:none!important;
+  font-size:clamp(38px,2.35vw,50px)!important;
+  line-height:.98!important;
+  letter-spacing:-.035em!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+}
+.block-title .info .item__text{
+  min-width:0!important;
+  max-width:none!important;
+  font-size:clamp(15px,.95vw,18px)!important;
+  line-height:1.18!important;
+  white-space:normal!important;
+  overflow:visible!important;
+}
+/* Long values get a controlled size instead of clipping */
+.block-title .info .item:nth-child(3) .item__number{
+  font-size:clamp(32px,1.95vw,42px)!important;
+  letter-spacing:-.045em!important;
+}
+.block-title .info .item:nth-child(4) .item__number{
+  font-size:clamp(36px,2.1vw,46px)!important;
+}
+.block-title .info .item:nth-child(5) .item__number{
+  font-size:clamp(31px,1.9vw,40px)!important;
+  letter-spacing:-.04em!important;
+}
+@media(max-width:1500px){
+  .block-title .info.desctop{
+    width:clamp(390px,29vw,440px)!important;
+    min-width:390px!important;
+  }
+  .block-title .info .item{
+    grid-template-columns:minmax(215px,1.3fr) minmax(118px,.7fr)!important;
+    padding-left:22px!important;
+    padding-right:22px!important;
+  }
+  .block-title .info .item:nth-child(3) .item__number{
+    font-size:34px!important;
+  }
+}
+@media(max-width:1200px){
+  .block-title .info.desctop{
+    width:390px!important;
+    min-width:390px!important;
+  }
+  .block-title .info .item{
+    grid-template-columns:minmax(205px,1.28fr) minmax(115px,.72fr)!important;
+    column-gap:16px!important;
+  }
+  .block-title .info .item__number{font-size:38px!important}
+  .block-title .info .item:nth-child(3) .item__number{font-size:31px!important}
+  .block-title .info .item:nth-child(5) .item__number{font-size:31px!important}
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -469,7 +545,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
