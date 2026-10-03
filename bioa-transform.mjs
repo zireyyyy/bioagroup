@@ -49,10 +49,11 @@ function setHomeStats($,stats){
     $(e).find('.item__number').text(stats[i][0]);
     $(e).find('.item__text').text(stats[i][1]);
   });
-  $('.block-title-continue .info .item').each((i,e)=>{
-    if(!stats[i])return;
-    $(e).find('.item__number').text(stats[i][0]);
-    $(e).find('.item__text').text(stats[i][1]);
+  $('.block-title-continue .info .item,.block-title-mobile .info .item').each((i,e)=>{
+    if(!stats[i%stats.length])return;
+    const x=stats[i%stats.length];
+    $(e).find('.item__number').text(x[0]);
+    $(e).find('.item__text').text(x[1]);
   });
 }
 

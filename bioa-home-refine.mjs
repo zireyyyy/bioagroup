@@ -447,72 +447,107 @@ const patchBCss = `
 
 
 const patchB2Css = `
-/* HOME Patch B2 — restore original stat rhythm and sync mobile header/menu */
+/* HOME Patch B3 — lighter original-style stats + reliable mobile header */
+.block-title .info.desctop{
+  width:clamp(405px,23vw,455px)!important;
+  min-width:405px!important;
+  max-width:455px!important;
+}
 .block-title .info .item{
-  min-height:96px!important;
-  padding:16px 22px!important;
-  grid-template-columns:minmax(225px,1.32fr) minmax(135px,.68fr)!important;
+  width:100%!important;
+  min-height:88px!important;
+  padding:14px 22px!important;
+  display:grid!important;
+  grid-template-columns:minmax(220px,1.25fr) minmax(135px,.75fr)!important;
   column-gap:18px!important;
+  align-items:center!important;
+  box-sizing:border-box!important;
 }
 .block-title .info .item__number{
-  font-size:clamp(38px,2.15vw,44px)!important;
-  font-weight:400!important;
+  min-width:0!important;
+  max-width:none!important;
+  font-size:36px!important;
+  font-weight:300!important;
   line-height:1!important;
   letter-spacing:-.025em!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
 }
 .block-title .info .item__text{
-  font-size:clamp(15px,.9vw,17px)!important;
+  min-width:0!important;
+  max-width:none!important;
+  font-size:15px!important;
   font-weight:400!important;
-  line-height:1.2!important;
+  line-height:1.22!important;
+  white-space:normal!important;
+  overflow:visible!important;
 }
 .block-title .info .item:nth-child(3) .item__number,
 .block-title .info .item:nth-child(4) .item__number,
 .block-title .info .item:nth-child(5) .item__number{
-  font-size:clamp(38px,2.15vw,44px)!important;
-  font-weight:400!important;
+  font-size:36px!important;
+  font-weight:300!important;
   letter-spacing:-.025em!important;
 }
 
-/* Mobile: keep Merywood header shell, move contact/language controls into menu */
+/* dedicated mobile header shell: logo | CTA | original burger */
+.bioa-mobile-actions{display:none!important}
 @media(max-width:768px){
   .bioa-header-actions{display:none!important}
+  .header__contacts,
+  .header__wrapper > .bioa-lang,
+  .header__wrapper > .header__btn{display:none!important}
+
   .header__wrapper{
     min-height:62px!important;
     height:62px!important;
+    display:flex!important;
+    align-items:center!important;
     justify-content:flex-start!important;
+    padding-top:0!important;
+    padding-bottom:0!important;
   }
   .header__logo{
     width:48px!important;
     height:48px!important;
     flex:0 0 48px!important;
-    margin-right:auto!important;
+    margin:0 auto 0 0!important;
   }
   .header__logo img{
     width:40px!important;
     height:46px!important;
     max-width:40px!important;
     max-height:46px!important;
+    object-fit:contain!important;
+  }
+  .bioa-mobile-actions{
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    margin-left:auto!important;
+    flex:0 0 auto!important;
   }
   .bioa-mobile-cta{
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
     height:40px!important;
-    padding:0 16px!important;
-    margin-left:auto!important;
-    margin-right:10px!important;
+    padding:0 15px!important;
     border:0!important;
     border-radius:14px!important;
     background:var(--bioa-primary)!important;
     color:#fff!important;
     font-size:13px!important;
     font-weight:600!important;
+    line-height:1!important;
     text-decoration:none!important;
     white-space:nowrap!important;
   }
-  .menu-burger{
+  .bioa-mobile-actions button,
+  .bioa-mobile-actions .menu-burger,
+  .bioa-mobile-actions [class*="burger"],
+  .bioa-mobile-actions [class*="menu"]{
     flex:0 0 auto!important;
-    margin-left:0!important;
   }
 
   .menu__contacts{
@@ -560,9 +595,23 @@ const patchB2Css = `
     fill:currentColor!important;
   }
 
-  /* mobile stat copy uses same BIO-A numbers as desktop */
-  .block-title-continue .info .item__number{
+  /* mobile statistics: same light rhythm as desktop */
+  .block-title-continue .info .item,
+  .block-title-mobile .info .item{
+    min-height:80px!important;
+    padding:13px 18px!important;
+  }
+  .block-title-continue .info .item__number,
+  .block-title-mobile .info .item__number{
+    font-size:30px!important;
+    font-weight:300!important;
+    line-height:1!important;
+  }
+  .block-title-continue .info .item__text,
+  .block-title-mobile .info .item__text{
+    font-size:13px!important;
     font-weight:400!important;
+    line-height:1.2!important;
   }
 }
 `;
@@ -634,16 +683,34 @@ function normalizeHeaderActions($){
 
 
 function syncMobileHeader($,route,lang){
-  $('.bioa-mobile-cta').remove();
-  $('.bioa-mobile-menu-controls').remove();
+  $('.bioa-mobile-actions,.bioa-mobile-menu-controls').remove();
 
+  const header=$('.header').first();
+  const wrapper=header.find('.header__wrapper').first().length
+    ? header.find('.header__wrapper').first()
+    : header.find('.container').first();
+  if(!header.length||!wrapper.length)return;
+
+  // Find the original Merywood mobile menu trigger without assuming one exact class name.
+  let burger=header.find('button').filter((_,el)=>{
+    const x=$(el);
+    const sig=[x.attr('class'),x.attr('id'),x.attr('aria-label'),x.attr('data-target'),x.attr('data-menu')].filter(Boolean).join(' ').toLowerCase();
+    return /menu|burger|navigation|nav/.test(sig);
+  }).first();
+  if(!burger.length) burger=header.find('button').last();
+
+  const actions=$('<div class="bioa-mobile-actions"></div>');
   const cta=$('<a class="bioa-mobile-cta"></a>')
-    .attr('href', lang==='vi' ? '/contacts/' : '/en/contacts/')
-    .text(lang==='vi' ? 'Nhận tư vấn ↗' : 'Get a quote ↗');
-  $('.header__wrapper .menu-burger').before(cta);
+    .attr('href',lang==='vi'?'/contacts/':'/en/contacts/')
+    .text(lang==='vi'?'Nhận tư vấn ↗':'Get a quote ↗');
+  actions.append(cta);
+  if(burger.length) actions.append(burger.detach());
+  wrapper.append(actions);
 
   const menuContacts=$('.menu__contacts').first();
-  if(!menuContacts.length)return;
+  const menuRoot=$('.menu').first();
+  const target=menuContacts.length?menuContacts:menuRoot;
+  if(!target.length)return;
 
   const langSwitch=$('<div class="bioa-lang"></div>');
   langSwitch.append(
@@ -654,10 +721,13 @@ function syncMobileHeader($,route,lang){
   const controls=$('<div class="bioa-mobile-menu-controls"></div>');
   controls.append(
     $('<a class="bioa-mobile-contact" aria-label="WhatsApp BIO-A Group"></a>')
-      .attr('href',company.whatsapp).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.whatsapp),
+      .attr('href',company.whatsapp)
+      .attr('target','_blank')
+      .attr('rel','noopener noreferrer')
+      .html(icons.whatsapp),
     langSwitch
   );
-  menuContacts.append(controls);
+  target.append(controls);
 }
 
 function footerSocials($){
