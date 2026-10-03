@@ -122,7 +122,7 @@ const patchACss = `
   padding:3px!important;
   margin-left:10px!important;
   margin-right:0!important;
-  border-radius:999px!important;
+  border-radius:14px!important;
   background:rgba(252,254,241,.72)!important;
   border:1px solid rgba(17,111,71,.12)!important;
   box-sizing:border-box!important;
@@ -133,7 +133,7 @@ const patchACss = `
   height:35px!important;
   padding:0!important;
   margin:0!important;
-  border-radius:999px!important;
+  border-radius:11px!important;
   display:inline-flex!important;
   align-items:center!important;
   justify-content:center!important;
@@ -158,8 +158,16 @@ const patchACss = `
   margin-left:10px!important;
   margin-right:0!important;
 }
+.header__contacts + .bioa-lang{margin-left:10px!important;margin-right:0!important}
+.bioa-lang + .header__btn{margin-left:10px!important;margin-right:0!important}
 
 /* Merywood brand-watermark replacements only — do not touch product/UI artwork */
+.block-we-produce .bg__decoration{
+  background-image:url("/assets/bioa-monogram-light.svg")!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+}
 .formats__logo{
   --formats-logo:url("/assets/bioa-monogram.svg")!important;
   opacity:.055!important;
