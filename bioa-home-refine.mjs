@@ -1995,6 +1995,27 @@ const patchB9Css = `
 }
 `;
 
+
+const patchB11Css = `
+/* HOME Patch B11 — restore pre-B10 We Produce and keep BIO-A watermark beneath product artwork */
+@media(max-width:768px){
+  .bioa-produce-mobile-direct__media{
+    position:relative!important;
+    isolation:isolate!important;
+    background:transparent!important;
+  }
+  .bioa-produce-mobile-direct__media:after{
+    z-index:0!important;
+    opacity:.055!important;
+  }
+  .bioa-produce-mobile-direct__media picture,
+  .bioa-produce-mobile-direct__media img{
+    position:relative!important;
+    z-index:1!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -2218,48 +2239,32 @@ function replaceMobileProduceSection($,lang){
   });
   if(!headings.length)return;
 
-  // Merywood ships separate desktop/mobile Produce blocks. The mobile image variant
-  // contains the old Merywood watermark baked into the artwork, so rebuild the
-  // mobile block with the desktop fallback images (then apply the BIO-A watermark).
-  const mobileHeading=headings.last();
-  let mobileSection=mobileHeading.closest('section');
-  if(!mobileSection.length){
-    mobileSection=mobileHeading.parents().filter((_,el)=>{
+  const heading=headings.last();
+  let section=heading.closest('section');
+
+  if(!section.length){
+    section=heading.parents().filter((_,el)=>{
       const x=$(el);
-      return x.find('img').length>=2 && x.find('h1,h2,h3').length<=4;
+      const imgs=x.find('img');
+      const hs=x.find('h1,h2,h3').filter((__,h)=>{
+        const t=$(h).text().replace(/\s+/g,' ').trim();
+        return /^(We Produce|Danh mục sản xuất|Danh mục gia công|What We Manufacture)$/i.test(t);
+      });
+      return imgs.length>=2 && hs.length>=1 && x.find('h1,h2,h3').length<=4;
     }).first();
   }
-  if(!mobileSection.length)return;
+  if(!section.length)return;
 
-  let desktopSection=null;
-  if(headings.length>1){
-    const desktopHeading=$(headings.get(0));
-    desktopSection=desktopHeading.closest('section');
-    if(!desktopSection.length){
-      desktopSection=desktopHeading.parents().filter((_,el)=>{
-        const x=$(el);
-        return x.find('img').length>=2 && x.find('h1,h2,h3').length<=4;
-      }).first();
-    }
-  }
+  let imgs=section.find('img').filter((_,el)=>{
+    const x=$(el);
+    const sig=[x.attr('alt'),x.attr('src'),x.attr('data-src')].filter(Boolean).join(' ').toLowerCase();
+    return !/logo|icon|arrow|cookie|avatar/.test(sig);
+  });
+  if(imgs.length<2)imgs=section.find('img');
+  if(imgs.length<2)return;
 
-  function contentImages(root){
-    if(!root||!root.length)return $();
-    let imgs=root.find('img').filter((_,el)=>{
-      const x=$(el);
-      const sig=[x.attr('alt'),x.attr('src'),x.attr('data-src')].filter(Boolean).join(' ').toLowerCase();
-      return !/logo|icon|arrow|cookie|avatar/.test(sig);
-    });
-    if(imgs.length<2)imgs=root.find('img');
-    return imgs;
-  }
-
-  let sourceImgs=contentImages(desktopSection);
-  if(sourceImgs.length<2)sourceImgs=contentImages(mobileSection);
-  if(sourceImgs.length<2)return;
-
-  const img1=$(sourceImgs.get(0));
-  const img2=$(sourceImgs.get(1));
+  const img1=$(imgs.get(0));
+  const img2=$(imgs.get(1));
   const vi=lang==='vi';
 
   const data=[
@@ -2275,13 +2280,9 @@ function replaceMobileProduceSection($,lang){
   shell.append($('<h2 class="bioa-produce-mobile-direct__title"></h2>').text(vi?'Danh mục gia công':'What We Manufacture'));
 
   data.forEach(([img,title,copy])=>{
-    // Clone only the fallback IMG, never the mobile <source> element. This prevents
-    // the old Merywood-branded mobile artwork from being selected by the browser.
-    const visual=img.clone()
-      .removeAttr('srcset')
-      .removeAttr('sizes')
-      .removeAttr('media')
-      .removeAttr('data-srcset');
+    let visual=img.closest('picture');
+    if(!visual.length)visual=img;
+    visual=visual.clone();
 
     const media=$('<div class="bioa-produce-mobile-direct__media"></div>').append(visual);
     const card=$('<article class="bioa-produce-mobile-direct__card"></article>');
@@ -2293,7 +2294,7 @@ function replaceMobileProduceSection($,lang){
     shell.append(card);
   });
 
-  mobileSection.empty().addClass('bioa-produce-mobile-direct').append(shell);
+  section.empty().addClass('bioa-produce-mobile-direct').append(shell);
 }
 
 function buildMobileFooterV2($){
@@ -2375,7 +2376,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB11Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
