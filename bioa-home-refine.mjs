@@ -57,8 +57,8 @@ const patchACss = `
 /* HOME Patch A — brand cleanup + compact translucent header */
 .header{
   background:rgba(252,254,241,.30)!important;
-  backdrop-filter:blur(8px) saturate(104%)!important;
-  -webkit-backdrop-filter:blur(8px) saturate(104%)!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
   box-shadow:0 1px 0 rgba(5,47,33,.025)!important;
 }
 .header__inner{
@@ -102,8 +102,9 @@ const patchACss = `
 .header__contacts{
   display:flex!important;
   align-items:center!important;
-  gap:6px!important;
+  gap:10px!important;
   margin-left:auto!important;
+  margin-right:0!important;
 }
 .header__email a{
   padding-left:14px!important;
@@ -113,11 +114,39 @@ const patchACss = `
   width:40px!important;
   height:40px!important;
 }
+.bioa-lang{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:0!important;
+  height:42px!important;
+  padding:3px!important;
+  margin-left:10px!important;
+  margin-right:0!important;
+  border-radius:999px!important;
+  background:rgba(252,254,241,.72)!important;
+  border:1px solid rgba(17,111,71,.12)!important;
+  box-sizing:border-box!important;
+}
 .bioa-lang a{
-  min-width:34px!important;
-  height:34px!important;
-  padding-left:7px!important;
-  padding-right:7px!important;
+  min-width:35px!important;
+  width:35px!important;
+  height:35px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:999px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:transparent!important;
+  color:var(--bioa-deep)!important;
+  font-size:13px!important;
+  line-height:1!important;
+  text-decoration:none!important;
+  transition:background .2s ease,color .2s ease!important;
+}
+.bioa-lang a.is-active{
+  background:var(--bioa-primary)!important;
+  color:#fff!important;
 }
 .header__btn{
   min-width:126px!important;
@@ -125,8 +154,10 @@ const patchACss = `
   padding-right:18px!important;
 }
 .header__email,.header__socials{margin-left:0!important;margin-right:0!important}
-.bioa-lang{margin-left:4px!important;gap:2px!important}
-.header__btn{margin-left:4px!important}
+.header__btn{
+  margin-left:10px!important;
+  margin-right:0!important;
+}
 
 /* Merywood brand-watermark replacements only — do not touch product/UI artwork */
 .formats__logo{
@@ -158,7 +189,9 @@ const patchACss = `
   .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
   .header__nav ul{gap:20px!important}
   .header__nav a{font-size:16px!important}
-  .header__contacts{gap:5px!important}
+  .header__contacts{gap:8px!important}
+  .bioa-lang{margin-left:8px!important}
+  .header__btn{margin-left:8px!important}
 }
 `;
 
