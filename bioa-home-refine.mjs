@@ -11,6 +11,7 @@ const icons = {
   whatsapp:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>',
   facebook:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>',
   zalo:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.49 10.2722v-.4496h1.3467v6.3218h-.7704a.576.576 0 01-.5763-.5729l-.0006.0005a3.273 3.273 0 01-1.9372.6321c-1.8138 0-3.2844-1.4697-3.2844-3.2823 0-1.8125 1.4706-3.2822 3.2844-3.2822a3.273 3.273 0 011.9372.6321l.0006.0005zM6.9188 7.7896v.205c0 .3823-.051.6944-.2995 1.0605l-.03.0343c-.0542.0615-.1815.206-.2421.2843L2.024 14.8h4.8948v.7682a.5764.5764 0 01-.5767.5761H0v-.3622c0-.4436.1102-.6414.2495-.8476L4.8582 9.23H.1922V7.7896h6.7266zm8.5513 8.3548a.4805.4805 0 01-.4803-.4798v-7.875h1.4416v8.3548H15.47zM20.6934 9.6C22.52 9.6 24 11.0807 24 12.9044c0 1.8252-1.4801 3.306-3.3066 3.306-1.8264 0-3.3066-1.4808-3.3066-3.306 0-1.8237 1.4802-3.3044 3.3066-3.3044zm-10.1412 5.253c1.0675 0 1.9324-.8645 1.9324-1.9312 0-1.065-.865-1.9295-1.9324-1.9295s-1.9324.8644-1.9324 1.9295c0 1.0667.865 1.9312 1.9324 1.9312zm10.1412-.0033c1.0737 0 1.945-.8707 1.945-1.9453 0-1.073-.8713-1.9436-1.945-1.9436-1.0753 0-1.945.8706-1.945 1.9436 0 1.0746.8697 1.9453 1.945 1.9453z"/></svg>',
+  telegram:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 3.3 2.9 10.6c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.9 5.8c.2.7.1 1 .9 1 .6 0 .9-.3 1.2-.6l2.7-2.6 5.6 4.1c1 .6 1.8.3 2-.9L24 5c.4-1.5-.6-2.2-2.3-1.7ZM9 13.3l9.4-5.9c.5-.3.9-.1.6.2l-7.8 7.1-.3 3.3L9 13.3Z"/></svg>',
   mail:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 5h19.2A2.4 2.4 0 0124 7.4v9.2a2.4 2.4 0 01-2.4 2.4H2.4A2.4 2.4 0 010 16.6V7.4A2.4 2.4 0 012.4 5zm9.6 7.2L3.1 7.1h17.8L12 12.2zm0 2.4L2 8.9v7.7c0 .2.2.4.4.4h19.2c.2 0 .4-.2.4-.4V8.9l-10 5.7z"/></svg>'
 };
 
@@ -818,6 +819,299 @@ const patchMobileMenuCss = `
 }
 `;
 
+
+const patchB4Css = `
+/* HOME Patch B4 — compact hero, mobile parity, compact inline menu, footer contact parity */
+
+/* 1) Hero stats: restore the lighter, tighter rhythm from the earlier PASS candidate */
+.block-title .info.desctop{
+  width:clamp(390px,22vw,425px)!important;
+  min-width:390px!important;
+  max-width:425px!important;
+  gap:12px!important;
+}
+.block-title .info .item{
+  min-height:76px!important;
+  padding:11px 18px!important;
+  grid-template-columns:minmax(195px,1.18fr) minmax(125px,.82fr)!important;
+  column-gap:15px!important;
+  border-radius:16px!important;
+}
+.block-title .info .item__number,
+.block-title .info .item:nth-child(3) .item__number,
+.block-title .info .item:nth-child(4) .item__number,
+.block-title .info .item:nth-child(5) .item__number{
+  font-size:32px!important;
+  font-weight:300!important;
+  line-height:1!important;
+  letter-spacing:-.025em!important;
+}
+.block-title .info .item__text{
+  font-size:14px!important;
+  font-weight:400!important;
+  line-height:1.18!important;
+}
+
+/* 2) Mobile header: original source shell, strong left/right alignment */
+@media(max-width:768px){
+  .header,
+  .header__inner,
+  .header__wrapper,
+  .header .container{
+    width:100%!important;
+    max-width:none!important;
+    box-sizing:border-box!important;
+  }
+  .header__inner,
+  .header__wrapper{
+    min-height:60px!important;
+    height:60px!important;
+  }
+  .header__wrapper{
+    padding:0 12px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+  }
+  .header__logo{
+    width:44px!important;
+    height:46px!important;
+    flex:0 0 44px!important;
+    margin:0!important;
+    justify-content:flex-start!important;
+  }
+  .header__logo img{
+    width:36px!important;
+    max-width:36px!important;
+    height:42px!important;
+    max-height:42px!important;
+    object-fit:contain!important;
+    object-position:left center!important;
+  }
+  .bioa-header-actions{
+    margin-left:auto!important;
+    gap:0!important;
+  }
+  .bioa-header-actions .header__btn{
+    height:38px!important;
+    min-height:38px!important;
+    margin:0!important;
+    padding:0 14px!important;
+    border-radius:13px!important;
+    font-size:12px!important;
+  }
+  .bioa-mobile-menu-button{
+    margin-left:8px!important;
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    border-radius:12px!important;
+  }
+
+  /* 3) Mobile menu: ArtistLookup-style inline collapse, but compact BIO-A contact layout */
+  .bioa-mobile-nav-drop{
+    padding:8px 14px 14px!important;
+  }
+  .bioa-mobile-nav-links{
+    gap:0!important;
+    padding:0 0 8px!important;
+  }
+  .bioa-mobile-nav-links a{
+    min-height:42px!important;
+    padding:7px 4px!important;
+    font-size:16px!important;
+    border-bottom:1px solid rgba(5,47,33,.07)!important;
+  }
+  .bioa-mobile-nav-links a:after{
+    content:"↗"!important;
+    font-size:13px!important;
+    font-weight:600!important;
+    opacity:.72!important;
+  }
+  .bioa-mobile-nav-meta{
+    padding-top:10px!important;
+  }
+  .bioa-mobile-nav-label{display:none!important}
+  .bioa-mobile-menu-email{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:40px!important;
+    width:100%!important;
+    padding:0 12px!important;
+    margin:0 0 8px!important;
+    border:1px solid rgba(17,111,71,.10)!important;
+    border-radius:12px!important;
+    background:rgba(252,254,241,.78)!important;
+    color:var(--bioa-primary)!important;
+    text-decoration:none!important;
+    font-size:13px!important;
+    box-sizing:border-box!important;
+  }
+  .bioa-mobile-contact-row{
+    display:flex!important;
+    align-items:center!important;
+    gap:6px!important;
+    width:100%!important;
+    flex-wrap:nowrap!important;
+  }
+  .bioa-mobile-contact-row .bioa-mobile-social{
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    border-radius:11px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    background:var(--bioa-primary)!important;
+    color:#fff!important;
+    text-decoration:none!important;
+  }
+  .bioa-mobile-contact-row .bioa-mobile-social svg{
+    width:18px!important;
+    height:18px!important;
+    fill:currentColor!important;
+  }
+  .bioa-mobile-menu-lang{
+    margin:0 0 0 auto!important;
+    height:38px!important;
+    padding:3px!important;
+    border-radius:11px!important;
+    flex:0 0 auto!important;
+  }
+  .bioa-mobile-menu-lang a{
+    width:30px!important;
+    min-width:30px!important;
+    height:30px!important;
+    border-radius:8px!important;
+    font-size:11px!important;
+  }
+
+  /* 4) We Produce mobile: mirror desktop card treatment instead of image-only tall cards */
+  .block-we-produce .item{
+    height:auto!important;
+    min-height:0!important;
+    aspect-ratio:auto!important;
+    border-radius:24px!important;
+    overflow:hidden!important;
+  }
+  .block-we-produce .item__bg{
+    min-height:0!important;
+    height:auto!important;
+    aspect-ratio:1.16/1!important;
+    border-radius:24px!important;
+    overflow:hidden!important;
+  }
+  .block-we-produce .bg__media{
+    width:100%!important;
+    height:100%!important;
+    object-fit:cover!important;
+  }
+  .block-we-produce .bg__decoration{
+    width:62%!important;
+    height:62%!important;
+    opacity:.060!important;
+  }
+  .block-we-produce .item__content,
+  .block-we-produce .item__info,
+  .block-we-produce .item__text,
+  .block-we-produce .item__description{
+    display:block!important;
+    visibility:visible!important;
+    opacity:1!important;
+  }
+  .block-we-produce .item__content,
+  .block-we-produce .item__info{
+    position:relative!important;
+    z-index:3!important;
+    margin:-72px 12px 12px!important;
+    padding:14px!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.94)!important;
+    box-sizing:border-box!important;
+  }
+  .block-we-produce .item__title,
+  .block-we-produce .item h3{
+    display:block!important;
+    font-size:22px!important;
+    line-height:1.1!important;
+    font-weight:400!important;
+    margin:0 0 8px!important;
+  }
+  .block-we-produce .item__description,
+  .block-we-produce .item__text,
+  .block-we-produce .item p{
+    display:block!important;
+    font-size:13px!important;
+    line-height:1.4!important;
+    margin:0!important;
+  }
+
+  /* Mobile title stats follow same lighter rhythm */
+  .block-title-continue .info,
+  .block-title-mobile .info{gap:10px!important}
+  .block-title-continue .info .item,
+  .block-title-mobile .info .item{
+    min-height:68px!important;
+    padding:10px 14px!important;
+    border-radius:14px!important;
+  }
+  .block-title-continue .info .item__number,
+  .block-title-mobile .info .item__number{
+    font-size:27px!important;
+    font-weight:300!important;
+  }
+  .block-title-continue .info .item__text,
+  .block-title-mobile .info .item__text{
+    font-size:12px!important;
+    font-weight:400!important;
+  }
+
+  /* 5) Footer mobile mirrors desktop contact stack */
+  .footer-top__email{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-start!important;
+    width:100%!important;
+    margin:10px 0 8px!important;
+  }
+  .footer-top__email a{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:40px!important;
+    padding:0 14px!important;
+    border-radius:12px!important;
+    background:rgba(252,254,241,.62)!important;
+    color:var(--bioa-primary)!important;
+    text-decoration:none!important;
+    font-size:13px!important;
+  }
+  .footer-top__socials{
+    display:flex!important;
+    align-items:center!important;
+    gap:7px!important;
+    flex-wrap:wrap!important;
+  }
+  .footer-top__socials a{
+    width:38px!important;
+    height:38px!important;
+    min-width:38px!important;
+    border-radius:11px!important;
+  }
+  .footer-top__socials svg{
+    width:19px!important;
+    height:19px!important;
+  }
+  .footer-top__logo img,.footer__logo img{
+    width:72px!important;
+    max-width:72px!important;
+    height:auto!important;
+    max-height:86px!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -895,7 +1189,6 @@ function syncMobileHeader($,route,lang){
   const header=$('.header').first();
   if(!header.length)return;
 
-  // Keep the source header nodes in place. Only retarget the original burger.
   let burger=header.find('button').filter((_,el)=>{
     const x=$(el);
     const sig=[x.attr('class'),x.attr('id'),x.attr('aria-label'),x.attr('data-target'),x.attr('data-menu')].filter(Boolean).join(' ').toLowerCase();
@@ -915,7 +1208,6 @@ function syncMobileHeader($,route,lang){
       .removeAttr('data-menu');
   }
 
-  // Hide only the legacy mobile drawer; the desktop source header remains intact.
   $('.menu').first().addClass('bioa-old-mobile-menu');
 
   const nav=$('<div id="bioaMobileNav" class="bioa-mobile-nav" role="region"></div>')
@@ -926,23 +1218,20 @@ function syncMobileHeader($,route,lang){
 
   $('.header__nav a').each((_,el)=>{
     const a=$(el);
-    const item=$('<a></a>').attr('href',a.attr('href')||'#').text(a.text().trim());
-    links.append(item);
+    links.append($('<a></a>').attr('href',a.attr('href')||'#').text(a.text().trim()));
   });
 
-  const mailIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm0 2 9 6 9-6H3Zm18 10V9l-9 6-9-6v8h18Z"/></svg>';
-  const telegramIcon='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.7 3.3 2.9 10.6c-1.3.5-1.3 1.2-.2 1.5l4.8 1.5 1.9 5.8c.2.7.1 1 .9 1 .6 0 .9-.3 1.2-.6l2.7-2.6 5.6 4.1c1 .6 1.8.3 2-.9L24 5c.4-1.5-.6-2.2-2.3-1.7ZM9 13.3l9.4-5.9c.5-.3.9-.1.6.2l-7.8 7.1-.3 3.3L9 13.3Z"/></svg>';
-
   const meta=$('<div class="bioa-mobile-nav-meta"></div>');
-  meta.append($('<div class="bioa-mobile-nav-label"></div>').text(lang==='vi'?'Liên hệ BIO-A Group':'Contact BIO-A Group'));
+  meta.append(
+    $('<a class="bioa-mobile-menu-email"></a>').attr('href','mailto:'+company.email).text(company.email)
+  );
 
-  const contacts=$('<div class="bioa-mobile-contact-grid"></div>');
-  contacts.append(
-    $('<a></a>').attr('href','mailto:'+company.email).html(mailIcon+'<span>Email</span>'),
-    $('<a></a>').attr('href',company.whatsapp).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.whatsapp+'<span>WhatsApp</span>'),
-    $('<a></a>').attr('href',company.telegram).attr('target','_blank').attr('rel','noopener noreferrer').html(telegramIcon+'<span>Telegram</span>'),
-    $('<a></a>').attr('href',company.facebook).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.facebook+'<span>Facebook</span>'),
-    $('<a></a>').attr('href',company.zalo).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.zalo+'<span>Zalo</span>')
+  const row=$('<div class="bioa-mobile-contact-row"></div>');
+  row.append(
+    $('<a class="bioa-mobile-social" aria-label="WhatsApp"></a>').attr('href',company.whatsapp).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.whatsapp),
+    $('<a class="bioa-mobile-social" aria-label="Telegram"></a>').attr('href',company.telegram).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.telegram),
+    $('<a class="bioa-mobile-social" aria-label="Facebook"></a>').attr('href',company.facebook).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.facebook),
+    $('<a class="bioa-mobile-social" aria-label="Zalo"></a>').attr('href',company.zalo).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.zalo)
   );
 
   const langSwitch=$('<div class="bioa-mobile-menu-lang"></div>');
@@ -950,13 +1239,13 @@ function syncMobileHeader($,route,lang){
     $('<a>VI</a>').attr('href',mobileLocalPath(route,'vi')).toggleClass('is-active',lang==='vi'),
     $('<a>EN</a>').attr('href',mobileLocalPath(route,'en')).toggleClass('is-active',lang==='en')
   );
+  row.append(langSwitch);
+  meta.append(row);
 
-  meta.append(contacts,langSwitch);
   drop.append(links,meta);
   nav.append(drop);
   header.append(nav);
 
-  // Translate the section heading in both layouts; visual card treatment remains shared.
   $('.block-we-produce h2,.block-we-produce .title').first().text(lang==='vi'?'Danh mục gia công':'What We Manufacture');
 
   const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();set(!n.classList.contains('open'));},true);n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});})();";
@@ -964,15 +1253,21 @@ function syncMobileHeader($,route,lang){
 }
 
 function footerSocials($){
-  const s=$('.footer-top__socials a');
-  if(!s.length)return;
+  const wrap=$('.footer-top__socials').first();
+  if(!wrap.length)return;
   const defs=[
     [company.whatsapp,'WhatsApp',icons.whatsapp],
     [company.facebook,'Facebook',icons.facebook],
+    [company.telegram,'Telegram',icons.telegram],
     [company.zalo,'Zalo',icons.zalo]
   ];
-  s.each((i,el)=>{
-    if(!defs[i])return;
+  let anchors=wrap.find('a');
+  while(anchors.length<defs.length){
+    wrap.append('<a href="#"></a>');
+    anchors=wrap.find('a');
+  }
+  anchors.each((i,el)=>{
+    if(!defs[i]){$(el).remove();return;}
     const [href,label,svg]=defs[i];
     $(el).attr('href',href).attr('target','_blank').attr('rel','noopener noreferrer').attr('aria-label',label).html(svg);
   });
@@ -989,6 +1284,7 @@ function addContactLauncher($,lang){
         <a href="${company.zalo}" target="_blank" rel="noopener noreferrer">${icons.zalo}<span>Zalo</span></a>
         <a href="${company.facebook}" target="_blank" rel="noopener noreferrer">${icons.facebook}<span>Facebook</span></a>
         <a href="${company.whatsapp}" target="_blank" rel="noopener noreferrer">${icons.whatsapp}<span>WhatsApp</span></a>
+        <a href="${company.telegram}" target="_blank" rel="noopener noreferrer">${icons.telegram}<span>Telegram</span></a>
         <a href="mailto:${company.email}">${icons.mail}<span>Email</span></a>
       </div>
     </div>
@@ -998,7 +1294,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
