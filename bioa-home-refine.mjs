@@ -56,7 +56,7 @@ html,body{background:var(--bioa-cream)!important}
 const patchACss = `
 /* HOME Patch A — brand cleanup + compact translucent header */
 .header{
-  background:rgba(252,254,241,.50)!important;
+  background:rgba(252,254,241,.30)!important;
   backdrop-filter:blur(8px) saturate(104%)!important;
   -webkit-backdrop-filter:blur(8px) saturate(104%)!important;
   box-shadow:0 1px 0 rgba(5,47,33,.025)!important;
@@ -94,7 +94,7 @@ const patchACss = `
 }
 .header__nav ul{gap:28px!important}
 .header__nav a{
-  font-size:16px!important;
+  font-size:17px!important;
   line-height:1.1!important;
   font-weight:400!important;
   letter-spacing:-.01em!important;
@@ -105,9 +105,28 @@ const patchACss = `
   gap:6px!important;
   margin-left:auto!important;
 }
+.header__email a{
+  padding-left:14px!important;
+  padding-right:14px!important;
+}
+.header__socials .socials__link{
+  width:40px!important;
+  height:40px!important;
+}
+.bioa-lang a{
+  min-width:34px!important;
+  height:34px!important;
+  padding-left:7px!important;
+  padding-right:7px!important;
+}
+.header__btn{
+  min-width:126px!important;
+  padding-left:18px!important;
+  padding-right:18px!important;
+}
 .header__email,.header__socials{margin-left:0!important;margin-right:0!important}
-.bioa-lang{margin-left:0!important;gap:3px!important}
-.header__btn{margin-left:0!important}
+.bioa-lang{margin-left:4px!important;gap:2px!important}
+.header__btn{margin-left:4px!important}
 
 /* Merywood brand-watermark replacements only — do not touch product/UI artwork */
 .formats__logo{
@@ -123,16 +142,22 @@ const patchACss = `
   bottom:auto!important;
   width:170px!important;
   height:138px!important;
-  transform:translate(-50%,-50%)!important;
+  transform:translate(-50%,-50%) scale(1)!important;
+  transform-origin:center!important;
+  transition:transform .35s ease,opacity .35s ease!important;
   -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
   mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+}
+.whatsapp:hover .whatsapp__logo{
+  transform:translate(-50%,-50%) scale(1.10)!important;
+  opacity:.085!important;
 }
 @media(max-width:1200px){
   .header__inner{height:64px!important;min-height:64px!important}
   .header__logo{width:54px!important;height:54px!important;flex-basis:54px!important;margin-right:10px!important}
   .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
   .header__nav ul{gap:20px!important}
-  .header__nav a{font-size:15px!important}
+  .header__nav a{font-size:16px!important}
   .header__contacts{gap:5px!important}
 }
 `;
