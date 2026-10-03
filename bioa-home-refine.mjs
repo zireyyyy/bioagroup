@@ -704,7 +704,7 @@ function syncMobileHeader($,route,lang){
     .attr('href',lang==='vi'?'/contacts/':'/en/contacts/')
     .text(lang==='vi'?'Nhận tư vấn ↗':'Get a quote ↗');
   actions.append(cta);
-  if(burger.length) actions.append(burger.detach());
+  if(burger.length) actions.append(burger);
   wrapper.append(actions);
 
   const menuContacts=$('.menu__contacts').first();
