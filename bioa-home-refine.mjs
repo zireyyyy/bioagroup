@@ -56,10 +56,10 @@ html,body{background:var(--bioa-cream)!important}
 const patchACss = `
 /* HOME Patch A — brand cleanup + compact translucent header */
 .header{
-  background:rgba(252,254,241,.72)!important;
-  backdrop-filter:blur(10px) saturate(108%)!important;
-  -webkit-backdrop-filter:blur(10px) saturate(108%)!important;
-  box-shadow:0 1px 0 rgba(5,47,33,.045)!important;
+  background:rgba(252,254,241,.50)!important;
+  backdrop-filter:blur(8px) saturate(104%)!important;
+  -webkit-backdrop-filter:blur(8px) saturate(104%)!important;
+  box-shadow:0 1px 0 rgba(5,47,33,.025)!important;
 }
 .header__inner{
   height:66px!important;
@@ -94,7 +94,7 @@ const patchACss = `
 }
 .header__nav ul{gap:28px!important}
 .header__nav a{
-  font-size:15px!important;
+  font-size:16px!important;
   line-height:1.1!important;
   font-weight:400!important;
   letter-spacing:-.01em!important;
@@ -102,11 +102,12 @@ const patchACss = `
 .header__contacts{
   display:flex!important;
   align-items:center!important;
-  gap:10px!important;
+  gap:6px!important;
+  margin-left:auto!important;
 }
 .header__email,.header__socials{margin-left:0!important;margin-right:0!important}
-.bioa-lang{margin-left:2px!important;gap:4px!important}
-.header__btn{margin-left:2px!important}
+.bioa-lang{margin-left:0!important;gap:3px!important}
+.header__btn{margin-left:0!important}
 
 /* Merywood brand-watermark replacements only — do not touch product/UI artwork */
 .formats__logo{
@@ -115,7 +116,14 @@ const patchACss = `
 }
 .whatsapp__logo{
   background:var(--bioa-primary)!important;
-  opacity:.065!important;
+  opacity:.055!important;
+  top:50%!important;
+  left:58%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:170px!important;
+  height:138px!important;
+  transform:translate(-50%,-50%)!important;
   -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
   mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
 }
@@ -124,8 +132,8 @@ const patchACss = `
   .header__logo{width:54px!important;height:54px!important;flex-basis:54px!important;margin-right:10px!important}
   .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
   .header__nav ul{gap:20px!important}
-  .header__nav a{font-size:14px!important}
-  .header__contacts{gap:8px!important}
+  .header__nav a{font-size:15px!important}
+  .header__contacts{gap:5px!important}
 }
 `;
 
