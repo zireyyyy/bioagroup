@@ -1624,6 +1624,171 @@ const patchB6Css = `
 }
 `;
 
+
+const patchB7Css = `
+/* HOME Patch B7 — final scoped fixes: footer email, clean mobile trigger, mobile Produce */
+
+/* Footer desktop: no double shell; match header email material and exact social-row width */
+.footer-top__email{
+  width:208px!important;
+  min-width:208px!important;
+  margin:0 0 10px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+}
+.footer-top__email a{
+  width:208px!important;
+  min-width:208px!important;
+  height:46px!important;
+  min-height:46px!important;
+  padding:0 14px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  border-radius:14px!important;
+  background:rgba(252,254,241,.72)!important;
+  border:1px solid rgba(17,111,71,.12)!important;
+  box-shadow:none!important;
+  color:var(--bioa-primary)!important;
+  font-size:13px!important;
+  font-weight:400!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  text-decoration:none!important;
+}
+.footer-top__socials{
+  width:208px!important;
+  min-width:208px!important;
+}
+
+/* Clean replacement burger: same visual size, no Merywood menu hooks/classes */
+.bioa-mobile-menu-button-clean{display:none!important}
+
+@media(max-width:768px){
+  .bioa-mobile-menu-button{display:none!important}
+  .bioa-mobile-menu-button-clean{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:0 0 38px!important;
+    width:38px!important;
+    min-width:38px!important;
+    height:38px!important;
+    margin-left:8px!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:12px!important;
+    background:rgba(252,254,241,.76)!important;
+    color:var(--bioa-dark)!important;
+    box-shadow:none!important;
+    cursor:pointer!important;
+  }
+  .bioa-mobile-menu-button-clean svg{
+    width:18px!important;
+    height:18px!important;
+    display:block!important;
+    stroke:currentColor!important;
+    fill:none!important;
+  }
+
+  /* Source mobile We Produce is rebuilt in-place, so these rules cannot miss its DOM */
+  .bioa-produce-mobile-direct{
+    padding:34px 14px 40px!important;
+    margin:0!important;
+    background:var(--bioa-cream)!important;
+    box-sizing:border-box!important;
+  }
+  .bioa-produce-mobile-shell{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .bioa-produce-mobile-direct__title{
+    margin:0 0 22px!important;
+    text-align:center!important;
+    font-size:29px!important;
+    line-height:1.08!important;
+    font-weight:400!important;
+    color:#111!important;
+  }
+  .bioa-produce-mobile-direct__card{
+    position:relative!important;
+    width:100%!important;
+    margin:0 0 18px!important;
+    border-radius:24px!important;
+    overflow:hidden!important;
+    background:#eef0eb!important;
+  }
+  .bioa-produce-mobile-direct__media{
+    position:relative!important;
+    width:100%!important;
+    aspect-ratio:1.12/1!important;
+    overflow:hidden!important;
+  }
+  .bioa-produce-mobile-direct__media picture,
+  .bioa-produce-mobile-direct__media img{
+    display:block!important;
+    width:100%!important;
+    height:100%!important;
+  }
+  .bioa-produce-mobile-direct__media img{
+    object-fit:cover!important;
+  }
+  .bioa-produce-mobile-direct__card:before{
+    content:""!important;
+    position:absolute!important;
+    z-index:1!important;
+    top:16%!important;
+    left:50%!important;
+    width:62%!important;
+    height:50%!important;
+    transform:translateX(-50%)!important;
+    background:var(--bioa-primary)!important;
+    opacity:.055!important;
+    pointer-events:none!important;
+    -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+    mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  }
+  .bioa-produce-mobile-direct__name{
+    position:absolute!important;
+    z-index:3!important;
+    top:18px!important;
+    left:18px!important;
+    max-width:75%!important;
+    margin:0!important;
+    color:#111!important;
+    font-size:22px!important;
+    font-weight:400!important;
+    line-height:1.08!important;
+  }
+  .bioa-produce-mobile-direct__copy{
+    position:relative!important;
+    z-index:4!important;
+    margin:-58px 12px 12px!important;
+    padding:14px 15px!important;
+    border-radius:18px!important;
+    background:rgba(255,255,255,.95)!important;
+    color:#222!important;
+    font-size:12.5px!important;
+    font-weight:400!important;
+    line-height:1.42!important;
+    box-sizing:border-box!important;
+  }
+
+  /* Keep footer mobile's contact material consistent too */
+  .bioa-footer-mobile-v2__email{
+    background:rgba(252,254,241,.72)!important;
+    border:1px solid rgba(17,111,71,.12)!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -1696,28 +1861,30 @@ function mobileLocalPath(route,lang){
 }
 
 function syncMobileHeader($,route,lang){
-  $('.bioa-mobile-actions,.bioa-mobile-menu-controls,.bioa-mobile-nav').remove();
+  $('.bioa-mobile-actions,.bioa-mobile-menu-controls,.bioa-mobile-nav,.bioa-mobile-menu-button-clean').remove();
 
   const header=$('.header').first();
   if(!header.length)return;
 
-  let burger=header.find('button').filter((_,el)=>{
+  let sourceBurger=header.find('button').filter((_,el)=>{
     const x=$(el);
     const sig=[x.attr('class'),x.attr('id'),x.attr('aria-label'),x.attr('data-target'),x.attr('data-menu')].filter(Boolean).join(' ').toLowerCase();
     return /menu|burger|navigation|nav/.test(sig);
   }).first();
-  if(!burger.length) burger=header.find('button').last();
+  if(!sourceBurger.length)sourceBurger=header.find('button').last();
 
-  if(burger.length){
-    burger
-      .attr('id','bioaMobileMenuButton')
-      .addClass('bioa-mobile-menu-button')
-      .attr('aria-controls','bioaMobileNav')
-      .attr('aria-expanded','false')
-      .attr('aria-label',lang==='vi'?'Mở trình đơn':'Open menu')
-      .removeAttr('onclick')
-      .removeAttr('data-target')
-      .removeAttr('data-menu');
+  const cleanBurger=$('<button type="button" id="bioaMobileMenuButton" class="bioa-mobile-menu-button-clean"></button>')
+    .attr('aria-controls','bioaMobileNav')
+    .attr('aria-expanded','false')
+    .attr('aria-label',lang==='vi'?'Mở trình đơn':'Open menu')
+    .html('<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12M6 12h12M6 16h12" stroke-width="2" stroke-linecap="round"/></svg>');
+
+  if(sourceBurger.length){
+    sourceBurger.after(cleanBurger);
+    sourceBurger.addClass('bioa-mobile-menu-button');
+  }else{
+    const actions=$('.bioa-header-actions').first();
+    if(actions.length)actions.after(cleanBurger); else header.find('.header__wrapper').first().append(cleanBurger);
   }
 
   $('.menu').first().addClass('bioa-old-mobile-menu');
@@ -1734,16 +1901,14 @@ function syncMobileHeader($,route,lang){
   });
 
   const meta=$('<div class="bioa-mobile-nav-meta"></div>');
-  meta.append(
-    $('<a class="bioa-mobile-menu-email"></a>').attr('href','mailto:'+company.email).text(company.email)
-  );
+  meta.append($('<a class="bioa-mobile-menu-email"></a>').attr('href','mailto:'+company.email).text(company.email));
 
   const row=$('<div class="bioa-mobile-contact-row"></div>');
   row.append(
     $('<a class="bioa-mobile-social" aria-label="WhatsApp"></a>').attr('href',company.whatsapp).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.whatsapp),
     $('<a class="bioa-mobile-social" aria-label="Telegram"></a>').attr('href',company.telegram).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.telegram),
     $('<a class="bioa-mobile-social" aria-label="Facebook"></a>').attr('href',company.facebook).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.facebook),
-    $('<a class="bioa-mobile-social" aria-label="Zalo"></a>').attr('href',company.zalo).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.zalo)
+    $('<a class="bioa-mobile-social" aria-label="Zalo"></a>').attr('href',company.zalo).attr('target','_blank').attr('rel','noopener noreferrer').text('Zalo')
   );
 
   const langSwitch=$('<div class="bioa-mobile-menu-lang"></div>');
@@ -1758,9 +1923,7 @@ function syncMobileHeader($,route,lang){
   nav.append(drop);
   header.append(nav);
 
-  $('.block-we-produce h2,.block-we-produce .title').first().text(lang==='vi'?'Danh mục gia công':'What We Manufacture');
-
-  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopImmediatePropagation();set(!n.classList.contains('open'));},true);n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});})();";
+  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();set(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});})();";
   $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
 }
 
@@ -1843,20 +2006,15 @@ function buildMobileFooterContact($){
 }
 
 function replaceMobileProduceSection($,lang){
-  $('.bioa-produce-mobile-custom').remove();
-  $('.bioa-produce-mobile-source').removeClass('bioa-produce-mobile-source');
-
   const img1=$('img[alt*="produce-1_mobile"]').first();
   const img2=$('img[alt*="produce-2_mobile"]').first();
   if(!img1.length||!img2.length)return;
 
-  let sourceRoot=null;
-  img1.parents().each((_,el)=>{
-    if(sourceRoot)return;
-    if($(el).find('img[alt*="produce-2_mobile"]').length)sourceRoot=$(el);
-  });
-  if(!sourceRoot||!sourceRoot.length)return;
-  sourceRoot.addClass('bioa-produce-mobile-source');
+  let section=img1.closest('section');
+  if(!section.length||!section.find('img[alt*="produce-2_mobile"]').length){
+    section=img1.parents().filter((_,el)=>$(el).find('img[alt*="produce-2_mobile"]').length).first();
+  }
+  if(!section.length)return;
 
   const vi=lang==='vi';
   const data=[
@@ -1868,25 +2026,25 @@ function replaceMobileProduceSection($,lang){
         :'Cosmetics can be developed from formula research and ingredient selection through packaging and finished production.']
   ];
 
-  const section=$('<section class="bioa-produce-mobile-custom"></section>');
-  section.append($('<h2 class="bioa-produce-mobile-custom__title"></h2>').text(vi?'Danh mục gia công':'What We Manufacture'));
+  const shell=$('<div class="bioa-produce-mobile-shell"></div>');
+  shell.append($('<h2 class="bioa-produce-mobile-direct__title"></h2>').text(vi?'Danh mục gia công':'What We Manufacture'));
 
   data.forEach(([img,title,copy])=>{
     let visual=img.closest('picture');
     if(!visual.length)visual=img;
     visual=visual.clone();
 
-    const media=$('<div class="bioa-produce-mobile-custom__media"></div>').append(visual);
-    const card=$('<article class="bioa-produce-mobile-custom__card"></article>');
+    const media=$('<div class="bioa-produce-mobile-direct__media"></div>').append(visual);
+    const card=$('<article class="bioa-produce-mobile-direct__card"></article>');
     card.append(
       media,
-      $('<h3 class="bioa-produce-mobile-custom__name"></h3>').text(title),
-      $('<div class="bioa-produce-mobile-custom__copy"></div>').text(copy)
+      $('<h3 class="bioa-produce-mobile-direct__name"></h3>').text(title),
+      $('<div class="bioa-produce-mobile-direct__copy"></div>').text(copy)
     );
-    section.append(card);
+    shell.append(card);
   });
 
-  sourceRoot.after(section);
+  section.empty().addClass('bioa-produce-mobile-direct').append(shell);
 }
 
 function buildMobileFooterV2($){
@@ -1968,7 +2126,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
