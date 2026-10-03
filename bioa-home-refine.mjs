@@ -682,6 +682,11 @@ function normalizeHeaderActions($){
 }
 
 
+function mobileLocalPath(route,lang){
+  if(lang==='en') return route==='/'?'/en/':'/en'+route;
+  return route;
+}
+
 function syncMobileHeader($,route,lang){
   $('.bioa-mobile-actions,.bioa-mobile-menu-controls').remove();
 
@@ -714,8 +719,8 @@ function syncMobileHeader($,route,lang){
 
   const langSwitch=$('<div class="bioa-lang"></div>');
   langSwitch.append(
-    $('<a>VI</a>').attr('href',localPath(route,'vi')).toggleClass('is-active',lang==='vi'),
-    $('<a>EN</a>').attr('href',localPath(route,'en')).toggleClass('is-active',lang==='en')
+    $('<a>VI</a>').attr('href',mobileLocalPath(route,'vi')).toggleClass('is-active',lang==='vi'),
+    $('<a>EN</a>').attr('href',mobileLocalPath(route,'en')).toggleClass('is-active',lang==='en')
   );
 
   const controls=$('<div class="bioa-mobile-menu-controls"></div>');
