@@ -53,7 +53,7 @@ html,body{background:var(--bioa-cream)!important}
 `;
 
 
-const patchACss = \`
+const patchACss = `
 /* HOME Patch A — brand cleanup + compact translucent header */
 .header{
   background:rgba(252,254,241,.72)!important;
@@ -127,7 +127,7 @@ const patchACss = \`
   .header__nav a{font-size:14px!important}
   .header__contacts{gap:8px!important}
 }
-\`;
+`;
 
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
