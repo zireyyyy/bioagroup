@@ -1936,6 +1936,65 @@ const patchB8Css = `
 }
 `;
 
+
+const patchB9Css = `
+/* HOME Patch B9 — final polish: footer email color, compact mobile menu, visible BIO-A mobile watermark */
+
+/* Match the footer email's visible fill to the header email on a light surface. */
+.footer-top__email a{
+  background:#FDFEF5!important;
+}
+@media(max-width:768px){
+  .bioa-footer-mobile-v2__email{
+    background:#FDFEF5!important;
+  }
+
+  /* Keep the menu isolated from sticky-header effects, but size it to its content instead of full-screen. */
+  body > .bioa-mobile-nav{
+    height:auto!important;
+    max-height:0!important;
+    bottom:auto!important;
+    overflow:hidden!important;
+  }
+  body > .bioa-mobile-nav.open{
+    height:auto!important;
+    max-height:min(390px,calc(100dvh - 74px))!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+  }
+
+  /* Put the BIO-A monogram above each mobile Produce image, like the desktop cards. */
+  .bioa-produce-mobile-direct__media{
+    position:relative!important;
+    isolation:isolate!important;
+  }
+  .bioa-produce-mobile-direct__media picture,
+  .bioa-produce-mobile-direct__media img{
+    position:relative!important;
+    z-index:1!important;
+  }
+  .bioa-produce-mobile-direct__media:after{
+    content:""!important;
+    position:absolute!important;
+    z-index:2!important;
+    left:50%!important;
+    top:50%!important;
+    width:64%!important;
+    height:58%!important;
+    transform:translate(-50%,-50%)!important;
+    background:var(--bioa-primary)!important;
+    opacity:.065!important;
+    pointer-events:none!important;
+    -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+    mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  }
+  /* Disable the older behind-image watermark to avoid doubling. */
+  .bioa-produce-mobile-direct__card:before{
+    display:none!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -2296,7 +2355,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
