@@ -445,6 +445,128 @@ const patchBCss = `
 }
 `;
 
+
+const patchB2Css = `
+/* HOME Patch B2 — restore original stat rhythm and sync mobile header/menu */
+.block-title .info .item{
+  min-height:96px!important;
+  padding:16px 22px!important;
+  grid-template-columns:minmax(225px,1.32fr) minmax(135px,.68fr)!important;
+  column-gap:18px!important;
+}
+.block-title .info .item__number{
+  font-size:clamp(38px,2.15vw,44px)!important;
+  font-weight:400!important;
+  line-height:1!important;
+  letter-spacing:-.025em!important;
+}
+.block-title .info .item__text{
+  font-size:clamp(15px,.9vw,17px)!important;
+  font-weight:400!important;
+  line-height:1.2!important;
+}
+.block-title .info .item:nth-child(3) .item__number,
+.block-title .info .item:nth-child(4) .item__number,
+.block-title .info .item:nth-child(5) .item__number{
+  font-size:clamp(38px,2.15vw,44px)!important;
+  font-weight:400!important;
+  letter-spacing:-.025em!important;
+}
+
+/* Mobile: keep Merywood header shell, move contact/language controls into menu */
+@media(max-width:768px){
+  .bioa-header-actions{display:none!important}
+  .header__wrapper{
+    min-height:62px!important;
+    height:62px!important;
+    justify-content:flex-start!important;
+  }
+  .header__logo{
+    width:48px!important;
+    height:48px!important;
+    flex:0 0 48px!important;
+    margin-right:auto!important;
+  }
+  .header__logo img{
+    width:40px!important;
+    height:46px!important;
+    max-width:40px!important;
+    max-height:46px!important;
+  }
+  .bioa-mobile-cta{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:40px!important;
+    padding:0 16px!important;
+    margin-left:auto!important;
+    margin-right:10px!important;
+    border:0!important;
+    border-radius:14px!important;
+    background:var(--bioa-primary)!important;
+    color:#fff!important;
+    font-size:13px!important;
+    font-weight:600!important;
+    text-decoration:none!important;
+    white-space:nowrap!important;
+  }
+  .menu-burger{
+    flex:0 0 auto!important;
+    margin-left:0!important;
+  }
+
+  .menu__contacts{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:14px!important;
+  }
+  .bioa-mobile-menu-controls{
+    display:flex!important;
+    align-items:center!important;
+    gap:10px!important;
+    flex-wrap:wrap!important;
+    width:100%!important;
+  }
+  .bioa-mobile-menu-controls .bioa-lang{
+    margin:0!important;
+    height:42px!important;
+    padding:3px!important;
+    border-radius:14px!important;
+    background:rgba(252,254,241,.72)!important;
+    border:1px solid rgba(17,111,71,.12)!important;
+  }
+  .bioa-mobile-menu-controls .bioa-lang a{
+    width:35px!important;
+    min-width:35px!important;
+    height:35px!important;
+    border-radius:10px!important;
+    font-size:13px!important;
+  }
+  .bioa-mobile-contact{
+    width:42px!important;
+    height:42px!important;
+    border-radius:14px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    background:var(--bioa-primary)!important;
+    color:#fff!important;
+    text-decoration:none!important;
+  }
+  .bioa-mobile-contact svg{
+    width:20px!important;
+    height:20px!important;
+    fill:currentColor!important;
+  }
+
+  /* mobile stat copy uses same BIO-A numbers as desktop */
+  .block-title-continue .info .item__number{
+    font-weight:400!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -510,6 +632,34 @@ function normalizeHeaderActions($){
   group.append(contacts,lang,btn);
 }
 
+
+function syncMobileHeader($,route,lang){
+  $('.bioa-mobile-cta').remove();
+  $('.bioa-mobile-menu-controls').remove();
+
+  const cta=$('<a class="bioa-mobile-cta"></a>')
+    .attr('href', lang==='vi' ? '/contacts/' : '/en/contacts/')
+    .text(lang==='vi' ? 'Nhận tư vấn ↗' : 'Get a quote ↗');
+  $('.header__wrapper .menu-burger').before(cta);
+
+  const menuContacts=$('.menu__contacts').first();
+  if(!menuContacts.length)return;
+
+  const langSwitch=$('<div class="bioa-lang"></div>');
+  langSwitch.append(
+    $('<a>VI</a>').attr('href',localPath(route,'vi')).toggleClass('is-active',lang==='vi'),
+    $('<a>EN</a>').attr('href',localPath(route,'en')).toggleClass('is-active',lang==='en')
+  );
+
+  const controls=$('<div class="bioa-mobile-menu-controls"></div>');
+  controls.append(
+    $('<a class="bioa-mobile-contact" aria-label="WhatsApp BIO-A Group"></a>')
+      .attr('href',company.whatsapp).attr('target','_blank').attr('rel','noopener noreferrer').html(icons.whatsapp),
+    langSwitch
+  );
+  menuContacts.append(controls);
+}
+
 function footerSocials($){
   const s=$('.footer-top__socials a');
   if(!s.length)return;
@@ -545,11 +695,12 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
   normalizeHeaderActions($);
+  syncMobileHeader($,route,lang);
   footerSocials($);
   addContactLauncher($,lang);
 }
