@@ -220,6 +220,107 @@ const patchACss = `
 }
 `;
 
+
+const patchA7Css = `
+/* HOME Patch A7 — deterministic utility cluster + subtle We Produce watermark */
+.bioa-header-actions{
+  margin-left:auto!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+.bioa-header-actions .header__contacts{
+  margin:0!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+.bioa-header-actions .header__email,
+.bioa-header-actions .header__socials,
+.bioa-header-actions .bioa-lang,
+.bioa-header-actions .header__btn{
+  margin:0!important;
+  flex:0 0 auto!important;
+}
+.bioa-header-actions .header__email a{
+  height:42px!important;
+  min-height:42px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:0 18px!important;
+  border-radius:14px!important;
+  background:rgba(252,254,241,.72)!important;
+  border:1px solid rgba(17,111,71,.12)!important;
+  box-sizing:border-box!important;
+  line-height:1!important;
+}
+.bioa-header-actions .header__socials .socials__link{
+  width:42px!important;
+  height:42px!important;
+  margin:0!important;
+}
+.bioa-header-actions .bioa-lang{
+  height:42px!important;
+  padding:3px!important;
+  border-radius:14px!important;
+  background:rgba(252,254,241,.72)!important;
+  border:1px solid rgba(17,111,71,.12)!important;
+}
+.bioa-header-actions .bioa-lang a{
+  width:35px!important;
+  min-width:35px!important;
+  height:35px!important;
+  border-radius:10px!important;
+}
+.bioa-header-actions .header__btn{
+  height:42px!important;
+  min-height:42px!important;
+  padding-left:20px!important;
+  padding-right:20px!important;
+}
+
+/* We Produce: small, complete, translucent BIO-A watermark.
+   Product photos/icons stay untouched. */
+.block-we-produce .item__bg{
+  position:relative!important;
+}
+.block-we-produce .bg__decoration{
+  position:absolute!important;
+  top:50%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:42%!important;
+  height:42%!important;
+  background:var(--bioa-primary)!important;
+  background-image:none!important;
+  opacity:.075!important;
+  pointer-events:none!important;
+  z-index:0!important;
+  transform:translate(-50%,-50%) scale(1)!important;
+  transform-origin:center!important;
+  transition:transform .35s ease,opacity .35s ease!important;
+  -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+}
+.block-we-produce .item:hover .bg__decoration{
+  transform:translate(-50%,-50%) scale(1.07)!important;
+  opacity:.105!important;
+}
+.block-we-produce .bg__media{
+  position:relative!important;
+  z-index:1!important;
+}
+@media(max-width:1200px){
+  .bioa-header-actions{gap:8px!important}
+  .bioa-header-actions .header__contacts{gap:8px!important}
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -270,6 +371,21 @@ function fixLang($,route,lang){
   links.eq(1).attr('href',en).attr('hreflang','en').toggleClass('is-active',lang==='en');
 }
 
+
+function normalizeHeaderActions($){
+  const contacts=$('.header__contacts').first();
+  const lang=$('.header > .container .bioa-lang, .header__wrapper > .bioa-lang').first();
+  const btn=$('.header__btn').first();
+  if(!contacts.length || !lang.length || !btn.length) return;
+
+  let group=$('.bioa-header-actions').first();
+  if(!group.length){
+    group=$('<div class="bioa-header-actions"></div>');
+    contacts.before(group);
+  }
+  group.append(contacts,lang,btn);
+}
+
 function footerSocials($){
   const s=$('.footer-top__socials a');
   if(!s.length)return;
@@ -305,10 +421,11 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
+  normalizeHeaderActions($);
   footerSocials($);
   addContactLauncher($,lang);
 }
