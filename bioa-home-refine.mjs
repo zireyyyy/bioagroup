@@ -2020,36 +2020,6 @@ const patchB11Css = `
 const patchB12Css = `
 /* HOME Patch B12 — lock desktop Produce layering + clean mobile Produce from 72dc baseline */
 
-/* Desktop: strict visual stack = watermark < product artwork < white text panel */
-@media(min-width:769px){
-  .block-we-produce .item{
-    position:relative!important;
-    isolation:isolate!important;
-  }
-  .block-we-produce .item__bg{
-    position:relative!important;
-    z-index:0!important;
-    isolation:isolate!important;
-  }
-  .block-we-produce .bg__decoration{
-    z-index:0!important;
-    pointer-events:none!important;
-  }
-  .block-we-produce .bg__media,
-  .block-we-produce .item__bg img,
-  .block-we-produce .item__bg picture{
-    position:relative!important;
-    z-index:1!important;
-  }
-  .block-we-produce .item__content,
-  .block-we-produce .item__info,
-  .block-we-produce .item__text,
-  .block-we-produce .item__description{
-    position:relative!important;
-    z-index:3!important;
-  }
-}
-
 /* Mobile replacement is fully isolated from the desktop source block. */
 .bioa-produce-mobile-clean{display:none!important}
 
@@ -2148,31 +2118,6 @@ const patchB12Css = `
 
 const patchB13Css = `
 /* HOME Patch B13 — keep We Produce copy panels inside each card */
-
-/* Desktop: pin the white copy panel to the bottom INSIDE each Produce card. */
-@media(min-width:769px){
-  .block-we-produce .item{
-    position:relative!important;
-    overflow:hidden!important;
-  }
-  .block-we-produce .item__content,
-  .block-we-produce .item__info{
-    position:absolute!important;
-    left:28px!important;
-    right:28px!important;
-    bottom:24px!important;
-    width:auto!important;
-    max-width:none!important;
-    margin:0!important;
-    z-index:4!important;
-    box-sizing:border-box!important;
-  }
-  .block-we-produce .item__text,
-  .block-we-produce .item__description{
-    position:relative!important;
-    z-index:4!important;
-  }
-}
 
 /* Mobile clean cards: keep the description floating inside the image/card,
    matching the desktop overlap instead of extending below the card. */
