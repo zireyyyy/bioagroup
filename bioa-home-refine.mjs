@@ -2233,40 +2233,19 @@ function buildMobileFooterContact($){
 }
 
 function replaceMobileProduceSection($,lang){
-  const headings=$('h1,h2,h3').filter((_,el)=>{
-    const t=$(el).text().replace(/\s+/g,' ').trim();
-    return /^(We Produce|Danh mục sản xuất|Danh mục gia công|What We Manufacture)$/i.test(t);
-  });
-  if(!headings.length)return;
+  // 0169-safe scope: target ONLY the dedicated mobile Produce section.
+  // This prevents any mutation of the desktop We Produce block.
+  const img1=$('img[alt*="produce-1_mobile"]').first();
+  const img2=$('img[alt*="produce-2_mobile"]').first();
+  if(!img1.length||!img2.length)return;
 
-  const heading=headings.last();
-  let section=heading.closest('section');
-
-  if(!section.length){
-    section=heading.parents().filter((_,el)=>{
-      const x=$(el);
-      const imgs=x.find('img');
-      const hs=x.find('h1,h2,h3').filter((__,h)=>{
-        const t=$(h).text().replace(/\s+/g,' ').trim();
-        return /^(We Produce|Danh mục sản xuất|Danh mục gia công|What We Manufacture)$/i.test(t);
-      });
-      return imgs.length>=2 && hs.length>=1 && x.find('h1,h2,h3').length<=4;
-    }).first();
+  let section=img1.closest('section');
+  if(!section.length||!section.find('img[alt*="produce-2_mobile"]').length){
+    section=img1.parents().filter((_,el)=>$(el).find('img[alt*="produce-2_mobile"]').length).first();
   }
   if(!section.length)return;
 
-  let imgs=section.find('img').filter((_,el)=>{
-    const x=$(el);
-    const sig=[x.attr('alt'),x.attr('src'),x.attr('data-src')].filter(Boolean).join(' ').toLowerCase();
-    return !/logo|icon|arrow|cookie|avatar/.test(sig);
-  });
-  if(imgs.length<2)imgs=section.find('img');
-  if(imgs.length<2)return;
-
-  const img1=$(imgs.get(0));
-  const img2=$(imgs.get(1));
   const vi=lang==='vi';
-
   const data=[
     [img1,vi?'Thực phẩm bổ sung':'Supplements',
       vi?'Danh mục thực phẩm bổ sung có thể phát triển theo công thức có sẵn hoặc công thức riêng, phù hợp định hướng thương hiệu.'
@@ -2280,9 +2259,13 @@ function replaceMobileProduceSection($,lang){
   shell.append($('<h2 class="bioa-produce-mobile-direct__title"></h2>').text(vi?'Danh mục gia công':'What We Manufacture'));
 
   data.forEach(([img,title,copy])=>{
-    let visual=img.closest('picture');
-    if(!visual.length)visual=img;
-    visual=visual.clone();
+    // Keep the 72dc mobile card structure, but clone only the fallback IMG.
+    // The original <picture>/<source> mobile artwork carries the legacy Merywood watermark.
+    const visual=img.clone()
+      .removeAttr('srcset')
+      .removeAttr('sizes')
+      .removeAttr('media')
+      .removeAttr('data-srcset');
 
     const media=$('<div class="bioa-produce-mobile-direct__media"></div>').append(visual);
     const card=$('<article class="bioa-produce-mobile-direct__card"></article>');
@@ -2376,7 +2359,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB11Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
