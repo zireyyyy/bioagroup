@@ -2145,6 +2145,55 @@ const patchB12Css = `
 }
 `;
 
+
+const patchB13Css = `
+/* HOME Patch B13 — keep We Produce copy panels inside each card */
+
+/* Desktop: pin the white copy panel to the bottom INSIDE each Produce card. */
+@media(min-width:769px){
+  .block-we-produce .item{
+    position:relative!important;
+    overflow:hidden!important;
+  }
+  .block-we-produce .item__content,
+  .block-we-produce .item__info{
+    position:absolute!important;
+    left:28px!important;
+    right:28px!important;
+    bottom:24px!important;
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    z-index:4!important;
+    box-sizing:border-box!important;
+  }
+  .block-we-produce .item__text,
+  .block-we-produce .item__description{
+    position:relative!important;
+    z-index:4!important;
+  }
+}
+
+/* Mobile clean cards: keep the description floating inside the image/card,
+   matching the desktop overlap instead of extending below the card. */
+@media(max-width:768px){
+  .bioa-produce-mobile-clean__card{
+    position:relative!important;
+    overflow:hidden!important;
+  }
+  .bioa-produce-mobile-clean__copy{
+    position:absolute!important;
+    left:12px!important;
+    right:12px!important;
+    bottom:12px!important;
+    width:auto!important;
+    margin:0!important;
+    z-index:4!important;
+    box-sizing:border-box!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -2508,7 +2557,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
