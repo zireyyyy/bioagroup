@@ -2141,29 +2141,20 @@ const patchB13Css = `
 
 
 const patchB14Css = `
-/* HOME Patch B14 — desktop We Produce layering only.
-   Keep source geometry untouched; just place the white copy panel above the product artwork. */
+/* HOME Patch B14 — desktop We Produce layer correction only.
+   IMPORTANT: preserve Merywood's original positioning rules.
+   Merywood already keeps the copy panel inside the card; we only adjust stacking. */
 @media(min-width:769px){
-  .block-we-produce .item{
-    position:relative!important;
-    isolation:isolate!important;
-  }
-  .block-we-produce .item__bg{
-    position:relative!important;
-    z-index:1!important;
-  }
   .block-we-produce .bg__decoration{
     z-index:0!important;
   }
   .block-we-produce .bg__media{
-    position:relative!important;
     z-index:1!important;
   }
   .block-we-produce .item__content,
   .block-we-produce .item__info,
   .block-we-produce .item__text,
   .block-we-produce .item__description{
-    position:relative!important;
     z-index:5!important;
   }
 }
