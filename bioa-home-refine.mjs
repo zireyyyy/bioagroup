@@ -2160,6 +2160,31 @@ const patchB14Css = `
 }
 `;
 
+
+const patchC1Css = `
+/* PATCH C1 — Merywood-parity chat shell, BIO-A identity */
+.bioa-contact-fab{position:fixed!important;right:22px!important;bottom:22px!important;z-index:99990!important;display:flex!important;flex-direction:column!important;align-items:flex-end!important;gap:12px!important}
+.bioa-contact-fab__panel{display:none!important;width:370px!important;max-width:calc(100vw - 28px)!important;height:570px!important;max-height:calc(100vh - 110px)!important;padding:0!important;overflow:hidden!important;border-radius:26px!important;background:#fff!important;border:1px solid rgba(5,47,33,.09)!important;box-shadow:0 18px 56px rgba(5,47,33,.22)!important}
+.bioa-contact-fab.is-open .bioa-contact-fab__panel{display:flex!important;flex-direction:column!important}
+.bioa-chat__head{position:relative!important;flex:0 0 auto!important;padding:22px 20px 18px!important;background:#f2f2f2!important;text-align:center!important;border-bottom:1px solid #ededed!important}
+.bioa-chat__avatars{display:flex!important;justify-content:center!important;align-items:center!important;margin-bottom:10px!important}
+.bioa-chat__avatar{width:50px!important;height:50px!important;margin-left:-9px!important;border-radius:50%!important;background:var(--bioa-ivory)!important;border:3px solid #fff!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important}
+.bioa-chat__avatar:first-child{margin-left:0!important}.bioa-chat__avatar img{width:78%!important;height:78%!important;object-fit:contain!important}.bioa-chat__avatar--text{font-size:12px!important;font-weight:600!important;color:var(--bioa-primary)!important}
+.bioa-chat__title{margin:0!important;color:#303030!important;font-size:24px!important;line-height:1.15!important;font-weight:600!important}.bioa-chat__sub{margin-top:6px!important;color:#727272!important;font-size:15px!important;line-height:1.35!important;font-weight:400!important}
+.bioa-chat__collapse{position:absolute!important;top:18px!important;right:18px!important;width:42px!important;height:42px!important;border:0!important;border-radius:50%!important;background:#fafafa!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important;color:#333!important}.bioa-chat__collapse svg{width:20px!important;height:20px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.2!important}
+.bioa-chat__actions{flex:0 0 auto!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:0!important;background:#fff!important;border-bottom:1px solid #ececec!important}
+.bioa-chat__action{min-height:102px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:7px!important;color:#343434!important;text-decoration:none!important;font-size:15px!important;font-weight:600!important;border:0!important;background:#fff!important;font-family:inherit!important;cursor:pointer!important}.bioa-chat__action:hover{background:#fafafa!important}
+.bioa-chat__action-icon{width:48px!important;height:48px!important;border-radius:50%!important;background:#f0f0f0!important;display:flex!important;align-items:center!important;justify-content:center!important}.bioa-chat__action-icon svg{width:23px!important;height:23px!important;fill:var(--bioa-deep)!important}
+.bioa-chat__history{flex:1 1 auto!important;min-height:0!important;overflow:auto!important;padding:14px 14px 12px!important;background:#fff!important}
+.bioa-chat__history-label{display:flex!important;align-items:center!important;gap:10px!important;margin:0 0 12px!important;color:#929292!important;font-size:13px!important}.bioa-chat__history-label:before{content:"";height:1px;background:#e7e7e7;flex:1}
+.bioa-chat__msg{display:flex!important;align-items:flex-start!important;gap:10px!important;margin-bottom:10px!important}.bioa-chat__msg-avatar{flex:0 0 38px!important;width:38px!important;height:38px!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:var(--bioa-mint)!important;overflow:hidden!important}.bioa-chat__msg-avatar img{width:75%!important;height:75%!important;object-fit:contain!important}
+.bioa-chat__bubble{max-width:260px!important;padding:11px 13px!important;border-radius:15px!important;background:#f1f1f1!important;color:#414141!important;font-size:14px!important;line-height:1.42!important;font-weight:400!important}.bioa-chat__bubble strong{display:block!important;margin-bottom:3px!important;color:#323232!important;font-size:14px!important}
+.bioa-chat__quick{display:flex!important;flex-wrap:wrap!important;gap:7px!important;margin:8px 0 0 48px!important}.bioa-chat__quick a{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:31px!important;padding:0 10px!important;border-radius:10px!important;background:var(--bioa-ivory)!important;border:1px solid rgba(17,111,71,.12)!important;color:var(--bioa-deep)!important;text-decoration:none!important;font-size:11.5px!important;font-weight:500!important}
+.bioa-chat__composer{flex:0 0 auto!important;display:flex!important;gap:8px!important;padding:12px!important;border-top:1px solid #ececec!important;background:#fff!important}.bioa-chat__input{flex:1!important;min-width:0!important;height:44px!important;padding:0 14px!important;border:1px solid #ddd!important;border-radius:22px!important;outline:none!important;background:#fff!important;color:#333!important;font-size:14px!important;font-family:inherit!important}.bioa-chat__send{flex:0 0 44px!important;width:44px!important;height:44px!important;border:0!important;border-radius:50%!important;background:var(--bioa-primary)!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;cursor:pointer!important}.bioa-chat__send svg{width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:2.1!important}
+.bioa-contact-fab__toggle{position:relative!important;width:68px!important;height:68px!important;border:0!important;border-radius:50%!important;display:flex!important;align-items:center!important;justify-content:center!important;background:var(--bioa-ivory)!important;box-shadow:0 10px 32px rgba(5,47,33,.28)!important;cursor:pointer!important;padding:11px!important}.bioa-contact-fab__toggle img{width:100%!important;height:100%!important;object-fit:contain!important}.bioa-contact-fab__toggle:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#21A366;right:4px;bottom:6px;border:2px solid var(--bioa-ivory)}
+@media(max-width:768px){.bioa-contact-fab{right:12px!important;bottom:12px!important}.bioa-contact-fab__panel{width:min(360px,calc(100vw - 24px))!important;height:min(570px,calc(100dvh - 96px))!important;border-radius:24px!important}.bioa-chat__head{padding:19px 16px 16px!important}.bioa-chat__action{min-height:88px!important}.bioa-contact-fab__toggle{width:58px!important;height:58px!important;padding:9px!important}}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -2504,26 +2529,79 @@ function footerSocials($){
 
 function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
+  $('#bioa-contact-fab-js').remove();
   const vi=lang==='vi';
+  const intro=vi
+    ?'Xin chào! Tôi là trợ lý BIO-A. Bạn đang quan tâm gia công sản phẩm nào?'
+    :'Hello! I’m the BIO-A assistant. Which product are you interested in manufacturing?';
+  const previewReply=vi
+    ?'Cảm ơn bạn. Hiện kênh chat thử nghiệm chưa nối chatbot. Bạn có thể tiếp tục qua Zalo hoặc Email để đội ngũ BIO-A phản hồi.'
+    :'Thank you. This preview chat is not connected to the chatbot yet. Please continue via Zalo or Email for a BIO-A reply.';
+
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
-    <div class="bioa-contact-fab__panel">
-      <div class="bioa-contact-fab__title">${vi?'Liên hệ BIO-A Group':'Contact BIO-A Group'}</div>
-      <div class="bioa-contact-fab__sub">${vi?'Chọn kênh liên hệ thuận tiện cho bạn':'Choose your preferred contact channel'}</div>
-      <div class="bioa-contact-fab__links">
-        <a href="${company.zalo}" target="_blank" rel="noopener noreferrer">${icons.zalo}<span>Zalo</span></a>
-        <a href="${company.facebook}" target="_blank" rel="noopener noreferrer">${icons.facebook}<span>Facebook</span></a>
-        <a href="${company.whatsapp}" target="_blank" rel="noopener noreferrer">${icons.whatsapp}<span>WhatsApp</span></a>
-        <a href="${company.telegram}" target="_blank" rel="noopener noreferrer">${icons.telegram}<span>Telegram</span></a>
-        <a href="mailto:${company.email}">${icons.mail}<span>Email</span></a>
+    <div class="bioa-contact-fab__panel" role="dialog" aria-modal="false" aria-label="${vi?'BIO-A Tư vấn':'BIO-A Support'}">
+      <div class="bioa-chat__head">
+        <button class="bioa-chat__collapse" type="button" aria-label="${vi?'Thu gọn':'Collapse'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 5 5-5"/></svg></button>
+        <div class="bioa-chat__avatars">
+          <div class="bioa-chat__avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
+          <div class="bioa-chat__avatar bioa-chat__avatar--text">CSKH</div>
+          <div class="bioa-chat__avatar bioa-chat__avatar--text">R&amp;D</div>
+        </div>
+        <div class="bioa-chat__title">${vi?'BIO-A Tư vấn':'BIO-A Support'}</div>
+        <div class="bioa-chat__sub">${vi?'Chúng tôi sẵn sàng hỗ trợ bạn':'We are here and ready to help'}</div>
       </div>
+      <div class="bioa-chat__actions">
+        <button class="bioa-chat__action" type="button" data-chat-focus><span class="bioa-chat__action-icon">${icons.mail}</span><span>${vi?'Nhắn tin':'Message'}</span></button>
+        <a class="bioa-chat__action" href="${company.zalo}" target="_blank" rel="noopener noreferrer"><span class="bioa-chat__action-icon">${icons.zalo}</span><span>Zalo</span></a>
+      </div>
+      <div class="bioa-chat__history">
+        <div class="bioa-chat__history-label">${vi?'Lịch sử':'History'}</div>
+        <div class="bioa-chat__msg"><div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div><div class="bioa-chat__bubble"><strong>BIO-A Group</strong>${intro}</div></div>
+        <div class="bioa-chat__quick">
+          <a href="${company.zalo}" target="_blank" rel="noopener noreferrer">Zalo</a>
+          <a href="${company.facebook}" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="${company.telegram}" target="_blank" rel="noopener noreferrer">Telegram</a>
+          <a href="mailto:${company.email}">Email</a>
+        </div>
+      </div>
+      <form class="bioa-chat__composer">
+        <input class="bioa-chat__input" type="text" autocomplete="off" placeholder="${vi?'Nhập tin nhắn...':'Type a message...'}">
+        <button class="bioa-chat__send" type="submit" aria-label="${vi?'Gửi':'Send'}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></button>
+      </form>
     </div>
-    <button class="bioa-contact-fab__toggle" type="button" aria-label="${vi?'Mở liên hệ':'Open contacts'}"><img src="/assets/bioa-monogram.svg" alt=""></button>
+    <button class="bioa-contact-fab__toggle" type="button" aria-label="${vi?'Mở tư vấn':'Open support'}"><img src="/assets/bioa-monogram.svg" alt=""></button>
   </div>`);
-  $('body').append(`<script id="bioa-contact-fab-js">(function(){var root=document.getElementById('bioa-contact-fab');if(!root)return;var btn=root.querySelector('.bioa-contact-fab__toggle');btn.addEventListener('click',function(){root.classList.toggle('is-open')});document.addEventListener('click',function(e){if(!root.contains(e.target))root.classList.remove('is-open')});function purge(){document.querySelectorAll('[id*="dashly" i],[class*="dashly" i],[id*="carrot" i],[class*="carrot" i],iframe[src*="dashly" i],iframe[src*="carrot" i]').forEach(function(n){if(!n.closest('#bioa-contact-fab'))n.remove()})}purge();new MutationObserver(purge).observe(document.documentElement,{childList:true,subtree:true})})();</script>`);
+
+  const script=`(function(){
+    var root=document.getElementById('bioa-contact-fab');if(!root)return;
+    var toggle=root.querySelector('.bioa-contact-fab__toggle');
+    var collapse=root.querySelector('.bioa-chat__collapse');
+    var focusBtn=root.querySelector('[data-chat-focus]');
+    var form=root.querySelector('.bioa-chat__composer');
+    var input=root.querySelector('.bioa-chat__input');
+    var history=root.querySelector('.bioa-chat__history');
+    var previewReply=${JSON.stringify(previewReply)};
+    function open(){root.classList.add('is-open');setTimeout(function(){if(input)input.focus();},50)}
+    function close(){root.classList.remove('is-open')}
+    toggle.addEventListener('click',function(e){e.stopPropagation();root.classList.contains('is-open')?close():open()});
+    if(collapse)collapse.addEventListener('click',close);
+    if(focusBtn)focusBtn.addEventListener('click',function(){if(input)input.focus()});
+    if(form)form.addEventListener('submit',function(e){
+      e.preventDefault();var v=(input&&input.value||'').trim();if(!v)return;
+      var msg=document.createElement('div');msg.className='bioa-chat__msg';
+      msg.innerHTML='<div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div><div class="bioa-chat__bubble"><strong>Bạn</strong></div>';
+      msg.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(v));history.appendChild(msg);input.value='';history.scrollTop=history.scrollHeight;
+      setTimeout(function(){var reply=document.createElement('div');reply.className='bioa-chat__msg';reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div><div class="bioa-chat__bubble"><strong>BIO-A Group</strong></div>';reply.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(previewReply));history.appendChild(reply);history.scrollTop=history.scrollHeight;},350);
+    });
+    document.addEventListener('click',function(e){if(root.classList.contains('is-open')&&!root.contains(e.target))close()});
+    function purge(){document.querySelectorAll('[id*="dashly" i],[class*="dashly" i],[id*="carrot" i],[class*="carrot" i],iframe[src*="dashly" i],iframe[src*="carrot" i]').forEach(function(n){if(!n.closest('#bioa-contact-fab'))n.remove()})}
+    purge();new MutationObserver(purge).observe(document.documentElement,{childList:true,subtree:true});
+  })();`;
+  $('body').append($('<script id="bioa-contact-fab-js"></script>').html(script));
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchC1Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
