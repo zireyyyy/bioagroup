@@ -2139,6 +2139,36 @@ const patchB13Css = `
 }
 `;
 
+
+const patchB14Css = `
+/* HOME Patch B14 — desktop We Produce layering only.
+   Keep source geometry untouched; just place the white copy panel above the product artwork. */
+@media(min-width:769px){
+  .block-we-produce .item{
+    position:relative!important;
+    isolation:isolate!important;
+  }
+  .block-we-produce .item__bg{
+    position:relative!important;
+    z-index:1!important;
+  }
+  .block-we-produce .bg__decoration{
+    z-index:0!important;
+  }
+  .block-we-produce .bg__media{
+    position:relative!important;
+    z-index:1!important;
+  }
+  .block-we-produce .item__content,
+  .block-we-produce .item__info,
+  .block-we-produce .item__text,
+  .block-we-produce .item__description{
+    position:relative!important;
+    z-index:5!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -2502,7 +2532,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
