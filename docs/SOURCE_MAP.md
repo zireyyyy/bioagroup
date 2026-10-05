@@ -22,9 +22,17 @@ BIO-A:
 - main selectors: .header__logo img, .menu__logo img
 - BIO-A asset: /assets/bioa-full.svg
 
-Status:
-- PASS/LOCKED state is carried from FULL_HANDOFF.md for accepted header visuals.
+Responsive status:
+- Desktop: PASS / LOCKED for the previously accepted desktop header visual state.
+- Tablet: PENDING — not independently verified under the three-surface rule.
+- Mobile: PROTECTED — previous accepted/protected mobile state exists.
+- FULL RESPONSIVE PASS: NO.
 - Mapping confirmed.
+
+Responsive ownership:
+- Desktop selectors: .header__logo and source header structure.
+- Tablet breakpoint/mechanics: PENDING targeted source inspection when Header is next modified.
+- Mobile/menu selectors: source header/menu system; existing BIO-A mobile header logic remains protected.
 
 Protected mechanics:
 - source header layout, positioning, spacing, hover and responsive mechanics must remain source-derived.
@@ -43,15 +51,23 @@ BIO-A:
 - relevant rules: patchHeroStatsSourceCss, patchHeroStatsOriginalTypeCss, patchHeroStatsFinalSourceCss
 - source-parity intent is documented directly in those rules.
 
-Status:
-- Existing approved hero/stats state is protected by FULL_HANDOFF.md.
+Responsive status:
+- Desktop: PROTECTED / previously approved state.
+- Tablet: PENDING — not independently verified under the three-surface rule.
+- Mobile: PROTECTED / previously approved state where applicable.
+- FULL RESPONSIVE PASS: NO.
 - Mapping confirmed.
 - Do not assume later post-baseline hero hotfixes are authoritative.
+
+Responsive ownership:
+- Desktop: .info.desctop and related stats rules.
+- Tablet: PENDING exact Merywood media-query mapping.
+- Mobile: mobile hero/stats selectors in the source/BIO-A counterpart when next inspected.
 
 Protected mechanics:
 - typography should come from original Merywood source where possible.
 - geometry changes must be limited to what BIO-A content length requires.
-- desktop and mobile must be verified independently.
+- desktop, tablet and mobile must be verified independently.
 
 ## We Produce
 
@@ -67,10 +83,17 @@ BIO-A:
 - brand decoration uses /assets/bioa-monogram.svg
 - mobile handling is invoked through replaceMobileProduceSection($, lang).
 
-Status:
-- Desktop PASS/LOCKED.
-- Mobile PASS/LOCKED.
+Responsive status:
+- Desktop: PASS / LOCKED.
+- Tablet: PENDING — legacy documentation did not independently verify Tablet.
+- Mobile: PASS / LOCKED.
+- FULL RESPONSIVE PASS: NO until Tablet is owner-confirmed.
 - Mapping confirmed.
+
+Responsive ownership:
+- Desktop: .block-we-produce source slider/card system.
+- Tablet: PENDING exact source media-query mapping; do not inherit Mobile assumptions.
+- Mobile: source mobile Produce behavior + BIO-A replaceMobileProduceSection($, lang).
 
 Protected mechanics:
 - preserve original slider DOM, navigation, hover and responsive behavior.
@@ -90,11 +113,19 @@ BIO-A:
 - main footer logo selectors: .footer-top__logo img, .footer__logo img
 - BIO-A dark-background asset: /assets/bioa-full-light.svg
 
-Status:
-- Footer typography D2 is owner-confirmed PASS / LOCKED.
+Responsive status:
+- Desktop: FOOTER-D2 typography PASS / LOCKED; D1/D3 remain active and Footer is not globally PASS.
+- Tablet: PENDING — not independently verified under the three-surface rule.
+- Mobile: PENDING for D1/D2/D3 as a combined footer state unless separately owner-confirmed later.
+- FULL RESPONSIVE PASS: NO.
 - Footer D1 categories are being revised from legacy BIO-A source data.
-- Footer D3-REV uses owner-approved inverted contrast: #116F47 background + cream foreground.
+- Footer D3-REV uses owner-directed inverted contrast: #116F47 background + cream foreground.
 - Mapping confirmed.
+
+Responsive ownership:
+- Desktop: original Merywood footer DOM and BIO-A footer refinements.
+- Tablet: PENDING exact Merywood footer breakpoint/media-query inspection.
+- Mobile: buildMobileFooterV2($) plus source footer structure; must be regression-checked independently.
 
 Protected mechanics:
 - keep original Merywood footer DOM/layout mechanics and section relationships.
@@ -119,10 +150,18 @@ BIO-A:
 - internal selectors: .bioa-chat__*
 - current functional baseline implementation originates from commit 54a0248514d920fc1b2cecc7deb8238b37a463ad.
 
-Status:
-- Patch C4 accepted at b4c5e94f966ee6283a8b63c82e9ceb3c543e1214.
-- PASS / LOCKED by owner runtime confirmation.
+Responsive status:
+- Accepted commit: b4c5e94f966ee6283a8b63c82e9ceb3c543e1214.
+- Desktop: PASS / LOCKED based on owner-confirmed tested behavior.
+- Tablet: PENDING — not independently verified under the three-surface rule.
+- Mobile: PENDING unless separately owner-confirmed in a future runtime test.
+- FULL RESPONSIVE PASS: NO.
 - Mapping confirmed.
+
+Responsive ownership:
+- Desktop: .bioa-contact-fab / .bioa-contact-fab__panel / .bioa-chat__*.
+- Tablet: PENDING exact source/runtime breakpoint comparison; do not infer from another surface.
+- Mobile: current @media(max-width:768px) BIO-A chat rules plus source interaction reference.
 
 Protected mechanics / decisions:
 - one BIO-A avatar in header;

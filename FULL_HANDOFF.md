@@ -38,8 +38,21 @@ Required behavior:
 - prefer original Merywood selector/font/DOM/interaction behavior over new custom code;
 - do not rewrite a component to fix a small defect;
 - do not touch a PASS/LOCKED component unless technically unavoidable;
-- desktop and mobile are separate regression surfaces;
+- desktop, tablet and mobile are three separate first-class regression surfaces;
 - every patch must be small, scoped and rollback-friendly.
+
+Default responsive authority:
+
+DESKTOP + TABLET + MOBILE
+
+All three are first-class regression surfaces.
+
+For responsive work:
+MERYWOOD DESKTOP ↔ BIO-A DESKTOP
+MERYWOOD TABLET ↔ BIO-A TABLET
+MERYWOOD MOBILE ↔ BIO-A MOBILE
+
+Do not invent breakpoints before inspecting source breakpoint mechanics.
 
 Default engineering strategy:
 
@@ -87,15 +100,36 @@ Protected checkpoint before Patch C:
 
 3c88798b52222aa2e6c4baa1ab4a8b827c169279
 
-Carried PASS/LOCKED surfaces:
-- We Produce desktop: PASS/LOCKED
-- We Produce mobile: PASS/LOCKED
-- Desktop footer email/background: PASS/LOCKED
-- Header desktop spacing/transparency/logo: PASS/LOCKED
-- Mobile header/menu latest accepted visual state: PROTECTED
-- Hero/stats previous approved state: PROTECTED
+Mandatory status interpretation from 2026-10-05 onward:
+- Desktop, Tablet and Mobile are independent PASS surfaces.
+- Any legacy PASS that did not explicitly test Tablet does NOT imply Tablet PASS.
+- Use FULL RESPONSIVE PASS only when all three surfaces are owner-confirmed PASS.
 
-Do not opportunistically modify these surfaces.
+### We Produce
+- Desktop: PASS / LOCKED
+- Tablet: PENDING
+- Mobile: PASS / LOCKED
+- FULL RESPONSIVE PASS: NO
+
+### Header
+- Desktop: PASS / LOCKED for accepted spacing/transparency/logo
+- Tablet: PENDING
+- Mobile: PROTECTED previous accepted visual state
+- FULL RESPONSIVE PASS: NO
+
+### Hero / Stats
+- Desktop: PROTECTED previous approved state
+- Tablet: PENDING
+- Mobile: PROTECTED previous approved state where applicable
+- FULL RESPONSIVE PASS: NO
+
+### Footer legacy accepted pieces
+- Desktop: previous email/background behavior had accepted state, but current D3 color work has reopened Footer visual treatment
+- Tablet: PENDING
+- Mobile: PENDING for current Footer patch chain
+- FULL RESPONSIVE PASS: NO
+
+Do not opportunistically modify a surface already PASS/LOCKED while fixing another surface.
 
 ## 5. PATCH C3 CURRENT BASELINE STATE
 
@@ -164,6 +198,7 @@ Required:
 - FULL_HANDOFF.md
 - docs/WORKFLOW.md
 - docs/SOURCE_MAP.md
+- docs/BRAND_PALETTE.md
 
 Session boot order:
 1. identify owner-declared baseline;
@@ -171,8 +206,9 @@ Session boot order:
 3. read FULL_HANDOFF.md;
 4. read docs/WORKFLOW.md;
 5. read docs/SOURCE_MAP.md;
-6. identify target component;
-7. inspect only relevant Merywood source and BIO-A counterpart.
+6. read docs/BRAND_PALETTE.md when color/branding is involved;
+7. identify target component;
+8. inspect relevant Merywood Desktop / Tablet / Mobile behavior and the BIO-A counterpart.
 
 ## 9. FOOTER PATCH STATUS
 
@@ -183,9 +219,12 @@ Accepted behavior:
 - category heading weight remains moderate;
 - child links use regular weight.
 
-Status:
-- FOOTER-D2: PASS / LOCKED
-- Do not alter D2 typography while revising D1 categories or D3 colors unless owner explicitly reopens it.
+Responsive status:
+- Desktop: PASS / LOCKED for FOOTER-D2 typography.
+- Tablet: PENDING — not independently verified.
+- Mobile: PENDING — not independently verified.
+- FULL RESPONSIVE PASS: NO.
+- Do not alter the verified D2 typography surface while revising D1 categories or D3 colors unless owner explicitly reopens it.
 
 ### FOOTER-D1-REV — ACTIVE CANDIDATE
 
@@ -241,9 +280,12 @@ Owner-confirmed behavior:
 - open/close motion originates from the bottom-right launcher;
 - prior C3 content/structure remains preserved.
 
-Status:
-- CHAT-C4: PASS / LOCKED
-- Do not modify chat while working on Footer or Hub unless the owner explicitly reopens it.
+Responsive status:
+- Desktop: PASS / LOCKED based on owner-confirmed tested behavior.
+- Tablet: PENDING — not independently verified.
+- Mobile: PENDING unless separately owner-confirmed later.
+- FULL RESPONSIVE PASS: NO.
+- Do not modify the verified Chat C4 behavior while working on Footer or Hub unless the owner explicitly reopens it.
 
 ### NEXT PRODUCT PATCH
 
@@ -253,26 +295,34 @@ PATCH D — Footer
 - D3 ports the legacy BIO-A cream/green footer palette;
 - preserve Merywood footer DOM/layout mechanics and accepted email/contact geometry.
 
-## 10. VERIFICATION / PASS AUTHORITY
+## 11. VERIFICATION / PASS AUTHORITY
 
 BUILD PASS does not equal runtime PASS.
 
-Only the owner can confirm:
-- VISUAL PASS
-- RUNTIME PASS
-- PRODUCTION PASS
+Only the owner can confirm PASS for each responsive surface:
+
+- Desktop: PASS / FAIL / PENDING / PROTECTED
+- Tablet: PASS / FAIL / PENDING / PROTECTED
+- Mobile: PASS / FAIL / PENDING / PROTECTED
+
+Only when all three are PASS may the component be marked:
+FULL RESPONSIVE PASS — OWNER CONFIRMED
+
+VISUAL / RUNTIME / PRODUCTION PASS must not be written ambiguously without surface scope.
 
 Do not update this file with a new visual/runtime PASS until the owner explicitly confirms it.
 
 When owner confirms PASS:
 1. record accepted commit SHA;
-2. mark the behavior PASS/LOCKED;
-3. record rollback checkpoint;
-4. record remaining work;
-5. record rejected candidates when relevant;
-6. update SOURCE_MAP only for newly investigated components.
+2. record Desktop / Tablet / Mobile status independently;
+3. mark only verified surfaces PASS/LOCKED;
+4. mark FULL RESPONSIVE PASS only when all three surfaces are PASS;
+5. record rollback checkpoint;
+6. record remaining work;
+7. record rejected candidates when relevant;
+8. update SOURCE_MAP only for newly investigated components/responsive ownership.
 
-## 11. ROLLBACK REFERENCES
+## 12. ROLLBACK REFERENCES
 
 Latest owner-confirmed PASS checkpoint:
 b4c5e94f966ee6283a8b63c82e9ceb3c543e1214
@@ -288,7 +338,7 @@ Protected pre-Patch-C checkpoint:
 
 The four commits listed in section 6 are not rollback targets for the restarted project unless the owner explicitly promotes one later.
 
-## 12. SESSION CONTINUITY
+## 13. SESSION CONTINUITY
 
 Before ending an important development session verify:
 - authoritative baseline is clear;

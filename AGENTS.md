@@ -113,7 +113,51 @@ Search by exact evidence such as:
 Do not rescan the entire Merywood source by default.
 Expand scope only when evidence requires it.
 
-## 5. Inspect before edit / root cause before fix
+## 5. Mandatory three-surface regression model
+
+Every UI/layout/runtime patch must treat these as three independent regression surfaces:
+
+- Desktop
+- Tablet
+- Mobile
+
+Never omit Tablet from responsive verification.
+
+Tablet is not automatically equivalent to Mobile and may have its own:
+- layout;
+- column count;
+- container width;
+- spacing;
+- typography;
+- image ratio;
+- navigation behavior;
+- carousel behavior;
+- section alignment;
+- touch/hover behavior;
+- breakpoint logic.
+
+For a responsive component, compare source parity independently:
+
+MERYWOOD DESKTOP ↔ BIO-A DESKTOP
+
+MERYWOOD TABLET ↔ BIO-A TABLET
+
+MERYWOOD MOBILE ↔ BIO-A MOBILE
+
+Do not invent arbitrary breakpoints. Inspect Merywood media queries, existing BIO-A media queries and component-specific breakpoint behavior first.
+
+A component may have different statuses per surface. Example:
+- Desktop: PASS
+- Tablet: FAIL
+- Mobile: PASS
+
+That component is NOT globally responsive PASS.
+
+If only Tablet fails, patch Tablet only unless a broader change is technically unavoidable. The other verified surfaces remain protected.
+
+A previously recorded PASS that did not explicitly verify Tablet must not be retroactively interpreted as Tablet PASS. Record Tablet as PENDING until independently checked.
+
+## 6. Inspect before edit / root cause before fix
 
 No implementation before the agent can state:
 - current behavior;
@@ -131,9 +175,16 @@ No implementation before the agent can state:
 Do not patch symptoms blindly.
 Do not stack speculative fixes.
 
-## 6. Locked PASS rule
+## 7. Locked PASS rule
 
-Any visual/runtime behavior confirmed PASS by the owner becomes LOCKED.
+Any visual/runtime behavior confirmed PASS by the owner becomes LOCKED for the surface(s) actually verified.
+
+PASS is surface-specific:
+- Desktop PASS does not imply Tablet PASS.
+- Tablet PASS does not imply Mobile PASS.
+- Mobile PASS does not imply Desktop PASS.
+
+Use FULL RESPONSIVE PASS only when Desktop + Tablet + Mobile are all independently confirmed PASS.
 
 Do not change a PASS/LOCKED component while fixing another issue unless technically unavoidable.
 
@@ -145,7 +196,7 @@ If a locked surface must be touched:
 
 Never perform opportunistic cleanup in locked components.
 
-## 7. Patch contract
+## 8. Patch contract
 
 Every patch must define:
 - Target — exact bug/feature.
@@ -153,6 +204,11 @@ Every patch must define:
 - Files expected to change — smallest possible set.
 - Protected surfaces — components that must not change.
 - Acceptance criteria — observable PASS conditions.
+
+For responsive UI patches, acceptance criteria must explicitly state:
+- Desktop — expected behavior or REGRESSION CHECK — NO CHANGE EXPECTED.
+- Tablet — expected behavior or REGRESSION CHECK — NO CHANGE EXPECTED.
+- Mobile — expected behavior or REGRESSION CHECK — NO CHANGE EXPECTED.
 
 Do not silently expand scope.
 
@@ -168,7 +224,7 @@ If Patch A fails:
 
 Do not continue to Patch B while Patch A is failing.
 
-## 8. Minimal patch law
+## 9. Minimal patch law
 
 Priority:
 1. reuse exact Merywood behavior;
@@ -190,7 +246,7 @@ Avoid:
 
 A bug fix is not a refactoring opportunity.
 
-## 9. Verification
+## 10. Verification
 
 Node.js: >= 20
 Build command: npm run build
@@ -201,6 +257,7 @@ It does not mean visual/runtime/production PASS.
 
 For UI work verify, when relevant:
 - desktop;
+- tablet;
 - mobile;
 - hover;
 - click;
@@ -217,7 +274,7 @@ BUILD PASS — RUNTIME VERIFICATION PENDING
 
 Only the owner can promote visual/runtime behavior to final PASS.
 
-## 10. Diff and commit discipline
+## 11. Diff and commit discipline
 
 Before commit inspect the final diff:
 - only intended files changed;
@@ -234,7 +291,7 @@ Return the exact commit SHA after push.
 
 Do not update FULL_HANDOFF.md with an unconfirmed runtime/visual PASS.
 
-## 11. Documentation maintenance
+## 12. Documentation maintenance
 
 AGENTS.md:
 - permanent rules;
@@ -266,12 +323,14 @@ docs/BRAND_PALETTE.md:
 After owner-confirmed PASS:
 1. record accepted commit SHA;
 2. update authoritative state where appropriate;
-3. mark accepted components PASS/LOCKED;
-4. record rollback checkpoint;
-5. record remaining work;
-6. record rejected candidates when useful.
+3. record Desktop / Tablet / Mobile status independently;
+4. mark only verified surfaces PASS/LOCKED;
+5. use FULL RESPONSIVE PASS only when all three surfaces are PASS;
+6. record rollback checkpoint;
+7. record remaining work;
+8. record rejected candidates when useful.
 
-## 12. Core principle
+## 13. Core principle
 
 Think like a maintainer of a production codebase, not a prototype generator.
 

@@ -44,7 +44,10 @@ Expected behavior:
 Protected behavior:
 - what must remain unchanged.
 
-Desktop and mobile are independent regression surfaces.
+Desktop, Tablet and Mobile are three independent regression surfaces.
+
+Do not assume Tablet = Mobile.
+If prior documentation omitted Tablet, Tablet remains PENDING until independently verified.
 
 If the issue cannot be directly reproduced in the agent environment, owner screenshots/runtime feedback are evidence. Do not invent a reproduction result.
 
@@ -101,6 +104,33 @@ If these are not known, implementation must not begin.
 
 ## 6. SOURCE COMPARE
 
+For every responsive component, inspect all three source behaviors before changing responsive code:
+
+MERYWOOD DESKTOP
+↔
+BIO-A DESKTOP
+
+MERYWOOD TABLET
+↔
+BIO-A TABLET
+
+MERYWOOD MOBILE
+↔
+BIO-A MOBILE
+
+Tablet source inspection is mandatory. Do not derive Tablet behavior from Mobile assumptions.
+
+Breakpoint authority:
+1. inspect Merywood media queries;
+2. inspect existing BIO-A media queries;
+3. inspect component-specific breakpoints;
+4. preserve source breakpoint mechanics wherever possible;
+5. introduce/change a breakpoint only when evidence proves it is necessary.
+
+Do not hardcode device names as implementation logic unless the source itself does so.
+
+
+
 Use docs/SOURCE_MAP.md first.
 
 If a mapping exists:
@@ -136,6 +166,17 @@ Protected surfaces:
 
 Acceptance criteria:
 - observable conditions required for owner PASS.
+
+For every responsive UI patch define explicitly:
+
+Desktop:
+- expected behavior, or REGRESSION CHECK — NO CHANGE EXPECTED.
+
+Tablet:
+- expected behavior, or REGRESSION CHECK — NO CHANGE EXPECTED.
+
+Mobile:
+- expected behavior, or REGRESSION CHECK — NO CHANGE EXPECTED.
 
 If implementation reveals a larger scope, stop and reassess before broadening it.
 
@@ -212,7 +253,7 @@ Before commit review:
 - exact changed files;
 - exact diff;
 - neighboring locked surfaces;
-- desktop/mobile implications;
+- desktop/tablet/mobile implications;
 - selector scope;
 - interaction scope;
 - accidental source rewrites;
@@ -221,8 +262,41 @@ Before commit review:
 - generated/cache junk.
 
 For UI patches inspect relevant:
-- desktop;
-- mobile;
+
+Desktop:
+- layout;
+- spacing;
+- typography;
+- interaction;
+- overflow;
+- animation.
+
+Tablet:
+- layout;
+- larger-tablet / landscape behavior where relevant;
+- standard tablet width;
+- smaller-tablet / portrait behavior where relevant;
+- intermediate widths;
+- columns/grid;
+- spacing;
+- text wrapping;
+- image ratios;
+- touch interaction;
+- navigation;
+- carousel/slider;
+- overflow;
+- animation.
+
+Mobile:
+- layout;
+- stacking;
+- spacing;
+- touch interaction;
+- navigation/menu;
+- overflow;
+- animation.
+
+Also inspect relevant:
 - hover;
 - click;
 - open/close;
@@ -239,8 +313,14 @@ CANDIDATE — NEEDS RUNTIME TEST
 or
 BUILD PASS — NEEDS OWNER TEST
 
-Only the owner can promote a visual/runtime patch to:
-PASS — OWNER CONFIRMED
+Only the owner can promote a visual/runtime patch to PASS for the surface(s) actually tested.
+
+Record status independently:
+- Desktop: PASS / FAIL / PENDING / PROTECTED
+- Tablet: PASS / FAIL / PENDING / PROTECTED
+- Mobile: PASS / FAIL / PENDING / PROTECTED
+
+Use FULL RESPONSIVE PASS — OWNER CONFIRMED only when all three surfaces are PASS.
 
 Do not record an unconfirmed candidate as PASS in FULL_HANDOFF.md.
 
@@ -267,17 +347,26 @@ Return exact pushed SHA.
 After owner-confirmed PASS:
 1. update FULL_HANDOFF.md;
 2. record accepted commit SHA;
-3. mark accepted behavior PASS/LOCKED;
-4. record rollback checkpoint;
-5. record rejected candidates where useful;
-6. record remaining work;
-7. update SOURCE_MAP only for newly investigated components.
+3. record Desktop / Tablet / Mobile status independently;
+4. mark only verified surfaces PASS/LOCKED;
+5. record rollback checkpoint;
+6. record rejected candidates where useful;
+7. record remaining work;
+8. update SOURCE_MAP only for newly investigated components and responsive ownership actually inspected.
 
 Before ending an important session, ensure another AI can continue from repository files alone.
 
 ## 16. Required response format for implementation work
 
 Before implementation:
+
+## Responsive scope
+
+**Desktop:** PASS / affected / protected / pending
+
+**Tablet:** PASS / affected / protected / pending
+
+**Mobile:** PASS / affected / protected / pending
 
 ## Diagnosis
 - current issue
@@ -300,6 +389,16 @@ Before implementation:
 
 After implementation:
 
+## Responsive verification
+
+**Desktop:** result
+
+**Tablet:** result
+
+**Mobile:** result
+
+Never omit Tablet from a responsive UI patch.
+
 ## Changed
 - exact meaningful changes
 
@@ -317,5 +416,6 @@ After implementation:
 Use one:
 - CANDIDATE — NEEDS RUNTIME TEST
 - BUILD PASS — NEEDS OWNER TEST
-- PASS — OWNER CONFIRMED
+- PARTIAL PASS — SURFACE-SPECIFIC
+- FULL RESPONSIVE PASS — OWNER CONFIRMED
 - FAIL — ROOT CAUSE REASSESSMENT REQUIRED
