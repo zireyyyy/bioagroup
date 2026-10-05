@@ -356,6 +356,15 @@ function viCleanup($){
   });
 }
 
+function brandCookieBanner($){
+  const logo=$('#mw-consent .mw-brand .mw-logo,.mw-brand .mw-logo').first();
+  if(logo.length){
+    logo.attr('src','/assets/bioa-monogram.svg')
+        .attr('alt','Bio-A Group')
+        .removeAttr('srcset');
+  }
+}
+
 function tabsScript($){$('body').append(`<script id="bioa-tabs-fix">(function(){document.querySelectorAll('.block-product-formats').forEach(function(root){var tabs=[].slice.call(root.querySelectorAll('.formats__tab')),panels=[].slice.call(root.querySelectorAll('.formats__panel'));function go(i){tabs.forEach(function(t,n){t.setAttribute('aria-selected',n===i?'true':'false')});panels.forEach(function(p,n){p.classList.toggle('is-active',n===i);p.style.display=n===i?'block':'none'})}if(tabs.length&&panels.length){go(Math.max(0,tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true'})));tabs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})})}})})();</script>`)}
 
 export function applyFinalFixes($, route, lang){
@@ -377,5 +386,6 @@ export function applyFinalFixes($, route, lang){
     const e=$(el);
     ['title','aria-label','alt'].forEach(k=>{const v=e.attr(k);if(v)e.attr(k,replaceBrandText(v));});
   });
+  brandCookieBanner($);
   tabsScript($);
 }
