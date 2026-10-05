@@ -521,3 +521,34 @@ Acceptance target:
 - Desktop: We Produce source layout/overlay restored; no content pushed outside the source card.
 - Mobile: Why Choose fully VI/EN paired; Produce matches Desktop content; 2500/5000 + localized unit stays on one line.
 - Tablet: NO CHANGE EXPECTED / deferred.
+
+
+## EMERGENCY WE PRODUCE ROLLBACK — PASS AUTHORITY RESTORED
+
+Owner reported severe Desktop We Produce regression after later Home content work.
+
+Backup:
+- branch backup-bad-produce-2026-10-05 preserves rejected main 8f8c58243fba75dab32b88d8279d0781d2ffba86.
+
+Immediate site rollback:
+- main was first restored to b7a95464d18a02a800cfbbc31383a0bb78791b3b.
+
+PASS authority found in this handoff:
+- 3c88798b52222aa2e6c4baa1ab4a8b827c169279
+- We Produce Desktop: PASS / LOCKED
+- We Produce Mobile: PASS / LOCKED
+- Tablet: PENDING
+
+Root-cause comparison:
+- at 3c887... bioa-transform.mjs had NO setProduceCopy() mutation;
+- later H5B introduced setProduceCopy() and called it from finalizeHomeCopy();
+- We Produce CSS/runtime component code remained essentially the same;
+- therefore the safe rollback is to stop mutating the Desktop/source We Produce DOM/content.
+
+Current emergency fix:
+- finalizeHomeCopy() no longer calls setProduceCopy().
+- Desktop returns to source-owned Merywood We Produce DOM/text/layout behavior.
+- Mobile custom Bio-A Produce replacement remains untouched.
+- Header/Footer remain on their current owner-confirmed PASS state and are NOT rolled back.
+
+Do not reintroduce Desktop We Produce content mutation until a source-safe text-only mapping is proven without changing layout/runtime behavior.

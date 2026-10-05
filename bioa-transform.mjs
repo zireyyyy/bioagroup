@@ -204,7 +204,7 @@ function setFormatsCopy($,lang){
 
 function finalizeHomeCopy($,lang){
   const vi=lang==='vi';
-  setProduceCopy($,lang);setPackagingCopy($,lang);setFormatsCopy($,lang);setRightChoiceCopy($,lang);
+  setPackagingCopy($,lang);setFormatsCopy($,lang);setRightChoiceCopy($,lang);
   $('.block-products-desctop .big-labels').each((_,list)=>{
     $(list).find('.big-labels__item-text-1').each((i,e)=>{
       $(e).text(i%2===0?(vi?'2500 sản phẩm':'2500 units'):(vi?'5000 sản phẩm':'5000 units'));

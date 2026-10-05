@@ -427,3 +427,22 @@ Status:
 - Tablet: DEFERRED / PENDING
 - Mobile: ACTIVE FIX CANDIDATE
 - Header/Footer: PASS / LOCKED
+
+
+## We Produce Emergency Rollback
+
+PASS checkpoint:
+- 3c88798b52222aa2e6c4baa1ab4a8b827c169279
+- Desktop: PASS / LOCKED
+- Mobile: PASS / LOCKED
+- Tablet: PENDING
+
+Key finding:
+- PASS checkpoint had no setProduceCopy() in bioa-transform.mjs.
+- Current component CSS/runtime code matched the PASS-era We Produce chain.
+- Regression source was the later Desktop/source DOM content mutation.
+
+Current authority:
+- Desktop We Produce: Merywood source DOM/content/layout is untouched by finalizeHomeCopy().
+- Mobile Produce: existing custom BIO-A replacement remains.
+- Header/Footer: protected current PASS authority.
