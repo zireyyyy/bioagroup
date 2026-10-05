@@ -3159,6 +3159,70 @@ const patchC5ChannelPaletteCss = `
 }
 `;
 
+
+const patchD5FooterTabletCss = `
+/* FOOTER-D5 — Tablet-only content-safe adaptation.
+   Merywood's primary responsive split is 768px; preserve Desktop/Mobile,
+   and use the project's existing 769–1200 intermediate band for BIO-A's longer labels. */
+@media(max-width:1200px) and (min-width:769px){
+  .footer-top__wrapper{
+    display:grid!important;
+    grid-template-columns:100px minmax(0,1fr) 208px!important;
+    align-items:start!important;
+    column-gap:24px!important;
+    row-gap:22px!important;
+  }
+  .footer-top__left{
+    grid-column:1!important;
+    min-width:0!important;
+  }
+  .footer-top__menu{
+    grid-column:2!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:24px 30px!important;
+    width:100%!important;
+    min-width:0!important;
+  }
+  .footer-top__nav{
+    width:auto!important;
+    min-width:0!important;
+  }
+  .footer-top__nav > ul > li:first-child > a{
+    font-size:17px!important;
+    line-height:1.22!important;
+  }
+  .footer-top__nav > ul > li:not(:first-child) > a{
+    font-size:13px!important;
+    line-height:1.45!important;
+    white-space:normal!important;
+  }
+  .footer-top__right{
+    grid-column:3!important;
+    min-width:208px!important;
+    width:208px!important;
+    justify-self:end!important;
+  }
+}
+`;
+
+const patchD6FooterMetaCss = `
+/* FOOTER-D6 — owner-requested footer meta placement. */
+.footer-bottom__wrapper{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.footer-bottom__copyright{
+  width:100%!important;
+  text-align:center!important;
+}
+.footer-bottom__links{
+  display:none!important;
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3507,7 +3571,8 @@ function refineFooterNavigation($,lang){
       ['Liên Hệ','/lien-he/']
     ]},
     {title:'Chính Sách',items:[
-      ['Chính Sách Bảo Mật','/chinh-sach-bao-mat/'],
+      ['Privacy Policy','/privacy-policy/'],
+      ['Cookie Policy','/cookie-policy/'],
       ['Chính Sách Vận Chuyển','/chinh-sach-van-chuyen/']
     ]}
   ] : [
@@ -3533,7 +3598,8 @@ function refineFooterNavigation($,lang){
       ['Contact','/en/lien-he/']
     ]},
     {title:'Policies',items:[
-      ['Privacy Policy','/en/chinh-sach-bao-mat/'],
+      ['Privacy Policy','/en/privacy-policy/'],
+      ['Cookie Policy','/en/cookie-policy/'],
       ['Shipping Policy','/en/chinh-sach-van-chuyen/']
     ]}
   ];
@@ -3574,6 +3640,12 @@ function refineFooterNavigation($,lang){
     });
   });
 }
+
+function refineFooterMeta($){
+  $('.footer-bottom__links').remove();
+  $('.footer-bottom__copyright').first().text('© Bio-A Group | All rights reserved');
+}
+
 function footerSocials($){
   const wrap=$('.footer-top__socials').first();
   if(!wrap.length)return;
@@ -3716,7 +3788,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
@@ -3724,6 +3796,7 @@ export function applyHomeRefinement($,route,lang){
   syncMobileHeader($,route,lang);
   replaceMobileProduceSection($,lang);
   refineFooterNavigation($,lang);
+  refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
   addContactLauncher($,lang);
