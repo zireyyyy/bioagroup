@@ -174,7 +174,53 @@ Session boot order:
 6. identify target component;
 7. inspect only relevant Merywood source and BIO-A counterpart.
 
-## 9. CURRENT ACTIVE WORK
+## 9. FOOTER PATCH STATUS
+
+### FOOTER-D2 — OWNER CONFIRMED PASS
+
+Accepted behavior:
+- footer navigation abnormal heavy/bold text is corrected;
+- category heading weight remains moderate;
+- child links use regular weight.
+
+Status:
+- FOOTER-D2: PASS / LOCKED
+- Do not alter D2 typography while revising D1 categories or D3 colors unless owner explicitly reopens it.
+
+### FOOTER-D1-REV — ACTIVE CANDIDATE
+
+Reason for revision:
+- original D1 used proposed categories;
+- owner required categories to come from the legacy BIO-A source ZIP/database.
+
+Source-derived product groups:
+- Sản Phẩm Trang Điểm
+- Sản Phẩm Chăm Sóc Tóc
+- Sản Phẩm Chăm Sóc Body
+- Sản Phẩm Chăm Sóc Da Mặt
+- Sản Phẩm Cá Nhân
+- Sản Phẩm Mẹ & Bé
+
+Source-derived service groups:
+- Sản Xuất & Gia Công Dược Mỹ Phẩm
+- Đóng Gói & Sang Chiết Mỹ Phẩm
+- Đăng Ký Thương Hiệu & Công Bố
+- Chai Lọ Mỹ Phẩm
+- Thiết Kế Bao Bì Mỹ Phẩm
+
+### FOOTER-D3 — ACTIVE CANDIDATE
+
+Legacy BIO-A footer palette authority:
+- top background: #F3F0E4
+- footer bottom / primary green: #106E45
+- main dark green: #093D26
+- secondary green: #136E47
+- ivory: #FCFEF1
+- soft green: #99D29F
+
+The dedicated authority file is docs/BRAND_PALETTE.md.
+
+## 10. CURRENT ACTIVE WORK
 
 ### CHAT-C4 — OWNER CONFIRMED PASS
 
@@ -201,9 +247,10 @@ Status:
 ### NEXT PRODUCT PATCH
 
 PATCH D — Footer
-- replace footer categories with BIO-A-relevant categories;
-- fix abnormal heavy/bold footer text;
-- preserve accepted footer layout/background/email behavior and Merywood mechanics.
+- D2 typography is owner-confirmed PASS/LOCKED;
+- D1 is being revised from actual legacy BIO-A categories;
+- D3 ports the legacy BIO-A cream/green footer palette;
+- preserve Merywood footer DOM/layout mechanics and accepted email/contact geometry.
 
 ## 10. VERIFICATION / PASS AUTHORITY
 

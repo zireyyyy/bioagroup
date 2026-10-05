@@ -91,12 +91,16 @@ BIO-A:
 - BIO-A dark-background asset: /assets/bioa-full-light.svg
 
 Status:
-- Accepted desktop footer email/background state is PASS/LOCKED.
+- Footer typography D2 is owner-confirmed PASS / LOCKED.
+- Footer D1 categories are being revised from legacy BIO-A source data.
+- Footer D3 palette is being ported from legacy BIO-A source.
 - Mapping confirmed.
 
 Protected mechanics:
-- keep original layout mechanics and section relationships.
-- use light BIO-A logo on dark background.
+- keep original Merywood footer DOM/layout mechanics and section relationships.
+- use regular BIO-A logo on cream/light footer backgrounds; light logo only on dark backgrounds.
+- D2 font-weight behavior is LOCKED.
+- footer brand colors must follow docs/BRAND_PALETTE.md.
 - do not add extra brand information that changes footer geometry unless requested.
 
 ## Chat / Contact Widget

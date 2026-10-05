@@ -25,7 +25,7 @@ Do not skip directly from request to implementation.
 Before changing anything:
 1. confirm the owner-declared authoritative baseline from FULL_HANDOFF.md and the current request;
 2. inspect repository state at that exact baseline;
-3. read AGENTS.md, FULL_HANDOFF.md, this file and docs/SOURCE_MAP.md;
+3. read AGENTS.md, FULL_HANDOFF.md, this file, docs/SOURCE_MAP.md and docs/BRAND_PALETTE.md when color/branding is involved;
 4. identify the exact requested component/behavior;
 5. identify locked/protected surfaces around it.
 
@@ -112,6 +112,8 @@ If no mapping exists:
 - add the confirmed mapping to docs/SOURCE_MAP.md after locating it.
 
 Do not reread the complete source for every request.
+
+For color/branding changes, consult docs/BRAND_PALETTE.md before creating any new color value. If the legacy BIO-A source already defines the needed brand color, reuse it.
 
 Allowed expansion:
 small scope → evidence → expand only when necessary

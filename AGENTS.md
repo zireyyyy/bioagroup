@@ -22,10 +22,11 @@ Decision priority:
 4. FULL_HANDOFF.md.
 5. docs/WORKFLOW.md.
 6. docs/SOURCE_MAP.md.
-7. Original Merywood source.
-8. Existing BIO-A architecture.
-9. Minimal-risk implementation.
-10. Developer preference.
+7. docs/BRAND_PALETTE.md for color/brand decisions.
+8. Original Merywood source.
+9. Existing BIO-A architecture.
+10. Minimal-risk implementation.
+11. Developer preference.
 
 Repository files + Git history are project authority.
 Do not use chat memory as project authority.
@@ -256,6 +257,11 @@ docs/SOURCE_MAP.md:
 - lazy index from Merywood components to BIO-A counterparts;
 - add mappings only after actual investigation;
 - do not map the whole source proactively.
+
+docs/BRAND_PALETTE.md:
+- authoritative BIO-A color palette derived from owner-supplied BIO-A source;
+- must be consulted before introducing or changing brand colors;
+- do not invent replacement brand colors when an authority value already exists.
 
 After owner-confirmed PASS:
 1. record accepted commit SHA;
