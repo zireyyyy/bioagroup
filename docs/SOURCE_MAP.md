@@ -114,9 +114,9 @@ BIO-A:
 - BIO-A dark-background asset: /assets/bioa-full-light.svg
 
 Responsive status:
-- Desktop: FOOTER-D2 typography PASS / LOCKED; D1/D3 remain active and Footer is not globally PASS.
-- Tablet: PENDING — not independently verified under the three-surface rule.
-- Mobile: PENDING for D1/D2/D3 as a combined footer state unless separately owner-confirmed later.
+- Desktop: PASS / LOCKED for current 4-column footer layout/color at commit 36f09db2188df97c901cab7b10e710a48612f53a.
+- Tablet: FAIL — current one-row desktop arrangement compresses BIO-A content too aggressively.
+- Mobile: PASS / LOCKED for current footer layout/color at commit 36f09db2188df97c901cab7b10e710a48612f53a.
 - FULL RESPONSIVE PASS: NO.
 - Footer D1 categories are being revised from legacy BIO-A source data.
 - Footer D3-REV uses owner-directed inverted contrast: #116F47 background + cream foreground.
@@ -124,7 +124,7 @@ Responsive status:
 
 Responsive ownership:
 - Desktop: original Merywood footer DOM and BIO-A footer refinements.
-- Tablet: PENDING exact Merywood footer breakpoint/media-query inspection.
+- Tablet: Merywood uses the same footer DOM above its 768px mobile split; BIO-A needs a content-safe intermediate-width adaptation without rewriting the source structure.
 - Mobile: buildMobileFooterV2($) plus source footer structure; must be regression-checked independently.
 
 Protected mechanics:

@@ -226,6 +226,23 @@ Responsive status:
 - FULL RESPONSIVE PASS: NO.
 - Do not alter the verified D2 typography surface while revising D1 categories or D3 colors unless owner explicitly reopens it.
 
+### FOOTER-D4 — SURFACE-SPECIFIC OWNER RESULT
+
+Accepted commit:
+36f09db2188df97c901cab7b10e710a48612f53a
+
+Owner runtime result:
+- Desktop: PASS — 4-column footer layout/color accepted.
+- Tablet: FAIL — intermediate-width footer is too compressed and link text becomes too small.
+- Mobile: PASS — footer layout/color accepted.
+- FULL RESPONSIVE PASS: NO.
+
+Protected while fixing Tablet:
+- Desktop footer layout/color.
+- Mobile footer layout/color.
+- D2 typography weight.
+- Chat C4 geometry/motion.
+
 ### FOOTER-D1-REV — ACTIVE CANDIDATE
 
 Reason for revision:
