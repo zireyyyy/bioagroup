@@ -195,6 +195,86 @@ Protected mechanics:
 - replace brand traces only.
 - do not treat neutral decorative/product artwork as Merywood branding.
 
+
+## Home CTA / Slider Controls / Reviews
+
+Merywood:
+- source: merywood/pages/index/index.html
+- CTA text node: .btn__text
+- slider controls: .swiper-button, .swiper-button_left, .swiper-button_right
+- review cards: .block-reviews .review
+
+BIO-A:
+- file: bioa-home-refine.mjs
+- H1: localizeHomeCtas($, lang)
+- H2: patchH2HomeControlPaletteCss
+
+Responsive status:
+- Desktop: ACTIVE — needs owner runtime verification.
+- Tablet: ACTIVE — needs owner runtime verification.
+- Mobile: ACTIVE — needs owner runtime verification.
+- FULL RESPONSIVE PASS: NO.
+
+Protected mechanics:
+- H1 changes exact-match "Get started" text only on VI Home.
+- H2 changes palette only; control geometry/positioning and slider mechanics remain source-owned.
+- Review slider DOM, dimensions and movement remain unchanged.
+
+## Home Mobile Contact CTA
+
+Merywood:
+- source: merywood/pages/index/index.html
+- root: .whatsapp
+- watermark layer: .whatsapp__logo
+- CTA: .whatsapp__btn
+- source mobile rule hides .whatsapp__logo at max-width:768px.
+
+BIO-A:
+- file: bioa-home-refine.mjs
+- function: refineMobileContactCta($, lang)
+- CSS: patchH3MobileContactCss
+- CTA target: company.zalo
+
+Responsive status:
+- Desktop: REGRESSION CHECK — no layout change expected; CTA content/link changes apply.
+- Tablet: REGRESSION CHECK — no layout change expected; CTA content/link changes apply.
+- Mobile: ACTIVE — watermark visibility + CTA are affected.
+- FULL RESPONSIVE PASS: NO.
+
+Protected mechanics:
+- source .whatsapp box dimensions/spacing remain unchanged;
+- only mobile watermark visibility/treatment and CTA content/target are changed.
+
+## Packaging / Airless Product Slider Watermark
+
+Merywood:
+- source: merywood/pages/index/index.html
+- desktop section: .block-products-desctop
+- mobile section: .block-products-mobile
+- watermark layer: .product__composition-bg-logo
+- product image: .product__composition-image
+- navigation: .swiper-button
+- indicators/swiper mechanics remain source-owned.
+
+BIO-A:
+- file: bioa-home-refine.mjs
+- CSS: patchH4PackagingWatermarkCss
+- watermark asset/treatment: /assets/bioa-monogram.svg using the same mask/color/opacity family as We Produce.
+
+Responsive status:
+- Desktop: ACTIVE — watermark-only candidate.
+- Tablet: ACTIVE — watermark-only candidate.
+- Mobile: ACTIVE — watermark-only candidate.
+- FULL RESPONSIVE PASS: NO.
+
+Protected mechanics:
+- do not change section layout;
+- do not change product image;
+- do not change left/right text;
+- do not change navigation arrows;
+- do not change indicators;
+- do not change spacing.
+
 ## Not yet lazily indexed
 
 The following are intentionally not expanded here until a future patch actually investigates them:
