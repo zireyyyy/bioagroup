@@ -2141,9 +2141,9 @@ const patchB13Css = `
 
 
 const patchB14Css = `
-/* HOME Patch B14 — desktop We Produce layer correction only.
-   IMPORTANT: preserve Merywood's original positioning rules.
-   Merywood already keeps the copy panel inside the card; we only adjust stacking. */
+/* HOME Patch B14-REV — desktop We Produce source-layer restoration.
+   Preserve Merywood geometry; only establish a stacking context for source copy
+   so product artwork cannot paint over title/body. */
 @media(min-width:769px){
   .block-we-produce .bg__decoration{
     z-index:0!important;
@@ -2151,10 +2151,12 @@ const patchB14Css = `
   .block-we-produce .bg__media{
     z-index:1!important;
   }
+  .block-we-produce .item__title,
+  .block-we-produce .item__text,
   .block-we-produce .item__content,
   .block-we-produce .item__info,
-  .block-we-produce .item__text,
   .block-we-produce .item__description{
+    position:relative!important;
     z-index:5!important;
   }
 }
@@ -4075,38 +4077,53 @@ function addContactLauncher($,lang){
 }
 
 
-const sharedShellCss =
-  patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
-  patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
-  patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+
-  patchD5FooterTabletCss+patchD6FooterMetaCss+patchZaloIconCss;
-
-export function applySharedShell($,route,lang){
-  $('#bioa-shared-shell').remove();
-  $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+'</style>');
-  setLogo($);
-  fixLang($,route,lang);
-  normalizeHeaderActions($);
-  syncMobileHeader($,route,lang);
-  refineFooterNavigation($,lang);
-  refineFooterMeta($);
-  footerSocials($);
-  buildMobileFooterV2($);
+function composePassCss(includeHome){
+  return (
+    css+
+    patchACss+patchA7Css+patchA8Css+
+    (includeHome?patchBCss:'')+
+    patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
+    (includeHome?(patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss):'')+
+    patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+
+    patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+
+    patchD5FooterTabletCss+patchD6FooterMetaCss+
+    (includeHome?(patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss):'')+
+    patchZaloIconCss+
+    (includeHome?(patchH5CMobileMoqCss+patchHeroStatsFinalSourceCss):'')
+  );
 }
 
-export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeroStatsFinalSourceCss+'</style>');
-  localizeHomeCtas($,lang);
+const sharedShellCss=composePassCss(false);
+const homePassCss=composePassCss(true);
+
+function injectPassCss($,id,content){
+  $('#bioa-shared-shell,#bioa-home-refine').remove();
+  $('head').append('<style id="'+id+'">'+content+'</style>');
+}
+
+function applySharedShellCore($,route,lang){
   setLogo($);
-  replaceBrandWatermarks($);
   fixLang($,route,lang);
   normalizeHeaderActions($);
   syncMobileHeader($,route,lang);
-  replaceMobileProduceSection($,lang);
-  refineMobileContactCta($,lang);
   refineFooterNavigation($,lang);
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
   addContactLauncher($,lang);
 }
+
+export function applySharedShell($,route,lang){
+  injectPassCss($,'bioa-shared-shell',sharedShellCss);
+  applySharedShellCore($,route,lang);
+}
+
+export function applyHomeRefinement($,route,lang){
+  injectPassCss($,'bioa-home-refine',homePassCss);
+  applySharedShellCore($,route,lang);
+  localizeHomeCtas($,lang);
+  replaceBrandWatermarks($);
+  replaceMobileProduceSection($,lang);
+  refineMobileContactCta($,lang);
+}
+
