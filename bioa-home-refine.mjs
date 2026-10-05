@@ -4073,7 +4073,7 @@ function addContactLauncher($,lang){
 
 const sharedShellCss =
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
-  patchB4Css+patchB5Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
+  patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+
   patchD5FooterTabletCss+patchD6FooterMetaCss+patchZaloIconCss;
 
