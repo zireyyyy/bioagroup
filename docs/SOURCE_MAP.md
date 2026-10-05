@@ -116,8 +116,8 @@ BIO-A:
 - current functional baseline implementation originates from commit 54a0248514d920fc1b2cecc7deb8238b37a463ad.
 
 Status:
-- Current authoritative baseline contains Patch C3 compact Merywood-style shell.
-- Treat as baseline behavior; do not promote a later chat candidate unless the owner explicitly approves it.
+- Patch C4 accepted at b4c5e94f966ee6283a8b63c82e9ceb3c543e1214.
+- PASS / LOCKED by owner runtime confirmation.
 - Mapping confirmed.
 
 Protected mechanics / decisions:
@@ -126,6 +126,9 @@ Protected mechanics / decisions:
 - one contact row for WhatsApp, Facebook, Telegram and Zalo;
 - no History cards or duplicated provider line;
 - launcher hidden while panel is open;
+- panel radius uses the accepted compact shell treatment;
+- composer is one integrated input/send shell with DNA-green send button;
+- panel open/close motion is anchored to the bottom-right launcher;
 - source interaction feel should be preserved;
 - Dashly credentials are not part of BIO-A architecture.
 
