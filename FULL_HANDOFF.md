@@ -176,14 +176,34 @@ Session boot order:
 
 ## 9. CURRENT ACTIVE WORK
 
-Authority/workflow bootstrap:
-- create and install the four required repository authority files;
-- keep code/runtime unchanged from the owner-declared baseline;
-- exclude the four post-baseline commits from the new main lineage;
-- no UI/runtime change is included in this documentation patch.
+### CHAT-C4 — OWNER CONFIRMED PASS
 
-Next product patch:
-- waiting for owner instruction.
+Accepted commit:
+
+b4c5e94f966ee6283a8b63c82e9ceb3c543e1214
+
+Accepted patch chain:
+- 782c1cb1597278849ae9582a1ba469ea67401f6d — tighten panel corner radius
+- e3a48b23af132be2610acf601dd76b7dbb110a20 — integrated one-piece composer with DNA-green send button
+- b4c5e94f966ee6283a8b63c82e9ceb3c543e1214 — bottom-right launcher-anchored panel motion
+
+Owner-confirmed behavior:
+- chat shell corner radius is accepted;
+- composer is one continuous input/send shell;
+- send button is inset at the right edge and uses BIO-A DNA green;
+- open/close motion originates from the bottom-right launcher;
+- prior C3 content/structure remains preserved.
+
+Status:
+- CHAT-C4: PASS / LOCKED
+- Do not modify chat while working on Footer or Hub unless the owner explicitly reopens it.
+
+### NEXT PRODUCT PATCH
+
+PATCH D — Footer
+- replace footer categories with BIO-A-relevant categories;
+- fix abnormal heavy/bold footer text;
+- preserve accepted footer layout/background/email behavior and Merywood mechanics.
 
 ## 10. VERIFICATION / PASS AUTHORITY
 
@@ -205,6 +225,9 @@ When owner confirms PASS:
 6. update SOURCE_MAP only for newly investigated components.
 
 ## 11. ROLLBACK REFERENCES
+
+Latest owner-confirmed PASS checkpoint:
+b4c5e94f966ee6283a8b63c82e9ceb3c543e1214
 
 Primary owner-declared rollback baseline:
 083a7e890b2627c9456c4c0ef98890b3749698fb
