@@ -3348,17 +3348,21 @@ const patchZaloIconCss = `
 
 
 const patchH5CMobileMoqCss = `
-/* HOME-H5C — mobile MOQ only. Keep number + localized unit on one line. */
+/* HOME-H5C-REV — target Merywood's real mobile MOQ nodes.
+   Keep number + localized unit on one line without changing the two-column layout. */
 @media(max-width:768px){
-  .block-products-mobile .big-labels__item-text-1{
+  .block-products-mobile .info__item{
+    min-width:0!important;
+  }
+  .block-products-mobile .info__item-text-1{
     display:block!important;
     width:100%!important;
     white-space:nowrap!important;
     word-break:keep-all!important;
     overflow-wrap:normal!important;
-    font-size:clamp(20px,6vw,25px)!important;
+    font-size:clamp(18px,5.2vw,22px)!important;
     line-height:1.05!important;
-    letter-spacing:-.02em!important;
+    letter-spacing:-.025em!important;
   }
 }
 `;
@@ -3757,20 +3761,20 @@ function replaceMobileProduceSection($,lang){
 
   const cards=[
     {
-      title:vi?'Thực phẩm bổ sung':'Supplements',
+      title:vi?'Gia công dược mỹ phẩm':'Cosmetic manufacturing',
       copy:vi
-        ?'Danh mục thực phẩm bổ sung có thể phát triển theo công thức có sẵn hoặc công thức riêng, phù hợp định hướng thương hiệu.'
-        :'We offer a wide range of supplement formats that can be developed from ready formulas or custom formulas for your brand.',
+        ?'R&D công thức và sản xuất OEM/ODM theo định hướng thương hiệu.'
+        :'Formula R&D and OEM/ODM production for your brand direction.',
       src:'https://merywood.com/wp-content/uploads/2026/04/produce-1.webp',
-      alt:vi?'Thực phẩm bổ sung':'Supplements'
+      alt:vi?'Gia công dược mỹ phẩm':'Cosmetic manufacturing'
     },
     {
-      title:vi?'Mỹ phẩm':'Cosmetics',
+      title:vi?'Bao bì & hoàn thiện':'Packaging & finishing',
       copy:vi
-        ?'Phát triển mỹ phẩm từ nghiên cứu công thức, lựa chọn nguyên liệu đến bao bì và hoàn thiện sản phẩm.'
-        :'Cosmetic products can be developed from formula research and ingredient selection through packaging and finished production.',
+        ?'Chai lọ, sang chiết, đóng gói và hoàn thiện sản phẩm.'
+        :'Bottles, filling, packing and finished-product preparation.',
       src:'https://merywood.com/wp-content/uploads/2026/04/produce-2.webp',
-      alt:vi?'Mỹ phẩm':'Cosmetics'
+      alt:vi?'Bao bì và hoàn thiện':'Packaging and finishing'
     }
   ];
 
