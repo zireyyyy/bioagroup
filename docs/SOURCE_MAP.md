@@ -306,9 +306,13 @@ Responsive status:
 Current visual rule:
 - keep existing button/container dimensions;
 - use tightly cropped framed-cream artwork;
-- social/footer/chat icon render size: 37px;
-- CTA icon render size: 25px;
-- Zalo hover keeps green/translucent background and cream artwork; it must not invert to a full cream button.
+- Footer desktop Zalo: 42px;
+- Footer tablet Zalo: 39px;
+- Footer mobile Zalo: 32px;
+- Chat Zalo: 34px;
+- CTA Zalo: 30px;
+- Zalo hover keeps green/translucent background and cream artwork; it must not invert to a full cream button;
+- Telegram glyph receives a visual-only translateX(-1px) in Footer/Mobile Footer/Chat to correct optical centering.
 
 Protected:
 - Zalo hrefs;

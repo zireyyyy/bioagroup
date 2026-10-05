@@ -3272,20 +3272,54 @@ const patchZaloIconCss = `
    Visual-only: keep every social/contact container's geometry and behavior unchanged. */
 .bioa-zalo-icon{
   display:block!important;
-  width:37px!important;
-  height:37px!important;
-  max-width:37px!important;
-  max-height:37px!important;
+  width:34px!important;
+  height:34px!important;
+  max-width:34px!important;
+  max-height:34px!important;
   object-fit:contain!important;
-  flex:0 0 37px!important;
+  flex:0 0 34px!important;
   margin:auto!important;
 }
+/* Context-specific fit: make the framed mark visually fill each existing control
+   without changing any container dimension. */
+.footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
+  width:42px!important;
+  height:42px!important;
+  max-width:42px!important;
+  max-height:42px!important;
+  flex-basis:42px!important;
+}
+.bioa-footer-mobile-v2__socials a[aria-label="Zalo"] .bioa-zalo-icon,
+.bioa-footer-mobile-socials a[aria-label="Zalo"] .bioa-zalo-icon{
+  width:32px!important;
+  height:32px!important;
+  max-width:32px!important;
+  max-height:32px!important;
+  flex-basis:32px!important;
+}
+.bioa-chat__channel[aria-label="Zalo"] .bioa-zalo-icon,
+.bioa-chat__channel--zalo .bioa-zalo-icon{
+  width:34px!important;
+  height:34px!important;
+  max-width:34px!important;
+  max-height:34px!important;
+  flex-basis:34px!important;
+}
 .whatsapp__btn .bioa-zalo-icon{
-  width:25px!important;
-  height:25px!important;
-  max-width:25px!important;
-  max-height:25px!important;
-  flex-basis:25px!important;
+  width:30px!important;
+  height:30px!important;
+  max-width:30px!important;
+  max-height:30px!important;
+  flex-basis:30px!important;
+}
+@media(max-width:1200px) and (min-width:769px){
+  .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
+    width:39px!important;
+    height:39px!important;
+    max-width:39px!important;
+    max-height:39px!important;
+    flex-basis:39px!important;
+  }
 }
 /* Zalo keeps the same green/translucent social treatment on hover.
    Do not apply the generic cream-background inversion used by SVG icons. */
@@ -3303,6 +3337,15 @@ const patchZaloIconCss = `
     linear-gradient(rgba(253,254,245,.18),rgba(253,254,245,.18)),
     var(--bioa-brand-logo-green)!important;
   color:var(--bioa-footer-cream)!important;
+}
+/* Telegram source path is optically right-heavy inside its 24x24 viewBox.
+   Re-center only the glyph, never the social control. */
+.footer-top__socials a[aria-label="Telegram"] svg,
+.bioa-footer-mobile-v2__socials a[aria-label="Telegram"] svg,
+.bioa-footer-mobile-socials a[aria-label="Telegram"] svg,
+.bioa-chat__channel[aria-label="Telegram"] svg{
+  transform:translateX(-1px)!important;
+  transform-origin:center center!important;
 }
 `;
 

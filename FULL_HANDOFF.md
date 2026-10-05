@@ -347,7 +347,8 @@ Newly reopened visual only:
 - Previous recolored SVG candidate at f7e59c8a0cc425b95ec5ede0c50edd1c52aad011 was rejected visually.
 - First framed-cream PNG candidate at b8b94be153b611ffb9443be8bb0d0b9cf7a37284 was also rejected: icon appeared too small inside the social container.
 - Candidate 06a9dddff06ec6ec047b43456afcd6b010eb8db2 still failed visually: icon remained undersized and generic hover inverted the Zalo control to full cream.
-- Current candidate keeps the same container geometry, enlarges the framed artwork to 37px (25px in CTA), and disables cream-background inversion for Zalo hover only.
+- Candidate 34b81b12d4bfed6e54243c56915740f7befe7776 still needed visual balancing: Zalo remained undersized in social/CTA contexts and Telegram was optically off-center.
+- Current candidate uses context-specific Zalo fitting (Footer 42px, Tablet 39px, Mobile 32px, Chat 34px, CTA 30px) and shifts Telegram glyph left 1px without changing any container.
 - Keep all H1–H4 layout/content/link behavior protected.
 
 ## 11. VERIFICATION / PASS AUTHORITY
