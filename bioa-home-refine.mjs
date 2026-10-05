@@ -2191,14 +2191,14 @@ const patchHeroStatsSourceCss = `
     min-width:0!important;
     max-width:none!important;
     font-size:40px!important;
-    font-weight:300!important;
-    font-variation-settings:"wght" 300!important;
+    font-weight:200!important;
+    font-variation-settings:"wght" 200!important;
     line-height:1!important;
     letter-spacing:-.03em!important;
     white-space:nowrap!important;
     overflow:visible!important;
     color:#565656!important;
-    -webkit-font-smoothing:antialiased!important;
+    font-synthesis:none!important;\n    text-shadow:none!important;\n    -webkit-text-stroke:0!important;\n    -webkit-font-smoothing:antialiased!important;
   }
   .block-title .info .item__text,
   .block-title .info .item__text *{
@@ -2211,7 +2211,7 @@ const patchHeroStatsSourceCss = `
     white-space:normal!important;
     overflow:visible!important;
     color:#4f4f4f!important;
-    -webkit-font-smoothing:antialiased!important;
+    font-synthesis:none!important;\n    text-shadow:none!important;\n    -webkit-text-stroke:0!important;\n    -webkit-font-smoothing:antialiased!important;
   }
 }
 @media(max-width:1200px) and (min-width:769px){
@@ -2252,13 +2252,13 @@ const patchHeroStatsSourceCss = `
   .block-title-mobile .info .item__number,
   .block-title-mobile .info .item__number *{
     font-size:27px!important;
-    font-weight:300!important;
-    font-variation-settings:"wght" 300!important;
+    font-weight:200!important;
+    font-variation-settings:"wght" 200!important;
     line-height:1!important;
     letter-spacing:-.025em!important;
     white-space:nowrap!important;
     overflow:visible!important;
-    -webkit-font-smoothing:antialiased!important;
+    font-synthesis:none!important;\n    text-shadow:none!important;\n    -webkit-text-stroke:0!important;\n    -webkit-font-smoothing:antialiased!important;
   }
   .block-title-continue .info .item__text,
   .block-title-continue .info .item__text *,
@@ -2268,7 +2268,7 @@ const patchHeroStatsSourceCss = `
     font-weight:400!important;
     font-variation-settings:"wght" 400!important;
     line-height:1.16!important;
-    -webkit-font-smoothing:antialiased!important;
+    font-synthesis:none!important;\n    text-shadow:none!important;\n    -webkit-text-stroke:0!important;\n    -webkit-font-smoothing:antialiased!important;
   }
 }
 `;
