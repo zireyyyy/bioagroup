@@ -689,3 +689,38 @@ Status:
 - CHAT-C6B: PENDING Desktop / Tablet / Mobile
 - HOME-VI1: PASS / LOCKED
 - COOKIE-B1: PASS / LOCKED
+
+
+## OWNER FEEDBACK — CHAT-C7 / MOTION-M4 / ROADMAP-R2
+
+Owner feedback after e5af1990efaf85769a4ed817f5efa574d7a3581e:
+- CHAT avatar: PASS; keep current full-artwork asset, frame size and contain fitting.
+- Chat agent name should be Khánh Như Bio-A.
+- MOTION-M3 is still too subtle; owner wants a visible opening/reveal effect across all Home sections.
+- Owner explicitly approves applying the Home reveal to We Produce for visual consistency.
+- Roadmap layout is PASS again, but the sample text is too sparse versus the agreed content-density rule.
+
+CHAT-C7:
+- display name "Khánh Như Bio-A" in teaser, panel title, intro author and generated reply author;
+- avatar/frame/behavior unchanged.
+
+MOTION-M4:
+- whole-section reveal combines opacity + translateY + subtle scale + clip-path opening + saturation recovery;
+- We Produce is included by owner request via .block-we-produce > .container only;
+- internal cards, images, text and source slider mechanics are untouched;
+- same section-level reveal pattern is used across the major Home sections;
+- reduced-motion fallback remains.
+
+ROADMAP-R2:
+- keep PASS Roadmap DOM/CSS/layout;
+- roadmapSteps remains separate from How It Works steps;
+- expand only the Roadmap text to a guarded medium density rather than immediately returning to the prior near-source-length payload that caused a regression;
+- no layout/CSS compensation is allowed for longer copy.
+
+Responsive status:
+- CHAT-C7: Desktop PENDING / Tablet PENDING / Mobile PENDING
+- MOTION-M4: Desktop PENDING / Tablet PENDING / Mobile PENDING
+- ROADMAP-R2: Desktop PENDING / Tablet DEFERRED / Mobile PENDING
+- HOME-VI1: PASS / LOCKED
+- COOKIE-B1: PASS / LOCKED
+- Header/Footer: PASS / LOCKED

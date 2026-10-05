@@ -70,3 +70,15 @@ Only the text payload may change when the owner requests copy refinement.
 The Roadmap copy is intentionally restored to the shorter PASS-era payload from commit `1ce91e97e479fda03e116e637e4b1ddb449a26ce`.
 
 Do not expand Roadmap copy to its full Merywood character budget until the owner explicitly reopens that component and Desktop + Tablet + Mobile are runtime-tested. The source-length budget remains useful for future writing, but current Roadmap layout safety has priority.
+
+
+## Roadmap R2 practical density
+
+After Roadmap layout was restored and confirmed visually stable, the owner reopened only the sample text density.
+
+R2 rules:
+- keep `roadmapSteps` independent from the longer How It Works copy;
+- expand text only;
+- preserve the current PASS Roadmap DOM/CSS/layout;
+- use a guarded medium-length payload rather than immediately returning to the first near-source-length attempt that caused a regression;
+- if R2 passes Desktop + Mobile runtime, use its actual text lengths as the practical Roadmap writing budget until Tablet is completed.

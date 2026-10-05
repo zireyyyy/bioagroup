@@ -647,3 +647,57 @@ Asset authority:
 Frame authority:
 - keep existing chat/launcher/avatar dimensions.
 - fit image with object-fit:contain.
+
+
+## CHAT-C7
+
+Display authority:
+- Khánh Như Bio-A
+
+Locations:
+- proactive teaser heading;
+- chat panel title;
+- intro message author;
+- generated reply author.
+
+Protected:
+- accepted full employee artwork;
+- avatar frame geometry;
+- chat panel geometry;
+- channel links and interactions.
+
+## MOTION-M4
+
+Home-wide whole-section reveal targets:
+- .block-we-produce > .container
+- #why-choose-us > .container
+- .block-how-works > .container
+- .block-products-desctop > .container
+- .block-products-mobile > .container
+- .block-product-formats > .container
+- .block-reviews > .container
+- .block-right-choice > .container
+- .block-roadmap > .container
+- final contact CTA content
+
+Effect:
+- fade in;
+- 38px lift;
+- scale(.985) to 1;
+- clip-path inset opening to full frame;
+- slight saturation recovery.
+
+Important:
+- We Produce inclusion is explicitly owner-approved.
+- Only its outer container animates; internal cards/images/text mechanics remain source-owned.
+
+## ROADMAP-R2
+
+Ownership:
+- bioa-transform.mjs / resetHomeVI + resetHomeEN / roadmapSteps only.
+
+Rules:
+- Roadmap copy is independent from How It Works.
+- Keep the PASS Roadmap DOM/CSS/layout.
+- Use a guarded medium-length copy payload after the previous near-source-length attempt caused a runtime regression.
+- Do not add CSS, font changes or height overrides to accommodate Roadmap copy.
