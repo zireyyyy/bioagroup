@@ -3161,28 +3161,35 @@ const patchC5ChannelPaletteCss = `
 
 
 const patchD5FooterTabletCss = `
-/* FOOTER-D5 — Tablet-only content-safe adaptation.
-   Merywood's primary responsive split is 768px; preserve Desktop/Mobile,
-   and use the project's existing 769–1200 intermediate band for BIO-A's longer labels. */
+/* FOOTER-D5B — Tablet balance polish only.
+   Keep Desktop/Mobile source layout protected; refine the existing 769–1200 band
+   for BIO-A's longer labels without introducing a new breakpoint. */
 @media(max-width:1200px) and (min-width:769px){
   .footer-top__wrapper{
     display:grid!important;
-    grid-template-columns:100px minmax(0,1fr) 208px!important;
+    grid-template-columns:88px minmax(0,1fr) 196px!important;
     align-items:start!important;
     column-gap:24px!important;
-    row-gap:22px!important;
+    row-gap:0!important;
   }
   .footer-top__left{
     grid-column:1!important;
     min-width:0!important;
   }
+  .footer-top__logo img,
+  .footer__logo img{
+    width:88px!important;
+    max-width:88px!important;
+  }
   .footer-top__menu{
     grid-column:2!important;
     display:grid!important;
     grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    gap:24px 30px!important;
+    column-gap:36px!important;
+    row-gap:28px!important;
     width:100%!important;
     min-width:0!important;
+    align-content:start!important;
   }
   .footer-top__nav{
     width:auto!important;
@@ -3193,15 +3200,30 @@ const patchD5FooterTabletCss = `
     line-height:1.22!important;
   }
   .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:13px!important;
-    line-height:1.45!important;
+    font-size:13.5px!important;
+    line-height:1.38!important;
     white-space:normal!important;
   }
   .footer-top__right{
     grid-column:3!important;
-    min-width:208px!important;
-    width:208px!important;
+    min-width:196px!important;
+    width:196px!important;
     justify-self:end!important;
+  }
+  .footer-top__email a{
+    width:196px!important;
+    min-width:196px!important;
+  }
+  .footer-top__socials{
+    width:196px!important;
+    min-width:196px!important;
+    gap:8px!important;
+  }
+  .footer-top__socials a,
+  .footer-top__socials a[aria-label="Zalo"]{
+    width:43px!important;
+    min-width:43px!important;
+    height:43px!important;
   }
 }
 `;
