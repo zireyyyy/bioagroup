@@ -287,3 +287,26 @@ The following are intentionally not expanded here until a future patch actually 
 - any remaining Merywood animations not tied to an active patch.
 
 Do not pre-scan these areas solely to fill this file.
+
+## Zalo Icon Artwork
+
+Owner source:
+- framed cream Zalo icon supplied in chat on 2026-10-05.
+
+BIO-A:
+- asset: /assets/zalo-bioa-framed-cream.png
+- rendered by Home/Footer/Chat/mobile CTA and subpage footer Zalo links.
+
+Responsive status:
+- Desktop: ACTIVE — visual-only candidate.
+- Tablet: ACTIVE — visual-only candidate.
+- Mobile: ACTIVE — visual-only candidate.
+- FULL RESPONSIVE PASS: NO for this artwork patch.
+
+Protected:
+- Zalo hrefs;
+- social/contact container sizes;
+- spacing;
+- hover behavior;
+- chat geometry/motion;
+- Footer/Home layouts.
