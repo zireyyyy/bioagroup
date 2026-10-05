@@ -2311,6 +2311,157 @@ const patchHeroStatsOriginalTypeCss = `
 `;
 
 
+const patchHeroStatsFinalSourceCss = `
+/* HERO STATS FINAL SOURCE FIX
+   Desktop follows the original Merywood stat-card rule:
+   max-width 27.625rem, gap 1.125rem, card gap 1.5625rem,
+   padding 1.5625rem 2rem, number 2.5rem/300, label 1rem/1.4.
+   BIO-A adaptation: only widen the number column so longer values never clip. */
+@media(min-width:769px){
+  .block-title .info.desctop{
+    width:27.625rem!important;
+    min-width:27.625rem!important;
+    max-width:27.625rem!important;
+    gap:1.125rem!important;
+  }
+  .block-title .info.desctop .list{
+    gap:1.125rem!important;
+  }
+  .block-title .info.desctop .list > .item{
+    width:100%!important;
+    min-height:0!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:1.5625rem!important;
+    padding:1.5625rem 2rem!important;
+    box-sizing:border-box!important;
+    border-radius:.9375rem!important;
+  }
+
+  /* Explicit nth-child specificity neutralizes the older BIO-A experiments. */
+  body .block-title .info.desctop .list > .item:nth-child(1) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(2) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(3) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(4) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(5) .item__number{
+    flex:0 0 13.125rem!important;
+    width:13.125rem!important;
+    min-width:13.125rem!important;
+    max-width:13.125rem!important;
+    margin:0!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:2.5rem!important;
+    font-weight:300!important;
+    font-style:normal!important;
+    line-height:1!important;
+    letter-spacing:-.02em!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    color:#505050!important;
+    -webkit-text-fill-color:#505050!important;
+    background:none!important;
+    text-shadow:none!important;
+    -webkit-text-stroke:0!important;
+  }
+  body .block-title .info.desctop .list > .item:nth-child(1) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(2) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(3) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(4) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(5) .item__text{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    margin:0!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:1rem!important;
+    font-weight:400!important;
+    font-style:normal!important;
+    line-height:1.4!important;
+    letter-spacing:0!important;
+    color:#4f4f4f!important;
+    white-space:normal!important;
+    overflow:visible!important;
+  }
+  body .block-title .info.desctop .list > .item .item__text p{
+    margin:0!important;
+    font:inherit!important;
+    color:inherit!important;
+  }
+}
+
+@media(max-width:1200px) and (min-width:769px){
+  .block-title .info.desctop{
+    width:26.25rem!important;
+    min-width:26.25rem!important;
+    max-width:26.25rem!important;
+  }
+  .block-title .info.desctop .list > .item{
+    gap:1.25rem!important;
+    padding:1.35rem 1.5rem!important;
+  }
+  body .block-title .info.desctop .list > .item:nth-child(1) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(2) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(3) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(4) .item__number,
+  body .block-title .info.desctop .list > .item:nth-child(5) .item__number{
+    flex-basis:12rem!important;
+    width:12rem!important;
+    min-width:12rem!important;
+    max-width:12rem!important;
+    font-size:2.25rem!important;
+  }
+  body .block-title .info.desctop .list > .item:nth-child(1) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(2) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(3) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(4) .item__text,
+  body .block-title .info.desctop .list > .item:nth-child(5) .item__text{
+    font-size:.9375rem!important;
+  }
+}
+
+/* Mobile: keep the already-approved card geometry; correct only type weight/size.
+   Explicit nth-child selectors prevent old experimental rules from winning. */
+@media(max-width:768px){
+  body .block-title-continue .info .list > .item:nth-child(1) .item__number,
+  body .block-title-continue .info .list > .item:nth-child(2) .item__number,
+  body .block-title-continue .info .list > .item:nth-child(3) .item__number,
+  body .block-title-continue .info .list > .item:nth-child(4) .item__number,
+  body .block-title-continue .info .list > .item:nth-child(5) .item__number,
+  body .block-title-mobile .info .list > .item:nth-child(1) .item__number,
+  body .block-title-mobile .info .list > .item:nth-child(2) .item__number,
+  body .block-title-mobile .info .list > .item:nth-child(3) .item__number,
+  body .block-title-mobile .info .list > .item:nth-child(4) .item__number,
+  body .block-title-mobile .info .list > .item:nth-child(5) .item__number{
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:1.75rem!important;
+    font-weight:300!important;
+    font-style:normal!important;
+    line-height:1!important;
+    letter-spacing:-.02em!important;
+    text-shadow:none!important;
+    -webkit-text-stroke:0!important;
+  }
+  body .block-title-continue .info .list > .item:nth-child(1) .item__text,
+  body .block-title-continue .info .list > .item:nth-child(2) .item__text,
+  body .block-title-continue .info .list > .item:nth-child(3) .item__text,
+  body .block-title-continue .info .list > .item:nth-child(4) .item__text,
+  body .block-title-continue .info .list > .item:nth-child(5) .item__text,
+  body .block-title-mobile .info .list > .item:nth-child(1) .item__text,
+  body .block-title-mobile .info .list > .item:nth-child(2) .item__text,
+  body .block-title-mobile .info .list > .item:nth-child(3) .item__text,
+  body .block-title-mobile .info .list > .item:nth-child(4) .item__text,
+  body .block-title-mobile .info .list > .item:nth-child(5) .item__text{
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:.8125rem!important;
+    font-weight:400!important;
+    font-style:normal!important;
+    line-height:1.25!important;
+    letter-spacing:0!important;
+  }
+}
+`;
+
+
 const patchC2Css = `
 /* PATCH C2 — source-first Merywood chat parity.
    Preserve the Merywood information hierarchy: compact agent header, 2 primary actions,
@@ -3182,7 +3333,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
