@@ -345,7 +345,8 @@ Owner runtime result:
 Newly reopened visual only:
 - Zalo icon artwork across Home/Footer/Chat/subpage footer.
 - Previous recolored SVG candidate at f7e59c8a0cc425b95ec5ede0c50edd1c52aad011 was rejected visually.
-- Current candidate uses the owner-supplied framed cream Zalo artwork as a transparent PNG asset.
+- First framed-cream PNG candidate at b8b94be153b611ffb9443be8bb0d0b9cf7a37284 was also rejected: icon appeared too small inside the social container.
+- Current candidate crops the owner-supplied framed cream artwork tightly and renders it larger inside the existing container; container geometry remains unchanged.
 - Keep all H1–H4 layout/content/link behavior protected.
 
 ## 11. VERIFICATION / PASS AUTHORITY

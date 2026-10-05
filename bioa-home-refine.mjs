@@ -3272,19 +3272,19 @@ const patchZaloIconCss = `
    Visual-only: keep every social/contact container's geometry and behavior unchanged. */
 .bioa-zalo-icon{
   display:block!important;
-  width:23px!important;
-  height:23px!important;
-  max-width:23px!important;
-  max-height:23px!important;
+  width:31px!important;
+  height:31px!important;
+  max-width:31px!important;
+  max-height:31px!important;
   object-fit:contain!important;
-  flex:0 0 23px!important;
+  flex:0 0 31px!important;
 }
 .whatsapp__btn .bioa-zalo-icon{
-  width:18px!important;
-  height:18px!important;
-  max-width:18px!important;
-  max-height:18px!important;
-  flex-basis:18px!important;
+  width:22px!important;
+  height:22px!important;
+  max-width:22px!important;
+  max-height:22px!important;
+  flex-basis:22px!important;
 }
 `;
 

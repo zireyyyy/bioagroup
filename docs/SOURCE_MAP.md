@@ -298,10 +298,16 @@ BIO-A:
 - rendered by Home/Footer/Chat/mobile CTA and subpage footer Zalo links.
 
 Responsive status:
-- Desktop: ACTIVE — visual-only candidate.
-- Tablet: ACTIVE — visual-only candidate.
-- Mobile: ACTIVE — visual-only candidate.
+- Desktop: ACTIVE — visual-only candidate after b8b94be visual FAIL.
+- Tablet: ACTIVE — visual-only candidate after b8b94be visual FAIL.
+- Mobile: ACTIVE — visual-only candidate after b8b94be visual FAIL.
 - FULL RESPONSIVE PASS: NO for this artwork patch.
+
+Current visual rule:
+- keep existing button/container dimensions;
+- use tightly cropped framed-cream artwork;
+- social/footer/chat icon render size: 31px;
+- CTA icon render size: 22px.
 
 Protected:
 - Zalo hrefs;
