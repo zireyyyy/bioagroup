@@ -140,9 +140,9 @@ function setRightChoiceCopy($,lang){
   const vi=lang==='vi';
   const names=vi?['Thương hiệu mới','Doanh nghiệp mỹ phẩm','Đơn vị phân phối']:['New brands','Cosmetic businesses','Distributors'];
   const copy=vi?[
-    ['Bắt đầu với lộ trình phát triển sản phẩm rõ ràng.','Tối ưu ngân sách theo từng giai đoạn.','Đồng hành từ mẫu thử đến sản xuất.'],
-    ['Mở rộng danh mục bằng công thức và bao bì mới.','Linh hoạt phát triển OEM/ODM theo định vị.','Đồng bộ R&D, hồ sơ và kế hoạch sản xuất.'],
-    ['Phát triển sản phẩm mang thương hiệu riêng.','Chủ động lựa chọn quy cách và phân khúc.','Dễ mở rộng thêm SKU khi thị trường phù hợp.']
+    ['Mở rộng danh mục sản phẩm theo từng phân khúc và nhu cầu của nhóm khách hàng mục tiêu','Bổ sung sản phẩm thương hiệu riêng với mức giá và quy cách phù hợp chiến lược phân phối','Duy trì trải nghiệm đồng nhất để tăng mức độ tin cậy và khả năng mua lại của khách hàng'],
+    ['Tạo khác biệt bằng công thức, kết cấu và quy cách sản phẩm phù hợp với thị trường mục tiêu','Giảm phụ thuộc vào danh mục phổ biến bằng cách phát triển thêm dòng sản phẩm và phân khúc mới','Phối hợp R&D, bao bì và sản xuất theo một lộ trình rõ để tối ưu thời gian triển khai dự án'],
+    ['Bắt đầu thương hiệu với lộ trình sản phẩm rõ ràng và ngân sách được phân bổ theo từng giai đoạn','Tiếp cận quy trình R&D, bao bì và sản xuất mà không cần tự xây dựng toàn bộ hệ thống vận hành','Giảm tải công việc triển khai bằng cách phối hợp các hạng mục phát triển sản phẩm với Bio-A Group']
   ]:[
     ['Start with a clear product-development roadmap.','Optimize budget by development stage.','Get support from sampling through production.'],
     ['Expand your range with new formulas and packaging.','Flexible OEM/ODM development for your positioning.','Align R&D, documentation and production planning.'],
@@ -160,8 +160,8 @@ function setRightChoiceCopy($,lang){
 function localizeWeProduceSourceText($,lang){
   const vi=lang==='vi';
   const data=vi?[
-    ['Dược mỹ phẩm','R&D công thức, mẫu thử và sản xuất OEM/ODM theo định hướng thương hiệu.'],
-    ['Mỹ phẩm','Phát triển từ công thức, nguyên liệu đến bao bì và hoàn thiện sản phẩm.']
+    ['Dược mỹ phẩm','Bio-A Group nhận R&D và sản xuất OEM/ODM các dòng dược mỹ phẩm theo định hướng thương hiệu. Dự án có thể bắt đầu từ công thức nền hoặc phát triển công thức riêng, đồng thời phối hợp nguyên liệu, mẫu thử, bao bì và kế hoạch sản xuất để tạo thành phẩm đồng bộ.'],
+    ['Mỹ phẩm','Các dòng mỹ phẩm được phát triển theo nhu cầu sử dụng, phân khúc khách hàng và định vị thương hiệu. Bio-A Group hỗ trợ từ công thức, kết cấu, mùi hương, lựa chọn chai lọ đến sang chiết, đóng gói và hoàn thiện sản phẩm trước khi bàn giao.']
   ]:[
     ['Cosmeceuticals','Formula R&D, sampling and OEM/ODM manufacturing for your brand.'],
     ['Cosmetics','From formula and ingredients to packaging and finished products.']
@@ -189,13 +189,13 @@ function setFormatsCopy($,lang){
     ['Lip products','Foundation','Powder','Mascara','Eyeliner','Blush']
   ];
   $('.block-product-formats .title').text(vi?'Các dòng sản phẩm Bio-A Group có thể gia công':'Product lines Bio-A Group can manufacture');
-  $('.block-product-formats .formats__lede').text(vi?'Có thể phát triển theo công thức có sẵn hoặc công thức riêng; số lượng tối thiểu tùy từng sản phẩm.':'Available as ready-formula or custom-formula projects; minimum quantities vary by product.');
+  $('.block-product-formats .formats__lede').text(vi?'Các dòng dưới đây có thể phát triển theo công thức có sẵn hoặc công thức riêng; số lượng tối thiểu được tư vấn theo từng sản phẩm.':'Available as ready-formula or custom-formula projects; minimum quantities vary by product.');
   $('.block-product-formats .formats__tab').each((i,e)=>$(e).text(tabs[i]||$(e).text()));
   $('.block-product-formats .formats__panel').each((i,p)=>$(p).find('.formats__item-title').each((j,e)=>$(e).text(formats[i%4][j%formats[i%4].length])));
   $('.block-product-formats .formats__cta-title').text(vi?'Chưa thấy sản phẩm bạn cần?':'Do not see your product?');
-  $('.block-product-formats .formats__cta-description').text(vi?'Gửi ý tưởng, đội ngũ Bio-A Group sẽ tư vấn phương án phù hợp.':'Share your idea and Bio-A Group will recommend a suitable approach.');
+  $('.block-product-formats .formats__cta-description').text(vi?'Gửi ý tưởng sản phẩm, Bio-A Group sẽ kiểm tra khả năng phát triển và đề xuất phương án phù hợp.':'Share your idea and Bio-A Group will recommend a suitable approach.');
   $('.block-product-formats .formats__cta-btn .btn__text').text(vi?'Chia sẻ ý tưởng':'Tell us your idea');
-  $('.block-product-formats .formats__note').text(vi?'Có thể tùy chỉnh kết cấu, nguyên liệu, màu sắc, mùi hương và quy cách theo định hướng thương hiệu.':'Texture, ingredients, color, fragrance and format can be customized for your brand.');
+  $('.block-product-formats .formats__note').text(vi?'Kết cấu, nguyên liệu, màu sắc, mùi hương, hoạt chất và quy cách bao bì có thể được điều chỉnh theo định hướng thương hiệu. Một số dòng có thể phát triển nhiều phiên bản công thức hoặc dung tích để phù hợp từng kênh bán.':'Texture, ingredients, color, fragrance and format can be customized for your brand.');
 }
 
 function finalizeHomeCopy($,lang){
@@ -226,9 +226,9 @@ function finalizeHomeCopy($,lang){
     });
   });
   $('.block-title h1').first().text(vi?'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group':'Bio-A Group Cosmetic & Cosmeceutical Manufacturing Factory');
-  $('.block-title .text-large').first().text(vi?'Đồng hành từ R&D công thức, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm.':'From formula R&D and OEM/ODM manufacturing to packaging and finished products.');
+  $('.block-title .text-large').first().text(vi?'Bio-A Group đồng hành cùng thương hiệu từ R&D công thức, lựa chọn nguyên liệu, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm theo định hướng riêng.':'From formula R&D and OEM/ODM manufacturing to packaging and finished products.');
   $('.whatsapp__title').text(vi?'Trao đổi ý tưởng cùng Bio-A Group':'Discuss your idea with Bio-A Group');
-  $('.whatsapp__description').text(vi?'Liên hệ Zalo 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ.':'Contact Bio-A Group on Zalo for formula, quantity and production-timeline advice.');
+  $('.whatsapp__description').text(vi?'Liên hệ Bio-A Group để trao đổi về công thức, MOQ, bao bì và tiến độ dự kiến cho dự án.':'Contact Bio-A Group on Zalo for formula, quantity and production-timeline advice.');
   $('.page-main *').contents().each((_,n)=>{
     if(n.type!=='text')return;
     const p=$(n).parent();if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
@@ -240,7 +240,12 @@ function finalizeHomeCopy($,lang){
 function resetHomeVI($){
   const stats=[['2.000+','Mẫu R&D'],['5+','Năm kinh nghiệm'],['10.000.000','Sản phẩm / năm'],['1.000 m²','Quy mô nhà máy'],['OEM/ODM','Gia công trọn gói']];setHomeStats($,stats);
   $('#why-choose-us .title').first().text('Vì sao chọn Bio-A Group');
-  const why=[['Giải pháp theo yêu cầu','Tư vấn theo mục tiêu sản phẩm, khách hàng và định vị thương hiệu.'],['R&D & công thức','Phát triển công thức, mẫu thử và điều chỉnh theo nhu cầu dự án.'],['Hỗ trợ hồ sơ','Đồng hành hồ sơ, công bố và thông tin nhãn trước khi ra thị trường.'],['Kiểm soát chất lượng','Theo dõi chất lượng ở từng giai đoạn để ổn định thành phẩm.']];
+  const why=[
+    ['Giải pháp theo yêu cầu','Bio-A Group phát triển giải pháp theo mục tiêu sản phẩm, nhóm khách hàng và định vị thương hiệu. Từ ý tưởng ban đầu, lựa chọn công thức, nguyên liệu, bao bì đến kế hoạch sản xuất, đội ngũ phối hợp theo từng giai đoạn để dự án có lộ trình rõ ràng, linh hoạt điều chỉnh và thuận tiện mở rộng thêm sản phẩm khi cần.'],
+    ['R&D & công thức','Đội ngũ R&D hỗ trợ phát triển công thức, lựa chọn nguyên liệu, làm mẫu thử và điều chỉnh cảm quan theo yêu cầu dự án. Khách hàng có thể lựa chọn nền công thức phù hợp, tinh chỉnh thành phần, kết cấu, mùi hương, màu sắc và định hướng công dụng trước khi chốt mẫu để chuyển sang các bước bao bì và sản xuất.'],
+    ['Hỗ trợ hồ sơ','Bio-A Group đồng hành chuẩn bị thông tin sản phẩm, nội dung nhãn và các hạng mục hồ sơ cần thiết theo từng nhóm hàng. Quy trình được phối hợp song song với R&D và bao bì để giảm thời gian chờ giữa các bước, hạn chế phải sửa lại nhiều vòng và giúp dự án sẵn sàng hơn trước khi đưa vào kế hoạch sản xuất.'],
+    ['Kiểm soát chất lượng','Từ mẫu thử đến thành phẩm, các tiêu chí về nguyên liệu, cảm quan, kết cấu, mùi hương, quy cách đóng gói và độ ổn định được theo dõi theo từng giai đoạn. Mục tiêu là duy trì chất lượng nhất quán, hạn chế sai lệch giữa mẫu đã duyệt và lô sản xuất thực tế, đồng thời bảo đảm sản phẩm phù hợp định hướng thương hiệu.']
+  ];
   $('#why-choose-us .grid .item,#why-choose-us .mobile .item').each((i,e)=>{
     const d=why[i%why.length],root=$(e);
     const title=root.find('.item__title').first(),titleP=title.find('p').first();
@@ -248,10 +253,21 @@ function resetHomeVI($){
     const body=root.find('.item__body').first(),bodyP=body.find('p').first();
     (bodyP.length?bodyP:body).text(d[1]);
   });
-  const steps=[['Tư vấn & lập kế hoạch','Thống nhất mục tiêu, sản phẩm, ngân sách và tiến độ triển khai.'],['Nghiên cứu & phát triển','R&D công thức, nguyên liệu và mẫu thử theo định hướng thương hiệu.'],['Bao bì & nhận diện','Lựa chọn bao bì, nhãn và hạng mục nhận diện trước sản xuất.'],['Hồ sơ sản phẩm','Tư vấn hồ sơ và thông tin cần chuẩn bị theo từng nhóm sản phẩm.'],['Sản xuất & bàn giao','Sản xuất, đóng gói và bàn giao theo kế hoạch đã thống nhất.']];
+  const steps=[
+    ['Tư vấn & lập kế hoạch','Bắt đầu bằng việc làm rõ ý tưởng, nhóm sản phẩm, khách hàng mục tiêu, ngân sách và tiến độ mong muốn. Từ đó Bio-A Group cùng khách hàng xây dựng lộ trình phù hợp cho công thức có sẵn, công thức riêng hoặc kế hoạch mở rộng danh mục, với các mốc R&D, bao bì và sản xuất được xác định ngay từ đầu.'],
+    ['Nghiên cứu & phát triển','Đội ngũ R&D triển khai công thức, lựa chọn nguyên liệu, làm mẫu và tinh chỉnh theo phản hồi. Mỗi vòng thử nghiệm tập trung vào cảm quan, kết cấu, mùi hương, màu sắc, định hướng công dụng và khả năng sản xuất ổn định khi chuyển từ mẫu thử sang quy mô thực tế của nhà máy.'],
+    ['Bao bì & nhận diện','Sau khi công thức ổn định, dự án tiếp tục với lựa chọn chai lọ, quy cách đóng gói, nhãn và các yếu tố nhận diện thương hiệu. Bio-A Group phối hợp để bao bì phù hợp với đặc tính sản phẩm, thuận tiện sang chiết và sản xuất, đồng thời giữ hình ảnh nhất quán khi đưa sản phẩm ra thị trường.'],
+    ['Hồ sơ sản phẩm','Bio-A Group phối hợp rà soát thông tin sản phẩm, nội dung nhãn và các tài liệu cần chuẩn bị theo từng nhóm hàng. Công việc được triển khai song song với các bước cuối của R&D và bao bì, giúp hạn chế phát sinh phải chỉnh sửa nhiều vòng và giảm nguy cơ ảnh hưởng đến tiến độ sản xuất dự kiến.'],
+    ['Sản xuất & bàn giao','Khi các hạng mục đã được xác nhận, nhà máy triển khai sản xuất, sang chiết, đóng gói và kiểm soát thành phẩm theo kế hoạch. Tiến độ bàn giao được theo dõi rõ ràng để khách hàng chủ động kế hoạch ra mắt, phân phối, bổ sung hàng và tiếp tục phát triển các SKU tiếp theo.']
+  ];
   $('.block-how-works .title').text('Quy trình hợp tác');$('.block-how-works .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
   $('.block-reviews .title').html('Khách hàng nhận được gì<br>khi đồng hành cùng Bio-A Group');
-  const rev=['Quy trình rõ ràng, đội ngũ hỗ trợ nhanh và bám sát yêu cầu sản phẩm.','Mẫu thử được điều chỉnh linh hoạt, giúp rút ngắn thời gian hoàn thiện.','Bio-A Group hỗ trợ đồng bộ từ công thức, bao bì đến kế hoạch sản xuất.','Tiến độ ổn định, trao đổi minh bạch khi cần phát triển thêm SKU.'];
+  const rev=[
+    'Chúng tôi bắt đầu với một dòng sản phẩm nhỏ và cần đội ngũ có thể hỗ trợ từ công thức đến bao bì. Bio-A Group phối hợp khá sát ở từng giai đoạn, đặc biệt trong quá trình chỉnh mẫu và lựa chọn quy cách phù hợp ngân sách. Khi dự án chuyển sang sản xuất, các mốc công việc được trao đổi rõ nên đội ngũ của chúng tôi dễ chủ động kế hoạch ra mắt và chuẩn bị kênh bán.',
+    'Điểm chúng tôi đánh giá cao là khả năng trao đổi nhanh giữa R&D, sản xuất và bộ phận phụ trách dự án. Những thay đổi ở mẫu thử được ghi nhận rõ ràng, giúp quá trình chốt công thức thuận lợi hơn. Khi cần mở rộng thêm SKU, đội ngũ vẫn giữ được cách làm việc nhất quán nên tiết kiệm khá nhiều thời gian.',
+    'Bio-A Group hỗ trợ chúng tôi từ việc xác định hướng sản phẩm, thử mẫu đến lựa chọn bao bì và chuẩn bị sản xuất. Dù yêu cầu thay đổi vài lần trong quá trình phát triển, các bước vẫn được theo dõi rõ và phản hồi tương đối nhanh. Thành phẩm cuối phù hợp với định hướng thương hiệu mà chúng tôi đặt ra ban đầu.',
+    'Trong quá trình hoàn thiện sản phẩm, chúng tôi cần điều chỉnh một số chi tiết về kết cấu, mùi hương và quy cách đóng gói. Bio-A Group phản hồi khá nhanh, giúp từng thay đổi được xử lý theo thứ tự rõ ràng thay vì phải làm lại toàn bộ. Cách phối hợp này giúp dự án giữ được tiến độ và dễ kiểm soát hơn.'
+  ];
   $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Khách hàng Bio-A Group');$(e).find('.review__author-info').text('Nội dung đánh giá mẫu – sẽ cập nhật')});
   $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
   finalizeHomeCopy($,'vi');

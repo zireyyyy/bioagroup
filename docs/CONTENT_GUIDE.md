@@ -1,0 +1,67 @@
+# BIO-A GROUP — HOME CONTENT LENGTH GUIDE
+
+Purpose: keep future VI/EN content changes close to the text load that the original Merywood Home layout was designed to hold.
+
+Source authority:
+- owner-supplied Merywood export
+- path: `merywood/pages/index/index.html`
+- character counts below use visible text after whitespace normalization
+- spaces and punctuation are included
+
+## Rule
+
+Character count is a **layout guardrail**, not a guarantee. Font metrics, word length, breakpoints and manual line breaks still affect wrapping.
+
+For Vietnamese copy:
+- normal paragraph/card copy: aim for **80–100% of the original Merywood character count**;
+- fixed/compact labels: prefer **70–100%**;
+- do not exceed the source count by more than ~10% without Desktop + Tablet + Mobile runtime verification;
+- never add wrappers, `<br>`, font-size overrides or height fixes just to force longer copy into a component;
+- if real content is materially longer, split the content into an approved new component instead of overloading the source block.
+
+## Home source budgets
+
+| Block | Merywood original | Recommended VI target | Current BIO-A sample |
+|---|---:|---:|---:|
+| Hero H1 | 70 chars | Brand authority overrides count | 41 |
+| Hero supporting text | 134 | 110–150 | 152 |
+| Why Choose 01 body | 381 | 300–380 | 312 |
+| Why Choose 02 body | 312 | 250–315 | 305 |
+| Why Choose 03 body | 307 | 245–310 | 302 |
+| Why Choose 04 body | 364 | 290–365 | 312 |
+| We Produce 01 body | 259 | 210–260 | 258 |
+| We Produce 02 body | 235 | 190–240 | 237 |
+| Right Choice bullets — Retailers | 85 / 88 / 84 | ~70–90 each | 85 / 87 / 87 |
+| Right Choice bullets — Manufacturers | 89 / 72 / 79 | ~70–90 each | 90 / 93 / 90 |
+| Right Choice bullets — Entrepreneurs | 88 / 85 / 89 | ~70–95 each | 95 / 93 / 97 |
+| Roadmap 01 body | 312 | 250–315 | 294 |
+| Roadmap 02 body | 287 | 230–290 | 270 |
+| Roadmap 03 body | 298 | 240–300 | 286 |
+| Roadmap 04 body | 267 | 215–270 | 290* |
+| Roadmap 05 body | 301 | 240–305 | 268 |
+| Review 01 | 478 | 330–460 | 362 |
+| Review 02 | 285 | 230–300 | 300 |
+| Review 03 | 298 | 240–310 | 306 |
+| Product Formats lede | 122 | 100–130 | 130 |
+| Product Formats note | 206 | 165–210 | 219* |
+| Product Formats CTA description | 69 | 55–85 | 95* |
+| Contact CTA description | 91 | 70–100 | 87 |
+
+`*` Slightly above the English source count. These remain acceptable only if runtime wrapping stays source-safe; otherwise shorten the copy rather than changing layout.
+
+## Future AI writing contract
+
+Use this instruction when rewriting BIO-A content:
+
+> Rewrite only the requested text. Preserve the existing DOM and component structure. Keep the Vietnamese copy inside the character budget recorded in docs/CONTENT_GUIDE.md. Prefer natural Vietnamese over exact character equality, but do not exceed the recorded Merywood source length by more than 10% unless explicitly approved. Return VI and EN as a paired mapping. Do not add HTML wrappers, manual line breaks, CSS, font changes or layout changes.
+
+## Locked components
+
+Content work must not reopen:
+- Header
+- Footer
+- source-owned responsive mechanics
+- slider/carousel transforms
+- accepted We Produce DOM/layout mechanics
+
+Only the text payload may change when the owner requests copy refinement.
