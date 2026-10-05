@@ -3308,6 +3308,58 @@ const patchH2HomeControlPaletteCss = `
 }
 `;
 
+
+const patchH3MobileContactCss = `
+/* HOME-H3 — mobile contact CTA: reveal BIO-A watermark without changing source box geometry. */
+@media(max-width:768px){
+  .whatsapp{
+    position:relative!important;
+    overflow:hidden!important;
+    isolation:isolate!important;
+  }
+  .whatsapp__logo{
+    display:block!important;
+    position:absolute!important;
+    top:50%!important;
+    left:50%!important;
+    right:auto!important;
+    bottom:auto!important;
+    width:62%!important;
+    height:68%!important;
+    background:var(--bioa-brand-logo-green)!important;
+    opacity:.060!important;
+    transform:translate(-50%,-50%)!important;
+    pointer-events:none!important;
+    z-index:0!important;
+    -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+    mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  }
+  .whatsapp__content{
+    position:relative!important;
+    z-index:1!important;
+  }
+}
+`;
+
+function refineMobileContactCta($,lang){
+  const cta=$('.whatsapp__btn');
+  if(!cta.length)return;
+  cta.attr('href',company.zalo)
+    .attr('target','_blank')
+    .attr('rel','noopener noreferrer')
+    .attr('aria-label',lang==='vi'?'Liên hệ BIO-A Group qua Zalo':'Contact BIO-A Group via Zalo');
+  cta.each((_,el)=>{
+    const a=$(el);
+    a.find('.btn__icon').html(icons.zalo);
+    a.find('.btn__text').text(lang==='vi'?'Liên hệ với chúng tôi':'Contact us');
+  });
+  if(lang==='vi'){
+    $('.whatsapp__description').text('Liên hệ Zalo 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ sản xuất.');
+  }else{
+    $('.whatsapp__description').text('Contact BIO-A Group on Zalo for formula, MOQ and production timeline consultation.');
+  }
+}
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3873,7 +3925,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -3881,6 +3933,7 @@ export function applyHomeRefinement($,route,lang){
   normalizeHeaderActions($);
   syncMobileHeader($,route,lang);
   replaceMobileProduceSection($,lang);
+  refineMobileContactCta($,lang);
   refineFooterNavigation($,lang);
   refineFooterMeta($);
   footerSocials($);
