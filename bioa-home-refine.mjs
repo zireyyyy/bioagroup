@@ -285,7 +285,7 @@ const patchA7Css = `
   padding-right:20px!important;
 }
 
-/* We Produce: small, complete, translucent BIO-A watermark.
+/* We Produce: small, complete, translucent Bio-A watermark.
    Product photos/icons stay untouched. */
 .block-we-produce .item__bg{
   position:relative!important;
@@ -351,7 +351,7 @@ const patchA8Css = `
   line-height:1!important;
 }
 
-/* Keep the full BIO-A monogram visible while making it fill the card more naturally */
+/* Keep the full Bio-A monogram visible while making it fill the card more naturally */
 .block-we-produce .bg__decoration{
   width:62%!important;
   height:72%!important;
@@ -791,7 +791,7 @@ const patchMobileMenuCss = `
     color:#fff!important;
   }
 
-  /* Mobile We Produce — same BIO-A watermark treatment as desktop, scaled to card */
+  /* Mobile We Produce — same Bio-A watermark treatment as desktop, scaled to card */
   .block-we-produce .bg__decoration{
     width:68%!important;
     height:68%!important;
@@ -807,7 +807,7 @@ const patchMobileMenuCss = `
     opacity:.085!important;
   }
 
-  /* keep the full light BIO-A logo proportional in the mobile footer */
+  /* keep the full light Bio-A logo proportional in the mobile footer */
   .footer-top__logo img,.footer__logo img{
     width:82px!important;
     max-width:82px!important;
@@ -908,7 +908,7 @@ const patchB4Css = `
     border-radius:12px!important;
   }
 
-  /* 3) Mobile menu: ArtistLookup-style inline collapse, but compact BIO-A contact layout */
+  /* 3) Mobile menu: ArtistLookup-style inline collapse, but compact Bio-A contact layout */
   .bioa-mobile-nav-drop{
     padding:8px 14px 14px!important;
   }
@@ -1938,7 +1938,7 @@ const patchB8Css = `
 
 
 const patchB9Css = `
-/* HOME Patch B9 — final polish: footer email color, compact mobile menu, visible BIO-A mobile watermark */
+/* HOME Patch B9 — final polish: footer email color, compact mobile menu, visible Bio-A mobile watermark */
 
 /* Match the footer email's visible fill to the header email on a light surface. */
 .footer-top__email a{
@@ -1963,7 +1963,7 @@ const patchB9Css = `
     overflow-x:hidden!important;
   }
 
-  /* Put the BIO-A monogram above each mobile Produce image, like the desktop cards. */
+  /* Put the Bio-A monogram above each mobile Produce image, like the desktop cards. */
   .bioa-produce-mobile-direct__media{
     position:relative!important;
     isolation:isolate!important;
@@ -1997,7 +1997,7 @@ const patchB9Css = `
 
 
 const patchB11Css = `
-/* HOME Patch B11 — restore pre-B10 We Produce and keep BIO-A watermark beneath product artwork */
+/* HOME Patch B11 — restore pre-B10 We Produce and keep Bio-A watermark beneath product artwork */
 @media(max-width:768px){
   .bioa-produce-mobile-direct__media{
     position:relative!important;
@@ -2063,7 +2063,7 @@ const patchB12Css = `
     overflow:hidden!important;
     background:#eef0eb!important;
   }
-  /* BIO-A watermark sits under the product photo, never over it. */
+  /* Bio-A watermark sits under the product photo, never over it. */
   .bioa-produce-mobile-clean__media:before{
     content:""!important;
     position:absolute!important;
@@ -2164,7 +2164,7 @@ const patchB14Css = `
 const patchHeroStatsSourceCss = `
 /* HERO STATS SOURCE-AUTHORITY HOTFIX
    Typography intentionally comes 100% from the original Merywood stylesheet.
-   Only geometry is widened enough for BIO-A's longer values so no number is clipped. */
+   Only geometry is widened enough for Bio-A's longer values so no number is clipped. */
 @media(min-width:769px){
   .block-title .info.desctop{
     width:clamp(430px,24vw,470px)!important;
@@ -2316,7 +2316,7 @@ const patchHeroStatsFinalSourceCss = `
    Desktop follows the original Merywood stat-card rule:
    max-width 27.625rem, gap 1.125rem, card gap 1.5625rem,
    padding 1.5625rem 2rem, number 2.5rem/300, label 1rem/1.4.
-   BIO-A adaptation: only widen the number column so longer values never clip. */
+   Bio-A adaptation: only widen the number column so longer values never clip. */
 @media(min-width:769px){
   .block-title .info.desctop{
     width:27.625rem!important;
@@ -2338,7 +2338,7 @@ const patchHeroStatsFinalSourceCss = `
     border-radius:.9375rem!important;
   }
 
-  /* Explicit nth-child specificity neutralizes the older BIO-A experiments. */
+  /* Explicit nth-child specificity neutralizes the older Bio-A experiments. */
   body .block-title .info.desctop .list > .item:nth-child(1) .item__number,
   body .block-title .info.desctop .list > .item:nth-child(2) .item__number,
   body .block-title .info.desctop .list > .item:nth-child(3) .item__number,
@@ -2839,9 +2839,9 @@ const patchC2Css = `
 
 const patchC3Css = `
 /* PATCH C3 — compact Merywood-style chat cleanup.
-   Scope is intentionally limited to the custom BIO-A chat widget. */
+   Scope is intentionally limited to the custom Bio-A chat widget. */
 
-/* Single BIO-A avatar + source-like compact title treatment */
+/* Single Bio-A avatar + source-like compact title treatment */
 .bioa-chat__head{
   padding:18px 54px 15px!important;
 }
@@ -3074,8 +3074,8 @@ const patchDFooterTypeCss = `
 `;
 
 const patchD3FooterBrandCss = `
-/* PATCH D3-REV — owner-approved inverse BIO-A footer treatment.
-   Background = exact BIO-A logo green. Foreground = email-surface cream. */
+/* PATCH D3-REV — owner-approved inverse Bio-A footer treatment.
+   Background = exact Bio-A logo green. Foreground = email-surface cream. */
 :root{
   --bioa-brand-main:#093D26;
   --bioa-brand-sub:#136E47;
@@ -3163,7 +3163,7 @@ const patchC5ChannelPaletteCss = `
 const patchD5FooterTabletCss = `
 /* FOOTER-D5B — Tablet balance polish only.
    Keep Desktop/Mobile source layout protected; refine the existing 769–1200 band
-   for BIO-A's longer labels without introducing a new breakpoint. */
+   for Bio-A's longer labels without introducing a new breakpoint. */
 @media(max-width:1200px) and (min-width:769px){
   .footer-top__wrapper{
     display:grid!important;
@@ -3268,7 +3268,7 @@ const patchD6FooterMetaCss = `
 
 
 const patchZaloIconCss = `
-/* ZALO-ICON — owner-supplied mark recolored to BIO-A cream + logo green.
+/* ZALO-ICON — owner-supplied mark recolored to Bio-A cream + logo green.
    Visual-only: keep every social/contact container's geometry and behavior unchanged. */
 .bioa-zalo-icon{
   display:block!important;
@@ -3390,7 +3390,7 @@ const patchH2HomeControlPaletteCss = `
 
 
 const patchH3MobileContactCss = `
-/* HOME-H3 — mobile contact CTA: reveal BIO-A watermark without changing source box geometry. */
+/* HOME-H3 — mobile contact CTA: reveal Bio-A watermark without changing source box geometry. */
 @media(max-width:768px){
   .whatsapp{
     position:relative!important;
@@ -3418,7 +3418,7 @@ const patchH3MobileContactCss = `
     position:relative!important;
     z-index:1!important;
   }
-  /* Source Merywood mobile slot is 18x18, but BIO-A Zalo badge is 24x24.
+  /* Source Merywood mobile slot is 18x18, but Bio-A Zalo badge is 24x24.
      Keep source button geometry and only synchronize the icon slot to the artwork. */
   .whatsapp__btn{
     display:flex!important;
@@ -3460,7 +3460,7 @@ function refineMobileContactCta($,lang){
   cta.attr('href',company.zalo)
     .attr('target','_blank')
     .attr('rel','noopener noreferrer')
-    .attr('aria-label',lang==='vi'?'Liên hệ BIO-A Group qua Zalo':'Contact BIO-A Group via Zalo');
+    .attr('aria-label',lang==='vi'?'Liên hệ Bio-A Group qua Zalo':'Contact Bio-A Group via Zalo');
   cta.each((_,el)=>{
     const a=$(el);
     a.find('.btn__icon').html(icons.zalo);
@@ -3469,14 +3469,14 @@ function refineMobileContactCta($,lang){
   if(lang==='vi'){
     $('.whatsapp__description').text('Liên hệ Zalo 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ sản xuất.');
   }else{
-    $('.whatsapp__description').text('Contact BIO-A Group on Zalo for formula, MOQ and production timeline consultation.');
+    $('.whatsapp__description').text('Contact Bio-A Group on Zalo for formula, MOQ and production timeline consultation.');
   }
 }
 
 
 const patchH4PackagingWatermarkCss = `
 /* HOME-H4 — packaging-airless watermark layer only.
-   Reuse We Produce's BIO-A monogram treatment; preserve the source layer's geometry,
+   Reuse We Produce's Bio-A monogram treatment; preserve the source layer's geometry,
    product image, content, arrows, indicators and spacing. */
 .block-products-desctop .product__composition-bg-logo,
 .block-products-mobile .product__composition-bg-logo{
@@ -3493,13 +3493,13 @@ function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
     .attr('src','/assets/bioa-full.svg')
-    .attr('alt','BIO-A Group')
+    .attr('alt','Bio-A Group')
     .removeAttr('srcset')
     .removeAttr('sizes');
 
   $('.footer-top__logo img,.footer__logo img')
     .attr('src','/assets/bioa-full-light.svg')
-    .attr('alt','BIO-A Group')
+    .attr('alt','Bio-A Group')
     .removeAttr('srcset')
     .removeAttr('sizes');
 }
@@ -3684,7 +3684,7 @@ function buildMobileFooterContact($){
       : footer;
 
   const head=$('<div class="bioa-footer-mobile-head"></div>');
-  const logo=$('<div class="bioa-footer-mobile-logo"><img src="/assets/bioa-full-light.svg" alt="BIO-A Group"></div>');
+  const logo=$('<div class="bioa-footer-mobile-logo"><img src="/assets/bioa-full-light.svg" alt="Bio-A Group"></div>');
   const contact=$('<div class="bioa-footer-mobile-contact"></div>');
   const email=$('<a class="bioa-footer-mobile-email"></a>').attr('href','mailto:'+company.email).text(company.email);
   const social=$('<div class="bioa-footer-mobile-socials"></div>');
@@ -3788,7 +3788,7 @@ function buildMobileFooterV2($){
       : footer;
 
   const row=$('<div class="bioa-footer-mobile-v2"></div>');
-  const logo=$('<div class="bioa-footer-mobile-v2__logo"><img src="/assets/bioa-full-light.svg" alt="BIO-A Group"></div>');
+  const logo=$('<div class="bioa-footer-mobile-v2__logo"><img src="/assets/bioa-full-light.svg" alt="Bio-A Group"></div>');
   const contact=$('<div class="bioa-footer-mobile-v2__contact"></div>');
   const email=$('<a class="bioa-footer-mobile-v2__email"></a>').attr('href','mailto:'+company.email).text(company.email);
   const social=$('<div class="bioa-footer-mobile-v2__socials"></div>');
@@ -3812,7 +3812,7 @@ function buildMobileFooterV2($){
 
 function refineFooterNavigation($,lang){
   const vi=lang==='vi';
-  /* FOOTER-D1-REV: labels/slugs are sourced from the owner-supplied legacy BIO-A site/database.
+  /* FOOTER-D1-REV: labels/slugs are sourced from the owner-supplied legacy Bio-A site/database.
      EN labels are direct translations of the same VI source categories. */
   const cols=vi ? [
     {title:'Gia Công Mỹ Phẩm',items:[
@@ -3830,7 +3830,7 @@ function refineFooterNavigation($,lang){
       ['Chai Lọ Mỹ Phẩm','/chai-lo-my-pham/'],
       ['Thiết Kế Bao Bì Mỹ Phẩm','/thiet-ke-bao-bi-my-pham/']
     ]},
-    {title:'BIO-A Group',items:[
+    {title:'Bio-A Group',items:[
       ['Năng Lực Sản Xuất','/nang-luc/'],
       ['Tuyển Dụng R&D','/tuyen-dung-rd/'],
       ['Tuyển Dụng NV Sales','/tuyen-dung-nv-sales/'],
@@ -3857,7 +3857,7 @@ function refineFooterNavigation($,lang){
       ['Cosmetic Bottles & Packaging','/en/chai-lo-my-pham/'],
       ['Cosmetic Packaging Design','/en/thiet-ke-bao-bi-my-pham/']
     ]},
-    {title:'BIO-A Group',items:[
+    {title:'Bio-A Group',items:[
       ['Manufacturing Capabilities','/en/nang-luc/'],
       ['R&D Recruitment','/en/tuyen-dung-rd/'],
       ['Sales Recruitment','/en/tuyen-dung-nv-sales/'],
@@ -3872,7 +3872,7 @@ function refineFooterNavigation($,lang){
 
   const navs=$('.footer-top__menu .footer-top__nav');
   // Keep Merywood's own responsive layout mechanics. Only reduce the source DOM
-  // from five nav groups to the four owner-requested BIO-A groups.
+  // from five nav groups to the four owner-requested Bio-A groups.
   navs.slice(cols.length).remove();
   navs.slice(0,cols.length).each((i,navEl)=>{
     const col=cols[i];
@@ -3939,14 +3939,14 @@ function addContactLauncher($,lang){
   $('#bioa-contact-fab-js').remove();
   const vi=lang==='vi';
   const intro=vi
-    ?'Xin chào! Tôi là trợ lý BIO-A. Bạn đang quan tâm gia công sản phẩm nào?'
-    :'Hi! I’m the BIO-A assistant. Which product are you interested in manufacturing?';
+    ?'Xin chào! Tôi là trợ lý Bio-A. Bạn đang quan tâm gia công sản phẩm nào?'
+    :'Hi! I’m the Bio-A assistant. Which product are you interested in manufacturing?';
   const previewReply=vi
-    ?'BIO-A đã nhận nội dung. Chatbot sẽ được kết nối ở bước sau; hiện bạn có thể tiếp tục qua Zalo hoặc Email.'
-    :'BIO-A received your message. The chatbot will be connected in a later step; for now you can continue via Zalo or Email.';
+    ?'Bio-A đã nhận nội dung. Chatbot sẽ được kết nối ở bước sau; hiện bạn có thể tiếp tục qua Zalo hoặc Email.'
+    :'Bio-A received your message. The chatbot will be connected in a later step; for now you can continue via Zalo or Email.';
 
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
-    <div class="bioa-contact-fab__panel" role="dialog" aria-modal="false" aria-label="BIO-A Group">
+    <div class="bioa-contact-fab__panel" role="dialog" aria-modal="false" aria-label="Bio-A Group">
       <div class="bioa-chat__head">
         <button class="bioa-chat__collapse" type="button" aria-label="${vi?'Thu gọn':'Collapse'}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 5 5-5"/></svg>
@@ -3954,12 +3954,12 @@ function addContactLauncher($,lang){
         <div class="bioa-chat__avatars" aria-hidden="true">
           <div class="bioa-chat__avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
         </div>
-        <div class="bioa-chat__title">BIO-A Group</div>
+        <div class="bioa-chat__title">Bio-A Group</div>
         <div class="bioa-chat__sub">${vi?'Chúng tôi sẵn sàng hỗ trợ bạn':'We are here and ready to help'}</div>
       </div>
 
       <div class="bioa-chat__channels-wrap">
-        <div class="bioa-chat__channels" aria-label="${vi?'Kênh liên hệ BIO-A':'BIO-A contact channels'}">
+        <div class="bioa-chat__channels" aria-label="${vi?'Kênh liên hệ Bio-A':'Bio-A contact channels'}">
           <a class="bioa-chat__channel" href="${company.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">${icons.whatsapp}</a>
           <a class="bioa-chat__channel" href="${company.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">${icons.facebook}</a>
           <a class="bioa-chat__channel" href="${company.telegram}" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">${icons.telegram}</a>
@@ -3970,7 +3970,7 @@ function addContactLauncher($,lang){
       <div class="bioa-chat__history">
         <div class="bioa-chat__msg bioa-chat__msg--intro">
           <div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
-          <div class="bioa-chat__bubble"><strong>BIO-A Group</strong>${intro}</div>
+          <div class="bioa-chat__bubble"><strong>Bio-A Group</strong>${intro}</div>
         </div>
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
@@ -4028,7 +4028,7 @@ function addContactLauncher($,lang){
       setTimeout(function(){
         var reply=document.createElement('div');
         reply.className='bioa-chat__msg';
-        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div><div class="bioa-chat__bubble"><strong>BIO-A Group</strong></div>';
+        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div><div class="bioa-chat__bubble"><strong>Bio-A Group</strong></div>';
         reply.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(previewReply));
         messages.appendChild(reply);
         history.scrollTop=history.scrollHeight;
