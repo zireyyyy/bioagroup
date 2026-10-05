@@ -427,3 +427,55 @@ Status:
 - Tablet: DEFERRED / PENDING
 - Mobile: ACTIVE FIX CANDIDATE
 - Header/Footer: PASS / LOCKED
+
+
+## Shared Header/Footer/Chat Authority
+
+BIO-A:
+- bioa-home-refine.mjs
+- composePassCss(includeHome)
+- injectPassCss($, id, content)
+- applySharedShellCore($, route, lang)
+- applySharedShell($, route, lang)
+- applyHomeRefinement($, route, lang)
+
+Ownership:
+- Shared shell CSS is composed once in a fixed order.
+- Home reuses the same shared authority and appends Home-only patches.
+- Header/Footer/menu/mobile shell/social/contact launcher must not be duplicated in page-specific transforms.
+
+Protected:
+- Header accepted geometry/visuals.
+- Footer accepted geometry/visuals.
+- No subpage-specific header/footer forks.
+- No duplicate Bio-A style tag: #bioa-shared-shell / #bioa-home-refine are mutually replaced.
+
+Status:
+- Header: PASS / LOCKED authority
+- Footer: PASS / LOCKED authority
+- Subpage rollout: ACTIVE CANDIDATE
+- Tablet page-body layout: DEFERRED where already declared
+
+## We Produce Desktop Layering
+
+Merywood DOM:
+- .block-we-produce .item
+  - .item__bg
+    - .bg__decoration
+    - picture > .bg__media
+  - .item__title > p
+  - .item__text > p
+
+BIO-A fix:
+- preserve all source geometry;
+- .bg__decoration z-index 0;
+- .bg__media z-index 1;
+- source .item__title/.item__text positioned relative at z-index 5.
+
+Reason:
+- prior z-index applied to unpositioned copy nodes was ineffective.
+
+Status:
+- Desktop: ACTIVE CANDIDATE
+- Mobile: protected / previously passed
+- Tablet: DEFERRED

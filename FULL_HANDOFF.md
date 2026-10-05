@@ -521,3 +521,44 @@ Acceptance target:
 - Desktop: We Produce source layout/overlay restored; no content pushed outside the source card.
 - Mobile: Why Choose fully VI/EN paired; Produce matches Desktop content; 2500/5000 + localized unit stays on one line.
 - Tablet: NO CHANGE EXPECTED / deferred.
+
+
+## SHARED PASS SHELL — SINGLE AUTHORITY CANDIDATE
+
+Owner runtime feedback:
+- Header/Footer had been PASS on Home, but the first subpage rollout was not equivalent and produced regressions.
+- Requirement: all BIO-A pages must use the exact accepted shell code by default, without duplicated forks that can drift or add runtime overhead.
+
+Architecture correction:
+- commit ebcf25fbee272f4236e512e00881a080b933ec3d
+- composePassCss(includeHome) is now the single ordered CSS composer.
+- composePassCss(false) = accepted shared shell only.
+- composePassCss(true) = the same shared shell + Home-only refinements.
+- applySharedShellCore() is the single DOM/runtime owner for:
+  - logo
+  - language switch
+  - header action normalization
+  - mobile header/menu
+  - footer navigation/meta/socials
+  - mobile footer
+  - contact/chat launcher
+- applySharedShell() and applyHomeRefinement() both call applySharedShellCore(); no second copy of Header/Footer logic remains.
+
+Rules:
+- Header/Footer fixes must be made in the shared authority, not separately per page.
+- Home-only section CSS must never be added to shared shell.
+- Subpage body/content work must not fork Header/Footer.
+- Avoid duplicate style blocks: injectPassCss removes prior Bio-A shell/home style ids before adding the authoritative one.
+
+Responsive state:
+- Header: PASS / LOCKED authority, rollout candidate on all BIO-A routes.
+- Footer: PASS / LOCKED authority, rollout candidate on all BIO-A routes.
+- Home Desktop: ACTIVE — We Produce layering fix pending owner test.
+- Home Mobile: PASS for last tested regression set.
+- Home Tablet: DEFERRED / PENDING.
+
+Desktop We Produce root cause/fix:
+- Merywood title/body are flow siblings after .item__bg.
+- Product image had an explicit Bio-A z-index while source title/body had no positioned stacking context.
+- z-index alone on unpositioned title/body was ineffective, allowing the product artwork to cover copy.
+- Current fix adds position:relative + z-index:5 only to source copy nodes; dimensions/positions are unchanged.
