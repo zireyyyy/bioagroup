@@ -618,3 +618,41 @@ Responsive status:
 - Chat C6: PENDING OWNER TEST
 
 Do not record runtime PASS for these four patches until owner confirmation.
+
+
+## OWNER RUNTIME FEEDBACK — HOME-VI1 / COOKIE-B1 / MOTION / CHAT
+
+Owner confirmation:
+- HOME-VI1: PASS / LOCKED.
+- COOKIE-B1: PASS / LOCKED.
+- MOTION-M1: FAIL — reveal was too subtle to be clearly perceived.
+- CHAT-C6: PARTIAL FAIL — behavior/panel accepted direction, but employee avatar was visually zoomed/cropped too aggressively.
+
+Content-length rule added:
+- docs/CONTENT_GUIDE.md is now the Home copy budget authority.
+- Sample VI copy is written close to the original Merywood text load, generally 80–100% of source character count.
+- Character count is a guardrail, not a substitute for Desktop + Tablet + Mobile runtime checks.
+- Do not shrink font/change layout merely to fit future long copy.
+
+MOTION-M2 candidate:
+- use the same reveal targets as M1;
+- increase movement to 36px;
+- duration to .9s;
+- stagger delays .10/.22/.34s;
+- threshold .12 and bottom rootMargin -72px so reveal happens later and is easier to see;
+- mobile uses 24px / .78s;
+- We Produce, Header, Footer, Cookie, Chat and swiper transforms remain excluded.
+
+CHAT-C6A candidate:
+- keep all existing chat/avatar frame dimensions unchanged;
+- replace the avatar asset with a natural-composition version derived from the owner-supplied sales image;
+- do not face-crop/zoom;
+- use object-fit: contain and centered positioning inside launcher/header/message/teaser frames.
+
+Responsive status:
+- HOME-VI1 Desktop: PASS / LOCKED
+- HOME-VI1 Mobile: PASS / LOCKED per owner feedback
+- HOME-VI1 Tablet: still PENDING / DEFERRED with page-body Tablet work
+- COOKIE-B1: PASS / LOCKED
+- MOTION-M2: Desktop PENDING / Tablet PENDING / Mobile PENDING
+- CHAT-C6A: Desktop PENDING / Tablet PENDING / Mobile PENDING

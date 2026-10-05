@@ -551,3 +551,53 @@ Status:
 - Desktop: PENDING
 - Tablet: PENDING
 - Mobile: PENDING
+
+
+## CONTENT BUDGET AUTHORITY
+
+File:
+- docs/CONTENT_GUIDE.md
+
+Rule:
+- Home text samples must be sized against the original Merywood visible-character load.
+- Normal paragraph/card copy target: ~80–100% of source character count.
+- Do not exceed source by >10% without three-surface runtime verification.
+- Do not change component geometry to force longer copy into a source-owned layout.
+
+## MOTION-M2
+
+Reference:
+- supplied SKL reveal system.
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMotionM2Css
+- addHomeReveal($)
+
+Change from M1:
+- 36px / .9s source-like reveal strength;
+- later observer trigger for clearer visibility;
+- target list unchanged;
+- We Produce / Header / Footer / Cookie / Chat / swiper transforms protected.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING
+
+## CHAT-C6A Avatar Fit
+
+BIO-A:
+- assets/bioa-sales-avatar.webp
+- patchC6ProactiveCss
+
+Rule:
+- preserve pre-existing avatar/launcher frame sizes;
+- employee image must be fit into the frame without face zoom/crop;
+- object-fit: contain;
+- centered image positioning.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING

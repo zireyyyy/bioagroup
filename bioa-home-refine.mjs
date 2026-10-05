@@ -3076,8 +3076,8 @@ const patchC6ProactiveCss = `
 .bioa-chat__msg-avatar img{
   width:100%!important;
   height:100%!important;
-  object-fit:cover!important;
-  object-position:center 22%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
 }
 .bioa-contact-fab__toggle{
   padding:0!important;
@@ -3089,8 +3089,8 @@ const patchC6ProactiveCss = `
   width:100%!important;
   height:100%!important;
   border-radius:50%!important;
-  object-fit:cover!important;
-  object-position:center 22%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
 }
 .bioa-chat__teaser{
   position:absolute!important;
@@ -3136,8 +3136,8 @@ const patchC6ProactiveCss = `
 .bioa-chat__teaser-avatar img{
   width:100%!important;
   height:100%!important;
-  object-fit:cover!important;
-  object-position:center 22%!important;
+  object-fit:contain!important;
+  object-position:center center!important;
 }
 .bioa-chat__teaser-avatar:after{
   content:""!important;
@@ -3531,28 +3531,28 @@ const patchH5CMobileMoqCss = `
 }
 `;
 
-const patchMotionM1Css = `
-/* MOTION-M1 — SKL-inspired reveal, intentionally milder for BIO-A.
-   Never target We Produce, sliders, Header/Footer, Cookie or Chat. */
+const patchMotionM2Css = `
+/* MOTION-M2 — closer to the supplied SKL reveal strength.
+   Same protected targets as M1; only visibility/timing is increased. */
 html.bioa-reveal-ready .bioa-reveal{
   opacity:0;
-  transform:translateY(24px);
+  transform:translateY(36px);
   transition:
-    opacity .72s cubic-bezier(.16,1,.3,1),
-    transform .72s cubic-bezier(.16,1,.3,1);
+    opacity .9s cubic-bezier(.16,1,.3,1),
+    transform .9s cubic-bezier(.16,1,.3,1);
   will-change:opacity,transform;
 }
 html.bioa-reveal-ready .bioa-reveal.is-in{
   opacity:1;
   transform:translateY(0);
 }
-html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d1{transition-delay:.06s}
-html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d2{transition-delay:.13s}
-html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d3{transition-delay:.20s}
+html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d1{transition-delay:.10s}
+html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d2{transition-delay:.22s}
+html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d3{transition-delay:.34s}
 @media(max-width:768px){
   html.bioa-reveal-ready .bioa-reveal{
-    transform:translateY(16px);
-    transition-duration:.62s;
+    transform:translateY(24px);
+    transition-duration:.78s;
   }
 }
 @media(prefers-reduced-motion:reduce){
@@ -4185,7 +4185,7 @@ function addHomeReveal($){
           obs.unobserve(entry.target);
         }
       });
-    },{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+    },{threshold:.12,rootMargin:'0px 0px -72px 0px'});
     els.forEach(function(el){
       var r=el.getBoundingClientRect();
       if(r.top<window.innerHeight*.92)el.classList.add('is-in');
@@ -4386,7 +4386,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM2Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);

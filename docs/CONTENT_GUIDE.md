@@ -37,17 +37,15 @@ For Vietnamese copy:
 | Roadmap 01 body | 312 | 250–315 | 294 |
 | Roadmap 02 body | 287 | 230–290 | 270 |
 | Roadmap 03 body | 298 | 240–300 | 286 |
-| Roadmap 04 body | 267 | 215–270 | 290* |
+| Roadmap 04 body | 267 | 215–270 | 245 |
 | Roadmap 05 body | 301 | 240–305 | 268 |
 | Review 01 | 478 | 330–460 | 362 |
 | Review 02 | 285 | 230–300 | 300 |
 | Review 03 | 298 | 240–310 | 306 |
 | Product Formats lede | 122 | 100–130 | 130 |
-| Product Formats note | 206 | 165–210 | 219* |
-| Product Formats CTA description | 69 | 55–85 | 95* |
+| Product Formats note | 206 | 165–210 | 207 |
+| Product Formats CTA description | 69 | 55–85 | 74 |
 | Contact CTA description | 91 | 70–100 | 87 |
-
-`*` Slightly above the English source count. These remain acceptable only if runtime wrapping stays source-safe; otherwise shorten the copy rather than changing layout.
 
 ## Future AI writing contract
 
