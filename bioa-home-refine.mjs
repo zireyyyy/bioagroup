@@ -2940,6 +2940,76 @@ const patchC4AShellCss = `
 }
 `;
 
+
+const patchC4BComposerCss = `
+/* CHAT-C4B — one-piece composer matching the supplied input reference.
+   Keep existing form markup; integrate the send control inside the same shell. */
+.bioa-chat__composer{
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:0!important;
+  height:44px!important;
+  min-height:44px!important;
+  margin:8px 10px 10px!important;
+  padding:0!important;
+  border:1px solid #dedede!important;
+  border-radius:22px!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+.bioa-chat__input{
+  flex:1 1 auto!important;
+  width:100%!important;
+  min-width:0!important;
+  height:42px!important;
+  min-height:42px!important;
+  padding:0 50px 0 14px!important;
+  border:0!important;
+  border-radius:0!important;
+  outline:none!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.bioa-chat__input:focus{
+  outline:none!important;
+  box-shadow:none!important;
+}
+.bioa-chat__send{
+  position:absolute!important;
+  right:4px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:34px!important;
+  height:34px!important;
+  min-width:34px!important;
+  flex:0 0 34px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:var(--bioa-primary)!important;
+  color:#fff!important;
+  box-shadow:none!important;
+}
+.bioa-chat__send:hover{
+  background:var(--bioa-dark)!important;
+}
+.bioa-chat__send svg{
+  width:15px!important;
+  height:15px!important;
+  stroke-width:2.15!important;
+}
+@media(max-width:768px){
+  .bioa-chat__composer{
+    height:44px!important;
+    min-height:44px!important;
+    margin:8px 9px 9px!important;
+    border-radius:22px!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3402,7 +3472,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
