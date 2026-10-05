@@ -446,3 +446,108 @@ Current authority:
 - Desktop We Produce: Merywood source DOM/content/layout is untouched by finalizeHomeCopy().
 - Mobile Produce: existing custom BIO-A replacement remains.
 - Header/Footer: protected current PASS authority.
+
+
+## HOME-VI1 — We Produce text-only localization
+
+Merywood DOM authority:
+- .block-we-produce > .container > .grid > .item
+- .item__title > p
+- .item__text > p
+
+BIO-A:
+- bioa-transform.mjs
+- localizeWeProduceSourceText($, lang)
+
+Rule:
+- Only text nodes inside the source <p> elements may be changed.
+- Do not add layout/stacking/positioning CSS while localizing this locked component.
+
+Status:
+- Desktop: ACTIVE CANDIDATE
+- Mobile: existing custom BIO-A mobile Produce remains protected
+- Tablet: PENDING / DEFERRED
+
+## COOKIE-B1 — Cookie brand logo
+
+Merywood:
+- #mw-consent .mw-brand .mw-logo is the brand logo.
+- #mw-gear uses cookie.svg and is a neutral functional cookie icon.
+
+BIO-A:
+- bioa-transform.mjs
+- brandCookieBanner($)
+- .mw-logo -> /assets/bioa-monogram.svg
+
+Protected:
+- consent JS/state;
+- buttons;
+- cookie gear;
+- cookie modal geometry.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING
+
+## MOTION-M1 — Home scroll reveal
+
+Reference:
+- supplied skl-index.html reveal system.
+- Source behavior: opacity/translate transition + one-time IntersectionObserver activation.
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMotionM1Css
+- addHomeReveal($)
+
+Selected behavior:
+- fade-up only, milder than SKL;
+- optional short stagger delays;
+- threshold .08;
+- rootMargin bottom -36px;
+- one-time reveal;
+- reduced-motion safe.
+
+Explicitly excluded:
+- We Produce;
+- Header;
+- Footer;
+- Chat;
+- Cookie;
+- swiper-slide transform owners.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING / page layout still deferred
+- Mobile: PENDING
+
+## CHAT-C6 — Proactive BIO-A sales chat
+
+Merywood:
+- source pages load external Dashly for proactive chat behavior.
+- Dashly credential/provider is not reusable project authority.
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchC6ProactiveCss
+- addContactLauncher($, lang)
+- assets/bioa-sales-avatar.webp
+
+Behavior:
+- teaser appears after 4.2 seconds or meaningful scroll;
+- teaser/avatar opens BIO-A panel;
+- teaser can be dismissed;
+- employee avatar is used in launcher/header/messages;
+- desktop panel is slightly larger than prior BIO-A chat;
+- mobile panel/teaser are constrained to avoid excessive viewport coverage;
+- no external chat provider is connected.
+
+Shared ownership:
+- Chat CSS/runtime is included in the shared shell for current BIO-A routes.
+- Header/Footer logic remains protected and unchanged.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING

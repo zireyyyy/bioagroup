@@ -552,3 +552,69 @@ Current emergency fix:
 - Header/Footer remain on their current owner-confirmed PASS state and are NOT rolled back.
 
 Do not reintroduce Desktop We Produce content mutation until a source-safe text-only mapping is proven without changing layout/runtime behavior.
+
+
+## HOME VI / COOKIE / MOTION / CHAT — ACTIVE CANDIDATE CHAIN
+
+Owner direction after We Produce recovery:
+- Keep Header/Footer PASS / LOCKED.
+- Localize the recovered Desktop We Produce in the next version without reopening its layout.
+- Replace the Merywood brand logo in the cookie banner with Bio-A.
+- Reuse a suitable scroll reveal mechanism from the supplied SKL source.
+- Recreate Merywood's proactive chat behavior inside the BIO-A-owned widget.
+- Use the owner-supplied sales employee photo as the chat avatar.
+- Mobile chat popup must remain compact.
+
+Candidate chain:
+- 703d44e392b6ad38fb1acaaffe463a3877d1cc29 — HOME-VI1: text-only We Produce localization.
+- 3d93746a0b0ef1f126473caeab6ccc51277294f1 — COOKIE-B1: Bio-A cookie-brand logo.
+- 35bfe24451e61f8ae5eb5af99e90c91016e08be5 — MOTION-M1: restrained SKL-style reveal.
+- d601805687380ff02ea7605fe8a9c6cb39953397 — CHAT-C6: proactive BIO-A sales teaser + employee avatar.
+
+HOME-VI1:
+- Desktop We Produce layout remains source-owned and locked.
+- Localization targets only:
+  - .block-we-produce > .container > .title-wrapper > .title
+  - .item__title > p
+  - .item__text > p
+- No wrapper/class/position/style changes are introduced by localization.
+- VI labels: Danh mục sản xuất / Dược mỹ phẩm / Mỹ phẩm.
+- EN paired copy remains available.
+
+COOKIE-B1:
+- Only .mw-brand .mw-logo is changed to /assets/bioa-monogram.svg.
+- Cookie icon / gear remains the original neutral functional cookie icon.
+- Consent mechanics are untouched.
+
+MOTION-M1:
+- Inspired by the supplied SKL IntersectionObserver reveal pattern.
+- BIO-A uses only a restrained fade-up + stagger variant.
+- We Produce, Header, Footer, Cookie, Chat, and swiper slide transform owners are excluded.
+- One-time reveal; prefers-reduced-motion is respected.
+- Home only.
+
+CHAT-C6:
+- Merywood source uses an external Dashly widget. Its account/credentials are NOT reused.
+- BIO-A recreates only the proactive UX pattern in the existing owned chat component.
+- Adds a compact teaser after 4.2 seconds or after meaningful scroll.
+- Teaser opens the existing full BIO-A chat.
+- Sales avatar asset: /assets/bioa-sales-avatar.webp.
+- Desktop panel: 390x540 max viewport-safe.
+- Mobile panel: max 330px wide / max 470px high and viewport-safe.
+- Mobile teaser is smaller and line-clamped.
+- Copy is partnership-oriented: formula, MOQ, packaging and production timeline.
+- Existing WhatsApp/Facebook/Telegram/Zalo channels remain.
+- External Dashly/Carrot nodes continue to be purged.
+- Chat is available through the shared shell on BIO-A core subpages as well as Home.
+
+Responsive status:
+- Home Desktop: ACTIVE CANDIDATE
+- Home Tablet: PENDING / DEFERRED for page-body layout; chat/motion regression check still required
+- Home Mobile: ACTIVE CANDIDATE
+- Header: PASS / LOCKED
+- Footer: PASS / LOCKED
+- Cookie: PENDING OWNER TEST
+- Motion: PENDING OWNER TEST
+- Chat C6: PENDING OWNER TEST
+
+Do not record runtime PASS for these four patches until owner confirmation.
