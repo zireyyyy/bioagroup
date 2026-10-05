@@ -3057,6 +3057,21 @@ const patchC4CMotionCss = `
 }
 `;
 
+
+const patchDFooterTypeCss = `
+/* PATCH D2 — preserve Merywood footer layout while normalizing text weight.
+   Category headings remain subtly emphasized; child links return to regular weight. */
+.footer-top__nav > ul > li:first-child > a{
+  font-weight:500!important;
+}
+.footer-top__nav > ul > li:not(:first-child) > a{
+  font-weight:400!important;
+}
+.footer-top__nav > ul > li:not(:first-child) > a strong,
+.footer-top__nav > ul > li:not(:first-child) > a b{
+  font-weight:400!important;
+}
+`;
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3625,7 +3640,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
