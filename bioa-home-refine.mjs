@@ -3265,6 +3265,15 @@ const patchD6FooterMetaCss = `
 }
 `;
 
+
+function localizeHomeCtas($,lang){
+  if(lang!=='vi')return;
+  $('.btn__text').each((_,el)=>{
+    const node=$(el);
+    if(/^get started$/i.test(node.text().trim())) node.text('Nhận tư vấn');
+  });
+}
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3831,6 +3840,7 @@ function addContactLauncher($,lang){
 
 export function applyHomeRefinement($,route,lang){
   $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchHeroStatsFinalSourceCss+'</style>');
+  localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
