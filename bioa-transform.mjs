@@ -197,6 +197,11 @@ function setFormatsCopy($,lang){
 function finalizeHomeCopy($,lang){
   const vi=lang==='vi';
   setProduceCopy($,lang);setPackagingCopy($,lang);setFormatsCopy($,lang);setRightChoiceCopy($,lang);
+  $('.block-products-desctop .big-labels,.block-products-mobile .big-labels').each((_,list)=>{
+    $(list).find('.big-labels__item-text-1').each((i,e)=>{
+      $(e).text(i%2===0?(vi?'2500 sản phẩm':'2500 units'):(vi?'5000 sản phẩm':'5000 units'));
+    });
+  });
   $('.block-title h1').first().text(vi?'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group':'Bio-A Group Cosmetic & Cosmeceutical Manufacturing Factory');
   $('.block-title .text-large').first().text(vi?'Đồng hành từ R&D công thức, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm.':'From formula R&D and OEM/ODM manufacturing to packaging and finished products.');
   $('.whatsapp__title').text(vi?'Trao đổi ý tưởng cùng Bio-A Group':'Discuss your idea with Bio-A Group');
