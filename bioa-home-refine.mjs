@@ -2927,6 +2927,19 @@ const patchC3Css = `
 }
 `;
 
+
+const patchC4AShellCss = `
+/* CHAT-C4A — reduce only the outer chat shell radius. */
+.bioa-contact-fab__panel{
+  border-radius:18px!important;
+}
+@media(max-width:768px){
+  .bioa-contact-fab__panel{
+    border-radius:18px!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3389,7 +3402,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
