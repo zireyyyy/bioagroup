@@ -4206,8 +4206,8 @@ function addContactLauncher($,lang){
     ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
     :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
   const intro=vi
-    ?'Chào bạn 👋 Tôi là tư vấn viên Bio-A Group. Bạn đang muốn phát triển dòng mỹ phẩm nào? Tôi có thể hỗ trợ về công thức, MOQ, bao bì và tiến độ sản xuất.'
-    :'Hi 👋 I’m a Bio-A Group sales consultant. What product line are you planning? I can help with formula, MOQ, packaging and production timeline.';
+    ?'Chào bạn 👋 Tôi là Khánh Như từ Bio-A Group. Bạn đang muốn phát triển dòng mỹ phẩm nào? Tôi có thể hỗ trợ về công thức, MOQ, bao bì và tiến độ sản xuất.'
+    :'Hi 👋 I’m Khánh Như from Bio-A Group. What product line are you planning? I can help with formula, MOQ, packaging and production timeline.';
   const previewReply=vi
     ?'Cảm ơn bạn. Đội ngũ Bio-A Group đã ghi nhận nhu cầu. Bạn có thể tiếp tục trao đổi nhanh qua Zalo hoặc các kênh liên hệ phía trên.'
     :'Thank you. Bio-A Group has noted your request. You can continue quickly via Zalo or the contact channels above.';
