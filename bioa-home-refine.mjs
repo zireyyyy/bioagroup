@@ -3140,6 +3140,25 @@ const patchD4FooterHierarchyCss = `
 }
 `;
 
+
+const patchC5ChannelPaletteCss = `
+/* CHAT-C5 — match the visible footer contact-icon palette without altering geometry.
+   Footer visual = 14% cream overlay on #116F47; reproduce that same composite in chat. */
+.bioa-chat__channel{
+  background:
+    linear-gradient(rgba(253,254,245,.14),rgba(253,254,245,.14)),
+    var(--bioa-brand-logo-green)!important;
+  color:var(--bioa-footer-cream)!important;
+}
+.bioa-chat__channel svg{
+  fill:currentColor!important;
+}
+.bioa-chat__channel:hover{
+  background:var(--bioa-footer-cream)!important;
+  color:var(--bioa-brand-logo-green)!important;
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3697,7 +3716,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
