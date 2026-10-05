@@ -2161,6 +2161,119 @@ const patchB14Css = `
 `;
 
 
+const patchHeroStatsSourceCss = `
+/* HERO STATS HOTFIX — restore Merywood source proportions without changing content.
+   Scoped only to the Hero statistics on desktop/mobile.
+   Goal: source-like card size, thin typography, full BIO-A values with no clipping. */
+@media(min-width:769px){
+  .block-title .info.desctop{
+    width:clamp(430px,24vw,470px)!important;
+    min-width:430px!important;
+    max-width:470px!important;
+    gap:16px!important;
+  }
+  .block-title .info .item{
+    width:100%!important;
+    min-height:94px!important;
+    padding:15px 24px!important;
+    display:grid!important;
+    grid-template-columns:minmax(220px,1.22fr) minmax(150px,.78fr)!important;
+    column-gap:20px!important;
+    align-items:center!important;
+    border-radius:15px!important;
+    box-sizing:border-box!important;
+  }
+  .block-title .info .item__number,
+  .block-title .info .item__number *,
+  .block-title .info .item:nth-child(3) .item__number,
+  .block-title .info .item:nth-child(4) .item__number,
+  .block-title .info .item:nth-child(5) .item__number{
+    min-width:0!important;
+    max-width:none!important;
+    font-size:40px!important;
+    font-weight:300!important;
+    font-variation-settings:"wght" 300!important;
+    line-height:1!important;
+    letter-spacing:-.03em!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    color:#565656!important;
+    -webkit-font-smoothing:antialiased!important;
+  }
+  .block-title .info .item__text,
+  .block-title .info .item__text *{
+    min-width:0!important;
+    max-width:none!important;
+    font-size:15px!important;
+    font-weight:400!important;
+    font-variation-settings:"wght" 400!important;
+    line-height:1.2!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    color:#4f4f4f!important;
+    -webkit-font-smoothing:antialiased!important;
+  }
+}
+@media(max-width:1200px) and (min-width:769px){
+  .block-title .info.desctop{
+    width:420px!important;
+    min-width:420px!important;
+    max-width:420px!important;
+  }
+  .block-title .info .item{
+    min-height:88px!important;
+    padding:13px 20px!important;
+    grid-template-columns:minmax(205px,1.2fr) minmax(145px,.8fr)!important;
+    column-gap:16px!important;
+  }
+  .block-title .info .item__number,
+  .block-title .info .item__number *{
+    font-size:36px!important;
+  }
+  .block-title .info .item__text,
+  .block-title .info .item__text *{
+    font-size:14px!important;
+  }
+}
+@media(max-width:768px){
+  .block-title-continue .info,
+  .block-title-mobile .info{
+    gap:10px!important;
+  }
+  .block-title-continue .info .item,
+  .block-title-mobile .info .item{
+    min-height:70px!important;
+    padding:10px 14px!important;
+    border-radius:14px!important;
+    box-sizing:border-box!important;
+  }
+  .block-title-continue .info .item__number,
+  .block-title-continue .info .item__number *,
+  .block-title-mobile .info .item__number,
+  .block-title-mobile .info .item__number *{
+    font-size:27px!important;
+    font-weight:300!important;
+    font-variation-settings:"wght" 300!important;
+    line-height:1!important;
+    letter-spacing:-.025em!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    -webkit-font-smoothing:antialiased!important;
+  }
+  .block-title-continue .info .item__text,
+  .block-title-continue .info .item__text *,
+  .block-title-mobile .info .item__text,
+  .block-title-mobile .info .item__text *{
+    font-size:12px!important;
+    font-weight:400!important;
+    font-variation-settings:"wght" 400!important;
+    line-height:1.16!important;
+    -webkit-font-smoothing:antialiased!important;
+  }
+}
+`;
+
+
 const patchC2Css = `
 /* PATCH C2 — source-first Merywood chat parity.
    Preserve the Merywood information hierarchy: compact agent header, 2 primary actions,
@@ -3032,7 +3145,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchC2Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchC2Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
