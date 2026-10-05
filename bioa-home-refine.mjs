@@ -2230,6 +2230,87 @@ const patchHeroStatsSourceCss = `
 `;
 
 
+const patchHeroStatsOriginalTypeCss = `
+/* HERO STATS — original Merywood typography authority.
+   The supplied Merywood source loads Manrope at 400/600/700 only.
+   Use the original regular 400 face; do not request synthetic 200/300 weights. */
+.block-title .info .item__number,
+.block-title .info .item__number *,
+.block-title-continue .info .item__number,
+.block-title-continue .info .item__number *,
+.block-title-mobile .info .item__number,
+.block-title-mobile .info .item__number *{
+  font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-weight:400!important;
+  font-style:normal!important;
+  font-variation-settings:normal!important;
+  font-synthesis:none!important;
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important;
+  -webkit-font-smoothing:antialiased!important;
+}
+
+.block-title .info .item__text,
+.block-title .info .item__text *,
+.block-title-continue .info .item__text,
+.block-title-continue .info .item__text *,
+.block-title-mobile .info .item__text,
+.block-title-mobile .info .item__text *{
+  font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+  font-weight:400!important;
+  font-style:normal!important;
+  font-variation-settings:normal!important;
+  font-synthesis:none!important;
+  text-shadow:none!important;
+  -webkit-text-stroke:0!important;
+  -webkit-font-smoothing:antialiased!important;
+}
+
+@media(min-width:769px){
+  .block-title .info .item__number,
+  .block-title .info .item__number *{
+    font-size:40px!important;
+    line-height:1.05!important;
+    letter-spacing:0!important;
+  }
+  .block-title .info .item__text,
+  .block-title .info .item__text *{
+    font-size:16px!important;
+    line-height:1.25!important;
+    letter-spacing:0!important;
+  }
+}
+@media(max-width:1200px) and (min-width:769px){
+  .block-title .info .item__number,
+  .block-title .info .item__number *{
+    font-size:38px!important;
+  }
+  .block-title .info .item__text,
+  .block-title .info .item__text *{
+    font-size:15px!important;
+  }
+}
+@media(max-width:768px){
+  .block-title-continue .info .item__number,
+  .block-title-continue .info .item__number *,
+  .block-title-mobile .info .item__number,
+  .block-title-mobile .info .item__number *{
+    font-size:28px!important;
+    line-height:1.05!important;
+    letter-spacing:0!important;
+  }
+  .block-title-continue .info .item__text,
+  .block-title-continue .info .item__text *,
+  .block-title-mobile .info .item__text,
+  .block-title-mobile .info .item__text *{
+    font-size:13px!important;
+    line-height:1.22!important;
+    letter-spacing:0!important;
+  }
+}
+`;
+
+
 const patchC2Css = `
 /* PATCH C2 — source-first Merywood chat parity.
    Preserve the Merywood information hierarchy: compact agent header, 2 primary actions,
@@ -3101,7 +3182,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchC2Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
