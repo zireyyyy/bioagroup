@@ -656,3 +656,36 @@ Responsive status:
 - COOKIE-B1: PASS / LOCKED
 - MOTION-M2: Desktop PENDING / Tablet PENDING / Mobile PENDING
 - CHAT-C6A: Desktop PENDING / Tablet PENDING / Mobile PENDING
+
+
+## OWNER FEEDBACK — ROADMAP / MOTION / CHAT AVATAR
+
+Owner runtime feedback on 10ff5f2bc6e2b0f4dd3ca89e2c4d63bb47690cc2:
+- employee avatar still incorrect because the asset had been recomposed and the BIO-A logo was removed;
+- MOTION-M2 still acted mostly on smaller internal content instead of visibly revealing whole sections;
+- "Từ ý tưởng đến thành phẩm — quy trình đồng hành trọn gói" regressed and must return to the state from 1ce91e97e479fda03e116e637e4b1ddb449a26ce.
+
+ROADMAP-R1:
+- rollback ONLY .block-roadmap copy payload to 1ce91e97...;
+- retain all other longer Home sample copy;
+- no roadmap DOM/CSS/layout changes.
+
+MOTION-M3:
+- section-level reveal now targets whole source containers for Why Choose, How It Works, Packaging, Product Formats, Reviews, Right Choice, Roadmap and contact CTA;
+- We Produce remains excluded / LOCKED;
+- no swiper-slide transform owner is targeted;
+- 44px / .95s Desktop and 28px / .82s Mobile.
+
+CHAT-C6B:
+- use the complete owner-supplied 2000x2000 employee artwork, including the BIO-A logo panel;
+- only technical image resize/compression is allowed;
+- no crop, no composition redesign, no logo removal;
+- existing avatar/chat frame dimensions remain unchanged;
+- object-fit:contain remains authority.
+
+Status:
+- ROADMAP-R1: PENDING owner runtime test
+- MOTION-M3: PENDING Desktop / Tablet / Mobile
+- CHAT-C6B: PENDING Desktop / Tablet / Mobile
+- HOME-VI1: PASS / LOCKED
+- COOKIE-B1: PASS / LOCKED

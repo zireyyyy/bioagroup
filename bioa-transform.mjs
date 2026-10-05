@@ -269,7 +269,14 @@ function resetHomeVI($){
     'Trong quá trình hoàn thiện sản phẩm, chúng tôi cần điều chỉnh một số chi tiết về kết cấu, mùi hương và quy cách đóng gói. Bio-A Group phản hồi khá nhanh, giúp từng thay đổi được xử lý theo thứ tự rõ ràng thay vì phải làm lại toàn bộ. Cách phối hợp này giúp dự án giữ được tiến độ và dễ kiểm soát hơn.'
   ];
   $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Khách hàng Bio-A Group');$(e).find('.review__author-info').text('Nội dung đánh giá mẫu – sẽ cập nhật')});
-  $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  const roadmapSteps=[
+    ['Tư vấn & lập kế hoạch','Thống nhất mục tiêu, sản phẩm, ngân sách và tiến độ triển khai.'],
+    ['Nghiên cứu & phát triển','R&D công thức, nguyên liệu và mẫu thử theo định hướng thương hiệu.'],
+    ['Bao bì & nhận diện','Lựa chọn bao bì, nhãn và hạng mục nhận diện trước sản xuất.'],
+    ['Hồ sơ sản phẩm','Tư vấn hồ sơ và thông tin cần chuẩn bị theo từng nhóm sản phẩm.'],
+    ['Sản xuất & bàn giao','Sản xuất, đóng gói và bàn giao theo kế hoạch đã thống nhất.']
+  ];
+  $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{const x=roadmapSteps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
   finalizeHomeCopy($,'vi');
 }
 
@@ -289,7 +296,14 @@ function resetHomeEN($){
   $('.block-reviews .title').html('What clients receive<br>when working with Bio-A Group');
   const rev=['A clear process, responsive support and close follow-up on product requirements.','Flexible sample refinement helps shorten development time.','Bio-A Group supports formulation, packaging and production planning.','Stable timelines make it easier to expand additional SKUs.'];
   $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Bio-A Group client');$(e).find('.review__author-info').text('Sample testimonial — to be updated')});
-  $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');$('.block-roadmap .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  const roadmapSteps=[
+    ['Consultation & planning','Align product goals, budget and timeline.'],
+    ['Research & development','Develop formulas, ingredients and samples for your brand direction.'],
+    ['Packaging & branding','Select packaging, labels and required brand assets.'],
+    ['Product documentation','Prepare the documentation and product information required.'],
+    ['Production & delivery','Manufacture, pack and deliver to the agreed plan.']
+  ];
+  $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');$('.block-roadmap .step').each((i,e)=>{const x=roadmapSteps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
   finalizeHomeCopy($,'en');
 }
 

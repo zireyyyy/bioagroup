@@ -3531,32 +3531,29 @@ const patchH5CMobileMoqCss = `
 }
 `;
 
-const patchMotionM2Css = `
-/* MOTION-M2 — closer to the supplied SKL reveal strength.
-   Same protected targets as M1; only visibility/timing is increased. */
-html.bioa-reveal-ready .bioa-reveal{
+const patchMotionM3Css = `
+/* MOTION-M3 — section-level reveal.
+   Apply to whole source section containers, never to We Produce or slider internals. */
+html.bioa-reveal-ready .bioa-section-reveal{
   opacity:0;
-  transform:translateY(36px);
+  transform:translateY(44px);
   transition:
-    opacity .9s cubic-bezier(.16,1,.3,1),
-    transform .9s cubic-bezier(.16,1,.3,1);
+    opacity .95s cubic-bezier(.16,1,.3,1),
+    transform .95s cubic-bezier(.16,1,.3,1);
   will-change:opacity,transform;
 }
-html.bioa-reveal-ready .bioa-reveal.is-in{
+html.bioa-reveal-ready .bioa-section-reveal.is-in{
   opacity:1;
   transform:translateY(0);
 }
-html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d1{transition-delay:.10s}
-html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d2{transition-delay:.22s}
-html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d3{transition-delay:.34s}
 @media(max-width:768px){
-  html.bioa-reveal-ready .bioa-reveal{
-    transform:translateY(24px);
-    transition-duration:.78s;
+  html.bioa-reveal-ready .bioa-section-reveal{
+    transform:translateY(28px);
+    transition-duration:.82s;
   }
 }
 @media(prefers-reduced-motion:reduce){
-  html.bioa-reveal-ready .bioa-reveal{
+  html.bioa-reveal-ready .bioa-section-reveal{
     opacity:1!important;
     transform:none!important;
     transition:none!important;
@@ -4156,28 +4153,22 @@ function footerSocials($){
 function addHomeReveal($){
   $('#bioa-home-reveal-js').remove();
   const selectors=[
-    '#why-choose-us > .container > .title-wrapper',
-    '#why-choose-us .grid.desctop > .item',
-    '.block-how-works > .container > .title-wrapper',
-    '.block-products-desctop > .container > .title-wrapper',
-    '.block-products-mobile > .container > .title-wrapper',
-    '.block-product-formats > .container > .title-wrapper',
-    '.block-product-formats .formats',
-    '.block-reviews > .container > .title-wrapper',
-    '.block-right-choice > .container > .title-wrapper',
-    '.block-right-choice .clients > .client',
-    '.block-roadmap > .container > .title-wrapper',
+    '#why-choose-us > .container',
+    '.block-how-works > .container',
+    '.block-products-desctop > .container',
+    '.block-products-mobile > .container',
+    '.block-product-formats > .container',
+    '.block-reviews > .container',
+    '.block-right-choice > .container',
+    '.block-roadmap > .container',
     '.whatsapp .whatsapp__content'
   ];
-  selectors.forEach(sel=>$(sel).each((i,e)=>{
-    $(e).addClass('bioa-reveal');
-    if(i>0)$(e).addClass('bioa-reveal-d'+Math.min(i,3));
-  }));
+  selectors.forEach(sel=>$(sel).each((_,e)=>$(e).addClass('bioa-section-reveal')));
 
   const script=`(function(){
     if(!('IntersectionObserver' in window))return;
     document.documentElement.classList.add('bioa-reveal-ready');
-    var els=[].slice.call(document.querySelectorAll('.bioa-reveal'));
+    var els=[].slice.call(document.querySelectorAll('.bioa-section-reveal'));
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
@@ -4185,16 +4176,15 @@ function addHomeReveal($){
           obs.unobserve(entry.target);
         }
       });
-    },{threshold:.12,rootMargin:'0px 0px -72px 0px'});
+    },{threshold:.08,rootMargin:'0px 0px -72px 0px'});
     els.forEach(function(el){
       var r=el.getBoundingClientRect();
-      if(r.top<window.innerHeight*.92)el.classList.add('is-in');
+      if(r.top<window.innerHeight*.90)el.classList.add('is-in');
       else obs.observe(el);
     });
   })();`;
   $('body').append($('<script id="bioa-home-reveal-js"></script>').html(script));
 }
-
 
 function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
@@ -4386,7 +4376,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM2Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM3Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);

@@ -601,3 +601,49 @@ Status:
 - Desktop: PENDING
 - Tablet: PENDING
 - Mobile: PENDING
+
+
+## ROADMAP-R1
+
+Authority:
+- rollback target: 1ce91e97e479fda03e116e637e4b1ddb449a26ce
+- component: .block-roadmap only
+
+Rule:
+- roadmap title/step text payload restored to 1ce copy;
+- no DOM/CSS/layout rollback outside roadmap;
+- longer How It Works copy remains independent.
+
+## MOTION-M3
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMotionM3Css
+- addHomeReveal($)
+
+Section-level targets:
+- #why-choose-us > .container
+- .block-how-works > .container
+- .block-products-desctop/mobile > .container
+- .block-product-formats > .container
+- .block-reviews > .container
+- .block-right-choice > .container
+- .block-roadmap > .container
+- contact CTA content
+
+Protected:
+- .block-we-produce
+- swiper-slide transforms
+- Header/Footer
+- Cookie/Chat runtime mechanics
+
+## CHAT-C6B
+
+Asset authority:
+- /assets/bioa-sales-avatar.webp
+- must contain the complete owner-provided square artwork including employee portrait + BIO-A logo.
+- do not crop/recompose/remove logo.
+
+Frame authority:
+- keep existing chat/launcher/avatar dimensions.
+- fit image with object-fit:contain.

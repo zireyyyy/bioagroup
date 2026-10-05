@@ -63,3 +63,10 @@ Content work must not reopen:
 - accepted We Produce DOM/layout mechanics
 
 Only the text payload may change when the owner requests copy refinement.
+
+
+## Roadmap exception after runtime regression
+
+The Roadmap copy is intentionally restored to the shorter PASS-era payload from commit `1ce91e97e479fda03e116e637e4b1ddb449a26ce`.
+
+Do not expand Roadmap copy to its full Merywood character budget until the owner explicitly reopens that component and Desktop + Tablet + Mobile are runtime-tested. The source-length budget remains useful for future writing, but current Roadmap layout safety has priority.
