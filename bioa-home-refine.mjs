@@ -3074,40 +3074,55 @@ const patchDFooterTypeCss = `
 `;
 
 const patchD3FooterBrandCss = `
-/* PATCH D3 — legacy BIO-A footer palette authority.
-   Source: owner-supplied BIO-A site assets/css/style.css. */
+/* PATCH D3-REV — owner-approved inverse BIO-A footer treatment.
+   Background = exact BIO-A logo green. Foreground = email-surface cream. */
 :root{
   --bioa-brand-main:#093D26;
   --bioa-brand-sub:#136E47;
   --bioa-brand-green:#106E45;
+  --bioa-brand-logo-green:#116F47;
   --bioa-brand-cream:#F3F0E4;
   --bioa-brand-ivory:#FCFEF1;
   --bioa-brand-sage:#99D29F;
+  --bioa-footer-cream:#FDFEF5;
 }
-.footer-top{
-  background:var(--bioa-brand-cream)!important;
-  color:var(--bioa-brand-main)!important;
-}
+.footer-top,
 .footer-bottom{
-  background:var(--bioa-brand-green)!important;
-  color:#fff!important;
+  background:var(--bioa-brand-logo-green)!important;
+  color:var(--bioa-footer-cream)!important;
 }
-.footer-top__nav > ul > li > a{
-  color:var(--bioa-brand-green)!important;
+.footer-top__nav > ul > li > a,
+.footer-top__nav > ul > li > a:hover,
+.footer-top__nav > ul > li > a:focus,
+.footer-top__email,
+.footer-top__email a,
+.bioa-footer-mobile-v2__email{
+  color:var(--bioa-footer-cream)!important;
 }
 .footer-top__email a,
 .bioa-footer-mobile-v2__email{
-  color:var(--bioa-brand-main)!important;
-  border-color:rgba(16,110,69,.18)!important;
+  background:rgba(253,254,245,.10)!important;
+  border-color:rgba(253,254,245,.34)!important;
 }
 .footer-top__socials a,
 .bioa-footer-mobile-v2__socials a{
-  background:var(--bioa-brand-green)!important;
-  color:#fff!important;
+  background:rgba(253,254,245,.14)!important;
+  color:var(--bioa-footer-cream)!important;
+  border-color:rgba(253,254,245,.20)!important;
+}
+.footer-top__socials svg,
+.bioa-footer-mobile-v2__socials svg{
+  fill:currentColor!important;
 }
 .footer-top__socials a:hover,
 .bioa-footer-mobile-v2__socials a:hover{
-  background:var(--bioa-brand-main)!important;
+  background:var(--bioa-footer-cream)!important;
+  color:var(--bioa-brand-logo-green)!important;
+}
+.footer-bottom,
+.footer-bottom a,
+.footer-bottom *{
+  color:var(--bioa-footer-cream)!important;
 }
 `;
 function setLogo($){
@@ -3119,7 +3134,7 @@ function setLogo($){
     .removeAttr('sizes');
 
   $('.footer-top__logo img,.footer__logo img')
-    .attr('src','/assets/bioa-full.svg')
+    .attr('src','/assets/bioa-full-light.svg')
     .attr('alt','BIO-A Group')
     .removeAttr('srcset')
     .removeAttr('sizes');
@@ -3409,7 +3424,7 @@ function buildMobileFooterV2($){
       : footer;
 
   const row=$('<div class="bioa-footer-mobile-v2"></div>');
-  const logo=$('<div class="bioa-footer-mobile-v2__logo"><img src="/assets/bioa-full.svg" alt="BIO-A Group"></div>');
+  const logo=$('<div class="bioa-footer-mobile-v2__logo"><img src="/assets/bioa-full-light.svg" alt="BIO-A Group"></div>');
   const contact=$('<div class="bioa-footer-mobile-v2__contact"></div>');
   const email=$('<a class="bioa-footer-mobile-v2__email"></a>').attr('href','mailto:'+company.email).text(company.email);
   const social=$('<div class="bioa-footer-mobile-v2__socials"></div>');
