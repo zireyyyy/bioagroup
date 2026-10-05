@@ -157,24 +157,20 @@ function setRightChoiceCopy($,lang){
   });
 }
 
-function setProduceCopy($,lang){
+function localizeWeProduceSourceText($,lang){
   const vi=lang==='vi';
   const data=vi?[
-    ['Gia công dược mỹ phẩm','R&D công thức và sản xuất OEM/ODM theo định hướng thương hiệu.'],
-    ['Bao bì & hoàn thiện','Chai lọ, sang chiết, đóng gói và hoàn thiện sản phẩm.']
+    ['Dược mỹ phẩm','R&D công thức, mẫu thử và sản xuất OEM/ODM theo định hướng thương hiệu.'],
+    ['Mỹ phẩm','Phát triển từ công thức, nguyên liệu đến bao bì và hoàn thiện sản phẩm.']
   ]:[
-    ['Cosmetic manufacturing','Formula R&D and OEM/ODM production for your brand direction.'],
-    ['Packaging & finishing','Bottles, filling, packing and finished-product preparation.']
+    ['Cosmeceuticals','Formula R&D, sampling and OEM/ODM manufacturing for your brand.'],
+    ['Cosmetics','From formula and ingredients to packaging and finished products.']
   ];
-  $('.block-we-produce .title-wrapper .title').first().text(vi?'Danh mục sản xuất':'What we manufacture');
-  $('.block-we-produce .item').each((i,e)=>{
-    const d=data[i%2], root=$(e);
-    const title=root.find('.item__title').first();
-    const titleP=title.find('p').first();
-    (titleP.length?titleP:title).text(d[0]);
-    const body=root.find('.item__text').first();
-    const bodyP=body.find('p').first();
-    (bodyP.length?bodyP:body).text(d[1]);
+  $('.block-we-produce > .container > .title-wrapper > .title').first().text(vi?'Danh mục sản xuất':'We Produce');
+  $('.block-we-produce > .container > .grid > .item').each((i,e)=>{
+    const d=data[i%2],root=$(e);
+    root.find('.item__title > p').first().text(d[0]);
+    root.find('.item__text > p').first().text(d[1]);
   });
 }
 
@@ -369,6 +365,7 @@ export function applyFinalFixes($, route, lang){
   $('.header__email a,.menu__email a,.footer-top__email a').attr('href','mailto:'+company.email).text(company.email);$('.whatsapp__btn').attr('href',company.whatsapp).attr('target','_blank');
   if(lang==='vi'){viCleanup($);if(route==='/')resetHomeVI($);if(route==='/dich-vu-khac/'){$('h1').first().text('Dịch vụ khác của Bio-A Group');$('.text-large').first().text('Hỗ trợ R&D, phát triển công thức, lựa chọn bao bì, thiết kế nhãn, hồ sơ công bố và các hạng mục liên quan đến phát triển thương hiệu mỹ phẩm.')}}
   if(lang==='en'&&route==='/')resetHomeEN($);
+  if(route==='/')localizeWeProduceSourceText($,lang);
   $('.footer-bottom__copyright').text(lang==='vi'?'© 2026 Bio-A Group. Bảo lưu mọi quyền.':'© 2026 Bio-A Group. All rights reserved.');$('.footer-top__socials a').each((i,e)=>{const a=$(e);if(i===0)a.attr('href',company.whatsapp).attr('aria-label','WhatsApp');if(i===1)a.attr('href',company.facebook).attr('aria-label','Facebook');if(i===2)a.attr('href',company.zalo).attr('aria-label','Zalo').html('<img src="/assets/zalo-bioa-circle-cream.svg" alt="" aria-hidden="true" style="display:block;width:30px;height:30px;object-fit:contain;margin:auto">');a.attr('target','_blank').attr('rel','noopener noreferrer')});
   $('body *').contents().each((_,n)=>{
     if(n.type!=='text')return;
