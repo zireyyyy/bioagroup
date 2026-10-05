@@ -491,3 +491,33 @@ To avoid restoring the previously problematic full Merywood catalog build, the s
 - /dich-vu-khac/ remains supplied by withExtraRoutes() from the existing hotel/spa source mapping.
 
 Do not re-enable the old vitamin/supplement/archive route catalog unless the owner explicitly needs those pages.
+
+
+## HOME DESKTOP/MOBILE REGRESSION — ACTIVE FIX CANDIDATE
+
+Owner runtime feedback after d7b336033aad0f5b8b412b58f98aefb15f53ab52:
+- Desktop: FAIL in "Danh mục sản xuất" content/card behavior.
+- Mobile: FAIL — several sections were not synchronized with Desktop; Why Choose remained English and Packaging MOQ still showed "units".
+- Tablet: remains DEFERRED / PENDING by owner direction.
+- Header: PASS / LOCKED.
+- Footer: PASS / LOCKED.
+- PATCH E: PENDING.
+
+Verified root causes against owner-supplied Merywood source:
+1. Why Choose has separate Desktop (.grid .item) and Mobile (.mobile .item) DOM trees. Previous mapping only targeted Desktop.
+2. Mobile Packaging MOQ uses .info__item-text-1 / .info__item-text-2. Previous H5C targeted non-existent mobile .big-labels nodes.
+3. H5B replaced We Produce .item__title/.item__text with .text(), removing original <p> wrappers and breaking source-parity markup.
+4. replaceMobileProduceSection carried an older hardcoded Supplements/Cosmetics content set, so Mobile diverged from Desktop.
+
+Current candidate:
+- 11e373e43edd398a48ff104ef892e7219d1d9206
+- synchronize Why Choose Desktop + Mobile;
+- localize actual Mobile MOQ nodes and subcopy;
+- restore original We Produce <p> wrappers and shorten copy to fit the source card;
+- synchronize Mobile Produce content with Desktop;
+- correct H5C CSS selector to Merywood's real mobile MOQ node.
+
+Acceptance target:
+- Desktop: We Produce source layout/overlay restored; no content pushed outside the source card.
+- Mobile: Why Choose fully VI/EN paired; Produce matches Desktop content; 2500/5000 + localized unit stays on one line.
+- Tablet: NO CHANGE EXPECTED / deferred.

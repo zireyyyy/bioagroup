@@ -401,3 +401,29 @@ Status:
 - Desktop: NEEDS OWNER RUNTIME TEST
 - Tablet: DEFERRED / PENDING
 - Mobile: NEEDS OWNER RUNTIME TEST
+
+
+## Home Regression — Why Choose / Produce / Mobile MOQ
+
+Merywood source verification:
+- Why Choose Desktop: #why-choose-us .grid .item (4 items)
+- Why Choose Mobile: #why-choose-us .mobile .item (4 items)
+- We Produce source title: .block-we-produce .item__title > p
+- We Produce source body: .block-we-produce .item__text > p
+- Mobile Packaging MOQ number: .block-products-mobile .info__item-text-1
+- Mobile Packaging MOQ description: .block-products-mobile .info__item-text-2 > p
+
+BIO-A ownership:
+- bioa-transform.mjs
+  - resetHomeVI / resetHomeEN map both Why Choose DOM trees.
+  - setProduceCopy must preserve source <p> wrappers.
+  - finalizeHomeCopy owns Desktop big-label MOQ and Mobile info MOQ separately.
+- bioa-home-refine.mjs
+  - replaceMobileProduceSection content must mirror Desktop Bio-A Produce copy.
+  - patchH5CMobileMoqCss targets .block-products-mobile .info__item-text-1.
+
+Status:
+- Desktop: ACTIVE FIX CANDIDATE
+- Tablet: DEFERRED / PENDING
+- Mobile: ACTIVE FIX CANDIDATE
+- Header/Footer: PASS / LOCKED
