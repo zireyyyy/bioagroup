@@ -2,35 +2,23 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
-import { applyHomeRefinement } from "./bioa-home-refine.mjs";
+import { applyHomeRefinement, applySharedShell } from "./bioa-home-refine.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
 
 const routes = [
-  "/", "/about/", "/contacts/", "/careers/", "/careers/b2b-sales-manager/",
-  "/careers/regulatory-affairs-specialist-eu/", "/cookie-policy/", "/privacy-policy/",
-  "/contract-manufacturing-cosmetics/", "/white-label-cosmetics/", "/private-label-cosmetics/",
-  "/hotel-spa-cosmetics/", "/contract-manufacturing-supplements/", "/white-label-supplements/",
-  "/private-label-supplements/", "/sports-nutrition/", "/pet-supplement-manufacturer/",
-  "/weight-loss/", "/male-enhancement/", "/diabet/", "/vitamin-d-private-label/",
-  "/vitamin-b12-private-label/", "/vitamin-a-manufacturer/", "/vitamin-b2-production/",
-  "/vitamin-c-manufacturer/", "/vitamin-k-manufacturer/", "/vitamin-e-manufacturer/",
-  "/omega-3-private-label/", "/probiotics-private-label/", "/blog/",
-  "/blog/ascorbic-acid-production/", "/blog/best-fulfillment-for-cosmetics-and-supplements/",
-  "/blog/collagen-supplements-manufacturing/", "/blog/cosmetic-manufacturing-process/",
-  "/blog/dog-supplement-formats/", "/blog/how-fish-oil-is-made/",
-  "/blog/how-is-protein-powder-manufactured/", "/blog/how-peptides-are-made/",
-  "/blog/how-sunscreen-is-made/", "/blog/how-to-choose-supplement-fulfillment-provider/",
-  "/blog/how-to-start-supplement-company-europe/", "/blog/how-to-start-your-own-skincare-line/",
-  "/blog/sunscreen-business/", "/blog/supplement-trends-2026/",
-  "/blog/trending-skincare-products-2026/", "/blog/vitamins-bones-joints/",
-  "/blog/what-affects-moq-in-supplement-manufacturing/", "/blog/what-is-haccp/",
-  "/blog/what-is-inci/", "/blog/what-is-microbiome-skincare/",
-  "/blog/white-label-vs-private-label/", "/blog/page/2/", "/blog/page/3/", "/blog/page/4/"
+  "/",
+  "/about/",
+  "/contacts/",
+  "/careers/",
+  "/cookie-policy/",
+  "/privacy-policy/",
+  "/contract-manufacturing-cosmetics/",
+  "/blog/"
 ];
 
-const routeDefs = [["/","/"]];
+const routeDefs = withExtraRoutes(routes);
 
 const pageTitles = {
   "/": "Gia công mỹ phẩm & phát triển thương hiệu",
@@ -369,46 +357,46 @@ function localize($, route){
   $("body").append(`<script id="bioa-preview-form">document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();alert('Form đang ở chế độ xem thử. Vui lòng liên hệ Bio-A Group qua email ${company.email}.')})});</script>`);
 }
 
+async function buildOne(route,sourceRoute){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),20000);
+  let raw;
+  try{
+    const res=await fetch(BASE+sourceRoute,{headers:{"user-agent":"BioAGroupPreviewBuilder/3.2"},signal:controller.signal});
+    if(!res.ok)throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
+    raw=await res.text();
+  }finally{
+    clearTimeout(timer);
+  }
+
+  for(const lang of ["vi","en"]){
+    const $=load(raw,{decodeEntities:false});
+    applyFinalFixes($,route,lang);
+    if(route==="/")applyHomeRefinement($,route,lang);
+    else applySharedShell($,route,lang);
+
+    const targetRoute=localPath(route,lang);
+    const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
+    await fs.mkdir(path.dirname(target),{recursive:true});
+    await fs.writeFile(target,$.html());
+    console.log("built",lang,targetRoute);
+  }
+}
+
 async function build(){
-  const started = Date.now();
+  const started=Date.now();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
-  console.log("HOME-FIRST build: fetching only Merywood homepage");
-  const controller = new AbortController();
-  const timer = setTimeout(()=>controller.abort(), 20000);
-
-  let raw;
-  try {
-    const res = await fetch(BASE + "/", {
-      headers:{"user-agent":"BioAGroupPreviewBuilder/3.1"},
-      signal: controller.signal
-    });
-    if(!res.ok) throw new Error(`/ -> HTTP ${res.status}`);
-    raw = await res.text();
-  } finally {
-    clearTimeout(timer);
-  }
-  console.log("source loaded:", raw.length, "bytes");
-
-  for (const lang of ["vi","en"]) {
-    const t = Date.now();
-    console.log("build", lang, "start");
-    const $ = load(raw, {decodeEntities:false});
-    applyFinalFixes($, "/", lang);
-    applyHomeRefinement($, "/", lang);
-
-    const targetRoute = localPath("/", lang);
-    const target = targetRoute === "/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
-    await fs.mkdir(path.dirname(target), {recursive:true});
-    const html = $.html();
-    await fs.writeFile(target, html);
-    console.log("built", lang, targetRoute, html.length, "bytes in", Date.now()-t, "ms");
+  const batchSize=4;
+  for(let i=0;i<routeDefs.length;i+=batchSize){
+    const batch=routeDefs.slice(i,i+batchSize);
+    await Promise.all(batch.map(([route,sourceRoute])=>buildOne(route,sourceRoute)));
   }
 
-  await fs.cp("assets", path.join(OUT,"assets"), {recursive:true});
-  await fs.writeFile(path.join(OUT,"_headers"), "/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
-  await fs.writeFile(path.join(OUT,"robots.txt"), "User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
-  console.log("build complete in", Date.now()-started, "ms");
+  await fs.cp("assets",path.join(OUT,"assets"),{recursive:true});
+  await fs.writeFile(path.join(OUT,"_headers"),"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
+  await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
+  console.log("build complete in",Date.now()-started,"ms");
 }
 build().catch(e=>{console.error("BUILD FAILED:", e);process.exit(1)});

@@ -1,5 +1,5 @@
 export const company = {
-  name: 'BIO-A Group', domain: 'https://bioagroup.vn', email: 'contact@bioagroup.vn',
+  name: 'Bio-A Group', domain: 'https://bioagroup.vn', email: 'contact@bioagroup.vn',
   phone: '0779 399 379', phoneRaw: '0779399379', whatsapp: 'https://wa.me/84779399379',
   zalo: 'https://zalo.me/84779399379', facebook: 'https://www.facebook.com/nhamaysanxuatduocmypham.BioA'
 };
@@ -22,15 +22,63 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
 @media(max-width:768px){.bioa-lang{margin:18px 0 0}.whatsapp-wrapper{margin-top:40px!important;padding:0!important}.whatsapp{text-align:center!important;border-radius:30px!important;padding:30px 20px!important}.whatsapp__content{flex-direction:column!important;gap:20px!important}.whatsapp__title{font-size:20px!important}.whatsapp__description{font-size:14px!important;max-width:100%!important}.whatsapp__btn{width:100%!important;min-width:0!important;height:54px!important;padding:0 20px!important;border-radius:16px!important}.block-product-formats .formats{padding:30px 20px!important;border-radius:24px!important}.block-product-formats .formats__tabs{flex-wrap:nowrap!important;overflow-x:auto!important;padding-bottom:24px!important;margin-bottom:24px!important}.block-product-formats .formats__tab{flex:0 0 auto!important;height:40px!important;padding:0 16px!important;white-space:nowrap!important}.block-product-formats .formats__cta{margin-top:45px!important}.block-product-formats .formats__cta-content{flex-direction:column!important;align-items:flex-start!important;gap:20px!important}}
 `;
 
-function replaceBrandText(s){return String(s||'').replace(/Merywood/gi,company.name).replace(/info@merywood\.com/gi,company.email).replace(/\[email protected\]/gi,company.email)}
+function replaceBrandText(s){
+  return String(s||'')
+    .replace(/Merywood/gi,company.name)
+    .replace(/\bBIOA\s+Group\b/gi,company.name)
+    .replace(/\bBIO-A\s+Group\b/gi,company.name)
+    .replace(/\bBIO-A\b/g,'Bio-A')
+    .replace(/info@merywood\.com/gi,company.email)
+    .replace(/\[email protected\]/gi,company.email);
+}
 function setText($,sel,text){const e=$(sel).first();if(e.length)e.text(text)}
-function menuHtml(lang){const items=lang==='vi'?[['Về BIOA Group','/about/'],['Gia Công Mỹ Phẩm','/contract-manufacturing-cosmetics/'],['Dịch Vụ Khác','/dich-vu-khac/'],['Kiến Thức','/blog/'],['Liên Hệ','/contacts/']]:[['About BIOA Group','/about/'],['Cosmetic Manufacturing','/contract-manufacturing-cosmetics/'],['Other Services','/dich-vu-khac/'],['Insights','/blog/'],['Contact','/contacts/']];return '<ul>'+items.map(x=>'<li class="menu-item"><a href="'+localPath(x[1],lang)+'">'+x[0]+'</a></li>').join('')+'</ul>'}
-function titleFor(route,lang){if(lang==='en')return route==='/'?'Cosmetic Manufacturing & Brand Development':route==='/dich-vu-khac/'?'Other Services':'BIO-A Group';const map={'/':'Nhà máy sản xuất & gia công mỹ phẩm BIO-A Group','/about/':'Về BIO-A Group','/contacts/':'Liên hệ BIO-A Group','/dich-vu-khac/':'Dịch vụ khác','/contract-manufacturing-cosmetics/':'Gia công mỹ phẩm trọn gói','/white-label-cosmetics/':'Gia công mỹ phẩm công thức có sẵn','/private-label-cosmetics/':'Gia công mỹ phẩm công thức độc quyền','/hotel-spa-cosmetics/':'Gia công mỹ phẩm Spa & khách sạn','/blog/':'Kiến thức & xu hướng ngành','/careers/':'Tuyển dụng BIO-A Group'};return map[route]||(route.startsWith('/blog/')?'Kiến thức chuyên ngành':'Giải pháp BIO-A Group')}
+function menuHtml(lang){const items=lang==='vi'?[['Về Bio-A Group','/about/'],['Gia Công Mỹ Phẩm','/contract-manufacturing-cosmetics/'],['Dịch Vụ Khác','/dich-vu-khac/'],['Kiến Thức','/blog/'],['Liên Hệ','/contacts/']]:[['About Bio-A Group','/about/'],['Cosmetic Manufacturing','/contract-manufacturing-cosmetics/'],['Other Services','/dich-vu-khac/'],['Insights','/blog/'],['Contact','/contacts/']];return '<ul>'+items.map(x=>'<li class="menu-item"><a href="'+localPath(x[1],lang)+'">'+x[0]+'</a></li>').join('')+'</ul>'}
+function titleFor(route,lang){
+  if(lang==='en'){
+    const map={
+      '/':'Bio-A Group Cosmetic & Cosmeceutical Manufacturing Factory',
+      '/about/':'About Bio-A Group',
+      '/contacts/':'Contact Bio-A Group',
+      '/dich-vu-khac/':'Other Services',
+      '/contract-manufacturing-cosmetics/':'Cosmetic Manufacturing',
+      '/blog/':'Insights',
+      '/careers/':'Careers at Bio-A Group'
+    };
+    return map[route]||(route.startsWith('/blog/')?'Industry Insights':'Bio-A Group Solutions');
+  }
+  const map={
+    '/':'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group',
+    '/about/':'Về Bio-A Group',
+    '/contacts/':'Liên Hệ Bio-A Group',
+    '/dich-vu-khac/':'Dịch Vụ Khác',
+    '/contract-manufacturing-cosmetics/':'Gia Công Mỹ Phẩm Trọn Gói',
+    '/white-label-cosmetics/':'Gia Công Mỹ Phẩm Công Thức Có Sẵn',
+    '/private-label-cosmetics/':'Gia Công Mỹ Phẩm Công Thức Độc Quyền',
+    '/hotel-spa-cosmetics/':'Gia Công Mỹ Phẩm Spa & Khách Sạn',
+    '/blog/':'Kiến Thức & Xu Hướng Ngành',
+    '/careers/':'Tuyển Dụng Bio-A Group'
+  };
+  return map[route]||(route.startsWith('/blog/')?'Kiến Thức Chuyên Ngành':'Giải Pháp Bio-A Group');
+}
+
+function applyBrandHead($,route,lang){
+  const title=titleFor(route,lang);
+  const fullTitle=route==='/'?title:(/Bio-A Group/i.test(title)?title:title+' | Bio-A Group');
+  $('title').text(fullTitle);
+  $('meta[property="og:site_name"]').attr('content',company.name);
+  $('meta[property="og:title"],meta[name="twitter:title"]').attr('content',fullTitle);
+  $('meta[name="author"]').attr('content',company.name);
+  $('meta[name="copyright"]').attr('content',company.name+' - ['+company.email+']');
+  $('link[rel="icon"],link[rel="shortcut icon"]').remove();
+  $('head').append('<link rel="icon" type="image/svg+xml" href="/assets/bioa-monogram.svg">');
+  $('link[rel="canonical"]').attr('href',company.domain+localPath(route,lang));
+}
+
 
 function headerAndLinks($,route,lang){
   const nav=menuHtml(lang);$('.header__nav').html(nav);$('.menu__nav').html(nav);$('.menu-services').remove();
   $('.header__email,.menu__email,.footer-top__email').html('<a class="color-main" href="mailto:'+company.email+'">'+company.email+'</a>');
-  $('.header__socials a,.menu__socials a').attr('href',company.whatsapp).attr('aria-label','WhatsApp BIO-A Group').attr('target','_blank');
+  $('.header__socials a,.menu__socials a').attr('href',company.whatsapp).attr('aria-label','WhatsApp Bio-A Group').attr('target','_blank');
   $('.header__btn .btn__text').text(lang==='vi'?'Nhận tư vấn':'Get a quote');
   const sw='<div class="bioa-lang"><a href="'+localPath(route,'vi')+'" class="'+(lang==='vi'?'is-active':'')+'">VI</a><a href="'+localPath(route,'en')+'" class="'+(lang==='en'?'is-active':'')+'">EN</a></div>';
   $('.bioa-lang').remove();$('.header__contacts').after(sw);$('.menu__contacts').append(sw);
@@ -57,87 +105,241 @@ function setHomeStats($,stats){
   });
 }
 
+function setPackagingCopy($,lang){
+  const vi=lang==='vi';
+  const data=vi?[
+    ['Tuýp & chai chân không',['Kem','Gel','Lotion'],['Thiết kế gọn, phù hợp mỹ phẩm chăm sóc da.','Hạn chế công thức tiếp xúc trực tiếp với không khí.','Thuận tiện sử dụng và tạo cảm giác cao cấp.','Phù hợp nhiều dòng kem, gel và lotion.','Dễ tùy chỉnh dung tích và nhận diện thương hiệu.']],
+    ['Hũ mỹ phẩm',['Kem đặc','Mặt nạ','Tẩy tế bào chết'],['Có thể lựa chọn nhựa hoặc thủy tinh.','Phù hợp sản phẩm có kết cấu đặc.','Dễ đồng bộ nắp, màu và nhãn thương hiệu.']],
+    ['Vỉ định hình',['Viên nang','Viên nén'],['Đóng gói từng đơn vị sản phẩm rõ ràng.','Thuận tiện kiểm soát liều dùng.','Hỗ trợ bảo quản và vận chuyển gọn gàng.']],
+    ['Gói sachet',['Mẫu dùng thử','Liều dùng một lần','Sản phẩm cỡ du lịch'],['Phù hợp thử mẫu và chương trình marketing.','Nhẹ, dễ phân phối và vận chuyển.','Có thể dùng cho nhiều kết cấu mỹ phẩm.']],
+    ['Túi doypack',['Bột đóng gói','Sản phẩm refill','Hỗn hợp pha'],['Nhẹ và tiết kiệm không gian đóng gói.','Thuận tiện cho sản phẩm refill.','Phù hợp bán hàng trực tuyến và vận chuyển.']]
+  ]:[
+    ['Tubes & airless containers',['Creams','Gels','Lotions'],['Compact packaging for skincare products.','Helps reduce direct formula exposure to air.','Convenient use with a premium presentation.','Suitable for creams, gels and lotions.','Flexible sizes and brand customization.']],
+    ['Cosmetic jars',['Rich creams','Masks','Body scrubs'],['Available in plastic or glass.','Suitable for thicker product textures.','Flexible lid, color and label customization.']],
+    ['Blister packs',['Capsules','Tablets'],['Clear single-unit packaging.','Convenient dose control.','Compact for storage and shipping.']],
+    ['Sachets',['Samples','Single use','Travel size'],['Ideal for samples and promotions.','Lightweight and easy to distribute.','Suitable for multiple cosmetic textures.']],
+    ['Doypacks',['Bulk powders','Refill products','Drink mixes'],['Lightweight and space-efficient.','Convenient for refill products.','Well suited to ecommerce shipping.']]
+  ];
+  $('.block-products-desctop .swiper-slide .product,.block-products-mobile .swiper-slide .product').each((i,el)=>{
+    const d=data[i%data.length],root=$(el);
+    root.find('.product__title .title,.product__title').first().text(d[0]);
+    root.find('.product__ideal-for .label').text(vi?'Phù hợp với':'Ideal for');
+    root.find('.product__ideal-for .labels__item').each((j,e)=>{if(d[1][j])$(e).find('p').first().text(d[1][j])});
+    root.find('.product__key-advantages .label').text(vi?'Ưu điểm nổi bật':'Key advantages');
+    root.find('.product__key-advantages .list__item').each((j,e)=>{
+      if(!d[2][j])return;
+      const t=$(e).find('.list__item-text').first();
+      if(t.length)t.text(d[2][j]);else $(e).find('p').first().text(d[2][j]);
+    });
+    root.find('.product__open-text').text(vi?'Xem thêm':'Show more');
+  });
+  $('.block-products-mobile .title-wrapper .title').text(vi?'Giải pháp bao bì phù hợp sản phẩm':'Packaging solutions for your product');
+}
+
+function setRightChoiceCopy($,lang){
+  const vi=lang==='vi';
+  const names=vi?['Thương hiệu mới','Doanh nghiệp mỹ phẩm','Đơn vị phân phối']:['New brands','Cosmetic businesses','Distributors'];
+  const copy=vi?[
+    ['Bắt đầu với lộ trình phát triển sản phẩm rõ ràng.','Tối ưu ngân sách theo từng giai đoạn.','Đồng hành từ mẫu thử đến sản xuất.'],
+    ['Mở rộng danh mục bằng công thức và bao bì mới.','Linh hoạt phát triển OEM/ODM theo định vị.','Đồng bộ R&D, hồ sơ và kế hoạch sản xuất.'],
+    ['Phát triển sản phẩm mang thương hiệu riêng.','Chủ động lựa chọn quy cách và phân khúc.','Dễ mở rộng thêm SKU khi thị trường phù hợp.']
+  ]:[
+    ['Start with a clear product-development roadmap.','Optimize budget by development stage.','Get support from sampling through production.'],
+    ['Expand your range with new formulas and packaging.','Flexible OEM/ODM development for your positioning.','Align R&D, documentation and production planning.'],
+    ['Develop products under your own brand.','Choose formats and positioning independently.','Scale with additional SKUs as demand grows.']
+  ];
+  $('.block-right-choice').each((_,block)=>{
+    const root=$(block);root.find('.title').first().text(vi?'Phù hợp với':'Built for');
+    root.find('.client').each((i,client)=>{
+      $(client).find('.client__name .h3').first().text(names[i]||names[2]);
+      $(client).find('.client__description li').each((j,li)=>{if(copy[i]?.[j])$(li).text(copy[i][j])});
+    });
+  });
+}
+
+function setProduceCopy($,lang){
+  const vi=lang==='vi';
+  const data=vi?[
+    ['Gia công dược mỹ phẩm','R&D công thức, mẫu thử và sản xuất OEM/ODM theo định hướng thương hiệu.'],
+    ['Bao bì & hoàn thiện','Hỗ trợ chai lọ, sang chiết, đóng gói và hoàn thiện sản phẩm trước khi ra thị trường.']
+  ]:[
+    ['Cosmetic & cosmeceutical manufacturing','Formula R&D, sampling and OEM/ODM production for your brand direction.'],
+    ['Packaging & finishing','Bottle selection, filling, packing and finished-product preparation before launch.']
+  ];
+  $('.block-we-produce .title-wrapper .title').first().text(vi?'Danh mục sản xuất':'What we manufacture');
+  $('.block-we-produce .item').each((i,e)=>{$(e).find('.item__title').first().text(data[i%2][0]);$(e).find('.item__text').first().text(data[i%2][1])});
+}
+
+function setFormatsCopy($,lang){
+  const vi=lang==='vi';
+  const tabs=vi?['Chăm sóc da','Chăm sóc tóc','Chăm sóc body','Trang điểm']:['Skin care','Hair care','Body care','Makeup'];
+  const formats=vi?[
+    ['Kem','Serum','Gel','Dạng xịt','Lotion','Mặt nạ','Tẩy tế bào chết','Dạng sáp'],
+    ['Dầu gội','Dầu xả','Tinh chất tóc','Xịt dưỡng','Mặt nạ tóc','Gel tạo kiểu'],
+    ['Sữa tắm','Lotion body','Body mist','Tẩy tế bào chết','Kem body','Gel body'],
+    ['Son','Kem nền','Phấn','Mascara','Kẻ mắt','Má hồng']
+  ]:[
+    ['Creams','Serums','Gels','Sprays','Lotions','Masks','Scrubs','Balms'],
+    ['Shampoo','Conditioner','Hair serum','Hair mist','Hair mask','Styling gel'],
+    ['Body wash','Body lotion','Body mist','Body scrub','Body cream','Body gel'],
+    ['Lip products','Foundation','Powder','Mascara','Eyeliner','Blush']
+  ];
+  $('.block-product-formats .title').text(vi?'Các dòng sản phẩm Bio-A Group có thể gia công':'Product lines Bio-A Group can manufacture');
+  $('.block-product-formats .formats__lede').text(vi?'Có thể phát triển theo công thức có sẵn hoặc công thức riêng; số lượng tối thiểu tùy từng sản phẩm.':'Available as ready-formula or custom-formula projects; minimum quantities vary by product.');
+  $('.block-product-formats .formats__tab').each((i,e)=>$(e).text(tabs[i]||$(e).text()));
+  $('.block-product-formats .formats__panel').each((i,p)=>$(p).find('.formats__item-title').each((j,e)=>$(e).text(formats[i%4][j%formats[i%4].length])));
+  $('.block-product-formats .formats__cta-title').text(vi?'Chưa thấy sản phẩm bạn cần?':'Do not see your product?');
+  $('.block-product-formats .formats__cta-description').text(vi?'Gửi ý tưởng, đội ngũ Bio-A Group sẽ tư vấn phương án phù hợp.':'Share your idea and Bio-A Group will recommend a suitable approach.');
+  $('.block-product-formats .formats__cta-btn .btn__text').text(vi?'Chia sẻ ý tưởng':'Tell us your idea');
+  $('.block-product-formats .formats__note').text(vi?'Có thể tùy chỉnh kết cấu, nguyên liệu, màu sắc, mùi hương và quy cách theo định hướng thương hiệu.':'Texture, ingredients, color, fragrance and format can be customized for your brand.');
+}
+
+function finalizeHomeCopy($,lang){
+  const vi=lang==='vi';
+  setProduceCopy($,lang);setPackagingCopy($,lang);setFormatsCopy($,lang);setRightChoiceCopy($,lang);
+  $('.block-products-desctop .big-labels,.block-products-mobile .big-labels').each((_,list)=>{
+    $(list).find('.big-labels__item-text-1').each((i,e)=>{
+      $(e).text(i%2===0?(vi?'2500 sản phẩm':'2500 units'):(vi?'5000 sản phẩm':'5000 units'));
+    });
+  });
+  $('.block-title h1').first().text(vi?'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group':'Bio-A Group Cosmetic & Cosmeceutical Manufacturing Factory');
+  $('.block-title .text-large').first().text(vi?'Đồng hành từ R&D công thức, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm.':'From formula R&D and OEM/ODM manufacturing to packaging and finished products.');
+  $('.whatsapp__title').text(vi?'Trao đổi ý tưởng cùng Bio-A Group':'Discuss your idea with Bio-A Group');
+  $('.whatsapp__description').text(vi?'Liên hệ Zalo 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ.':'Contact Bio-A Group on Zalo for formula, quantity and production-timeline advice.');
+  $('.page-main *').contents().each((_,n)=>{
+    if(n.type!=='text')return;
+    const p=$(n).parent();if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
+    let raw=n.data,key=raw.replace(/\s+/g,' ').trim();if(!key)return;
+    if(/Merywood/i.test(raw))n.data=replaceBrandText(raw);
+  });
+}
+
 function resetHomeVI($){
-  setText($,'.block-title h1','Nhà máy sản xuất & gia công mỹ phẩm BIO-A Group');$('.block-title .text-large').first().html('<p>Đồng hành xây dựng thương hiệu mỹ phẩm từ nghiên cứu công thức, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm.</p>');
   const stats=[['2.000+','Mẫu R&D'],['5+','Năm kinh nghiệm'],['10.000.000','Sản phẩm / năm'],['1.000 m²','Quy mô nhà máy'],['OEM/ODM','Gia công trọn gói']];setHomeStats($,stats);
-  $('#why-choose-us .title').first().text('Vì sao chọn BIO-A Group');const why=[['Giải pháp theo yêu cầu','Tư vấn theo mục tiêu sản phẩm, phân khúc khách hàng và định vị thương hiệu.'],['R&D & công thức','Phát triển công thức, mẫu thử và điều chỉnh theo nhu cầu thực tế của dự án.'],['Hỗ trợ hồ sơ','Đồng hành các hạng mục hồ sơ, công bố và thông tin nhãn trước khi ra thị trường.'],['Kiểm soát chất lượng','Theo dõi chất lượng trong từng giai đoạn để đảm bảo tính ổn định của thành phẩm.']];$('#why-choose-us .grid .item').each((i,e)=>{if(why[i]){$(e).find('.item__title').text(why[i][0]);$(e).find('.item__body').text(why[i][1])}});
-  const steps=[['Tư vấn & lập kế hoạch','Trao đổi mục tiêu, sản phẩm, ngân sách và tiến độ để thống nhất lộ trình triển khai.'],['Nghiên cứu & phát triển','Đội ngũ R&D lựa chọn công thức, nguyên liệu và thực hiện mẫu thử theo định hướng thương hiệu.'],['Bao bì & nhận diện','Hỗ trợ lựa chọn bao bì, nhãn và các hạng mục nhận diện cần thiết trước khi sản xuất.'],['Hồ sơ sản phẩm','Tư vấn các hạng mục hồ sơ và thông tin cần chuẩn bị theo từng loại sản phẩm.'],['Sản xuất & bàn giao','Triển khai sản xuất, đóng gói và bàn giao theo kế hoạch đã thống nhất.']];$('.block-how-works .title').text('Quy trình hợp tác');$('.block-how-works .step').each((i,e)=>{const x=steps[i%steps.length];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
-  $('.whatsapp__title').text('Trao đổi ý tưởng cùng BIO-A Group');$('.whatsapp__description').text('Nhắn WhatsApp 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ sản xuất.');$('.whatsapp__btn').attr('href',company.whatsapp).attr('target','_blank').find('.btn__text').text('Chat WhatsApp');
-  $('.block-product-formats .title').text('Các dạng sản phẩm BIO-A có thể gia công');$('.block-product-formats .formats__lede').text('Các dạng dưới đây có thể phát triển theo công thức có sẵn hoặc công thức riêng; số lượng tối thiểu tùy từng sản phẩm.');const tabs=['Thực phẩm bổ sung','Dinh dưỡng thể thao','Sản phẩm thú cưng','Mỹ phẩm'];$('.block-product-formats .formats__tab').each((i,e)=>$(e).text(tabs[i]||$(e).text()));$('.block-product-formats .formats__cta-title').text('Chưa thấy dạng sản phẩm bạn cần?');$('.block-product-formats .formats__cta-description').text('Gửi ý tưởng sản phẩm, đội ngũ BIO-A sẽ tư vấn phương án phù hợp.');$('.block-product-formats .formats__cta-btn .btn__text').text('Chia sẻ ý tưởng');
-  const formats={'Powders and drink mixes':'Bột & hỗn hợp pha uống','Capsules':'Viên nang','Gummies':'Kẹo dẻo','Liquids and syrups':'Dung dịch & siro','Softgels':'Viên nang mềm','Tablets':'Viên nén','Effervescent tablets':'Viên sủi','Gels':'Dạng gel','Shots':'Dạng shot','Drops':'Dạng nhỏ giọt','Tea bags':'Trà túi lọc','Sprays':'Dạng xịt','Lozenges':'Viên ngậm','Lollipops':'Kẹo que','Chewable tablets':'Viên nhai','Bars':'Dạng thanh','Oral films':'Màng ngậm','Powders':'Dạng bột','Soft chews':'Viên nhai mềm','Treats':'Dạng thưởng','Pastes':'Dạng sệt','Creams':'Kem','Serums':'Serum','Liquids':'Dạng lỏng','Balms':'Dạng sáp'};$('.block-product-formats .formats__item-title').each((_,e)=>{const t=$(e).text().trim();if(formats[t])$(e).text(formats[t])});$('.block-product-formats .formats__note').text('Có thể tùy chỉnh dạng viên, nguyên liệu, màu sắc và cấu trúc sản phẩm theo định hướng thương hiệu.');
-  $('.block-reviews .title').html('Khách hàng nhận được gì<br>khi đồng hành cùng BIO-A Group');const rev=['Quy trình rõ ràng, đội ngũ hỗ trợ nhanh và bám sát yêu cầu sản phẩm.','Mẫu thử được điều chỉnh linh hoạt, giúp rút ngắn thời gian hoàn thiện sản phẩm.','BIO-A Group hỗ trợ đồng bộ từ công thức, bao bì đến kế hoạch sản xuất.','Tiến độ ổn định, trao đổi minh bạch và thuận tiện khi cần phát triển thêm SKU.'];$('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%rev.length]);$(e).find('.review__author-name').text('Khách hàng BIO-A Group');$(e).find('.review__author-info').text('Nội dung đánh giá mẫu – sẽ cập nhật')});
-  $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{const x=steps[i%steps.length];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
-  const benefits=['Thiết kế phù hợp định vị thương hiệu.','Linh hoạt lựa chọn quy cách và bao bì.','Hỗ trợ tối ưu theo kế hoạch sản xuất.','Tư vấn số lượng phù hợp từng dự án.','Dễ mở rộng danh mục sản phẩm.'];$('.product .list__item-text').each((i,e)=>$(e).text(benefits[i%benefits.length]));$('.product .product__ideal-for .label').text('Phù hợp với');$('.product .product__open-text').text('Xem thêm');
+  $('#why-choose-us .title').first().text('Vì sao chọn Bio-A Group');
+  const why=[['Giải pháp theo yêu cầu','Tư vấn theo mục tiêu sản phẩm, khách hàng và định vị thương hiệu.'],['R&D & công thức','Phát triển công thức, mẫu thử và điều chỉnh theo nhu cầu dự án.'],['Hỗ trợ hồ sơ','Đồng hành hồ sơ, công bố và thông tin nhãn trước khi ra thị trường.'],['Kiểm soát chất lượng','Theo dõi chất lượng ở từng giai đoạn để ổn định thành phẩm.']];
+  $('#why-choose-us .grid .item').each((i,e)=>{if(why[i]){$(e).find('.item__title').text(why[i][0]);$(e).find('.item__body').text(why[i][1])}});
+  const steps=[['Tư vấn & lập kế hoạch','Thống nhất mục tiêu, sản phẩm, ngân sách và tiến độ triển khai.'],['Nghiên cứu & phát triển','R&D công thức, nguyên liệu và mẫu thử theo định hướng thương hiệu.'],['Bao bì & nhận diện','Lựa chọn bao bì, nhãn và hạng mục nhận diện trước sản xuất.'],['Hồ sơ sản phẩm','Tư vấn hồ sơ và thông tin cần chuẩn bị theo từng nhóm sản phẩm.'],['Sản xuất & bàn giao','Sản xuất, đóng gói và bàn giao theo kế hoạch đã thống nhất.']];
+  $('.block-how-works .title').text('Quy trình hợp tác');$('.block-how-works .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  $('.block-reviews .title').html('Khách hàng nhận được gì<br>khi đồng hành cùng Bio-A Group');
+  const rev=['Quy trình rõ ràng, đội ngũ hỗ trợ nhanh và bám sát yêu cầu sản phẩm.','Mẫu thử được điều chỉnh linh hoạt, giúp rút ngắn thời gian hoàn thiện.','Bio-A Group hỗ trợ đồng bộ từ công thức, bao bì đến kế hoạch sản xuất.','Tiến độ ổn định, trao đổi minh bạch khi cần phát triển thêm SKU.'];
+  $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Khách hàng Bio-A Group');$(e).find('.review__author-info').text('Nội dung đánh giá mẫu – sẽ cập nhật')});
+  $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  finalizeHomeCopy($,'vi');
 }
 
 function resetHomeEN($){
-  setText($,'.block-title h1','BIO-A Group Cosmetics Manufacturing & Private Label Partner');
-  $('.block-title .text-large').first().html('<p>Build your cosmetics brand with BIO-A Group — from formula R&D and OEM/ODM manufacturing to packaging and finished products.</p>');
-  const stats=[['2,000+','R&D samples'],['5+','Years of experience'],['10,000,000','Products / year'],['1,000 m²','Factory scale'],['OEM/ODM','Full-service manufacturing']];
-  setHomeStats($,stats);
-
-  $('#why-choose-us .title').first().text('Why choose BIO-A Group');
-  const why=[
-    ['Tailored solutions','Consulting based on product goals, target customers and brand positioning.'],
-    ['R&D & formulation','Formula development, sampling and refinement based on each project.'],
-    ['Regulatory support','Support for product dossiers, declarations and label information before launch.'],
-    ['Quality control','Quality monitoring throughout development and production for stable finished products.']
-  ];
+  const stats=[['2,000+','R&D samples'],['5+','Years of experience'],['10,000,000','Products / year'],['1,000 m²','Factory scale'],['OEM/ODM','Full-service manufacturing']];setHomeStats($,stats);
+  $('#why-choose-us .title').first().text('Why choose Bio-A Group');
+  const why=[['Tailored solutions','Consulting around product goals, customers and brand positioning.'],['R&D & formulation','Formula development, sampling and refinement for each project.'],['Documentation support','Support for dossiers, notifications and label information.'],['Quality control','Quality monitoring throughout development and production.']];
   $('#why-choose-us .grid .item').each((i,e)=>{if(why[i]){$(e).find('.item__title').text(why[i][0]);$(e).find('.item__body').text(why[i][1])}});
-
-  const steps=[
-    ['Consultation & planning','Align product goals, budget and timeline to define the development roadmap.'],
-    ['Research & development','Our R&D team selects formulas and ingredients and develops samples for your brand direction.'],
-    ['Packaging & branding','Support with packaging, labels and brand assets required before production.'],
-    ['Product documentation','Guidance on documentation and product information required for each category.'],
-    ['Production & delivery','Manufacturing, packing and delivery according to the approved production plan.']
-  ];
-  $('.block-how-works .title').text('How we work');
-  $('.block-how-works .step').each((i,e)=>{const x=steps[i%steps.length];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
-
-  $('.whatsapp__title').text('Discuss your idea with BIO-A Group');
-  $('.whatsapp__description').text('Contact BIO-A Group for advice on formulas, quantities and production timelines.');
-  $('.whatsapp__btn').attr('href',company.whatsapp).attr('target','_blank').find('.btn__text').text('Contact us');
-
-  $('.block-product-formats .title').text('Product formats BIO-A can manufacture');
-  $('.block-product-formats .formats__lede').text('Available formats can be developed from ready formulas or custom formulas; minimum quantities vary by product.');
-  const tabs=['Supplements','Sports nutrition','Pet products','Cosmetics'];
-  $('.block-product-formats .formats__tab').each((i,e)=>$(e).text(tabs[i]||$(e).text()));
-  $('.block-product-formats .formats__cta-title').text('Do not see your product format?');
-  $('.block-product-formats .formats__cta-description').text('Share your product idea and the BIO-A team will recommend a suitable solution.');
-  $('.block-product-formats .formats__cta-btn .btn__text').text('Tell us your idea');
-
-  $('.block-reviews .title').html('What clients receive<br>when working with BIO-A Group');
-  const rev=[
-    'A clear process, responsive support and close follow-up on product requirements.',
-    'Flexible sample refinement helped shorten our product development timeline.',
-    'BIO-A Group supports the full process from formulation and packaging to production planning.',
-    'Stable timelines and transparent communication make it easier to expand additional SKUs.'
-  ];
-  $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%rev.length]);$(e).find('.review__author-name').text('BIO-A Group client');$(e).find('.review__author-info').text('Sample testimonial — to be updated')});
-
-  $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');
-  $('.block-roadmap .step').each((i,e)=>{const x=steps[i%steps.length];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
-  const benefits=['Designed for your brand positioning.','Flexible product formats and packaging.','Optimized around your production plan.','Quantity guidance for each project.','Easy product-line expansion.'];
-  $('.product .list__item-text').each((i,e)=>$(e).text(benefits[i%benefits.length]));
-  $('.product .product__ideal-for .label').text('Ideal for');
-  $('.product .product__open-text').text('Show more');
+  const steps=[['Consultation & planning','Align product goals, budget and timeline.'],['Research & development','Develop formulas, ingredients and samples for your brand direction.'],['Packaging & branding','Select packaging, labels and required brand assets.'],['Product documentation','Prepare the documentation and product information required.'],['Production & delivery','Manufacture, pack and deliver to the agreed plan.']];
+  $('.block-how-works .title').text('How we work');$('.block-how-works .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  $('.block-reviews .title').html('What clients receive<br>when working with Bio-A Group');
+  const rev=['A clear process, responsive support and close follow-up on product requirements.','Flexible sample refinement helps shorten development time.','Bio-A Group supports formulation, packaging and production planning.','Stable timelines make it easier to expand additional SKUs.'];
+  $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Bio-A Group client');$(e).find('.review__author-info').text('Sample testimonial — to be updated')});
+  $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');$('.block-roadmap .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  finalizeHomeCopy($,'en');
 }
 
 function viCleanup($){
-  const map={'Customers Achieve':'Khách hàng nhận được gì','Product formats we produce':'Các dạng sản phẩm BIO-A có thể gia công','Sports nutrition':'Dinh dưỡng thể thao','Pet supplements':'Sản phẩm thú cưng','Supplements':'Thực phẩm bổ sung','Cosmetics':'Mỹ phẩm','Ideal for':'Phù hợp với','Key Advantages:':'Ưu điểm nổi bật:','White Label':'Công thức có sẵn','Private Label':'Công thức độc quyền','Contract Manufacturing':'Gia công trọn gói','Read more':'Xem thêm','Show more':'Xem thêm','Contact Us':'Liên hệ tư vấn'};
-  $('body *').contents().each((_,n)=>{if(n.type!=='text')return;const p=$(n).parent();if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;let t=n.data;if(/Merywood/i.test(t))t=replaceBrandText(t);const k=t.trim();if(map[k])t=t.replace(k,map[k]);n.data=t});
+  const map={
+    'Manage Consent':'Quản lý cookie',
+    'Accept all':'Đồng ý tất cả',
+    'Reject all':'Từ chối tất cả',
+    'View preferences':'Tùy chọn',
+    'Preferences':'Tùy chọn cookie',
+    'Functional':'Cookie chức năng',
+    'Always active':'Luôn hoạt động',
+    'Statistics (Analytics)':'Thống kê (Analytics)',
+    'Marketing':'Tiếp thị',
+    'Ads/Remarketing':'Quảng cáo/Tiếp thị lại',
+    'Save preferences':'Lưu tùy chọn',
+    '← Back':'← Quay lại',
+    'Product Type':'Loại sản phẩm',
+    'Food Supplements':'Dược mỹ phẩm',
+    'Pet Supplements':'Sản phẩm chăm sóc thú cưng',
+    'Sport nutrition':'Dinh dưỡng thể thao',
+    'No idea now':'Cần Bio-A Group tư vấn',
+    'Product Quantity':'Số lượng dự kiến',
+    'Privacy Policy':'Chính sách bảo mật',
+    'Cookie Policy':'Chính sách cookie',
+    'Customers Achieve':'Khách hàng nhận được gì',
+    'Product formats we produce':'Các dòng sản phẩm Bio-A Group có thể gia công',
+    'Sports nutrition':'Dinh dưỡng thể thao',
+    'Pet supplements':'Sản phẩm thú cưng',
+    'Supplements':'Dược mỹ phẩm',
+    'Cosmetics':'Mỹ phẩm',
+    'Ideal for':'Phù hợp với',
+    'Key Advantages:':'Ưu điểm nổi bật',
+    'Key Advantages':'Ưu điểm nổi bật',
+    'White Label':'Công thức có sẵn',
+    'Private Label':'Công thức độc quyền',
+    'Contract Manufacturing':'Gia công trọn gói',
+    'Read more':'Xem thêm',
+    'Show more':'Xem thêm',
+    'Contact Us':'Liên hệ tư vấn',
+    'Packaging':'Bao bì',
+    'Solutions Tailored':'Giải pháp phù hợp',
+    'to Your Needs':'theo nhu cầu',
+    'Retailers':'Đơn vị phân phối',
+    'Entrepreneurs':'Thương hiệu mới',
+    'Creams':'Kem',
+    'Gels':'Gel',
+    'Lotions':'Lotion',
+    'Jars':'Hũ mỹ phẩm',
+    'Blister Packs':'Vỉ định hình',
+    'Sachets':'Gói sachet',
+    'Doypacks':'Túi doypack',
+    'Get started':'Nhận tư vấn',
+    'Chat on WhatsApp':'Liên hệ với chúng tôi'
+  };
+  $('body *').contents().each((_,n)=>{
+    if(n.type!=='text')return;
+    const p=$(n).parent();
+    if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
+    let t=n.data;
+    if(/Merywood/i.test(t))t=replaceBrandText(t);
+    const k=t.replace(/\s+/g,' ').trim();
+    if(map[k])t=t.replace(k,map[k]);
+    else if(/^To provide the best experiences/i.test(k))t='Website sử dụng cookie cần thiết và công cụ thống kê để cải thiện trải nghiệm. Bạn có thể đồng ý, từ chối hoặc tùy chỉnh.';
+    else if(/^It takes 30 seconds/i.test(k))t='Chỉ mất khoảng 30 giây để gửi yêu cầu tư vấn.';
+    else if(/^I agree to the processing/i.test(k))t='Tôi đồng ý để Bio-A Group sử dụng thông tin đã cung cấp nhằm mục đích tư vấn và liên hệ.';
+    n.data=t;
+  });
+  $('[placeholder]').each((_,el)=>{
+    const e=$(el),v=e.attr('placeholder')||'';
+    if(/email/i.test(v))e.attr('placeholder','Nhập email');
+    else if(/name/i.test(v))e.attr('placeholder','Nhập họ tên');
+    else if(/message|comment/i.test(v))e.attr('placeholder','Nhập nội dung');
+  });
+  $('[aria-label]').each((_,el)=>{
+    const e=$(el),v=e.attr('aria-label')||'';
+    if(/previous slide/i.test(v))e.attr('aria-label','Xem mục trước');
+    else if(/next slide/i.test(v))e.attr('aria-label','Xem mục tiếp theo');
+    else if(/close/i.test(v))e.attr('aria-label','Đóng');
+  });
 }
 
 function tabsScript($){$('body').append(`<script id="bioa-tabs-fix">(function(){document.querySelectorAll('.block-product-formats').forEach(function(root){var tabs=[].slice.call(root.querySelectorAll('.formats__tab')),panels=[].slice.call(root.querySelectorAll('.formats__panel'));function go(i){tabs.forEach(function(t,n){t.setAttribute('aria-selected',n===i?'true':'false')});panels.forEach(function(p,n){p.classList.toggle('is-active',n===i);p.style.display=n===i?'block':'none'})}if(tabs.length&&panels.length){go(Math.max(0,tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true'})));tabs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})})}})})();</script>`)}
 
 export function applyFinalFixes($, route, lang){
-  cleanupExternal($);$('html').attr('lang',lang==='vi'?'vi':'en');const title=titleFor(route,lang);$('title').text(title+' | BIO-A Group');$('meta[property="og:site_name"]').attr('content','BIO-A Group');$('link[rel="canonical"]').attr('href',company.domain+localPath(route,lang));
+  cleanupExternal($);$('html').attr('lang',lang==='vi'?'vi':'en');applyBrandHead($,route,lang);
   if(lang==='en')$('body *').contents().each((_,n)=>{if(n.type!=='text')return;const p=$(n).parent();if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;n.data=replaceBrandText(n.data)});
   headerAndLinks($,route,lang);palette($);
   $('.header__email a,.menu__email a,.footer-top__email a').attr('href','mailto:'+company.email).text(company.email);$('.whatsapp__btn').attr('href',company.whatsapp).attr('target','_blank');
-  if(lang==='vi'){viCleanup($);if(route==='/')resetHomeVI($);if(route==='/dich-vu-khac/'){$('h1').first().text('Dịch vụ khác của BIO-A Group');$('.text-large').first().text('Hỗ trợ R&D, phát triển công thức, lựa chọn bao bì, thiết kế nhãn, hồ sơ công bố và các hạng mục liên quan đến phát triển thương hiệu mỹ phẩm.')}}
+  if(lang==='vi'){viCleanup($);if(route==='/')resetHomeVI($);if(route==='/dich-vu-khac/'){$('h1').first().text('Dịch vụ khác của Bio-A Group');$('.text-large').first().text('Hỗ trợ R&D, phát triển công thức, lựa chọn bao bì, thiết kế nhãn, hồ sơ công bố và các hạng mục liên quan đến phát triển thương hiệu mỹ phẩm.')}}
   if(lang==='en'&&route==='/')resetHomeEN($);
-  $('.footer-bottom__copyright').text(lang==='vi'?'© 2026 BIO-A Group. Bảo lưu mọi quyền.':'© 2026 BIO-A Group. All rights reserved.');$('.footer-top__socials a').each((i,e)=>{const a=$(e);if(i===0)a.attr('href',company.whatsapp).attr('aria-label','WhatsApp');if(i===1)a.attr('href',company.facebook).attr('aria-label','Facebook');if(i===2)a.attr('href',company.zalo).attr('aria-label','Zalo').html('<img src="/assets/zalo-bioa-circle-cream.svg" alt="" aria-hidden="true" style="display:block;width:30px;height:30px;object-fit:contain;margin:auto">');a.attr('target','_blank').attr('rel','noopener noreferrer')});
+  $('.footer-bottom__copyright').text(lang==='vi'?'© 2026 Bio-A Group. Bảo lưu mọi quyền.':'© 2026 Bio-A Group. All rights reserved.');$('.footer-top__socials a').each((i,e)=>{const a=$(e);if(i===0)a.attr('href',company.whatsapp).attr('aria-label','WhatsApp');if(i===1)a.attr('href',company.facebook).attr('aria-label','Facebook');if(i===2)a.attr('href',company.zalo).attr('aria-label','Zalo').html('<img src="/assets/zalo-bioa-circle-cream.svg" alt="" aria-hidden="true" style="display:block;width:30px;height:30px;object-fit:contain;margin:auto">');a.attr('target','_blank').attr('rel','noopener noreferrer')});
+  $('body *').contents().each((_,n)=>{
+    if(n.type!=='text')return;
+    const p=$(n).parent();
+    if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
+    n.data=replaceBrandText(n.data);
+  });
+  $('[title],[aria-label],[alt]').each((_,el)=>{
+    const e=$(el);
+    ['title','aria-label','alt'].forEach(k=>{const v=e.attr(k);if(v)e.attr(k,replaceBrandText(v));});
+  });
   tabsScript($);
 }

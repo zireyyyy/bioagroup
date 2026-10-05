@@ -368,3 +368,36 @@ Protected:
 - section geometry;
 - watermark;
 - Desktop/Tablet layout.
+
+
+## Home Completion — Desktop + Mobile First
+
+Owner direction:
+- Desktop: ACTIVE
+- Tablet: DEFERRED / PENDING
+- Mobile: ACTIVE
+
+BIO-A files:
+- bioa-transform.mjs — paired VI/EN content + brand/head identity
+- bioa-home-refine.mjs — Home visual/runtime refinements + mobile MOQ layout
+- build.mjs — Home uses applyHomeRefinement; subpages use applySharedShell
+
+Current mappings:
+- Browser identity: titleFor / applyBrandHead
+- Hero/company identity: resetHomeVI / resetHomeEN / finalizeHomeCopy
+- We Produce: setProduceCopy
+- Packaging/Airless: setPackagingCopy
+- Product formats: setFormatsCopy
+- Right Choice: setRightChoiceCopy
+- Mobile MOQ: patchH5CMobileMoqCss + finalizeHomeCopy
+- Shared Header/Footer: applySharedShell
+
+Source authority:
+- Merywood Home DOM/layout remains source-of-truth.
+- Legacy BIO-A ZIP provides real service/category terminology.
+- Missing dynamic legacy copy may use concise placeholders, paired VI/EN.
+
+Status:
+- Desktop: NEEDS OWNER RUNTIME TEST
+- Tablet: DEFERRED / PENDING
+- Mobile: NEEDS OWNER RUNTIME TEST

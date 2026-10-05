@@ -439,3 +439,55 @@ Responsive status:
 - Desktop: PROTECTED
 - Tablet: PROTECTED
 - Mobile: PENDING runtime test
+
+
+## HOME COMPLETION PHASE — DESKTOP + MOBILE FIRST
+
+Owner direction:
+- Finish Home Desktop + Mobile before Tablet.
+- Home Tablet is explicitly DEFERRED / PENDING and must not block Desktop/Mobile completion.
+- PATCH E — Gia Công Mỹ Phẩm hub remains PENDING until Home is complete.
+- Header + Footer are accepted and should be reused on subpages before individual subpage content work begins.
+
+Current candidate chain:
+- 61986489fad6b952951a4377fcdfc997df5e93b3 — H5A brand naming, browser title, favicon/identity
+- 54f603d8371d2a668d4cb26d6727ab7aa37a60d5 — H5B paired VI/EN Home content mapping
+- ec49ef9fc619a38a17f7bf7af2080392ac09dc04 — H5C mobile MOQ units + nowrap
+- 8e3a38d0942a019bc87046180a96e7e095235b00 — S1 shared accepted Header/Footer shell across routes
+- 787a3185753730883cd712871e83fd70c08ce27a — residual VI interface localization
+
+Brand/content authority:
+- Brand display name: Bio-A Group.
+- Company descriptor: Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group.
+- Legacy BIO-A ZIP is the first content authority.
+- Where the legacy source has no equivalent dynamic copy, use short sample content sized to the Merywood component.
+- VI and EN content must be maintained as paired mappings.
+
+Responsive status for this phase:
+- Home Desktop: ACTIVE CANDIDATE
+- Home Tablet: DEFERRED / PENDING by owner direction
+- Home Mobile: ACTIVE CANDIDATE
+- Header: PASS / LOCKED; shared shell candidate on subpages
+- Footer: PASS / LOCKED; shared shell candidate on subpages
+- PATCH E: PENDING
+
+Protected:
+- Header/Footer accepted geometry and visual treatment.
+- Home Tablet layout is not to be repaired in this phase.
+- Existing Home section mechanics remain source-owned; content patches must not rewrite components.
+
+
+### SHARED SHELL ROUTE SCOPE
+
+To avoid restoring the previously problematic full Merywood catalog build, the shared Header/Footer rollout is intentionally limited to the current BIO-A core routes:
+- /
+- /about/
+- /contacts/
+- /careers/
+- /cookie-policy/
+- /privacy-policy/
+- /contract-manufacturing-cosmetics/
+- /blog/
+- /dich-vu-khac/ remains supplied by withExtraRoutes() from the existing hotel/spa source mapping.
+
+Do not re-enable the old vitamin/supplement/archive route catalog unless the owner explicitly needs those pages.
