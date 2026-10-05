@@ -304,13 +304,35 @@ Responsive status:
 - FULL RESPONSIVE PASS: NO.
 - Do not modify the verified Chat C4 behavior while working on Footer or Hub unless the owner explicitly reopens it.
 
+### FOOTER — FULL RESPONSIVE PASS
+
+Accepted checkpoint:
+c3ad6b129502973e89ec321211e9d911a919544c
+
+Owner runtime confirmation:
+- Desktop: PASS / LOCKED
+- Tablet: PASS / LOCKED
+- Mobile: PASS / LOCKED
+- FULL RESPONSIVE PASS — OWNER CONFIRMED
+
+Accepted footer state includes:
+- 4 BIO-A source-derived navigation groups;
+- D2 font-weight hierarchy;
+- logo-green footer palette + cream foreground;
+- Tablet 2×2 content-safe navigation arrangement;
+- policy links moved into the Policies/Chính Sách column;
+- centered copyright: © Bio-A Group | All rights reserved;
+- dark #093D26 copyright accent strip.
+
+Do not reopen Footer during HOME patches unless explicitly requested.
+
 ### NEXT PRODUCT PATCH
 
-PATCH D — Footer
-- D2 typography is owner-confirmed PASS/LOCKED;
-- D1 is being revised from actual legacy BIO-A categories;
-- D3 ports the legacy BIO-A cream/green footer palette;
-- preserve Merywood footer DOM/layout mechanics and accepted email/contact geometry.
+HOME refinement before PATCH E:
+- H1 localize remaining Get started CTAs;
+- H2 synchronize navigation/action controls and review-card palette to BIO-A logo green + cream;
+- H3 mobile CTA watermark + Zalo contact CTA;
+- H4 packaging-airless watermark layer only.
 
 ## 11. VERIFICATION / PASS AUTHORITY
 
@@ -341,8 +363,8 @@ When owner confirms PASS:
 
 ## 12. ROLLBACK REFERENCES
 
-Latest owner-confirmed PASS checkpoint:
-b4c5e94f966ee6283a8b63c82e9ceb3c543e1214
+Latest owner-confirmed FULL RESPONSIVE PASS checkpoint:
+c3ad6b129502973e89ec321211e9d911a919544c
 
 Primary owner-declared rollback baseline:
 083a7e890b2627c9456c4c0ef98890b3749698fb

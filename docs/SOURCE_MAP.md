@@ -114,10 +114,11 @@ BIO-A:
 - BIO-A dark-background asset: /assets/bioa-full-light.svg
 
 Responsive status:
-- Desktop: PASS / LOCKED for current 4-column footer layout/color at commit 36f09db2188df97c901cab7b10e710a48612f53a.
-- Tablet: FAIL — current one-row desktop arrangement compresses BIO-A content too aggressively.
-- Mobile: PASS / LOCKED for current footer layout/color at commit 36f09db2188df97c901cab7b10e710a48612f53a.
-- FULL RESPONSIVE PASS: NO.
+- Accepted checkpoint: c3ad6b129502973e89ec321211e9d911a919544c.
+- Desktop: PASS / LOCKED.
+- Tablet: PASS / LOCKED.
+- Mobile: PASS / LOCKED.
+- FULL RESPONSIVE PASS — OWNER CONFIRMED.
 - Footer D1 categories are being revised from legacy BIO-A source data.
 - Footer D3-REV uses owner-directed inverted contrast: #116F47 background + cream foreground.
 - Mapping confirmed.
