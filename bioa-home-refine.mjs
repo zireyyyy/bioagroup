@@ -3125,6 +3125,21 @@ const patchD3FooterBrandCss = `
   color:var(--bioa-footer-cream)!important;
 }
 `;
+
+const patchD4FooterHierarchyCss = `
+/* FOOTER-D4 — four source-layout columns + clearer heading hierarchy.
+   Do not override .footer-top__menu layout/grid/flex; Merywood remains responsive owner. */
+.footer-top__nav > ul > li:first-child > a{
+  font-size:18px!important;
+  line-height:1.2!important;
+}
+@media(max-width:768px){
+  .footer-top__nav > ul > li:first-child > a{
+    font-size:16px!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3466,13 +3481,6 @@ function refineFooterNavigation($,lang){
       ['Chai Lọ Mỹ Phẩm','/chai-lo-my-pham/'],
       ['Thiết Kế Bao Bì Mỹ Phẩm','/thiet-ke-bao-bi-my-pham/']
     ]},
-    {title:'Kiến Thức Làm Đẹp',items:[
-      ['Kinh Nghiệm Cho Người Mới Gia Công Mỹ Phẩm','/kinh-nghiem-cho-nguoi-moi-gia-cong-my-pham/'],
-      ['Tips Lựa Chọn Chất Liệu Bao Bì Mỹ Phẩm','/tips-lua-chon-chat-lieu-bao-bi-my-pham-phu-hop-bio-a-group/'],
-      ['Nguyên Liệu Sản Xuất Mỹ Phẩm Thiên Nhiên','/nguyen-lieu-san-xuat-my-pham-thien-nhien/'],
-      ['Vì Sao Cần Kiểm Nghiệm SPF Kem Chống Nắng','/vi-sao-can-kiem-nghiem-spf-kem-chong-nang-truoc-khi-dua-ra-thi-truong/'],
-      ['Cách Để Xịt Body Mist Thơm Lâu','/cach-de-xit-body-mist-thom-lau/']
-    ]},
     {title:'BIO-A Group',items:[
       ['Năng Lực Sản Xuất','/nang-luc/'],
       ['Tuyển Dụng R&D','/tuyen-dung-rd/'],
@@ -3499,13 +3507,6 @@ function refineFooterNavigation($,lang){
       ['Cosmetic Bottles & Packaging','/en/chai-lo-my-pham/'],
       ['Cosmetic Packaging Design','/en/thiet-ke-bao-bi-my-pham/']
     ]},
-    {title:'Beauty Knowledge',items:[
-      ['Guide for New Cosmetic Brand Owners','/en/kinh-nghiem-cho-nguoi-moi-gia-cong-my-pham/'],
-      ['Cosmetic Packaging Material Tips','/en/tips-lua-chon-chat-lieu-bao-bi-my-pham-phu-hop-bio-a-group/'],
-      ['Natural Cosmetic Ingredients','/en/nguyen-lieu-san-xuat-my-pham-thien-nhien/'],
-      ['Why Sunscreen SPF Testing Matters','/en/vi-sao-can-kiem-nghiem-spf-kem-chong-nang-truoc-khi-dua-ra-thi-truong/'],
-      ['How to Make Body Mist Last Longer','/en/cach-de-xit-body-mist-thom-lau/']
-    ]},
     {title:'BIO-A Group',items:[
       ['Manufacturing Capabilities','/en/nang-luc/'],
       ['R&D Recruitment','/en/tuyen-dung-rd/'],
@@ -3519,7 +3520,10 @@ function refineFooterNavigation($,lang){
   ];
 
   const navs=$('.footer-top__menu .footer-top__nav');
-  navs.each((i,navEl)=>{
+  // Keep Merywood's own responsive layout mechanics. Only reduce the source DOM
+  // from five nav groups to the four owner-requested BIO-A groups.
+  navs.slice(cols.length).remove();
+  navs.slice(0,cols.length).each((i,navEl)=>{
     const col=cols[i];
     if(!col)return;
     const ul=$(navEl).find('ul').first();
@@ -3693,7 +3697,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
