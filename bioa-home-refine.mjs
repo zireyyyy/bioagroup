@@ -3229,19 +3229,39 @@ const patchD5FooterTabletCss = `
 `;
 
 const patchD6FooterMetaCss = `
-/* FOOTER-D6 — owner-requested footer meta placement. */
+/* FOOTER-D6B — dark accent strip + centered owner-approved copyright. */
+.footer-bottom{
+  background:var(--bioa-brand-main)!important;
+}
 .footer-bottom__wrapper{
   position:relative!important;
   display:flex!important;
   align-items:center!important;
   justify-content:center!important;
+  min-height:38px!important;
+  padding:8px 0!important;
+  box-sizing:border-box!important;
 }
 .footer-bottom__copyright{
   width:100%!important;
+  margin:0!important;
   text-align:center!important;
+  color:var(--bioa-footer-cream)!important;
+  font-size:13px!important;
+  line-height:1.2!important;
+  font-weight:400!important;
 }
 .footer-bottom__links{
   display:none!important;
+}
+@media(max-width:768px){
+  .footer-bottom__wrapper{
+    min-height:40px!important;
+    padding:9px 0!important;
+  }
+  .footer-bottom__copyright{
+    font-size:12px!important;
+  }
 }
 `;
 
@@ -3593,8 +3613,8 @@ function refineFooterNavigation($,lang){
       ['Liên Hệ','/lien-he/']
     ]},
     {title:'Chính Sách',items:[
-      ['Privacy Policy','/privacy-policy/'],
-      ['Cookie Policy','/cookie-policy/'],
+      ['Chính Sách Bảo Mật','/privacy-policy/'],
+      ['Chính Sách Cookie','/cookie-policy/'],
       ['Chính Sách Vận Chuyển','/chinh-sach-van-chuyen/']
     ]}
   ] : [
