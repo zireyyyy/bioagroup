@@ -3010,6 +3010,53 @@ const patchC4BComposerCss = `
 }
 `;
 
+
+const patchC4CMotionCss = `
+/* CHAT-C4C — open/close from the launcher's exact bottom-right anchor.
+   The panel is absolutely anchored to the launcher so transform-origin is stable. */
+.bioa-contact-fab__panel{
+  display:flex!important;
+  flex-direction:column!important;
+  position:absolute!important;
+  right:0!important;
+  bottom:0!important;
+  visibility:hidden!important;
+  opacity:0!important;
+  pointer-events:none!important;
+  transform-origin:100% 100%!important;
+  transform:translate3d(8px,8px,0) scale(.86)!important;
+  transition:
+    opacity .20s ease,
+    transform .28s cubic-bezier(.2,.78,.2,1),
+    visibility 0s linear .28s!important;
+  will-change:transform,opacity!important;
+}
+.bioa-contact-fab.is-open .bioa-contact-fab__panel{
+  visibility:visible!important;
+  opacity:1!important;
+  pointer-events:auto!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  transition:
+    opacity .18s ease,
+    transform .28s cubic-bezier(.2,.78,.2,1),
+    visibility 0s!important;
+}
+.bioa-contact-fab:not(.is-open){
+  pointer-events:none!important;
+}
+.bioa-contact-fab:not(.is-open) .bioa-contact-fab__toggle{
+  pointer-events:auto!important;
+}
+@media(max-width:768px){
+  .bioa-contact-fab__panel{
+    transform:translate3d(6px,6px,0) scale(.88)!important;
+  }
+  .bioa-contact-fab.is-open .bioa-contact-fab__panel{
+    transform:translate3d(0,0,0) scale(1)!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3472,7 +3519,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
