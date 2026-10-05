@@ -243,8 +243,82 @@ function resetHomeEN($){
 }
 
 function viCleanup($){
-  const map={'Customers Achieve':'Khách hàng nhận được gì','Product formats we produce':'Các dòng sản phẩm Bio-A Group có thể gia công','Sports nutrition':'Dinh dưỡng thể thao','Pet supplements':'Sản phẩm thú cưng','Supplements':'Thực phẩm bổ sung','Cosmetics':'Mỹ phẩm','Ideal for':'Phù hợp với','Key Advantages:':'Ưu điểm nổi bật','Key Advantages':'Ưu điểm nổi bật','White Label':'Công thức có sẵn','Private Label':'Công thức độc quyền','Contract Manufacturing':'Gia công trọn gói','Read more':'Xem thêm','Show more':'Xem thêm','Contact Us':'Liên hệ tư vấn','Packaging':'Bao bì','Solutions Tailored':'Giải pháp phù hợp','to Your Needs':'theo nhu cầu','Retailers':'Đơn vị phân phối','Entrepreneurs':'Thương hiệu mới','Creams':'Kem','Gels':'Gel','Lotions':'Lotion','Jars':'Hũ mỹ phẩm','Blister Packs':'Vỉ định hình','Sachets':'Gói sachet','Doypacks':'Túi doypack','Get started':'Nhận tư vấn','Chat on WhatsApp':'Liên hệ với chúng tôi'};
-  $('body *').contents().each((_,n)=>{if(n.type!=='text')return;const p=$(n).parent();if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;let t=n.data;if(/Merywood/i.test(t))t=replaceBrandText(t);const k=t.trim();if(map[k])t=t.replace(k,map[k]);n.data=t});
+  const map={
+    'Manage Consent':'Quản lý cookie',
+    'Accept all':'Đồng ý tất cả',
+    'Reject all':'Từ chối tất cả',
+    'View preferences':'Tùy chọn',
+    'Preferences':'Tùy chọn cookie',
+    'Functional':'Cookie chức năng',
+    'Always active':'Luôn hoạt động',
+    'Statistics (Analytics)':'Thống kê (Analytics)',
+    'Marketing':'Tiếp thị',
+    'Ads/Remarketing':'Quảng cáo/Tiếp thị lại',
+    'Save preferences':'Lưu tùy chọn',
+    '← Back':'← Quay lại',
+    'Product Type':'Loại sản phẩm',
+    'Food Supplements':'Dược mỹ phẩm',
+    'Pet Supplements':'Sản phẩm chăm sóc thú cưng',
+    'Sport nutrition':'Dinh dưỡng thể thao',
+    'No idea now':'Cần Bio-A Group tư vấn',
+    'Product Quantity':'Số lượng dự kiến',
+    'Privacy Policy':'Chính sách bảo mật',
+    'Cookie Policy':'Chính sách cookie',
+    'Customers Achieve':'Khách hàng nhận được gì',
+    'Product formats we produce':'Các dòng sản phẩm Bio-A Group có thể gia công',
+    'Sports nutrition':'Dinh dưỡng thể thao',
+    'Pet supplements':'Sản phẩm thú cưng',
+    'Supplements':'Dược mỹ phẩm',
+    'Cosmetics':'Mỹ phẩm',
+    'Ideal for':'Phù hợp với',
+    'Key Advantages:':'Ưu điểm nổi bật',
+    'Key Advantages':'Ưu điểm nổi bật',
+    'White Label':'Công thức có sẵn',
+    'Private Label':'Công thức độc quyền',
+    'Contract Manufacturing':'Gia công trọn gói',
+    'Read more':'Xem thêm',
+    'Show more':'Xem thêm',
+    'Contact Us':'Liên hệ tư vấn',
+    'Packaging':'Bao bì',
+    'Solutions Tailored':'Giải pháp phù hợp',
+    'to Your Needs':'theo nhu cầu',
+    'Retailers':'Đơn vị phân phối',
+    'Entrepreneurs':'Thương hiệu mới',
+    'Creams':'Kem',
+    'Gels':'Gel',
+    'Lotions':'Lotion',
+    'Jars':'Hũ mỹ phẩm',
+    'Blister Packs':'Vỉ định hình',
+    'Sachets':'Gói sachet',
+    'Doypacks':'Túi doypack',
+    'Get started':'Nhận tư vấn',
+    'Chat on WhatsApp':'Liên hệ với chúng tôi'
+  };
+  $('body *').contents().each((_,n)=>{
+    if(n.type!=='text')return;
+    const p=$(n).parent();
+    if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
+    let t=n.data;
+    if(/Merywood/i.test(t))t=replaceBrandText(t);
+    const k=t.replace(/\s+/g,' ').trim();
+    if(map[k])t=t.replace(k,map[k]);
+    else if(/^To provide the best experiences/i.test(k))t='Website sử dụng cookie cần thiết và công cụ thống kê để cải thiện trải nghiệm. Bạn có thể đồng ý, từ chối hoặc tùy chỉnh.';
+    else if(/^It takes 30 seconds/i.test(k))t='Chỉ mất khoảng 30 giây để gửi yêu cầu tư vấn.';
+    else if(/^I agree to the processing/i.test(k))t='Tôi đồng ý để Bio-A Group sử dụng thông tin đã cung cấp nhằm mục đích tư vấn và liên hệ.';
+    n.data=t;
+  });
+  $('[placeholder]').each((_,el)=>{
+    const e=$(el),v=e.attr('placeholder')||'';
+    if(/email/i.test(v))e.attr('placeholder','Nhập email');
+    else if(/name/i.test(v))e.attr('placeholder','Nhập họ tên');
+    else if(/message|comment/i.test(v))e.attr('placeholder','Nhập nội dung');
+  });
+  $('[aria-label]').each((_,el)=>{
+    const e=$(el),v=e.attr('aria-label')||'';
+    if(/previous slide/i.test(v))e.attr('aria-label','Xem mục trước');
+    else if(/next slide/i.test(v))e.attr('aria-label','Xem mục tiếp theo');
+    else if(/close/i.test(v))e.attr('aria-label','Đóng');
+  });
 }
 
 function tabsScript($){$('body').append(`<script id="bioa-tabs-fix">(function(){document.querySelectorAll('.block-product-formats').forEach(function(root){var tabs=[].slice.call(root.querySelectorAll('.formats__tab')),panels=[].slice.call(root.querySelectorAll('.formats__panel'));function go(i){tabs.forEach(function(t,n){t.setAttribute('aria-selected',n===i?'true':'false')});panels.forEach(function(p,n){p.classList.toggle('is-active',n===i);p.style.display=n===i?'block':'none'})}if(tabs.length&&panels.length){go(Math.max(0,tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true'})));tabs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})})}})})();</script>`)}
