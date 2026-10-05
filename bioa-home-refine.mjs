@@ -2837,6 +2837,96 @@ const patchC2Css = `
 }
 `;
 
+const patchC3Css = `
+/* PATCH C3 — compact Merywood-style chat cleanup.
+   Scope is intentionally limited to the custom BIO-A chat widget. */
+
+/* Single BIO-A avatar + source-like compact title treatment */
+.bioa-chat__head{
+  padding:18px 54px 15px!important;
+}
+.bioa-chat__avatars{
+  height:48px!important;
+  margin:0 0 8px!important;
+}
+.bioa-chat__avatar{
+  width:48px!important;
+  height:48px!important;
+  margin-left:0!important;
+}
+.bioa-chat__avatar img{
+  width:80%!important;
+  height:80%!important;
+}
+.bioa-chat__title{
+  font-size:20px!important;
+  font-weight:600!important;
+}
+.bioa-chat__sub{
+  margin-top:4px!important;
+}
+
+/* The primary Message/Zalo action row is removed in markup.
+   Keep only the requested four contact icons inside the chat shell. */
+.bioa-chat__channels-wrap{
+  flex:0 0 auto!important;
+  background:#fff!important;
+  border-bottom:1px solid #e9e9e9!important;
+}
+.bioa-chat__channels{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:10px!important;
+  min-height:64px!important;
+  padding:11px 16px!important;
+  box-sizing:border-box!important;
+}
+.bioa-chat__channel{
+  width:42px!important;
+  min-width:42px!important;
+  height:42px!important;
+  flex-basis:42px!important;
+  border-radius:12px!important;
+}
+
+/* Conversation area: no History label/cards and no extra brand/provider line. */
+.bioa-chat__history{
+  padding:14px 14px 10px!important;
+}
+.bioa-chat__msg--intro{
+  margin:0 0 10px!important;
+}
+.bioa-chat__msg--intro .bioa-chat__bubble{
+  max-width:248px!important;
+}
+
+/* Merywood launcher behavior: the floating launcher is hidden while the panel is open. */
+.bioa-contact-fab.is-open .bioa-contact-fab__toggle{
+  display:none!important;
+}
+
+@media(max-width:768px){
+  .bioa-chat__head{
+    padding:16px 50px 14px!important;
+  }
+  .bioa-chat__channels{
+    min-height:60px!important;
+    padding:9px 14px!important;
+    gap:9px!important;
+  }
+  .bioa-chat__channel{
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    flex-basis:40px!important;
+  }
+  .bioa-chat__history{
+    padding:12px 12px 9px!important;
+  }
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3189,35 +3279,21 @@ function addContactLauncher($,lang){
   const previewReply=vi
     ?'BIO-A đã nhận nội dung. Chatbot sẽ được kết nối ở bước sau; hiện bạn có thể tiếp tục qua Zalo hoặc Email.'
     :'BIO-A received your message. The chatbot will be connected in a later step; for now you can continue via Zalo or Email.';
-  const pencil='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l10.5-10.5-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg>';
 
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
-    <div class="bioa-contact-fab__panel" role="dialog" aria-modal="false" aria-label="${vi?'BIO-A Tư vấn':'BIO-A Support'}">
+    <div class="bioa-contact-fab__panel" role="dialog" aria-modal="false" aria-label="BIO-A Group">
       <div class="bioa-chat__head">
         <button class="bioa-chat__collapse" type="button" aria-label="${vi?'Thu gọn':'Collapse'}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 5 5-5"/></svg>
         </button>
-        <div class="bioa-chat__avatars">
+        <div class="bioa-chat__avatars" aria-hidden="true">
           <div class="bioa-chat__avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
-          <div class="bioa-chat__avatar bioa-chat__avatar--text">CSKH</div>
-          <div class="bioa-chat__avatar bioa-chat__avatar--text">R&amp;D</div>
         </div>
-        <div class="bioa-chat__title">${vi?'BIO-A Tư vấn':'BIO-A Support'}</div>
+        <div class="bioa-chat__title">BIO-A Group</div>
         <div class="bioa-chat__sub">${vi?'Chúng tôi sẵn sàng hỗ trợ bạn':'We are here and ready to help'}</div>
       </div>
 
-      <div class="bioa-chat__actions-wrap">
-        <div class="bioa-chat__actions">
-          <button class="bioa-chat__action" type="button" data-chat-focus>
-            <span class="bioa-chat__action-icon bioa-chat__action-icon--pencil">${pencil}</span>
-            <span>${vi?'Nhắn tin':'Message'}</span>
-          </button>
-          <a class="bioa-chat__action" href="${company.zalo}" target="_blank" rel="noopener noreferrer">
-            <span class="bioa-chat__action-icon">${icons.zalo}</span>
-            <span>Zalo</span>
-          </a>
-        </div>
-
+      <div class="bioa-chat__channels-wrap">
         <div class="bioa-chat__channels" aria-label="${vi?'Kênh liên hệ BIO-A':'BIO-A contact channels'}">
           <a class="bioa-chat__channel" href="${company.whatsapp}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">${icons.whatsapp}</a>
           <a class="bioa-chat__channel" href="${company.facebook}" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">${icons.facebook}</a>
@@ -3227,30 +3303,12 @@ function addContactLauncher($,lang){
       </div>
 
       <div class="bioa-chat__history">
-        <div class="bioa-chat__history-label">${vi?'Lịch sử':'History'}</div>
-
-        <div class="bioa-chat__history-card">
-          <div class="bioa-chat__history-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
-          <div class="bioa-chat__history-copy">
-            <strong>BIO-A Group</strong>
-            <span>contact@bioagroup.vn</span>
-          </div>
-          <div class="bioa-chat__history-meta">${vi?'Liên hệ':'Contact'}</div>
+        <div class="bioa-chat__msg bioa-chat__msg--intro">
+          <div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
+          <div class="bioa-chat__bubble"><strong>BIO-A Group</strong>${intro}</div>
         </div>
-
-        <div class="bioa-chat__history-card">
-          <div class="bioa-chat__history-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
-          <div class="bioa-chat__history-copy">
-            <strong>${vi?'BIO-A Tư vấn':'BIO-A Support'}</strong>
-            <span>${intro}</span>
-          </div>
-          <div class="bioa-chat__history-meta">${vi?'Mới':'New'}</div>
-        </div>
-
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
-
-      <div class="bioa-chat__brandline">BIO-A Group · bioagroup.vn</div>
 
       <form class="bioa-chat__composer">
         <input class="bioa-chat__input" type="text" autocomplete="off" placeholder="${vi?'Nhập tin nhắn...':'Type your message...'}">
@@ -3260,7 +3318,7 @@ function addContactLauncher($,lang){
       </form>
     </div>
 
-    <button class="bioa-contact-fab__toggle" type="button" aria-label="${vi?'Mở tư vấn':'Open support'}">
+    <button class="bioa-contact-fab__toggle" type="button" aria-expanded="false" aria-label="${vi?'Mở tư vấn':'Open support'}">
       <img src="/assets/bioa-monogram.svg" alt="">
     </button>
   </div>`);
@@ -3269,7 +3327,6 @@ function addContactLauncher($,lang){
     var root=document.getElementById('bioa-contact-fab');if(!root)return;
     var toggle=root.querySelector('.bioa-contact-fab__toggle');
     var collapse=root.querySelector('.bioa-chat__collapse');
-    var focusBtn=root.querySelector('[data-chat-focus]');
     var form=root.querySelector('.bioa-chat__composer');
     var input=root.querySelector('.bioa-chat__input');
     var history=root.querySelector('.bioa-chat__history');
@@ -3278,9 +3335,11 @@ function addContactLauncher($,lang){
 
     function open(){
       root.classList.add('is-open');
+      if(toggle)toggle.setAttribute('aria-expanded','true');
     }
     function close(){
       root.classList.remove('is-open');
+      if(toggle)toggle.setAttribute('aria-expanded','false');
     }
 
     toggle.addEventListener('click',function(e){
@@ -3288,9 +3347,6 @@ function addContactLauncher($,lang){
       root.classList.contains('is-open')?close():open();
     });
     if(collapse)collapse.addEventListener('click',close);
-    if(focusBtn)focusBtn.addEventListener('click',function(){
-      if(input)input.focus();
-    });
 
     if(form)form.addEventListener('submit',function(e){
       e.preventDefault();
@@ -3333,7 +3389,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
