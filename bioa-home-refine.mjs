@@ -3828,7 +3828,7 @@ function footerSocials($){
     [company.whatsapp,'WhatsApp',icons.whatsapp],
     [company.facebook,'Facebook',icons.facebook],
     [company.telegram,'Telegram',icons.telegram],
-    [company.zalo,'Zalo','Zalo']
+    [company.zalo,'Zalo',icons.zalo]
   ];
   let anchors=wrap.find('a');
   while(anchors.length<defs.length){
@@ -3839,7 +3839,7 @@ function footerSocials($){
     if(!defs[i]){$(el).remove();return;}
     const [href,label,visual]=defs[i];
     const a=$(el).attr('href',href).attr('target','_blank').attr('rel','noopener noreferrer').attr('aria-label',label);
-    if(label==='Zalo')a.text('Zalo'); else a.html(visual);
+    a.html(visual);
   });
 }
 
