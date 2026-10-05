@@ -346,7 +346,8 @@ Newly reopened visual only:
 - Zalo icon artwork across Home/Footer/Chat/subpage footer.
 - Previous recolored SVG candidate at f7e59c8a0cc425b95ec5ede0c50edd1c52aad011 was rejected visually.
 - First framed-cream PNG candidate at b8b94be153b611ffb9443be8bb0d0b9cf7a37284 was also rejected: icon appeared too small inside the social container.
-- Current candidate crops the owner-supplied framed cream artwork tightly and renders it larger inside the existing container; container geometry remains unchanged.
+- Candidate 06a9dddff06ec6ec047b43456afcd6b010eb8db2 still failed visually: icon remained undersized and generic hover inverted the Zalo control to full cream.
+- Current candidate keeps the same container geometry, enlarges the framed artwork to 37px (25px in CTA), and disables cream-background inversion for Zalo hover only.
 - Keep all H1–H4 layout/content/link behavior protected.
 
 ## 11. VERIFICATION / PASS AUTHORITY

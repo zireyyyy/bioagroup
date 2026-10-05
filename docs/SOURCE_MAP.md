@@ -306,8 +306,9 @@ Responsive status:
 Current visual rule:
 - keep existing button/container dimensions;
 - use tightly cropped framed-cream artwork;
-- social/footer/chat icon render size: 31px;
-- CTA icon render size: 22px.
+- social/footer/chat icon render size: 37px;
+- CTA icon render size: 25px;
+- Zalo hover keeps green/translucent background and cream artwork; it must not invert to a full cream button.
 
 Protected:
 - Zalo hrefs;

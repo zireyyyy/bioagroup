@@ -3272,19 +3272,37 @@ const patchZaloIconCss = `
    Visual-only: keep every social/contact container's geometry and behavior unchanged. */
 .bioa-zalo-icon{
   display:block!important;
-  width:31px!important;
-  height:31px!important;
-  max-width:31px!important;
-  max-height:31px!important;
+  width:37px!important;
+  height:37px!important;
+  max-width:37px!important;
+  max-height:37px!important;
   object-fit:contain!important;
-  flex:0 0 31px!important;
+  flex:0 0 37px!important;
+  margin:auto!important;
 }
 .whatsapp__btn .bioa-zalo-icon{
-  width:22px!important;
-  height:22px!important;
-  max-width:22px!important;
-  max-height:22px!important;
-  flex-basis:22px!important;
+  width:25px!important;
+  height:25px!important;
+  max-width:25px!important;
+  max-height:25px!important;
+  flex-basis:25px!important;
+}
+/* Zalo keeps the same green/translucent social treatment on hover.
+   Do not apply the generic cream-background inversion used by SVG icons. */
+.footer-top__socials a[aria-label="Zalo"]:hover,
+.bioa-footer-mobile-v2__socials a[aria-label="Zalo"]:hover,
+.bioa-footer-mobile-socials a[aria-label="Zalo"]:hover{
+  background:
+    linear-gradient(rgba(253,254,245,.18),rgba(253,254,245,.18)),
+    var(--bioa-brand-logo-green)!important;
+  color:var(--bioa-footer-cream)!important;
+}
+.bioa-chat__channel[aria-label="Zalo"]:hover,
+.bioa-chat__channel--zalo:hover{
+  background:
+    linear-gradient(rgba(253,254,245,.18),rgba(253,254,245,.18)),
+    var(--bioa-brand-logo-green)!important;
+  color:var(--bioa-footer-cream)!important;
 }
 `;
 
