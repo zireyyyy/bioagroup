@@ -3072,6 +3072,44 @@ const patchDFooterTypeCss = `
   font-weight:400!important;
 }
 `;
+
+const patchD3FooterBrandCss = `
+/* PATCH D3 — legacy BIO-A footer palette authority.
+   Source: owner-supplied BIO-A site assets/css/style.css. */
+:root{
+  --bioa-brand-main:#093D26;
+  --bioa-brand-sub:#136E47;
+  --bioa-brand-green:#106E45;
+  --bioa-brand-cream:#F3F0E4;
+  --bioa-brand-ivory:#FCFEF1;
+  --bioa-brand-sage:#99D29F;
+}
+.footer-top{
+  background:var(--bioa-brand-cream)!important;
+  color:var(--bioa-brand-main)!important;
+}
+.footer-bottom{
+  background:var(--bioa-brand-green)!important;
+  color:#fff!important;
+}
+.footer-top__nav > ul > li > a{
+  color:var(--bioa-brand-green)!important;
+}
+.footer-top__email a,
+.bioa-footer-mobile-v2__email{
+  color:var(--bioa-brand-main)!important;
+  border-color:rgba(16,110,69,.18)!important;
+}
+.footer-top__socials a,
+.bioa-footer-mobile-v2__socials a{
+  background:var(--bioa-brand-green)!important;
+  color:#fff!important;
+}
+.footer-top__socials a:hover,
+.bioa-footer-mobile-v2__socials a:hover{
+  background:var(--bioa-brand-main)!important;
+}
+`;
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -3081,7 +3119,7 @@ function setLogo($){
     .removeAttr('sizes');
 
   $('.footer-top__logo img,.footer__logo img')
-    .attr('src','/assets/bioa-full-light.svg')
+    .attr('src','/assets/bioa-full.svg')
     .attr('alt','BIO-A Group')
     .removeAttr('srcset')
     .removeAttr('sizes');
@@ -3371,7 +3409,7 @@ function buildMobileFooterV2($){
       : footer;
 
   const row=$('<div class="bioa-footer-mobile-v2"></div>');
-  const logo=$('<div class="bioa-footer-mobile-v2__logo"><img src="/assets/bioa-full-light.svg" alt="BIO-A Group"></div>');
+  const logo=$('<div class="bioa-footer-mobile-v2__logo"><img src="/assets/bioa-full.svg" alt="BIO-A Group"></div>');
   const contact=$('<div class="bioa-footer-mobile-v2__contact"></div>');
   const email=$('<a class="bioa-footer-mobile-v2__email"></a>').attr('href','mailto:'+company.email).text(company.email);
   const social=$('<div class="bioa-footer-mobile-v2__socials"></div>');
@@ -3395,75 +3433,73 @@ function buildMobileFooterV2($){
 
 function refineFooterNavigation($,lang){
   const vi=lang==='vi';
+  /* FOOTER-D1-REV: labels/slugs are sourced from the owner-supplied legacy BIO-A site/database.
+     EN labels are direct translations of the same VI source categories. */
   const cols=vi ? [
     {title:'Gia Công Mỹ Phẩm',items:[
-      ['Gia công trọn gói','/contract-manufacturing-cosmetics/'],
-      ['Công thức có sẵn','/white-label-cosmetics/'],
-      ['Công thức độc quyền','/private-label-cosmetics/'],
-      ['Spa & khách sạn','/hotel-spa-cosmetics/'],
-      ['Liên hệ tư vấn','/contacts/']
+      ['Sản Phẩm Trang Điểm','/gia-cong-my-pham-trang-diem/'],
+      ['Sản Phẩm Chăm Sóc Tóc','/gia-cong-my-pham-toc/'],
+      ['Sản Phẩm Chăm Sóc Body','/gia-cong-my-pham-cham-soc-body/'],
+      ['Sản Phẩm Chăm Sóc Da Mặt','/gia-cong-my-cham-soc-da-mat/'],
+      ['Sản Phẩm Cá Nhân','/gia-cong-my-pham-ca-nhan/'],
+      ['Sản Phẩm Mẹ & Bé','/gia-cong-san-pham-me-be/']
     ]},
-    {title:'Dịch Vụ Khác',items:[
-      ['Nghiên cứu & phát triển','/dich-vu-khac/'],
-      ['Tư vấn công thức','/dich-vu-khac/'],
-      ['Bao bì & nhận diện','/dich-vu-khac/'],
-      ['Hồ sơ & tiêu chuẩn','/dich-vu-khac/'],
-      ['Sản xuất & bàn giao','/dich-vu-khac/']
+    {title:'Dịch Vụ',items:[
+      ['Sản Xuất & Gia Công Dược Mỹ Phẩm','/san-xuat-gia-cong-duoc-my-pham/'],
+      ['Đóng Gói & Sang Chiết Mỹ Phẩm','/dich-vu-dong-goi-sang-chiet-my-pham/'],
+      ['Đăng Ký Thương Hiệu & Công Bố','/dang-ki-thuong-hieu-cong-bo/'],
+      ['Chai Lọ Mỹ Phẩm','/chai-lo-my-pham/'],
+      ['Thiết Kế Bao Bì Mỹ Phẩm','/thiet-ke-bao-bi-my-pham/']
     ]},
-    {title:'Kiến Thức',items:[
-      ['Kiến thức ngành','/blog/'],
-      ['Quy trình gia công mỹ phẩm','/blog/cosmetic-manufacturing-process/'],
-      ['Xây dựng thương hiệu skincare','/blog/how-to-start-your-own-skincare-line/'],
-      ['Xu hướng mỹ phẩm 2026','/blog/trending-skincare-products-2026/'],
-      ['White label và private label','/blog/white-label-vs-private-label/']
+    {title:'Kiến Thức Làm Đẹp',items:[
+      ['Kinh Nghiệm Cho Người Mới Gia Công Mỹ Phẩm','/kinh-nghiem-cho-nguoi-moi-gia-cong-my-pham/'],
+      ['Tips Lựa Chọn Chất Liệu Bao Bì Mỹ Phẩm','/tips-lua-chon-chat-lieu-bao-bi-my-pham-phu-hop-bio-a-group/'],
+      ['Nguyên Liệu Sản Xuất Mỹ Phẩm Thiên Nhiên','/nguyen-lieu-san-xuat-my-pham-thien-nhien/'],
+      ['Vì Sao Cần Kiểm Nghiệm SPF Kem Chống Nắng','/vi-sao-can-kiem-nghiem-spf-kem-chong-nang-truoc-khi-dua-ra-thi-truong/'],
+      ['Cách Để Xịt Body Mist Thơm Lâu','/cach-de-xit-body-mist-thom-lau/']
     ]},
     {title:'BIO-A Group',items:[
-      ['Về BIOA Group','/about/'],
-      ['Năng lực sản xuất','/about/'],
-      ['Liên hệ','/contacts/'],
-      ['Tuyển dụng','/careers/']
+      ['Năng Lực Sản Xuất','/nang-luc/'],
+      ['Tuyển Dụng R&D','/tuyen-dung-rd/'],
+      ['Tuyển Dụng NV Sales','/tuyen-dung-nv-sales/'],
+      ['Liên Hệ','/lien-he/']
     ]},
-    {title:'Thông Tin',items:[
-      ['Dịch Vụ Khác','/dich-vu-khac/'],
-      ['Chính sách bảo mật','/privacy-policy/'],
-      ['Chính sách cookie','/cookie-policy/'],
-      ['Facebook',company.facebook],
-      ['Zalo',company.zalo]
+    {title:'Chính Sách',items:[
+      ['Chính Sách Bảo Mật','/chinh-sach-bao-mat/'],
+      ['Chính Sách Vận Chuyển','/chinh-sach-van-chuyen/']
     ]}
   ] : [
     {title:'Cosmetic Manufacturing',items:[
-      ['Contract manufacturing','/en/contract-manufacturing-cosmetics/'],
-      ['Ready formulas','/en/white-label-cosmetics/'],
-      ['Custom formulas','/en/private-label-cosmetics/'],
-      ['Hotels & SPA','/en/hotel-spa-cosmetics/'],
-      ['Contact us','/en/contacts/']
+      ['Makeup Products','/en/gia-cong-my-pham-trang-diem/'],
+      ['Hair Care Products','/en/gia-cong-my-pham-toc/'],
+      ['Body Care Products','/en/gia-cong-my-pham-cham-soc-body/'],
+      ['Facial Skin Care Products','/en/gia-cong-my-cham-soc-da-mat/'],
+      ['Personal Care Products','/en/gia-cong-my-pham-ca-nhan/'],
+      ['Mother & Baby Products','/en/gia-cong-san-pham-me-be/']
     ]},
-    {title:'Other Services',items:[
-      ['Research & development','/en/dich-vu-khac/'],
-      ['Formula consulting','/en/dich-vu-khac/'],
-      ['Packaging & branding','/en/dich-vu-khac/'],
-      ['Regulatory support','/en/dich-vu-khac/'],
-      ['Production & delivery','/en/dich-vu-khac/']
+    {title:'Services',items:[
+      ['Cosmetic & Cosmeceutical Manufacturing','/en/san-xuat-gia-cong-duoc-my-pham/'],
+      ['Cosmetic Filling & Packing','/en/dich-vu-dong-goi-sang-chiet-my-pham/'],
+      ['Brand Registration & Product Notification','/en/dang-ki-thuong-hieu-cong-bo/'],
+      ['Cosmetic Bottles & Packaging','/en/chai-lo-my-pham/'],
+      ['Cosmetic Packaging Design','/en/thiet-ke-bao-bi-my-pham/']
     ]},
-    {title:'Knowledge',items:[
-      ['Industry knowledge','/en/blog/'],
-      ['Cosmetic manufacturing process','/en/blog/cosmetic-manufacturing-process/'],
-      ['Start a skincare brand','/en/blog/how-to-start-your-own-skincare-line/'],
-      ['Cosmetic trends 2026','/en/blog/trending-skincare-products-2026/'],
-      ['White label vs private label','/en/blog/white-label-vs-private-label/']
+    {title:'Beauty Knowledge',items:[
+      ['Guide for New Cosmetic Brand Owners','/en/kinh-nghiem-cho-nguoi-moi-gia-cong-my-pham/'],
+      ['Cosmetic Packaging Material Tips','/en/tips-lua-chon-chat-lieu-bao-bi-my-pham-phu-hop-bio-a-group/'],
+      ['Natural Cosmetic Ingredients','/en/nguyen-lieu-san-xuat-my-pham-thien-nhien/'],
+      ['Why Sunscreen SPF Testing Matters','/en/vi-sao-can-kiem-nghiem-spf-kem-chong-nang-truoc-khi-dua-ra-thi-truong/'],
+      ['How to Make Body Mist Last Longer','/en/cach-de-xit-body-mist-thom-lau/']
     ]},
     {title:'BIO-A Group',items:[
-      ['About BIO-A Group','/en/about/'],
-      ['Manufacturing capabilities','/en/about/'],
-      ['Contact','/en/contacts/'],
-      ['Careers','/en/careers/']
+      ['Manufacturing Capabilities','/en/nang-luc/'],
+      ['R&D Recruitment','/en/tuyen-dung-rd/'],
+      ['Sales Recruitment','/en/tuyen-dung-nv-sales/'],
+      ['Contact','/en/lien-he/']
     ]},
-    {title:'Information',items:[
-      ['Other Services','/en/dich-vu-khac/'],
-      ['Privacy Policy','/en/privacy-policy/'],
-      ['Cookie Policy','/en/cookie-policy/'],
-      ['Facebook',company.facebook],
-      ['Zalo',company.zalo]
+    {title:'Policies',items:[
+      ['Privacy Policy','/en/chinh-sach-bao-mat/'],
+      ['Shipping Policy','/en/chinh-sach-van-chuyen/']
     ]}
   ];
 
@@ -3471,7 +3507,15 @@ function refineFooterNavigation($,lang){
   navs.each((i,navEl)=>{
     const col=cols[i];
     if(!col)return;
-    const lis=$(navEl).find('ul > li');
+    const ul=$(navEl).find('ul').first();
+    if(!ul.length)return;
+    let lis=ul.children('li');
+
+    while(lis.length<col.items.length+1){
+      ul.append('<li class="menu-item bioa-footer-source-item"><a href="#"></a></li>');
+      lis=ul.children('li');
+    }
+
     const head=lis.eq(0);
     const headLink=head.find('a').first();
     headLink.text(col.title).removeAttr('href target rel');
@@ -3479,15 +3523,9 @@ function refineFooterNavigation($,lang){
 
     col.items.forEach((item,j)=>{
       const li=lis.eq(j+1);
-      if(!li.length)return;
       const a=li.find('a').first();
       const label=item[0], href=item[1];
-      a.text(label).attr('href',href);
-      if(/^https?:\/\//.test(href)){
-        a.attr('target','_blank').attr('rel','noopener noreferrer');
-      }else{
-        a.removeAttr('target rel');
-      }
+      a.text(label).attr('href',href).removeAttr('target rel');
       li.removeAttr('hidden').removeClass('bioa-footer-nav-unused');
     });
 
@@ -3640,7 +3678,7 @@ function addContactLauncher($,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchHeroStatsFinalSourceCss+'</style>');
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
