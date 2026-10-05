@@ -208,15 +208,16 @@ Source-derived service groups:
 - Chai Lọ Mỹ Phẩm
 - Thiết Kế Bao Bì Mỹ Phẩm
 
-### FOOTER-D3 — ACTIVE CANDIDATE
+### FOOTER-D3-REV — ACTIVE CANDIDATE
 
-Legacy BIO-A footer palette authority:
-- top background: #F3F0E4
-- footer bottom / primary green: #106E45
-- main dark green: #093D26
-- secondary green: #136E47
-- ivory: #FCFEF1
-- soft green: #99D29F
+Owner rejected the prior cream-background D3 treatment because footer content appeared visually submerged.
+
+Current candidate:
+- footer background: #116F47 (exact current BIO-A logo fill);
+- footer text/icons: #FDFEF5 (email-surface cream);
+- footer logo: light BIO-A asset;
+- D2 typography remains PASS/LOCKED;
+- D1 source categories remain unchanged.
 
 The dedicated authority file is docs/BRAND_PALETTE.md.
 

@@ -51,22 +51,38 @@ This file is color/brand authority only.
 
 ## Footer authority
 
-Legacy BIO-A footer combination:
+Legacy BIO-A source combination (historical reference):
 - Footer top background: `#F3F0E4`
 - Footer navigation/link emphasis: `#106E45`
 - Footer bottom background: `#106E45`
-- Footer bottom text: white
-- Dark supporting text/accent: `#093D26`
 
-When footer top is cream/light:
-- use regular/dark BIO-A logo, not the light/white logo.
+### Current owner-approved website footer treatment
 
-When a surface is dark:
+The owner runtime-tested the legacy cream-top treatment and rejected it because the footer content became visually submerged.
+
+Current footer authority therefore overrides the historical footer combination:
+
+- Footer background: `#116F47` — exact fill used by the current BIO-A logo asset.
+- Footer foreground text/icons: `#FDFEF5` — matches the accepted email-surface cream.
+- Footer logo: `assets/bioa-full-light.svg`.
+- Light logo internal fills: `#F3F0E4` and `#FCFEF1`.
+- Social controls use translucent cream on the logo-green background; hover may invert to cream background + logo green.
+
+This footer override is owner-directed and is authoritative for the current website.
+
+Do not revert footer top to cream unless the owner explicitly reopens the color treatment.
+
+When a general surface is dark:
 - use the light BIO-A logo.
+
+When a general surface is light:
+- use the regular BIO-A logo unless a component-specific owner rule overrides it.
 
 ## Current project token mapping
 
 Where possible map current project tokens toward this authority:
+- `--bioa-brand-logo-green: #116F47` — exact current logo fill
+- `--bioa-footer-cream: #FDFEF5` — owner-approved footer foreground
 - `--bioa-brand-main: #093D26`
 - `--bioa-brand-sub: #136E47`
 - `--bioa-brand-green: #106E45`

@@ -93,12 +93,12 @@ BIO-A:
 Status:
 - Footer typography D2 is owner-confirmed PASS / LOCKED.
 - Footer D1 categories are being revised from legacy BIO-A source data.
-- Footer D3 palette is being ported from legacy BIO-A source.
+- Footer D3-REV uses owner-approved inverted contrast: #116F47 background + cream foreground.
 - Mapping confirmed.
 
 Protected mechanics:
 - keep original Merywood footer DOM/layout mechanics and section relationships.
-- use regular BIO-A logo on cream/light footer backgrounds; light logo only on dark backgrounds.
+- current footer is dark/logo-green and therefore uses the light BIO-A logo.
 - D2 font-weight behavior is LOCKED.
 - footer brand colors must follow docs/BRAND_PALETTE.md.
 - do not add extra brand information that changes footer geometry unless requested.
