@@ -83,3 +83,23 @@ Owner requirement:
 - Prefer Zalo as the primary social/chat handoff; Facebook, Email, Telegram and WhatsApp remain contact channels.
 - Chat response mechanism may be replaced later, but the shell should remain source-parity.
 - Do not reconnect or reuse Merywood's Dashly account/credentials.
+
+
+## 7. PATCH C3 — CHAT SHELL CLEANUP
+
+Implemented on main after Patch C2.
+
+Scope:
+- Keep the Merywood-style compact chat shell as the visual reference.
+- Remove the upper `Nhắn tin / Zalo` primary action row.
+- Remove the History heading/cards and the extra `BIO-A Group · bioagroup.vn` brand line.
+- Keep exactly one BIO-A avatar in the chat header.
+- Header title is now `BIO-A Group`.
+- Keep one compact in-panel contact row: WhatsApp, Facebook, Telegram, Zalo.
+- Preserve the chat composer and current preview message behavior.
+- When the chat panel is open, hide the floating launcher; show it again when the panel is collapsed/closed.
+- Patch is scoped only to the BIO-A chat widget; Hero, We Produce, Footer, desktop header and mobile menu are not intentionally changed.
+
+Regression rule:
+- Do not reintroduce CSKH/R&D avatar pills, duplicated action cards, History cards, or the extra brand/provider line unless explicitly requested.
+- Future chat work should continue from this compact Merywood-style shell rather than redesigning the widget from scratch.
