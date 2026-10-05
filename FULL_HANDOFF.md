@@ -724,3 +724,39 @@ Responsive status:
 - HOME-VI1: PASS / LOCKED
 - COOKIE-B1: PASS / LOCKED
 - Header/Footer: PASS / LOCKED
+
+
+## OWNER FEEDBACK — MOTION-M5 / ROADMAP-R3
+
+Owner runtime feedback on d05d6bc4db00d231b39bdc881bc64702dab677f1:
+- CHAT-C7: PASS / LOCKED.
+- MOTION-M4: FAIL — clip/scale opening feels worse than the supplied SKL reference.
+- ROADMAP-R2: FAIL on Desktop after increasing copy density; owner identified missing source-style manual line breaks.
+
+Verified source findings:
+- SKL reveal authority uses:
+  - fade-up: translateY(36px);
+  - slide-left: translateX(-56px);
+  - slide-right: translateX(56px);
+  - .9s cubic-bezier(.16,1,.3,1);
+  - IntersectionObserver threshold .07 and rootMargin bottom -40px.
+- Original Merywood Roadmap body copy contains explicit <br> line breaks inside the paragraph, generally 4–6 visual lines per slide.
+
+MOTION-M5:
+- remove M4 clip-path / scale / saturation effects;
+- combine horizontal entry with upward lift using one outer-wrapper transform;
+- alternate major Home sections left/right for visual rhythm;
+- final contact CTA uses up-only motion;
+- We Produce remains included by owner approval, outer container only;
+- internal card/slider/image transforms remain untouched.
+
+ROADMAP-R3:
+- keep R2 content intent and PASS layout;
+- restore source-style explicit <br> line segmentation;
+- each Roadmap body is stored as a line array and rendered into the existing source <p>;
+- do not add CSS/height/font fixes.
+
+Status:
+- CHAT-C7: PASS / LOCKED
+- MOTION-M5: Desktop PENDING / Tablet PENDING / Mobile PENDING
+- ROADMAP-R3: Desktop PENDING / Tablet DEFERRED / Mobile PENDING

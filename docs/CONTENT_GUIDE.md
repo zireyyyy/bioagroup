@@ -82,3 +82,15 @@ R2 rules:
 - preserve the current PASS Roadmap DOM/CSS/layout;
 - use a guarded medium-length payload rather than immediately returning to the first near-source-length attempt that caused a regression;
 - if R2 passes Desktop + Mobile runtime, use its actual text lengths as the practical Roadmap writing budget until Tablet is completed.
+
+
+## Roadmap R3 line-break contract
+
+Roadmap is an exception to the generic "do not add manual line breaks" writing rule because the original Merywood Roadmap itself uses explicit `<br>` line breaks inside each step paragraph.
+
+For Roadmap only:
+- preserve approximately 4–6 visual lines per slide;
+- store copy as line segments and render them into the existing source paragraph;
+- do not remove source-style line breaks by replacing the paragraph with plain `.text()`;
+- do not use CSS/font-size/height changes to compensate for copy length;
+- future AI copy should return Roadmap text already segmented into line-safe phrases.

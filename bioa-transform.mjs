@@ -270,13 +270,43 @@ function resetHomeVI($){
   ];
   $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Khách hàng Bio-A Group');$(e).find('.review__author-info').text('Nội dung đánh giá mẫu – sẽ cập nhật')});
   const roadmapSteps=[
-    ['Tư vấn & lập kế hoạch','Bio-A Group cùng khách hàng làm rõ ý tưởng, nhóm sản phẩm, khách hàng mục tiêu, ngân sách và tiến độ mong muốn để xây dựng lộ trình phù hợp ngay từ đầu.'],
-    ['Nghiên cứu & phát triển','Đội ngũ R&D lựa chọn nền công thức, nguyên liệu, làm mẫu thử và tinh chỉnh cảm quan theo định hướng thương hiệu trước khi chốt mẫu sản xuất.'],
-    ['Bao bì & nhận diện','Sau khi công thức ổn định, dự án tiếp tục với lựa chọn chai lọ, quy cách đóng gói, nhãn và các hạng mục nhận diện phù hợp đặc tính sản phẩm.'],
-    ['Hồ sơ sản phẩm','Bio-A Group phối hợp rà soát thông tin sản phẩm, nội dung nhãn và các tài liệu cần chuẩn bị để hạn chế phát sinh chỉnh sửa ở giai đoạn sau.'],
-    ['Sản xuất & bàn giao','Nhà máy triển khai sản xuất, sang chiết, đóng gói và kiểm soát thành phẩm theo kế hoạch, giúp khách hàng chủ động thời điểm ra mắt và phân phối.']
+    ['Tư vấn & lập kế hoạch',[
+      'Bio-A Group cùng khách hàng làm rõ ý tưởng,',
+      'nhóm sản phẩm, khách hàng mục tiêu, ngân sách',
+      'và tiến độ mong muốn để xây dựng lộ trình',
+      'phù hợp ngay từ đầu cho R&D và sản xuất.'
+    ]],
+    ['Nghiên cứu & phát triển',[
+      'Đội ngũ R&D lựa chọn nền công thức, nguyên liệu,',
+      'làm mẫu thử và tinh chỉnh cảm quan theo phản hồi,',
+      'đồng thời rà soát khả năng triển khai thực tế',
+      'trước khi chốt mẫu đưa vào sản xuất.'
+    ]],
+    ['Bao bì & nhận diện',[
+      'Sau khi công thức ổn định, dự án tiếp tục với',
+      'lựa chọn chai lọ, quy cách đóng gói và nhãn,',
+      'để bao bì phù hợp đặc tính sản phẩm',
+      'và đồng bộ với định hướng thương hiệu.'
+    ]],
+    ['Hồ sơ sản phẩm',[
+      'Bio-A Group phối hợp rà soát thông tin sản phẩm,',
+      'nội dung nhãn và các tài liệu cần chuẩn bị,',
+      'song song với giai đoạn hoàn thiện bao bì',
+      'để hạn chế phát sinh chỉnh sửa về sau.'
+    ]],
+    ['Sản xuất & bàn giao',[
+      'Nhà máy triển khai sản xuất, sang chiết, đóng gói',
+      'và kiểm soát thành phẩm theo kế hoạch đã thống nhất,',
+      'giúp khách hàng chủ động thời điểm ra mắt',
+      'và kế hoạch phân phối sản phẩm.'
+    ]]
   ];
-  $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{const x=roadmapSteps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  $('.block-roadmap .title').html('Từ ý tưởng đến thành phẩm —<br>quy trình đồng hành trọn gói');$('.block-roadmap .step').each((i,e)=>{
+    const x=roadmapSteps[i%5],root=$(e);
+    root.find('.step__title').text(x[0]);
+    const body=root.find('.step__text').first(),p=body.find('p').first();
+    (p.length?p:body).html(x[1].join('<br>'));
+  });
   finalizeHomeCopy($,'vi');
 }
 
@@ -297,13 +327,43 @@ function resetHomeEN($){
   const rev=['A clear process, responsive support and close follow-up on product requirements.','Flexible sample refinement helps shorten development time.','Bio-A Group supports formulation, packaging and production planning.','Stable timelines make it easier to expand additional SKUs.'];
   $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Bio-A Group client');$(e).find('.review__author-info').text('Sample testimonial — to be updated')});
   const roadmapSteps=[
-    ['Consultation & planning','Bio-A Group aligns the product idea, target customer, budget and timeline with you to define a practical development roadmap from the start.'],
-    ['Research & development','Our R&D team selects formula directions and ingredients, prepares samples and refines sensory details before approving the production sample.'],
-    ['Packaging & branding','Once the formula is stable, the project moves to bottles, filling format, labels and brand assets that suit the product characteristics.'],
-    ['Product documentation','Bio-A Group reviews product information, label content and the documentation needed so later-stage revisions can be minimized.'],
-    ['Production & delivery','The factory manufactures, fills, packs and controls finished goods to the agreed plan so launch and distribution timing stays predictable.']
+    ['Consultation & planning',[
+      'Bio-A Group aligns the product idea, target customer,',
+      'budget and expected timeline with your team,',
+      'then defines the formula, quantity and milestones',
+      'before R&D and production planning begin.'
+    ]],
+    ['Research & development',[
+      'Our R&D team selects formula directions and ingredients,',
+      'prepares samples and refines sensory details,',
+      'while checking production feasibility',
+      'before the final sample is approved.'
+    ]],
+    ['Packaging & branding',[
+      'Once the formula is stable, the project moves to',
+      'bottles, filling format, labels and brand assets,',
+      'so packaging fits the product characteristics',
+      'and remains consistent with the brand direction.'
+    ]],
+    ['Product documentation',[
+      'Bio-A Group reviews product information, label content',
+      'and the documentation required for each category,',
+      'alongside final packaging preparation',
+      'to reduce later-stage revisions.'
+    ]],
+    ['Production & delivery',[
+      'The factory manufactures, fills, packs and controls',
+      'finished goods according to the agreed production plan,',
+      'helping the brand keep launch timing predictable',
+      'and prepare distribution with confidence.'
+    ]]
   ];
-  $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');$('.block-roadmap .step').each((i,e)=>{const x=roadmapSteps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
+  $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');$('.block-roadmap .step').each((i,e)=>{
+    const x=roadmapSteps[i%5],root=$(e);
+    root.find('.step__title').text(x[0]);
+    const body=root.find('.step__text').first(),p=body.find('p').first();
+    (p.length?p:body).html(x[1].join('<br>'));
+  });
   finalizeHomeCopy($,'en');
 }
 

@@ -701,3 +701,39 @@ Rules:
 - Keep the PASS Roadmap DOM/CSS/layout.
 - Use a guarded medium-length copy payload after the previous near-source-length attempt caused a runtime regression.
 - Do not add CSS, font changes or height overrides to accommodate Roadmap copy.
+
+
+## MOTION-M5
+
+Reference authority:
+- supplied SKL:
+  - .rv translateY(36px)
+  - .rvl translateX(-56px)
+  - .rvr translateX(56px)
+  - .9s cubic-bezier(.16,1,.3,1)
+
+BIO-A adaptation:
+- combine horizontal x offset with +34px vertical lift;
+- alternate left/right by Home section;
+- mobile uses 55% horizontal offset + 24px lift;
+- no clip-path, scale or saturation effect.
+
+Protected:
+- only outer section containers receive transform;
+- internal sliders/cards/images stay source-owned.
+
+## ROADMAP-R3
+
+Merywood source authority:
+- .block-roadmap .step__text > p contains explicit <br> tags.
+- source uses roughly 4–6 visual lines per Roadmap slide.
+
+BIO-A:
+- roadmapSteps body is an array of source-style lines;
+- existing <p> receives line1<br>line2<br>...;
+- title/DOM/CSS/layout unchanged.
+
+Status:
+- Desktop: PENDING
+- Tablet: DEFERRED
+- Mobile: PENDING
