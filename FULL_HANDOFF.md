@@ -328,24 +328,23 @@ Do not reopen Footer during HOME patches unless explicitly requested.
 
 ### NEXT PRODUCT PATCH
 
-HOME refinement before PATCH E — ACTIVE CANDIDATE
+HOME refinement before PATCH E — OWNER CONFIRMED PASS
 
-Candidate chain:
+Accepted chain:
 - fe6df7fc6f2cbce731c3ac527164b897470e21e1 — H1 localize remaining Get started CTAs
 - f97d72227dc740920cec9f7fbf2b704e1d7f69e9 — H2 synchronize slider controls/review-card palette
 - 5ab0ddccf3c78c361ff7093faf76bf3399dabd33 — H3 mobile contact watermark + Zalo CTA
 - 28eff3e4f32c7aac6e2d2bb8d912e5b34862609b — H4 packaging-airless BIO-A watermark layer only
 
-Responsive status:
-- Desktop: PENDING runtime test
-- Tablet: PENDING runtime test
-- Mobile: PENDING runtime test
-- FULL RESPONSIVE PASS: NO
+Owner runtime result:
+- Desktop: PASS / LOCKED
+- Tablet: PASS / LOCKED
+- Mobile: PASS / LOCKED
+- FULL RESPONSIVE PASS — OWNER CONFIRMED
 
-Protected:
-- Footer FULL RESPONSIVE PASS checkpoint c3ad6b129502973e89ec321211e9d911a919544c
-- Chat geometry/motion
-- Packaging product image/text/arrows/indicators/spacing
+Newly reopened visual only:
+- Zalo icon artwork across Home/Footer/Chat/subpage footer.
+- Keep all H1–H4 layout/content/link behavior protected.
 
 ## 11. VERIFICATION / PASS AUTHORITY
 

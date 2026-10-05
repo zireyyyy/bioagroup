@@ -210,10 +210,10 @@ BIO-A:
 - H2: patchH2HomeControlPaletteCss
 
 Responsive status:
-- Desktop: ACTIVE — needs owner runtime verification.
-- Tablet: ACTIVE — needs owner runtime verification.
-- Mobile: ACTIVE — needs owner runtime verification.
-- FULL RESPONSIVE PASS: NO.
+- Desktop: PASS / LOCKED.
+- Tablet: PASS / LOCKED.
+- Mobile: PASS / LOCKED.
+- FULL RESPONSIVE PASS — OWNER CONFIRMED.
 
 Protected mechanics:
 - H1 changes exact-match "Get started" text only on VI Home.
@@ -236,10 +236,11 @@ BIO-A:
 - CTA target: company.zalo
 
 Responsive status:
-- Desktop: REGRESSION CHECK — no layout change expected; CTA content/link changes apply.
-- Tablet: REGRESSION CHECK — no layout change expected; CTA content/link changes apply.
-- Mobile: ACTIVE — watermark visibility + CTA are affected.
-- FULL RESPONSIVE PASS: NO.
+- Desktop: PASS / LOCKED.
+- Tablet: PASS / LOCKED.
+- Mobile: PASS / LOCKED for layout/content/link behavior.
+- FULL RESPONSIVE PASS — OWNER CONFIRMED for H3 behavior.
+- Zalo icon artwork is reopened as a separate visual patch.
 
 Protected mechanics:
 - source .whatsapp box dimensions/spacing remain unchanged;
@@ -262,10 +263,10 @@ BIO-A:
 - watermark asset/treatment: /assets/bioa-monogram.svg using the same mask/color/opacity family as We Produce.
 
 Responsive status:
-- Desktop: ACTIVE — watermark-only candidate.
-- Tablet: ACTIVE — watermark-only candidate.
-- Mobile: ACTIVE — watermark-only candidate.
-- FULL RESPONSIVE PASS: NO.
+- Desktop: PASS / LOCKED.
+- Tablet: PASS / LOCKED.
+- Mobile: PASS / LOCKED.
+- FULL RESPONSIVE PASS — OWNER CONFIRMED.
 
 Protected mechanics:
 - do not change section layout;
