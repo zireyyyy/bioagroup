@@ -3058,6 +3058,170 @@ const patchC4CMotionCss = `
 `;
 
 
+const patchC6ProactiveCss = `
+/* CHAT-C6 — proactive Merywood-style sales teaser on the BIO-A-owned widget.
+   Never load or reconnect the source Dashly account. */
+.bioa-contact-fab__panel{
+  width:390px!important;
+  height:540px!important;
+  max-width:calc(100vw - 28px)!important;
+  max-height:calc(100vh - 92px)!important;
+}
+.bioa-chat__avatar,
+.bioa-chat__msg-avatar{
+  background:#fff!important;
+  overflow:hidden!important;
+}
+.bioa-chat__avatar img,
+.bioa-chat__msg-avatar img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 22%!important;
+}
+.bioa-contact-fab__toggle{
+  padding:0!important;
+  overflow:visible!important;
+  border:3px solid var(--bioa-ivory)!important;
+  background:#fff!important;
+}
+.bioa-contact-fab__toggle img{
+  width:100%!important;
+  height:100%!important;
+  border-radius:50%!important;
+  object-fit:cover!important;
+  object-position:center 22%!important;
+}
+.bioa-chat__teaser{
+  position:absolute!important;
+  right:76px!important;
+  bottom:8px!important;
+  width:340px!important;
+  max-width:calc(100vw - 112px)!important;
+  min-height:74px!important;
+  padding:11px 40px 11px 11px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:11px!important;
+  border:1px solid rgba(5,47,33,.10)!important;
+  border-radius:18px!important;
+  background:#fff!important;
+  box-shadow:0 14px 38px rgba(5,47,33,.18)!important;
+  color:#343434!important;
+  cursor:pointer!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+  transform:translate3d(10px,8px,0) scale(.96)!important;
+  transform-origin:100% 100%!important;
+  transition:opacity .18s ease,transform .25s cubic-bezier(.2,.78,.2,1),visibility 0s linear .25s!important;
+}
+.bioa-contact-fab.is-teaser .bioa-chat__teaser{
+  opacity:1!important;
+  visibility:visible!important;
+  pointer-events:auto!important;
+  transform:translate3d(0,0,0) scale(1)!important;
+  transition:opacity .18s ease,transform .25s cubic-bezier(.2,.78,.2,1),visibility 0s!important;
+}
+.bioa-contact-fab.is-open .bioa-chat__teaser{display:none!important}
+.bioa-chat__teaser-avatar{
+  position:relative!important;
+  flex:0 0 48px!important;
+  width:48px!important;
+  height:48px!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+  background:#fff!important;
+}
+.bioa-chat__teaser-avatar img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center 22%!important;
+}
+.bioa-chat__teaser-avatar:after{
+  content:""!important;
+  position:absolute!important;
+  right:1px!important;
+  bottom:2px!important;
+  width:10px!important;
+  height:10px!important;
+  border-radius:50%!important;
+  background:#21A366!important;
+  border:2px solid #fff!important;
+}
+.bioa-chat__teaser-copy{
+  min-width:0!important;
+  flex:1 1 auto!important;
+}
+.bioa-chat__teaser-copy strong{
+  display:block!important;
+  margin:0 0 3px!important;
+  color:var(--bioa-deep)!important;
+  font-size:13.5px!important;
+  line-height:1.15!important;
+  font-weight:700!important;
+}
+.bioa-chat__teaser-copy span{
+  display:block!important;
+  color:#555!important;
+  font-size:12.5px!important;
+  line-height:1.35!important;
+  font-weight:400!important;
+}
+.bioa-chat__teaser-close{
+  position:absolute!important;
+  top:8px!important;
+  right:9px!important;
+  width:25px!important;
+  height:25px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:transparent!important;
+  color:#929292!important;
+  font:400 20px/25px Arial,sans-serif!important;
+  text-align:center!important;
+  cursor:pointer!important;
+}
+.bioa-chat__teaser-close:hover{
+  color:#333!important;
+  background:#f2f2f2!important;
+}
+@media(max-width:768px){
+  .bioa-contact-fab__panel{
+    width:min(330px,calc(100vw - 20px))!important;
+    height:min(470px,calc(100dvh - 84px))!important;
+    max-height:calc(100dvh - 84px)!important;
+  }
+  .bioa-chat__teaser{
+    right:0!important;
+    bottom:68px!important;
+    width:min(270px,calc(100vw - 82px))!important;
+    max-width:270px!important;
+    min-height:66px!important;
+    padding:9px 34px 9px 9px!important;
+    gap:9px!important;
+    border-radius:16px!important;
+  }
+  .bioa-chat__teaser-avatar{
+    flex-basis:42px!important;
+    width:42px!important;
+    height:42px!important;
+  }
+  .bioa-chat__teaser-copy strong{font-size:12.5px!important}
+  .bioa-chat__teaser-copy span{
+    font-size:11.5px!important;
+    line-height:1.3!important;
+    display:-webkit-box!important;
+    -webkit-line-clamp:2!important;
+    -webkit-box-orient:vertical!important;
+    overflow:hidden!important;
+  }
+}
+`;
+
+
 const patchDFooterTypeCss = `
 /* PATCH D2 — preserve Merywood footer layout while normalizing text weight.
    Category headings remain subtly emphasized; child links return to regular weight. */
@@ -4036,24 +4200,37 @@ function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
   $('#bioa-contact-fab-js').remove();
   const vi=lang==='vi';
+  const avatar='/assets/bioa-sales-avatar.webp';
+  const teaser=vi
+    ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
+    :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
   const intro=vi
-    ?'Xin chào! Tôi là trợ lý Bio-A. Bạn đang quan tâm gia công sản phẩm nào?'
-    :'Hi! I’m the Bio-A assistant. Which product are you interested in manufacturing?';
+    ?'Chào bạn 👋 Tôi là tư vấn viên Bio-A Group. Bạn đang muốn phát triển dòng mỹ phẩm nào? Tôi có thể hỗ trợ về công thức, MOQ, bao bì và tiến độ sản xuất.'
+    :'Hi 👋 I’m a Bio-A Group sales consultant. What product line are you planning? I can help with formula, MOQ, packaging and production timeline.';
   const previewReply=vi
-    ?'Bio-A đã nhận nội dung. Chatbot sẽ được kết nối ở bước sau; hiện bạn có thể tiếp tục qua Zalo hoặc Email.'
-    :'Bio-A received your message. The chatbot will be connected in a later step; for now you can continue via Zalo or Email.';
+    ?'Cảm ơn bạn. Đội ngũ Bio-A Group đã ghi nhận nhu cầu. Bạn có thể tiếp tục trao đổi nhanh qua Zalo hoặc các kênh liên hệ phía trên.'
+    :'Thank you. Bio-A Group has noted your request. You can continue quickly via Zalo or the contact channels above.';
 
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
+    <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">
+      <div class="bioa-chat__teaser-avatar"><img src="${avatar}" alt=""></div>
+      <div class="bioa-chat__teaser-copy">
+        <strong>Bio-A Group</strong>
+        <span>${teaser}</span>
+      </div>
+      <button class="bioa-chat__teaser-close" type="button" aria-label="${vi?'Ẩn gợi ý':'Dismiss suggestion'}">×</button>
+    </div>
+
     <div class="bioa-contact-fab__panel" role="dialog" aria-modal="false" aria-label="Bio-A Group">
       <div class="bioa-chat__head">
         <button class="bioa-chat__collapse" type="button" aria-label="${vi?'Thu gọn':'Collapse'}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 9 5 5 5-5"/></svg>
         </button>
         <div class="bioa-chat__avatars" aria-hidden="true">
-          <div class="bioa-chat__avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
+          <div class="bioa-chat__avatar"><img src="${avatar}" alt=""></div>
         </div>
-        <div class="bioa-chat__title">Bio-A Group</div>
-        <div class="bioa-chat__sub">${vi?'Chúng tôi sẵn sàng hỗ trợ bạn':'We are here and ready to help'}</div>
+        <div class="bioa-chat__title">${vi?'Tư vấn Bio-A Group':'Bio-A Group Sales'}</div>
+        <div class="bioa-chat__sub">${vi?'Đồng hành cùng dự án của bạn':'Supporting your product project'}</div>
       </div>
 
       <div class="bioa-chat__channels-wrap">
@@ -4067,7 +4244,7 @@ function addContactLauncher($,lang){
 
       <div class="bioa-chat__history">
         <div class="bioa-chat__msg bioa-chat__msg--intro">
-          <div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div>
+          <div class="bioa-chat__msg-avatar"><img src="${avatar}" alt=""></div>
           <div class="bioa-chat__bubble"><strong>Bio-A Group</strong>${intro}</div>
         </div>
         <div class="bioa-chat__messages" aria-live="polite"></div>
@@ -4082,7 +4259,7 @@ function addContactLauncher($,lang){
     </div>
 
     <button class="bioa-contact-fab__toggle" type="button" aria-expanded="false" aria-label="${vi?'Mở tư vấn':'Open support'}">
-      <img src="/assets/bioa-monogram.svg" alt="">
+      <img src="${avatar}" alt="">
     </button>
   </div>`);
 
@@ -4090,15 +4267,28 @@ function addContactLauncher($,lang){
     var root=document.getElementById('bioa-contact-fab');if(!root)return;
     var toggle=root.querySelector('.bioa-contact-fab__toggle');
     var collapse=root.querySelector('.bioa-chat__collapse');
+    var teaser=root.querySelector('.bioa-chat__teaser');
+    var teaserClose=root.querySelector('.bioa-chat__teaser-close');
     var form=root.querySelector('.bioa-chat__composer');
     var input=root.querySelector('.bioa-chat__input');
     var history=root.querySelector('.bioa-chat__history');
     var messages=root.querySelector('.bioa-chat__messages');
     var previewReply=${JSON.stringify(previewReply)};
+    var avatar=${JSON.stringify(avatar)};
+    var teaserDismissed=false;
+    var teaserShown=false;
 
+    function hideTeaser(){root.classList.remove('is-teaser');}
+    function showTeaser(){
+      if(teaserShown||teaserDismissed||root.classList.contains('is-open'))return;
+      teaserShown=true;
+      root.classList.add('is-teaser');
+    }
     function open(){
+      hideTeaser();
       root.classList.add('is-open');
       if(toggle)toggle.setAttribute('aria-expanded','true');
+      setTimeout(function(){if(input)input.focus({preventScroll:true})},180);
     }
     function close(){
       root.classList.remove('is-open');
@@ -4109,35 +4299,58 @@ function addContactLauncher($,lang){
       e.stopPropagation();
       root.classList.contains('is-open')?close():open();
     });
+    if(teaser){
+      teaser.addEventListener('click',function(e){
+        if(e.target.closest('.bioa-chat__teaser-close'))return;
+        open();
+      });
+      teaser.addEventListener('keydown',function(e){
+        if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}
+      });
+    }
+    if(teaserClose)teaserClose.addEventListener('click',function(e){
+      e.stopPropagation();
+      teaserDismissed=true;
+      hideTeaser();
+    });
     if(collapse)collapse.addEventListener('click',close);
 
     if(form)form.addEventListener('submit',function(e){
       e.preventDefault();
       var v=(input&&input.value||'').trim();
       if(!v)return;
-
       var user=document.createElement('div');
       user.className='bioa-chat__msg bioa-chat__msg--user';
       user.innerHTML='<div class="bioa-chat__bubble"><strong>${vi?'Bạn':'You'}</strong></div>';
       user.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(v));
       messages.appendChild(user);
       input.value='';
-
       setTimeout(function(){
         var reply=document.createElement('div');
         reply.className='bioa-chat__msg';
-        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="/assets/bioa-monogram.svg" alt=""></div><div class="bioa-chat__bubble"><strong>Bio-A Group</strong></div>';
+        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="'+avatar+'" alt=""></div><div class="bioa-chat__bubble"><strong>Bio-A Group</strong></div>';
         reply.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(previewReply));
         messages.appendChild(reply);
         history.scrollTop=history.scrollHeight;
       },320);
-
       history.scrollTop=history.scrollHeight;
     });
 
     document.addEventListener('click',function(e){
       if(root.classList.contains('is-open')&&!root.contains(e.target))close();
     });
+
+    var teaserTimer=setTimeout(showTeaser,4200);
+    function onScroll(){
+      var doc=document.documentElement;
+      var threshold=Math.max(160,(doc.scrollHeight-window.innerHeight)*.08);
+      if(window.scrollY>=threshold){
+        clearTimeout(teaserTimer);
+        showTeaser();
+        window.removeEventListener('scroll',onScroll);
+      }
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
 
     function purge(){
       document.querySelectorAll('[id*="dashly" i],[class*="dashly" i],[id*="carrot" i],[class*="carrot" i],iframe[src*="dashly" i],iframe[src*="carrot" i]').forEach(function(n){
@@ -4151,10 +4364,10 @@ function addContactLauncher($,lang){
   $('body').append($('<script id="bioa-contact-fab-js"></script>').html(script));
 }
 
-
 const sharedShellCss =
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
+  patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+
   patchD5FooterTabletCss+patchD6FooterMetaCss+patchZaloIconCss;
 
@@ -4169,10 +4382,11 @@ export function applySharedShell($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
+  addContactLauncher($,lang);
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
