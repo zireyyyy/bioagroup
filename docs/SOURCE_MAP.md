@@ -345,3 +345,26 @@ Protected:
 - spacing;
 - Home/Footer/Chat layout;
 - Telegram centering correction.
+
+## Home Mobile Zalo CTA Alignment
+
+Merywood:
+- .whatsapp__btn mobile geometry: width 100%, height 54px, padding 0 20px, radius 16px.
+- .whatsapp__btn .btn__icon mobile slot: 18x18px.
+
+BIO-A:
+- Zalo circular artwork: 24x24px in CTA.
+- patchH3MobileContactCss synchronizes the mobile icon slot to 24x24px and centers icon/text.
+
+Status:
+- Desktop: PROTECTED
+- Tablet: PROTECTED
+- Mobile: ACTIVE
+- FULL RESPONSIVE PASS: NO for this CTA correction until owner confirms.
+
+Protected:
+- CTA width/height/padding/radius;
+- CTA link;
+- section geometry;
+- watermark;
+- Desktop/Tablet layout.

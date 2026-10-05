@@ -420,3 +420,22 @@ Responsive status:
 - Desktop: PENDING
 - Tablet: PENDING
 - Mobile: PENDING
+
+### HOME MOBILE ZALO CTA ALIGNMENT — ACTIVE CANDIDATE
+
+Root cause:
+- Merywood mobile CTA reserves an 18x18px .btn__icon slot.
+- BIO-A circular Zalo artwork renders at 24x24px.
+- Child artwork exceeded the source icon slot, causing visible misalignment/compression.
+
+Current correction:
+- Mobile only (max-width:768px).
+- Preserve source CTA width/height/padding/radius.
+- Synchronize .btn__icon slot to 24x24px.
+- Center icon + text with the existing button flex layout.
+- Desktop and Tablet remain protected.
+
+Responsive status:
+- Desktop: PROTECTED
+- Tablet: PROTECTED
+- Mobile: PENDING runtime test

@@ -3418,6 +3418,39 @@ const patchH3MobileContactCss = `
     position:relative!important;
     z-index:1!important;
   }
+  /* Source Merywood mobile slot is 18x18, but BIO-A Zalo badge is 24x24.
+     Keep source button geometry and only synchronize the icon slot to the artwork. */
+  .whatsapp__btn{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+  }
+  .whatsapp__btn .btn__icon{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:24px!important;
+    height:24px!important;
+    min-width:24px!important;
+    flex:0 0 24px!important;
+    margin:0!important;
+    line-height:0!important;
+  }
+  .whatsapp__btn .bioa-zalo-icon{
+    width:24px!important;
+    height:24px!important;
+    max-width:24px!important;
+    max-height:24px!important;
+    flex:0 0 24px!important;
+    margin:0!important;
+  }
+  .whatsapp__btn .btn__text{
+    display:block!important;
+    margin:0!important;
+    line-height:1.2!important;
+    white-space:nowrap!important;
+  }
 }
 `;
 
