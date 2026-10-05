@@ -4191,6 +4191,7 @@ function addContactLauncher($,lang){
   $('#bioa-contact-fab-js').remove();
   const vi=lang==='vi';
   const avatar='/assets/bioa-sales-avatar.webp';
+  const agentName='Khánh Như Bio-A';
   const teaser=vi
     ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
     :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
@@ -4205,7 +4206,7 @@ function addContactLauncher($,lang){
     <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">
       <div class="bioa-chat__teaser-avatar"><img src="${avatar}" alt=""></div>
       <div class="bioa-chat__teaser-copy">
-        <strong>Bio-A Group</strong>
+        <strong>${agentName}</strong>
         <span>${teaser}</span>
       </div>
       <button class="bioa-chat__teaser-close" type="button" aria-label="${vi?'Ẩn gợi ý':'Dismiss suggestion'}">×</button>
@@ -4219,7 +4220,7 @@ function addContactLauncher($,lang){
         <div class="bioa-chat__avatars" aria-hidden="true">
           <div class="bioa-chat__avatar"><img src="${avatar}" alt=""></div>
         </div>
-        <div class="bioa-chat__title">${vi?'Tư vấn Bio-A Group':'Bio-A Group Sales'}</div>
+        <div class="bioa-chat__title">${agentName}</div>
         <div class="bioa-chat__sub">${vi?'Đồng hành cùng dự án của bạn':'Supporting your product project'}</div>
       </div>
 
@@ -4235,7 +4236,7 @@ function addContactLauncher($,lang){
       <div class="bioa-chat__history">
         <div class="bioa-chat__msg bioa-chat__msg--intro">
           <div class="bioa-chat__msg-avatar"><img src="${avatar}" alt=""></div>
-          <div class="bioa-chat__bubble"><strong>Bio-A Group</strong>${intro}</div>
+          <div class="bioa-chat__bubble"><strong>${agentName}</strong>${intro}</div>
         </div>
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
@@ -4265,6 +4266,7 @@ function addContactLauncher($,lang){
     var messages=root.querySelector('.bioa-chat__messages');
     var previewReply=${JSON.stringify(previewReply)};
     var avatar=${JSON.stringify(avatar)};
+    var agentName='Khánh Như Bio-A';
     var teaserDismissed=false;
     var teaserShown=false;
 
@@ -4318,7 +4320,7 @@ function addContactLauncher($,lang){
       setTimeout(function(){
         var reply=document.createElement('div');
         reply.className='bioa-chat__msg';
-        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="'+avatar+'" alt=""></div><div class="bioa-chat__bubble"><strong>Bio-A Group</strong></div>';
+        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="'+avatar+'" alt=""></div><div class="bioa-chat__bubble"><strong>'+agentName+'</strong></div>';
         reply.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(previewReply));
         messages.appendChild(reply);
         history.scrollTop=history.scrollHeight;
