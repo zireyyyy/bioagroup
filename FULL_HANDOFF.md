@@ -475,3 +475,19 @@ Protected:
 - Header/Footer accepted geometry and visual treatment.
 - Home Tablet layout is not to be repaired in this phase.
 - Existing Home section mechanics remain source-owned; content patches must not rewrite components.
+
+
+### SHARED SHELL ROUTE SCOPE
+
+To avoid restoring the previously problematic full Merywood catalog build, the shared Header/Footer rollout is intentionally limited to the current BIO-A core routes:
+- /
+- /about/
+- /contacts/
+- /careers/
+- /cookie-policy/
+- /privacy-policy/
+- /contract-manufacturing-cosmetics/
+- /blog/
+- /dich-vu-khac/ remains supplied by withExtraRoutes() from the existing hotel/spa source mapping.
+
+Do not re-enable the old vitamin/supplement/archive route catalog unless the owner explicitly needs those pages.

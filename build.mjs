@@ -8,26 +8,14 @@ const BASE = "https://merywood.com";
 const OUT = "dist";
 
 const routes = [
-  "/", "/about/", "/contacts/", "/careers/", "/careers/b2b-sales-manager/",
-  "/careers/regulatory-affairs-specialist-eu/", "/cookie-policy/", "/privacy-policy/",
-  "/contract-manufacturing-cosmetics/", "/white-label-cosmetics/", "/private-label-cosmetics/",
-  "/hotel-spa-cosmetics/", "/contract-manufacturing-supplements/", "/white-label-supplements/",
-  "/private-label-supplements/", "/sports-nutrition/", "/pet-supplement-manufacturer/",
-  "/weight-loss/", "/male-enhancement/", "/diabet/", "/vitamin-d-private-label/",
-  "/vitamin-b12-private-label/", "/vitamin-a-manufacturer/", "/vitamin-b2-production/",
-  "/vitamin-c-manufacturer/", "/vitamin-k-manufacturer/", "/vitamin-e-manufacturer/",
-  "/omega-3-private-label/", "/probiotics-private-label/", "/blog/",
-  "/blog/ascorbic-acid-production/", "/blog/best-fulfillment-for-cosmetics-and-supplements/",
-  "/blog/collagen-supplements-manufacturing/", "/blog/cosmetic-manufacturing-process/",
-  "/blog/dog-supplement-formats/", "/blog/how-fish-oil-is-made/",
-  "/blog/how-is-protein-powder-manufactured/", "/blog/how-peptides-are-made/",
-  "/blog/how-sunscreen-is-made/", "/blog/how-to-choose-supplement-fulfillment-provider/",
-  "/blog/how-to-start-supplement-company-europe/", "/blog/how-to-start-your-own-skincare-line/",
-  "/blog/sunscreen-business/", "/blog/supplement-trends-2026/",
-  "/blog/trending-skincare-products-2026/", "/blog/vitamins-bones-joints/",
-  "/blog/what-affects-moq-in-supplement-manufacturing/", "/blog/what-is-haccp/",
-  "/blog/what-is-inci/", "/blog/what-is-microbiome-skincare/",
-  "/blog/white-label-vs-private-label/", "/blog/page/2/", "/blog/page/3/", "/blog/page/4/"
+  "/",
+  "/about/",
+  "/contacts/",
+  "/careers/",
+  "/cookie-policy/",
+  "/privacy-policy/",
+  "/contract-manufacturing-cosmetics/",
+  "/blog/"
 ];
 
 const routeDefs = withExtraRoutes(routes);
