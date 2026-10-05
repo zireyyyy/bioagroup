@@ -3367,6 +3367,40 @@ const patchH5CMobileMoqCss = `
 }
 `;
 
+const patchMotionM1Css = `
+/* MOTION-M1 — SKL-inspired reveal, intentionally milder for BIO-A.
+   Never target We Produce, sliders, Header/Footer, Cookie or Chat. */
+html.bioa-reveal-ready .bioa-reveal{
+  opacity:0;
+  transform:translateY(24px);
+  transition:
+    opacity .72s cubic-bezier(.16,1,.3,1),
+    transform .72s cubic-bezier(.16,1,.3,1);
+  will-change:opacity,transform;
+}
+html.bioa-reveal-ready .bioa-reveal.is-in{
+  opacity:1;
+  transform:translateY(0);
+}
+html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d1{transition-delay:.06s}
+html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d2{transition-delay:.13s}
+html.bioa-reveal-ready .bioa-reveal.bioa-reveal-d3{transition-delay:.20s}
+@media(max-width:768px){
+  html.bioa-reveal-ready .bioa-reveal{
+    transform:translateY(16px);
+    transition-duration:.62s;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  html.bioa-reveal-ready .bioa-reveal{
+    opacity:1!important;
+    transform:none!important;
+    transition:none!important;
+  }
+}
+`;
+
+
 function localizeHomeCtas($,lang){
   if(lang!=='vi')return;
   $('.btn__text').each((_,el)=>{
@@ -3955,6 +3989,49 @@ function footerSocials($){
   });
 }
 
+function addHomeReveal($){
+  $('#bioa-home-reveal-js').remove();
+  const selectors=[
+    '#why-choose-us > .container > .title-wrapper',
+    '#why-choose-us .grid.desctop > .item',
+    '.block-how-works > .container > .title-wrapper',
+    '.block-products-desctop > .container > .title-wrapper',
+    '.block-products-mobile > .container > .title-wrapper',
+    '.block-product-formats > .container > .title-wrapper',
+    '.block-product-formats .formats',
+    '.block-reviews > .container > .title-wrapper',
+    '.block-right-choice > .container > .title-wrapper',
+    '.block-right-choice .clients > .client',
+    '.block-roadmap > .container > .title-wrapper',
+    '.whatsapp .whatsapp__content'
+  ];
+  selectors.forEach(sel=>$(sel).each((i,e)=>{
+    $(e).addClass('bioa-reveal');
+    if(i>0)$(e).addClass('bioa-reveal-d'+Math.min(i,3));
+  }));
+
+  const script=`(function(){
+    if(!('IntersectionObserver' in window))return;
+    document.documentElement.classList.add('bioa-reveal-ready');
+    var els=[].slice.call(document.querySelectorAll('.bioa-reveal'));
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-in');
+          obs.unobserve(entry.target);
+        }
+      });
+    },{threshold:.08,rootMargin:'0px 0px -36px 0px'});
+    els.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      if(r.top<window.innerHeight*.92)el.classList.add('is-in');
+      else obs.observe(el);
+    });
+  })();`;
+  $('body').append($('<script id="bioa-home-reveal-js"></script>').html(script));
+}
+
+
 function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
   $('#bioa-contact-fab-js').remove();
@@ -4095,7 +4172,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -4108,5 +4185,6 @@ export function applyHomeRefinement($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
+  addHomeReveal($);
   addContactLauncher($,lang);
 }
