@@ -321,3 +321,27 @@ Protected:
 - hover behavior;
 - chat geometry/motion;
 - Footer/Home layouts.
+
+## Zalo Circular Icon
+
+Owner source:
+- circular Zalo icon supplied on 2026-10-05.
+
+BIO-A:
+- asset: /assets/zalo-bioa-circle-cream.svg
+- cream circle: #FDFEF5
+- Zalo wordmark: #116F47
+
+Render sizes:
+- Footer desktop: 30px
+- Footer tablet: 28px
+- Footer mobile: 26px
+- Chat: 28px
+- CTA: 24px
+
+Protected:
+- container geometry;
+- Zalo hrefs;
+- spacing;
+- Home/Footer/Chat layout;
+- Telegram centering correction.

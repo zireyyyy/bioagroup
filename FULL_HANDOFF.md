@@ -403,3 +403,20 @@ Before ending an important development session verify:
 - rollback references exist;
 - SOURCE_MAP contains any newly confirmed mapping;
 - another AI can continue from repository files without relying on the previous chat.
+
+### ZALO CIRCLE ICON — ACTIVE CANDIDATE
+
+Owner rejected the framed Zalo treatments through 7f2a5b15219a471fb6d728d7638b6b52fcf4f210.
+
+Current candidate:
+- returns to the owner-supplied circular Zalo style;
+- circle recolored to BIO-A cream #FDFEF5;
+- Zalo wordmark recolored to BIO-A logo green #116F47;
+- transparent outside the circle;
+- keeps existing social/contact containers, links and hover mechanics;
+- keeps Telegram optical centering correction.
+
+Responsive status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING
