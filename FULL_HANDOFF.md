@@ -1,105 +1,228 @@
 # BIO-A GROUP WEBSITE — FULL HANDOFF
 
-Updated: 2026-10-04
+Updated: 2026-10-05
 Repository: https://github.com/zireyyyy/bioagroup
 
-## 1. SOURCE-OF-TRUTH RULE — LOCKED
+This file is the current-state authority.
+Permanent rules are in AGENTS.md.
+Detailed implementation workflow is in docs/WORKFLOW.md.
+Merywood ↔ BIO-A component mappings are in docs/SOURCE_MAP.md.
 
-**Merywood source supplied by the owner is the visual/runtime reference.**
+## 1. AUTHORITATIVE BASELINE
 
-Future work MUST follow this rule:
+Owner-declared authoritative rollback baseline:
 
-- Preserve Merywood's original DOM/layout/positioning/hover/animation/responsive mechanics wherever they already work.
-- Apply only the exact requested Bio-A changes: content, language, brand colors, Bio-A logos/watermarks, contact channels, and explicitly approved UX changes.
-- Do **not** redraw, restructure, or invent replacement layout/interaction code when the source already provides the required behavior.
-- Do **not** change a PASS component while fixing another component unless the change is technically unavoidable and explicitly called out.
-- Desktop and mobile are separate regression surfaces. Every patch must verify both.
-- If a source rule conflicts with a new requirement, first preserve source structure and override the smallest possible property.
-- Prefer source selector/DOM parity over broad CSS patches or guessed selectors.
-- Never replace a source component wholesale simply to solve one visual defect.
-- At each PASS checkpoint, treat the approved behavior as locked regression baseline.
+083a7e890b2627c9456c4c0ef98890b3749698fb
 
-This rule was explicitly requested by the project owner after the We Produce regression cycle and is mandatory for all later patches.
+This baseline overrides current/main/HEAD/newer commits unless the owner explicitly changes authority.
 
-## 2. CURRENT PRODUCTION / VISUAL BASELINE
+The baseline commit is documentation-only:
 
-Current locked checkpoint before Patch C:
-- Main commit: `3c88798b52222aa2e6c4baa1ab4a8b827c169279`
-- We Produce desktop: PASS
-- We Produce mobile: PASS
-- Desktop footer email/background: PASS
-- Header desktop spacing/transparency/logo: PASS
-- Mobile header/menu latest accepted visual state remains protected
-- Hero/stats previous approved state remains protected
+docs: record Patch C3 chat shell baseline
+
+Functional parent:
+
+54a0248514d920fc1b2cecc7deb8238b37a463ad
+feat: Patch C3 simplify Merywood-style BIO-A chat shell
+
+Repository documentation commits created after 083a7e8 may exist on main.
+They do not silently replace the runtime/code authority declared above.
+
+## 2. SOURCE OF TRUTH — LOCKED
+
+The original Merywood source supplied by the owner is the visual/runtime reference.
+
+Required behavior:
+- preserve Merywood DOM/layout/positioning/hover/animation/responsive mechanics wherever already correct;
+- apply only exact requested BIO-A changes;
+- prefer original Merywood selector/font/DOM/interaction behavior over new custom code;
+- do not rewrite a component to fix a small defect;
+- do not touch a PASS/LOCKED component unless technically unavoidable;
+- desktop and mobile are separate regression surfaces;
+- every patch must be small, scoped and rollback-friendly.
+
+Default engineering strategy:
+
+FIND → COMPARE → PORT → VERIFY
 
 ## 3. BRAND / CONTACT AUTHORITY
 
-- Domain: bioagroup.vn
-- Email: contact@bioagroup.vn
-- Phone: 0779 399 379
-- WhatsApp: +84 779 399 379
-- Telegram: https://t.me/bioagroup
-- Facebook: https://www.facebook.com/nhamaysanxuatduocmypham.BioA
-- Zalo: +84 779 399 379
+Domain:
+bioagroup.vn
 
-Header nav:
+Email:
+contact@bioagroup.vn
+
+Phone:
+0779 399 379
+
+WhatsApp:
++84 779 399 379
+
+Telegram:
+https://t.me/bioagroup
+
+Facebook:
+https://www.facebook.com/nhamaysanxuatduocmypham.BioA
+
+Zalo:
++84 779 399 379
+
+Header navigation:
 - Về BIOA Group
 - Gia Công Mỹ Phẩm
 - Dịch Vụ Khác
 - Kiến Thức
 - Liên Hệ
 
-## 4. BRANDING RULE
+Brand rule:
+- replace Merywood brand traces such as logo, watermark/background logo, brand accent and Merywood contact identity;
+- do not replace ordinary product images, neutral icons or normal decorative artwork without an explicit request;
+- keep BIO-A logo uncropped and in original proportions;
+- use light BIO-A logo on dark backgrounds.
 
-Only replace **Merywood brand traces**:
-- logo
-- watermark/background logo
-- brand accent colors
-- Merywood-specific contact identity
+## 4. OWNER-CONFIRMED / PROTECTED STATE CARRIED FROM THE EXISTING HANDOFF
 
-Do not replace ordinary product imagery, neutral icons, layout decorations, or source UI artwork unless explicitly requested.
+Protected checkpoint before Patch C:
 
-Bio-A logo must remain uncropped and keep its original proportions. Use the light logo on dark backgrounds.
+3c88798b52222aa2e6c4baa1ab4a8b827c169279
 
-## 5. PATCH DISCIPLINE
+Carried PASS/LOCKED surfaces:
+- We Produce desktop: PASS/LOCKED
+- We Produce mobile: PASS/LOCKED
+- Desktop footer email/background: PASS/LOCKED
+- Header desktop spacing/transparency/logo: PASS/LOCKED
+- Mobile header/menu latest accepted visual state: PROTECTED
+- Hero/stats previous approved state: PROTECTED
 
-Every patch should:
-1. Start from the last PASS checkpoint.
-2. Compare against the supplied Merywood source before changing layout/interaction behavior.
-3. Make the smallest scoped change.
-4. Keep desktop/mobile parity.
-5. Avoid touching already-PASS components.
-6. Push one focused commit that is easy to roll back.
-7. Record the new PASS checkpoint here after user runtime confirmation.
+Do not opportunistically modify these surfaces.
 
-## 6. NEXT PHASE
+## 5. PATCH C3 CURRENT BASELINE STATE
 
-Patch C — Chat/contact widget.
+Current functional parent:
+54a0248514d920fc1b2cecc7deb8238b37a463ad
 
-Owner requirement:
-- Follow the Merywood chat shell/structure closely.
-- Preserve the Merywood interaction feel rather than designing a new chat UI.
-- Replace Merywood identity/avatar/content with BIO-A information.
-- Prefer Zalo as the primary social/chat handoff; Facebook, Email, Telegram and WhatsApp remain contact channels.
-- Chat response mechanism may be replaced later, but the shell should remain source-parity.
-- Do not reconnect or reuse Merywood's Dashly account/credentials.
-
-
-## 7. PATCH C3 — CHAT SHELL CLEANUP
-
-Implemented on main after Patch C2.
-
-Scope:
-- Keep the Merywood-style compact chat shell as the visual reference.
-- Remove the upper `Nhắn tin / Zalo` primary action row.
-- Remove the History heading/cards and the extra `BIO-A Group · bioagroup.vn` brand line.
-- Keep exactly one BIO-A avatar in the chat header.
-- Header title is now `BIO-A Group`.
-- Keep one compact in-panel contact row: WhatsApp, Facebook, Telegram, Zalo.
-- Preserve the chat composer and current preview message behavior.
-- When the chat panel is open, hide the floating launcher; show it again when the panel is collapsed/closed.
-- Patch is scoped only to the BIO-A chat widget; Hero, We Produce, Footer, desktop header and mobile menu are not intentionally changed.
+Patch C3 baseline behavior:
+- compact Merywood-style BIO-A chat shell;
+- upper Message/Zalo primary action row removed;
+- History heading/cards removed;
+- extra BIO-A Group · bioagroup.vn provider line removed;
+- exactly one BIO-A avatar in chat header;
+- header title BIO-A Group;
+- one compact contact row: WhatsApp, Facebook, Telegram, Zalo;
+- composer and current preview-message behavior preserved;
+- floating launcher hidden while panel is open and restored when collapsed/closed.
 
 Regression rule:
-- Do not reintroduce CSKH/R&D avatar pills, duplicated action cards, History cards, or the extra brand/provider line unless explicitly requested.
-- Future chat work should continue from this compact Merywood-style shell rather than redesigning the widget from scratch.
+- do not reintroduce CSKH/R&D avatar pills;
+- do not reintroduce duplicated action cards;
+- do not reintroduce History cards;
+- do not reintroduce extra provider line;
+- future chat work must continue from this baseline rather than redesigning the widget.
+
+This documentation bootstrap does not newly promote Patch C3 or any later chat candidate to runtime PASS.
+
+## 6. NON-AUTHORITATIVE POST-BASELINE COMMITS
+
+The following commits were found after 083a7e8 on the previous main and are intentionally NOT authoritative for the current restart:
+
+33d12c91c89cf05f1409da50915af49bdb047a55
+refine: Patch C4 chat motion and composer
+
+c4fd393078bac10428489a21fb88672e06e9788d
+docs: record Patch C4 chat shell finishing
+
+b4e6f084836e1c5ef41500f6b6eb641ff868d93e
+hotfix: use true Merywood-style light hero stats type
+
+6250046a4c1a04a4ebda94f0cf12da1b78d26819
+hotfix: isolate watermark layer and restore slider pointer controls
+
+Do not restore, cherry-pick or copy behavior from these commits unless the owner explicitly asks for it after source comparison.
+
+They remain available in Git history as rejected/non-authoritative candidates.
+
+## 7. ARCHITECTURE / BUILD
+
+Runtime project:
+- Node.js >= 20
+- build command: npm run build
+- output directory: dist
+
+Main repository roles:
+- build.mjs — build pipeline
+- bioa-transform.mjs — general BIO-A transformation logic
+- bioa-home-refine.mjs — home-specific BIO-A visual/content/runtime refinements
+- assets/ — BIO-A project assets
+
+The original Merywood export supplied by the owner is an external source reference and is not assumed to be fully committed into this repository.
+
+## 8. AUTHORITY FILES
+
+Required:
+- AGENTS.md
+- FULL_HANDOFF.md
+- docs/WORKFLOW.md
+- docs/SOURCE_MAP.md
+
+Session boot order:
+1. identify owner-declared baseline;
+2. read AGENTS.md;
+3. read FULL_HANDOFF.md;
+4. read docs/WORKFLOW.md;
+5. read docs/SOURCE_MAP.md;
+6. identify target component;
+7. inspect only relevant Merywood source and BIO-A counterpart.
+
+## 9. CURRENT ACTIVE WORK
+
+Authority/workflow bootstrap:
+- create and install the four required repository authority files;
+- keep code/runtime unchanged from the owner-declared baseline;
+- exclude the four post-baseline commits from the new main lineage;
+- no UI/runtime change is included in this documentation patch.
+
+Next product patch:
+- waiting for owner instruction.
+
+## 10. VERIFICATION / PASS AUTHORITY
+
+BUILD PASS does not equal runtime PASS.
+
+Only the owner can confirm:
+- VISUAL PASS
+- RUNTIME PASS
+- PRODUCTION PASS
+
+Do not update this file with a new visual/runtime PASS until the owner explicitly confirms it.
+
+When owner confirms PASS:
+1. record accepted commit SHA;
+2. mark the behavior PASS/LOCKED;
+3. record rollback checkpoint;
+4. record remaining work;
+5. record rejected candidates when relevant;
+6. update SOURCE_MAP only for newly investigated components.
+
+## 11. ROLLBACK REFERENCES
+
+Primary owner-declared rollback baseline:
+083a7e890b2627c9456c4c0ef98890b3749698fb
+
+Functional parent for Patch C3:
+54a0248514d920fc1b2cecc7deb8238b37a463ad
+
+Protected pre-Patch-C checkpoint:
+3c88798b52222aa2e6c4baa1ab4a8b827c169279
+
+The four commits listed in section 6 are not rollback targets for the restarted project unless the owner explicitly promotes one later.
+
+## 12. SESSION CONTINUITY
+
+Before ending an important development session verify:
+- authoritative baseline is clear;
+- latest accepted PASS/LOCKED state is clear;
+- active/next patch is clear;
+- rollback references exist;
+- SOURCE_MAP contains any newly confirmed mapping;
+- another AI can continue from repository files without relying on the previous chat.
