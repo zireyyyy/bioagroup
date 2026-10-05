@@ -3377,6 +3377,112 @@ function buildMobileFooterV2($){
   host.prepend(row);
 }
 
+
+function refineFooterNavigation($,lang){
+  const vi=lang==='vi';
+  const cols=vi ? [
+    {title:'Gia Công Mỹ Phẩm',items:[
+      ['Gia công trọn gói','/contract-manufacturing-cosmetics/'],
+      ['Công thức có sẵn','/white-label-cosmetics/'],
+      ['Công thức độc quyền','/private-label-cosmetics/'],
+      ['Spa & khách sạn','/hotel-spa-cosmetics/'],
+      ['Liên hệ tư vấn','/contacts/']
+    ]},
+    {title:'Dịch Vụ Khác',items:[
+      ['Nghiên cứu & phát triển','/dich-vu-khac/'],
+      ['Tư vấn công thức','/dich-vu-khac/'],
+      ['Bao bì & nhận diện','/dich-vu-khac/'],
+      ['Hồ sơ & tiêu chuẩn','/dich-vu-khac/'],
+      ['Sản xuất & bàn giao','/dich-vu-khac/']
+    ]},
+    {title:'Kiến Thức',items:[
+      ['Kiến thức ngành','/blog/'],
+      ['Quy trình gia công mỹ phẩm','/blog/cosmetic-manufacturing-process/'],
+      ['Xây dựng thương hiệu skincare','/blog/how-to-start-your-own-skincare-line/'],
+      ['Xu hướng mỹ phẩm 2026','/blog/trending-skincare-products-2026/'],
+      ['White label và private label','/blog/white-label-vs-private-label/']
+    ]},
+    {title:'BIO-A Group',items:[
+      ['Về BIOA Group','/about/'],
+      ['Năng lực sản xuất','/about/'],
+      ['Liên hệ','/contacts/'],
+      ['Tuyển dụng','/careers/']
+    ]},
+    {title:'Thông Tin',items:[
+      ['Dịch Vụ Khác','/dich-vu-khac/'],
+      ['Chính sách bảo mật','/privacy-policy/'],
+      ['Chính sách cookie','/cookie-policy/'],
+      ['Facebook',company.facebook],
+      ['Zalo',company.zalo]
+    ]}
+  ] : [
+    {title:'Cosmetic Manufacturing',items:[
+      ['Contract manufacturing','/en/contract-manufacturing-cosmetics/'],
+      ['Ready formulas','/en/white-label-cosmetics/'],
+      ['Custom formulas','/en/private-label-cosmetics/'],
+      ['Hotels & SPA','/en/hotel-spa-cosmetics/'],
+      ['Contact us','/en/contacts/']
+    ]},
+    {title:'Other Services',items:[
+      ['Research & development','/en/dich-vu-khac/'],
+      ['Formula consulting','/en/dich-vu-khac/'],
+      ['Packaging & branding','/en/dich-vu-khac/'],
+      ['Regulatory support','/en/dich-vu-khac/'],
+      ['Production & delivery','/en/dich-vu-khac/']
+    ]},
+    {title:'Knowledge',items:[
+      ['Industry knowledge','/en/blog/'],
+      ['Cosmetic manufacturing process','/en/blog/cosmetic-manufacturing-process/'],
+      ['Start a skincare brand','/en/blog/how-to-start-your-own-skincare-line/'],
+      ['Cosmetic trends 2026','/en/blog/trending-skincare-products-2026/'],
+      ['White label vs private label','/en/blog/white-label-vs-private-label/']
+    ]},
+    {title:'BIO-A Group',items:[
+      ['About BIO-A Group','/en/about/'],
+      ['Manufacturing capabilities','/en/about/'],
+      ['Contact','/en/contacts/'],
+      ['Careers','/en/careers/']
+    ]},
+    {title:'Information',items:[
+      ['Other Services','/en/dich-vu-khac/'],
+      ['Privacy Policy','/en/privacy-policy/'],
+      ['Cookie Policy','/en/cookie-policy/'],
+      ['Facebook',company.facebook],
+      ['Zalo',company.zalo]
+    ]}
+  ];
+
+  const navs=$('.footer-top__menu .footer-top__nav');
+  navs.each((i,navEl)=>{
+    const col=cols[i];
+    if(!col)return;
+    const lis=$(navEl).find('ul > li');
+    const head=lis.eq(0);
+    const headLink=head.find('a').first();
+    headLink.text(col.title).removeAttr('href target rel');
+    head.removeAttr('hidden').removeClass('bioa-footer-nav-unused');
+
+    col.items.forEach((item,j)=>{
+      const li=lis.eq(j+1);
+      if(!li.length)return;
+      const a=li.find('a').first();
+      const label=item[0], href=item[1];
+      a.text(label).attr('href',href);
+      if(/^https?:\/\//.test(href)){
+        a.attr('target','_blank').attr('rel','noopener noreferrer');
+      }else{
+        a.removeAttr('target rel');
+      }
+      li.removeAttr('hidden').removeClass('bioa-footer-nav-unused');
+    });
+
+    lis.each((j,li)=>{
+      if(j>col.items.length){
+        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused');
+      }
+    });
+  });
+}
 function footerSocials($){
   const wrap=$('.footer-top__socials').first();
   if(!wrap.length)return;
@@ -3526,6 +3632,7 @@ export function applyHomeRefinement($,route,lang){
   normalizeHeaderActions($);
   syncMobileHeader($,route,lang);
   replaceMobileProduceSection($,lang);
+  refineFooterNavigation($,lang);
   footerSocials($);
   buildMobileFooterV2($);
   addContactLauncher($,lang);
