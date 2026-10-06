@@ -162,18 +162,12 @@ function setAboutActivity($,lang){
 }
 
 const aboutProductIcons = [
-  /* 01 Makeup — lipstick tube, adapted to the reference beauty/cosmetics outline language */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 11.2h5.6v8.3H9.2z"/><path d="M10.1 11.2V7.1l3.8-2.4v6.5"/><path d="M10.1 7.1h3.8"/><path d="M9.2 15.6h5.6"/></g></svg>',
-  /* 02 Hair care — conditioner bottle */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.1 3.6h3.8"/><path d="M10.6 3.6v2.6h2.8V3.6"/><path d="M9 8.3a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9.5a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/><path d="M10.4 11.5c1.1-.8 2.1-.8 3.2 0"/><path d="M10.5 14.2h3"/></g></svg>',
-  /* 03 Body care — body lotion pump bottle */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.2V3h3.6"/><path d="M14.6 3H17v1.8"/><path d="M10 7.4h5"/><path d="M9 9.3a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v8.8a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2z"/><path d="M12.5 11.3c-1.2 1.4-1.7 2.2-1.7 3a1.7 1.7 0 0 0 3.4 0c0-.8-.5-1.6-1.7-3z"/></g></svg>',
-  /* 04 Facial skin care — face serum/dropper bottle */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 3.2h3.6"/><path d="M10.7 3.2v3.3h2.6V3.2"/><path d="M9.5 8.5h5"/><path d="M8.8 10.4a2 2 0 0 1 2-2h2.4a2 2 0 0 1 2 2v7.4a2 2 0 0 1-2 2h-2.4a2 2 0 0 1-2-2z"/><path d="M12 12.6c1 1 1.6 1.9 1.6 2.7a1.6 1.6 0 0 1-3.2 0c0-.8.6-1.7 1.6-2.7z"/></g></svg>',
-  /* 05 Personal care — hand cream tube */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9.3 5.6h5.4l1 10.7a2 2 0 0 1-2 2.2h-3.4a2 2 0 0 1-2-2.2z"/><path d="M9.9 5.6 9.4 3.5h5.2l-.5 2.1"/><path d="M10.6 10.6h2.8"/><path d="M12 9.2V12"/></g></svg>',
-  /* 06 Mother & baby — baby bottle */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 5V4.2a1.8 1.8 0 0 1 3.6 0V5"/><path d="M10 5h4"/><path d="M10.2 7.3c-.9.8-1.4 1.9-1.4 3.1v7.4a2 2 0 0 0 2 2h2.4a2 2 0 0 0 2-2v-7.4c0-1.2-.5-2.3-1.4-3.1"/><path d="M10.7 11h2.6"/><path d="M10.7 14h2.6"/></g></svg>'
+  "/assets/about-icon-01-trang-diem.png",
+  "/assets/about-icon-02-cham-soc-toc.png",
+  "/assets/about-icon-03-cham-soc-body.png",
+  "/assets/about-icon-04-cham-soc-da-mat.png",
+  "/assets/about-icon-05-ca-nhan.png",
+  "/assets/about-icon-06-me-be.png"
 ];
 
 
@@ -181,6 +175,10 @@ function setAboutProducts($,lang){
   const vi=lang==="vi";
   const sec=$(".mwa-produce").first();
   if(!sec.length)return;
+
+  if(!$("#bioa-about-category-icon-style").length){
+    $("head").append('<style id="bioa-about-category-icon-style">.mwa-produce .mwa-isq .bioa-about-category-icon{display:block;width:22px;height:22px;object-fit:contain;object-position:center;margin:auto;pointer-events:none}</style>');
+  }
 
   text(sec,".mwa-sec__title",vi?"Danh Mục Gia Công":"Manufacturing Categories");
   text(sec,".mwa-sec__sub",vi?"Một Đối Tác, Nhiều Dòng Sản Phẩm":"One Partner, Multiple Product Lines");
@@ -209,7 +207,11 @@ function setAboutProducts($,lang){
     if(!d)return;
     const card=$(el);
     const icon=aboutProductIcons[i];
-    if(icon)card.find(".mwa-isq").first().html(icon);
+    if(icon){
+      card.find(".mwa-isq").first().html(
+        '<img class="bioa-about-category-icon" src="'+icon+'" alt="" aria-hidden="true" width="22" height="22" decoding="async">'
+      );
+    }
     card.find("h3").first().text(d[0]);
     card.children("p").first().text(d[1]);
     const links=card.find(".mwa-links").first();

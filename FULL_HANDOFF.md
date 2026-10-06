@@ -1572,3 +1572,25 @@ Implementation:
 Status:
 - About CTA Desktop/Tablet/Mobile: PENDING OWNER VISUAL TEST.
 
+## ABOUT-PRODUCT-ICON3 — OWNER-SUPPLIED ICON ARTWORK
+
+Owner supplied six final PNG artworks and explicitly requires artwork-only replacement.
+
+Mapping:
+- 01 Sản Phẩm Trang Điểm -> Trang Điểm.png
+- 02 Sản Phẩm Chăm Sóc Tóc -> Chăm Sóc Tóc.png
+- 03 Sản Phẩm Chăm Sóc Body -> Chăm Sóc Body.png
+- 04 Sản Phẩm Chăm Sóc Da Mặt -> Chăm Sóc Da Mặt.png
+- 05 Sản Phẩm Cá Nhân -> Cá Nhân.png
+- 06 Sản Phẩm Mẹ & Bé -> Mẹ & Bé.png
+
+Implementation:
+- owner images are trimmed/centered only to remove transparent dead space and normalized to lightweight 72x72 PNG assets.
+- no artwork is redrawn.
+- .mwa-isq green square, 01–06 badge, product-card geometry, padding, spacing, typography, links, motion and responsive layout are unchanged.
+- rendered artwork remains 22x22, matching the original Merywood icon footprint.
+- prior custom inline SVG icon attempts are retired.
+
+Status:
+- About category icon artwork: PENDING OWNER VISUAL TEST.
+

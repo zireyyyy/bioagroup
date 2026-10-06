@@ -1275,3 +1275,23 @@ Rule:
 - replace artwork only.
 - preserve Merywood CTA media size, position, background sizing, card geometry and copy.
 
+## ABOUT-PRODUCT-ICON3 — owner artwork authority
+
+Assets:
+- assets/about-icon-01-trang-diem.png
+- assets/about-icon-02-cham-soc-toc.png
+- assets/about-icon-03-cham-soc-body.png
+- assets/about-icon-04-cham-soc-da-mat.png
+- assets/about-icon-05-ca-nhan.png
+- assets/about-icon-06-me-be.png
+
+Route owner:
+- bioa-about-refine.mjs
+- aboutProductIcons
+- setAboutProducts($,lang)
+
+Rule:
+- these six owner-supplied PNGs are the artwork source-of-truth.
+- only trim/center/resize for web delivery is allowed unless owner requests visual editing.
+- preserve .mwa-isq geometry and all card layout/spacing.
+
