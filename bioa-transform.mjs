@@ -427,7 +427,7 @@ function viCleanup($){
     if(/Merywood/i.test(t))t=replaceBrandText(t);
     const k=t.replace(/\s+/g,' ').trim();
     if(map[k])t=t.replace(k,map[k]);
-    else if(/^To provide the best experiences/i.test(k))t='Website sử dụng cookie cần thiết và công cụ thống kê để cải thiện trải nghiệm. Bạn có thể đồng ý, từ chối hoặc tùy chỉnh.';
+    else if(/^To provide the best experiences/i.test(k))t='Bio-A Group sử dụng cookie cần thiết để website hoạt động ổn định. Nếu bạn đồng ý, chúng tôi cũng có thể sử dụng cookie thống kê và tiếp thị để hiểu cách website được sử dụng, đo lường hiệu quả nội dung và cải thiện trải nghiệm. Bạn có thể chấp nhận tất cả, chỉ cho phép cookie cần thiết hoặc tùy chỉnh lựa chọn bất cứ lúc nào.';
     else if(/^It takes 30 seconds/i.test(k))t='Chỉ mất khoảng 30 giây để gửi yêu cầu tư vấn.';
     else if(/^I agree to the processing/i.test(k))t='Tôi đồng ý để Bio-A Group sử dụng thông tin đã cung cấp nhằm mục đích tư vấn và liên hệ.';
     n.data=t;
@@ -447,11 +447,48 @@ function viCleanup($){
 }
 
 function brandCookieBanner($){
+  const root=$('#mw-consent').first();
   const logo=$('#mw-consent .mw-brand .mw-logo,.mw-brand .mw-logo').first();
   if(logo.length){
     logo.attr('src','/assets/bioa-monogram.svg')
         .attr('alt','Bio-A Group')
         .removeAttr('srcset');
+  }
+  if(!root.length)return;
+
+  root.addClass('bioa-consent');
+  root.find('button').each((_,el)=>{
+    const btn=$(el);
+    const text=(btn.text()||'').replace(/\s+/g,' ').trim();
+    if(/^(Accept all|Đồng ý tất cả)$/i.test(text))btn.text('Đồng ý tất cả');
+    else if(/^(Reject all|Từ chối tất cả)$/i.test(text))btn.text('Chỉ cookie cần thiết');
+    else if(/^(View preferences|Tùy chọn)$/i.test(text))btn.text('Tùy chỉnh');
+    else if(/^(Save preferences|Lưu tùy chọn)$/i.test(text))btn.text('Lưu lựa chọn');
+  });
+
+  root.find('*').contents().each((_,node)=>{
+    if(node.type!=='text')return;
+    const p=$(node).parent();
+    if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
+    const raw=node.data||'';
+    const key=raw.replace(/\s+/g,' ').trim();
+    if(key==='Functional')node.data=raw.replace('Functional','Cookie cần thiết');
+    else if(key==='Always active')node.data=raw.replace('Always active','Luôn bật');
+    else if(key==='Statistics (Analytics)')node.data=raw.replace('Statistics (Analytics)','Thống kê & phân tích');
+    else if(key==='Marketing')node.data=raw.replace('Marketing','Tiếp thị');
+    else if(key==='Ads/Remarketing')node.data=raw.replace('Ads/Remarketing','Quảng cáo & remarketing');
+    else if(key==='Preferences')node.data=raw.replace('Preferences','Tùy chọn cookie');
+    else if(key==='Manage Consent')node.data=raw.replace('Manage Consent','Quản lý cookie');
+  });
+
+  if(!root.find('.bioa-consent-note').length){
+    const note=$('<div class="bioa-consent-note"></div>');
+    note.append('Bạn có thể thay đổi hoặc rút lại lựa chọn bất cứ lúc nào trong mục Quản lý cookie. Xem thêm tại ');
+    note.append($('<a href="/cookie-policy/">Chính sách cookie</a>'));
+    note.append('.');
+    const prefs=root.find('button').filter((_,el)=>/Tùy chỉnh|View preferences/i.test($(el).text())).first();
+    const target=prefs.length?prefs.parent():root;
+    target.before(note);
   }
 }
 

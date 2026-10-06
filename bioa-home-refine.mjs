@@ -3604,6 +3604,42 @@ const patchD5FooterTabletCss = `
 }
 `;
 
+const patchCookieConsentCss = `
+/* COOKIE-C2 — professional Bio-A consent presentation.
+   Source consent runtime/state remains authority. */
+#mw-consent.bioa-consent{
+  --bioa-consent-max:560px;
+}
+#mw-consent.bioa-consent .mw-modal,
+#mw-consent.bioa-consent [class*="consent"][class*="panel"],
+#mw-consent.bioa-consent [class*="consent"][class*="content"]{
+  max-width:var(--bioa-consent-max)!important;
+}
+#mw-consent.bioa-consent .bioa-consent-note{
+  margin:12px 0 14px!important;
+  color:#58635d!important;
+  font-size:12.5px!important;
+  line-height:1.5!important;
+}
+#mw-consent.bioa-consent .bioa-consent-note a{
+  color:var(--bioa-primary)!important;
+  text-decoration:underline!important;
+  text-underline-offset:2px!important;
+}
+#mw-consent.bioa-consent p{
+  line-height:1.55!important;
+}
+@media(max-width:768px){
+  #mw-consent.bioa-consent{
+    --bioa-consent-max:calc(100vw - 28px);
+  }
+  #mw-consent.bioa-consent .bioa-consent-note{
+    font-size:12px!important;
+  }
+}
+`;
+
+
 const patchD6FooterMetaCss = `
 /* FOOTER-D6B — dark accent strip + centered owner-approved copyright. */
 .footer-bottom{
@@ -4828,7 +4864,7 @@ const sharedShellCss =
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
-  patchD5FooterTabletCss+patchD6FooterMetaCss+patchZaloIconCss;
+  patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -4846,7 +4882,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);

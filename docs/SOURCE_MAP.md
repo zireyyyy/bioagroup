@@ -975,3 +975,18 @@ Rule:
 - Why Choose source icon 03 must not receive the whole-image cream filter because it destroys the inner certification/check detail.
 - Desktop icon 03 source artwork is authoritative and is mirrored to Mobile position 03.
 
+## COOKIE-C2 — consent presentation and persistence
+
+Merywood source:
+- consent categories: Functional, Statistics (Analytics/GA4), Marketing/Ads;
+- source runtime owns whether the first-visit modal is shown and remembers a prior choice.
+
+BIO-A:
+- bioa-transform.mjs: brandCookieBanner($), VI consent copy.
+- bioa-home-refine.mjs: patchCookieConsentCss.
+
+Rules:
+- do not force consent modal on every page load after a saved choice.
+- do not claim analytics/marketing data is being collected unless the corresponding provider scripts are actually enabled.
+- current preview cleanup removes external GTM/GA/Yandex/Dashly trackers; adding GA4/Ads later must respect the saved consent categories.
+

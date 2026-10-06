@@ -1119,3 +1119,27 @@ Protected:
 - Why Choose text/card geometry and icon 04.
 - Slider mechanics, loop settings, navigation events and wrapper transforms.
 
+## COOKIE-C2 — PROFESSIONAL CONSENT COPY / SOURCE STATE PRESERVED
+
+Owner feedback:
+- current cookie notice feels too short / not professional enough;
+- owner also noticed the consent popup no longer asks again on entry.
+
+Verified source behavior:
+- Merywood consent UI includes Accept all / Reject all / View preferences plus Functional, Statistics (Analytics/GA4), and Marketing categories.
+- Source consent state is expected to persist after a visitor chooses, so the popup should not be forced on every visit.
+- Existing BIO-A cleanup removes third-party tracking scripts from the current preview build, so the consent UI currently controls preference state but no active GA4/Ads payload is intentionally being sent by BIO-A yet.
+
+COOKIE-C2:
+- expand VI consent explanation to describe necessary, statistics and marketing cookies;
+- clarify that users can accept all, use necessary-only, or customize;
+- rename Reject all -> "Chỉ cookie cần thiết";
+- rename Save preferences -> "Lưu lựa chọn";
+- localize preference labels more clearly;
+- add a persistent explanatory note linking to /cookie-policy/;
+- add modest width/typography polish without replacing the Merywood consent runtime/state.
+
+Important:
+- do NOT force the popup to reappear after a saved choice.
+- for testing the first-visit state, use a private/incognito window or clear this site's stored cookie/site data.
+
