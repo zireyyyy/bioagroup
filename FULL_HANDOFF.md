@@ -938,3 +938,35 @@ Responsive status:
 - ROADMAP-R4 Tablet: REGRESSION CHECK / PENDING.
 - ROADMAP-R4 Mobile: PENDING OWNER TEST.
 
+## FOOTER-INFO1B — ACTIVE CANDIDATE
+
+Owner feedback after FOOTER-INFO1A:
+- Desktop company information is still visually too small/submerged because the four category columns consume too much horizontal spacing.
+- Company/factory name should remain on one line on normal Desktop widths.
+- Rebalance the composition from the logo/identity column through the Policies column rather than shrinking the new information block.
+- Copyright needs a small legibility increase.
+- Mobile company text should return to centered alignment, increase in size, gain more breathing room above/below, and replace the literal labels "Địa chỉ:", "Hotline:", and "Mã số thuế doanh nghiệp:" with compact icons.
+
+FOOTER-INFO1B:
+- Desktop >1200px:
+  - footer wrapper uses a three-zone grid: identity / four navigation groups / contact;
+  - identity width is clamp(320px,19vw,360px);
+  - navigation gap is tightened while preserving all four groups;
+  - company title uses responsive 14–16px / 700 and nowrap;
+  - body copy uses 12.5px;
+  - logo remains 92px;
+  - contact column remains 208px.
+- Mobile <=768px:
+  - company block returns to centered alignment;
+  - title 14.5px / 700, body 12px;
+  - top/bottom spacing increased;
+  - address / phone / tax labels are hidden and replaced with compact inline icons;
+  - values remain the official Bio-A data.
+- Copyright increases to 14px Desktop / 13px Mobile.
+- Tablet D5B grid remains protected.
+
+Responsive status:
+- FOOTER-INFO1B Desktop: PENDING OWNER TEST.
+- FOOTER-INFO1B Tablet: REGRESSION CHECK — NO STRUCTURAL CHANGE EXPECTED.
+- FOOTER-INFO1B Mobile: PENDING OWNER TEST.
+

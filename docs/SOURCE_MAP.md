@@ -859,3 +859,32 @@ Status:
 - Tablet: REGRESSION CHECK / PENDING.
 - Mobile: ACTIVE FIX CANDIDATE.
 
+## FOOTER-INFO1B — company-information hierarchy / spacing
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchFooterInfo1Css
+- addFooterCompanyInfo($)
+- footerInfoIcons
+
+Desktop ownership:
+- .footer-top__wrapper is rebalanced only above 1200px into identity / navigation / contact zones.
+- .footer-top__menu remains four source-derived BIO-A navigation groups with tighter column gaps.
+- company title is protected from wrapping at normal Desktop widths.
+
+Tablet ownership:
+- existing FOOTER-D5B 769–1200 grid remains authority and is not structurally changed.
+
+Mobile ownership:
+- .bioa-footer-company-info--responsive remains after .bioa-footer-mobile-v2.
+- text is centered.
+- address / phone / tax labels are replaced visually by inline icons; official values are unchanged.
+
+Protected:
+- footer colors;
+- D2 typography hierarchy;
+- category labels/links;
+- email/social controls;
+- mobile block order;
+- footer hover behavior.
+

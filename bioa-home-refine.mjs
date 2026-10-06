@@ -18,6 +18,11 @@ const icons = {
   mail:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.4 5h19.2A2.4 2.4 0 0124 7.4v9.2a2.4 2.4 0 01-2.4 2.4H2.4A2.4 2.4 0 010 16.6V7.4A2.4 2.4 0 012.4 5zm9.6 7.2L3.1 7.1h17.8L12 12.2zm0 2.4L2 8.9v7.7c0 .2.2.4.4.4h19.2c.2 0 .4-.2.4-.4V8.9l-10 5.7z"/></svg>'
 };
 
+const footerInfoIcons = {
+  location:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.1 7 13 7 13s7-7.9 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>',
+  phone:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.7 15.7 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.4.6 3.7.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.7 21 3 13.3 3 3.8c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.7.1.4 0 .8-.3 1.1l-2.2 2.2Z"/></svg>',
+  tax:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l4 4v16H6V2Zm8 1.8V7h3.2L14 3.8ZM8.5 11h8v1.7h-8V11Zm0 3.5h8v1.7h-8v-1.7Zm0 3.5h5.5v1.7H8.5V18Z"/></svg>'
+};
 const css = `
 :root{
   --bioa-primary:#116F47;
@@ -3309,46 +3314,74 @@ const patchD4FooterHierarchyCss = `
 
 
 const patchFooterInfo1Css = `
-/* FOOTER-INFO1A — official Bio-A factory details hierarchy refinement.
-   Preserve the accepted footer grid/order; improve company-info emphasis only. */
+/* FOOTER-INFO1B — rebalance the full footer composition around company information.
+   Desktop tightens category spacing and gives the identity column real width.
+   Tablet keeps the accepted D5B grid. Mobile uses compact icon-led company rows. */
 .bioa-footer-company-info{
   color:var(--bioa-footer-cream)!important;
   font-weight:400!important;
 }
 .bioa-footer-company-info__title{
-  margin:0 0 10px!important;
+  margin:0 0 11px!important;
   color:var(--bioa-footer-cream)!important;
   font-size:15px!important;
-  line-height:1.32!important;
+  line-height:1.3!important;
   font-weight:700!important;
 }
-.bioa-footer-company-info p{
+.bioa-footer-company-info__row{
   margin:0 0 7px!important;
   color:var(--bioa-footer-cream)!important;
-  font-size:12.25px!important;
+  font-size:12.5px!important;
   line-height:1.45!important;
   font-weight:400!important;
 }
-.bioa-footer-company-info p:last-child{margin-bottom:0!important}
-.bioa-footer-company-info strong{
+.bioa-footer-company-info__row:last-child{margin-bottom:0!important}
+.bioa-footer-company-info__row strong{
   color:var(--bioa-footer-cream)!important;
   font-weight:600!important;
 }
+.bioa-footer-company-info__icon{display:none!important}
 .bioa-footer-company-info--desktop{
-  width:276px!important;
-  max-width:276px!important;
+  width:100%!important;
+  max-width:360px!important;
   margin-top:20px!important;
   text-align:left!important;
 }
-.bioa-footer-company-info--responsive{
-  display:none!important;
-}
+.bioa-footer-company-info--responsive{display:none!important}
 @media(min-width:1201px){
+  .footer-top__wrapper{
+    display:grid!important;
+    grid-template-columns:clamp(320px,19vw,360px) minmax(0,1fr) 208px!important;
+    align-items:start!important;
+    column-gap:clamp(24px,2vw,40px)!important;
+  }
+  .footer-top__left{
+    min-width:0!important;
+    width:100%!important;
+  }
+  .footer-top__menu{
+    display:grid!important;
+    grid-template-columns:minmax(0,1.08fr) minmax(0,1.18fr) minmax(0,.86fr) minmax(0,.86fr)!important;
+    column-gap:clamp(18px,1.45vw,28px)!important;
+    width:100%!important;
+    min-width:0!important;
+    align-content:start!important;
+  }
+  .footer-top__nav{width:auto!important;min-width:0!important}
+  .footer-top__right{
+    width:208px!important;
+    min-width:208px!important;
+    justify-self:end!important;
+  }
   .footer-top__left .footer-top__logo img,
   .footer-top__left .footer__logo img{
     width:92px!important;
     max-width:92px!important;
     height:auto!important;
+  }
+  .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
+    font-size:clamp(14px,.84vw,16px)!important;
+    white-space:nowrap!important;
   }
 }
 @media(max-width:1200px){
@@ -3357,7 +3390,7 @@ const patchFooterInfo1Css = `
     display:block!important;
     width:min(100%,760px)!important;
     max-width:760px!important;
-    margin:2px auto 26px!important;
+    margin:4px auto 28px!important;
     padding:0 18px!important;
     text-align:center!important;
     box-sizing:border-box!important;
@@ -3370,20 +3403,48 @@ const patchFooterInfo1Css = `
 @media(max-width:768px){
   .bioa-footer-company-info--responsive{
     width:100%!important;
-    margin:6px auto 24px!important;
-    padding:4px 20px 0!important;
-    text-align:left!important;
+    margin:14px auto 30px!important;
+    padding:0 14px!important;
+    text-align:center!important;
   }
   .bioa-footer-company-info--responsive .bioa-footer-company-info__title{
-    margin-bottom:9px!important;
-    font-size:13.5px!important;
+    margin-bottom:12px!important;
+    font-size:14.5px!important;
     line-height:1.34!important;
     font-weight:700!important;
+    text-align:center!important;
   }
-  .bioa-footer-company-info--responsive p{
-    margin-bottom:6px!important;
-    font-size:11px!important;
-    line-height:1.46!important;
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__row{
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:center!important;
+    gap:7px!important;
+    margin:0 auto 8px!important;
+    font-size:12px!important;
+    line-height:1.45!important;
+    text-align:center!important;
+  }
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__row strong{display:none!important}
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__value{
+    display:inline-block!important;
+    max-width:236px!important;
+    text-align:center!important;
+  }
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__icon{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:0 0 15px!important;
+    width:15px!important;
+    height:15px!important;
+    margin-top:1px!important;
+    color:var(--bioa-footer-cream)!important;
+  }
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__icon svg{
+    display:block!important;
+    width:15px!important;
+    height:15px!important;
+    fill:currentColor!important;
   }
 }
 `;
@@ -3544,7 +3605,7 @@ const patchD6FooterMetaCss = `
   margin:0!important;
   text-align:center!important;
   color:var(--bioa-footer-cream)!important;
-  font-size:13px!important;
+  font-size:14px!important;
   line-height:1.2!important;
   font-weight:400!important;
 }
@@ -3557,7 +3618,7 @@ const patchD6FooterMetaCss = `
     padding:9px 0!important;
   }
   .footer-bottom__copyright{
-    font-size:12px!important;
+    font-size:13px!important;
   }
 }
 `;
@@ -4298,9 +4359,9 @@ function addFooterCompanyInfo($){
 
   const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}">
     <div class="bioa-footer-company-info__title">Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group</div>
-    <p><strong>Địa chỉ:</strong> ${company.address}</p>
-    <p><strong>Hotline:</strong> ${company.phoneIntl}</p>
-    <p><strong>Mã số thuế doanh nghiệp:</strong> ${company.taxId}</p>
+    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.location}</span><strong>Địa chỉ:</strong> <span class="bioa-footer-company-info__value">${company.address}</span></p>
+    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.phone}</span><strong>Hotline:</strong> <span class="bioa-footer-company-info__value">${company.phoneIntl}</span></p>
+    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.tax}</span><strong>Mã số thuế doanh nghiệp:</strong> <span class="bioa-footer-company-info__value">${company.taxId}</span></p>
   </div>`;
 
   const left=footer.find('.footer-top__left').first();
