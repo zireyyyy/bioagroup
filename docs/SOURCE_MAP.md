@@ -1198,3 +1198,22 @@ Rule:
 - do not reintroduce a separate About hero layout.
 - future compatible page heroes should reuse .block-title.
 
+## ABOUT-HERO1B — About hero stats parity only
+
+Visual/layout authority:
+- Merywood About .mwa-hero remains intact.
+- do not replace .mwa-hero with Home .block-title.
+
+Shared stat treatment:
+- bioa-home-refine.mjs
+- patchSharedHeroStatsParityCss
+
+Verified source difference:
+- About .mwa-stat card geometry already matches Home source rhythm.
+- About .mwa-stat__n max-width 7.9375rem clips Bio-A values.
+- Home PASS number column width is 13.125rem.
+
+Rule:
+- align type, card sizing and number/label allocation only.
+- never change About hero grid, content position, image position or section dimensions unless explicitly requested.
+

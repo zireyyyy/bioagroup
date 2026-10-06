@@ -3947,6 +3947,123 @@ const patchWhyChooseIconCss = `
 `;
 
 
+const patchSharedHeroStatsParityCss = `
+/* ABOUT-HERO1B — preserve original Merywood About hero geometry.
+   Only align statistic card type/column sizing with the approved Home hero.
+   Source About already uses the same 27.625rem card width and Home-like padding. */
+@media(min-width:1025px){
+  .mwa-hero .mwa-stats{
+    width:27.625rem!important;
+    min-width:27.625rem!important;
+    max-width:27.625rem!important;
+    gap:1.125rem!important;
+  }
+  .mwa-hero .mwa-stat{
+    width:100%!important;
+    min-height:0!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:1.5625rem!important;
+    padding:1.5625rem 2rem!important;
+    box-sizing:border-box!important;
+    border-radius:.9375rem!important;
+  }
+  .mwa-hero .mwa-stat__n{
+    flex:0 0 13.125rem!important;
+    width:13.125rem!important;
+    min-width:13.125rem!important;
+    max-width:13.125rem!important;
+    margin:0!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:2.5rem!important;
+    font-weight:300!important;
+    font-style:normal!important;
+    line-height:1!important;
+    letter-spacing:-.02em!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    color:#505050!important;
+    -webkit-text-fill-color:#505050!important;
+    background:none!important;
+    text-shadow:none!important;
+    -webkit-text-stroke:0!important;
+  }
+  .mwa-hero .mwa-stat__l{
+    flex:1 1 auto!important;
+    min-width:0!important;
+    max-width:none!important;
+    margin:0!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:1rem!important;
+    font-weight:400!important;
+    font-style:normal!important;
+    line-height:1.4!important;
+    letter-spacing:0!important;
+    color:#4f4f4f!important;
+    white-space:normal!important;
+    overflow:visible!important;
+  }
+}
+@media(max-width:1024px) and (min-width:769px){
+  .mwa-hero .mwa-stat{
+    gap:1.25rem!important;
+    padding:1.35rem 1.5rem!important;
+  }
+  .mwa-hero .mwa-stat__n{
+    flex:0 0 12rem!important;
+    width:12rem!important;
+    min-width:12rem!important;
+    max-width:12rem!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:2.25rem!important;
+    font-weight:300!important;
+    line-height:1!important;
+    letter-spacing:-.02em!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    color:#505050!important;
+    -webkit-text-fill-color:#505050!important;
+    background:none!important;
+  }
+  .mwa-hero .mwa-stat__l{
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:.9375rem!important;
+    font-weight:400!important;
+    line-height:1.4!important;
+  }
+}
+@media(max-width:768px){
+  .mwa-hero .mwa-stat{
+    padding:12px 16px!important;
+    gap:14px!important;
+  }
+  .mwa-hero .mwa-stat__n{
+    flex:0 0 8.5rem!important;
+    width:8.5rem!important;
+    min-width:8.5rem!important;
+    max-width:8.5rem!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:1.75rem!important;
+    font-weight:300!important;
+    line-height:1!important;
+    letter-spacing:-.02em!important;
+    white-space:nowrap!important;
+    overflow:visible!important;
+    color:#505050!important;
+    -webkit-text-fill-color:#505050!important;
+    background:none!important;
+  }
+  .mwa-hero .mwa-stat__l{
+    min-width:0!important;
+    font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important;
+    font-size:.8125rem!important;
+    font-weight:400!important;
+    line-height:1.25!important;
+  }
+}
+`;
+
+
 const patchH2HomeControlPaletteCss = `
 /* HOME-H2 — palette-only synchronization. Geometry/positioning stays source-owned. */
 .swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]){
@@ -4791,7 +4908,14 @@ function addSharedPageReveal($,route){
   };
 
   if(route==='/about/'){
-    /* ABOUT-HERO1 uses the Home .block-title authority; only Home-style counters animate here. */
+    /* About hero: same staged rhythm as Home; source geometry remains untouched. */
+    mark('.mwa-hero__title','fade-up',0);
+    mark('.mwa-hero__lead','fade-up',80);
+    mark('.mwa-hero .btn','fade-up',140);
+    $('.mwa-hero .mwa-stat').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(160+Math.min(i,4)*70)+'ms');
+    });
+    mark('.mwa-hero img','fade-left',180);
 
     /* Story / values: title first, then content. */
     mark('.mwa-story .mwa-sec__title','fade-up',0);
@@ -5048,14 +5172,12 @@ function addContactLauncher($,lang){
 
 const sharedShellCss =
   css+
-  patchACss+patchA7Css+patchA8Css+
-  patchBCss+patchB2Css+
-  patchMobileMenuCss+
+  patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
-  patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchHeroStatsFinalSourceCss+
+  patchSharedHeroStatsParityCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchMotionU1Css;
 
 export function applySharedShell($,route,lang){

@@ -1473,3 +1473,37 @@ Protected:
 Responsive:
 - About Hero Desktop/Tablet/Mobile: PENDING OWNER TEST.
 
+## ABOUT-HERO1B — ROLLBACK COMPONENT REPLACEMENT / STATS-ONLY PARITY
+
+Owner correction:
+- ABOUT-HERO1 changed the About hero position/composition, which was not requested.
+- desired scope is: keep the original Merywood About hero position and image composition, but make its stat cards use the same font, number/label sizing and usable number-column width as the Home hero so long Bio-A values do not clip.
+
+Rollback:
+- bioa-about-refine.mjs is restored to the pre-ABOUT-HERO1 implementation from SHARED-UX1 baseline.
+- original .mwa-hero / .mwa-hero__grid / .mwa-hero__media positioning is restored.
+- original About reveal mapping is restored.
+
+Verified Merywood source:
+- .mwa-stats already uses max-width:27.625rem and gap:1.125rem.
+- .mwa-stat already uses gap:1.5625rem and padding:1.5625rem 2rem, matching the Home source rhythm.
+- clipping came from .mwa-stat__n max-width:7.9375rem.
+- Home PASS uses a widened number column of 13.125rem for Bio-A's longer values.
+
+ABOUT-HERO1B:
+- Desktop >1024: number column 13.125rem, number 2.5rem/300, label 1rem/400.
+- Tablet 769–1024: number column 12rem, number 2.25rem, label .9375rem.
+- Mobile <=768: preserve source one-column hero; number column 8.5rem, number 1.75rem, label .8125rem.
+- remove the source text-gradient from stat numbers and use the same #505050 treatment as Home PASS.
+- no .mwa-hero grid/media/content positioning is changed.
+
+Protected:
+- Home Hero: PASS / LOCKED and untouched.
+- About original Merywood Hero composition: restored / protected.
+- Header/Footer/Cookie/Chat/Mobile Menu/Motion shared authority: unchanged.
+
+Status:
+- About Hero Desktop: PENDING OWNER TEST.
+- About Hero Tablet: PENDING OWNER TEST.
+- About Hero Mobile: PENDING OWNER TEST.
+
