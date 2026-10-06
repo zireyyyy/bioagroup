@@ -177,7 +177,7 @@ function setAboutProducts($,lang){
   if(!sec.length)return;
 
   if(!$("#bioa-about-category-icon-style").length){
-    $("head").append('<style id="bioa-about-category-icon-style">.mwa-produce .mwa-isq .bioa-about-category-icon{display:block;width:22px;height:22px;object-fit:contain;object-position:center;margin:auto;pointer-events:none}</style>');
+    $("head").append('<style id="bioa-about-category-icon-style">.mwa-produce .mwa-isq .bioa-about-category-icon-wrap{display:grid;place-items:center;width:100%;height:100%}.mwa-produce .mwa-isq .bioa-about-category-icon{display:block;width:36px;height:36px;max-width:none;object-fit:contain;object-position:center;pointer-events:none}.mwa-produce .mwa-isq .bioa-about-category-icon--02{width:38px;height:38px}.mwa-produce .mwa-isq .bioa-about-category-icon--05{width:34px;height:34px}</style>');
   }
 
   text(sec,".mwa-sec__title",vi?"Danh Mục Gia Công":"Manufacturing Categories");
@@ -208,8 +208,9 @@ function setAboutProducts($,lang){
     const card=$(el);
     const icon=aboutProductIcons[i];
     if(icon){
+      const iconNo=String(i+1).padStart(2,"0");
       card.find(".mwa-isq").first().html(
-        '<img class="bioa-about-category-icon" src="'+icon+'" alt="" aria-hidden="true" width="22" height="22" decoding="async">'
+        '<span class="bioa-about-category-icon-wrap"><img class="bioa-about-category-icon bioa-about-category-icon--'+iconNo+'" src="'+icon+'" alt="" aria-hidden="true" width="36" height="36" decoding="async"></span>'
       );
     }
     card.find("h3").first().text(d[0]);

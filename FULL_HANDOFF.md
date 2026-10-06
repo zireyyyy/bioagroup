@@ -1588,7 +1588,10 @@ Implementation:
 - owner images are trimmed/centered only to remove transparent dead space and normalized to lightweight 72x72 PNG assets.
 - no artwork is redrawn.
 - .mwa-isq green square, 01–06 badge, product-card geometry, padding, spacing, typography, links, motion and responsive layout are unchanged.
-- rendered artwork remains 22x22, matching the original Merywood icon footprint.
+- artwork now renders inside a 100% centered wrapper while the outer .mwa-isq green square remains source-owned and unchanged.
+- base image box is 36x36px; icon 02 is 38x38px and icon 05 is 34x34px for optical balance only.
+- object-fit/object-position remain contain/center on all six PNGs.
+- icon 06 is re-exported from the exact owner-supplied Mẹ & Bé.png because the previous normalized repository blob was corrupt and did not decode.
 - prior custom inline SVG icon attempts are retired.
 
 Status:

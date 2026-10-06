@@ -1294,4 +1294,8 @@ Rule:
 - these six owner-supplied PNGs are the artwork source-of-truth.
 - only trim/center/resize for web delivery is allowed unless owner requests visual editing.
 - preserve .mwa-isq geometry and all card layout/spacing.
+- artwork centering is owned by .bioa-about-category-icon-wrap (100% of the existing square); the outer green square is not resized.
+- default PNG render box is 36x36px, with narrow optical adjustments only for 02 (38px) and 05 (34px).
+- object-fit: contain and object-position: center are mandatory.
+- if an owner PNG blob is corrupt, recover from the exact owner-supplied source file rather than redrawing the artwork.
 
