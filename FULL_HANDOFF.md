@@ -970,3 +970,30 @@ Responsive status:
 - FOOTER-INFO1B Tablet: REGRESSION CHECK — NO STRUCTURAL CHANGE EXPECTED.
 - FOOTER-INFO1B Mobile: PENDING OWNER TEST.
 
+## MOTION-U1M — MOBILE TIMING REFINEMENT
+
+Owner feedback:
+- MOTION-U1 Desktop: PASS / LOCKED.
+- Mobile motion is directionally correct but feels delayed.
+
+Root cause:
+- Mobile inherited the same 300–600ms stagger variables used for the Desktop UNILA rhythm.
+- Mobile duration was still 620ms and observer bottom offset remained -150px, making the reveal feel late on the shorter viewport.
+
+MOTION-U1M:
+- Desktop and Tablet values remain unchanged.
+- Mobile <=768px only:
+  - duration 500ms;
+  - stagger delay multiplied by 0.55;
+  - fade-up distance reduced 54px -> 42px;
+  - horizontal distance reduced 34px -> 28px with 12px lift;
+  - observer bottom root margin changes from -150px to -80px;
+  - initial ready line changes from viewport -40px to viewport -20px.
+- Roadmap repeated .step nodes remain excluded per ROADMAP-R4.
+- no swiper-wrapper transform ownership is changed.
+
+Responsive status:
+- MOTION-U1 Desktop: PASS / LOCKED.
+- MOTION-U1 Tablet: PENDING / unchanged.
+- MOTION-U1M Mobile: PENDING OWNER TEST.
+

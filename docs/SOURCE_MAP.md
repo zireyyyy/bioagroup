@@ -888,3 +888,23 @@ Protected:
 - mobile block order;
 - footer hover behavior.
 
+## MOTION-U1M — Mobile timing adaptation
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMotionU1Css
+- addHomeReveal($)
+
+Mobile <=768px only:
+- transition duration: 500ms;
+- delay scale: 55% of the existing UNILA stagger variable;
+- fade-up: 42px;
+- horizontal entry: ±28px + 12px lift;
+- observer bottom offset: 80px.
+
+Protected:
+- Desktop MOTION-U1 is PASS / LOCKED and must retain 700ms / 100px / source-like delay rhythm.
+- Tablet remains unchanged.
+- Roadmap .step remains excluded.
+- swiper-wrapper is never targeted.
+

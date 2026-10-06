@@ -3763,16 +3763,17 @@ html.bioa-unila-ready [data-bioa-aos].is-in{
 }
 @media(max-width:768px){
   html.bioa-unila-ready [data-bioa-aos]{
-    transition-duration:620ms;
+    transition-duration:500ms;
+    transition-delay:calc(var(--bioa-aos-delay,0ms) * .55);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-up"]{
-    transform:translate3d(0,54px,0);
+    transform:translate3d(0,42px,0);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-right"]{
-    transform:translate3d(-34px,18px,0);
+    transform:translate3d(-28px,12px,0);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-left"]{
-    transform:translate3d(34px,18px,0);
+    transform:translate3d(28px,12px,0);
   }
 }
 @media(prefers-reduced-motion:reduce){
@@ -4550,6 +4551,7 @@ function addHomeReveal($){
       return;
     }
 
+    var mobile=window.matchMedia&&window.matchMedia('(max-width:768px)').matches;
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
@@ -4557,11 +4559,12 @@ function addHomeReveal($){
           obs.unobserve(entry.target);
         }
       });
-    },{threshold:.01,rootMargin:'0px 0px -150px 0px'});
+    },{threshold:.01,rootMargin:mobile?'0px 0px -80px 0px':'0px 0px -150px 0px'});
 
     els.forEach(function(el){
       var r=el.getBoundingClientRect();
-      if(r.top<window.innerHeight-40)show(el);
+      var readyLine=mobile?window.innerHeight-20:window.innerHeight-40;
+      if(r.top<readyLine)show(el);
       else obs.observe(el);
     });
   })();`;
