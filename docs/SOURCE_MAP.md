@@ -942,3 +942,19 @@ Authority:
 - position 04 is Bio-A-owned and uses the cream Bio-A monogram.
 - source card geometry, numbering, text, spacing and responsive layout remain untouched.
 
+## SLIDER-END1 — non-loop endpoint visual state
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchSliderEndpointCss
+
+Targets:
+- .block-how-works
+- .block-products-desctop
+- .block-products-mobile
+- .block-roadmap
+
+Rule:
+- style only source/Swiper disabled states (.swiper-button-disabled / aria-disabled=true).
+- never change loop, navigation events, slide counts, wrapper transforms or active-button geometry.
+

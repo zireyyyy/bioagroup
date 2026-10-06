@@ -3904,6 +3904,39 @@ const patchH2HomeControlPaletteCss = `
 `;
 
 
+const patchSliderEndpointCss = `
+/* SLIDER-END1 — source-like non-loop endpoint feedback.
+   Mechanics remain source/Swiper-owned; visual state only. */
+.block-how-works .swiper-button.swiper-button-disabled,
+.block-products-desctop .swiper-button.swiper-button-disabled,
+.block-products-mobile .swiper-button.swiper-button-disabled,
+.block-roadmap .swiper-button.swiper-button-disabled,
+.block-how-works .swiper-button[aria-disabled="true"],
+.block-products-desctop .swiper-button[aria-disabled="true"],
+.block-products-mobile .swiper-button[aria-disabled="true"],
+.block-roadmap .swiper-button[aria-disabled="true"]{
+  background:transparent!important;
+  color:rgba(17,111,71,.38)!important;
+  border:1px solid rgba(17,111,71,.16)!important;
+  box-shadow:none!important;
+  opacity:.62!important;
+  cursor:default!important;
+  pointer-events:none!important;
+}
+.block-how-works .swiper-button.swiper-button-disabled svg,
+.block-products-desctop .swiper-button.swiper-button-disabled svg,
+.block-products-mobile .swiper-button.swiper-button-disabled svg,
+.block-roadmap .swiper-button.swiper-button-disabled svg,
+.block-how-works .swiper-button[aria-disabled="true"] svg,
+.block-products-desctop .swiper-button[aria-disabled="true"] svg,
+.block-products-mobile .swiper-button[aria-disabled="true"] svg,
+.block-roadmap .swiper-button[aria-disabled="true"] svg{
+  fill:currentColor!important;
+  color:currentColor!important;
+}
+`;
+
+
 const patchH3MobileContactCss = `
 /* HOME-H3 — mobile contact CTA: reveal Bio-A watermark without changing source box geometry. */
 @media(max-width:768px){
@@ -4845,7 +4878,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchSliderEndpointCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);

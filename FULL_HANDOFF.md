@@ -1072,3 +1072,27 @@ Responsive status:
 - WHY-ICON1 Mobile: PENDING OWNER TEST.
 - Packaging layout/runtime: NO CHANGE / existing PASS authority protected.
 
+## SLIDER-END1 — NON-LOOP ENDPOINT FEEDBACK
+
+Owner request:
+- non-loop Home sliders should visually signal when the current direction cannot move further;
+- use the Merywood-style transparent/quiet disabled button instead of leaving both controls equally strong.
+
+Scope:
+- How It Works / Quy trình hợp tác;
+- Packaging Desktop + Mobile;
+- Roadmap;
+- only .swiper-button-disabled or aria-disabled=true states.
+
+Implementation:
+- disabled direction background becomes transparent;
+- arrow/border becomes low-emphasis Bio-A green;
+- disabled control has no shadow and no pointer interaction;
+- opposite available direction remains unchanged and active;
+- no Swiper configuration, loop behavior, slide count or transform ownership is changed.
+
+Responsive status:
+- Desktop: PENDING OWNER TEST.
+- Tablet: PENDING / regression check.
+- Mobile: PENDING OWNER TEST.
+
