@@ -1178,3 +1178,23 @@ Motion safety:
 - animate slider shell/title, not translation-owning nodes;
 - Header/Footer/Cookie/Chat remain outside reveal mapping.
 
+## ABOUT-HERO1 — shared Home hero authority
+
+Visual/runtime authority:
+- Merywood/Bio-A Home .block-title + .block-title-continue.mobile.
+
+About:
+- .mwa-hero is replaced at build time with the shared Home hero DOM.
+- route-specific ownership is limited to title, lead, image and stat values.
+
+Shared CSS:
+- patchBCss
+- patchB2Css
+- patchHeroStatsSourceCss
+- patchHeroStatsOriginalTypeCss
+- patchHeroStatsFinalSourceCss
+
+Rule:
+- do not reintroduce a separate About hero layout.
+- future compatible page heroes should reuse .block-title.
+

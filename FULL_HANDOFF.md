@@ -1449,3 +1449,27 @@ Status:
 - Shared shell parity on About Desktop/Tablet/Mobile: PENDING OWNER TEST.
 - About page content/layout remains ABOUT-A1 candidate and is not otherwise redesigned by SHARED-UX1.
 
+## ABOUT-HERO1 — HOME HERO COMPONENT PARITY
+
+Owner requires About Hero to use the Home Hero component already PASS/LOCKED rather than maintain a second .mwa-hero layout.
+
+Implementation:
+- bioa-about-refine.mjs replaces .mwa-hero with the exact Home/Merywood structure:
+  - .block-title
+  - background media/shadow
+  - content column
+  - .info.desctop statistic list
+  - .block-title-continue.mobile statistic list.
+- About keeps its own title, lead, source image, VI/EN copy and Bio-A stats.
+- sharedShellCss now includes the Home-approved hero stat cascade: patchBCss, patchB2Css, patchHeroStatsSourceCss, patchHeroStatsOriginalTypeCss and patchHeroStatsFinalSourceCss.
+- addHeroCounters() provides the same numeric counter runtime.
+- old .mwa-hero reveal mapping is removed because Home Hero is not AOS-transformed.
+
+Protected:
+- Home Hero itself is unchanged and remains PASS / LOCKED.
+- Header/Footer/Cookie/Chat/Mobile Menu remain PASS / LOCKED.
+- About content below Hero is unchanged.
+
+Responsive:
+- About Hero Desktop/Tablet/Mobile: PENDING OWNER TEST.
+

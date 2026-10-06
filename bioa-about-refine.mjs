@@ -27,15 +27,16 @@ function setDirectParagraphs(root, selector, values){
 
 function setAboutHero($,lang){
   const vi=lang==="vi";
-  const hero=$(".mwa-hero").first();
-  if(!hero.length)return;
+  const sourceHero=$(".mwa-hero").first();
+  if(!sourceHero.length)return;
 
-  text(hero,".mwa-hero__title",vi?"Về Bio-A Group":"About Bio-A Group");
-  text(hero,".mwa-hero__lead",vi
+  const sourceImage=sourceHero.find(".mwa-hero__media img").first();
+  const imageSrc=sourceImage.attr("src")||"assets/images/hero2.webp";
+  const title=vi?"Về Bio-A Group":"About Bio-A Group";
+  const lead=vi
     ?"Bio-A Group là nhà máy sản xuất dược mỹ phẩm OEM/ODM tại Việt Nam, đồng hành cùng thương hiệu từ nghiên cứu công thức, lựa chọn nguyên liệu đến sản xuất, bao bì và hoàn thiện sản phẩm."
-    :"Bio-A Group is a cosmetic and cosmeceutical OEM/ODM manufacturer in Vietnam, supporting brands from formula research and ingredient selection through production, packaging and finished products.");
-  text(hero,".btn__text",vi?"Nhận Tư Vấn":"Get a Quote");
-
+    :"Bio-A Group is a cosmetic and cosmeceutical OEM/ODM manufacturer in Vietnam, supporting brands from formula research and ingredient selection through production, packaging and finished products.";
+  const cta=vi?"Nhận Tư Vấn":"Get a Quote";
   const stats=vi?[
     ["2.000+","Mẫu R&D"],
     ["5+","Năm kinh nghiệm"],
@@ -49,15 +50,35 @@ function setAboutHero($,lang){
     ["1,000 m²","Factory scale"],
     ["OEM/ODM","Full-service manufacturing"]
   ];
+  const statItems=stats.map(([number,label])=>
+    '<li class="item"><span class="item__number">'+number+'</span><span class="item__text"><p>'+label+'</p></span></li>'
+  ).join("");
 
-  hero.find(".mwa-stat").each((i,el)=>{
-    const d=stats[i];
-    if(!d)return;
-    const card=$(el);
-    card.find(".mwa-stat__n").first().text(d[0]);
-    card.find(".mwa-stat__l").first().text(d[1]);
-  });
-  hero.find("img").first().attr("alt",vi?"Nhà máy và năng lực Bio-A Group":"Bio-A Group manufacturing capabilities");
+  sourceHero.replaceWith(`
+<section class="block block-title bioa-about-hero">
+  <div class="bg">
+    <picture>
+      <img class="bg__media skip-lazy" src="${imageSrc}" alt="${vi?'Nhà máy và năng lực Bio-A Group':'Bio-A Group manufacturing capabilities'}" fetchpriority="high" decoding="async" loading="eager" data-no-lazy="1">
+    </picture>
+    <div class="bg__shadow"></div>
+  </div>
+  <div class="container">
+    <div class="wrapper">
+      <div class="content">
+        <h1 class="h1">${title}</h1>
+        <div class="text-large"><p>${lead}</p></div>
+        <button class="btn" modal="get-a-quote" type="button">
+          <span class="btn__text">${cta}</span>
+          <i class="icon btn__icon arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.75 12.25H12.25V8.81055L6.53027 14.5303L5.46973 13.4697L11.1895 7.75H7.75V6.25H13.75V12.25Z"/></svg></i>
+        </button>
+      </div>
+      <div class="info desctop"><ul class="list">${statItems}</ul></div>
+    </div>
+  </div>
+</section>
+<section class="block block-title-continue mobile bioa-about-hero-stats-mobile">
+  <div class="container"><div class="info"><ul class="list">${statItems}</ul></div></div>
+</section>`);
 }
 
 function setAboutStory($,lang){

@@ -4791,14 +4791,7 @@ function addSharedPageReveal($,route){
   };
 
   if(route==='/about/'){
-    /* About hero: same staged rhythm as Home; source geometry remains untouched. */
-    mark('.mwa-hero__title','fade-up',0);
-    mark('.mwa-hero__lead','fade-up',80);
-    mark('.mwa-hero .btn','fade-up',140);
-    $('.mwa-hero .mwa-stat').each((i,el)=>{
-      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(160+Math.min(i,4)*70)+'ms');
-    });
-    mark('.mwa-hero img','fade-left',180);
+    /* ABOUT-HERO1 uses the Home .block-title authority; only Home-style counters animate here. */
 
     /* Story / values: title first, then content. */
     mark('.mwa-story .mwa-sec__title','fade-up',0);
@@ -5055,11 +5048,14 @@ function addContactLauncher($,lang){
 
 const sharedShellCss =
   css+
-  patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
+  patchACss+patchA7Css+patchA8Css+
+  patchBCss+patchB2Css+
+  patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
+  patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchHeroStatsFinalSourceCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchMotionU1Css;
 
 export function applySharedShell($,route,lang){
