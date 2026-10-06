@@ -737,3 +737,39 @@ Status:
 - Desktop: PENDING
 - Tablet: DEFERRED
 - Mobile: PENDING
+
+
+## HERO-NUM1 — Hero statistic count-up
+
+BIO-A:
+- bioa-home-refine.mjs
+- addHeroCounters($)
+
+Targets:
+- .block-title .info .item__number
+- .block-title-continue .info .item__number
+- .block-title-mobile .info .item__number
+
+Contract:
+- animate numeric metrics from 0 to the existing final value;
+- preserve grouping and suffixes (+ / m²);
+- OEM/ODM remains static;
+- run once per DOM node;
+- runtime-only, no layout/typography changes.
+
+## FOOTER-HOVER1
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchFooterHover1Css
+
+Desktop:
+- child links move +5px;
+- underline reveals left-to-right;
+- cream emphasis.
+
+Protected:
+- headings;
+- grid/spacing;
+- Tablet/Mobile layout;
+- existing Footer PASS styling.

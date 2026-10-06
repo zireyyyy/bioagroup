@@ -760,3 +760,38 @@ Status:
 - CHAT-C7: PASS / LOCKED
 - MOTION-M5: Desktop PENDING / Tablet PENDING / Mobile PENDING
 - ROADMAP-R3: Desktop PENDING / Tablet DEFERRED / Mobile PENDING
+
+
+## HOME CLOSEOUT MICRO-PATCH — HERO-NUM1 / FOOTER-HOVER1
+
+Owner direction:
+- Home is temporarily acceptable; make two small interaction improvements before moving to subpages.
+- Hero statistics should count up on entry.
+- Footer category links should feel less static and respond more like Header navigation.
+
+HERO-NUM1:
+- runtime-only count-up on existing hero statistic number nodes;
+- no typography, size, spacing, DOM geometry or stat labels changed;
+- supported localized formats: 2.000+, 5+, 10.000.000, 1.000 m²;
+- OEM/ODM remains static because it is not numeric;
+- each visible stat animates once when reaching the viewport threshold;
+- quartic ease-out;
+- the final text is restored exactly to the localized source string.
+
+FOOTER-HOVER1:
+- Desktop >1200px:
+  - +5px horizontal motion;
+  - underline reveal;
+  - cream emphasis;
+- Tablet/Mobile layout stays unchanged; focus/active feedback only.
+- Footer grid, typography and spacing remain PASS-owned.
+
+Responsive status:
+- HERO-NUM1 Desktop: PENDING
+- HERO-NUM1 Tablet: PENDING
+- HERO-NUM1 Mobile: PENDING
+- FOOTER-HOVER1 Desktop: PENDING
+- FOOTER-HOVER1 Tablet: REGRESSION CHECK — NO LAYOUT CHANGE EXPECTED
+- FOOTER-HOVER1 Mobile: REGRESSION CHECK — NO LAYOUT CHANGE EXPECTED
+- CHAT-C7: PASS / LOCKED
+- Header/Footer base layout: PASS / LOCKED

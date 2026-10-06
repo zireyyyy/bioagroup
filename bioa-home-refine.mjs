@@ -3305,6 +3305,55 @@ const patchD4FooterHierarchyCss = `
 `;
 
 
+const patchFooterHover1Css = `
+/* FOOTER-HOVER1 — nav-like interaction without changing footer layout.
+   Desktop hover only; Tablet/Mobile retain source geometry. */
+@media(min-width:1201px){
+  .footer-top__nav > ul > li:not(:first-child) > a{
+    position:relative!important;
+    display:inline-block!important;
+    transition:
+      transform .24s cubic-bezier(.16,1,.3,1),
+      color .20s ease,
+      opacity .20s ease!important;
+    transform:translateX(0);
+    will-change:transform;
+  }
+  .footer-top__nav > ul > li:not(:first-child) > a::after{
+    content:""!important;
+    position:absolute!important;
+    left:0!important;
+    right:0!important;
+    bottom:-4px!important;
+    height:1px!important;
+    background:currentColor!important;
+    transform:scaleX(0)!important;
+    transform-origin:left center!important;
+    transition:transform .28s cubic-bezier(.16,1,.3,1)!important;
+    opacity:.72!important;
+  }
+  .footer-top__nav > ul > li:not(:first-child) > a:hover{
+    transform:translateX(5px)!important;
+    color:var(--bioa-brand-cream)!important;
+    opacity:1!important;
+  }
+  .footer-top__nav > ul > li:not(:first-child) > a:hover::after{
+    transform:scaleX(1)!important;
+  }
+}
+.footer-top__nav > ul > li:not(:first-child) > a:focus-visible{
+  outline:1px solid rgba(253,254,245,.70)!important;
+  outline-offset:4px!important;
+  border-radius:2px!important;
+}
+@media(max-width:1200px){
+  .footer-top__nav > ul > li:not(:first-child) > a:active{
+    opacity:.72!important;
+  }
+}
+`;
+
+
 const patchC5ChannelPaletteCss = `
 /* CHAT-C5 — match the visible footer contact-icon palette without altering geometry.
    Footer visual = 14% cream overlay on #116F47; reproduce that same composite in chat. */
@@ -4160,6 +4209,78 @@ function footerSocials($){
   });
 }
 
+function addHeroCounters($){
+  $('#bioa-hero-counter-js').remove();
+
+  const nodes=$('.block-title .info .item__number, .block-title-continue .info .item__number, .block-title-mobile .info .item__number');
+  nodes.each((_,el)=>{
+    const node=$(el);
+    const raw=(node.text()||'').trim();
+    if(!raw || /OEM\s*\/\s*ODM/i.test(raw))return;
+
+    const suffix=raw.includes('+')?'+':(raw.includes('m²')?' m²':'');
+    const digits=raw.replace(/[^0-9]/g,'');
+    if(!digits)return;
+
+    node.attr('data-bioa-counter-target',String(parseInt(digits,10)));
+    node.attr('data-bioa-counter-suffix',suffix);
+    node.attr('data-bioa-counter-format',raw.includes('.')?'dot':(raw.includes(',')?'comma':'plain'));
+    node.attr('data-bioa-counter-final',raw);
+  });
+
+  const script=`(function(){
+    var nodes=[].slice.call(document.querySelectorAll('[data-bioa-counter-target]'));
+    if(!nodes.length)return;
+
+    function formatValue(value,mode,suffix){
+      var s=String(Math.round(value));
+      if(mode==='dot')s=s.replace(/\\B(?=(\\d{3})+(?!\\d))/g,'.');
+      else if(mode==='comma')s=s.replace(/\\B(?=(\\d{3})+(?!\\d))/g,',');
+      return s+suffix;
+    }
+
+    function run(node){
+      if(node.dataset.bioaCounterDone==='1')return;
+      node.dataset.bioaCounterDone='1';
+      var target=parseInt(node.dataset.bioaCounterTarget||'0',10);
+      var suffix=node.dataset.bioaCounterSuffix||'';
+      var mode=node.dataset.bioaCounterFormat||'plain';
+      var finalText=node.dataset.bioaCounterFinal||node.textContent;
+      var duration=target>=1000000?1800:(target>=1000?1500:1100);
+      var start=null;
+
+      function frame(ts){
+        if(start===null)start=ts;
+        var p=Math.min(1,(ts-start)/duration);
+        var eased=1-Math.pow(1-p,4);
+        node.textContent=formatValue(target*eased,mode,suffix);
+        if(p<1)requestAnimationFrame(frame);
+        else node.textContent=finalText;
+      }
+      requestAnimationFrame(frame);
+    }
+
+    if(!('IntersectionObserver' in window)){
+      nodes.forEach(run);
+      return;
+    }
+
+    var observer=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          run(entry.target);
+          observer.unobserve(entry.target);
+        }
+      });
+    },{threshold:.45});
+
+    nodes.forEach(function(node){observer.observe(node)});
+  })();`;
+
+  $('body').append($('<script id="bioa-hero-counter-js"></script>').html(script));
+}
+
+
 function addHomeReveal($){
   $('#bioa-home-reveal-js').remove();
 
@@ -4374,7 +4495,7 @@ const sharedShellCss =
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
-  patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+
+  patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterHover1Css+
   patchD5FooterTabletCss+patchD6FooterMetaCss+patchZaloIconCss;
 
 export function applySharedShell($,route,lang){
@@ -4392,7 +4513,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM5Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM5Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -4405,6 +4526,7 @@ export function applyHomeRefinement($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
+  addHeroCounters($);
   addHomeReveal($);
   addContactLauncher($,lang);
 }
