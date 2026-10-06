@@ -1279,3 +1279,38 @@ Responsive status:
 - MOBILE-MENU-DISMISS1 Mobile: PENDING OWNER TEST.
 - Desktop/Tablet menu: PROTECTED / unchanged.
 
+## COOKIE-TITLE2 / ZALO-ICON2 — ACTIVE CANDIDATE
+
+Owner feedback after TITLE-CASE1:
+- visible VI Cookie title still appeared as "Quản lý cookie" in runtime; owner requires Aa Bb presentation.
+- Zalo in the Mobile Menu still used a text-only "Zalo" renderer and therefore did not match the shared Home/social treatment.
+- previous Zalo artwork also had a malformed-looking Z and special hover overrides that did not behave like sibling social controls.
+- owner supplied a replacement Zalo artwork.
+
+COOKIE-TITLE2:
+- all visible VI consent references now use "Quản Lý Cookie" / Aa Bb labels.
+- a small runtime finalizer runs after Merywood consent initialization and re-syncs title/body/buttons/preference labels from the active VI/EN copy object.
+- this protects against source runtime text winning after the build-time Cheerio transformation.
+- consent state/persistence is unchanged.
+
+ZALO-ICON2:
+- new owner-supplied artwork stored as /assets/zalo-bioa-owner.png.
+- source image was only normalized to a compact 96x96 web asset; artwork itself was not redrawn.
+- icons.zalo now uses this asset everywhere.
+- Mobile Menu no longer renders text("Zalo"); it renders the same shared Zalo image as Home/Footer/Chat.
+- old Zalo-specific hover color overrides are removed.
+- Zalo now inherits the same parent hover behavior as sibling social icons.
+- Mobile Menu social controls receive one shared hover/focus/active interaction rule for WhatsApp/Telegram/Facebook/Zalo.
+
+Protected:
+- MOTION-U1D2: PASS / LOCKED.
+- Prev/Next: PASS / LOCKED.
+- VI ↔ EN: PASS / LOCKED.
+- Mobile Menu dismiss behavior / arrow visual: protected.
+- Why Choose and Footer structure: PASS / LOCKED.
+
+Responsive status:
+- COOKIE-TITLE2 VI: PENDING OWNER TEST.
+- ZALO-ICON2 Desktop/Footer/Chat: REGRESSION CHECK.
+- ZALO-ICON2 Mobile Menu: PENDING OWNER TEST.
+

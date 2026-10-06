@@ -485,7 +485,7 @@ function brandCookieBanner($,lang){
     marketing:'Tiếp Thị',
     ads:'Quảng Cáo & Remarketing',
     save:'Lưu Lựa Chọn',
-    noteLead:'Bạn có thể thay đổi hoặc rút lại lựa chọn bất cứ lúc nào trong mục Quản lý cookie. Xem thêm tại ',
+    noteLead:'Bạn có thể thay đổi hoặc rút lại lựa chọn bất cứ lúc nào trong mục Quản Lý Cookie. Xem thêm tại ',
     policy:'Chính Sách Cookie'
   }:{
     title:'Manage Consent',
@@ -524,13 +524,13 @@ function brandCookieBanner($,lang){
     modal.find('#mw-save-prefs').text(copy.save);
     modal.find('#mw-accept-all').text(copy.accept);
 
-    modal.find('.mw-close').attr('aria-label',vi?'Đóng tùy chọn cookie':'Close cookie preferences');
-    rows.eq(0).find('input').attr('aria-label',vi?'Cookie cần thiết':'Necessary cookies');
-    rows.eq(1).find('input').attr('aria-label',vi?'Cookie thống kê':'Analytics cookies');
-    rows.eq(2).find('input').attr('aria-label',vi?'Cookie tiếp thị':'Marketing cookies');
+    modal.find('.mw-close').attr('aria-label',vi?'Đóng Tùy Chọn Cookie':'Close cookie preferences');
+    rows.eq(0).find('input').attr('aria-label',vi?'Cookie Cần Thiết':'Necessary cookies');
+    rows.eq(1).find('input').attr('aria-label',vi?'Cookie Thống Kê':'Analytics cookies');
+    rows.eq(2).find('input').attr('aria-label',vi?'Cookie Tiếp Thị':'Marketing cookies');
   }
 
-  $('#mw-gear').attr('aria-label',vi?'Quản lý cookie':'Cookie preferences');
+  $('#mw-gear').attr('aria-label',vi?'Quản Lý Cookie':'Cookie preferences');
 
   root.find('.bioa-consent-note').remove();
   const note=$('<div class="bioa-consent-note"></div>');
@@ -539,6 +539,31 @@ function brandCookieBanner($,lang){
   note.append('.');
   const actions=root.find('.mw-actions').first();
   actions.before(note);
+
+  /* COOKIE-TITLE2 — final runtime sync after Merywood consent JS has initialized. */
+  $('#bioa-cookie-copy-sync').remove();
+  const runtimeCopy=JSON.stringify(copy);
+  const runtimeScript=`(function(){
+    var c=${runtimeCopy};
+    function sync(){
+      var q=function(s,r){return (r||document).querySelector(s)};
+      var qa=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+      var title=q('#mw-card-title'); if(title)title.textContent=c.title;
+      var body=q('#mw-consent .mw-text'); if(body)body.textContent=c.body;
+      var accept=q('#mw-consent .mw-accept'); if(accept)accept.textContent=c.accept;
+      var deny=q('#mw-consent .mw-deny'); if(deny)deny.textContent=c.necessary;
+      var prefs=q('#mw-consent .mw-prefs'); if(prefs)prefs.textContent=c.customize;
+      var modalTitle=q('#mw-prefs .mw-title'); if(modalTitle)modalTitle.textContent=c.prefs;
+      var rows=qa('#mw-prefs .mw-row');
+      if(rows[0]){var l=q('.label',rows[0]),b=q('.mw-badge',rows[0]);if(l)l.textContent=c.functional;if(b)b.textContent=c.always;}
+      if(rows[1]){var l1=q('.label',rows[1]);if(l1)l1.textContent=c.stats;}
+      if(rows[2]){var l2=q('.label',rows[2]),b2=q('.mw-badge',rows[2]);if(l2)l2.textContent=c.marketing;if(b2)b2.textContent=c.ads;}
+      var save=q('#mw-save-prefs'); if(save)save.textContent=c.save;
+      var all=q('#mw-accept-all'); if(all)all.textContent=c.accept;
+    }
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
+  })();`;
+  $('body').append($('<script id="bioa-cookie-copy-sync"></script>').html(runtimeScript));
 }
 
 function documentTextNodeSafe(text){
@@ -555,7 +580,7 @@ export function applyFinalFixes($, route, lang){
   if(lang==='vi'){viCleanup($);if(route==='/')resetHomeVI($);if(route==='/dich-vu-khac/'){$('h1').first().text('Dịch vụ khác của Bio-A Group');$('.text-large').first().text('Hỗ trợ R&D, phát triển công thức, lựa chọn bao bì, thiết kế nhãn, hồ sơ công bố và các hạng mục liên quan đến phát triển thương hiệu mỹ phẩm.')}}
   if(lang==='en'&&route==='/')resetHomeEN($);
   if(route==='/')localizeWeProduceSourceText($,lang);
-  $('.footer-bottom__copyright').text(lang==='vi'?'© 2026 Bio-A Group. Bảo lưu mọi quyền.':'© 2026 Bio-A Group. All rights reserved.');$('.footer-top__socials a').each((i,e)=>{const a=$(e);if(i===0)a.attr('href',company.whatsapp).attr('aria-label','WhatsApp');if(i===1)a.attr('href',company.facebook).attr('aria-label','Facebook');if(i===2)a.attr('href',company.zalo).attr('aria-label','Zalo').html('<img src="/assets/zalo-bioa-circle-cream.svg" alt="" aria-hidden="true" style="display:block;width:30px;height:30px;object-fit:contain;margin:auto">');a.attr('target','_blank').attr('rel','noopener noreferrer')});
+  $('.footer-bottom__copyright').text(lang==='vi'?'© 2026 Bio-A Group. Bảo lưu mọi quyền.':'© 2026 Bio-A Group. All rights reserved.');$('.footer-top__socials a').each((i,e)=>{const a=$(e);if(i===0)a.attr('href',company.whatsapp).attr('aria-label','WhatsApp');if(i===1)a.attr('href',company.facebook).attr('aria-label','Facebook');if(i===2)a.attr('href',company.zalo).attr('aria-label','Zalo').html('<img src="/assets/zalo-bioa-owner.png" alt="" aria-hidden="true" style="display:block;width:30px;height:30px;object-fit:contain;margin:auto">');a.attr('target','_blank').attr('rel','noopener noreferrer')});
   $('body *').contents().each((_,n)=>{
     if(n.type!=='text')return;
     const p=$(n).parent();

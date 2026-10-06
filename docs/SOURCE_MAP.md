@@ -1072,3 +1072,34 @@ Rule:
 - outside pointer interaction or page scrolling dismisses the menu.
 - scrolling inside .bioa-mobile-nav-drop does not dismiss it.
 
+## COOKIE-TITLE2 — runtime-visible title authority
+
+BIO-A:
+- bioa-transform.mjs
+- brandCookieBanner($,lang)
+- #bioa-cookie-copy-sync
+
+Rule:
+- VI visible cookie title is exactly "Quản Lý Cookie".
+- final runtime label sync executes after the Merywood consent runtime initializes.
+- persistence/state mechanics remain source-owned.
+
+## ZALO-ICON2 — owner-supplied shared artwork
+
+Asset:
+- assets/zalo-bioa-owner.png
+
+BIO-A:
+- bioa-home-refine.mjs
+- icons.zalo
+- syncMobileHeader($,route,lang)
+- footerSocials($)
+- buildMobileFooterV2($)
+- chat/contact CTA surfaces
+- bioa-transform.mjs footer source normalization
+
+Rule:
+- never render plain text "Zalo" when a social icon slot exists.
+- use the same asset across shared surfaces.
+- parent social-control hover/focus owns interaction; no Zalo-only hover palette override.
+
