@@ -1015,3 +1015,29 @@ Responsive status:
 - ROADMAP-R4 Tablet: PENDING.
 - ROADMAP-R4 Mobile: ACCEPTED DEFERRED — source geometry retained; revisit only if owner requests after final content is available.
 
+## FOOTER-INFO1C / MOBILE-NAV-ARROW1 — ACTIVE CANDIDATE
+
+Owner runtime result:
+- FOOTER-INFO1B Desktop: PASS / LOCKED.
+- Mobile: owner requests removal of the company/factory information block entirely; visitors can use the Contact page for full details.
+- Mobile nav arrows render as an iOS emoji-style square because the implementation used the Unicode character ↗.
+
+FOOTER-INFO1C:
+- Desktop FOOTER-INFO1B remains unchanged and PASS / LOCKED.
+- Tablet remains unchanged.
+- Mobile <=768 hides .bioa-footer-company-info--responsive completely.
+- Existing mobile order returns to logo/contact controls -> category columns, with no company-info block.
+
+MOBILE-NAV-ARROW1:
+- remove the Unicode ::after arrow from mobile nav links;
+- clone the exact .header__btn .btn__icon source vector used by the "Nhận tư vấn" CTA into every mobile nav item;
+- fallback SVG is used only if the source icon node is absent;
+- vector is styled with currentColor so iOS cannot substitute an emoji glyph.
+
+Responsive status:
+- Footer Desktop: PASS / LOCKED.
+- Footer Tablet: PROTECTED / unchanged.
+- Footer Mobile rollback: PENDING OWNER TEST.
+- Header Desktop/Tablet: PROTECTED / unchanged.
+- Mobile nav arrow parity: PENDING OWNER TEST.
+

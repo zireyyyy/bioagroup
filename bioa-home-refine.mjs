@@ -931,10 +931,32 @@ const patchB4Css = `
     border-bottom:1px solid rgba(5,47,33,.07)!important;
   }
   .bioa-mobile-nav-links a:after{
-    content:"↗"!important;
-    font-size:13px!important;
-    font-weight:600!important;
-    opacity:.72!important;
+    content:none!important;
+    display:none!important;
+  }
+  .bioa-mobile-nav-arrow{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    flex:0 0 16px!important;
+    width:16px!important;
+    height:16px!important;
+    margin-left:14px!important;
+    color:var(--bioa-primary)!important;
+    line-height:0!important;
+  }
+  .bioa-mobile-nav-arrow svg{
+    display:block!important;
+    width:16px!important;
+    height:16px!important;
+    max-width:16px!important;
+    max-height:16px!important;
+    color:currentColor!important;
+  }
+  .bioa-mobile-nav-arrow svg path,
+  .bioa-mobile-nav-arrow svg line,
+  .bioa-mobile-nav-arrow svg polyline{
+    stroke:currentColor!important;
   }
   .bioa-mobile-nav-meta{
     padding-top:10px!important;
@@ -3402,6 +3424,7 @@ const patchFooterInfo1Css = `
 }
 @media(max-width:768px){
   .bioa-footer-company-info--responsive{
+    display:none!important;
     width:100%!important;
     margin:14px auto 30px!important;
     padding:0 14px!important;
@@ -4035,9 +4058,14 @@ function syncMobileHeader($,route,lang){
   const drop=$('<div class="bioa-mobile-nav-drop"></div>');
   const links=$('<nav class="bioa-mobile-nav-links"></nav>');
 
+  const sourceArrow=$('.header__btn .btn__icon').first();
   $('.header__nav a').each((_,el)=>{
     const a=$(el);
-    links.append($('<a></a>').attr('href',a.attr('href')||'#').text(a.text().trim()));
+    const link=$('<a></a>').attr('href',a.attr('href')||'#').text(a.text().trim());
+    let arrow=sourceArrow.length?sourceArrow.clone():$('<span class="btn__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+    arrow.removeClass('btn__icon').addClass('bioa-mobile-nav-arrow').attr('aria-hidden','true');
+    link.append(arrow);
+    links.append(link);
   });
 
   const meta=$('<div class="bioa-mobile-nav-meta"></div>');

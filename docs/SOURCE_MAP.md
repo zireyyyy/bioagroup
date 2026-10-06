@@ -908,3 +908,19 @@ Protected:
 - Roadmap .step remains excluded.
 - swiper-wrapper is never targeted.
 
+## MOBILE-NAV-ARROW1 — CTA vector parity
+
+Merywood/BIO-A reference:
+- source CTA: .header__btn .btn__icon
+- BIO-A mobile nav: .bioa-mobile-nav-links
+
+Rule:
+- mobile nav arrows must clone the CTA icon DOM/vector rather than use a Unicode arrow character.
+- do not use ↗ / → pseudo-content for mobile nav because iOS may render emoji glyphs.
+
+Protected:
+- header CTA itself;
+- desktop navigation;
+- burger/open-close mechanics;
+- mobile nav text/spacing/contact controls.
+
