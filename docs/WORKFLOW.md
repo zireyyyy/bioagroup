@@ -446,3 +446,15 @@ Use one:
 - PARTIAL PASS — SURFACE-SPECIFIC
 - FULL RESPONSIVE PASS — OWNER CONFIRMED
 - FAIL — ROOT CAUSE REASSESSMENT REQUIRED
+
+## Shared experience rule
+
+For every core page after Home:
+1. apply the route-specific content transform;
+2. apply applySharedShell() as the sole owner of Header, Footer, Cookie, Chat, Zalo, Mobile Menu, shared control states and global motion framework;
+3. never copy/paste those shared components into a route-specific module;
+4. route-specific motion may only add safe selectors to addSharedPageReveal(), and must never target Swiper translation owners;
+5. verify Desktop + Tablet + Mobile and VI + EN before promoting the page.
+
+Home remains the UX baseline. Shared component changes must be made at shared authority level first, then regression-checked on Home and the active subpage.
+

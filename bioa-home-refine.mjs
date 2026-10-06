@@ -4612,7 +4612,7 @@ function footerSocials($){
 function addHeroCounters($){
   $('#bioa-hero-counter-js').remove();
 
-  const nodes=$('.block-title .info .item__number, .block-title-continue .info .item__number, .block-title-mobile .info .item__number');
+  const nodes=$('.block-title .info .item__number, .block-title-continue .info .item__number, .block-title-mobile .info .item__number, .mwa-hero .mwa-stat__n');
   nodes.each((_,el)=>{
     const node=$(el);
     const raw=(node.text()||'').trim();
@@ -4777,6 +4777,111 @@ function addHomeReveal($){
 
   $('body').append($('<script id="bioa-home-reveal-js"></script>').html(script));
 }
+
+function addSharedPageReveal($,route){
+  $('#bioa-shared-reveal-js').remove();
+  $('[data-bioa-aos]').removeAttr('data-bioa-aos').css('--bioa-aos-delay','');
+
+  const mark=(selector,effect='fade-up',delay=0)=>{
+    $(selector).each((_,el)=>{
+      $(el)
+        .attr('data-bioa-aos',effect)
+        .css('--bioa-aos-delay',delay+'ms');
+    });
+  };
+
+  if(route==='/about/'){
+    /* About hero: same staged rhythm as Home; source geometry remains untouched. */
+    mark('.mwa-hero__title','fade-up',0);
+    mark('.mwa-hero__lead','fade-up',80);
+    mark('.mwa-hero .btn','fade-up',140);
+    $('.mwa-hero .mwa-stat').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(160+Math.min(i,4)*70)+'ms');
+    });
+    mark('.mwa-hero img','fade-left',180);
+
+    /* Story / values: title first, then content. */
+    mark('.mwa-story .mwa-sec__title','fade-up',0);
+    mark('.mwa-story .mwa-sec__sub','fade-up',60);
+    mark('.mwa-story .mwa-story__text','fade-up',140);
+    mark('.mwa-story .mwa-note','fade-up',200);
+
+    mark('.mwa-values .mwa-sec__title','fade-up',0);
+    mark('.mwa-values .mwa-sec__sub','fade-up',60);
+    $('.mwa-values .mwa-vcard').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(120+Math.min(i,5)*65)+'ms');
+    });
+
+    /* Team convergence. */
+    mark('.mwa-team .mwa-sec__title','fade-up',0);
+    mark('.mwa-team .mwa-team__card','fade-right',140);
+    mark('.mwa-team .mwa-team__media','fade-left',140);
+
+    /* Activity slider: animate the shell only, never swiper-wrapper/slides. */
+    mark('.mwa-expo .mwa-sec__title','fade-up',0);
+    mark('.mwa-expo .mwa-sec__sub','fade-up',60);
+    mark('.mwa-expo .mwa-lede','fade-up',120);
+    mark('.mwa-expo .swiper','fade-up',180);
+
+    /* Product catalogue. */
+    mark('.mwa-produce .mwa-sec__title','fade-up',0);
+    mark('.mwa-produce .mwa-sec__sub','fade-up',60);
+    mark('.mwa-produce .mwa-lede','fade-up',120);
+    $('.mwa-produce .mwa-pcard').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(140+Math.min(i,5)*65)+'ms');
+    });
+
+    /* Process rows are source-owned layout nodes, safe for simple fade-up. */
+    mark('.mwa-how .mwa-sec__title','fade-up',0);
+    mark('.mwa-how .mwa-sec__sub','fade-up',60);
+    $('.mwa-how .mwa-tl__row').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(120+Math.min(i,4)*70)+'ms');
+    });
+
+    mark('.mwa-cta-wrap .mwa-cta','fade-up',120);
+  }else{
+    /* Generic safe fallback for future subpages: section headings/content only.
+       Never mark swiper-wrapper, slides, header, footer, cookie or chat. */
+    mark('.page-main .title-wrapper','fade-up',0);
+    mark('.page-main > section > .container > h1, .page-main > section > .container > h2','fade-up',0);
+  }
+
+  const script=`(function(){
+    var els=[].slice.call(document.querySelectorAll('[data-bioa-aos]'));
+    if(!els.length)return;
+    document.documentElement.classList.add('bioa-unila-ready');
+
+    function show(el){
+      if(el.classList.contains('is-in'))return;
+      el.classList.add('is-in');
+    }
+
+    if(!('IntersectionObserver' in window)){
+      els.forEach(show);
+      return;
+    }
+
+    var mobile=window.matchMedia&&window.matchMedia('(max-width:768px)').matches;
+    var obs=new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          show(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    },{threshold:.01,rootMargin:mobile?'0px 0px -80px 0px':'0px 0px -150px 0px'});
+
+    els.forEach(function(el){
+      var r=el.getBoundingClientRect();
+      var readyLine=mobile?window.innerHeight-20:window.innerHeight-40;
+      if(r.top<readyLine)show(el);
+      else obs.observe(el);
+    });
+  })();`;
+
+  $('body').append($('<script id="bioa-shared-reveal-js"></script>').html(script));
+}
+
 
 function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
@@ -4949,24 +5054,32 @@ function addContactLauncher($,lang){
 }
 
 const sharedShellCss =
+  css+
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
-  patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss;
+  patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
+  patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchMotionU1Css;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
   $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+'</style>');
+
+  /* SHARED-UX1: every route inherits the Home-approved global experience. */
   setLogo($);
+  replaceBrandWatermarks($);
   fixLang($,route,lang);
   normalizeHeaderActions($);
   syncMobileHeader($,route,lang);
+  refineMobileContactCta($,lang);
   refineFooterNavigation($,lang);
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
   addFooterCompanyInfo($);
+  addHeroCounters($);
+  addSharedPageReveal($,route);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);
 }

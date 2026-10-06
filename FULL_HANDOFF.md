@@ -1388,3 +1388,64 @@ Responsive status:
 - About Mobile: PENDING OWNER TEST.
 - About VI ↔ EN: PAIRED / PENDING OWNER TEST.
 
+## SHARED-UX1 — HOME-APPROVED EXPERIENCE PROMOTED TO ALL ROUTES
+
+Owner runtime observation after ABOUT-A1:
+- About content localization is acceptable as an initial pass.
+- Header/Footer/Cookie/Chat and other stable Home pieces must not behave/look like separate re-implementations on subpages.
+- Every page must inherit the Home-approved experience: motion, icons, menu/mobile behavior, hero interaction and section effects.
+
+Root cause:
+- applySharedShell() reused the same Header/Footer functions, but sharedShellCss omitted the Home base css plus the accepted control/motion layers.
+- Home also ran replaceBrandWatermarks(), counters and MOTION-U1 reveal runtime; subpages did not.
+- Result: same logical component owners but different final cascade/runtime, creating visible parity drift.
+
+SHARED-UX1 architecture:
+- sharedShellCss is now the single cross-route visual authority for stable global experience and includes:
+  - base Home-approved Bio-A css;
+  - Header/Desktop/Tablet/Mobile patches;
+  - Mobile Menu outside/scroll dismissal;
+  - Footer hierarchy/company info/hover/meta;
+  - Cookie presentation;
+  - Chat/contact launcher;
+  - Zalo shared artwork;
+  - enabled/disabled Swiper control palette;
+  - Mobile contact CTA treatment;
+  - MOTION-U1 framework with accepted Desktop/Tablet/Mobile timing.
+- applySharedShell() now also runs:
+  - setLogo();
+  - replaceBrandWatermarks();
+  - fixLang();
+  - header/mobile-menu normalization;
+  - shared contact CTA normalization;
+  - Footer owners;
+  - Home-style hero counters when a compatible stat block exists;
+  - addSharedPageReveal(route);
+  - Chat launcher;
+  - VI title casing.
+
+About motion map:
+- Hero title/lead/CTA/stats/media enter in staged Home-like rhythm.
+- Story, Values, Team, Product catalogue and How It Works use element-level UNILA motion.
+- Activity slider animates only the slider shell; never .swiper-wrapper or slides.
+- Header/Footer/Cookie/Chat are intentionally excluded from reveal transforms.
+
+Important architectural rule:
+- route modules such as bioa-about-refine.mjs own PAGE CONTENT only.
+- global Header/Footer/Cookie/Chat/Menu/Zalo/Motion framework/control-state code must not be duplicated in route modules.
+- future subpages must receive applySharedShell() and define only their route-specific content + optional safe reveal selector map.
+
+Static navigation note:
+- the project is currently a multi-page static site, so moving between /about/, /contacts/, etc. is still a normal browser document navigation.
+- SHARED-UX1 guarantees identical built shared components/cascade on every page; converting navigation to an SPA is not part of this patch and is not required for component parity.
+
+Protected / PASS:
+- Home visual/layout/runtime: PASS / LOCKED.
+- MOTION-U1D2: PASS / LOCKED.
+- Header/Footer/Cookie/Chat/Zalo/Mobile Menu: PASS / LOCKED.
+- Prev/Next disabled authority: PASS / LOCKED.
+
+Status:
+- Shared shell parity on About Desktop/Tablet/Mobile: PENDING OWNER TEST.
+- About page content/layout remains ABOUT-A1 candidate and is not otherwise redesigned by SHARED-UX1.
+

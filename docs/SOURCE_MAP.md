@@ -1148,3 +1148,33 @@ Rules:
 - Shared shell comes from applySharedShell(); do not duplicate Header/Footer/Cookie/Chat/Mobile Menu code in About.
 - VI and EN About content must be updated together.
 
+## SHARED-UX1 — cross-route experience authority
+
+Owner:
+- bioa-home-refine.mjs
+- sharedShellCss
+- applySharedShell($,route,lang)
+- addSharedPageReveal($,route)
+- addHeroCounters($)
+
+All non-Home core routes inherit:
+- Home-approved base palette/type;
+- Header + Mobile Menu behavior;
+- Footer visual hierarchy/hover/company/meta;
+- Cookie;
+- Chat;
+- Zalo;
+- Swiper enabled/disabled control palette;
+- MOTION-U1 timing framework;
+- compatible hero counter behavior;
+- Bio-A watermark replacement.
+
+Route modules:
+- own content and page-specific selector maps only;
+- must not duplicate shared component CSS/runtime.
+
+Motion safety:
+- never transform .swiper-wrapper;
+- animate slider shell/title, not translation-owning nodes;
+- Header/Footer/Cookie/Chat remain outside reveal mapping.
+
