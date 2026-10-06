@@ -266,6 +266,12 @@ function setAboutCta($,lang){
   text(sec,".mwa-cta__fine",vi
     ?"Trao đổi nhanh về công thức, MOQ, bao bì và tiến độ dự kiến."
     :"A quick discussion about formula, MOQ, packaging and expected timeline.");
+
+  /* ABOUT-CTA-LOGO1 — replace Merywood decorative logo only; preserve CTA geometry. */
+  sec.find(".mwa-cta__media")
+    .css("background-image","url('/assets/bioa-full.svg')")
+    .attr("role","img")
+    .attr("aria-label",vi?"Logo Bio-A Group":"Bio-A Group logo");
 }
 
 export function applyAboutRefinement($,route,lang){

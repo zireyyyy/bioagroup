@@ -1556,3 +1556,19 @@ ABOUT-PRODUCT-ICON2:
 Status:
 - Desktop / Tablet / Mobile: PENDING OWNER VISUAL TEST.
 
+## ABOUT-CTA-LOGO1 — REPLACE MERYWOOD CTA MARK
+
+Owner request:
+- while waiting for the final manufacturing-category icon assets, replace the Merywood logo in the final About CTA with the original green Bio-A logo.
+- do not change CTA layout, spacing, text, background or media box dimensions.
+
+Implementation:
+- .mwa-cta__media keeps the Merywood source geometry.
+- only background-image changes from the Merywood M artwork to /assets/bioa-full.svg.
+- /assets/bioa-full.svg is the existing original Bio-A green logo asset (#116F47).
+- adds localized aria-label to the decorative media block.
+- no change to the pending About category icon work.
+
+Status:
+- About CTA Desktop/Tablet/Mobile: PENDING OWNER VISUAL TEST.
+

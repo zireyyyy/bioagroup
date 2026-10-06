@@ -1258,3 +1258,20 @@ Rules:
 - do not alter product-card geometry or content while changing icon artwork;
 - reference image is a style/category guide only; do not trace/copy stock artwork verbatim.
 
+## ABOUT-CTA-LOGO1 — final CTA logo
+
+About route:
+- bioa-about-refine.mjs
+- setAboutCta($,lang)
+
+Target:
+- .mwa-cta__media
+
+Asset:
+- /assets/bioa-full.svg
+- original Bio-A green: #116F47
+
+Rule:
+- replace artwork only.
+- preserve Merywood CTA media size, position, background sizing, card geometry and copy.
+
