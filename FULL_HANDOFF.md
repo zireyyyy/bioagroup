@@ -1041,3 +1041,34 @@ Responsive status:
 - Header Desktop/Tablet: PROTECTED / unchanged.
 - Mobile nav arrow parity: PENDING OWNER TEST.
 
+## WHY-ICON1 / PACKAGING PAGINATION DECISION
+
+Owner request:
+- Why Choose icons 02 and 04 must use the same positional artwork on Desktop and Mobile.
+- Icon 04 must become the light Bio-A monogram.
+- Light artwork inside icons 01–03 should use the accepted cream family.
+- Packaging desktop 3 swiper positions vs mobile 5 positions was reviewed for maintainability.
+
+Verified Merywood source behavior:
+- Desktop Why Choose artwork order: source icon 01 / 02 / 03 / 04.
+- Mobile Why Choose source intentionally reorders artwork to 01 / 04 / 03 / 02.
+- Current Bio-A owner direction overrides that visual reorder: Desktop positional order becomes authority.
+- Packaging contains five product payloads. Desktop presents products in paired composition, producing three swiper positions for five products; Mobile presents one product per position, producing five positions.
+
+WHY-ICON1:
+- Mobile positions 01–03 copy the corresponding Desktop artwork source.
+- Existing source artwork 01–03 is visually normalized toward Bio-A cream without changing the icon box.
+- Position 04 on Desktop and Mobile uses /assets/bioa-monogram-cream.svg.
+- New cream asset is geometry-identical to the authoritative Bio-A monogram; only fill changes #116F47 -> #FDFEF5.
+
+PACKAGING DECISION:
+- Keep Merywood responsive pagination mechanics: Desktop three positions / Mobile five positions.
+- Do NOT convert Desktop to five single-product positions merely for content editing.
+- The five product payloads remain individually addressable in setPackagingCopy; future product images/text can be replaced per product without changing the source slider composition.
+
+Responsive status:
+- WHY-ICON1 Desktop: PENDING OWNER TEST.
+- WHY-ICON1 Tablet: REGRESSION CHECK / PENDING.
+- WHY-ICON1 Mobile: PENDING OWNER TEST.
+- Packaging layout/runtime: NO CHANGE / existing PASS authority protected.
+

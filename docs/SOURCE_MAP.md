@@ -924,3 +924,21 @@ Protected:
 - burger/open-close mechanics;
 - mobile nav text/spacing/contact controls.
 
+## WHY-ICON1 — Why Choose artwork parity
+
+Merywood:
+- Desktop: #why-choose-us .grid.desctop > .item
+- Mobile: #why-choose-us .mobile .item
+- source artwork order differs between surfaces: Desktop 01/02/03/04; Mobile 01/04/03/02.
+
+BIO-A:
+- bioa-home-refine.mjs
+- syncWhyChooseIcons($)
+- patchWhyChooseIconCss
+- assets/bioa-monogram-cream.svg
+
+Authority:
+- owner requests Desktop positional artwork mapping to be used on Mobile.
+- position 04 is Bio-A-owned and uses the cream Bio-A monogram.
+- source card geometry, numbering, text, spacing and responsive layout remain untouched.
+

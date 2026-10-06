@@ -3809,6 +3809,40 @@ html.bioa-unila-ready [data-bioa-aos].is-in{
 `;
 
 
+function syncWhyChooseIcons($){
+  const desktop=$('#why-choose-us .grid.desctop > .item');
+  const mobile=$('#why-choose-us .mobile .item');
+  if(!desktop.length)return;
+
+  /* Merywood mobile swaps source icons 02 and 04. Owner wants Desktop order
+     to be authoritative, so mirror Desktop icon artwork into Mobile positions 01–03. */
+  for(let i=0;i<3;i++){
+    const src=desktop.eq(i).find('img').first();
+    const dst=mobile.eq(i).find('img').first();
+    if(!src.length)continue;
+    src.addClass('bioa-why-icon-cream');
+    if(dst.length){
+      const srcUrl=src.attr('src');
+      if(srcUrl)dst.attr('src',srcUrl);
+      const alt=src.attr('alt');
+      if(alt!=null)dst.attr('alt',alt);
+      dst.removeAttr('srcset sizes').addClass('bioa-why-icon-cream');
+    }
+  }
+
+  /* 04 becomes the light/cream Bio-A monogram on both source surfaces. */
+  [desktop.eq(3),mobile.eq(3)].forEach(root=>{
+    const img=root.find('img').first();
+    if(!img.length)return;
+    img.attr('src','/assets/bioa-monogram-cream.svg')
+      .attr('alt','Bio-A Group')
+      .removeAttr('srcset sizes')
+      .removeClass('bioa-why-icon-cream')
+      .addClass('bioa-why-icon-bioa');
+  });
+}
+
+
 function localizeHomeCtas($,lang){
   if(lang!=='vi')return;
   $('.btn__text').each((_,el)=>{
@@ -3816,6 +3850,24 @@ function localizeHomeCtas($,lang){
     if(/^get started$/i.test(node.text().trim())) node.text('Nhận tư vấn');
   });
 }
+
+
+const patchWhyChooseIconCss = `
+/* WHY-ICON1 — source-position parity + Bio-A icon 04.
+   Keep source icon boxes/geometry. Only normalize artwork ownership. */
+#why-choose-us .bioa-why-icon-cream{
+  filter:brightness(0) saturate(100%) invert(99%) sepia(8%) saturate(407%) hue-rotate(24deg) brightness(104%) contrast(99%)!important;
+}
+#why-choose-us .bioa-why-icon-bioa{
+  display:block!important;
+  width:22px!important;
+  max-width:22px!important;
+  height:27px!important;
+  max-height:27px!important;
+  object-fit:contain!important;
+  filter:none!important;
+}
+`;
 
 
 const patchH2HomeControlPaletteCss = `
@@ -4793,10 +4845,11 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
+  syncWhyChooseIcons($);
   fixLang($,route,lang);
   normalizeHeaderActions($);
   syncMobileHeader($,route,lang);
