@@ -1024,3 +1024,27 @@ Rule:
 - do not rely on generic fallback translation for approved production copy.
 - each page promotion requires VI + EN visible-content parity review.
 
+## MOTION-U1D2 — Desktop slider speed refinement
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMotionU1Css
+- addHomeReveal($)
+
+Desktop >1200 only:
+- .block-how-works revealed nodes: 560ms; step delay starts at 160ms with 70ms stagger.
+- .block-products-desctop revealed nodes: 560ms; swiper delay 160ms.
+- .block-reviews revealed nodes: 560ms; delays 160/240ms.
+
+Protected:
+- all non-slider Desktop MOTION-U1 timing remains 700ms/source-like.
+- Tablet unchanged.
+- Mobile MOTION-U1M unchanged.
+- Roadmap repeated .step nodes remain excluded.
+
+## COOKIE-C2B — source consent copy authority
+
+EN consent body uses the original Merywood wording supplied/approved by owner.
+VI consent body is a faithful translation of the same meaning.
+Bio-A policy-change note remains appended in the active language.
+

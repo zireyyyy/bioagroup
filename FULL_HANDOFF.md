@@ -1206,3 +1206,39 @@ Owner PASS locks:
 - Why Choose: PASS / LOCKED.
 - FOOTER-INFO1B/1C: PASS / LOCKED.
 
+## OWNER RESULTS + COOKIE-C2B / MOTION-U1D2
+
+Owner runtime results on 2026-10-06:
+- Prev/Next endpoint state: PASS / LOCKED after SLIDER-END3.
+- VI ↔ EN shared UI / Cookie language switching: PASS / LOCKED after I18N-A1.
+- Mobile Menu: PASS / LOCKED.
+- Why Choose: PASS / LOCKED.
+
+COOKIE-C2B:
+- owner wants the original Merywood consent explanation to remain the default semantic copy.
+- EN banner title/body now use:
+  - "Manage Consent"
+  - original Merywood paragraph beginning "To provide the best experiences..."
+- VI uses a faithful Vietnamese translation of that same paragraph.
+- Bio-A note is preserved:
+  - VI: users can change/withdraw choices at any time + Chính sách cookie link.
+  - EN: equivalent English note + Cookie Policy link.
+- preference buttons/categories and persistence remain unchanged.
+
+MOTION-U1D2:
+- owner re-tested Desktop and found slider-section reveals slightly delayed / slow.
+- Desktop static-section UNILA rhythm remains 700ms and unchanged.
+- Desktop slider-associated motion only:
+  - How It Works step duration: 560ms via scoped CSS; delays 160ms + 70ms stagger.
+  - Packaging Desktop swiper duration: 560ms; delay 160ms.
+  - Reviews duration: 560ms; center delay 160ms; side cards 240ms.
+- Mobile MOTION-U1M remains unchanged.
+- Tablet remains unchanged.
+- Roadmap slide/card motion remains excluded and source-owned per ROADMAP-R4.
+
+Responsive status:
+- Desktop slider motion: PENDING OWNER TEST.
+- Desktop non-slider motion: PROTECTED / unchanged.
+- Tablet motion: PROTECTED / unchanged.
+- Mobile motion: PROTECTED / unchanged.
+

@@ -105,3 +105,10 @@ Every promoted page must ship as a VI/EN pair.
 - When editing one language's page content, verify or update the paired language in the same patch unless the owner explicitly scopes the change to one language.
 - A page cannot be marked PASS if visible residual text from the opposite language remains.
 
+## Cookie consent copy authority
+
+Cookie consent explanatory copy should preserve the original Merywood consent meaning as the semantic source of truth:
+- EN keeps the approved original paragraph.
+- VI uses a faithful Vietnamese translation, not a shortened marketing rewrite.
+- The Bio-A note about changing/withdrawing consent and the localized Cookie Policy link remains below the main paragraph.
+

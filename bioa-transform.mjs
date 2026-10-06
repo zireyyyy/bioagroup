@@ -474,7 +474,7 @@ function brandCookieBanner($,lang){
 
   const copy=vi?{
     title:'Quản lý cookie',
-    body:'Bio-A Group sử dụng cookie cần thiết để website hoạt động ổn định. Nếu bạn đồng ý, chúng tôi cũng có thể sử dụng cookie thống kê và tiếp thị để hiểu cách website được sử dụng, đo lường hiệu quả nội dung và cải thiện trải nghiệm. Bạn có thể chấp nhận tất cả, chỉ cho phép cookie cần thiết hoặc tùy chỉnh lựa chọn bất cứ lúc nào.',
+    body:'Để mang lại trải nghiệm tốt nhất, chúng tôi sử dụng các công nghệ như cookie để lưu trữ và/hoặc truy cập thông tin thiết bị. Khi đồng ý với các công nghệ này, bạn cho phép chúng tôi xử lý dữ liệu như hành vi duyệt web hoặc mã định danh duy nhất trên website. Việc không đồng ý hoặc rút lại sự đồng ý có thể ảnh hưởng đến một số tính năng và chức năng.',
     accept:'Đồng ý tất cả',
     necessary:'Chỉ cookie cần thiết',
     customize:'Tùy chỉnh',
@@ -488,8 +488,8 @@ function brandCookieBanner($,lang){
     noteLead:'Bạn có thể thay đổi hoặc rút lại lựa chọn bất cứ lúc nào trong mục Quản lý cookie. Xem thêm tại ',
     policy:'Chính sách cookie'
   }:{
-    title:'Cookie preferences',
-    body:'Bio-A Group uses necessary cookies to keep the website working reliably. With your consent, we may also use analytics and marketing cookies to understand how the site is used, measure content performance and improve your experience. You can accept all cookies, allow necessary cookies only, or customize your choices at any time.',
+    title:'Manage Consent',
+    body:'To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.',
     accept:'Accept all',
     necessary:'Necessary only',
     customize:'Customize',

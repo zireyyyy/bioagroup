@@ -3804,6 +3804,15 @@ html.bioa-unila-ready [data-bioa-aos].is-in{
   opacity:1;
   transform:translate3d(0,0,0);
 }
+/* MOTION-U1D2 — slider sections should feel immediate on Desktop.
+   Static sections keep the accepted 700ms UNILA rhythm. */
+@media(min-width:1201px){
+  html.bioa-unila-ready .block-how-works [data-bioa-aos],
+  html.bioa-unila-ready .block-products-desctop [data-bioa-aos],
+  html.bioa-unila-ready .block-reviews [data-bioa-aos]{
+    transition-duration:560ms;
+  }
+}
 @media(max-width:1200px) and (min-width:769px){
   html.bioa-unila-ready [data-bioa-aos="fade-up"]{
     transform:translate3d(0,72px,0);
@@ -4619,12 +4628,12 @@ function addHomeReveal($){
 
   mark('.block-how-works > .container > .title-wrapper','fade-up',0);
   $('.block-how-works .step').each((i,el)=>{
-    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(300+Math.min(i,4)*120)+'ms');
+    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(160+Math.min(i,4)*70)+'ms');
   });
 
   /* Packaging/product area: title then visual/content block, without touching .swiper-wrapper. */
   mark('.block-products-desctop > .container > .title-wrapper','fade-up',0);
-  mark('.block-products-desctop .swiper','fade-up',300);
+  mark('.block-products-desctop .swiper','fade-up',160);
   mark('.block-products-mobile > .container > .title-wrapper','fade-up',0);
   mark('.block-products-mobile .swiper','fade-up',240);
 
@@ -4635,7 +4644,7 @@ function addHomeReveal($){
   mark('.block-reviews > .container > .title-wrapper','fade-up',0);
   $('.block-reviews .review').each((i,el)=>{
     const effect=i%3===0?'fade-right':(i%3===2?'fade-left':'fade-up');
-    const delay=i%3===1?300:600;
+    const delay=i%3===1?160:240;
     $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay',delay+'ms');
   });
 
