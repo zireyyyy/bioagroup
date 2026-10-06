@@ -832,3 +832,30 @@ Status:
 - Desktop: PENDING
 - Tablet: PENDING
 - Mobile: PENDING
+
+## ROADMAP-R4 — Motion transform ownership guard
+
+Merywood:
+- source: merywood/pages/index/index.html
+- component: .block-roadmap
+- repeated card/slide nodes: .block-roadmap .step
+- text owner: .step__text > p with source-style explicit <br> line breaks.
+
+BIO-A:
+- file: bioa-home-refine.mjs
+- function: addHomeReveal($)
+
+Rule:
+- .block-roadmap .step must remain source/runtime transform-owned.
+- MOTION-U1 must NOT add data-bioa-aos or transform transitions to repeated Roadmap .step nodes.
+- Safe reveal target: .block-roadmap > .container > .title-wrapper only.
+- Roadmap R3 text/line-break ownership remains unchanged.
+
+Reason:
+- owner runtime testing showed repeated Roadmap step transforms regress Desktop slider/card geometry and produce excessive Mobile blank height/whitespace.
+
+Status:
+- Desktop: ACTIVE FIX CANDIDATE.
+- Tablet: REGRESSION CHECK / PENDING.
+- Mobile: ACTIVE FIX CANDIDATE.
+

@@ -887,3 +887,54 @@ Owner directive recorded 2026-10-06:
 - Merywood remains the visual/runtime source-of-truth and all PASS/LOCKED protections remain in force.
 
 This directive is a workflow authority for future continuation sessions and is intended to prevent project chats from responding with a handoff prompt instead of implementing the requested repository change.
+
+## OWNER RESULT / ACTIVE FIX — MOTION-U1 PASS + FOOTER-INFO1A / ROADMAP-R4
+
+Owner runtime feedback on 2026-10-06:
+- MOTION-U1 overall Home motion: PASS / LOCKED.
+- FOOTER-INFO1 needs hierarchy refinement:
+  - Desktop company/factory name larger and bold;
+  - Desktop footer logo may be reduced slightly to give company text more emphasis;
+  - Mobile company/factory name larger/bolder;
+  - Mobile company-info text left aligned;
+  - Mobile spacing above/below the company-info block must be visually balanced.
+- Roadmap / "Từ ý tưởng đến thành phẩm — quy trình đồng hành trọn gói" regressed again after MOTION-U1:
+  - Desktop slider/card geometry is broken;
+  - Mobile card leaves excessive blank space below the text and lengthens the page.
+
+Verified code-level conflict:
+- MOTION-U1 targeted every .block-roadmap .step with a transform.
+- Roadmap is a source-owned slider/card runtime surface and must not share transform ownership with the reveal system.
+- The safe correction is to keep only the Roadmap title reveal and remove MOTION-U1 attributes/transforms from repeated Roadmap .step nodes.
+
+FOOTER-INFO1A candidate:
+- Desktop company title increased to 15px / 700;
+- Desktop body copy increased to 12.25px;
+- Desktop left logo reduced to 92px only above 1200px;
+- Tablet company-info remains centered and existing footer grid remains untouched;
+- Mobile company block becomes left-aligned with 13.5px / 700 title and 11px body;
+- Mobile vertical spacing is rebalanced without changing the accepted block order.
+
+ROADMAP-R4 candidate:
+- remove element-level MOTION-U1 targeting from .block-roadmap .step;
+- keep Roadmap title fade-up only;
+- source Roadmap slider/card runtime regains sole transform/layout ownership;
+- no Roadmap DOM/text/CSS geometry rewrite.
+
+Protected:
+- MOTION-U1 on all other Home sections: PASS / LOCKED;
+- CHAT-C7: PASS / LOCKED;
+- Header/Footer accepted grid/color/navigation authority;
+- Roadmap R3 text/line-break ownership;
+- Hero counters;
+- Packaging/Reviews/We Produce slider runtime.
+
+Responsive status:
+- MOTION-U1 overall: PASS / LOCKED per owner.
+- FOOTER-INFO1A Desktop: PENDING OWNER TEST.
+- FOOTER-INFO1A Tablet: REGRESSION CHECK — NO STRUCTURAL CHANGE EXPECTED.
+- FOOTER-INFO1A Mobile: PENDING OWNER TEST.
+- ROADMAP-R4 Desktop: PENDING OWNER TEST.
+- ROADMAP-R4 Tablet: REGRESSION CHECK / PENDING.
+- ROADMAP-R4 Mobile: PENDING OWNER TEST.
+

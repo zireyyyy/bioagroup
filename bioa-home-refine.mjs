@@ -3309,24 +3309,23 @@ const patchD4FooterHierarchyCss = `
 
 
 const patchFooterInfo1Css = `
-/* FOOTER-INFO1 — official Bio-A factory details.
-   Desktop lives under the logo. Tablet/Mobile uses a separate centered row
-   so the accepted footer columns never need to widen or reflow. */
+/* FOOTER-INFO1A — official Bio-A factory details hierarchy refinement.
+   Preserve the accepted footer grid/order; improve company-info emphasis only. */
 .bioa-footer-company-info{
   color:var(--bioa-footer-cream)!important;
   font-weight:400!important;
 }
 .bioa-footer-company-info__title{
-  margin:0 0 11px!important;
+  margin:0 0 10px!important;
   color:var(--bioa-footer-cream)!important;
-  font-size:13px!important;
-  line-height:1.35!important;
-  font-weight:600!important;
+  font-size:15px!important;
+  line-height:1.32!important;
+  font-weight:700!important;
 }
 .bioa-footer-company-info p{
   margin:0 0 7px!important;
   color:var(--bioa-footer-cream)!important;
-  font-size:11.5px!important;
+  font-size:12.25px!important;
   line-height:1.45!important;
   font-weight:400!important;
 }
@@ -3336,13 +3335,21 @@ const patchFooterInfo1Css = `
   font-weight:600!important;
 }
 .bioa-footer-company-info--desktop{
-  width:268px!important;
-  max-width:268px!important;
-  margin-top:24px!important;
+  width:276px!important;
+  max-width:276px!important;
+  margin-top:20px!important;
   text-align:left!important;
 }
 .bioa-footer-company-info--responsive{
   display:none!important;
+}
+@media(min-width:1201px){
+  .footer-top__left .footer-top__logo img,
+  .footer-top__left .footer__logo img{
+    width:92px!important;
+    max-width:92px!important;
+    height:auto!important;
+  }
 }
 @media(max-width:1200px){
   .bioa-footer-company-info--desktop{display:none!important}
@@ -3350,30 +3357,33 @@ const patchFooterInfo1Css = `
     display:block!important;
     width:min(100%,760px)!important;
     max-width:760px!important;
-    margin:0 auto 28px!important;
+    margin:2px auto 26px!important;
     padding:0 18px!important;
     text-align:center!important;
     box-sizing:border-box!important;
   }
   .bioa-footer-company-info--responsive .bioa-footer-company-info__title{
-    font-size:13px!important;
+    font-size:14px!important;
+    font-weight:700!important;
   }
 }
 @media(max-width:768px){
   .bioa-footer-company-info--responsive{
     width:100%!important;
-    margin:0 auto 22px!important;
-    padding:0 12px!important;
+    margin:6px auto 24px!important;
+    padding:4px 20px 0!important;
+    text-align:left!important;
   }
   .bioa-footer-company-info--responsive .bioa-footer-company-info__title{
     margin-bottom:9px!important;
-    font-size:12px!important;
-    line-height:1.35!important;
+    font-size:13.5px!important;
+    line-height:1.34!important;
+    font-weight:700!important;
   }
   .bioa-footer-company-info--responsive p{
-    margin-bottom:5px!important;
-    font-size:10.5px!important;
-    line-height:1.42!important;
+    margin-bottom:6px!important;
+    font-size:11px!important;
+    line-height:1.46!important;
   }
 }
 `;
@@ -4456,10 +4466,11 @@ function addHomeReveal($){
     $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay','300ms');
   });
 
+  /* ROADMAP-R4: keep the source slider/card runtime as sole transform owner.
+     Repeated .step nodes are intentionally excluded from MOTION-U1 because
+     applying reveal transforms to them regresses Desktop slider geometry and
+     leaves excessive Mobile card height/whitespace. Title reveal remains safe. */
   mark('.block-roadmap > .container > .title-wrapper','fade-up',0);
-  $('.block-roadmap .step').each((i,el)=>{
-    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(300+Math.min(i,4)*120)+'ms');
-  });
 
   mark('.whatsapp .whatsapp__content','fade-up',300);
 
