@@ -1242,3 +1242,19 @@ Rule:
 - use one coherent 24x24 outline icon family.
 - do not alter card layout, icon-square size, number badge, typography or links when changing category artwork.
 
+## ABOUT-PRODUCT-ICON2 — icon visual authority
+
+Route owner:
+- bioa-about-refine.mjs
+- aboutProductIcons
+
+Visual reference:
+- owner-supplied beauty/cosmetics outline icon sheet.
+
+Rules:
+- use a coherent 24x24 outline family;
+- use rounded 1.65px strokes;
+- keep Merywood .mwa-isq as the sole container/size/background authority;
+- do not alter product-card geometry or content while changing icon artwork;
+- reference image is a style/category guide only; do not trace/copy stock artwork verbatim.
+

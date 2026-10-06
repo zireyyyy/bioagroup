@@ -162,18 +162,18 @@ function setAboutActivity($,lang){
 }
 
 const aboutProductIcons = [
-  /* 01 Makeup — lipstick */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14h7v7h-7z"/><path d="M10 14V8l4-3v9"/><path d="M10 8h4"/><path d="M8.5 18h7"/></svg>',
-  /* 02 Hair care — comb */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14v4H5z"/><path d="M5 6.5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/><path d="M7 10.5v6"/><path d="M10 10.5V18"/><path d="M13 10.5V17"/><path d="M16 10.5v5.5"/></svg>',
-  /* 03 Body care — pump lotion bottle */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5V3h4"/><path d="M14 3h3v2"/><path d="M9 8h6"/><path d="M8 10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/><path d="M10 14h4"/></svg>',
-  /* 04 Facial skin care — serum/dropper bottle */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4"/><path d="M10.5 3v4h3V3"/><path d="M9 9h6"/><path d="M8 11a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/><path d="M12 13.5s2 2.1 2 3.4a2 2 0 0 1-4 0c0-1.3 2-3.4 2-3.4Z"/></svg>',
-  /* 05 Personal care — soap / hygiene */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="9" width="14" height="10" rx="3"/><path d="M9 13h6"/><path d="M7 3v3"/><path d="M5.5 4.5h3"/><path d="M17 4v2"/><path d="M16 5h2"/></svg>',
-  /* 06 Mother & baby — baby face */
-  '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="6"/><path d="M10 6c0-2 1-3 2-3s2 .8 2 2c0 1-.7 1.8-1.6 1.8"/><path d="M9.8 12.5h.01"/><path d="M14.2 12.5h.01"/><path d="M10.2 15.5c1.2 1 2.4 1 3.6 0"/></svg>'
+  /* 01 Makeup — lipstick tube, adapted to the reference beauty/cosmetics outline language */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9.2 11.2h5.6v8.3H9.2z"/><path d="M10.1 11.2V7.1l3.8-2.4v6.5"/><path d="M10.1 7.1h3.8"/><path d="M9.2 15.6h5.6"/></g></svg>',
+  /* 02 Hair care — conditioner bottle */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.1 3.6h3.8"/><path d="M10.6 3.6v2.6h2.8V3.6"/><path d="M9 8.3a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v9.5a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z"/><path d="M10.4 11.5c1.1-.8 2.1-.8 3.2 0"/><path d="M10.5 14.2h3"/></g></svg>',
+  /* 03 Body care — body lotion pump bottle */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.2V3h3.6"/><path d="M14.6 3H17v1.8"/><path d="M10 7.4h5"/><path d="M9 9.3a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v8.8a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2z"/><path d="M12.5 11.3c-1.2 1.4-1.7 2.2-1.7 3a1.7 1.7 0 0 0 3.4 0c0-.8-.5-1.6-1.7-3z"/></g></svg>',
+  /* 04 Facial skin care — face serum/dropper bottle */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 3.2h3.6"/><path d="M10.7 3.2v3.3h2.6V3.2"/><path d="M9.5 8.5h5"/><path d="M8.8 10.4a2 2 0 0 1 2-2h2.4a2 2 0 0 1 2 2v7.4a2 2 0 0 1-2 2h-2.4a2 2 0 0 1-2-2z"/><path d="M12 12.6c1 1 1.6 1.9 1.6 2.7a1.6 1.6 0 0 1-3.2 0c0-.8.6-1.7 1.6-2.7z"/></g></svg>',
+  /* 05 Personal care — hand cream tube */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M9.3 5.6h5.4l1 10.7a2 2 0 0 1-2 2.2h-3.4a2 2 0 0 1-2-2.2z"/><path d="M9.9 5.6 9.4 3.5h5.2l-.5 2.1"/><path d="M10.6 10.6h2.8"/><path d="M12 9.2V12"/></g></svg>',
+  /* 06 Mother & baby — baby bottle */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M10.2 5V4.2a1.8 1.8 0 0 1 3.6 0V5"/><path d="M10 5h4"/><path d="M10.2 7.3c-.9.8-1.4 1.9-1.4 3.1v7.4a2 2 0 0 0 2 2h2.4a2 2 0 0 0 2-2v-7.4c0-1.2-.5-2.3-1.4-3.1"/><path d="M10.7 11h2.6"/><path d="M10.7 14h2.6"/></g></svg>'
 ];
 
 

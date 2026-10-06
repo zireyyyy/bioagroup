@@ -1535,3 +1535,24 @@ Responsive status:
 - About Product Categories Desktop: PENDING OWNER TEST.
 - Tablet/Mobile: same source icon geometry / PENDING regression check.
 
+## ABOUT-PRODUCT-ICON2 — REFERENCE-ALIGNED COSMETICS ICONS
+
+Owner feedback:
+- ABOUT-PRODUCT-ICON1 rendered poorly and did not match the visual language of the supplied beauty/cosmetics reference sheet.
+- owner explicitly asked to use the supplied reference image as the visual guide.
+
+ABOUT-PRODUCT-ICON2:
+- replaces only the six inline SVG artworks inside aboutProductIcons.
+- keeps the approved Merywood .mwa-isq container, green square, number badge, card geometry, typography, links and motion untouched.
+- icon family is rebuilt as one consistent 24x24 outline system with 1.65px rounded strokes, inspired by the supplied cosmetics reference without copying its stock artwork verbatim.
+- mapping:
+  01 Makeup -> lipstick tube
+  02 Hair Care -> conditioner bottle
+  03 Body Care -> body lotion pump bottle
+  04 Facial Skin Care -> face serum/dropper bottle
+  05 Personal Care -> hand cream tube
+  06 Mother & Baby -> baby bottle
+
+Status:
+- Desktop / Tablet / Mobile: PENDING OWNER VISUAL TEST.
+
