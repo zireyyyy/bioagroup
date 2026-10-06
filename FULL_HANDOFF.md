@@ -1242,3 +1242,40 @@ Responsive status:
 - Tablet motion: PROTECTED / unchanged.
 - Mobile motion: PROTECTED / unchanged.
 
+## OWNER RESULT + TITLE-CASE1 / MOBILE-MENU-DISMISS1
+
+Owner runtime result:
+- MOTION-U1D2: PASS / LOCKED.
+- Prev/Next: PASS / LOCKED.
+- VI ↔ EN: PASS / LOCKED.
+- Mobile Menu visual/icon parity remains PASS; interaction receives one usability refinement below.
+
+TITLE-CASE1:
+- owner requests visible Vietnamese title/UI-heading styling in Aa Bb form rather than Aa aa bb.
+- Cookie VI title/labels are normalized, including:
+  - Quản Lý Cookie
+  - Tùy Chọn Cookie
+  - Cookie Cần Thiết
+  - Thống Kê & Phân Tích
+  - Tiếp Thị
+  - Quảng Cáo & Remarketing
+  - Chính Sách Cookie
+- buttons use the same presentation convention where appropriate.
+- a scoped normalizeViTitleCase($,lang) pass now runs only on heading/title selectors, never normal paragraph/body copy.
+- protected acronyms/brands include Bio-A, R&D, OEM/ODM, MOQ, SKU, VI/EN and channel names.
+
+MOBILE-MENU-DISMISS1:
+- root cause of the awkward interaction was patchB8 locking html/body overflow while the mobile nav was open and making the fixed nav occupy the full remaining viewport.
+- page scroll is no longer hard-locked while the menu is open.
+- only .bioa-mobile-nav-drop is interactive; the rest of the viewport remains a natural outside area.
+- tapping/pointer-down outside the actual menu panel closes it.
+- scrolling the page outside the menu closes it immediately.
+- scrolling inside the menu panel remains available when its contents exceed the viewport.
+- Escape closes the menu for keyboard accessibility.
+- menu links and burger toggle behavior remain unchanged.
+
+Responsive status:
+- TITLE-CASE1 Desktop/Tablet/Mobile: PENDING OWNER TEST.
+- MOBILE-MENU-DISMISS1 Mobile: PENDING OWNER TEST.
+- Desktop/Tablet menu: PROTECTED / unchanged.
+

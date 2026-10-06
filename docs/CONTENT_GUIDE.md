@@ -112,3 +112,10 @@ Cookie consent explanatory copy should preserve the original Merywood consent me
 - VI uses a faithful Vietnamese translation, not a shortened marketing rewrite.
 - The Bio-A note about changing/withdrawing consent and the localized Cookie Policy link remains below the main paragraph.
 
+## Vietnamese title capitalization
+
+Owner presentation rule:
+- visible Vietnamese headings and title-like UI labels use Aa Bb capitalization.
+- body copy, descriptions and policy sentences remain normal sentence case.
+- preserve brand/technical forms such as Bio-A, R&D, OEM/ODM, MOQ and SKU.
+

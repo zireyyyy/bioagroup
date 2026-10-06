@@ -1048,3 +1048,27 @@ EN consent body uses the original Merywood wording supplied/approved by owner.
 VI consent body is a faithful translation of the same meaning.
 Bio-A policy-change note remains appended in the active language.
 
+## TITLE-CASE1 — Vietnamese heading presentation
+
+BIO-A:
+- bioa-home-refine.mjs
+- normalizeViTitleCase($,lang)
+- viTitleCaseText(value)
+
+Rule:
+- VI visual titles/headings use owner-approved Aa Bb capitalization.
+- normal paragraph/body sentences remain sentence case.
+- preserve Bio-A and technical acronyms exactly.
+
+## MOBILE-MENU-DISMISS1 — natural outside interaction
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMobileMenuDismissCss
+- syncMobileHeader($,route,lang)
+
+Rule:
+- do not hard-lock document scrolling while the compact mobile menu is open.
+- outside pointer interaction or page scrolling dismisses the menu.
+- scrolling inside .bioa-mobile-nav-drop does not dismiss it.
+

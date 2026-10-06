@@ -1815,6 +1815,40 @@ const patchB7Css = `
 `;
 
 
+const patchMobileMenuDismissCss = `
+/* MOBILE-MENU-DISMISS1 — allow natural page gestures outside the open panel. */
+@media(max-width:768px){
+  html.bioa-mobile-nav-open,
+  body.bioa-mobile-nav-open{
+    overflow:auto!important;
+    overscroll-behavior:auto!important;
+  }
+  body > .bioa-mobile-nav{
+    height:auto!important;
+    background:transparent!important;
+    border-top:0!important;
+    pointer-events:none!important;
+  }
+  body > .bioa-mobile-nav.open{
+    max-height:min(38rem,calc(100dvh - 60px))!important;
+    overflow:visible!important;
+    pointer-events:none!important;
+    box-shadow:none!important;
+  }
+  body > .bioa-mobile-nav .bioa-mobile-nav-drop{
+    max-height:calc(100dvh - 72px)!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain!important;
+    pointer-events:auto!important;
+    background:#fff!important;
+    border-top:1px solid rgba(5,47,33,.08)!important;
+    box-shadow:0 16px 36px rgba(0,0,0,.08)!important;
+  }
+}
+`;
+
+
 const patchB8Css = `
 /* HOME Patch B8 — isolate mobile nav from sticky-header scroll effects + rebuild mobile Produce reliably */
 @media(max-width:768px){
@@ -4101,6 +4135,52 @@ function fixLang($,route,lang){
 }
 
 
+function viTitleCaseText(value){
+  const keep={
+    'bio-a':'Bio-A',
+    'r&d':'R&D',
+    'oem/odm':'OEM/ODM',
+    'moq':'MOQ',
+    'sku':'SKU',
+    'vi':'VI',
+    'en':'EN',
+    'zalo':'Zalo',
+    'facebook':'Facebook',
+    'telegram':'Telegram',
+    'whatsapp':'WhatsApp'
+  };
+  return String(value||'').replace(/[A-Za-zÀ-ỹĐđ][A-Za-zÀ-ỹĐđ0-9&+/.\-]*/gu,function(word){
+    const key=word.toLocaleLowerCase('vi');
+    if(keep[key])return keep[key];
+    return word.charAt(0).toLocaleUpperCase('vi')+word.slice(1).toLocaleLowerCase('vi');
+  });
+}
+
+function normalizeViTitleCase($,lang){
+  if(lang!=='vi')return;
+  const selectors=[
+    'h1','h2','h3',
+    '.title-wrapper .title',
+    '.item__title',
+    '.step__title',
+    '.formats__title',
+    '.footer-top__nav-title',
+    '.bioa-footer-mobile-v2__title',
+    '.bioa-chat__title',
+    '#mw-card-title',
+    '#mw-prefs .mw-title',
+    '#mw-prefs .mw-row .label'
+  ];
+  $(selectors.join(',')).each((_,el)=>{
+    $(el).contents().each((__,node)=>{
+      if(node.type!=='text')return;
+      if(!String(node.data||'').trim())return;
+      node.data=viTitleCaseText(node.data);
+    });
+  });
+}
+
+
 function normalizeHeaderActions($){
   const contacts=$('.header__contacts').first();
   const lang=$('.header > .container .bioa-lang, .header__wrapper > .bioa-lang').first();
@@ -4189,7 +4269,7 @@ function syncMobileHeader($,route,lang){
   nav.append(drop);
   $('body').append(nav);
 
-  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');document.documentElement.classList.toggle('bioa-mobile-nav-open',o);document.body.classList.toggle('bioa-mobile-nav-open',o);b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();set(!n.classList.contains('open'));});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});})();";
+  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;var d=n.querySelector('.bioa-mobile-nav-drop');function isOpen(){return n.classList.contains('open');}function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');document.documentElement.classList.toggle('bioa-mobile-nav-open',o);document.body.classList.toggle('bioa-mobile-nav-open',o);b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();set(!isOpen());});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});document.addEventListener('pointerdown',function(e){if(!isOpen())return;if(b.contains(e.target))return;if(d&&d.contains(e.target))return;set(false);},true);window.addEventListener('scroll',function(){if(isOpen())set(false);},{passive:true});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen()){set(false);b.focus();}});})();";
   $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
 }
 
@@ -4870,7 +4950,7 @@ function addContactLauncher($,lang){
 
 const sharedShellCss =
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
-  patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
+  patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss;
@@ -4888,10 +4968,11 @@ export function applySharedShell($,route,lang){
   buildMobileFooterV2($);
   addFooterCompanyInfo($);
   addContactLauncher($,lang);
+  normalizeViTitleCase($,lang);
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -4909,4 +4990,5 @@ export function applyHomeRefinement($,route,lang){
   addHeroCounters($);
   addHomeReveal($);
   addContactLauncher($,lang);
+  normalizeViTitleCase($,lang);
 }
