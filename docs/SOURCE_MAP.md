@@ -1299,3 +1299,17 @@ Rule:
 - object-fit: contain and object-position: center are mandatory.
 - if an owner PNG blob is corrupt, recover from the exact owner-supplied source file rather than redrawing the artwork.
 
+
+
+## ABOUT-PRODUCT-ICON4 — optical artwork positioning
+
+BIO-A:
+- bioa-about-refine.mjs
+- #bioa-about-category-icon-style
+- .bioa-about-category-icon--01 ... --06
+
+Rule:
+- keep the accepted icon render sizes unchanged;
+- compensate only for asymmetric transparent margins inside owner PNGs with per-icon optical translation;
+- current offsets: 01(-4,+2), 02(0,-2), 03(+2,+2), 04(-3,0), 05(+3,-1), 06(-4,+1) px;
+- .mwa-isq size/background, card geometry, badge, typography, links, motion and responsive structure remain source-owned and must not move.

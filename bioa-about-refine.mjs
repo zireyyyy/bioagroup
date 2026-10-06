@@ -177,7 +177,7 @@ function setAboutProducts($,lang){
   if(!sec.length)return;
 
   if(!$("#bioa-about-category-icon-style").length){
-    $("head").append('<style id="bioa-about-category-icon-style">.mwa-produce .mwa-isq .bioa-about-category-icon-wrap{display:grid;place-items:center;width:100%;height:100%}.mwa-produce .mwa-isq .bioa-about-category-icon{display:block;width:36px;height:36px;max-width:none;object-fit:contain;object-position:center;pointer-events:none}.mwa-produce .mwa-isq .bioa-about-category-icon--02{width:38px;height:38px}.mwa-produce .mwa-isq .bioa-about-category-icon--05{width:34px;height:34px}</style>');
+    $("head").append('<style id="bioa-about-category-icon-style">.mwa-produce .mwa-isq .bioa-about-category-icon-wrap{display:grid;place-items:center;width:100%;height:100%}.mwa-produce .mwa-isq .bioa-about-category-icon{display:block;width:36px;height:36px;max-width:none;object-fit:contain;object-position:center;pointer-events:none}.mwa-produce .mwa-isq .bioa-about-category-icon--01{transform:translate(-4px,2px)}.mwa-produce .mwa-isq .bioa-about-category-icon--02{width:38px;height:38px;transform:translate(0,-2px)}.mwa-produce .mwa-isq .bioa-about-category-icon--03{transform:translate(2px,2px)}.mwa-produce .mwa-isq .bioa-about-category-icon--04{transform:translate(-3px,0)}.mwa-produce .mwa-isq .bioa-about-category-icon--05{width:34px;height:34px;transform:translate(3px,-1px)}.mwa-produce .mwa-isq .bioa-about-category-icon--06{transform:translate(-4px,1px)}</style>');
   }
 
   text(sec,".mwa-sec__title",vi?"Danh Mục Gia Công":"Manufacturing Categories");

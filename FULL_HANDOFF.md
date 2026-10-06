@@ -1597,3 +1597,29 @@ Implementation:
 Status:
 - About category icon artwork: PENDING OWNER VISUAL TEST.
 
+
+
+## ABOUT-PRODUCT-ICON4 — OPTICAL CENTERING CANDIDATE
+
+Owner runtime feedback after 80e22e52353d9f98947042e385722ba545057dae:
+- icon size is accepted;
+- visible artwork is optically off-center inside the existing green .mwa-isq squares.
+
+Root cause:
+- the wrapper centers each PNG canvas, but the visible non-transparent artwork inside the PNGs has asymmetric transparent margins.
+
+Correction:
+- preserve current icon sizes and all outer/card geometry;
+- apply artwork-only optical offsets:
+  - 01: -4px X / +2px Y
+  - 02: 0px X / -2px Y
+  - 03: +2px X / +2px Y
+  - 04: -3px X / 0px Y
+  - 05: +3px X / -1px Y
+  - 06: -4px X / +1px Y
+- no card, grid, spacing, badge, text, button, motion, shared shell or responsive structure changes.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST
