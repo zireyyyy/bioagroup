@@ -343,3 +343,29 @@ Never default to:
 REINVENT → OVERRIDE → PATCH AGAIN
 
 When uncertain, gather evidence instead of guessing.
+
+## 14. Active-project execution contract
+
+For the BIO-A Group project, an owner request to change, fix, refine, restore, localize, or otherwise modify repository behavior is an execution instruction by default.
+
+Unless the owner explicitly asks for one of the following, do NOT stop at explanation, planning, prompt-writing, or delegation:
+- create/generate/edit an image;
+- explain only;
+- write a prompt for Claude Code, Codex, Cursor, another coding AI, or another developer;
+- provide a proposal without implementation.
+
+Default active-project behavior is:
+
+OWNER REQUEST
+→ INSPECT CURRENT AUTHORITATIVE BASELINE
+→ FOLLOW REPOSITORY WORKFLOW
+→ IMPLEMENT THE MINIMAL PATCH
+→ BUILD / VERIFY
+→ PUSH TO THE REQUESTED REPOSITORY BRANCH
+→ RETURN THE EXACT COMMIT SHA AND RUNTIME STATUS
+
+When the request is sufficiently specified, do not ask for an extra confirmation before implementing or pushing.
+Do not hand work off to another coding AI unless the owner explicitly requests a prompt or handoff.
+Do not create images unless the owner explicitly requests image creation or editing.
+
+This execution contract does not override safety, repository authority, locked-PASS rules, source-first rules, or the mandatory Desktop / Tablet / Mobile regression model.

@@ -874,3 +874,16 @@ Responsive status:
 - MOTION-U1 Desktop: PENDING
 - MOTION-U1 Tablet: PENDING
 - MOTION-U1 Mobile: PENDING
+
+## OWNER EXECUTION DIRECTIVE — ACTIVE PROJECT MODE
+
+Owner directive recorded 2026-10-06:
+- current continuation checkpoint supplied by owner: 36f6fa124525f87dc3e6aa588638cdd5a3c30380;
+- in an active BIO-A project chat, owner requests to fix/change repository code are execution instructions by default;
+- the agent must inspect the authoritative baseline, follow AGENTS.md + docs/WORKFLOW.md, implement the minimal patch, build/regression-check, push to the repository, and return the exact commit SHA;
+- do NOT stop at explanation, a plan, or a prompt for another coding AI unless the owner explicitly asks for those outputs;
+- do NOT create or edit images unless the owner explicitly requests image work;
+- do NOT ask for redundant implementation confirmation when the requested code change is sufficiently specified;
+- Merywood remains the visual/runtime source-of-truth and all PASS/LOCKED protections remain in force.
+
+This directive is a workflow authority for future continuation sessions and is intended to prevent project chats from responding with a handoff prompt instead of implementing the requested repository change.

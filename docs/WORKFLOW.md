@@ -20,6 +20,33 @@ INSPECT
 
 Do not skip directly from request to implementation.
 
+
+## 1A. ACTIVE PROJECT EXECUTION MODE
+
+For an ongoing BIO-A project conversation, a sufficiently specific code/UI/runtime change request is authorization to execute the repository workflow through implementation and push.
+
+Do not replace execution with any of the following unless the owner explicitly asks for it:
+- explanation-only response;
+- implementation plan only;
+- prompt for Claude Code / Codex / Cursor / another code AI;
+- image generation or image editing;
+- request for redundant confirmation.
+
+Required default completion path:
+
+REQUEST
+→ INSPECT
+→ ROOT CAUSE
+→ PATCH CONTRACT
+→ SOURCE COMPARE
+→ MINIMAL PATCH
+→ BUILD
+→ REGRESSION CHECK
+→ PUSH
+→ REPORT SHA + RUNTIME STATUS
+
+If runtime verification is unavailable, push the verified build candidate and report BUILD PASS — NEEDS OWNER TEST rather than stopping before implementation.
+
 ## 2. INSPECT
 
 Before changing anything:
