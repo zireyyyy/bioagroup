@@ -3654,39 +3654,58 @@ const patchH5CMobileMoqCss = `
 }
 `;
 
-const patchMotionM5Css = `
-/* MOTION-M5 — SKL-parity hybrid: horizontal entry + upward lift.
-   Animate only outer Home section wrappers; internal component transforms stay source-owned. */
-html.bioa-reveal-ready .bioa-section-reveal{
-  --bioa-reveal-x:0px;
+const patchMotionU1Css = `
+/* MOTION-U1 — adapted directly from the supplied UNILA homepage motion map.
+   Use element-level fade-up / fade-left / fade-right with 700ms duration and
+   staged delays. Never transform Swiper's translate-owning wrapper nodes. */
+html.bioa-unila-ready [data-bioa-aos]{
   opacity:0;
-  transform:translate3d(var(--bioa-reveal-x),34px,0);
-  transition:
-    opacity .9s cubic-bezier(.16,1,.3,1),
-    transform .9s cubic-bezier(.16,1,.3,1);
+  transition-property:opacity,transform;
+  transition-duration:700ms;
+  transition-timing-function:ease;
+  transition-delay:var(--bioa-aos-delay,0ms);
   will-change:opacity,transform;
 }
-html.bioa-reveal-ready .bioa-section-reveal.bioa-reveal-left{
-  --bioa-reveal-x:-56px;
+html.bioa-unila-ready [data-bioa-aos="fade-up"]{
+  transform:translate3d(0,100px,0);
 }
-html.bioa-reveal-ready .bioa-section-reveal.bioa-reveal-right{
-  --bioa-reveal-x:56px;
+html.bioa-unila-ready [data-bioa-aos="fade-right"]{
+  transform:translate3d(-100px,0,0);
 }
-html.bioa-reveal-ready .bioa-section-reveal.bioa-reveal-up{
-  --bioa-reveal-x:0px;
+html.bioa-unila-ready [data-bioa-aos="fade-left"]{
+  transform:translate3d(100px,0,0);
 }
-html.bioa-reveal-ready .bioa-section-reveal.is-in{
+html.bioa-unila-ready [data-bioa-aos].is-in{
   opacity:1;
   transform:translate3d(0,0,0);
 }
+@media(max-width:1200px) and (min-width:769px){
+  html.bioa-unila-ready [data-bioa-aos="fade-up"]{
+    transform:translate3d(0,72px,0);
+  }
+  html.bioa-unila-ready [data-bioa-aos="fade-right"]{
+    transform:translate3d(-72px,0,0);
+  }
+  html.bioa-unila-ready [data-bioa-aos="fade-left"]{
+    transform:translate3d(72px,0,0);
+  }
+}
 @media(max-width:768px){
-  html.bioa-reveal-ready .bioa-section-reveal{
-    transform:translate3d(calc(var(--bioa-reveal-x) * .55),24px,0);
-    transition-duration:.78s;
+  html.bioa-unila-ready [data-bioa-aos]{
+    transition-duration:620ms;
+  }
+  html.bioa-unila-ready [data-bioa-aos="fade-up"]{
+    transform:translate3d(0,54px,0);
+  }
+  html.bioa-unila-ready [data-bioa-aos="fade-right"]{
+    transform:translate3d(-34px,18px,0);
+  }
+  html.bioa-unila-ready [data-bioa-aos="fade-left"]{
+    transform:translate3d(34px,18px,0);
   }
 }
 @media(prefers-reduced-motion:reduce){
-  html.bioa-reveal-ready .bioa-section-reveal{
+  html.bioa-unila-ready [data-bioa-aos]{
     opacity:1!important;
     transform:none!important;
     transition:none!important;
@@ -4386,41 +4405,95 @@ function addHeroCounters($){
 
 function addHomeReveal($){
   $('#bioa-home-reveal-js').remove();
+  $('[data-bioa-aos]').removeAttr('data-bioa-aos').css('--bioa-aos-delay','');
 
-  const revealMap=[
-    ['.block-we-produce > .container','bioa-reveal-left'],
-    ['#why-choose-us > .container','bioa-reveal-right'],
-    ['.block-how-works > .container','bioa-reveal-left'],
-    ['.block-products-desctop > .container','bioa-reveal-right'],
-    ['.block-products-mobile > .container','bioa-reveal-right'],
-    ['.block-product-formats > .container','bioa-reveal-left'],
-    ['.block-reviews > .container','bioa-reveal-right'],
-    ['.block-right-choice > .container','bioa-reveal-left'],
-    ['.block-roadmap > .container','bioa-reveal-right'],
-    ['.whatsapp .whatsapp__content','bioa-reveal-up']
-  ];
-  revealMap.forEach(([sel,dir])=>{
-    $(sel).each((_,e)=>$(e).addClass('bioa-section-reveal '+dir));
+  const mark=(selector,effect='fade-up',delay=0)=>{
+    $(selector).each((_,el)=>{
+      $(el)
+        .attr('data-bioa-aos',effect)
+        .css('--bioa-aos-delay',delay+'ms');
+    });
+  };
+
+  /* UNILA pattern: section title first, then supporting content. */
+  mark('.block-we-produce > .container > .title-wrapper','fade-up',0);
+  mark('.block-we-produce > .container > .grid > .item:nth-child(1)','fade-right',300);
+  mark('.block-we-produce > .container > .grid > .item:nth-child(2)','fade-left',300);
+
+  mark('#why-choose-us > .container > .title-wrapper','fade-up',0);
+  $('#why-choose-us .grid.desctop > .item').each((i,el)=>{
+    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(300+Math.min(i,3)*150)+'ms');
+  });
+  $('#why-choose-us .mobile .item').each((i,el)=>{
+    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(180+Math.min(i,3)*110)+'ms');
   });
 
+  mark('.block-how-works > .container > .title-wrapper','fade-up',0);
+  $('.block-how-works .step').each((i,el)=>{
+    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(300+Math.min(i,4)*120)+'ms');
+  });
+
+  /* Packaging/product area: title then visual/content block, without touching .swiper-wrapper. */
+  mark('.block-products-desctop > .container > .title-wrapper','fade-up',0);
+  mark('.block-products-desctop .swiper','fade-up',300);
+  mark('.block-products-mobile > .container > .title-wrapper','fade-up',0);
+  mark('.block-products-mobile .swiper','fade-up',240);
+
+  mark('.block-product-formats > .container > .title-wrapper','fade-up',0);
+  mark('.block-product-formats .formats','fade-up',300);
+
+  /* Reviews / partner-style convergence: center/title first, outer content converges. */
+  mark('.block-reviews > .container > .title-wrapper','fade-up',0);
+  $('.block-reviews .review').each((i,el)=>{
+    const effect=i%3===0?'fade-right':(i%3===2?'fade-left':'fade-up');
+    const delay=i%3===1?300:600;
+    $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay',delay+'ms');
+  });
+
+  mark('.block-right-choice > .container > .title-wrapper','fade-up',0);
+  $('.block-right-choice .client').each((i,el)=>{
+    const effect=i%2===0?'fade-right':'fade-left';
+    $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay','300ms');
+  });
+
+  mark('.block-roadmap > .container > .title-wrapper','fade-up',0);
+  $('.block-roadmap .step').each((i,el)=>{
+    $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(300+Math.min(i,4)*120)+'ms');
+  });
+
+  mark('.whatsapp .whatsapp__content','fade-up',300);
+
   const script=`(function(){
-    if(!('IntersectionObserver' in window))return;
-    document.documentElement.classList.add('bioa-reveal-ready');
-    var els=[].slice.call(document.querySelectorAll('.bioa-section-reveal'));
+    var els=[].slice.call(document.querySelectorAll('[data-bioa-aos]'));
+    if(!els.length)return;
+    document.documentElement.classList.add('bioa-unila-ready');
+
+    function show(el){
+      if(el.classList.contains('is-in'))return;
+      el.classList.add('is-in');
+    }
+
+    if(!('IntersectionObserver' in window)){
+      els.forEach(show);
+      return;
+    }
+
     var obs=new IntersectionObserver(function(entries){
       entries.forEach(function(entry){
         if(entry.isIntersecting){
-          entry.target.classList.add('is-in');
+          show(entry.target);
           obs.unobserve(entry.target);
         }
       });
-    },{threshold:.07,rootMargin:'0px 0px -40px 0px'});
+    },{threshold:.01,rootMargin:'0px 0px -150px 0px'});
+
     els.forEach(function(el){
       var r=el.getBoundingClientRect();
-      if(r.top<window.innerHeight*.90)el.classList.add('is-in');
+      if(r.top<window.innerHeight-40)show(el);
       else obs.observe(el);
     });
   })();`;
+
   $('body').append($('<script id="bioa-home-reveal-js"></script>').html(script));
 }
 
@@ -4617,7 +4690,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM5Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
