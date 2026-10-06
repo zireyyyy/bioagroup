@@ -32,6 +32,14 @@ function replaceBrandText(s){
     .replace(/\[email protected\]/gi,company.email);
 }
 function setText($,sel,text){const e=$(sel).first();if(e.length)e.text(text)}
+function sharedUiLanguageContract(lang){
+  return lang==='en'?'en':'vi';
+}
+
+/* I18N authority:
+   - shared UI (header/footer/cookie/common controls) must always branch on lang here;
+   - page content must be owned by route-specific VI/EN maps;
+   - never hardcode Vietnamese inside a shared function that also runs on /en/... routes. */
 function menuHtml(lang){const items=lang==='vi'?[['Về Bio-A Group','/about/'],['Gia Công Mỹ Phẩm','/contract-manufacturing-cosmetics/'],['Dịch Vụ Khác','/dich-vu-khac/'],['Kiến Thức','/blog/'],['Liên Hệ','/contacts/']]:[['About Bio-A Group','/about/'],['Cosmetic Manufacturing','/contract-manufacturing-cosmetics/'],['Other Services','/dich-vu-khac/'],['Insights','/blog/'],['Contact','/contacts/']];return '<ul>'+items.map(x=>'<li class="menu-item"><a href="'+localPath(x[1],lang)+'">'+x[0]+'</a></li>').join('')+'</ul>'}
 function titleFor(route,lang){
   if(lang==='en'){
@@ -64,7 +72,11 @@ function titleFor(route,lang){
 function applyBrandHead($,route,lang){
   const title=titleFor(route,lang);
   const fullTitle=route==='/'?title:(/Bio-A Group/i.test(title)?title:title+' | Bio-A Group');
+  const description=lang==='vi'
+    ?'Bio-A Group cung cấp giải pháp R&D, gia công mỹ phẩm OEM/ODM, bao bì và hoàn thiện sản phẩm theo định hướng thương hiệu.'
+    :'Bio-A Group provides cosmetic R&D, OEM/ODM manufacturing, packaging and finished-product development for brands.';
   $('title').text(fullTitle);
+  $('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr('content',description);
   $('meta[property="og:site_name"]').attr('content',company.name);
   $('meta[property="og:title"],meta[name="twitter:title"]').attr('content',fullTitle);
   $('meta[name="author"]').attr('content',company.name);
@@ -446,9 +458,11 @@ function viCleanup($){
   });
 }
 
-function brandCookieBanner($){
+function brandCookieBanner($,lang){
+  const vi=lang==='vi';
   const root=$('#mw-consent').first();
   const logo=$('#mw-consent .mw-brand .mw-logo,.mw-brand .mw-logo').first();
+
   if(logo.length){
     logo.attr('src','/assets/bioa-monogram.svg')
         .attr('alt','Bio-A Group')
@@ -457,39 +471,78 @@ function brandCookieBanner($){
   if(!root.length)return;
 
   root.addClass('bioa-consent');
-  root.find('button').each((_,el)=>{
-    const btn=$(el);
-    const text=(btn.text()||'').replace(/\s+/g,' ').trim();
-    if(/^(Accept all|Đồng ý tất cả)$/i.test(text))btn.text('Đồng ý tất cả');
-    else if(/^(Reject all|Từ chối tất cả)$/i.test(text))btn.text('Chỉ cookie cần thiết');
-    else if(/^(View preferences|Tùy chọn)$/i.test(text))btn.text('Tùy chỉnh');
-    else if(/^(Save preferences|Lưu tùy chọn)$/i.test(text))btn.text('Lưu lựa chọn');
-  });
 
-  root.find('*').contents().each((_,node)=>{
-    if(node.type!=='text')return;
-    const p=$(node).parent();
-    if(['SCRIPT','STYLE','NOSCRIPT','SVG','CODE','PRE'].includes(p[0]?.tagName||''))return;
-    const raw=node.data||'';
-    const key=raw.replace(/\s+/g,' ').trim();
-    if(key==='Functional')node.data=raw.replace('Functional','Cookie cần thiết');
-    else if(key==='Always active')node.data=raw.replace('Always active','Luôn bật');
-    else if(key==='Statistics (Analytics)')node.data=raw.replace('Statistics (Analytics)','Thống kê & phân tích');
-    else if(key==='Marketing')node.data=raw.replace('Marketing','Tiếp thị');
-    else if(key==='Ads/Remarketing')node.data=raw.replace('Ads/Remarketing','Quảng cáo & remarketing');
-    else if(key==='Preferences')node.data=raw.replace('Preferences','Tùy chọn cookie');
-    else if(key==='Manage Consent')node.data=raw.replace('Manage Consent','Quản lý cookie');
-  });
+  const copy=vi?{
+    title:'Quản lý cookie',
+    body:'Bio-A Group sử dụng cookie cần thiết để website hoạt động ổn định. Nếu bạn đồng ý, chúng tôi cũng có thể sử dụng cookie thống kê và tiếp thị để hiểu cách website được sử dụng, đo lường hiệu quả nội dung và cải thiện trải nghiệm. Bạn có thể chấp nhận tất cả, chỉ cho phép cookie cần thiết hoặc tùy chỉnh lựa chọn bất cứ lúc nào.',
+    accept:'Đồng ý tất cả',
+    necessary:'Chỉ cookie cần thiết',
+    customize:'Tùy chỉnh',
+    prefs:'Tùy chọn cookie',
+    functional:'Cookie cần thiết',
+    always:'Luôn bật',
+    stats:'Thống kê & phân tích',
+    marketing:'Tiếp thị',
+    ads:'Quảng cáo & remarketing',
+    save:'Lưu lựa chọn',
+    noteLead:'Bạn có thể thay đổi hoặc rút lại lựa chọn bất cứ lúc nào trong mục Quản lý cookie. Xem thêm tại ',
+    policy:'Chính sách cookie'
+  }:{
+    title:'Cookie preferences',
+    body:'Bio-A Group uses necessary cookies to keep the website working reliably. With your consent, we may also use analytics and marketing cookies to understand how the site is used, measure content performance and improve your experience. You can accept all cookies, allow necessary cookies only, or customize your choices at any time.',
+    accept:'Accept all',
+    necessary:'Necessary only',
+    customize:'Customize',
+    prefs:'Cookie preferences',
+    functional:'Necessary cookies',
+    always:'Always active',
+    stats:'Analytics',
+    marketing:'Marketing',
+    ads:'Ads & remarketing',
+    save:'Save choices',
+    noteLead:'You can change or withdraw your choices at any time from Cookie preferences. Learn more in our ',
+    policy:'Cookie Policy'
+  };
 
-  if(!root.find('.bioa-consent-note').length){
-    const note=$('<div class="bioa-consent-note"></div>');
-    note.append('Bạn có thể thay đổi hoặc rút lại lựa chọn bất cứ lúc nào trong mục Quản lý cookie. Xem thêm tại ');
-    note.append($('<a href="/cookie-policy/">Chính sách cookie</a>'));
-    note.append('.');
-    const prefs=root.find('button').filter((_,el)=>/Tùy chỉnh|View preferences/i.test($(el).text())).first();
-    const target=prefs.length?prefs.parent():root;
-    target.before(note);
+  root.find('#mw-card-title,.mw-brand .mw-title').first().text(copy.title);
+  root.find('.mw-text').first().text(copy.body);
+
+  const banner=root;
+  banner.find('.mw-accept').first().text(copy.accept);
+  banner.find('.mw-deny').first().text(copy.necessary);
+  banner.find('.mw-prefs').first().text(copy.customize);
+
+  const modal=$('#mw-prefs').first();
+  if(modal.length){
+    modal.find('.mw-title').first().text(copy.prefs);
+    const rows=modal.find('.mw-row');
+    rows.eq(0).find('.label').text(copy.functional);
+    rows.eq(0).find('.mw-badge').text(copy.always);
+    rows.eq(1).find('.label').text(copy.stats);
+    rows.eq(2).find('.label').text(copy.marketing);
+    rows.eq(2).find('.mw-badge').text(copy.ads);
+    modal.find('#mw-save-prefs').text(copy.save);
+    modal.find('#mw-accept-all').text(copy.accept);
+
+    modal.find('.mw-close').attr('aria-label',vi?'Đóng tùy chọn cookie':'Close cookie preferences');
+    rows.eq(0).find('input').attr('aria-label',vi?'Cookie cần thiết':'Necessary cookies');
+    rows.eq(1).find('input').attr('aria-label',vi?'Cookie thống kê':'Analytics cookies');
+    rows.eq(2).find('input').attr('aria-label',vi?'Cookie tiếp thị':'Marketing cookies');
   }
+
+  $('#mw-gear').attr('aria-label',vi?'Quản lý cookie':'Cookie preferences');
+
+  root.find('.bioa-consent-note').remove();
+  const note=$('<div class="bioa-consent-note"></div>');
+  note.append(documentTextNodeSafe(copy.noteLead));
+  note.append($('<a></a>').attr('href',localPath('/cookie-policy/',lang)).text(copy.policy));
+  note.append('.');
+  const actions=root.find('.mw-actions').first();
+  actions.before(note);
+}
+
+function documentTextNodeSafe(text){
+  return String(text||'');
 }
 
 function tabsScript($){$('body').append(`<script id="bioa-tabs-fix">(function(){document.querySelectorAll('.block-product-formats').forEach(function(root){var tabs=[].slice.call(root.querySelectorAll('.formats__tab')),panels=[].slice.call(root.querySelectorAll('.formats__panel'));function go(i){tabs.forEach(function(t,n){t.setAttribute('aria-selected',n===i?'true':'false')});panels.forEach(function(p,n){p.classList.toggle('is-active',n===i);p.style.display=n===i?'block':'none'})}if(tabs.length&&panels.length){go(Math.max(0,tabs.findIndex(function(t){return t.getAttribute('aria-selected')==='true'})));tabs.forEach(function(t,i){t.addEventListener('click',function(){go(i)})})}})})();</script>`)}
@@ -513,6 +566,6 @@ export function applyFinalFixes($, route, lang){
     const e=$(el);
     ['title','aria-label','alt'].forEach(k=>{const v=e.attr(k);if(v)e.attr(k,replaceBrandText(v));});
   });
-  brandCookieBanner($);
+  brandCookieBanner($,lang);
   tabsScript($);
 }

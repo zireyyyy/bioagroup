@@ -94,3 +94,14 @@ For Roadmap only:
 - do not remove source-style line breaks by replacing the paragraph with plain `.text()`;
 - do not use CSS/font-size/height changes to compensate for copy length;
 - future AI copy should return Roadmap text already segmented into line-safe phrases.
+
+## Bilingual content authority
+
+Every promoted page must ship as a VI/EN pair.
+
+- Shared interface copy (header, footer, cookie consent, common CTAs, form labels, accessibility labels) is centralized and language-aware.
+- Page-specific headings/body/cards must have explicit VI and EN copy maps.
+- Do not use generic fallback translation to fill approved production pages.
+- When editing one language's page content, verify or update the paired language in the same patch unless the owner explicitly scopes the change to one language.
+- A page cannot be marked PASS if visible residual text from the opposite language remains.
+

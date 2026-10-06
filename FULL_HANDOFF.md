@@ -1167,3 +1167,42 @@ Protected:
 - Menu Mobile PASS / LOCKED;
 - Why Choose PASS / LOCKED.
 
+## I18N-A1 / COOKIE-C2A — SHARED BILINGUAL AUTHORITY
+
+Owner found mixed-language Cookie UI on /en/ and asked for the current VI/EN mechanism to be normalized before continuing to subpages.
+
+Verified current architecture before this patch:
+- build.mjs builds every route twice from the same Merywood source HTML:
+  - VI -> original route
+  - EN -> /en/... route
+- applyFinalFixes($, route, lang) is the shared transformation entry point.
+- Header/menu/title helpers already branch on lang.
+- Home then has explicit paired content owners resetHomeVI() / resetHomeEN() and paired component maps.
+- Legacy broad translator code inside build.mjs is not part of the active build path; buildOne() calls applyFinalFixes() directly.
+- COOKIE-C2 accidentally hardcoded Vietnamese inside brandCookieBanner(), which runs on both languages.
+
+I18N-A1 rule from now on:
+1. Shared UI authority:
+   Header, Footer, Cookie, language switch, common CTA labels, common accessibility labels must branch directly on lang in shared transform functions.
+2. Page-content authority:
+   Each route/component must have paired VI + EN content maps/functions before that page is promoted PASS.
+3. No generic "translate every English sentence to a fallback phrase" runtime pass is allowed on production pages because it can destroy meaning and source structure.
+4. A page is not complete until visible content, buttons, forms, metadata and accessibility labels have been checked in both VI and EN.
+5. Future subpage work should reuse shared translated UI; only page-specific content needs new paired maps.
+
+COOKIE-C2A:
+- brandCookieBanner($, lang) now owns complete VI and EN copy.
+- /en/ Cookie title/body/buttons/preferences/note/policy link are fully English.
+- / Cookie remains fully Vietnamese.
+- policy link follows localPath(), so EN links to /en/cookie-policy/.
+- consent persistence/runtime itself remains Merywood-owned and unchanged.
+
+SLIDER-END3 also shipped immediately before this commit:
+- root global .swiper-button !important palette was found in bioa-transform.mjs and restricted to enabled controls only.
+- disabled controls are now fully returned to Merywood/Swiper source authority.
+
+Owner PASS locks:
+- Mobile Menu: PASS / LOCKED.
+- Why Choose: PASS / LOCKED.
+- FOOTER-INFO1B/1C: PASS / LOCKED.
+

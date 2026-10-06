@@ -1004,3 +1004,23 @@ Rule:
 - base palette may style enabled .swiper-button only.
 - disabled endpoint visual state must remain Merywood/Swiper-owned.
 
+## I18N-A1 — site bilingual ownership
+
+Build model:
+- one Merywood source route is built into two outputs by build.mjs;
+- VI route: /route/
+- EN route: /en/route/
+- applyFinalFixes($, route, lang) is the shared language-aware transformation entry point.
+
+Shared UI:
+- bioa-transform.mjs owns Header/Footer/Cookie/common labels and must branch on lang.
+
+Page content:
+- each route owns explicit paired VI/EN content maps.
+- Home example: resetHomeVI() / resetHomeEN(), setPackagingCopy($,lang), setFormatsCopy($,lang), etc.
+
+Rule:
+- never add Vietnamese-only text to a function that executes for EN.
+- do not rely on generic fallback translation for approved production copy.
+- each page promotion requires VI + EN visible-content parity review.
+
