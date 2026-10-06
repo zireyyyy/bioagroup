@@ -119,3 +119,13 @@ Owner presentation rule:
 - body copy, descriptions and policy sentences remain normal sentence case.
 - preserve brand/technical forms such as Bio-A, R&D, OEM/ODM, MOQ and SKU.
 
+## About page content authority
+
+For /about/:
+- first content source is the owner-supplied BIOA-Website.zip -> cms/pages/about.php;
+- preserve current Bio-A naming as "Bio-A Group" even where the legacy admin source says "BIOA Group";
+- Vision/Mission/GMP/HACCP facts may be reused from the legacy source;
+- Home-confirmed stats and product taxonomy may be reused for cross-page consistency;
+- when Merywood has a section with no direct legacy Bio-A equivalent, use concise sample copy that does not invent event participation, client counts or unsupported certifications;
+- About VI and EN content must remain paired.
+

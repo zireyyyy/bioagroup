@@ -1330,3 +1330,61 @@ Responsive status:
 - Desktop teaser popup: PENDING OWNER TEST.
 - Tablet/Mobile teaser popup: same selector / expected parity.
 
+## ABOUT-A1 — BIO-A ABOUT PAGE INITIAL CUTOVER
+
+Owner direction:
+- Home is stable enough to move on.
+- Next target: /about/.
+- Keep Merywood About visual/runtime structure as source-of-truth.
+- Use the owner-supplied Bio-A ZIP as the first content authority.
+- Apply all shared Home components that are now PASS/LOCKED across routes.
+- Owner will runtime-test this first About cutover and then request visual/content refinements.
+
+Verified content authority:
+- Library file: BIOA-Website.zip.
+- Legacy Bio-A source: cms/pages/about.php.
+- It contains:
+  - company introduction;
+  - Vision;
+  - Mission;
+  - GMP;
+  - HACCP.
+- Existing owner-confirmed Home/company facts are reused for About stats and service taxonomy.
+- Where the legacy Bio-A source has no direct equivalent to a Merywood About block, short Bio-A sample copy is used while preserving the Merywood component.
+
+Implementation:
+- new page owner: bioa-about-refine.mjs.
+- build.mjs invokes applyAboutRefinement() only for /about/, after shared transform and before applySharedShell().
+- shared shell remains responsible for the already stabilized:
+  - Header Desktop/Tablet/Mobile;
+  - mobile menu arrow + outside/scroll dismissal;
+  - Footer;
+  - VI/EN switch;
+  - Cookie consent;
+  - Zalo artwork;
+  - Bio-A chat teaser/launcher;
+  - title capitalization rules.
+- About page copy is explicit VI/EN paired content from the first cutover.
+- No About layout/grid/slider geometry is rebuilt.
+
+ABOUT-A1 content mapping:
+- Hero: About Bio-A + Home-confirmed Bio-A stats.
+- Story: company introduction + Vision + Mission from legacy Bio-A content.
+- Values: six Bio-A-aligned values; GMP/HACCP context is carried in Safety/Compliance.
+- Team: R&D/manufacturing/consulting collaboration.
+- Merywood exhibition slider is retained visually but localized as Industry Activity & Connections; labels become R&D / Manufacturing / Market Insights to avoid inventing Bio-A event attendance claims.
+- Product catalogue becomes the six Bio-A cosmetic manufacturing categories already used by the approved Footer.
+- How It Works becomes the five Bio-A project stages aligned with Home.
+- CTA is localized and brand-specific.
+
+Protected:
+- Home: PASS / LOCKED; no Home page content/layout changes in ABOUT-A1.
+- shared Header/Footer/Cookie/Chat/Mobile Menu/Zalo: PASS / LOCKED.
+- Merywood About section geometry and slider mechanics.
+
+Responsive status:
+- About Desktop: PENDING OWNER TEST.
+- About Tablet: PENDING OWNER TEST.
+- About Mobile: PENDING OWNER TEST.
+- About VI ↔ EN: PAIRED / PENDING OWNER TEST.
+

@@ -3,6 +3,7 @@ import path from "node:path";
 import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
 import { applyHomeRefinement, applySharedShell } from "./bioa-home-refine.mjs";
+import { applyAboutRefinement } from "./bioa-about-refine.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -372,8 +373,12 @@ async function buildOne(route,sourceRoute){
   for(const lang of ["vi","en"]){
     const $=load(raw,{decodeEntities:false});
     applyFinalFixes($,route,lang);
-    if(route==="/")applyHomeRefinement($,route,lang);
-    else applySharedShell($,route,lang);
+    if(route==="/"){
+      applyHomeRefinement($,route,lang);
+    }else{
+      if(route==="/about/")applyAboutRefinement($,route,lang);
+      applySharedShell($,route,lang);
+    }
 
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");

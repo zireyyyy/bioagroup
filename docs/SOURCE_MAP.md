@@ -1113,3 +1113,38 @@ Rule:
 - compact teaser popup avatar must not display an online/status dot.
 - launcher button status dot remains separate and unchanged unless explicitly requested.
 
+## ABOUT-A1 — /about/ content ownership
+
+Visual/runtime source:
+- owner-supplied Merywood export:
+  - merywood/pages/about/index.html
+- preserved source sections:
+  - .mwa-hero
+  - .mwa-story
+  - .mwa-values
+  - .mwa-team
+  - .mwa-expo
+  - .mwa-produce
+  - .mwa-how
+  - .mwa-cta-wrap
+
+Bio-A content source:
+- owner-supplied BIOA-Website.zip
+- cms/pages/about.php
+- authoritative legacy content fields:
+  - company introduction
+  - Vision
+  - Mission
+  - GMP
+  - HACCP
+
+BIO-A route owner:
+- bioa-about-refine.mjs
+- applyAboutRefinement($,route,lang)
+
+Rules:
+- About edits must be scoped to .mwa-* About components.
+- Merywood layout/runtime remains authority unless owner explicitly requests a visual patch.
+- Shared shell comes from applySharedShell(); do not duplicate Header/Footer/Cookie/Chat/Mobile Menu code in About.
+- VI and EN About content must be updated together.
+
