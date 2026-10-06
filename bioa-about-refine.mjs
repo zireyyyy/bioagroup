@@ -161,6 +161,22 @@ function setAboutActivity($,lang){
   sec.find('[aria-label="Next"]').attr("aria-label",vi?"Tiếp":"Next");
 }
 
+const aboutProductIcons = [
+  /* 01 Makeup — lipstick */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 14h7v7h-7z"/><path d="M10 14V8l4-3v9"/><path d="M10 8h4"/><path d="M8.5 18h7"/></svg>',
+  /* 02 Hair care — comb */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 6.5h14v4H5z"/><path d="M5 6.5c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/><path d="M7 10.5v6"/><path d="M10 10.5V18"/><path d="M13 10.5V17"/><path d="M16 10.5v5.5"/></svg>',
+  /* 03 Body care — pump lotion bottle */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 5V3h4"/><path d="M14 3h3v2"/><path d="M9 8h6"/><path d="M8 10a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/><path d="M10 14h4"/></svg>',
+  /* 04 Facial skin care — serum/dropper bottle */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h4"/><path d="M10.5 3v4h3V3"/><path d="M9 9h6"/><path d="M8 11a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/><path d="M12 13.5s2 2.1 2 3.4a2 2 0 0 1-4 0c0-1.3 2-3.4 2-3.4Z"/></svg>',
+  /* 05 Personal care — soap / hygiene */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="9" width="14" height="10" rx="3"/><path d="M9 13h6"/><path d="M7 3v3"/><path d="M5.5 4.5h3"/><path d="M17 4v2"/><path d="M16 5h2"/></svg>',
+  /* 06 Mother & baby — baby face */
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="6"/><path d="M10 6c0-2 1-3 2-3s2 .8 2 2c0 1-.7 1.8-1.6 1.8"/><path d="M9.8 12.5h.01"/><path d="M14.2 12.5h.01"/><path d="M10.2 15.5c1.2 1 2.4 1 3.6 0"/></svg>'
+];
+
+
 function setAboutProducts($,lang){
   const vi=lang==="vi";
   const sec=$(".mwa-produce").first();
@@ -192,6 +208,8 @@ function setAboutProducts($,lang){
     const d=products[i];
     if(!d)return;
     const card=$(el);
+    const icon=aboutProductIcons[i];
+    if(icon)card.find(".mwa-isq").first().html(icon);
     card.find("h3").first().text(d[0]);
     card.children("p").first().text(d[1]);
     const links=card.find(".mwa-links").first();

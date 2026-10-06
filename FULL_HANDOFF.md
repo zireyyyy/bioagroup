@@ -1507,3 +1507,31 @@ Status:
 - About Hero Tablet: PENDING OWNER TEST.
 - About Hero Mobile: PENDING OWNER TEST.
 
+## ABOUT-PRODUCT-ICON1 — CATEGORY-SPECIFIC ICON SET
+
+Owner result:
+- About Hero stats parity: PASS.
+- Next scope is "Danh Mục Gia Công": source Merywood icons do not accurately represent the six Bio-A cosmetic manufacturing categories.
+
+Verified Merywood visual authority:
+- icon container: .mwa-isq
+- icon canvas: 24x24 SVG, rendered at 22x22
+- stroke: white, 1.7px, round caps/joins
+- green 44x44 rounded square and number badge are already correct and remain source-owned.
+
+ABOUT-PRODUCT-ICON1:
+- no card/grid/text/link geometry is changed.
+- source category SVGs are replaced with six custom inline SVGs using the exact Merywood icon system:
+  01 Makeup Products -> lipstick
+  02 Hair Care -> comb
+  03 Body Care -> pump lotion bottle
+  04 Facial Skin Care -> serum/dropper bottle
+  05 Personal Care -> soap/hygiene
+  06 Mother & Baby -> baby face
+- icon artwork is language-neutral, so VI and EN share the same visual mapping.
+- all six use only outline paths/shapes; existing .mwa-isq svg CSS remains sole size/color/stroke authority.
+
+Responsive status:
+- About Product Categories Desktop: PENDING OWNER TEST.
+- Tablet/Mobile: same source icon geometry / PENDING regression check.
+

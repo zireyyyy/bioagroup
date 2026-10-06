@@ -1217,3 +1217,28 @@ Rule:
 - align type, card sizing and number/label allocation only.
 - never change About hero grid, content position, image position or section dimensions unless explicitly requested.
 
+## ABOUT-PRODUCT-ICON1 — manufacturing category icon authority
+
+About route:
+- bioa-about-refine.mjs
+- aboutProductIcons
+- setAboutProducts($,lang)
+
+Merywood visual authority retained:
+- .mwa-isq
+- .mwa-isq svg
+- .mwa-num
+- .mwa-vcard__top
+
+Mapping:
+- 01 makeup -> lipstick
+- 02 hair care -> comb
+- 03 body care -> pump lotion bottle
+- 04 facial skin care -> serum/dropper
+- 05 personal care -> soap/hygiene
+- 06 mother & baby -> baby face
+
+Rule:
+- use one coherent 24x24 outline icon family.
+- do not alter card layout, icon-square size, number badge, typography or links when changing category artwork.
+
