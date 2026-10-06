@@ -1103,3 +1103,13 @@ Rule:
 - use the same asset across shared surfaces.
 - parent social-control hover/focus owns interaction; no Zalo-only hover palette override.
 
+## CHAT-C8 — teaser avatar status treatment
+
+BIO-A:
+- bioa-home-refine.mjs
+- .bioa-chat__teaser-avatar:after
+
+Rule:
+- compact teaser popup avatar must not display an online/status dot.
+- launcher button status dot remains separate and unchanged unless explicitly requested.
+

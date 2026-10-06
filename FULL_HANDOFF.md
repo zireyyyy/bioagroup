@@ -1314,3 +1314,19 @@ Responsive status:
 - ZALO-ICON2 Desktop/Footer/Chat: REGRESSION CHECK.
 - ZALO-ICON2 Mobile Menu: PENDING OWNER TEST.
 
+## CHAT-C8 — REMOVE TEASER AVATAR STATUS DOT
+
+Owner runtime result:
+- Cookie title fix: PASS.
+- Zalo shared icon fix: PASS.
+- owner requests removal of the green online/status dot from the avatar inside the compact teaser popup.
+
+CHAT-C8:
+- disable .bioa-chat__teaser-avatar:after only.
+- keep the floating launcher .bioa-contact-fab__toggle:after status dot unchanged.
+- no chat geometry, teaser timing, avatar image, text, close behavior or contact actions are changed.
+
+Responsive status:
+- Desktop teaser popup: PENDING OWNER TEST.
+- Tablet/Mobile teaser popup: same selector / expected parity.
+

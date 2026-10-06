@@ -3199,15 +3199,8 @@ const patchC6ProactiveCss = `
   object-position:center center!important;
 }
 .bioa-chat__teaser-avatar:after{
-  content:""!important;
-  position:absolute!important;
-  right:1px!important;
-  bottom:2px!important;
-  width:10px!important;
-  height:10px!important;
-  border-radius:50%!important;
-  background:#21A366!important;
-  border:2px solid #fff!important;
+  content:none!important;
+  display:none!important;
 }
 .bioa-chat__teaser-copy{
   min-width:0!important;
