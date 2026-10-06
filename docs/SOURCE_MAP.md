@@ -773,3 +773,62 @@ Protected:
 - grid/spacing;
 - Tablet/Mobile layout;
 - existing Footer PASS styling.
+
+
+## FOOTER-INFO1
+
+BIO-A:
+- bioa-home-refine.mjs
+- company.address / company.phoneIntl / company.taxId
+- patchFooterInfo1Css
+- addFooterCompanyInfo($)
+
+Desktop ownership:
+- .footer-top__left
+- append official company information under the accepted Bio-A logo.
+
+Tablet ownership:
+- responsive company info row is centered before category columns;
+- do not widen the accepted 88px logo column.
+
+Mobile ownership:
+- buildMobileFooterV2() remains contact-row owner;
+- addFooterCompanyInfo() inserts company information immediately after .bioa-footer-mobile-v2;
+- category menu remains after that row.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING
+
+## MOTION-U1 — UNILA-derived Home element motion
+
+Supplied UNILA ZIP authority:
+- fade-up: translate3d(0,100px,0)
+- fade-right: translate3d(-100px,0,0)
+- fade-left: translate3d(100px,0,0)
+- homepage element duration: 700ms
+- delays: primarily 300ms / 600ms
+- once: true
+- offset: 150
+- source CountUp: triggered around 50% viewport
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchMotionU1Css
+- addHomeReveal($)
+
+Design rule:
+- animate section internals in sequence instead of moving the entire section wrapper.
+- preserve Merywood internal runtime transforms.
+- never target .swiper-wrapper.
+
+Responsive adaptation:
+- Desktop: source-like 100px motion.
+- Tablet: 72px.
+- Mobile: 54px vertical and 34px horizontal with small vertical lift.
+
+Status:
+- Desktop: PENDING
+- Tablet: PENDING
+- Mobile: PENDING

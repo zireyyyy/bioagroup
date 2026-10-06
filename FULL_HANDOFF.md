@@ -795,3 +795,82 @@ Responsive status:
 - FOOTER-HOVER1 Mobile: REGRESSION CHECK — NO LAYOUT CHANGE EXPECTED
 - CHAT-C7: PASS / LOCKED
 - Header/Footer base layout: PASS / LOCKED
+
+
+## FOOTER-INFO1 / MOTION-U1 — ACTIVE CANDIDATE
+
+Owner direction:
+- add official Bio-A company/factory information to Footer;
+- Desktop: information sits under the Bio-A logo;
+- Mobile: information must sit after logo + email/social row and before the category columns, centered;
+- improve Home motion by learning directly from the supplied UNILA motion extraction.
+
+Official Footer information:
+- Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group
+- Địa chỉ: 496/63/10H Dương Quảng Hàm, An Nhơn, Hồ Chí Minh, Việt Nam
+- Hotline: +84 779 399 379
+- Mã số thuế doanh nghiệp: 0318126597
+
+FOOTER-INFO1:
+- Desktop >1200px:
+  - info block appended below .footer-top__left / logo;
+  - accepted menu/right-contact layout unchanged.
+- Tablet 769–1200:
+  - desktop-under-logo block hidden because the accepted Tablet logo column is only 88px;
+  - responsive info block becomes a centered full-width row before menu columns.
+- Mobile <=768:
+  - exact order: mobile logo/contact row -> centered company info -> footer categories;
+  - existing mobile footer contact clone remains owner.
+- no category labels, footer meta strip, email/social controls or existing Footer colors are changed.
+
+UNILA source analysis:
+- motion stack in supplied ZIP:
+  - AOS-style fade-up / fade-left / fade-right;
+  - dominant per-element duration: 700ms;
+  - delays: 300ms / 600ms, one 1300ms emphasis;
+  - original transforms: fade-up 100px, horizontal ±100px;
+  - global once=true, offset=150;
+  - CountUp + Waypoint around 50% viewport;
+  - desktop Atropos initializer exists but no active Atropos node was present in exported homepage.
+- key visual characteristic:
+  - UNILA animates internal elements in sequence, not entire sections as one block.
+
+MOTION-U1:
+- replaces MOTION-M5.
+- element-level motion map:
+  - We Produce title fade-up; left/right cards converge;
+  - Why Choose title first, cards stagger upward;
+  - How It Works title first, steps stagger upward;
+  - Packaging title then slider container upward (never .swiper-wrapper);
+  - Product Formats title then content block;
+  - Reviews title then left/up/right review rhythm;
+  - Right Choice uses left/right convergence where .client nodes exist;
+  - Roadmap title then step stagger;
+  - final CTA fade-up.
+- Desktop:
+  - UNILA-like 100px vertical / ±100px horizontal;
+  - 700ms ease.
+- Tablet:
+  - reduced 72px motion.
+- Mobile:
+  - reduced 54px vertical / ±34px horizontal+18px lift;
+  - 620ms;
+  - layout remains unchanged.
+- observer uses once-only reveal and -150px bottom root margin to reflect UNILA offset behavior.
+- reduced-motion safe.
+- Swiper translate-owning .swiper-wrapper is never targeted.
+
+Protected:
+- CHAT-C7 PASS / LOCKED;
+- Roadmap R3 DOM/text ownership;
+- Header/Footer existing layout/color authority except new company info block;
+- Hero count-up HERO-NUM1;
+- slider navigation/runtime.
+
+Responsive status:
+- FOOTER-INFO1 Desktop: PENDING
+- FOOTER-INFO1 Tablet: PENDING
+- FOOTER-INFO1 Mobile: PENDING
+- MOTION-U1 Desktop: PENDING
+- MOTION-U1 Tablet: PENDING
+- MOTION-U1 Mobile: PENDING
