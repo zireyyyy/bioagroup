@@ -1,6 +1,9 @@
 const company = {
   email:'contact@bioagroup.vn',
   phone:'0779 399 379',
+  phoneIntl:'+84 779 399 379',
+  address:'496/63/10H Dương Quảng Hàm, An Nhơn, Hồ Chí Minh, Việt Nam',
+  taxId:'0318126597',
   whatsapp:'https://wa.me/84779399379',
   zalo:'https://zalo.me/84779399379',
   facebook:'https://www.facebook.com/nhamaysanxuatduocmypham.BioA',
@@ -3305,6 +3308,77 @@ const patchD4FooterHierarchyCss = `
 `;
 
 
+const patchFooterInfo1Css = `
+/* FOOTER-INFO1 — official Bio-A factory details.
+   Desktop lives under the logo. Tablet/Mobile uses a separate centered row
+   so the accepted footer columns never need to widen or reflow. */
+.bioa-footer-company-info{
+  color:var(--bioa-footer-cream)!important;
+  font-weight:400!important;
+}
+.bioa-footer-company-info__title{
+  margin:0 0 11px!important;
+  color:var(--bioa-footer-cream)!important;
+  font-size:13px!important;
+  line-height:1.35!important;
+  font-weight:600!important;
+}
+.bioa-footer-company-info p{
+  margin:0 0 7px!important;
+  color:var(--bioa-footer-cream)!important;
+  font-size:11.5px!important;
+  line-height:1.45!important;
+  font-weight:400!important;
+}
+.bioa-footer-company-info p:last-child{margin-bottom:0!important}
+.bioa-footer-company-info strong{
+  color:var(--bioa-footer-cream)!important;
+  font-weight:600!important;
+}
+.bioa-footer-company-info--desktop{
+  width:268px!important;
+  max-width:268px!important;
+  margin-top:24px!important;
+  text-align:left!important;
+}
+.bioa-footer-company-info--responsive{
+  display:none!important;
+}
+@media(max-width:1200px){
+  .bioa-footer-company-info--desktop{display:none!important}
+  .bioa-footer-company-info--responsive{
+    display:block!important;
+    width:min(100%,760px)!important;
+    max-width:760px!important;
+    margin:0 auto 28px!important;
+    padding:0 18px!important;
+    text-align:center!important;
+    box-sizing:border-box!important;
+  }
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__title{
+    font-size:13px!important;
+  }
+}
+@media(max-width:768px){
+  .bioa-footer-company-info--responsive{
+    width:100%!important;
+    margin:0 auto 22px!important;
+    padding:0 12px!important;
+  }
+  .bioa-footer-company-info--responsive .bioa-footer-company-info__title{
+    margin-bottom:9px!important;
+    font-size:12px!important;
+    line-height:1.35!important;
+  }
+  .bioa-footer-company-info--responsive p{
+    margin-bottom:5px!important;
+    font-size:10.5px!important;
+    line-height:1.42!important;
+  }
+}
+`;
+
+
 const patchFooterHover1Css = `
 /* FOOTER-HOVER1 — nav-like interaction without changing footer layout.
    Desktop hover only; Tablet/Mobile retain source geometry. */
@@ -4187,6 +4261,35 @@ function refineFooterMeta($){
   $('.footer-bottom__copyright').first().text('© Bio-A Group | All rights reserved');
 }
 
+function addFooterCompanyInfo($){
+  $('.bioa-footer-company-info').remove();
+
+  const footer=$('.footer-top').first();
+  if(!footer.length)return;
+
+  const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}">
+    <div class="bioa-footer-company-info__title">Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group</div>
+    <p><strong>Địa chỉ:</strong> ${company.address}</p>
+    <p><strong>Hotline:</strong> ${company.phoneIntl}</p>
+    <p><strong>Mã số thuế doanh nghiệp:</strong> ${company.taxId}</p>
+  </div>`;
+
+  const left=footer.find('.footer-top__left').first();
+  if(left.length)left.append(markup('desktop'));
+
+  const host=footer.find('.footer-top__inner').first().length
+    ? footer.find('.footer-top__inner').first()
+    : footer.find('.container').first().length
+      ? footer.find('.container').first()
+      : footer;
+
+  const responsive=$(markup('responsive'));
+  const mobileRow=host.children('.bioa-footer-mobile-v2').first();
+  if(mobileRow.length)mobileRow.after(responsive);
+  else host.prepend(responsive);
+}
+
+
 function footerSocials($){
   const wrap=$('.footer-top__socials').first();
   if(!wrap.length)return;
@@ -4495,7 +4598,7 @@ const sharedShellCss =
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
-  patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterHover1Css+
+  patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchD6FooterMetaCss+patchZaloIconCss;
 
 export function applySharedShell($,route,lang){
@@ -4509,11 +4612,12 @@ export function applySharedShell($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
+  addFooterCompanyInfo($);
   addContactLauncher($,lang);
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM5Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionM5Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -4526,6 +4630,7 @@ export function applyHomeRefinement($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
+  addFooterCompanyInfo($);
   addHeroCounters($);
   addHomeReveal($);
   addContactLauncher($,lang);
