@@ -1096,3 +1096,26 @@ Responsive status:
 - Tablet: PENDING / regression check.
 - Mobile: PENDING OWNER TEST.
 
+## MOBILE-NAV-ARROW2 / WHY-ICON1A / SLIDER-END2 — ACTIVE HOTFIX
+
+Owner runtime feedback after daf2eaa:
+- FOOTER-INFO1B/1C: PASS.
+- Mobile nav vector still looks heavier than the CTA arrow.
+- Why Choose icon 03 lost its inner check/detail.
+- Disabled prev/next visual does not match Merywood source.
+
+Root causes:
+- MOBILE-NAV-ARROW1 cloned the CTA icon correctly, but BIO-A CSS then forced stroke:currentColor on the cloned SVG path; filled source paths became visually heavier.
+- WHY-ICON1 applied a whole-image cream filter to source icon 03; the certification/check artwork is multi-detail and flattening it removes the visible check.
+- SLIDER-END1 recreated disabled styling instead of allowing Merywood's own .swiper-button-disabled CSS to render; additionally HOME-H2 globally overrode every .swiper-button with Bio-A green.
+
+Fix:
+- Mobile nav: remove all path/line/polyline stroke overrides; cloned .header__btn .btn__icon now renders with its original source SVG attributes.
+- Why Choose: positions 01/02 keep accepted cream treatment; position 03 preserves original source artwork without the flattening filter; position 04 remains Bio-A cream monogram.
+- Slider: remove patchSliderEndpointCss completely; HOME-H2 Bio-A palette now applies only to buttons that are NOT disabled. Merywood is again sole visual owner of .swiper-button-disabled / aria-disabled=true.
+
+Protected:
+- Footer Desktop/Mobile PASS.
+- Why Choose text/card geometry and icon 04.
+- Slider mechanics, loop settings, navigation events and wrapper transforms.
+

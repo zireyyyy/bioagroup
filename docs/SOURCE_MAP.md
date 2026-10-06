@@ -958,3 +958,20 @@ Rule:
 - style only source/Swiper disabled states (.swiper-button-disabled / aria-disabled=true).
 - never change loop, navigation events, slide counts, wrapper transforms or active-button geometry.
 
+## SLIDER-END2 — restore Merywood disabled authority
+
+BIO-A:
+- bioa-home-refine.mjs
+- patchH2HomeControlPaletteCss
+
+Rule:
+- Bio-A green palette applies only to enabled .swiper-button controls.
+- disabled controls (.swiper-button-disabled or aria-disabled=true) must not receive BIO-A palette overrides.
+- do not add replacement disabled-state CSS; Merywood source remains the visual/runtime authority.
+
+## WHY-ICON1A — preserve icon 03 detail
+
+Rule:
+- Why Choose source icon 03 must not receive the whole-image cream filter because it destroys the inner certification/check detail.
+- Desktop icon 03 source artwork is authoritative and is mirrored to Mobile position 03.
+

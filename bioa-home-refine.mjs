@@ -953,11 +953,6 @@ const patchB4Css = `
     max-height:16px!important;
     color:currentColor!important;
   }
-  .bioa-mobile-nav-arrow svg path,
-  .bioa-mobile-nav-arrow svg line,
-  .bioa-mobile-nav-arrow svg polyline{
-    stroke:currentColor!important;
-  }
   .bioa-mobile-nav-meta{
     padding-top:10px!important;
   }
@@ -3820,13 +3815,16 @@ function syncWhyChooseIcons($){
     const src=desktop.eq(i).find('img').first();
     const dst=mobile.eq(i).find('img').first();
     if(!src.length)continue;
-    src.addClass('bioa-why-icon-cream');
+    if(i===2)src.removeClass('bioa-why-icon-cream');
+    else src.addClass('bioa-why-icon-cream');
     if(dst.length){
       const srcUrl=src.attr('src');
       if(srcUrl)dst.attr('src',srcUrl);
       const alt=src.attr('alt');
       if(alt!=null)dst.attr('alt',alt);
-      dst.removeAttr('srcset sizes').addClass('bioa-why-icon-cream');
+      dst.removeAttr('srcset sizes');
+      if(i===2)dst.removeClass('bioa-why-icon-cream');
+      else dst.addClass('bioa-why-icon-cream');
     }
   }
 
@@ -3872,15 +3870,15 @@ const patchWhyChooseIconCss = `
 
 const patchH2HomeControlPaletteCss = `
 /* HOME-H2 — palette-only synchronization. Geometry/positioning stays source-owned. */
-.swiper-button{
+.swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]){
   background:var(--bioa-brand-logo-green)!important;
   color:var(--bioa-footer-cream)!important;
 }
-.swiper-button svg{
+.swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]) svg{
   fill:currentColor!important;
   color:currentColor!important;
 }
-.swiper-button:hover{
+.swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]):hover{
   background:var(--bioa-brand-main)!important;
   color:var(--bioa-footer-cream)!important;
 }
@@ -3904,37 +3902,7 @@ const patchH2HomeControlPaletteCss = `
 `;
 
 
-const patchSliderEndpointCss = `
-/* SLIDER-END1 — source-like non-loop endpoint feedback.
-   Mechanics remain source/Swiper-owned; visual state only. */
-.block-how-works .swiper-button.swiper-button-disabled,
-.block-products-desctop .swiper-button.swiper-button-disabled,
-.block-products-mobile .swiper-button.swiper-button-disabled,
-.block-roadmap .swiper-button.swiper-button-disabled,
-.block-how-works .swiper-button[aria-disabled="true"],
-.block-products-desctop .swiper-button[aria-disabled="true"],
-.block-products-mobile .swiper-button[aria-disabled="true"],
-.block-roadmap .swiper-button[aria-disabled="true"]{
-  background:transparent!important;
-  color:rgba(17,111,71,.38)!important;
-  border:1px solid rgba(17,111,71,.16)!important;
-  box-shadow:none!important;
-  opacity:.62!important;
-  cursor:default!important;
-  pointer-events:none!important;
-}
-.block-how-works .swiper-button.swiper-button-disabled svg,
-.block-products-desctop .swiper-button.swiper-button-disabled svg,
-.block-products-mobile .swiper-button.swiper-button-disabled svg,
-.block-roadmap .swiper-button.swiper-button-disabled svg,
-.block-how-works .swiper-button[aria-disabled="true"] svg,
-.block-products-desctop .swiper-button[aria-disabled="true"] svg,
-.block-products-mobile .swiper-button[aria-disabled="true"] svg,
-.block-roadmap .swiper-button[aria-disabled="true"] svg{
-  fill:currentColor!important;
-  color:currentColor!important;
-}
-`;
+
 
 
 const patchH3MobileContactCss = `
@@ -4878,7 +4846,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchSliderEndpointCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
