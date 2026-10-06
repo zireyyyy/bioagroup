@@ -997,3 +997,21 @@ Responsive status:
 - MOTION-U1 Tablet: PENDING / unchanged.
 - MOTION-U1M Mobile: PENDING OWNER TEST.
 
+## ROADMAP-R4 — OWNER RESULT
+
+Owner runtime result after commit 2ef68c246a12f6f80893eccde4c0d5269e0a3c63:
+- Desktop: PASS / LOCKED — Roadmap slider/card geometry returned to normal after removing MOTION-U1 from repeated .step nodes.
+- Mobile: source-owned card still contains visible unused vertical space below the current short text.
+- Owner prefers to keep the current Mobile source geometry unchanged for now because longer final content is expected later and compressing the card could break source parity or future copy fit.
+- Therefore no Mobile Roadmap height/padding override is introduced in the current patch chain.
+
+Protected:
+- Roadmap R3 text/line-break ownership.
+- Roadmap source card/slider geometry.
+- Desktop ROADMAP-R4 PASS / LOCKED.
+
+Responsive status:
+- ROADMAP-R4 Desktop: PASS / LOCKED.
+- ROADMAP-R4 Tablet: PENDING.
+- ROADMAP-R4 Mobile: ACCEPTED DEFERRED — source geometry retained; revisit only if owner requests after final content is available.
+
