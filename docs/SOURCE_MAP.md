@@ -990,3 +990,17 @@ Rules:
 - do not claim analytics/marketing data is being collected unless the corresponding provider scripts are actually enabled.
 - current preview cleanup removes external GTM/GA/Yandex/Dashly trackers; adding GA4/Ads later must respect the saved consent categories.
 
+## SLIDER-END3 — root palette guard
+
+Merywood source:
+- pages/index/assets/js/main.js initializes non-loop Swipers using navigation.nextEl / navigation.prevEl.
+- Swiper runtime owns endpoint attributes/classes: swiper-button-disabled, disabled, aria-disabled=true.
+- source button SVG uses currentColor fill and must remain untouched.
+
+BIO-A root cause:
+- bioa-transform.mjs base CSS previously colored every .swiper-button with !important.
+
+Rule:
+- base palette may style enabled .swiper-button only.
+- disabled endpoint visual state must remain Merywood/Swiper-owned.
+

@@ -1143,3 +1143,27 @@ Important:
 - do NOT force the popup to reappear after a saved choice.
 - for testing the first-visit state, use a private/incognito window or clear this site's stored cookie/site data.
 
+## SLIDER-END3 — ROOT AUTHORITY FIX / MERRYWOOD DISABLED STATE
+
+Owner runtime result after SLIDER-END2:
+- disabled Prev/Next still appeared BIO-A green instead of Merywood's source disabled appearance.
+
+Root cause confirmed:
+- bioa-transform.mjs base CSS still had a global !important rule:
+  .socials__link,.swiper-button { background-color: var(--bioa-dark)!important; color:#fff!important }
+- this rule executes on every route and sits below Home-level logic, so it continued to color disabled Swiper controls even after the Home override was removed.
+- Merywood source main.js uses standard Swiper navigation with no loop; Swiper itself adds swiper-button-disabled, disabled and aria-disabled=true at endpoints.
+- source button markup/path remains unchanged.
+
+SLIDER-END3:
+- base BIO-A palette now targets enabled Swiper buttons only:
+  .swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"])
+- no BIO-A disabled-state replacement CSS is added.
+- disabled-state appearance is returned to Merywood/Swiper source authority.
+
+Protected:
+- enabled BIO-A green Prev/Next controls;
+- Swiper config/navigation/slide count;
+- Menu Mobile PASS / LOCKED;
+- Why Choose PASS / LOCKED.
+
