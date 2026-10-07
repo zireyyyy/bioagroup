@@ -31,10 +31,15 @@ const serviceContent={
       ["Sữa Tắm","Có thể kết hợp sản xuất, chai lọ, thiết kế nhãn, sang chiết và hoàn thiện hồ sơ theo nhu cầu dự án."],
       ["Dầu Gội","Phù hợp triển khai đồng bộ công thức, dung tích, chai lọ, nhãn và quy cách đóng gói theo định vị thương hiệu."],
       ["Dầu Xả","Có thể phối hợp từ mẫu sản phẩm đến bao bì, sang chiết, đóng gói và hoàn thiện thông tin sản phẩm."],
-      ["Xà Phòng","Hỗ trợ phương án sản xuất, bao bì, nhãn và các hạng mục hoàn thiện phù hợp với kế hoạch kinh doanh."],
-      ["Kem Body","Có thể kết hợp công thức, hũ/chai, thiết kế bao bì, đóng gói và lộ trình hồ sơ theo từng dự án."],
-      ["Lotion","Hỗ trợ đồng bộ công thức, chai lọ, nhãn, sang chiết và hoàn thiện sản phẩm trước khi triển khai thị trường."],
-      ["Tẩy Tế Bào Chết","Có thể kết hợp sản xuất, lựa chọn bao bì, thiết kế nhãn và các dịch vụ hoàn thiện liên quan."]
+      ["Sữa Rửa Mặt","Hỗ trợ từ định hướng công thức, mẫu thử đến tuýp/chai, nhãn, đóng gói và hồ sơ sản phẩm."],
+      ["Serum & Tinh Chất","Có thể kết hợp công thức, lựa chọn chai/lọ nhỏ giọt, thiết kế nhãn, sang chiết và hoàn thiện sản phẩm."],
+      ["Kem Dưỡng Da","Hỗ trợ công thức, hũ/tuýp, mẫu thử, bao bì và các hạng mục hoàn thiện theo định vị thương hiệu."],
+      ["Mặt Nạ","Có thể phối hợp công thức, quy cách đóng gói, nhãn và thông tin sản phẩm theo từng dòng mặt nạ."],
+      ["Tẩy Tế Bào Chết","Có thể kết hợp sản xuất, lựa chọn bao bì, thiết kế nhãn và các dịch vụ hoàn thiện liên quan."],
+      ["Kem Body & Lotion","Hỗ trợ đồng bộ công thức, chai/hũ, nhãn, sang chiết và hoàn thiện nhóm chăm sóc cơ thể."],
+      ["Sản Phẩm Trang Điểm","Có thể hỗ trợ định hướng sản phẩm, bao bì, nhãn và các hạng mục hoàn thiện phù hợp từng dòng trang điểm."],
+      ["Sản Phẩm Cá Nhân","Kết hợp sản xuất, bao bì, sang chiết, đóng gói hoặc hồ sơ theo nhu cầu của từng sản phẩm cá nhân."],
+      ["Sản Phẩm Mẹ & Bé","Hỗ trợ triển khai công thức, mẫu, bao bì, nhãn và các dịch vụ liên quan theo phạm vi từng dự án."]
     ]
   },
   en:{
@@ -69,10 +74,15 @@ const serviceContent={
       ["Shower Gel","Can combine manufacturing, containers, label design, filling and documentation support depending on project needs."],
       ["Shampoo","Suitable for coordinated formula, capacity, containers, labels and packing specifications around the brand positioning."],
       ["Conditioner","Can combine product samples with packaging, filling, packing and product-information completion."],
-      ["Soap","Support can cover manufacturing direction, packaging, labels and finishing items for the commercial plan."],
-      ["Body Cream","Can combine formulation, jars or bottles, packaging design, packing and documentation planning by project."],
-      ["Lotion","Coordinate formulation, containers, labels, filling and finishing before the product rollout."],
-      ["Body Scrub","Can combine manufacturing, packaging selection, label design and related finishing services."]
+      ["Facial Cleanser","Support can cover formula direction and samples through tubes or bottles, labels, packing and product documentation."],
+      ["Serums & Essences","Can combine formulation, dropper or pump packaging, label design, filling and finished-product completion."],
+      ["Face Cream","Support formulas, jars or tubes, samples, packaging and finishing around the intended brand positioning."],
+      ["Face Masks","Coordinate formulas, packing formats, labels and product information around the selected mask format."],
+      ["Body Scrub","Can combine manufacturing, packaging selection, label design and related finishing services."],
+      ["Body Cream & Lotion","Coordinate formulas, bottles or jars, labels, filling and finishing for body-care products."],
+      ["Makeup Products","Support product direction, packaging, labels and finishing requirements across selected makeup formats."],
+      ["Personal Care Products","Combine manufacturing, packaging, filling, packing or documentation according to each personal-care project."],
+      ["Mother & Baby Products","Support formulas, samples, packaging, labels and related services according to each project scope."]
     ]
   }
 };
@@ -119,8 +129,8 @@ function applyWhy($,lang){
       setCopy(card,".item__body",row[1]);
       const img=card.find("img").first();
       if(img.length){
-        img.attr("src",serviceIconMap[i%d.why.length])
-          .attr("alt",row[0])
+        img.attr("src","/assets/bioa-monogram-cream.svg")
+          .attr("alt","Bio-A Group")
           .removeAttr("srcset sizes")
           .addClass("bioa-service-pillar-icon");
       }
@@ -164,19 +174,71 @@ function applyRange($,lang){
   $(".block-how-works").each((_,el)=>{
     const block=$(el);
     setCopy(block,".title-wrapper .title",d.rangeTitle);
-    block.find(".step").each((i,node)=>{
-      const row=d.range[i%d.range.length];
+
+    let steps=block.find(".step");
+    if(!steps.length)return;
+    const sourceCount=steps.length;
+    const parent=steps.first().parent();
+
+    while(parent.children(".step").length<d.range.length){
+      const idx=parent.children(".step").length;
+      const template=steps.eq(idx%sourceCount).clone(false,false);
+      template.removeAttr("data-bioa-aos style");
+      template.find("[id]").removeAttr("id");
+      parent.append(template);
+    }
+    parent.children(".step").slice(d.range.length).remove();
+
+    steps=parent.children(".step");
+    steps.each((i,node)=>{
+      const row=d.range[i];
+      if(!row)return;
       const step=$(node);
+      step.find(".step__number").first().text(String(i+1).padStart(2,"0"));
       setCopy(step,".step__title",row[0]);
       setCopy(step,".step__text",row[1]);
-      const img=step.find(".step__icon img").first();
-      if(img.length){
-        img.attr("src","/assets/bioa-monogram-cream.svg")
+
+      const icon=step.find(".step__icon img").first();
+      if(icon.length){
+        icon.attr("src","/assets/bioa-monogram-cream.svg")
           .attr("alt","Bio-A Group")
           .removeAttr("srcset sizes")
           .addClass("bioa-service-range-logo");
       }
+
+      if(i>=sourceCount){
+        const product=step.find(".step__image img").first();
+        if(product.length){
+          product.attr("src","/assets/cosmetics-hero-bioa.webp")
+            .attr("alt",row[0])
+            .removeAttr("srcset sizes")
+            .addClass("bioa-service-range-generic");
+        }
+      }
     });
+  });
+}
+
+function localizeResidualSourceText($,lang){
+  if(lang!=="vi")return;
+  const map={
+    "Hotel & SPA Cosmetics Manufacturer":"Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm",
+    "End-to-End Private Label Solutions for Beauty Products":"Dịch Vụ Bio-A Group",
+    "How it works":"Quy Trình Triển Khai Dịch Vụ",
+    "Hear What Our Clients Say":"Giải Pháp Theo Từng Nhu Cầu",
+    "Our Product Range":"Nhóm Sản Phẩm Có Thể Kết Hợp Dịch Vụ",
+    "Let's discuss your idea":"Trao Đổi Về Dự Án Của Bạn",
+    "Let’s discuss your idea":"Trao Đổi Về Dự Án Của Bạn",
+    "Get started":"Nhận Tư Vấn",
+    "Chat on WhatsApp":"Liên Hệ Với Chúng Tôi"
+  };
+  $('.page-main,.whatsapp-wrapper').find('*').addBack().contents().each((_,node)=>{
+    if(node.type!=="text")return;
+    const parent=$(node).parent();
+    if(["SCRIPT","STYLE","NOSCRIPT","SVG","CODE","PRE"].includes(parent[0]?.tagName||""))return;
+    const raw=node.data||"";
+    const key=raw.replace(/\s+/g," ").trim();
+    if(map[key]) node.data=raw.replace(key,map[key]);
   });
 }
 
@@ -187,6 +249,7 @@ function patchRouteCss($){
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
     '#why-choose-us .bioa-service-pillar-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
     '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
+    '.block-how-works .bioa-service-range-generic{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+
   '</style>');
 }
@@ -199,5 +262,6 @@ export function applyOtherServicesRefinement($,route,lang="vi"){
   applyProcess($,key);
   applyScenarios($,key);
   applyRange($,key);
+  localizeResidualSourceText($,key);
   patchRouteCss($);
 }

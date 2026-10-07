@@ -2183,3 +2183,45 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-F3 — BIO-A MONOGRAM + EXPANDED RANGE + VI AUDIT
+
+Owner feedback:
+- service-pillar icons should use the same Bio-A monogram treatment already PASS on Home rather than category-specific Merywood icons;
+- Product Range should be broader than the original seven Hotel/SPA formats;
+- several English source strings remained visible on the VI route, notably the shared CTA title.
+
+F3 icon authority:
+- all five #why-choose-us service-pillar artwork slots -> /assets/bioa-monogram-cream.svg;
+- Product Range step icon remains /assets/bioa-monogram-cream.svg;
+- source green icon-box geometry is preserved.
+
+Expanded Product Range:
+- 7 -> 12 groups:
+  Shower Gel, Shampoo, Conditioner, Facial Cleanser, Serums & Essences,
+  Face Cream, Face Masks, Body Scrub, Body Cream & Lotion,
+  Makeup Products, Personal Care Products, Mother & Baby Products.
+- VI/EN copy pairs supplied for all 12.
+- source .step nodes are cloned before runtime until the data count is reached;
+- step numbering is normalized 01–12;
+- original seven source product visuals stay untouched;
+- cloned groups use the clean Bio-A cosmetics composition instead of repeating a semantically incorrect Hotel/SPA bottle image;
+- Swiper ownership/runtime remains source-owned.
+
+VI audit:
+- shared CTA owner now localizes BOTH title and description/button:
+  VI title = "Trao Đổi Về Dự Án Của Bạn";
+  EN title = "Let’s Discuss Your Project".
+- exact Hotel/SPA source headings are also sanitized on the VI route after route content mapping to prevent any source-text leakage.
+
+Protected:
+- /dich-vu-khac/ F2 motion mapping;
+- Hotel/SPA source geometry and swiper mechanics;
+- Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Home/About/Cosmetics PASS.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST

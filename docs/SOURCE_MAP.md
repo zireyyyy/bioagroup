@@ -1622,3 +1622,28 @@ Icons:
 Motion:
 - bioa-home-refine.mjs / addSharedPageReveal() owns /dich-vu-khac/ motion.
 - mark safe content nodes only; never swiper-wrapper or swiper-slide.
+
+
+## PATCH-F3 — Other Services monogram/range/VI audit
+
+Service artwork:
+- #why-choose-us service cards use assets/bioa-monogram-cream.svg in the original icon slots.
+- Product Range icons use the same monogram.
+- route no longer depends on service-icon-01...05 for visible service cards.
+
+Product Range:
+- owner: bioa-services-refine.mjs / applyRange().
+- source seven steps are expanded to 12 by cloning source .step nodes before Swiper runtime.
+- numbering is set from data index.
+- original seven source product images remain.
+- added product groups use assets/cosmetics-hero-bioa.webp as a neutral Bio-A composition.
+- never clone/modify runtime Swiper duplicate nodes after initialization.
+
+Shared CTA localization:
+- owner: bioa-home-refine.mjs / refineMobileContactCta().
+- title, description and button are now paired VI/EN.
+- this fix applies to all routes, not only /dich-vu-khac/.
+
+VI route source-leak guard:
+- bioa-services-refine.mjs / localizeResidualSourceText().
+- exact known Hotel/SPA headings are translated only on lang=vi.

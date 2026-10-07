@@ -4204,8 +4204,10 @@ function refineMobileContactCta($,lang){
     a.find('.btn__text').text(lang==='vi'?'Liên hệ với chúng tôi':'Contact us');
   });
   if(lang==='vi'){
+    $('.whatsapp__title').text('Trao Đổi Về Dự Án Của Bạn');
     $('.whatsapp__description').text('Liên hệ Zalo 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ sản xuất.');
   }else{
+    $('.whatsapp__title').text('Let’s Discuss Your Project');
     $('.whatsapp__description').text('Contact Bio-A Group on Zalo for formula, MOQ and production timeline consultation.');
   }
 }
