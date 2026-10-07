@@ -176,3 +176,9 @@ Do not:
 - add duplicated contact details into body copy;
 - create route-local typography that overrides the supplied Merywood article typography;
 - invent medical efficacy, clinical, penetration, guaranteed-result or regulatory claims.
+
+
+## BLOG CONTENT AUTHORITY — LOCKED
+
+The canonical detailed writing/SEO contract is `docs/BLOG_CONTENT_CONTRACT.md`.
+Future AI must read it before editing Blog content. Do not duplicate or reinterpret the accepted Merywood rich-article layout from generic SEO preferences.

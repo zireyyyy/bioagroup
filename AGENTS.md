@@ -369,3 +369,9 @@ Do not hand work off to another coding AI unless the owner explicitly requests a
 Do not create images unless the owner explicitly requests image creation or editing.
 
 This execution contract does not override safety, repository authority, locked-PASS rules, source-first rules, or the mandatory Desktop / Tablet / Mobile regression model.
+
+
+## Blog content / SEO — mandatory locked contract
+
+Before creating, rewriting, translating or optimizing any Blog article, read `docs/BLOG_CONTENT_CONTRACT.md` and current `bioa-blog-refine.mjs`.
+For Blog content/layout, that contract is mandatory and overrides generic writing preferences. Never redesign the owner-approved Blog detail structure during an SEO/content task.

@@ -1799,3 +1799,16 @@ Blog detail rich modules:
 - 2/3-column card grids stay source-like on desktop and collapse to one column <=1024;
 - flex-table header font weight is 600 in Bio-A even though the Merywood source uses 800;
 - on mobile the 3-column table scrolls horizontally instead of compressing text.
+
+
+## BLOG ARCHIVE COMPLETION — PATCH-G6
+
+Content source inventory:
+- legacy Bio-A database category `kien-thuc`: 38 published articles total;
+- 7 articles migrated and owner-approved through PATCH-G5;
+- 31 remaining legacy topics migrated in PATCH-G6;
+- all legacy slugs retained for route continuity;
+- legacy raw HTML remains retired; structured content records are runtime authority.
+
+Blog index now clones the existing Merywood `.post-card` template until every article has a card; no new card component was introduced.
+Blog detail remains locked to `/blog/what-affects-moq-in-supplement-manufacturing/` source modules documented above.

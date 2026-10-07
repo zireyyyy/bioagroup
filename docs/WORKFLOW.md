@@ -458,3 +458,16 @@ For every core page after Home:
 
 Home remains the UX baseline. Shared component changes must be made at shared authority level first, then regression-checked on Home and the active subpage.
 
+
+
+## Blog SEO/content workflow — mandatory
+
+For any `/blog/` content task, insert this gate before implementation:
+1. read `docs/BLOG_CONTENT_CONTRACT.md`;
+2. inspect current structured `blogPosts` and renderer in `bioa-blog-refine.mjs`;
+3. confirm PASS/LOCKED Blog surfaces remain untouched;
+4. write VI/EN paired structured content only;
+5. preserve legacy slug when migrating an old Bio-A article;
+6. syntax/build/static-check routes and article count before push.
+
+A Blog SEO task is content work, not permission to redesign the Blog component system.

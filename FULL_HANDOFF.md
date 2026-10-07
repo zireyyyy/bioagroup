@@ -2537,3 +2537,40 @@ G5:
 Status:
 - code/syntax PASS;
 - owner runtime test pending.
+
+
+## PATCH-G5 — OWNER PASS / BLOG VISUAL LOCK
+
+Owner confirmed PATCH-G5 PASS.
+Locked Blog surfaces now include:
+- fixed centered low-contrast Blog watermark;
+- rich Merywood article modules and responsive geometry;
+- flex-table typography normalization;
+- white CTA on green cards;
+- Previous arrow left / Next arrow right.
+
+## PATCH-G6 — LEGACY BLOG ARCHIVE COMPLETION + CONTENT CONTRACT
+
+Scope:
+- migrated the remaining 31 published legacy `kien-thuc` topics, bringing Blog authority to 38 structured articles total;
+- preserved all legacy slugs;
+- rewrote legacy topics instead of rendering old HTML;
+- stale ranking/list content is reframed as durable verification/checklist content;
+- health/DIY/SPF/oral/intimate-area topics use conservative, non-treatment claims and professional-care/testing notes where appropriate;
+- Blog index expands by cloning the existing Merywood card template so all 38 records are represented;
+- created `docs/BLOG_CONTENT_CONTRACT.md` as the mandatory locked authority for future AI SEO/content work;
+- `AGENTS.md`, workflow and content guide now point to that contract.
+
+Protected / no redesign:
+- PATCH-G5 Blog visual runtime remains LOCKED;
+- shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu remain untouched;
+- Home/About/Cosmetics/Other Services remain untouched.
+
+Verification before push:
+- structured article count: 38;
+- legacy remaining article count migrated: 31;
+- duplicate IDs/slugs: none expected;
+- JS parse/syntax validation: PASS.
+
+Runtime status:
+- owner final test: PENDING.
