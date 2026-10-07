@@ -3813,6 +3813,27 @@ const patchH5CMobileMoqCss = `
 }
 `;
 
+const patchHeaderTopParityCss = `
+/* HEADER-TOP1 — Merywood parity.
+   At scroll-top the header shell is transparent so the hero continues behind it.
+   Once the page leaves the top, restore a light readable sticky surface. */
+.header{
+  transition:background-color .22s ease,box-shadow .22s ease!important;
+}
+html.bioa-header-at-top .header{
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html.bioa-header-scrolled .header,
+body.bioa-mobile-nav-open .header{
+  background:rgba(252,254,241,.94)!important;
+  box-shadow:0 1px 0 rgba(5,47,33,.055)!important;
+}
+`;
+
+
 const patchMotionU1Css = `
 /* MOTION-U1 — adapted directly from the supplied UNILA homepage motion map.
    Use element-level fade-up / fade-left / fade-right with 700ms duration and
@@ -5072,6 +5093,34 @@ function addSharedPageReveal($,route){
 }
 
 
+function addHeaderTopParity($){
+  $('#bioa-header-top-js').remove();
+  $('html').addClass('bioa-header-at-top').removeClass('bioa-header-scrolled');
+  const script=`(function(){
+    var root=document.documentElement;
+    var header=document.querySelector('.header');
+    if(!header)return;
+    var ticking=false;
+    function sync(){
+      var y=window.scrollY||document.documentElement.scrollTop||0;
+      var atTop=y<=8;
+      root.classList.toggle('bioa-header-at-top',atTop);
+      root.classList.toggle('bioa-header-scrolled',!atTop);
+      ticking=false;
+    }
+    function onScroll(){
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(sync);
+    }
+    sync();
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('pageshow',sync);
+  })();`;
+  $('body').append($('<script id="bioa-header-top-js"></script>').html(script));
+}
+
+
 function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
   $('#bioa-contact-fab-js').remove();
@@ -5250,7 +5299,7 @@ const sharedShellCss =
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
-  patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchMotionU1Css;
+  patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -5269,6 +5318,7 @@ export function applySharedShell($,route,lang){
   buildMobileFooterV2($);
   addFooterCompanyInfo($);
   addHeroCounters($);
+  addHeaderTopParity($);
   addSharedPageReveal($,route);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);
@@ -5291,6 +5341,7 @@ export function applyHomeRefinement($,route,lang){
   buildMobileFooterV2($);
   addFooterCompanyInfo($);
   addHeroCounters($);
+  addHeaderTopParity($);
   addHomeReveal($);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);

@@ -1957,3 +1957,44 @@ Status:
 - Hero Desktop/Tablet/Mobile: PENDING OWNER TEST
 - Category eyebrow/hover: PENDING OWNER TEST
 - MOTION-U1D3 all routes/devices: PENDING OWNER TEST
+
+
+## PATCH-E9 — HEADER TOP PARITY + SECTION RHYTHM + HERO WATERMARK OPTICAL CENTER
+
+Owner feedback after PATCH-E8:
+- header at the top of the page still showed a separate tinted shell instead of visually merging with the hero like Merywood;
+- #bioa-cosmetics-categories had too much vertical space above/below compared with the source section rhythm;
+- hero watermark artwork is accepted, but its optical placement needs centering.
+
+Root causes:
+- early shared CSS still forced a translucent ivory header background at scroll-top;
+- E7 introduced 110px / 88px / 72px outer section padding, which is larger than neighboring source-owned blocks;
+- E8 watermark bounds were left-biased inside the hero raster even though the layer itself was clean.
+
+E9 corrections:
+- shared Header top-state authority:
+  - <=8px scroll: header shell transparent, no shadow;
+  - after leaving top: light ivory readable sticky surface;
+  - mobile menu open always restores the readable surface;
+  - same logic applies Home + subpages + all breakpoints;
+- Manufacturing Categories outer padding only:
+  - Desktop 110px -> 76px;
+  - Tablet 88px -> 64px;
+  - Mobile 72px -> 52px;
+  - card/grid/title/content geometry unchanged;
+- hero asset:
+  - preserve clean E8 layer construction;
+  - shift only Bio-A watermark optical center to the composition center;
+  - foreground products/stone/plants and hero DOM/cover geometry unchanged.
+
+Protected:
+- MOTION-U1D3 timing;
+- E7 card hover/watermark behavior;
+- Why Choose / Packaging / Process / Certification / QC;
+- Header nav/action geometry, mobile menu behavior, language, Zalo;
+- Home and /about/ PASS content/layout.
+
+Status:
+- Header top parity all routes/devices: PENDING OWNER TEST
+- E7 spacing all devices: PENDING OWNER TEST
+- Hero watermark position: PENDING OWNER TEST

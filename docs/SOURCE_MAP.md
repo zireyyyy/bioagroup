@@ -1496,3 +1496,28 @@ Global motion authority:
 - MOTION-U1D3 keeps the same effects but shortens duration/delays and triggers IntersectionObserver earlier on Desktop/Tablet/Mobile.
 - every new route must inherit this shared timing instead of adding route-local motion timing.
 - never attach reveal transforms to Swiper translate-owning wrappers/slides.
+
+
+## PATCH-E9 — shared header top-state + cosmetics rhythm
+
+Shared Header:
+- owner: bioa-home-refine.mjs
+- CSS: patchHeaderTopParityCss
+- runtime: addHeaderTopParity()
+- scroll-top (<=8px): .header transparent / no shadow.
+- scrolled: .header receives light readable surface.
+- mobile nav open overrides transparent top state for readability.
+- applies to Home and all routes through the shared shell.
+
+Cosmetics categories:
+- owner: bioa-cosmetics-refine.mjs / #bioa-cosmetics-categories.
+- only outer section rhythm changed:
+  - Desktop 76px;
+  - Tablet 64px;
+  - Mobile 52px.
+- E7 grid/card/icon/content/motion authority unchanged.
+
+Cosmetics Hero:
+- assets/cosmetics-hero-bioa.webp remains flattened layer authority.
+- E9 only re-centers the Bio-A watermark within the raster.
+- product foreground and source cover/center geometry remain locked.
