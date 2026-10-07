@@ -2,27 +2,34 @@
 
 Updated: 2026-10-08
 
-Last owner-confirmed runtime baseline before current candidate:
-`76bab2b472b252f804c6022147209631cb691c81` — SHARED-MOBILE1C — PASS.
+Production-confirmed baseline:
+`3dd614d873ac311485f0f362a689bbe5c8233ce2` — MOBILE-NAV-PAUSE1 — OWNER PASS.
 
 Current candidate:
-**MOBILE-NAV-PAUSE1 — PENDING OWNER TEST**.
+**MOBILE-MENU-CONTRAST1 — PENDING OWNER TEST**.
 
-Owner decision:
-- Mobile bottom navigation is temporarily removed and postponed.
-- Chat/Cookie return to their positions before bottom-bar offsets.
-- Cookie outside-dismiss + confirmed-choice gear behavior stays.
-- Mobile Menu first-tap/outside/scroll/Escape behavior stays.
-- Mobile Header down-hide/up-show behavior stays.
-- five-icon bottom-nav artwork is future enhancement only.
+Current issue:
+Mobile menu control blends into the light sticky Header after scrolling.
 
-Superseded:
-`1a9f819c19bc8e0f7b1071d6f558cb6e541086d3` — MOBILE-NAV-ICON1 — NOT PROMOTED.
+Candidate scope:
+- scrolled Mobile menu button background -> very-light Bio-A green;
+- hamburger -> Bio-A green;
+- subtle green inset border;
+- no geometry/runtime changes.
+
+PASS/FROZEN:
+- Mobile bottom bar paused;
+- Chat/Cookie original positions;
+- Cookie behavior;
+- Mobile Menu runtime;
+- Mobile Header directional behavior;
+- Blog / Contacts / accepted shared content.
 
 Next:
-owner test -> remaining small fixes -> FULL Tablet -> cleanup -> production package/domain.
+owner tests menu contrast -> remaining small fixes -> FULL Tablet -> cleanup -> production package/domain.
 
 ---
+
 
 
 # BIO-A GROUP WEBSITE — FULL HANDOFF
@@ -2930,5 +2937,29 @@ Runtime patch:
 - preserves Cookie C3/C4 runtime in `bioa-transform.mjs`.
 
 5-icon artwork is not active and must not be re-enabled without owner request.
+
+Status: PENDING OWNER TEST.
+
+
+## MOBILE-MENU-CONTRAST1 — SCROLLED MENU VISIBILITY
+
+Root cause:
+- top Header has darker hero/backdrop context, so the cream menu control is visible;
+- scrolled Header switches to a near-white sticky surface;
+- the same cream control loses contrast and visually sinks into the Header.
+
+Fix:
+- only `html.bioa-header-scrolled .bioa-mobile-menu-button-clean`;
+- background: very-light Bio-A green;
+- icon: Bio-A primary green;
+- subtle green inset border.
+
+Protected:
+- button geometry;
+- Mobile Menu JS;
+- Header scroll runtime;
+- Cookie / Chat;
+- paused bottom bar;
+- page layouts.
 
 Status: PENDING OWNER TEST.

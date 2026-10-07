@@ -2035,3 +2035,16 @@ Cookie:
 - outside-dismiss and confirmed-choice gear logic remains in `bioa-transform.mjs > brandCookieBanner()`.
 
 Do not re-enable Mobile bottom navigation without explicit owner request.
+
+
+## MOBILE-MENU-CONTRAST1 — scrolled menu visual state
+
+Owner:
+`bioa-home-refine.mjs > patchMobileHeaderScrollCss`
+
+Only when `html.bioa-header-scrolled`:
+- clean Mobile menu button uses a very-light Bio-A green surface;
+- hamburger uses Bio-A primary green;
+- subtle inset border increases separation from the light sticky Header.
+
+No geometry or menu runtime change.

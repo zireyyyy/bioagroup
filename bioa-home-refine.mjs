@@ -5428,6 +5428,15 @@ html.bioa-cookie-decided #mw-gear{display:none!important}
     -webkit-tap-highlight-color:transparent!important;
     pointer-events:auto!important;
   }
+  html.bioa-header-scrolled .bioa-mobile-menu-button-clean{
+    background:rgba(231,240,232,.98)!important;
+    color:var(--bioa-primary)!important;
+    box-shadow:inset 0 0 0 1px rgba(17,111,71,.10)!important;
+  }
+  html.bioa-header-scrolled .bioa-mobile-menu-button-clean svg{
+    color:var(--bioa-primary)!important;
+    stroke:currentColor!important;
+  }
   .bioa-mobile-menu-button-clean.bioa-menu-gesture-active{
     pointer-events:auto!important;
   }

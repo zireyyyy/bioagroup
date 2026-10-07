@@ -5,59 +5,33 @@ https://github.com/zireyyyy/bioagroup
 
 Read START_HERE.md, CURRENT STATE SNAPSHOT in FULL_HANDOFF.md, AGENTS.md, docs/WORKFLOW.md, docs/SOURCE_MAP.md and the exact owner file before editing.
 
-## Current runtime state
+## Current state
 
-Last owner-confirmed runtime baseline before current candidate:
-`76bab2b472b252f804c6022147209631cb691c81` — SHARED-MOBILE1C — PASS.
+Production-confirmed baseline:
+`3dd614d873ac311485f0f362a689bbe5c8233ce2` — MOBILE-NAV-PAUSE1 — OWNER PASS.
 
 Current candidate:
-**MOBILE-NAV-PAUSE1 — PENDING OWNER TEST**.
+**MOBILE-MENU-CONTRAST1 — PENDING OWNER TEST**.
 
-Owner temporarily removed Mobile bottom navigation and will revisit it later.
+Only current change:
+when Mobile Header is scrolled/light, the menu button gets a very-light Bio-A green surface + Bio-A green hamburger + subtle border so it no longer blends into the Header.
 
-Must remain:
-- no bottom bar on any route;
-- Chat/Cookie restored to pre-bottom-bar positions;
-- Cookie outside-dismiss + confirmed-choice gear logic;
-- Mobile Menu first-tap + outside/scroll/Escape close;
-- Mobile Header scroll-down hide / scroll-up show.
-
-The five-icon set is future work only. Do not re-enable bottom navigation automatically.
+Do not alter:
+- menu dimensions/position;
+- menu runtime;
+- Mobile Header hide/show;
+- Cookie;
+- Chat;
+- paused bottom bar;
+- page content.
 
 ## PASS / FROZEN
 
-Blog PATCH-G8.
-Contacts CONTACT-C1.
-Cookie logic.
-Mobile Menu logic.
-Mobile Header directional behavior.
-shared Footer/Chat/Zalo.
-accepted Home sections.
+Mobile bottom bar paused; Chat/Cookie original positions; Cookie logic; Mobile Menu first-tap/outside/scroll/Escape; Mobile Header directional behavior; Blog; Contacts; shared Footer/Chat/Zalo; accepted Home sections.
 
-## Superseded bottom-nav work
+## Next test
 
-e331acd... PARTIAL
-8fb80a7... PARTIAL
-26f2fdc... PARTIAL
-1a9f819... NOT PROMOTED / superseded
+Top state -> scroll -> scrolled state contrast -> first-tap menu -> outside/scroll close.
 
-## Bio-A architecture only
-
-Merywood = visual/runtime source-of-truth.
-Legacy Bio-A source = content source where documented.
-
-Shared owners:
-bioa-transform.mjs + shared bioa-home-refine.mjs.
-
-Route owners:
-Home / About / Gia Công Mỹ Phẩm / Dịch Vụ Khác / Blog / Contacts.
-
-Build:
-build.mjs.
-
-Do not import architecture concepts from other projects.
-
-## Next
-
-Owner tests MOBILE-NAV-PAUSE1.
-If PASS: remaining small fixes -> FULL Tablet -> cleanup -> production package -> domain deploy.
+After PASS:
+remaining small fixes -> FULL Tablet -> cleanup -> production package -> domain deploy.
