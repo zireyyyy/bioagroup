@@ -471,3 +471,35 @@ For any `/blog/` content task, insert this gate before implementation:
 6. syntax/build/static-check routes and article count before push.
 
 A Blog SEO task is content work, not permission to redesign the Blog component system.
+
+
+## Handoff continuation contract
+
+At every durable handoff:
+- rewrite `START_HERE.md`;
+- rewrite `NEW_CHAT_CONTINUATION_PROMPT.md`;
+- record runtime-confirmed baseline, current candidate, PARTIAL/FAIL commits that are not rollback targets, current block, PASS/FROZEN areas, PENDING areas, next test and rollback;
+- update `FULL_HANDOFF.md` current snapshot.
+
+A new chat should not need to reconstruct current state from historical patch logs.
+
+Current-state precedence:
+`START_HERE.md` -> `NEW_CHAT_CONTINUATION_PROMPT.md` -> mandatory contracts -> `AGENTS.md` -> current snapshot in `FULL_HANDOFF.md` -> historical log.
+
+## Layer ownership before implementation
+
+Classify each change as GLOBAL / ROUTE / COMPONENT.
+
+Before editing resolve:
+1. exact surface;
+2. owner file/function;
+3. Merywood source;
+4. PASS/PENDING boundaries;
+5. responsive blast radius.
+
+Home remains section-by-section.
+
+## Hosting change policy
+
+Use Cloudflare/hosting only when the deployment layer is the true owner.
+If a direct dashboard change is made, backport equivalent configuration or document the exact setting in the repository before PASS.

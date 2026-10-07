@@ -375,3 +375,47 @@ This execution contract does not override safety, repository authority, locked-P
 
 Before creating, rewriting, translating or optimizing any Blog article, read `docs/BLOG_CONTENT_CONTRACT.md` and current `bioa-blog-refine.mjs`.
 For Blog content/layout, that contract is mandatory and overrides generic writing preferences. Never redesign the owner-approved Blog detail structure during an SEO/content task.
+
+
+## Handoff hardening — mandatory current-state rule
+
+Current-state files:
+- `START_HERE.md`
+- `NEW_CHAT_CONTINUATION_PROMPT.md`
+- latest mandatory feature/deploy contracts
+
+These files are rewritten for the current handoff state and take precedence over stale historical status in `FULL_HANDOFF.md`.
+
+Every handoff update must:
+1. derive state from current repo + latest owner confirmation;
+2. rewrite `NEW_CHAT_CONTINUATION_PROMPT.md` for that exact state;
+3. update `START_HERE.md` if baseline, candidate, rollback, next task, ownership or closeout phase changed;
+4. never copy old version/status text blindly.
+
+Before every patch resolve:
+1. current surface/block;
+2. code owner;
+3. source-of-truth counterpart;
+4. PASS/FROZEN vs PENDING adjacency;
+5. Desktop/Tablet/Mobile blast radius.
+
+CSS/JS layer classification is mandatory:
+- GLOBAL;
+- ROUTE;
+- COMPONENT.
+
+Fix at the correct owner layer. Do not solve a COMPONENT problem with a broad GLOBAL override unless the owner architecture explicitly requires a final-order global authority.
+
+### Font authority
+
+Bio-A-owned UI/body typography uses:
+`Manrope, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif`.
+
+Do not introduce a new route-local font authority.
+Preserve Merywood source typography mechanics when source-owned and already correct.
+
+### Hosting / Cloudflare
+
+GitHub remains application source-of-truth.
+Direct hosting/Cloudflare edits are allowed only for deployment-owned concerns.
+Any direct hosting change must be documented/backported before PASS.

@@ -1965,3 +1965,27 @@ Bottom-nav hidden state:
 
 Icon artwork:
 - unchanged; pending owner replacement.
+
+
+## HANDOFF-HARDEN1 — current-state / layer authority
+
+Current-state boot:
+- `START_HERE.md`
+- `NEW_CHAT_CONTINUATION_PROMPT.md`
+- `FULL_HANDOFF.md` CURRENT STATE SNAPSHOT
+
+Layer map:
+- GLOBAL: `bioa-transform.mjs` + shared shell in `bioa-home-refine.mjs`;
+- ROUTE: dedicated `bioa-*-refine.mjs` route modules;
+- COMPONENT: smallest selector/runtime block inside the existing owner;
+- BUILD: `build.mjs`.
+
+Font authority:
+`Manrope, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif`.
+
+Pending Mobile bottom-nav icon artwork:
+- current code icons are temporary;
+- owner supplied a new five-icon visual set in chat on 2026-10-07;
+- do not redraw;
+- integrate artwork only after explicit owner confirmation;
+- if attachment is unavailable in a new chat, request re-upload before implementation.
