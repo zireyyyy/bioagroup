@@ -5180,6 +5180,83 @@ function addHeaderTopParity($){
 }
 
 
+function addMobileBottomNav($,route,lang){
+  $('.bioa-mobile-bottom-nav').remove();
+  $('#bioa-mobile-bottom-nav-js').remove();
+
+  const vi=lang==='vi';
+  const prefix=vi?'':'/en';
+  const href=(path)=>{
+    if(path==='/')return vi?'/':'/en/';
+    return prefix+path;
+  };
+  const items=[
+    {key:'home',label:vi?'Trang Chủ':'Home',href:href('/'),active:route==='/',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3.5 10.5 8.5-7 8.5 7"/><path d="M5.5 9.2V21h13V9.2"/><path d="M9.5 21v-6h5v6"/></svg>'},
+    {key:'manufacturing',label:vi?'Gia Công':'Manufacturing',href:href('/contract-manufacturing-cosmetics/'),active:route==='/contract-manufacturing-cosmetics/',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 3.5h7"/><path d="M10 3.5v5.2l-5 8.1A2.5 2.5 0 0 0 7.1 20.5h9.8a2.5 2.5 0 0 0 2.1-3.7l-5-8.1V3.5"/><path d="M8 14h8"/></svg>'},
+    {key:'services',label:vi?'Dịch Vụ':'Services',href:href('/dich-vu-khac/'),active:route==='/dich-vu-khac/',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg>'},
+    {key:'blog',label:'Blog',href:href('/blog/'),active:route==='/blog/'||route.startsWith('/blog/'),icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h9l3 3V20.5H6z"/><path d="M14.5 3.5v4h3.5"/><path d="M9 11h6M9 14.5h6M9 18h4"/></svg>'},
+    {key:'contact',label:vi?'Liên Hệ':'Contact',href:href('/contacts/'),active:route==='/contacts/',icon:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v11H9l-5 4z"/><path d="M8 9h8M8 12.5h6"/></svg>'}
+  ];
+
+  const html=items.map(item=>
+    '<a class="bioa-mobile-bottom-nav__item'+(item.active?' is-active':'')+'" href="'+item.href+'"'+
+    (item.active?' aria-current="page"':'')+' data-bioa-mobile-nav="'+item.key+'">'+
+    item.icon+'<span class="bioa-mobile-bottom-nav__label">'+item.label+'</span></a>'
+  ).join('');
+
+  $('body').append('<nav class="bioa-mobile-bottom-nav" aria-label="'+(vi?'Điều hướng nhanh trên di động':'Mobile quick navigation')+'">'+html+'</nav>');
+
+  const script=`(function(){
+    var body=document.body;
+    var nav=document.querySelector('.bioa-mobile-bottom-nav');
+    if(!body||!nav)return;
+    var mq=window.matchMedia('(max-width:768px)');
+    var lastY=Math.max(0,window.scrollY||document.documentElement.scrollTop||0);
+    var ticking=false;
+
+    function show(){body.classList.remove('bioa-mobile-chrome-hidden');}
+    function hide(){
+      if(body.classList.contains('bioa-mobile-nav-open'))return;
+      body.classList.add('bioa-mobile-chrome-hidden');
+    }
+    function sync(){
+      if(!mq.matches){
+        show();
+        lastY=Math.max(0,window.scrollY||document.documentElement.scrollTop||0);
+        ticking=false;
+        return;
+      }
+      var y=Math.max(0,window.scrollY||document.documentElement.scrollTop||0);
+      if(y<=24||body.classList.contains('bioa-mobile-nav-open')){
+        show();
+      }else{
+        var delta=y-lastY;
+        if(delta>7)hide();
+        else if(delta<-7)show();
+      }
+      lastY=y;
+      ticking=false;
+    }
+    function onScroll(){
+      if(ticking)return;
+      ticking=true;
+      requestAnimationFrame(sync);
+    }
+
+    sync();
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('pageshow',function(){show();sync();});
+    window.addEventListener('resize',function(){show();sync();},{passive:true});
+    if(mq.addEventListener)mq.addEventListener('change',function(){show();sync();});
+
+    new MutationObserver(function(){
+      if(body.classList.contains('bioa-mobile-nav-open'))show();
+    }).observe(body,{attributes:true,attributeFilter:['class']});
+  })();`;
+
+  $('body').append($('<script id="bioa-mobile-bottom-nav-js"></script>').html(script));
+}
+
 function addContactLauncher($,lang){
   $('.bioa-contact-fab').remove();
   $('#bioa-contact-fab-js').remove();
@@ -5350,8 +5427,122 @@ function addContactLauncher($,lang){
   $('body').append($('<script id="bioa-contact-fab-js"></script>').html(script));
 }
 
+const patchMobileBottomNavCss = `
+/* SHARED-MOBILE1 — Mobile bottom navigation + scroll-direction chrome.
+   Desktop/Tablet remain unchanged except cookie gear completion state. */
+:root{
+  --bioa-mobile-bottom-h:64px;
+  --bioa-mobile-bottom-gap:12px;
+}
+.bioa-mobile-bottom-nav{display:none}
+html.bioa-cookie-decided #mw-gear{display:none!important}
+@media(max-width:768px){
+  body{
+    padding-bottom:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
+  }
+  .header{
+    will-change:transform!important;
+    transition:transform .26s cubic-bezier(.2,.78,.2,1),background-color .22s ease,box-shadow .22s ease!important;
+  }
+  .bioa-mobile-bottom-nav{
+    position:fixed!important;
+    left:0!important;
+    right:0!important;
+    bottom:0!important;
+    z-index:99970!important;
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    align-items:stretch!important;
+    height:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
+    padding:6px 7px calc(6px + env(safe-area-inset-bottom,0px))!important;
+    box-sizing:border-box!important;
+    border-top:1px solid rgba(17,111,71,.12)!important;
+    background:rgba(252,254,241,.94)!important;
+    -webkit-backdrop-filter:blur(14px)!important;
+    backdrop-filter:blur(14px)!important;
+    box-shadow:0 -8px 24px rgba(5,47,33,.08)!important;
+    transform:translate3d(0,0,0)!important;
+    transition:transform .26s cubic-bezier(.2,.78,.2,1)!important;
+    will-change:transform!important;
+  }
+  .bioa-mobile-bottom-nav__item{
+    position:relative!important;
+    min-width:0!important;
+    min-height:48px!important;
+    padding:3px 2px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:4px!important;
+    border-radius:12px!important;
+    color:#536159!important;
+    text-decoration:none!important;
+    -webkit-tap-highlight-color:transparent!important;
+    transition:color .18s ease,background-color .18s ease,transform .15s ease!important;
+  }
+  .bioa-mobile-bottom-nav__item svg{
+    width:21px!important;
+    height:21px!important;
+    display:block!important;
+    fill:none!important;
+    stroke:currentColor!important;
+    stroke-width:1.8!important;
+    stroke-linecap:round!important;
+    stroke-linejoin:round!important;
+    flex:0 0 21px!important;
+  }
+  .bioa-mobile-bottom-nav__label{
+    display:block!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+    font-size:10.5px!important;
+    line-height:1!important;
+    font-weight:500!important;
+    letter-spacing:-.01em!important;
+  }
+  .bioa-mobile-bottom-nav__item.is-active{
+    color:var(--bioa-primary)!important;
+    background:rgba(17,111,71,.08)!important;
+  }
+  .bioa-mobile-bottom-nav__item:active{transform:scale(.95)!important}
+
+  body.bioa-mobile-chrome-hidden .header{
+    transform:translate3d(0,-115%,0)!important;
+  }
+  body.bioa-mobile-chrome-hidden .bioa-mobile-bottom-nav{
+    transform:translate3d(0,115%,0)!important;
+  }
+  body.bioa-mobile-nav-open .header{transform:none!important}
+  body.bioa-mobile-nav-open .bioa-mobile-bottom-nav{
+    transform:translate3d(0,115%,0)!important;
+  }
+
+  .bioa-contact-fab{
+    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
+    transition:bottom .26s cubic-bezier(.2,.78,.2,1)!important;
+  }
+  .bioa-contact-fab__panel{
+    max-height:calc(100dvh - var(--bioa-mobile-bottom-h) - 28px)!important;
+  }
+  #mw-gear{
+    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
+    transition:bottom .26s cubic-bezier(.2,.78,.2,1)!important;
+  }
+  #mw-consent.bioa-consent{
+    bottom:calc(var(--bioa-mobile-bottom-h) + 10px + env(safe-area-inset-bottom,0px))!important;
+  }
+
+  body.bioa-mobile-chrome-hidden .bioa-contact-fab{bottom:14px!important}
+  body.bioa-mobile-chrome-hidden #mw-gear{bottom:14px!important}
+  body.bioa-mobile-chrome-hidden #mw-consent.bioa-consent{bottom:14px!important}
+}
+`;
+
 const sharedShellCss =
-  css+
+  css+patchMobileBottomNavCss+
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
@@ -5378,13 +5569,14 @@ export function applySharedShell($,route,lang){
   addFooterCompanyInfo($);
   addHeroCounters($);
   addHeaderTopParity($);
+  addMobileBottomNav($,route,lang);
   addSharedPageReveal($,route);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchMobileBottomNavCss+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -5401,6 +5593,7 @@ export function applyHomeRefinement($,route,lang){
   addFooterCompanyInfo($);
   addHeroCounters($);
   addHeaderTopParity($);
+  addMobileBottomNav($,route,lang);
   addHomeReveal($);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);

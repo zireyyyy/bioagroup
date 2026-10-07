@@ -1879,3 +1879,31 @@ Implementation rule:
 - VI is fully localized;
 - EN remains paired content;
 - do not reintroduce Merywood Estonia/Latvia contact data or fixed unsupported MOQ/lead-time claims.
+
+
+## SHARED-MOBILE1 — Mobile chrome / cookie presentation
+
+Cookie:
+- runtime/state authority: Merywood `#mw-consent`, `#mw-prefs`;
+- Bio-A owner: `bioa-transform.mjs > brandCookieBanner()`;
+- completion flag: `bioa_cookie_decided_v1`;
+- decision triggers: `.mw-accept`, `.mw-deny`, `#mw-save-prefs`, `#mw-accept-all`;
+- gear `#mw-gear` stays available before decision and is hidden after decision on all devices.
+
+Mobile quick navigation:
+- owner: `bioa-home-refine.mjs > addMobileBottomNav($,route,lang)`;
+- root: `.bioa-mobile-bottom-nav`;
+- breakpoint: max-width 768px only;
+- items: Home / Manufacturing / Services / Blog / Contact;
+- active route: `.is-active` + `aria-current="page"`.
+
+Directional chrome:
+- state: `body.bioa-mobile-chrome-hidden`;
+- >7px down-scroll hides Header + bottom bar;
+- >7px up-scroll restores;
+- <=24px from top forces visible;
+- Mobile Menu open forces Header visible and bottom bar out of the menu interaction layer.
+
+Mobile floating controls:
+- `.bioa-contact-fab`, `#mw-gear`, and `#mw-consent.bioa-consent` sit above the bottom bar;
+- when chrome is hidden they can return to the viewport edge.

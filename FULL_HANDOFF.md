@@ -2672,3 +2672,54 @@ Verification:
 - source selectors confirmed against owner-supplied Merywood export;
 - full build cannot be executed in the isolated container because the build fetches live Merywood source and network/DNS is unavailable;
 - Desktop/Tablet/Mobile runtime: PENDING OWNER TEST.
+
+
+## CONTACT-C1 — OWNER CONFIRMED PASS
+
+Accepted checkpoint:
+`2279111d232cefe7c0d40fba7ee8da4b81927e7a`
+
+Contact page content/company/map localization is owner-confirmed PASS before shared-mobile closeout changes.
+
+## SHARED-MOBILE1 — COOKIE COMPLETION + MOBILE BOTTOM NAV + DIRECTIONAL CHROME
+
+Owner request:
+- after cookie choice confirmation, hide the floating cookie gear site-wide on all devices;
+- preserve the existing consent popup/state runtime;
+- add Mobile quick navigation;
+- lift Cookie/Chat above the Mobile bar;
+- Mobile scroll down hides Header + bottom bar; scroll up restores both.
+
+Implemented:
+- Merywood remains cookie-consent authority;
+- Bio-A adds only a presentation completion flag `bioa_cookie_decided_v1`;
+- confirmed Accept / Necessary / Save / Accept-all actions set that flag;
+- previously stored source consent is detected conservatively for returning users;
+- `html.bioa-cookie-decided #mw-gear` is hidden on Desktop/Tablet/Mobile;
+- Mobile bottom navigation:
+  Trang Chủ · Gia Công · Dịch Vụ · Blog · Liên Hệ;
+- EN has paired labels/routes;
+- active route receives `aria-current="page"`;
+- Chat, Cookie gear and visible consent card are offset above the Mobile bar;
+- scroll-direction state: `body.bioa-mobile-chrome-hidden`;
+- down-scroll hides Header + bottom nav; up-scroll restores;
+- top zone and open Mobile Menu force Header visible;
+- when the bottom bar auto-hides, floating controls reclaim the bottom edge.
+
+Responsive:
+- Desktop: cookie completion behavior only.
+- Tablet: cookie completion behavior only.
+- Mobile: new bottom bar + directional chrome + floating offsets.
+
+Protected:
+- shared Header/menu content and menu runtime;
+- Footer;
+- cookie consent choices/state/modal logic;
+- accepted Chat shell/content/open-close behavior;
+- Blog PASS/LOCKED;
+- Contacts PASS;
+- route page layouts.
+
+Status:
+- CODE/SYNTAX PASS;
+- RUNTIME: PENDING OWNER TEST.

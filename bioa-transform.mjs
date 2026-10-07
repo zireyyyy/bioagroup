@@ -564,6 +564,72 @@ function brandCookieBanner($,lang){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
   })();`;
   $('body').append($('<script id="bioa-cookie-copy-sync"></script>').html(runtimeScript));
+
+  /* COOKIE-C3 — hide only the floating gear after a confirmed choice.
+     The source consent popup/storage/buttons remain the runtime authority. */
+  $('#bioa-cookie-state-sync').remove();
+  const stateScript=`(function(){
+    var KEY='bioa_cookie_decided_v1';
+    var root=document.documentElement;
+    var decisionSelector='#mw-consent .mw-accept,#mw-consent .mw-deny,#mw-save-prefs,#mw-accept-all';
+
+    function hasOwnDecision(){
+      try{return localStorage.getItem(KEY)==='1';}catch(e){return false;}
+    }
+    function hasSourceDecision(){
+      try{
+        for(var i=0;i<localStorage.length;i++){
+          var k=localStorage.key(i)||'';
+          if(!/(mw|cookie|consent)/i.test(k))continue;
+          var v=localStorage.getItem(k);
+          if(v&&v!=='null'&&v!=='undefined'&&v!=='{}'&&v!=='[]')return true;
+        }
+      }catch(e){}
+      try{
+        return document.cookie.split(';').some(function(part){
+          var k=(part.split('=')[0]||'').trim();
+          return /(mw.*consent|consent.*mw|cookie.*consent|consent.*cookie)/i.test(k);
+        });
+      }catch(e){return false;}
+    }
+    function sync(){
+      var decided=hasOwnDecision()||hasSourceDecision();
+      root.classList.toggle('bioa-cookie-decided',decided);
+      var gear=document.getElementById('mw-gear');
+      if(gear){
+        if(decided){
+          gear.setAttribute('hidden','hidden');
+          gear.setAttribute('aria-hidden','true');
+          gear.setAttribute('tabindex','-1');
+        }else{
+          gear.removeAttribute('hidden');
+          gear.removeAttribute('aria-hidden');
+          gear.removeAttribute('tabindex');
+        }
+      }
+      return !!gear;
+    }
+    function decide(){
+      try{localStorage.setItem(KEY,'1');}catch(e){}
+      setTimeout(sync,0);
+    }
+
+    document.addEventListener('click',function(e){
+      if(e.target&&e.target.closest&&e.target.closest(decisionSelector))decide();
+    },true);
+
+    function boot(){
+      if(sync())return;
+      var obs=new MutationObserver(function(){
+        if(sync())obs.disconnect();
+      });
+      obs.observe(document.documentElement,{childList:true,subtree:true});
+      setTimeout(function(){obs.disconnect();sync();},2500);
+    }
+    if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+    window.addEventListener('pageshow',function(){setTimeout(sync,40);});
+  })();`;
+  $('body').append($('<script id="bioa-cookie-state-sync"></script>').html(stateScript));
 }
 
 function documentTextNodeSafe(text){
