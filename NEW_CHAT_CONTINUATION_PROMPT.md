@@ -5,34 +5,22 @@ https://github.com/zireyyyy/bioagroup
 
 Read START_HERE.md, CURRENT STATE SNAPSHOT in FULL_HANDOFF.md, AGENTS.md, docs/WORKFLOW.md, docs/SOURCE_MAP.md and exact owner code before editing.
 
-## Current state
-
-Production-confirmed runtime:
-`65152e5fad8799fea36bcf3e03c9a9acf7f600ce`
-— MOBILE-HEADER-SOURCE1 — OWNER PASS.
-
 Current candidate:
-**CONSULT-POPUP-COLOR1 — PENDING OWNER TEST**.
+**LEAD-FORM-SHORT1 — PENDING OWNER TEST**
 
-Only candidate change:
-consultation modal background uses Bio-A primary green.
+Popup visible fields:
+- Full name — required
+- Phone / Zalo / Telegram — required
+- Product / service — optional
+- compact privacy consent
 
-Do not change fields/capture logic until owner approves form simplification.
+Email / Quantity / Request are not visible.
+Capture requires Name + Contact + Consent.
+Product/service choices mirror real Bio-A manufacturing categories and services.
+Send stays source-like light grey with green text.
 
-## Proposed next block
+Protected:
+Mobile Header/Menu, Header scroll behavior, Cookie, Chat, paused bottom bar, Blog, Contacts, accepted Home.
 
-LEAD-FORM-SHORT1:
-- Họ tên + SĐT/Zalo required;
-- Loại sản phẩm optional quick-select;
-- privacy consent remains;
-- Email / Số lượng / Request removed from first-step UI;
-- capture logic must be updated in the same patch.
-
-Current lead capture endpoint is Bio-A admin-ajax, not Merywood.
-
-## Protected
-
-Mobile Header PASS, inner Mobile Menu, Header scroll logic, Cookie, Chat, paused bottom bar, Blog, Contacts, accepted Home sections.
-
-After popup/form small fixes:
-FULL Tablet -> cleanup -> production package -> domain deploy.
+After PASS:
+remaining small fixes -> FULL Tablet -> cleanup -> production package -> domain deploy.

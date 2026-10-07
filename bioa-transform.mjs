@@ -10,6 +10,11 @@ export const localPath = (route, lang) => lang === 'en' ? (route === '/' ? '/en/
 const css = `
 :root{--bioa:#106E45;--bioa-dark:#0B4E31;--bioa-deep:#093D26;--bioa-soft:#99D29F;--bioa-cream:#F3F0E4;--bioa-ivory:#FCFEF1}
 #get-a-quote .cf-modal{background:var(--bioa)!important}
+#get-a-quote .cf-modal__button{width:100%!important;min-height:56px!important;border:0!important;border-radius:14px!important;background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;box-shadow:none!important}
+#get-a-quote .cf-modal__button:hover,#get-a-quote .cf-modal__button:focus{background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;transform:none!important}
+#get-a-quote .label-check{display:flex!important;align-items:flex-start!important;gap:10px!important;margin-top:14px!important;font-size:13px!important;line-height:1.4!important}
+#get-a-quote .label-check .wpcf7-form-control-wrap{flex:0 0 auto!important;margin-top:1px!important}
+#get-a-quote .label-check a{color:#fff!important;text-decoration:underline!important;text-underline-offset:2px!important}
 html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
 .btn,.formats__tab[aria-selected="true"]{background:var(--bioa)!important;border-color:var(--bioa)!important;color:#fff!important}.btn:hover{background:var(--bioa-dark)!important;border-color:var(--bioa-dark)!important}
 .header__email a,.menu__email a,.footer-top__email a,.color-main{color:var(--bioa)!important}.footer-top{background:var(--bioa-deep)!important}.footer-bottom{background:#062c1c!important}.socials__link{background-color:var(--bioa-dark)!important;color:#fff!important}.swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]){background-color:var(--bioa-dark)!important;color:#fff!important}
@@ -459,6 +464,76 @@ function viCleanup($){
   });
 }
 
+function simplifyConsultationModal($,lang){
+  const modal=$('#get-a-quote').first();
+  if(!modal.length)return;
+  const vi=lang==='vi';
+  const form=modal.find('form.wpcf7-form').first();
+  if(!form.length)return;
+  const hidden=form.find('fieldset.hidden-fields-container').first();
+
+  form.find('[name="your-email"]').closest('.input-base').remove();
+  form.find('#ddQty').remove();
+  form.find('[name="your-request"]').closest('.input-base').remove();
+
+  if(hidden.length){
+    hidden.find('[data-bioa-lead-compat="1"]').remove();
+    hidden.append('<input data-bioa-lead-compat="1" type="hidden" name="your-email" value="lead@bioagroup.vn">');
+    hidden.append('<input data-bioa-lead-compat="1" type="hidden" name="your-product-quantity" value="'+(vi?'Chưa xác định':'Not specified')+'">');
+    hidden.append('<input data-bioa-lead-compat="1" type="hidden" name="your-request" value="'+(vi?'Yêu cầu tư vấn nhanh từ website':'Quick consultation request from website')+'">');
+  }
+
+  form.find('[name="your-name"]').first().attr('placeholder',vi?'Họ tên *':'Full name *');
+  form.find('[name="your-phone"]').first().attr('placeholder',vi?'Số điện thoại / Zalo / Telegram *':'Phone / Zalo / Telegram *');
+
+  const dd=form.find('#ddType').first();
+  const placeholder=vi?'Loại sản phẩm / dịch vụ (không bắt buộc)':'Product / service (optional)';
+  dd.find('.dd-label').first().attr('data-placeholder',placeholder).text(placeholder);
+
+  const topics=vi?[
+    'Sản Phẩm Trang Điểm','Sản Phẩm Chăm Sóc Tóc','Sản Phẩm Chăm Sóc Body','Sản Phẩm Chăm Sóc Da Mặt','Sản Phẩm Cá Nhân','Sản Phẩm Mẹ & Bé',
+    'R&D Công Thức & Làm Mẫu','Sang Chiết & Đóng Gói Mỹ Phẩm','Chai Lọ Mỹ Phẩm','Thiết Kế Bao Bì Mỹ Phẩm','Hồ Sơ & Công Bố Sản Phẩm','Cần Bio-A Group Tư Vấn'
+  ]:[
+    'Makeup Products','Hair Care Products','Body Care Products','Facial Skin Care','Personal Care Products','Mother & Baby Products',
+    'Formula R&D & Sampling','Cosmetic Filling & Packing','Cosmetic Bottles & Containers','Cosmetic Packaging Design','Documentation & Product Notification','Need Bio-A Group Advice'
+  ];
+
+  const options=topics.map((topic,i)=>{
+    const cls='wpcf7-list-item'+(i===0?' first':'')+(i===topics.length-1?' last':'');
+    const safe=topic.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return '<span class="'+cls+'"><label><input name="your-product-type" type="radio" value="'+safe+'"><span class="wpcf7-list-item-label">'+safe+'</span></label></span>';
+  }).join('');
+  dd.find('.dd-menu').html('<p><span class="wpcf7-form-control-wrap" data-name="your-product-type"><span class="wpcf7-form-control wpcf7-radio">'+options+'</span></span></p>');
+
+  const consent=form.find('label.label-check').first();
+  if(consent.length){
+    const control=consent.find('.wpcf7-form-control-wrap').first().detach();
+    consent.empty().append(control);
+    consent.append(documentTextNodeSafe(vi?'Tôi đồng ý để Bio-A Group liên hệ tư vấn. ':'I agree that Bio-A Group may contact me about this request. '));
+    consent.append($('<a></a>').attr('href',localPath('/privacy-policy/',lang)).attr('target','_blank').attr('rel','noopener noreferrer').text(vi?'Chính sách bảo mật':'Privacy Policy'));
+  }
+
+  form.find('.cf-modal__button').attr('value','Send');
+
+  $('script').each((_,el)=>{
+    let body=$(el).html()||'';
+    const oldRequired="var REQUIRED_FIELDS = ['your-name', 'your-email', 'your-phone', 'your-product-type', 'your-request'];";
+    if(!body.includes(oldRequired))return;
+    body=body.replace(oldRequired,"var REQUIRED_FIELDS = ['your-name', 'your-phone'];");
+    const start=body.indexOf('            function hasEmail() {');
+    const endMarker='            // Числовой ID формы';
+    const end=body.indexOf(endMarker,start);
+    if(start>=0&&end>start){
+      const replacement="            function hasConsent() {\n                var el = form.querySelector('[name=\"your-acceptance\"]');\n                return !!(el && el.checked);\n            }\n\n            function shouldCapture() {\n                return allRequiredFilled() && hasConsent();\n            }\n\n";
+      body=body.slice(0,start)+replacement+body.slice(end);
+    }
+    $(el).html(body);
+  });
+
+  const syncScript="(function(){var form=document.querySelector('#get-a-quote form.wpcf7-form');if(!form)return;form.addEventListener('submit',function(){var chosen=form.querySelector('input[name=\"your-product-type\"]:checked');var fallback=form.querySelector('input[data-bioa-product-fallback=\"1\"]');if(chosen){if(fallback)fallback.remove();var req=form.querySelector('input[name=\"your-request\"]');if(req)req.value=chosen.value;}else if(!fallback){fallback=document.createElement('input');fallback.type='hidden';fallback.name='your-product-type';fallback.value='No idea now';fallback.setAttribute('data-bioa-product-fallback','1');form.appendChild(fallback);}},true);})();";
+  modal.find('#bioa-short-lead-sync').remove();
+  modal.append($('<script id="bioa-short-lead-sync"></script>').html(syncScript));
+}
 function brandCookieBanner($,lang){
   const vi=lang==='vi';
   const root=$('#mw-consent').first();
@@ -683,6 +758,7 @@ export function applyFinalFixes($, route, lang){
   if(lang==='vi'){viCleanup($);if(route==='/')resetHomeVI($);if(route==='/dich-vu-khac/'){$('h1').first().text('Dịch vụ khác của Bio-A Group');$('.text-large').first().text('Hỗ trợ R&D, phát triển công thức, lựa chọn bao bì, thiết kế nhãn, hồ sơ công bố và các hạng mục liên quan đến phát triển thương hiệu mỹ phẩm.')}}
   if(lang==='en'&&route==='/')resetHomeEN($);
   if(route==='/')localizeWeProduceSourceText($,lang);
+  simplifyConsultationModal($,lang);
   $('.footer-bottom__copyright').text(lang==='vi'?'© 2026 Bio-A Group. Bảo lưu mọi quyền.':'© 2026 Bio-A Group. All rights reserved.');$('.footer-top__socials a').each((i,e)=>{const a=$(e);if(i===0)a.attr('href',company.whatsapp).attr('aria-label','WhatsApp');if(i===1)a.attr('href',company.facebook).attr('aria-label','Facebook');if(i===2)a.attr('href',company.zalo).attr('aria-label','Zalo').html('<img src="/assets/zalo-bioa-owner.png" alt="" aria-hidden="true" style="display:block;width:30px;height:30px;object-fit:contain;margin:auto">');a.attr('target','_blank').attr('rel','noopener noreferrer')});
   $('body *').contents().each((_,n)=>{
     if(n.type!=='text')return;

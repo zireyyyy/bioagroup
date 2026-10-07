@@ -2096,3 +2096,31 @@ Current capture endpoint:
 action `cf7lt_capture`.
 
 Do not visually remove required fields without updating the capture logic in the same patch.
+
+
+## LEAD-FORM-SHORT1 — Consultation popup
+
+Owner:
+`bioa-transform.mjs > simplifyConsultationModal($,lang)`
+
+Visible:
+- your-name
+- your-phone
+- optional your-product-type
+- your-acceptance
+
+Compatibility hidden values:
+- your-email
+- your-product-quantity
+- your-request
+
+Capture gate:
+- your-name
+- your-phone
+- your-acceptance checked
+
+Product/service quick-select:
+Bio-A manufacturing categories + Bio-A support services.
+
+Send button:
+popup-specific source-like style overrides global .btn styling.

@@ -2,27 +2,27 @@
 
 Updated: 2026-10-08
 
-Production-confirmed runtime baseline:
-`65152e5fad8799fea36bcf3e03c9a9acf7f600ce` — MOBILE-HEADER-SOURCE1 — OWNER PASS.
-
 Current candidate:
-**CONSULT-POPUP-COLOR1 — PENDING OWNER TEST**.
+**LEAD-FORM-SHORT1 — PENDING OWNER TEST**.
 
-Scope:
-consultation popup background only -> Bio-A primary green.
-
-Lead-form review:
-current form is too long for first contact and capture waits for 5 fields.
-Recommended next patch after owner approval:
-Họ tên + SĐT/Zalo required, Loại sản phẩm optional, compact privacy consent; remove Email/Số lượng/Request from first step and update capture logic simultaneously.
+Consultation popup:
+- Bio-A green background;
+- Name required;
+- Phone / Zalo / Telegram required;
+- Product / Service optional;
+- compact consent;
+- Email / Quantity / Request removed from visible UI;
+- capture changed to Name + Contact + Consent;
+- source-like Send button restored.
 
 Protected:
 Mobile Header/Menu, Cookie, Chat, paused bottom bar, Blog, Contacts, accepted Home.
 
 Next:
-owner tests popup color / approves short-form direction -> remaining small fixes -> FULL Tablet -> cleanup -> deploy.
+owner tests short lead form -> remaining small fixes -> FULL Tablet -> cleanup -> deploy.
 
 ---
+
 
 
 
@@ -3002,5 +3002,25 @@ Lead UX audit:
 
 Recommended next:
 LEAD-FORM-SHORT1 = Name + Phone required, Product Type optional, privacy consent retained; remove Email/Quantity/Request from first-step UI.
+
+Status: PENDING OWNER TEST.
+
+
+## LEAD-FORM-SHORT1 — SHORT CONSULTATION LEAD FORM
+
+Visible:
+Name required; Phone/Zalo/Telegram required; Product/Service optional; compact Consent.
+
+Removed:
+Email, Quantity and Request from the first-contact UI.
+
+Product/service options:
+six Bio-A manufacturing categories plus Formula R&D, Filling & Packing, Containers, Packaging Design, Documentation/Product Notification and Bio-A Advice.
+
+Capture:
+old 5-field/email gate replaced by Name + Contact + Consent.
+
+Send:
+source-like light grey/green styling restored and isolated from global .btn styling.
 
 Status: PENDING OWNER TEST.

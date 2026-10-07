@@ -5,68 +5,42 @@ Updated: 2026-10-08
 
 ## Current runtime state
 
-Production-confirmed runtime baseline:
-`65152e5fad8799fea36bcf3e03c9a9acf7f600ce`
-— **MOBILE-HEADER-SOURCE1 — OWNER PASS**
-
-Owner confirmed Mobile Header parity PASS.
+Production-confirmed baseline before current candidate:
+`47aee83936e3d32a0145d915d365ed283946b378` — CONSULT-POPUP-COLOR1.
 
 Current candidate:
-**CONSULT-POPUP-COLOR1 — Bio-A Green Consultation Popup**
+**LEAD-FORM-SHORT1 — Short Consultation Lead Form**
 — **PENDING OWNER TEST**
 
-## Current block
+Visible consultation fields:
+- Họ tên / Full name — required;
+- Số điện thoại / Zalo / Telegram — required;
+- Loại sản phẩm / dịch vụ — optional;
+- compact privacy consent.
 
-Consultation popup.
-
-Current candidate changes only:
-- `#get-a-quote .cf-modal` background -> Bio-A primary green `#106E45`.
-
-No form fields or lead-capture logic are changed yet.
-
-## Lead-form finding
-
-Current source form contains:
-- name;
-- email;
-- phone;
-- product type;
+Removed from visible UI:
+- Email;
 - expected quantity;
-- request/message;
-- privacy consent.
+- Request textarea.
 
-Current capture script waits for five fields:
-`your-name`, `your-email`, `your-phone`, `your-product-type`, `your-request`.
+Product/service choices combine six Bio-A manufacturing categories with R&D, filling/packing, containers, packaging design, documentation/product notification and Bio-A advice.
 
-Capture endpoint is already Bio-A:
-`https://bioagroup.vn/wp-admin/admin-ajax.php`
-action: `cf7lt_capture`.
+Lead capture now requires Name + Contact + Consent instead of the old 5-field/email gate.
 
-Recommended next candidate after color PASS:
-**LEAD-FORM-SHORT1**
-- required: Họ tên + SĐT/Zalo;
-- optional quick context: Loại sản phẩm;
-- keep privacy consent compact;
-- remove Email / Số lượng / Request from first-step UI;
-- update capture condition together with the UI, never hide fields without fixing capture logic.
+Send button is restored to source-like light-grey surface with green text and protected from global .btn styling.
 
 ## PASS / FROZEN
 
-- MOBILE-HEADER-SOURCE1.
-- MOBILE-MENU-CONTRAST1.
-- Mobile bottom bar remains PAUSED.
-- Cookie behavior.
-- Mobile Menu internals/runtime.
-- Header down-hide/up-show.
-- Blog PATCH-G8.
-- Contacts CONTACT-C1.
-- shared Footer/Chat/Zalo.
-- accepted Home sections.
+Mobile Header/Menu, Header directional behavior, Cookie, Chat, paused bottom bar, Blog PATCH-G8, Contacts CONTACT-C1 and accepted Home sections.
 
 ## Next test
 
-1. popup background matches Bio-A logo green;
-2. text/input/dropdown/close control remain readable;
-3. Desktop/Tablet/Mobile popup geometry unchanged.
-
-Then owner decides whether to proceed with LEAD-FORM-SHORT1.
+Desktop + Mobile:
+1. exactly 3 visible field blocks;
+2. Name required;
+3. Phone/Zalo/Telegram required;
+4. optional Product/Service choices correct;
+5. compact Consent;
+6. source-like Send button;
+7. successful lead capture after Name + Contact + Consent;
+8. no Email / Quantity / Request visible.
