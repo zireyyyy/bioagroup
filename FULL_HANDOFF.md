@@ -2758,3 +2758,38 @@ Protected:
 Status:
 - CODE/SYNTAX PASS;
 - RUNTIME: PENDING OWNER TEST.
+
+
+## SHARED-MOBILE1B — COOKIE OUTSIDE DISMISS + MOBILE MENU REGRESSION FIX
+
+Owner runtime feedback:
+- Cookie banner required an explicit choice before disappearing; desired behavior is tap-outside dismiss without recording a choice.
+- Mobile menu regressed after SHARED-MOBILE1: tap could freeze and menu failed to appear.
+- Bottom-nav icon artwork is intentionally NOT changed in this patch; owner will provide replacement icon design later.
+
+Root causes:
+- source Merywood cookie banner has no outside-dismiss handler;
+- SHARED-MOBILE1 added a body-class MutationObserver only to restore Header chrome when Mobile Menu opens. This duplicated menu ownership and could re-enter body class updates.
+
+Fix:
+- Cookie:
+  - pointer/tap outside visible `#mw-card` dismisses the banner visually;
+  - no consent choice is written;
+  - cookie gear becomes visible again while undecided;
+  - preferences modal keeps source backdrop/close behavior;
+  - after a real Accept / Necessary / Save / Accept-all decision, gear remains hidden per COOKIE-C3.
+- Mobile Menu:
+  - remove bottom-nav MutationObserver from body-class ownership;
+  - `syncMobileHeader() > set(open)` directly clears `bioa-mobile-chrome-hidden` when opening;
+  - outside-tap, scroll-dismiss and Escape close remain source/shared behavior.
+
+Protected:
+- current five bottom-nav icons/treatment frozen pending owner artwork;
+- SHARED-MOBILE1A Chat/Cookie collision spacing;
+- bottom-bar route logic;
+- directional scroll behavior;
+- page layouts and Desktop/Tablet.
+
+Status:
+- CODE/SYNTAX PASS;
+- RUNTIME: PENDING OWNER TEST.

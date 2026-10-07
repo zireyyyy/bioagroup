@@ -614,8 +614,44 @@ function brandCookieBanner($,lang){
       setTimeout(sync,0);
     }
 
+    function dismissBannerWithoutDecision(){
+      var banner=document.getElementById('mw-consent');
+      var card=document.getElementById('mw-card');
+      var gear=document.getElementById('mw-gear');
+      if(!banner||!card||!banner.classList.contains('show'))return;
+      var finished=false;
+      function finish(){
+        if(finished)return;
+        finished=true;
+        banner.classList.remove('show');
+        card.classList.remove('out');
+        if(gear){
+          gear.classList.add('show');
+          gear.removeAttribute('hidden');
+          gear.removeAttribute('aria-hidden');
+          gear.removeAttribute('tabindex');
+        }
+        sync();
+      }
+      card.classList.remove('in');
+      card.classList.add('out');
+      card.addEventListener('transitionend',finish,{once:true});
+      setTimeout(finish,320);
+    }
+
     document.addEventListener('click',function(e){
       if(e.target&&e.target.closest&&e.target.closest(decisionSelector))decide();
+    },true);
+
+    /* COOKIE-C4: outside tap dismisses only the banner UI; no consent is saved. */
+    document.addEventListener('pointerdown',function(e){
+      var banner=document.getElementById('mw-consent');
+      var card=document.getElementById('mw-card');
+      var prefs=document.getElementById('mw-prefs');
+      if(!banner||!card||!banner.classList.contains('show'))return;
+      if(prefs&&prefs.classList.contains('active'))return;
+      if(card.contains(e.target))return;
+      dismissBannerWithoutDecision();
     },true);
 
     function boot(){

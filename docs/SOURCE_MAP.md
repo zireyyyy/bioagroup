@@ -1928,3 +1928,23 @@ Icon treatment:
 - label: 11px, 1.25 line-height, unclipped descenders.
 
 This hotfix is the final positioning owner; do not reintroduce Mobile `.bioa-contact-fab{bottom:12px}` after it.
+
+
+## SHARED-MOBILE1B — Cookie dismiss / Mobile Menu runtime ownership
+
+Cookie:
+- Merywood `mw_consent_v2` remains consent storage authority;
+- Bio-A `bioa_cookie_decided_v1` remains presentation-completion authority;
+- outside pointer while `#mw-consent.show` is active dismisses the banner without writing either choice;
+- undecided dismissal restores `#mw-gear.show`;
+- confirmed decision still hides the gear site-wide.
+
+Mobile Menu:
+- `syncMobileHeader() > set(open)` is the sole owner of `bioa-mobile-nav-open`;
+- opening directly removes `bioa-mobile-chrome-hidden`;
+- bottom-nav runtime no longer observes body class changes;
+- existing outside-pointer, scroll and Escape close behavior stays intact.
+
+Bottom-nav icon design:
+- no visual icon change in this patch;
+- wait for owner-provided replacement artwork.
