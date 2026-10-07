@@ -1,44 +1,29 @@
 # CURRENT STATE SNAPSHOT — READ THIS BEFORE HISTORICAL PATCH LOG
 
-Updated: 2026-10-07
+Updated: 2026-10-08
 
-Current owner runtime-confirmed baseline:
-`76bab2b472b252f804c6022147209631cb691c81` — SHARED-MOBILE1C — **PASS**.
+Last owner-confirmed runtime baseline before current candidate:
+`76bab2b472b252f804c6022147209631cb691c81` — SHARED-MOBILE1C — PASS.
 
-No untested runtime candidate currently exists.
+Current candidate:
+**MOBILE-NAV-PAUSE1 — PENDING OWNER TEST**.
 
-Exact current block:
-- owner supplied a new 5-icon Mobile bottom-nav artwork set;
-- visual review is positive;
-- artwork is **not yet integrated**;
-- next code patch must be artwork-only if owner explicitly confirms use.
+Owner decision:
+- Mobile bottom navigation is temporarily removed and postponed.
+- Chat/Cookie return to their positions before bottom-bar offsets.
+- Cookie outside-dismiss + confirmed-choice gear behavior stays.
+- Mobile Menu first-tap/outside/scroll/Escape behavior stays.
+- Mobile Header down-hide/up-show behavior stays.
+- five-icon bottom-nav artwork is future enhancement only.
 
-Current PASS / FROZEN:
-- Blog PATCH-G8 + BLOG_CONTENT_CONTRACT;
-- Contacts CONTACT-C1;
-- shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
-- cookie outside-dismiss and confirmed-choice gear logic;
-- Mobile first-tap menu behavior;
-- Mobile bottom-bar full-hide and Chat/Cookie collision clearance;
-- Home accepted sections.
+Superseded:
+`1a9f819c19bc8e0f7b1071d6f558cb6e541086d3` — MOBILE-NAV-ICON1 — NOT PROMOTED.
 
-Recent PARTIAL / not rollback:
-- e331acd... SHARED-MOBILE1;
-- 8fb80a7... SHARED-MOBILE1A;
-- 26f2fdc... SHARED-MOBILE1B.
-
-Rollback before next icon patch:
-`76bab2b472b252f804c6022147209631cb691c81`.
-
-PENDING after icon/small fixes:
-1. FULL TABLET PASS;
-2. cleanup/hardening;
-3. production package;
-4. custom-domain deployment.
-
-Read `START_HERE.md` and `NEW_CHAT_CONTINUATION_PROMPT.md` for full current authority.
+Next:
+owner test -> remaining small fixes -> FULL Tablet -> cleanup -> production package/domain.
 
 ---
+
 
 # BIO-A GROUP WEBSITE — FULL HANDOFF
 
@@ -2930,3 +2915,20 @@ Rollback:
 
 Handoff correction:
 Bio-A continuation files must contain only real Bio-A architecture. Do not copy or translate PMX Shop-specific Woo/Suite/Child/PMX Shell/Product Card concepts into this project.
+
+
+## MOBILE-NAV-PAUSE1 — TEMPORARY BOTTOM-BAR REMOVAL
+
+Owner postponed Mobile bottom navigation.
+
+Runtime patch:
+- removes all bottom-nav generation and CSS;
+- removes bottom-nav safe-area body padding;
+- removes Chat/Cookie offsets that existed only to clear the bar;
+- preserves directional Mobile Header behavior via `addMobileHeaderScroll($)`;
+- preserves first-tap Mobile Menu protections;
+- preserves Cookie C3/C4 runtime in `bioa-transform.mjs`.
+
+5-icon artwork is not active and must not be re-enabled without owner request.
+
+Status: PENDING OWNER TEST.

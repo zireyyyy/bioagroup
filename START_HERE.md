@@ -1,93 +1,80 @@
 # BIO-A GROUP — START HERE
 
 Status: **CURRENT PROJECT STATE**
-Updated: 2026-10-07
+Updated: 2026-10-08
 
 ## Current runtime state
 
 Last owner-confirmed runtime baseline before the current candidate:
-
-`76bab2b472b252f804c6022147209631cb691c81`
-— SHARED-MOBILE1C — **PASS**
+`76bab2b472b252f804c6022147209631cb691c81` — SHARED-MOBILE1C — **PASS**
 
 Current candidate:
-**MOBILE-NAV-ICON1 — owner-supplied bottom-nav artwork**
+**MOBILE-NAV-PAUSE1 — temporary removal of Mobile bottom bar**
 — **PENDING OWNER TEST**
 
-## Exact current block
+## Current decision
 
-Only the five Mobile bottom-nav artworks changed:
-- Trang Chủ — house;
-- Gia Công — factory + cosmetic bottle;
-- Dịch Vụ — lab flask + leaf;
-- Blog — document;
-- Liên Hệ — support/headset person.
+Owner has postponed the Mobile bottom-navigation feature.
 
-The supplied silhouettes were converted to crisp inline SVG paths for runtime use.
-No bottom-bar layout, route, label, scroll, menu, Cookie or Chat logic was changed.
+This candidate:
+- removes the Mobile bottom bar from all routes;
+- removes its body safe-area padding and all Chat/Cookie offsets created for that bar;
+- therefore Chat returns to its existing lower-right Mobile position and Cookie returns to source positioning;
+- keeps Mobile Header scroll behavior:
+  - down -> hide;
+  - up -> show;
+  - near top -> show;
+  - Mobile Menu open -> force Header visible.
 
-Expected state treatment remains:
-- inactive: very-light Bio-A green surface + green icon;
-- active: Bio-A green surface + cream icon.
+The owner-supplied 5-icon set is future enhancement only.
 
 ## PASS / FROZEN
 
-- Blog PATCH-G8 — PASS / LOCKED.
-- Contacts CONTACT-C1 — PASS / LOCKED.
-- Cookie outside-dismiss + confirmed-choice gear behavior.
-- Mobile Menu first-tap.
-- Mobile bottom-bar full hide/show behavior.
-- Chat/Cookie bottom-bar clearance.
-- shared Header/Footer/Chat/Zalo/Mobile Menu.
-- accepted Home sections unless explicitly reopened.
+- Cookie outside-dismiss without saving.
+- Cookie gear remains while undecided and hides after confirmed decision.
+- Mobile Menu first tap + outside/scroll/Escape close.
+- Mobile Header directional hide/show.
+- Blog PATCH-G8.
+- Contacts CONTACT-C1.
+- shared Footer/Chat/Zalo.
+- accepted Home sections.
 
-## PARTIAL — not rollback targets
+## Bottom-nav history
 
-- `e331acd33910faceed318928cc2b9eb557e4b2b1` — SHARED-MOBILE1.
-- `8fb80a78b2c60e1e640851ca18c573ef22123af8` — SHARED-MOBILE1A.
-- `26f2fdc665c014c17093b6b36f8469c5ea2c1265` — SHARED-MOBILE1B.
+Not current UI targets:
+- e331acd... — PARTIAL
+- 8fb80a7... — PARTIAL
+- 26f2fdc... — PARTIAL
+- 1a9f819... — icon candidate, NOT PROMOTED / superseded by removal
 
-## Rollback
-
-If MOBILE-NAV-ICON1 fails visually/runtime:
-rollback runtime to `76bab2b472b252f804c6022147209631cb691c81`.
+Do not re-enable bottom navigation unless owner explicitly requests it.
 
 ## Real Bio-A ownership
 
-Merywood owner source = visual/runtime source-of-truth.
-Legacy Bio-A ZIP/database = content source only where documented.
+Merywood source = visual/runtime source-of-truth.
+Legacy Bio-A source = content source where documented.
 
 Shared:
-- `bioa-transform.mjs`
-- shared portion of `bioa-home-refine.mjs`
+- bioa-transform.mjs
+- shared layer of bioa-home-refine.mjs
 
 Route owners:
-- Home — `bioa-home-refine.mjs`
-- About — `bioa-about-refine.mjs`
-- Gia Công Mỹ Phẩm — `bioa-cosmetics-refine.mjs`
-- Dịch Vụ Khác — `bioa-services-refine.mjs`
-- Blog — `bioa-blog-refine.mjs`
-- Contacts — `bioa-contacts-refine.mjs`
+Home / About / Gia Công Mỹ Phẩm / Dịch Vụ Khác / Blog / Contacts refine modules.
 
-Build: `build.mjs`.
-
-Do not import Woo/Suite/Child/PMX Shell/Product Card or other project-specific architecture into Bio-A.
+Build:
+build.mjs
 
 ## Next test
 
-Test Mobile:
-1. all 5 icon shapes;
-2. active/inactive color state;
-3. optical centering;
-4. labels remain clear;
-5. scroll down fully hides bar;
-6. scroll up restores;
-7. first-tap Mobile Menu still works;
-8. Chat/Cookie still clear the bar.
+Mobile:
+1. no bottom bar;
+2. no extra bottom padding;
+3. Chat back at lower-right source position;
+4. Cookie gear/popup back at source position when undecided;
+5. confirmed Cookie choice still hides gear;
+6. Header down-hide / up-show;
+7. Mobile Menu first tap;
+8. no regression to page content.
 
-If PASS:
-- lock MOBILE-NAV-ICON1;
-- finish remaining small fixes;
-- FULL Tablet pass;
-- cleanup;
-- production package/domain deploy.
+After PASS:
+remaining small fixes -> FULL Tablet pass -> cleanup -> production package/domain deploy.

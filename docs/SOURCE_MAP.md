@@ -2014,3 +2014,24 @@ State color remains CSS-owned:
 - active icon: cream on Bio-A green tile.
 
 Do not redraw these icons or substitute generic library icons without owner approval.
+
+
+## MOBILE-NAV-PAUSE1 — active Mobile shared behavior
+
+Mobile bottom navigation:
+- PAUSED / DISABLED by owner.
+- no runtime bottom-nav markup, CSS or body padding.
+
+Mobile Header directional behavior:
+- `bioa-home-refine.mjs > addMobileHeaderScroll($)`;
+- `body.bioa-mobile-chrome-hidden`;
+- down hides Header; up shows; top/menu-open forces visible.
+
+Chat:
+- existing Chat CSS position is active again; no bottom-nav offset.
+
+Cookie:
+- Merywood/source positioning is active again; no bottom-nav offset.
+- outside-dismiss and confirmed-choice gear logic remains in `bioa-transform.mjs > brandCookieBanner()`.
+
+Do not re-enable Mobile bottom navigation without explicit owner request.

@@ -3,71 +3,61 @@
 Repository:
 https://github.com/zireyyyy/bioagroup
 
-Read first:
-1. START_HERE.md
-2. CURRENT STATE SNAPSHOT at top of FULL_HANDOFF.md
-3. AGENTS.md
-4. docs/WORKFLOW.md
-5. docs/SOURCE_MAP.md
-6. exact route/component owner file
-7. Blog contract only for Blog
-8. final deploy checklist only during closeout/deploy
+Read START_HERE.md, CURRENT STATE SNAPSHOT in FULL_HANDOFF.md, AGENTS.md, docs/WORKFLOW.md, docs/SOURCE_MAP.md and the exact owner file before editing.
 
 ## Current runtime state
 
-Production-confirmed baseline before current candidate:
-`76bab2b472b252f804c6022147209631cb691c81`
-— SHARED-MOBILE1C — PASS.
+Last owner-confirmed runtime baseline before current candidate:
+`76bab2b472b252f804c6022147209631cb691c81` — SHARED-MOBILE1C — PASS.
 
 Current candidate:
-**MOBILE-NAV-ICON1 — PENDING OWNER TEST**.
+**MOBILE-NAV-PAUSE1 — PENDING OWNER TEST**.
 
-Exact current change:
-only five Mobile bottom-nav artworks were replaced using the owner-supplied shapes:
-Trang Chủ / Gia Công / Dịch Vụ / Blog / Liên Hệ.
+Owner temporarily removed Mobile bottom navigation and will revisit it later.
 
-Do not modify bottom-bar layout, routes, labels, scroll behavior, first-tap menu, Cookie or Chat while owner tests this candidate.
+Must remain:
+- no bottom bar on any route;
+- Chat/Cookie restored to pre-bottom-bar positions;
+- Cookie outside-dismiss + confirmed-choice gear logic;
+- Mobile Menu first-tap + outside/scroll/Escape close;
+- Mobile Header scroll-down hide / scroll-up show.
+
+The five-icon set is future work only. Do not re-enable bottom navigation automatically.
 
 ## PASS / FROZEN
 
-Blog PATCH-G8, Contacts CONTACT-C1, shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu, Mobile first-tap behavior, Mobile full-hide/show behavior, Chat/Cookie clearance, accepted Home sections.
+Blog PATCH-G8.
+Contacts CONTACT-C1.
+Cookie logic.
+Mobile Menu logic.
+Mobile Header directional behavior.
+shared Footer/Chat/Zalo.
+accepted Home sections.
 
-## PARTIAL / NOT ROLLBACK
+## Superseded bottom-nav work
 
-e331acd... SHARED-MOBILE1
-8fb80a7... SHARED-MOBILE1A
-26f2fdc... SHARED-MOBILE1B
-
-Rollback if current candidate fails:
-`76bab2b472b252f804c6022147209631cb691c81`.
+e331acd... PARTIAL
+8fb80a7... PARTIAL
+26f2fdc... PARTIAL
+1a9f819... NOT PROMOTED / superseded
 
 ## Bio-A architecture only
 
-Merywood source = visual/runtime source-of-truth.
+Merywood = visual/runtime source-of-truth.
 Legacy Bio-A source = content source where documented.
 
 Shared owners:
-`bioa-transform.mjs`, shared layer of `bioa-home-refine.mjs`.
+bioa-transform.mjs + shared bioa-home-refine.mjs.
 
 Route owners:
-Home / About / Gia Công Mỹ Phẩm / Dịch Vụ Khác / Blog / Contacts dedicated refine modules.
+Home / About / Gia Công Mỹ Phẩm / Dịch Vụ Khác / Blog / Contacts.
 
-Build owner:
-`build.mjs`.
+Build:
+build.mjs.
 
-Do not introduce architecture terminology from the PMX Shop project.
+Do not import architecture concepts from other projects.
 
-## Workflow
+## Next
 
-Read exact block -> identify root cause -> smallest patch -> protect PASS areas -> update handoff only when state/behavior changes -> commit -> push -> report SHA/status.
-
-Home remains section-by-section.
-Desktop / Tablet / Mobile are independent regression surfaces.
-
-## Next test
-
-Owner tests MOBILE-NAV-ICON1 on Mobile for:
-icon fidelity, active/inactive state, centering, text clarity, hide/show, first-tap menu, Chat/Cookie clearance.
-
-After PASS:
-remaining small fixes -> FULL Tablet pass -> cleanup -> production package -> domain deploy.
+Owner tests MOBILE-NAV-PAUSE1.
+If PASS: remaining small fixes -> FULL Tablet -> cleanup -> production package -> domain deploy.

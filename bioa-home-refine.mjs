@@ -5180,36 +5180,12 @@ function addHeaderTopParity($){
 }
 
 
-function addMobileBottomNav($,route,lang){
-  $('.bioa-mobile-bottom-nav').remove();
-  $('#bioa-mobile-bottom-nav-js').remove();
-
-  const vi=lang==='vi';
-  const prefix=vi?'':'/en';
-  const href=(path)=>{
-    if(path==='/')return vi?'/':'/en/';
-    return prefix+path;
-  };
-  const items=[
-    {key:'home',label:vi?'Trang Chủ':'Home',href:href('/'),active:route==='/',icon:"<svg class=\"bioa-mobile-bottom-nav__art\" viewBox=\"0 0 100 100\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" d=\"M47.05,8.54L5.00,49.02L6.18,54.13L14.43,54.52L14.83,89.50L17.18,91.46L38.01,91.46L40.37,60.81L43.52,58.45L55.31,58.45L59.24,62.38L59.63,90.28L82.82,91.46L85.17,89.10L85.17,54.52L90.68,55.31L94.61,52.16L94.21,48.23L85.17,39.19L84.78,18.76L71.42,17.58L69.85,26.62L50.98,8.54Z\"/></svg>"},
-    {key:'manufacturing',label:vi?'Gia Công':'Manufacturing',href:href('/contract-manufacturing-cosmetics/'),active:route==='/contract-manufacturing-cosmetics/',icon:"<svg class=\"bioa-mobile-bottom-nav__art\" viewBox=\"0 0 100 100\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" d=\"M67.89,44.22L65.36,46.75L63.92,50.00L64.28,82.17L66.08,83.61L89.94,83.25L91.75,80.36L91.75,51.08L90.30,46.75L88.13,44.58L84.88,43.13L70.78,43.13ZM5.72,23.98L5.00,82.53L59.94,83.25L59.58,48.55L64.28,41.69L64.28,33.73L48.37,23.98L47.29,34.82L45.84,35.54L27.41,23.98L25.24,35.90ZM16.57,52.17L22.35,52.17L23.07,52.89L23.07,54.34L23.43,54.70L23.43,61.93L23.07,62.29L23.07,63.73L22.71,64.10L16.20,64.10L15.84,63.73L15.84,52.89ZM31.02,51.81L36.81,51.81L37.53,52.53L37.53,63.01L36.45,64.10L31.02,64.10L29.94,63.01L29.94,52.89ZM45.12,51.45L50.54,51.45L51.63,52.53L51.63,63.01L50.90,63.73L45.12,63.73L44.40,63.01L44.40,52.17ZM71.14,16.39L70.42,17.47L70.42,20.36L72.23,21.81L72.23,29.40L69.70,31.57L69.70,39.16L85.24,39.16L85.96,33.01L85.60,31.20L83.07,29.40L83.07,23.25L84.88,22.17L88.49,22.17L92.83,23.25L94.64,21.45L94.28,19.28L91.02,17.47L84.52,17.11L83.07,16.02Z\"/></svg>"},
-    {key:'services',label:vi?'Dịch Vụ':'Services',href:href('/dich-vu-khac/'),active:route==='/dich-vu-khac/',icon:"<svg class=\"bioa-mobile-bottom-nav__art\" viewBox=\"0 0 100 100\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" d=\"M92.20,51.40L85.80,55.80L69.40,63.00L63.80,67.80L59.80,74.60L58.60,79.40L58.60,88.20L60.60,93.00L62.60,93.00L66.20,85.40L73.00,75.80L80.60,69.40L81.80,69.80L70.60,86.60L67.80,93.00L78.60,91.80L88.20,84.60L91.80,78.60L94.60,67.00L94.20,55.80ZM27.40,6.20L24.60,11.00L29.40,14.60L29.00,36.20L5.40,77.40L5.40,85.00L14.60,93.00L54.60,93.00L53.40,85.80L17.00,85.80L12.60,82.20L36.20,38.20L37.00,14.20L51.00,14.60L51.00,37.00L61.40,57.00L31.80,55.40L18.20,80.60L53.40,81.00L58.20,67.00L69.80,57.40L58.20,35.00L58.20,14.60L62.60,8.20Z\"/></svg>"},
-    {key:'blog',label:'Blog',href:href('/blog/'),active:route==='/blog/'||route.startsWith('/blog/'),icon:"<svg class=\"bioa-mobile-bottom-nav__art\" viewBox=\"0 0 100 100\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" d=\"M68.52,5.86L68.52,29.55L68.95,30.41L71.10,32.13L90.05,32.13L90.48,29.11L74.11,11.03ZM14.26,6.72L8.66,16.20L8.66,83.80L11.24,90.26L17.70,94.57L81.87,94.57L86.17,92.42L90.91,84.67L90.91,37.73L70.67,37.73L64.64,34.28L62.92,5.00L19.00,5.00ZM25.45,77.78L25.89,76.48L28.47,74.76L57.75,74.76L59.47,75.19L61.20,76.91L61.20,79.50L59.04,81.65L28.04,81.65L25.89,79.93ZM25.45,62.27L27.61,59.69L71.53,59.69L73.68,61.41L74.11,64.00L72.82,65.72L70.67,66.58L34.93,66.58L27.61,66.15L25.89,64.86ZM25.45,46.77L26.75,45.05L29.33,44.19L70.24,44.19L73.68,45.91L74.11,48.49L71.96,51.08L27.61,51.08L25.89,49.35Z\"/></svg>"},
-    {key:'contact',label:vi?'Liên Hệ':'Contact',href:href('/contacts/'),active:route==='/contacts/',icon:"<svg class=\"bioa-mobile-bottom-nav__art\" viewBox=\"0 0 100 100\" aria-hidden=\"true\" focusable=\"false\"><path fill-rule=\"evenodd\" d=\"M11.05,88.54L11.86,94.60L88.54,93.79L88.14,85.31L82.89,75.63L75.63,69.98L66.75,66.35L53.83,72.40L44.55,72.00L35.27,66.35L30.43,67.15L23.57,70.38L17.11,75.63L12.67,82.49ZM48.59,5.00L38.50,7.42L28.00,15.09L21.55,28.41L13.88,34.87L13.48,44.55L17.51,50.20L25.99,51.01L27.20,29.22L32.85,18.32L45.36,11.05L61.50,13.48L72.80,28.81L72.80,45.76L65.54,55.04L51.82,61.91L45.36,58.27L48.18,52.62L58.68,54.64L67.56,47.38L68.77,33.25L62.31,21.55L53.83,17.51L43.74,18.32L36.08,23.57L31.64,32.04L34.46,56.66L42.53,65.13L52.22,67.15L75.63,51.41L83.70,49.39L86.52,36.08L69.17,11.86Z\"/></svg>"}
-  ];
-
-  const html=items.map(item=>
-    '<a class="bioa-mobile-bottom-nav__item'+(item.active?' is-active':'')+'" href="'+item.href+'"'+
-    (item.active?' aria-current="page"':'')+' data-bioa-mobile-nav="'+item.key+'">'+
-    '<span class="bioa-mobile-bottom-nav__icon">'+item.icon+'</span><span class="bioa-mobile-bottom-nav__label">'+item.label+'</span></a>'
-  ).join('');
-
-  $('body').append('<nav class="bioa-mobile-bottom-nav" aria-label="'+(vi?'Điều hướng nhanh trên di động':'Mobile quick navigation')+'">'+html+'</nav>');
+function addMobileHeaderScroll($){
+  $('#bioa-mobile-header-scroll-js').remove();
 
   const script=`(function(){
     var body=document.body;
-    var nav=document.querySelector('.bioa-mobile-bottom-nav');
-    if(!body||!nav)return;
+    if(!body)return;
     var mq=window.matchMedia('(max-width:768px)');
     var lastY=Math.max(0,window.scrollY||document.documentElement.scrollTop||0);
     var ticking=false;
@@ -5248,10 +5224,9 @@ function addMobileBottomNav($,route,lang){
     window.addEventListener('pageshow',function(){show();sync();});
     window.addEventListener('resize',function(){show();sync();},{passive:true});
     if(mq.addEventListener)mq.addEventListener('change',function(){show();sync();});
-
   })();`;
 
-  $('body').append($('<script id="bioa-mobile-bottom-nav-js"></script>').html(script));
+  $('body').append($('<script id="bioa-mobile-header-scroll-js"></script>').html(script));
 }
 
 function addContactLauncher($,lang){
@@ -5424,233 +5399,28 @@ function addContactLauncher($,lang){
   $('body').append($('<script id="bioa-contact-fab-js"></script>').html(script));
 }
 
-const patchMobileBottomNavCss = `
-/* SHARED-MOBILE1 — Mobile bottom navigation + scroll-direction chrome.
-   Desktop/Tablet remain unchanged except cookie gear completion state. */
-:root{
-  --bioa-mobile-bottom-h:64px;
-  --bioa-mobile-bottom-gap:12px;
-}
-.bioa-mobile-bottom-nav{display:none}
+
+
+
+
+
+
+
+
+const patchMobileHeaderScrollCss = `
+/* MOBILE-HEADER-SCROLL1 — active after bottom-navigation is paused. */
 html.bioa-cookie-decided #mw-gear{display:none!important}
 @media(max-width:768px){
-  body{
-    padding-bottom:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
-  }
   .header{
     will-change:transform!important;
     transition:transform .26s cubic-bezier(.2,.78,.2,1),background-color .22s ease,box-shadow .22s ease!important;
   }
-  .bioa-mobile-bottom-nav{
-    position:fixed!important;
-    left:0!important;
-    right:0!important;
-    bottom:0!important;
-    z-index:99970!important;
-    display:grid!important;
-    grid-template-columns:repeat(5,minmax(0,1fr))!important;
-    align-items:stretch!important;
-    height:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
-    padding:6px 7px calc(6px + env(safe-area-inset-bottom,0px))!important;
-    box-sizing:border-box!important;
-    border-top:1px solid rgba(17,111,71,.12)!important;
-    background:rgba(252,254,241,.94)!important;
-    -webkit-backdrop-filter:blur(14px)!important;
-    backdrop-filter:blur(14px)!important;
-    box-shadow:0 -8px 24px rgba(5,47,33,.08)!important;
-    transform:translate3d(0,0,0)!important;
-    transition:transform .26s cubic-bezier(.2,.78,.2,1)!important;
-    will-change:transform!important;
-  }
-  .bioa-mobile-bottom-nav__item{
-    position:relative!important;
-    min-width:0!important;
-    min-height:48px!important;
-    padding:3px 2px!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:center!important;
-    justify-content:center!important;
-    gap:4px!important;
-    border-radius:12px!important;
-    color:#536159!important;
-    text-decoration:none!important;
-    -webkit-tap-highlight-color:transparent!important;
-    transition:color .18s ease,background-color .18s ease,transform .15s ease!important;
-  }
-  .bioa-mobile-bottom-nav__item svg{
-    width:21px!important;
-    height:21px!important;
-    display:block!important;
-    fill:none!important;
-    stroke:currentColor!important;
-    stroke-width:1.8!important;
-    stroke-linecap:round!important;
-    stroke-linejoin:round!important;
-    flex:0 0 21px!important;
-  }
-  .bioa-mobile-bottom-nav__label{
-    display:block!important;
-    max-width:100%!important;
-    overflow:hidden!important;
-    text-overflow:ellipsis!important;
-    white-space:nowrap!important;
-    font-size:10.5px!important;
-    line-height:1!important;
-    font-weight:500!important;
-    letter-spacing:-.01em!important;
-  }
-  .bioa-mobile-bottom-nav__item.is-active{
-    color:var(--bioa-primary)!important;
-    background:rgba(17,111,71,.08)!important;
-  }
-  .bioa-mobile-bottom-nav__item:active{transform:scale(.95)!important}
-
   body.bioa-mobile-chrome-hidden .header{
     transform:translate3d(0,-115%,0)!important;
   }
-  body.bioa-mobile-chrome-hidden .bioa-mobile-bottom-nav{
-    transform:translate3d(0,115%,0)!important;
+  body.bioa-mobile-nav-open .header{
+    transform:none!important;
   }
-  body.bioa-mobile-nav-open .header{transform:none!important}
-  body.bioa-mobile-nav-open .bioa-mobile-bottom-nav{
-    transform:translate3d(0,115%,0)!important;
-  }
-
-  .bioa-contact-fab{
-    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
-    transition:bottom .26s cubic-bezier(.2,.78,.2,1)!important;
-  }
-  .bioa-contact-fab__panel{
-    max-height:calc(100dvh - var(--bioa-mobile-bottom-h) - 28px)!important;
-  }
-  #mw-gear{
-    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
-    transition:bottom .26s cubic-bezier(.2,.78,.2,1)!important;
-  }
-  #mw-consent.bioa-consent{
-    bottom:calc(var(--bioa-mobile-bottom-h) + 10px + env(safe-area-inset-bottom,0px))!important;
-  }
-
-  body.bioa-mobile-chrome-hidden .bioa-contact-fab{bottom:14px!important}
-  body.bioa-mobile-chrome-hidden #mw-gear{bottom:14px!important}
-  body.bioa-mobile-chrome-hidden #mw-consent.bioa-consent{bottom:14px!important}
-}
-`;
-
-const patchMobileBottomNavHotfixCss = `
-/* SHARED-MOBILE1A — bottom-nav collision + icon/label polish.
-   Must be appended AFTER all legacy Chat/Cookie CSS so this remains the final
-   mobile positioning authority. */
-@media(max-width:768px){
-  :root{
-    --bioa-mobile-bottom-h:72px;
-    --bioa-mobile-bottom-gap:14px;
-  }
-
-  body{
-    padding-bottom:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
-  }
-
-  .bioa-mobile-bottom-nav{
-    height:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
-    padding:6px 8px calc(7px + env(safe-area-inset-bottom,0px))!important;
-    align-items:center!important;
-    overflow:visible!important;
-  }
-  .bioa-mobile-bottom-nav__item{
-    min-height:56px!important;
-    padding:3px 2px 4px!important;
-    gap:3px!important;
-    overflow:visible!important;
-    border-radius:14px!important;
-  }
-  .bioa-mobile-bottom-nav__icon{
-    width:30px!important;
-    height:30px!important;
-    min-width:30px!important;
-    flex:0 0 30px!important;
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    border-radius:10px!important;
-    background:rgba(17,111,71,.075)!important;
-    color:var(--bioa-primary)!important;
-    transition:background-color .18s ease,color .18s ease,transform .18s ease!important;
-  }
-  .bioa-mobile-bottom-nav__icon svg{
-    width:18px!important;
-    height:18px!important;
-    flex:0 0 18px!important;
-    stroke-width:1.9!important;
-  }
-  .bioa-mobile-bottom-nav__label{
-    display:block!important;
-    max-width:100%!important;
-    min-height:14px!important;
-    padding:0 1px 1px!important;
-    overflow:visible!important;
-    text-overflow:clip!important;
-    white-space:nowrap!important;
-    color:#425048!important;
-    font-size:11px!important;
-    line-height:1.25!important;
-    font-weight:500!important;
-    letter-spacing:-.005em!important;
-    -webkit-font-smoothing:antialiased!important;
-    text-rendering:geometricPrecision!important;
-  }
-  .bioa-mobile-bottom-nav__item.is-active{
-    background:transparent!important;
-    color:var(--bioa-primary)!important;
-  }
-  .bioa-mobile-bottom-nav__item.is-active .bioa-mobile-bottom-nav__icon{
-    background:var(--bioa-primary)!important;
-    color:var(--bioa-footer-cream,#FDFEF5)!important;
-    box-shadow:0 5px 14px rgba(17,111,71,.16)!important;
-  }
-  .bioa-mobile-bottom-nav__item.is-active .bioa-mobile-bottom-nav__label{
-    color:var(--bioa-primary)!important;
-    font-weight:600!important;
-  }
-  .bioa-mobile-bottom-nav__item:active .bioa-mobile-bottom-nav__icon{
-    transform:scale(.94)!important;
-  }
-
-  /* FINAL collision authority: both floating corners clear the entire bar.
-     Chat stays right; Cookie gear stays source-left. */
-  .bioa-contact-fab{
-    right:12px!important;
-    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
-  }
-  #mw-gear{
-    left:12px!important;
-    right:auto!important;
-    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
-  }
-  #mw-consent.bioa-consent{
-    bottom:calc(var(--bioa-mobile-bottom-h) + 12px + env(safe-area-inset-bottom,0px))!important;
-  }
-  .bioa-contact-fab__panel{
-    max-height:calc(100dvh - var(--bioa-mobile-bottom-h) - 34px)!important;
-  }
-
-  body.bioa-mobile-chrome-hidden .bioa-contact-fab{
-    bottom:12px!important;
-  }
-  body.bioa-mobile-chrome-hidden #mw-gear{
-    bottom:12px!important;
-  }
-  body.bioa-mobile-chrome-hidden #mw-consent.bioa-consent{
-    bottom:12px!important;
-  }
-}
-`;
-
-const patchMobileBottomNavFullHideCss = `
-/* SHARED-MOBILE1C — first-tap menu reliability + iOS-safe full bottom-bar hide.
-   Icons are intentionally untouched pending owner artwork. */
-@media(max-width:768px){
   .bioa-mobile-menu-button-clean{
     position:relative!important;
     z-index:100001!important;
@@ -5658,66 +5428,14 @@ const patchMobileBottomNavFullHideCss = `
     -webkit-tap-highlight-color:transparent!important;
     pointer-events:auto!important;
   }
-
-  .bioa-mobile-bottom-nav{
-    opacity:1!important;
-    visibility:visible!important;
-    pointer-events:auto!important;
-    transform:translate3d(0,0,0)!important;
-    transition:
-      transform .26s cubic-bezier(.2,.78,.2,1),
-      opacity .16s ease,
-      visibility 0s linear 0s!important;
-  }
-
-  body.bioa-mobile-chrome-hidden .bioa-mobile-bottom-nav,
-  body.bioa-mobile-nav-open .bioa-mobile-bottom-nav{
-    transform:translate3d(0,calc(100% + 48px + env(safe-area-inset-bottom,0px)),0)!important;
-    opacity:0!important;
-    visibility:hidden!important;
-    pointer-events:none!important;
-    transition:
-      transform .26s cubic-bezier(.2,.78,.2,1),
-      opacity .14s ease,
-      visibility 0s linear .26s!important;
-  }
-
-  /* A menu gesture has priority over directional chrome for the same tap. */
   .bioa-mobile-menu-button-clean.bioa-menu-gesture-active{
     pointer-events:auto!important;
   }
 }
 `;
 
-const patchMobileBottomNavOwnerIconsCss = `
-/* MOBILE-NAV-ICON1 — owner-supplied Bio-A artwork.
-   Shapes are vector-traced from the supplied icon sheet; no concept/layout changes. */
-@media(max-width:768px){
-  .bioa-mobile-bottom-nav__icon .bioa-mobile-bottom-nav__art{
-    display:block!important;
-    width:22px!important;
-    height:22px!important;
-    flex:0 0 22px!important;
-    fill:currentColor!important;
-    stroke:none!important;
-    overflow:visible!important;
-  }
-  .bioa-mobile-bottom-nav__item[data-bioa-mobile-nav="manufacturing"] .bioa-mobile-bottom-nav__art{
-    width:24px!important;
-    height:24px!important;
-    flex-basis:24px!important;
-  }
-  .bioa-mobile-bottom-nav__item[data-bioa-mobile-nav="blog"] .bioa-mobile-bottom-nav__art,
-  .bioa-mobile-bottom-nav__item[data-bioa-mobile-nav="contact"] .bioa-mobile-bottom-nav__art{
-    width:21px!important;
-    height:21px!important;
-    flex-basis:21px!important;
-  }
-}
-`;
-
 const sharedShellCss =
-  css+patchMobileBottomNavCss+
+  css+
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
   patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
@@ -5725,9 +5443,7 @@ const sharedShellCss =
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css+
-  patchMobileBottomNavHotfixCss+
-  patchMobileBottomNavFullHideCss+
-  patchMobileBottomNavOwnerIconsCss;
+  patchMobileHeaderScrollCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -5747,14 +5463,14 @@ export function applySharedShell($,route,lang){
   addFooterCompanyInfo($);
   addHeroCounters($);
   addHeaderTopParity($);
-  addMobileBottomNav($,route,lang);
+  addMobileHeaderScroll($);
   addSharedPageReveal($,route);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchMobileBottomNavCss+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+patchMobileBottomNavHotfixCss+patchMobileBottomNavFullHideCss+patchMobileBottomNavOwnerIconsCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
@@ -5771,7 +5487,7 @@ export function applyHomeRefinement($,route,lang){
   addFooterCompanyInfo($);
   addHeroCounters($);
   addHeaderTopParity($);
-  addMobileBottomNav($,route,lang);
+  addMobileHeaderScroll($);
   addHomeReveal($);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);
