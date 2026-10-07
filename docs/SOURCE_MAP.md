@@ -1812,3 +1812,19 @@ Content source inventory:
 
 Blog index now clones the existing Merywood `.post-card` template until every article has a card; no new card component was introduced.
 Blog detail remains locked to `/blog/what-affects-moq-in-supplement-manufacturing/` source modules documented above.
+
+
+## PATCH-G7 — Blog archive pagination owner
+
+Archive page size: 7.
+Source mapping per page:
+- item 1 -> `.post-feature__card`;
+- items 2–7 -> six existing `.post-card` nodes;
+- no cloning beyond the six source card nodes.
+
+Static pagination routes:
+- `/blog/`;
+- `/blog/page/2/` through the computed final page;
+- every pagination route uses Merywood `/blog/` as source HTML.
+
+Current inventory: 38 articles -> 6 archive pages (7 + 7 + 7 + 7 + 7 + 3).

@@ -147,3 +147,18 @@ Before any Blog SEO/content change:
 10. commit/push only after verifying no Blog layout regression.
 
 If an AI-generated SEO proposal conflicts with this file, **this file wins** unless the owner explicitly changes the contract.
+
+
+## 10. Blog archive pagination — LOCKED
+
+Owner correction after archive completion:
+- never render the full archive on one Blog index page;
+- follow the Merywood archive structure: **7 articles per page**;
+- each page uses **1 featured article + up to 6 standard cards** from the same ordered dataset;
+- pagination uses the source `.posts-grid-pagination` / `.page-numbers` component and route format `/blog/page/N/`;
+- VI and EN use the same page number and article slice;
+- with 38 current articles the archive is exactly **6 pages: 7 + 7 + 7 + 7 + 7 + 3**;
+- page 1 remains `/blog/`; pages 2+ are static routes;
+- do not replace source pagination with infinite scroll, load-more, query-string paging or a custom component unless the owner explicitly reopens this behavior.
+
+This pagination rule is part of the owner-approved Blog visual/runtime contract.

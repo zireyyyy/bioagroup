@@ -2574,3 +2574,32 @@ Verification before push:
 
 Runtime status:
 - owner final test: PENDING.
+
+
+## PATCH-G7 — BLOG ARCHIVE PAGINATION SOURCE PARITY
+
+Owner rejected G6 index density:
+- all 38 articles were rendered on one page;
+- Merywood source uses one featured + six cards = seven articles per archive page.
+
+G7:
+- restores source pagination behavior;
+- BLOG_PAGE_SIZE is locked to 7;
+- each page maps 1 featured + up to 6 standard Merywood cards;
+- routes: /blog/ then /blog/page/2/ ... /blog/page/6/;
+- current 38 articles resolve to 6 pages: 7/7/7/7/7/3;
+- source .posts-grid-pagination and page-numbers markup retained;
+- previous/next pagination controls use « / » source behavior;
+- EN mirrors pagination under /en/blog/page/N/;
+- page-specific canonical/title added.
+
+Protected:
+- all 38 article records;
+- article detail G5 visual/runtime PASS;
+- Blog watermark PASS/LOCKED;
+- shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Home/About/Cosmetics/Other Services.
+
+Status:
+- code/syntax PASS;
+- owner runtime test pending.

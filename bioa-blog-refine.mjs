@@ -41,34 +41,56 @@ function tocHtml(post,lang){
   return post.sections.map((s,i)=>'<li class="bb-toc__item bb-toc__item--lv1"><a href="#'+esc(s.id)+'">'+esc(displaySectionHeading(s,i,lang))+'</a></li>').join('');
 }
 
-function applyBlogIndex($,lang){
+const BLOG_PAGE_SIZE=7;
+function blogPageFromRoute(route){
+  if(route==='/blog/')return 1;
+  const m=String(route||'').match(/^\/blog\/page\/(\d+)\/$/);
+  return m?Math.max(1,Number(m[1])||1):null;
+}
+function blogPageRoute(page,lang){
+  const base=page<=1?'/blog/':'/blog/page/'+page+'/';
+  return (lang==='en'?'/en':'')+base;
+}
+function blogPaginationHtml(current,total,lang){
+  if(total<=1)return '';
+  const items=[];
+  if(current>1)items.push('<a class="prev page-numbers" href="'+blogPageRoute(current-1,lang)+'">«</a>');
+  for(let page=1;page<=total;page++){
+    if(page===current)items.push('<span aria-current="page" class="page-numbers current">'+page+'</span>');
+    else items.push('<a class="page-numbers" href="'+blogPageRoute(page,lang)+'">'+page+'</a>');
+  }
+  if(current<total)items.push('<a class="next page-numbers" href="'+blogPageRoute(current+1,lang)+'">»</a>');
+  return items.join('');
+}
+
+function applyBlogIndex($,lang,route='/blog/'){
   const isEn=lang==='en';
+  const page=blogPageFromRoute(route)||1;
+  const totalPages=Math.max(1,Math.ceil(blogPosts.length/BLOG_PAGE_SIZE));
+  const safePage=Math.min(page,totalPages);
+  const pagePosts=blogPosts.slice((safePage-1)*BLOG_PAGE_SIZE,safePage*BLOG_PAGE_SIZE);
   const hero=$('.blog-hero');
   $('body').addClass('bioa-blog-index');
   setText(hero,'.title',isEn?'Bio-A Group Blog':'Blog Bio-A Group');
   setText(hero,'.text-large',isEn?'Practical articles on cosmetic manufacturing, formulation, skincare, packaging and responsible brand development.':'Kiến thức thực tế về gia công mỹ phẩm, công thức, chăm sóc da, bao bì và phát triển thương hiệu có trách nhiệm.');
   hero.find('.blog-hero__bg').attr('src','/assets/bioa-monogram.svg').attr('alt','').attr('aria-hidden','true').removeAttr('srcset sizes');
 
-  const feature=blogPosts[0];
+  const feature=pagePosts[0];
   const fc=$('.post-feature__card').first();
-  if(fc.length){
+  if(fc.length&&feature){
     const title=isEn?feature.titleEn:feature.titleVi;
     const excerpt=isEn?feature.excerptEn:feature.excerptVi;
     setImg(fc,'.post-feature__img',feature.image,title);
     fc.find('.post-feature__title a').text(title).attr('href',localRoute(feature.slug,lang));
     setText(fc,'.post-feature__subtitle',excerpt);
     fc.find('.post-feature__actions a').attr('href',localRoute(feature.slug,lang)).text(isEn?'Read Article':'Đọc Bài Viết');
+  }else if(fc.length){
+    fc.remove();
   }
 
-  const grid=$('.posts-grid').first();
-  const seed=grid.find('.post-card').first().clone();
-  const need=Math.max(0,blogPosts.length-1);
-  if(seed.length){
-    while(grid.find('.post-card').length<need)grid.append(seed.clone());
-  }
-  const cards=grid.find('.post-card');
+  const cards=$('.posts-grid .post-card');
   cards.each((i,node)=>{
-    const p=blogPosts[i+1]; if(!p){$(node).remove();return;}
+    const p=pagePosts[i+1]; if(!p){$(node).remove();return;}
     const card=$(node); const title=isEn?p.titleEn:p.titleVi; const excerpt=isEn?p.excerptEn:p.excerptVi; const href=localRoute(p.slug,lang);
     card.find('a').attr('href',href);
     setImg(card,'.post-card-thumb img',p.image,title);
@@ -79,10 +101,16 @@ function applyBlogIndex($,lang){
     card.find('.btn').attr('href',href);
     card.find('.btn_text').text(isEn?'Read Article':'Đọc Bài Viết');
   });
-  $('.posts-grid-pagination').remove();
-  $('title').text(isEn?'Bio-A Group Blog | Cosmetic Manufacturing Insights':'Blog Bio-A Group | Kiến Thức Gia Công Mỹ Phẩm');
+
+  const pager=$('.posts-grid-pagination').first();
+  if(pager.length)pager.html(blogPaginationHtml(safePage,totalPages,lang));
+
+  const baseTitle=isEn?'Bio-A Group Blog | Cosmetic Manufacturing Insights':'Blog Bio-A Group | Kiến Thức Gia Công Mỹ Phẩm';
+  $('title').text(safePage===1?baseTitle:baseTitle+' — '+(isEn?'Page ':'Trang ')+safePage);
   const description=isEn?'Practical cosmetic manufacturing, formulation, skincare and packaging articles from Bio-A Group.':'Blog Bio-A Group chia sẻ kiến thức gia công mỹ phẩm, công thức, chăm sóc da, bao bì và phát triển thương hiệu.';
   $('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr('content',description);
+  const canonical='https://bioagroup.vn'+blogPageRoute(safePage,lang);
+  $('link[rel="canonical"]').attr('href',canonical);
 }
 
 function applyArticleSeo($,post,route,lang){
@@ -424,10 +452,16 @@ function patchBlogCss($){
 }
 
 export function applyBlogRefinement($,route,lang='vi'){
-  if(route==='/blog/')applyBlogIndex($,lang);
+  const page=blogPageFromRoute(route);
+  if(page!==null)applyBlogIndex($,lang,route);
   else if(route.startsWith('/blog/'))applyBlogArticle($,route,lang);
   else return;
   patchBlogCss($);
 }
 
-export const blogRouteDefs=blogPosts.map(p=>['/blog/'+p.slug+'/','/blog/what-affects-moq-in-supplement-manufacturing/']);
+const blogIndexPageDefs=Array.from({length:Math.max(0,Math.ceil(blogPosts.length/BLOG_PAGE_SIZE)-1)},(_,i)=>[
+  '/blog/page/'+(i+2)+'/',
+  '/blog/'
+]);
+const blogArticleRouteDefs=blogPosts.map(p=>['/blog/'+p.slug+'/','/blog/what-affects-moq-in-supplement-manufacturing/']);
+export const blogRouteDefs=[...blogIndexPageDefs,...blogArticleRouteDefs];
