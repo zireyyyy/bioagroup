@@ -1897,3 +1897,63 @@ Protected:
 Status:
 - E6 Desktop/Tablet/Mobile: PENDING OWNER TEST
 - E7 Desktop/Tablet/Mobile: PENDING OWNER TEST
+
+
+## PATCH-E8 — HERO LAYER REBUILD + CATEGORY HOVER + MOTION-U1D3
+
+Owner feedback after E6/E7:
+- Hero still showed an unnatural repaired/background shape behind the tube/product composition.
+- Manufacturing Categories layout is accepted, but the small top-left eyebrow must be removed.
+- Bio-A watermark inside category cards should inherit the accepted Home hover behavior.
+- Reveal motion across pages/devices feels too delayed; content should appear sooner and complete faster without changing the established motion language.
+
+Root cause:
+- E6 reused a previously repaired raster. The Merywood watermark had been painted over/replaced in-place, so faint source/repair geometry could still read as a rectangular/ghost layer.
+- MOTION-U1 still used 700ms base duration plus full per-item delays and late IntersectionObserver root margins (-150px Desktop / -80px Mobile).
+
+E8 Hero correction:
+- rebuild assets/cosmetics-hero-bioa.webp from explicit layers:
+  1. clean neutral hero background,
+  2. one subtle Bio-A monogram watermark,
+  3. original product/stone/plant foreground above it;
+- no Merywood watermark remains;
+- Bio-A watermark is physically behind the foreground rather than painted across products;
+- preserve source product composition, hero geometry, cover/center behavior and responsive DOM.
+
+E8 category refinement:
+- remove only the small "GIA CÔNG MỸ PHẨM" / English eyebrow from #bioa-cosmetics-categories;
+- keep title, intro, cards, spacing, taxonomy and responsive grid unchanged;
+- category watermark now reuses Home watermark interaction grammar:
+  - normal scale 1 / opacity .075;
+  - pointer-hover scale 1.07 / opacity .105;
+  - .35s ease;
+  - no sticky touch hover behavior.
+
+MOTION-U1D3 global tuning:
+- same fade-up / fade-left / fade-right language and transform ownership rules;
+- Desktop base duration: 700ms -> 580ms;
+- Desktop slider special duration: 560ms -> 500ms;
+- Tablet duration: 520ms with reduced delay factor;
+- Mobile duration: 500ms -> 410ms;
+- base delay factor: 1.00 -> .68;
+- Tablet delay factor: .60;
+- Mobile delay factor: .40;
+- travel distance reduced for smoother entry;
+- observer reveal line moved earlier:
+  - Desktop root margin -150px -> -64px;
+  - Mobile root margin -80px -> -28px;
+- initial in-view threshold also moved closer to the viewport edge;
+- applied to both Home reveal and shared subpage reveal, so all current/future routes inherit the same faster cadence.
+
+Protected:
+- Why Choose E5;
+- E7 Manufacturing Category geometry/content/icons;
+- Packaging / Process / Certification / QC;
+- Header/Footer/Cookie/Chat/Mobile Menu/Zalo/language switching;
+- Swiper transform owners;
+- reduced-motion accessibility behavior.
+
+Status:
+- Hero Desktop/Tablet/Mobile: PENDING OWNER TEST
+- Category eyebrow/hover: PENDING OWNER TEST
+- MOTION-U1D3 all routes/devices: PENDING OWNER TEST

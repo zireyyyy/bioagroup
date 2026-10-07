@@ -3820,19 +3820,19 @@ const patchMotionU1Css = `
 html.bioa-unila-ready [data-bioa-aos]{
   opacity:0;
   transition-property:opacity,transform;
-  transition-duration:700ms;
+  transition-duration:580ms;
   transition-timing-function:ease;
-  transition-delay:var(--bioa-aos-delay,0ms);
+  transition-delay:calc(var(--bioa-aos-delay,0ms) * .68);
   will-change:opacity,transform;
 }
 html.bioa-unila-ready [data-bioa-aos="fade-up"]{
-  transform:translate3d(0,100px,0);
+  transform:translate3d(0,78px,0);
 }
 html.bioa-unila-ready [data-bioa-aos="fade-right"]{
-  transform:translate3d(-100px,0,0);
+  transform:translate3d(-78px,0,0);
 }
 html.bioa-unila-ready [data-bioa-aos="fade-left"]{
-  transform:translate3d(100px,0,0);
+  transform:translate3d(78px,0,0);
 }
 html.bioa-unila-ready [data-bioa-aos].is-in{
   opacity:1;
@@ -3844,33 +3844,37 @@ html.bioa-unila-ready [data-bioa-aos].is-in{
   html.bioa-unila-ready .block-how-works [data-bioa-aos],
   html.bioa-unila-ready .block-products-desctop [data-bioa-aos],
   html.bioa-unila-ready .block-reviews [data-bioa-aos]{
-    transition-duration:560ms;
+    transition-duration:500ms;
   }
 }
 @media(max-width:1200px) and (min-width:769px){
+  html.bioa-unila-ready [data-bioa-aos]{
+    transition-duration:520ms;
+    transition-delay:calc(var(--bioa-aos-delay,0ms) * .60);
+  }
   html.bioa-unila-ready [data-bioa-aos="fade-up"]{
-    transform:translate3d(0,72px,0);
+    transform:translate3d(0,54px,0);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-right"]{
-    transform:translate3d(-72px,0,0);
+    transform:translate3d(-54px,0,0);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-left"]{
-    transform:translate3d(72px,0,0);
+    transform:translate3d(54px,0,0);
   }
 }
 @media(max-width:768px){
   html.bioa-unila-ready [data-bioa-aos]{
-    transition-duration:500ms;
-    transition-delay:calc(var(--bioa-aos-delay,0ms) * .55);
+    transition-duration:410ms;
+    transition-delay:calc(var(--bioa-aos-delay,0ms) * .40);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-up"]{
-    transform:translate3d(0,42px,0);
+    transform:translate3d(0,30px,0);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-right"]{
-    transform:translate3d(-28px,12px,0);
+    transform:translate3d(-22px,8px,0);
   }
   html.bioa-unila-ready [data-bioa-aos="fade-left"]{
-    transform:translate3d(28px,12px,0);
+    transform:translate3d(22px,8px,0);
   }
 }
 @media(prefers-reduced-motion:reduce){
@@ -4897,11 +4901,11 @@ function addHomeReveal($){
           obs.unobserve(entry.target);
         }
       });
-    },{threshold:.01,rootMargin:mobile?'0px 0px -80px 0px':'0px 0px -150px 0px'});
+    },{threshold:.01,rootMargin:mobile?'0px 0px -28px 0px':'0px 0px -64px 0px'});
 
     els.forEach(function(el){
       var r=el.getBoundingClientRect();
-      var readyLine=mobile?window.innerHeight-20:window.innerHeight-40;
+      var readyLine=mobile?window.innerHeight-6:window.innerHeight-12;
       if(r.top<readyLine)show(el);
       else obs.observe(el);
     });
@@ -5054,11 +5058,11 @@ function addSharedPageReveal($,route){
           obs.unobserve(entry.target);
         }
       });
-    },{threshold:.01,rootMargin:mobile?'0px 0px -80px 0px':'0px 0px -150px 0px'});
+    },{threshold:.01,rootMargin:mobile?'0px 0px -28px 0px':'0px 0px -64px 0px'});
 
     els.forEach(function(el){
       var r=el.getBoundingClientRect();
-      var readyLine=mobile?window.innerHeight-20:window.innerHeight-40;
+      var readyLine=mobile?window.innerHeight-6:window.innerHeight-12;
       if(r.top<readyLine)show(el);
       else obs.observe(el);
     });

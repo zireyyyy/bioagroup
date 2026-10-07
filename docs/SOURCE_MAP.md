@@ -1474,3 +1474,25 @@ Semantic lock:
 - Why Choose = Bio-A capabilities/reasons.
 - Manufacturing Categories = product taxonomy.
 - never merge these two roles again.
+
+
+## PATCH-E8 — hero layer authority + MOTION-U1D3
+
+Hero authority:
+- assets/cosmetics-hero-bioa.webp is now a true three-layer composite:
+  - clean background;
+  - Bio-A monogram watermark;
+  - original Merywood product/stone/plant foreground.
+- no Merywood watermark/repair layer is allowed.
+- applyHeroArtwork() remains the route renderer; hero DOM/geometry stays source-owned.
+
+Manufacturing Categories:
+- #bioa-cosmetics-categories keeps the E7 layout/content/taxonomy.
+- the eyebrow is intentionally removed.
+- .bioa-category-watermark uses the same hover scale/opacity rhythm as the accepted Home watermark treatment.
+
+Global motion authority:
+- bioa-home-refine.mjs / patchMotionU1Css + addHomeReveal() + addSharedPageReveal().
+- MOTION-U1D3 keeps the same effects but shortens duration/delays and triggers IntersectionObserver earlier on Desktop/Tablet/Mobile.
+- every new route must inherit this shared timing instead of adding route-local motion timing.
+- never attach reveal transforms to Swiper translate-owning wrappers/slides.
