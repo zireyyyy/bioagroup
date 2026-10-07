@@ -346,17 +346,68 @@ function applyBlogArticle($,route,lang){
 function patchBlogCss($){
   if($('#bioa-blog-style').length)return;
   $('head').append('<style id="bioa-blog-style">'+
-    /* PATCH-G3 — fixed Blog index watermark: whole Bio-A monogram remains visible while scrolling. */
-    'body.bioa-blog-index{background-image:url("/assets/bioa-monogram.svg")!important;background-repeat:no-repeat!important;background-attachment:fixed!important;background-position:center 58vh!important;background-size:min(42vw,650px) auto!important}'+
+    /* PATCH-G4 — viewport-centered, low-contrast fixed Bio-A watermark.
+       A pale ivory veil is painted above the original green SVG so the watermark
+       stays visible like the other site watermarks without competing with cards/text. */
+    'body.bioa-blog-index{'+
+      'background-image:linear-gradient(rgba(247,244,232,.94),rgba(247,244,232,.94)),url("/assets/bioa-monogram.svg")!important;'+
+      'background-repeat:no-repeat,no-repeat!important;'+
+      'background-attachment:fixed,fixed!important;'+
+      'background-position:center center,center center!important;'+
+      'background-size:100% 100%,min(38vw,560px) auto!important;'+
+    '}'+
     'body.bioa-blog-index .blog-hero__bg{display:none!important}'+
     '.post-feature__img,.post-card-thumb img{object-fit:cover!important}'+
-    /* Rich detail pages keep Merywood source component geometry and only normalize Bio-A media. */
+
+    /* PATCH-G4 — Rich article geometry guard.
+       G3 reuses real Merywood modules; these guards stop source component widths
+       from escaping the actual Bio-A content column after the shared shell is applied. */
+    '.bioa-blog-detail .bb-content-col{min-width:0!important}'+
+    '.bioa-blog-detail .bb-content-col>section{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box!important}'+
+    '.bioa-blog-detail .bb-content-col>section>.container{width:100%!important;max-width:100%!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;box-sizing:border-box!important}'+
+
+    /* Source card-grid parity, made deterministic instead of depending on duplicated
+       inline source CSS surviving every transform/build path. */
+    '.bioa-blog-detail .merywood-cg-wrap{width:100%!important;max-width:100%!important;overflow:hidden!important;box-sizing:border-box!important;--cg-title-weight:600!important}'+
+    '.bioa-blog-detail .merywood-cg-grid{display:grid!important;width:100%!important;gap:24px!important;align-items:stretch!important;box-sizing:border-box!important}'+
+    '.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-1{grid-template-columns:minmax(0,1fr)!important}'+
+    '.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-2{grid-template-columns:repeat(2,minmax(0,1fr))!important}'+
+    '.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-3{grid-template-columns:repeat(3,minmax(0,1fr))!important}'+
+    '.bioa-blog-detail .merywood-cg-grid>.merywood-cg-card{flex:none!important;width:auto!important;max-width:none!important;min-width:0!important;display:flex!important;flex-direction:column!important;box-sizing:border-box!important;border-radius:10px!important;padding:20px 22px!important;box-shadow:0 1px 0 rgba(0,0,0,.04),0 2px 10px rgba(0,0,0,.04)!important;overflow-wrap:anywhere!important}'+
+    '.bioa-blog-detail .merywood-cg-card--mint{background:#E6EBE5!important}'+
+    '.bioa-blog-detail .merywood-cg-card--gray{background:#E7ECE7!important}'+
+    '.bioa-blog-detail .merywood-cg-card--sand{background:#F5F2EA!important}'+
+    '.bioa-blog-detail .merywood-cg-card--white{background:#FFFFFF!important}'+
+    '.bioa-blog-detail .merywood-cg-card__title{margin:0 0 10px!important;min-height:0!important;font-size:clamp(18px,1.28vw,23px)!important;line-height:1.28!important;font-weight:600!important;letter-spacing:0!important}'+
+    '.bioa-blog-detail .merywood-cg-wrap .text-block__content.cards{margin:0!important;font-size:clamp(14px,.98vw,16px)!important;line-height:1.55!important;font-weight:400!important;color:#2a2a2a!important}'+
+    '.bioa-blog-detail .merywood-cg-wrap .text-block__content.cards p{margin:0!important;font-weight:400!important}'+
+
+    /* Keep source CTA/image modules inside the same content rail. */
     '.bioa-blog-detail .bioa-blog-source-image .image-block__img{display:block!important;width:100%!important;aspect-ratio:1174/440!important;object-fit:cover!important}'+
+    '.bioa-blog-detail .block-green-card .green-card{width:100%!important;max-width:100%!important;box-sizing:border-box!important}'+
     '.bioa-blog-detail .bioa-blog-source-green .green-card__img{object-fit:cover!important}'+
+
+    /* Table typography: source uses weight 800, which becomes visually over-compressed
+       in Bio-A's Manrope stack. Keep the source layout but normalize hierarchy. */
+    '.bioa-blog-detail .block-flex-table{width:100%!important;max-width:100%!important;overflow:hidden!important}'+
+    '.bioa-blog-detail .block-flex-table .container{width:100%!important;max-width:100%!important;padding:0!important;margin:0!important}'+
+    '.bioa-blog-detail .flex-table-scroll{width:100%!important;max-width:100%!important;overflow-x:auto!important}'+
+    '.bioa-blog-detail .flex-table{width:100%!important;min-width:0!important;--cols:3!important;--ft-col-min:0px!important}'+
+    '.bioa-blog-detail .flex-table__header,.bioa-blog-detail .flex-table__row{grid-template-columns:repeat(3,minmax(0,1fr))!important}'+
+    '.bioa-blog-detail .flex-table .flex-table__cell--head{font-weight:600!important;font-size:clamp(16px,1.12vw,20px)!important;line-height:1.3!important;letter-spacing:0!important;padding:clamp(14px,1.25vw,20px) clamp(14px,1.15vw,22px)!important;overflow-wrap:normal!important;word-break:normal!important}'+
+    '.bioa-blog-detail .flex-table__cell{font-weight:400!important;font-size:clamp(14px,.95vw,17px)!important;line-height:1.55!important;overflow-wrap:break-word!important;word-break:normal!important}'+
     '.bioa-blog-detail .bioa-blog-source-note .text-block__content>p:first-child{opacity:.82}'+
     '.bioa-blog-detail .bioa-blog-source-note a{text-decoration:underline;text-underline-offset:3px}'+
-    '@media(max-width:1024px){body.bioa-blog-index{background-position:center 56vh!important;background-size:min(58vw,590px) auto!important}}'+
-    '@media(max-width:768px){body.bioa-blog-index{background-position:center 52vh!important;background-size:min(72vw,520px) auto!important}.bioa-blog-detail .bioa-blog-source-image .image-block__img{aspect-ratio:544/270!important}}'+
+
+    '@media(max-width:1024px){'+
+      'body.bioa-blog-index{background-size:100% 100%,min(52vw,520px) auto!important}'+
+      '.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-2,.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-3{grid-template-columns:minmax(0,1fr)!important}'+
+    '}'+
+    '@media(max-width:768px){'+
+      'body.bioa-blog-index{background-size:100% 100%,min(68vw,440px) auto!important}'+
+      '.bioa-blog-detail .bioa-blog-source-image .image-block__img{aspect-ratio:544/270!important}'+
+      '.bioa-blog-detail .flex-table{min-width:680px!important}'+
+    '}'+
   '</style>');
 }
 

@@ -1781,3 +1781,21 @@ Blog index watermark:
 - owner is `body.bioa-blog-index` fixed background using `/assets/bioa-monogram.svg`;
 - source `.blog-hero__bg` stays hidden on the index;
 - no additional generated artwork.
+
+
+## PATCH-G4 — Blog visual safety guards
+
+Blog index watermark:
+- continues to use `/assets/bioa-monogram.svg`;
+- viewport authority is fixed + center/center;
+- opacity treatment is achieved by a 94% ivory veil above the original SVG;
+- target visual strength is approximately 6%;
+- do not recolor or modify the shared SVG asset.
+
+Blog detail rich modules:
+- Merywood source DOM remains authority;
+- route-scoped Bio-A CSS now guarantees source card geometry if inline source styles are reordered or partially overridden;
+- all direct article sections and module containers must remain within `.bb-content-col`;
+- 2/3-column card grids stay source-like on desktop and collapse to one column <=1024;
+- flex-table header font weight is 600 in Bio-A even though the Merywood source uses 800;
+- on mobile the 3-column table scrolls horizontally instead of compressing text.

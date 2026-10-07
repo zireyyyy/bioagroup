@@ -2484,3 +2484,38 @@ Verification:
 - expected source selectors confirmed: text-block, image-block, merywood-cg-wrap, block-green-card, block-flex-table, bb-post-nav-wrap;
 - JS syntax check PASS.
 - Desktop/Tablet/Mobile runtime: PENDING OWNER TEST.
+
+
+## PATCH-G4 — BLOG WATERMARK + RICH MODULE GEOMETRY HOTFIX
+
+Owner runtime feedback on G3:
+- Blog watermark was technically fixed but visually wrong: full green artwork was too strong and not centered like the site's other watermark treatments.
+- rich article card modules appeared as protruding/plain text instead of stable source-style cards;
+- flexible-table header type was too heavy and looked compressed in the Bio-A font stack.
+
+Root cause:
+- G3 used the original green SVG directly as a fixed body background with no independent opacity treatment.
+- rich modules still depended on duplicated inline source component CSS; after the Bio-A transform/shared-shell path this was not deterministic enough for the cloned card grids.
+- the source flex-table explicitly uses font-weight 800 for header cells, which is too aggressive for Bio-A's current Manrope treatment.
+
+G4 implementation:
+- watermark remains fixed to viewport but is now centered at 50%/50%;
+- an ivory 94% veil is layered above the same Bio-A SVG, leaving a ~6% visual watermark comparable to other site watermark treatments;
+- no new artwork generated and the shared monogram asset is unchanged;
+- rich article modules are clamped to the real bb-content-col width;
+- Merywood 1/2/3-column card modules receive deterministic route-scoped grid/card geometry and source colors;
+- Desktop 2/3-column modules stay 2/3 columns; <=1024 collapses safely to one column;
+- green cards/images remain inside the same article content rail;
+- flex table remains the Merywood table pattern but header weight is normalized 800 -> 600 and desktop type size is reduced;
+- mobile table keeps horizontal scrolling rather than crushing three columns.
+
+Protected:
+- seven G2/G3 article content records and SEO;
+- source route /blog/what-affects-moq-in-supplement-manufacturing/;
+- shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Home/About/Cosmetics/Other Services;
+- MOTION-U1D3 ownership.
+
+Status:
+- JS syntax PASS.
+- Desktop/Tablet/Mobile: PENDING OWNER TEST.
