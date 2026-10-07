@@ -386,6 +386,12 @@ function patchBlogCss($){
     '.bioa-blog-detail .bioa-blog-source-image .image-block__img{display:block!important;width:100%!important;aspect-ratio:1174/440!important;object-fit:cover!important}'+
     '.bioa-blog-detail .block-green-card .green-card{width:100%!important;max-width:100%!important;box-sizing:border-box!important}'+
     '.bioa-blog-detail .bioa-blog-source-green .green-card__img{object-fit:cover!important}'+
+    /* PATCH-G5 — restore Merywood CTA contrast after replacing source button with Bio-A anchor. */
+    '.bioa-blog-detail .bioa-blog-source-green .green-card__btn{display:inline-flex!important;align-items:center!important;gap:8px!important;width:auto!important;min-width:0!important;margin:0!important;padding:13px 20px!important;border:1px solid rgba(255,255,255,.72)!important;border-radius:12px!important;background:#fff!important;color:#0f5f42!important;text-decoration:none!important;box-shadow:none!important}'+
+    '.bioa-blog-detail .bioa-blog-source-green .green-card__btn .btn__text,.bioa-blog-detail .bioa-blog-source-green .green-card__btn .btn__icon{color:#0f5f42!important;fill:currentColor!important;font-weight:600!important}'+
+    '.bioa-blog-detail .bioa-blog-source-green .green-card__btn:hover{background:#f7f4e8!important;color:#0b4f37!important}'+
+    /* PATCH-G5 — source next arrow points right; previous must mirror it. */
+    '.bioa-blog-detail .bb-post-nav__prev .bb-post-nav__arrow{transform:rotate(180deg)!important;transform-origin:center!important}'+
 
     /* Table typography: source uses weight 800, which becomes visually over-compressed
        in Bio-A's Manrope stack. Keep the source layout but normalize hierarchy. */

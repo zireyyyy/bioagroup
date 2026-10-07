@@ -2519,3 +2519,21 @@ Protected:
 Status:
 - JS syntax PASS.
 - Desktop/Tablet/Mobile: PENDING OWNER TEST.
+
+
+## PATCH-G5 — BLOG CTA CONTRAST + PREVIOUS ARROW DIRECTION
+
+Owner test after G4:
+- watermark PASS and is now LOCKED;
+- green-card CTA label became visually submerged because the Bio-A anchor inherited the source white text but no longer inherited the original source button surface;
+- previous-article control used the same right-facing SVG geometry as next article.
+
+G5:
+- restore white Merywood-style CTA surface inside Bio-A green cards;
+- Bio-A green text/icon on white CTA, with soft ivory hover;
+- previous article arrow is mirrored 180deg; next article remains unchanged;
+- no changes to article content, rich-layout geometry, watermark, shared shell or motion.
+
+Status:
+- code/syntax PASS;
+- owner runtime test pending.
