@@ -2793,3 +2793,39 @@ Protected:
 Status:
 - CODE/SYNTAX PASS;
 - RUNTIME: PENDING OWNER TEST.
+
+
+## SHARED-MOBILE1C — FIRST-TAP MENU + FULL BOTTOM-BAR HIDE
+
+Owner runtime feedback after SHARED-MOBILE1B:
+- Mobile Menu works again but occasionally needs two taps to register.
+- Directional bottom bar still leaves a visible strip on iPhone when hidden.
+- Current five bottom-nav icons remain frozen pending owner artwork.
+
+Root cause / hardening:
+- auto-hidden Header can still be in a transform transition when the burger receives the first touch gesture;
+- percentage-only bottom-nav translation is not sufficient across iOS safe-area / dynamic viewport combinations.
+
+Fix:
+- burger gets a pointerdown visibility guard:
+  - same touch immediately removes `bioa-mobile-chrome-hidden`;
+  - existing click handler remains the single toggle, so no double-toggle is introduced;
+  - `touch-action:manipulation` and final z-index/pointer authority are applied.
+- bottom bar hidden state:
+  - translate down by `100% + 48px + safe-area`;
+  - opacity 0;
+  - visibility hidden after transition;
+  - pointer-events none;
+  - same full-hide rule applies while Mobile Menu is open.
+- visible state explicitly restores transform/opacity/visibility/pointer events.
+
+Protected:
+- five bottom-nav icons and labels: unchanged;
+- Cookie outside-dismiss / confirmed-choice logic;
+- Chat positioning;
+- menu content/layout/outside-scroll-Escape close;
+- route logic and Desktop/Tablet.
+
+Status:
+- CODE/SYNTAX PASS;
+- RUNTIME: PENDING OWNER TEST.

@@ -1948,3 +1948,20 @@ Mobile Menu:
 Bottom-nav icon design:
 - no visual icon change in this patch;
 - wait for owner-provided replacement artwork.
+
+
+## SHARED-MOBILE1C — Mobile first-tap + iOS bottom-bar hide
+
+Mobile burger:
+- `.bioa-mobile-menu-button-clean` receives `pointerdown` only to force chrome visible for the same gesture;
+- `click` remains the only menu toggle;
+- do not add a second toggle on pointer events.
+
+Bottom-nav hidden state:
+- final owner: `patchMobileBottomNavFullHideCss`;
+- hidden transform: `translate3d(0, calc(100% + 48px + safe-area), 0)`;
+- hidden also sets opacity 0, visibility hidden and pointer-events none;
+- this is intentionally stronger than the earlier 115% transform for iOS dynamic viewport reliability.
+
+Icon artwork:
+- unchanged; pending owner replacement.

@@ -4428,7 +4428,7 @@ function syncMobileHeader($,route,lang){
   nav.append(drop);
   $('body').append(nav);
 
-  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;var d=n.querySelector('.bioa-mobile-nav-drop');function isOpen(){return n.classList.contains('open');}function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');document.documentElement.classList.toggle('bioa-mobile-nav-open',o);document.body.classList.toggle('bioa-mobile-nav-open',o);if(o)document.body.classList.remove('bioa-mobile-chrome-hidden');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();set(!isOpen());});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});document.addEventListener('pointerdown',function(e){if(!isOpen())return;if(b.contains(e.target))return;if(d&&d.contains(e.target))return;set(false);},true);window.addEventListener('scroll',function(){if(isOpen())set(false);},{passive:true});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen()){set(false);b.focus();}});})();";
+  const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;var d=n.querySelector('.bioa-mobile-nav-drop');function isOpen(){return n.classList.contains('open');}function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');document.documentElement.classList.toggle('bioa-mobile-nav-open',o);document.body.classList.toggle('bioa-mobile-nav-open',o);if(o)document.body.classList.remove('bioa-mobile-chrome-hidden');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('pointerdown',function(e){document.body.classList.remove('bioa-mobile-chrome-hidden');b.classList.add('bioa-menu-gesture-active');setTimeout(function(){b.classList.remove('bioa-menu-gesture-active');},360);},{passive:true});b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();document.body.classList.remove('bioa-mobile-chrome-hidden');set(!isOpen());});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});document.addEventListener('pointerdown',function(e){if(!isOpen())return;if(b.contains(e.target))return;if(d&&d.contains(e.target))return;set(false);},true);window.addEventListener('scroll',function(){if(isOpen())set(false);},{passive:true});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen()){set(false);b.focus();}});})();";
   $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
 }
 
@@ -5647,6 +5647,48 @@ const patchMobileBottomNavHotfixCss = `
 }
 `;
 
+const patchMobileBottomNavFullHideCss = `
+/* SHARED-MOBILE1C — first-tap menu reliability + iOS-safe full bottom-bar hide.
+   Icons are intentionally untouched pending owner artwork. */
+@media(max-width:768px){
+  .bioa-mobile-menu-button-clean{
+    position:relative!important;
+    z-index:100001!important;
+    touch-action:manipulation!important;
+    -webkit-tap-highlight-color:transparent!important;
+    pointer-events:auto!important;
+  }
+
+  .bioa-mobile-bottom-nav{
+    opacity:1!important;
+    visibility:visible!important;
+    pointer-events:auto!important;
+    transform:translate3d(0,0,0)!important;
+    transition:
+      transform .26s cubic-bezier(.2,.78,.2,1),
+      opacity .16s ease,
+      visibility 0s linear 0s!important;
+  }
+
+  body.bioa-mobile-chrome-hidden .bioa-mobile-bottom-nav,
+  body.bioa-mobile-nav-open .bioa-mobile-bottom-nav{
+    transform:translate3d(0,calc(100% + 48px + env(safe-area-inset-bottom,0px)),0)!important;
+    opacity:0!important;
+    visibility:hidden!important;
+    pointer-events:none!important;
+    transition:
+      transform .26s cubic-bezier(.2,.78,.2,1),
+      opacity .14s ease,
+      visibility 0s linear .26s!important;
+  }
+
+  /* A menu gesture has priority over directional chrome for the same tap. */
+  .bioa-mobile-menu-button-clean.bioa-menu-gesture-active{
+    pointer-events:auto!important;
+  }
+}
+`;
+
 const sharedShellCss =
   css+patchMobileBottomNavCss+
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
@@ -5656,7 +5698,8 @@ const sharedShellCss =
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css+
-  patchMobileBottomNavHotfixCss;
+  patchMobileBottomNavHotfixCss+
+  patchMobileBottomNavFullHideCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -5683,7 +5726,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchMobileBottomNavCss+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+patchMobileBottomNavHotfixCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchMobileBottomNavCss+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+patchMobileBottomNavHotfixCss+patchMobileBottomNavFullHideCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);
