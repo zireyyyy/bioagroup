@@ -1844,3 +1844,38 @@ TOC contact CTA:
 - destination is Bio-A Zalo;
 - icon asset is the shared PASS `/assets/zalo-bioa-owner.png`;
 - copy aligns with shared contact CTA: "Liên Hệ Với Chúng Tôi" / "Contact us".
+
+
+## Contacts page — CONTACT-C1
+
+Merywood source:
+- `merywood/pages/contacts/index.html`;
+- route source: `/contacts/`;
+- main owner: `main.page-contacts`.
+
+Confirmed source modules:
+- `.contacts-title-wrapper` — page H1/subtitle;
+- `.contacts-info-block` — status, Email, Phone, address and working/company information;
+- `.contacts-map-block` — Google Maps iframe;
+- `.contacts-faq-block` — five-item source FAQ accordion.
+
+BIO-A owner:
+- `bioa-contacts-refine.mjs`;
+- `applyContactsRefinement($, route, lang)`;
+- `build.mjs` calls the route transform before `applySharedShell()`.
+
+Content authority:
+- company: Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group;
+- email: contact@bioagroup.vn;
+- Hotline/Zalo: 0779 399 379;
+- business tax ID: 0318126597;
+- address: 496/63/10H Dương Quảng Hàm, An Nhơn, Hồ Chí Minh, Việt Nam;
+- working hours: Thứ 2–Thứ 7, 08:30–17:30;
+- map iframe: exact owner-supplied Google Maps embed from 2026-10-07.
+
+Implementation rule:
+- preserve Merywood contact DOM/CSS/FAQ runtime;
+- replace payload only;
+- VI is fully localized;
+- EN remains paired content;
+- do not reintroduce Merywood Estonia/Latvia contact data or fixed unsupported MOQ/lead-time claims.

@@ -2623,3 +2623,52 @@ G8:
 Status:
 - syntax PASS;
 - owner runtime test pending.
+
+
+## BLOG PHASE — OWNER CONFIRMED PASS / LOCKED
+
+Accepted Blog checkpoint:
+`ed5fc8f86042a08b2ca8d34b7cfa95f92e26d5bd` — PATCH-G8
+
+Owner confirmation:
+- Blog phase: PASS;
+- archive pagination: 7 articles/page with source-like pagination;
+- TOC CTA shared treatment: PASS;
+- article rich layout, watermark, green-card CTA and previous/next behavior remain LOCKED;
+- `docs/BLOG_CONTENT_CONTRACT.md` remains mandatory authority for future Blog SEO/content work.
+
+Do not reopen Blog while implementing Contacts unless explicitly requested.
+
+## CONTACT-C1 — BIO-A CONTACT DATA + FULL VI LOCALIZATION
+
+Scope:
+- create dedicated `bioa-contacts-refine.mjs`;
+- preserve Merywood `/contacts/` DOM/layout/runtime;
+- replace all Merywood contact identity and visible contact-page English on the VI route;
+- keep paired EN content for `/en/contacts/`;
+- install exact owner-supplied Google Maps iframe.
+
+BIO-A contact payload:
+- company: Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group;
+- email: contact@bioagroup.vn;
+- Hotline/Zalo: 0779 399 379;
+- MST: 0318126597;
+- address: 496/63/10H Dương Quảng Hàm, An Nhơn, Hồ Chí Minh, Việt Nam;
+- working hours: Thứ 2–Thứ 7, 08:30–17:30.
+
+FAQ policy:
+- remove Merywood-specific EU/Estonia/shipping/certification statements;
+- avoid hard-coded unsupported MOQ and lead-time promises;
+- replace with Bio-A project-specific FAQ about MOQ, timeline, R&D samples, packaging/document support and brief preparation.
+
+Protected:
+- shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Blog PASS/LOCKED;
+- Home/About/Cosmetics/Other Services;
+- Merywood contact-page geometry and FAQ interaction.
+
+Verification:
+- dedicated module syntax: PASS;
+- source selectors confirmed against owner-supplied Merywood export;
+- full build cannot be executed in the isolated container because the build fetches live Merywood source and network/DNS is unavailable;
+- Desktop/Tablet/Mobile runtime: PENDING OWNER TEST.

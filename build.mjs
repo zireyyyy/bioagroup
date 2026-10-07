@@ -7,6 +7,7 @@ import { applyAboutRefinement } from "./bioa-about-refine.mjs";
 import { applyCosmeticsHubRefinement } from "./bioa-cosmetics-refine.mjs";
 import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
 import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
+import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -382,6 +383,7 @@ async function buildOne(route,sourceRoute){
       if(route==="/about/")applyAboutRefinement($,route,lang);
       if(route==="/contract-manufacturing-cosmetics/")applyCosmeticsHubRefinement($,route,lang);
       if(route==="/dich-vu-khac/")applyOtherServicesRefinement($,route,lang);
+      if(route==="/contacts/")applyContactsRefinement($,route,lang);
       if(route==="/blog/"||route.startsWith("/blog/"))applyBlogRefinement($,route,lang);
       applySharedShell($,route,lang);
     }
