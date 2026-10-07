@@ -5049,6 +5049,46 @@ function addSharedPageReveal($,route){
         node.attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(100+Math.min(i,4)*55)+'ms');
       });
     });
+  }else if(route==='/dich-vu-khac/'){
+    /* PATCH-F2 — explicit Other Services MOTION-U1D3 mapping.
+       Keep all Swiper translate owners untouched; animate content shells/cards only. */
+    mark('.page-main h1','fade-up',0);
+    mark('.page-main .block-info .text-large','fade-up',70);
+    mark('.page-main .block-info .btn','fade-up',120);
+    mark('.page-main .block-info .composition','fade-left',150);
+
+    mark('#why-choose-us > .container > .title-wrapper','fade-up',0);
+    $('#why-choose-us .grid.desctop > .item').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(110+Math.min(i,4)*60)+'ms');
+    });
+    $('#why-choose-us .mobile .item').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(90+Math.min(i,4)*45)+'ms');
+    });
+
+    $('.block-right-choice > .container > .title-wrapper').each((_,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay','0ms');
+    });
+    $('.block-right-choice .client').each((i,el)=>{
+      const effect=i%2===0?'fade-right':'fade-left';
+      $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay',(100+Math.min(i,5)*45)+'ms');
+    });
+
+    $('.block-reviews > .container > .title-wrapper').each((_,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay','0ms');
+    });
+    $('.block-reviews .review').each((i,el)=>{
+      const effect=i%3===0?'fade-right':(i%3===2?'fade-left':'fade-up');
+      $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay',(100+Math.min(i,2)*45)+'ms');
+    });
+
+    $('.block-how-works > .container > .title-wrapper').each((_,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay','0ms');
+    });
+    $('.block-how-works .step').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(100+Math.min(i,6)*45)+'ms');
+    });
+
+    mark('.whatsapp .whatsapp__content','fade-up',180);
   }else{
     /* Generic safe fallback for future subpages: section headings/content only.
        Never mark swiper-wrapper, slides, header, footer, cookie or chat. */

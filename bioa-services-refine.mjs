@@ -1,81 +1,89 @@
 const serviceContent={
   vi:{
-    heroTitle:"Dịch Vụ Hỗ Trợ Thương Hiệu Mỹ Phẩm",
-    heroLead:"Bio-A Group hỗ trợ thương hiệu từ định hướng sản phẩm, R&D công thức, làm mẫu đến bao bì, nhãn và hồ sơ cần thiết trước khi triển khai sản xuất.",
+    heroTitle:"Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm",
+    heroLead:"Ngoài gia công mỹ phẩm trọn gói, Bio-A Group cung cấp các dịch vụ hỗ trợ từ sản xuất, sang chiết, chai lọ và thiết kế bao bì đến lộ trình thương hiệu & công bố sản phẩm.",
     heroCta:"Nhận Tư Vấn",
-    whyTitle:"Hệ Sinh Thái Dịch Vụ Hỗ Trợ Thương Hiệu",
+    whyTitle:"Dịch Vụ Bio-A Group",
     why:[
-      ["Đồng Hành Chuyên Môn","Bio-A Group hỗ trợ làm rõ nhu cầu dự án, nhóm sản phẩm, định vị và hướng triển khai phù hợp trước khi đi vào từng hạng mục chi tiết."],
-      ["Tư Vấn & Lập Kế Hoạch","Các đầu việc R&D, mẫu thử, bao bì, hồ sơ và kế hoạch sản xuất được sắp xếp theo từng giai đoạn để thương hiệu dễ theo dõi."],
-      ["Hồ Sơ & Công Bố Sản Phẩm","Khách hàng được tư vấn lộ trình thông tin, nhãn, hồ sơ công bố và các yêu cầu liên quan trước khi triển khai sản xuất hàng loạt."],
-      ["Giải Pháp Linh Hoạt Theo Dự Án","Phạm vi hỗ trợ được điều chỉnh theo hiện trạng dự án, từ thương hiệu mới bắt đầu đến doanh nghiệp cần mở rộng thêm dòng sản phẩm."],
-      ["Hỗ Trợ Hoàn Thiện Trước Sản Xuất","Bio-A Group phối hợp các hạng mục cần thiết để mẫu, bao bì, nhãn và thông tin sản phẩm sẵn sàng trước khi chuyển sang sản xuất."]
+      ["Sản Xuất & Gia Công Dược Mỹ Phẩm","Nhà máy hỗ trợ sản xuất OEM/ODM theo định hướng thương hiệu, từ mẫu đã duyệt đến triển khai thành phẩm và kiểm soát các công đoạn sản xuất."],
+      ["Đóng Gói & Sang Chiết Mỹ Phẩm","Hỗ trợ sang chiết, đóng gói và hoàn thiện sản phẩm theo dung tích, quy cách bao bì và kế hoạch triển khai của từng dự án."],
+      ["Đăng Ký Thương Hiệu & Công Bố","Tư vấn lộ trình thông tin thương hiệu, nhãn, hồ sơ công bố và các hạng mục cần chuẩn bị trước khi đưa sản phẩm ra thị trường."],
+      ["Chai Lọ Mỹ Phẩm","Hỗ trợ lựa chọn chai, lọ, hũ, tuýp và dung tích phù hợp với kết cấu sản phẩm, phân khúc và định hướng nhận diện thương hiệu."],
+      ["Thiết Kế Bao Bì Mỹ Phẩm","Hỗ trợ định hướng nhãn, bố cục thông tin và thiết kế bao bì để sản phẩm đồng bộ với nhận diện thương hiệu và quy cách sản xuất."]
     ],
-    processTitle:"Quy Trình Hỗ Trợ",
+    processTitle:"Quy Trình Triển Khai Dịch Vụ",
     process:[
-      ["Tư Vấn & Định Hướng Dự Án","Trao đổi ý tưởng, nhóm sản phẩm, khách hàng mục tiêu, phân khúc và định vị thương hiệu để xác định hướng triển khai."],
-      ["R&D Công Thức & Làm Mẫu","Tư vấn nền công thức, nguyên liệu, dạng sản phẩm và thực hiện mẫu thử theo nhu cầu của từng dự án."],
-      ["Lựa Chọn Nguyên Liệu & Quy Cách","Phối hợp định hướng nguyên liệu, kết cấu, dung tích và quy cách phù hợp với mục tiêu sản phẩm."],
-      ["Duyệt Mẫu & Thống Nhất Phương Án","Ghi nhận phản hồi, tinh chỉnh mẫu và thống nhất các đầu việc tiếp theo trước khi hoàn thiện hồ sơ sản phẩm."],
-      ["Bao Bì, Nhãn & Hoàn Thiện","Hỗ trợ lựa chọn chai lọ, nhãn và các hạng mục nhận diện để sản phẩm đồng bộ với định hướng thương hiệu."],
-      ["Hồ Sơ & Công Bố","Tư vấn lộ trình hồ sơ, công bố và các thông tin cần hoàn thiện trước khi triển khai sản xuất hàng loạt."]
+      ["Tư Vấn Nhu Cầu Dịch Vụ","Tiếp nhận nhu cầu, hiện trạng dự án và mục tiêu để xác định hạng mục Bio-A cần hỗ trợ."],
+      ["Tư Vấn Công Thức & Phương Án Sản Phẩm","Làm rõ dạng sản phẩm, công thức hoặc mẫu tham chiếu và các yêu cầu kỹ thuật liên quan trước khi triển khai."],
+      ["Thiết Kế Bao Bì & Nhãn","Phối hợp lựa chọn chai lọ, dung tích, bố cục nhãn và phương án bao bì phù hợp với sản phẩm và thương hiệu."],
+      ["Duyệt Mẫu & Quy Cách","Kiểm tra mẫu, màu sắc, cảm quan, bao bì và các thông tin liên quan để thống nhất phương án cuối."],
+      ["Sản Xuất, Sang Chiết & Đóng Gói","Triển khai sản xuất hoặc tiếp nhận hạng mục sang chiết, đóng gói theo quy cách đã thống nhất."],
+      ["Hồ Sơ & Công Bố","Tư vấn lộ trình hồ sơ, thông tin nhãn và công bố sản phẩm theo phạm vi của từng dự án."]
     ],
-    scenariosTitle:"Hỗ Trợ Theo Từng Nhu Cầu Dự Án",
+    scenariosTitle:"Giải Pháp Theo Từng Nhu Cầu",
     scenarios:[
-      ["Thương hiệu mới cần bắt đầu từ ý tưởng có thể phối hợp cùng Bio-A Group để xác định nhóm sản phẩm, hướng công thức, mẫu thử, bao bì và các mốc hồ sơ cần chuẩn bị.","Thương Hiệu Mới","Tình huống mẫu"],
-      ["Doanh nghiệp đã có sản phẩm có thể dùng từng phần dịch vụ để mở rộng thêm SKU, tinh chỉnh công thức, thay đổi quy cách bao bì hoặc chuẩn bị kế hoạch sản xuất mới.","Mở Rộng Danh Mục","Tình huống mẫu"],
-      ["Dự án đã có công thức hoặc mẫu tham chiếu có thể tập trung vào chai lọ, nhãn, nhận diện, thông tin sản phẩm và lộ trình hồ sơ trước khi chuyển sang sản xuất.","Hoàn Thiện Bao Bì & Hồ Sơ","Tình huống mẫu"]
+      ["Thương hiệu mới có thể kết hợp sản xuất, lựa chọn chai lọ, thiết kế bao bì và chuẩn bị lộ trình hồ sơ trong cùng một kế hoạch triển khai.","Khởi Tạo Thương Hiệu","Giải pháp mẫu"],
+      ["Dự án đã có công thức hoặc bán thành phẩm có thể tập trung vào chai lọ, sang chiết, đóng gói và hoàn thiện nhãn trước khi ra thị trường.","Sang Chiết & Hoàn Thiện","Giải pháp mẫu"],
+      ["Doanh nghiệp đã có sản phẩm có thể sử dụng riêng từng dịch vụ như thiết kế bao bì, thay đổi chai lọ hoặc hỗ trợ hồ sơ & công bố.","Mở Rộng & Chuẩn Hóa","Giải pháp mẫu"]
     ],
     rangeTitle:"Nhóm Sản Phẩm Có Thể Kết Hợp Dịch Vụ",
     range:[
-      ["Sữa Tắm","Có thể hỗ trợ từ định hướng công thức, mùi hương và mẫu thử đến chai lọ, nhãn và quy cách hoàn thiện."],
-      ["Dầu Gội","Phối hợp phát triển công thức, cảm quan, dung tích và bao bì theo phân khúc và định vị thương hiệu."],
-      ["Dầu Xả","Hỗ trợ lựa chọn hướng công thức, làm mẫu và hoàn thiện quy cách đồng bộ với dòng chăm sóc tóc."],
-      ["Xà Phòng","Có thể tư vấn dạng sản phẩm, bao bì, nhãn và các thông tin cần chuẩn bị cho kế hoạch triển khai."],
-      ["Kem Body","Hỗ trợ công thức, mẫu thử, cảm quan, chai hũ và nhận diện phù hợp với nhóm chăm sóc cơ thể."],
-      ["Lotion","Phối hợp từ nền công thức và kết cấu đến lựa chọn bao bì, nhãn và các bước hoàn thiện trước sản xuất."],
-      ["Tẩy Tế Bào Chết","Hỗ trợ định hướng kết cấu, nguyên liệu, mẫu thử, bao bì và thông tin sản phẩm theo nhu cầu dự án."]
+      ["Sữa Tắm","Có thể kết hợp sản xuất, chai lọ, thiết kế nhãn, sang chiết và hoàn thiện hồ sơ theo nhu cầu dự án."],
+      ["Dầu Gội","Phù hợp triển khai đồng bộ công thức, dung tích, chai lọ, nhãn và quy cách đóng gói theo định vị thương hiệu."],
+      ["Dầu Xả","Có thể phối hợp từ mẫu sản phẩm đến bao bì, sang chiết, đóng gói và hoàn thiện thông tin sản phẩm."],
+      ["Xà Phòng","Hỗ trợ phương án sản xuất, bao bì, nhãn và các hạng mục hoàn thiện phù hợp với kế hoạch kinh doanh."],
+      ["Kem Body","Có thể kết hợp công thức, hũ/chai, thiết kế bao bì, đóng gói và lộ trình hồ sơ theo từng dự án."],
+      ["Lotion","Hỗ trợ đồng bộ công thức, chai lọ, nhãn, sang chiết và hoàn thiện sản phẩm trước khi triển khai thị trường."],
+      ["Tẩy Tế Bào Chết","Có thể kết hợp sản xuất, lựa chọn bao bì, thiết kế nhãn và các dịch vụ hoàn thiện liên quan."]
     ]
   },
   en:{
-    heroTitle:"Brand Support Services for Cosmetic Projects",
-    heroLead:"Bio-A Group supports brands from product direction and formula R&D through sampling, packaging, labels and required documentation before manufacturing.",
+    heroTitle:"Integrated Support Services for Cosmetic Brands",
+    heroLead:"Beyond full-service cosmetic manufacturing, Bio-A Group supports production, filling, packaging, containers, packaging design and brand/product-notification preparation.",
     heroCta:"Get a Quote",
-    whyTitle:"Integrated Support Services for Cosmetic Brands",
+    whyTitle:"Bio-A Group Services",
     why:[
-      ["Professional Project Support","Bio-A Group helps clarify project needs, product categories, positioning and a practical direction before individual workstreams begin."],
-      ["Consultation & Planning","R&D, samples, packaging, documentation and manufacturing preparation are organized by stage so the brand can follow progress clearly."],
-      ["Documentation & Product Notification","Brands receive guidance on product information, labels, notification documentation and related requirements before mass production."],
-      ["Flexible Project Solutions","Support can be adjusted to the actual project stage, from a new brand starting out to an established business expanding its portfolio."],
-      ["Pre-Production Completion Support","Bio-A Group coordinates the key items needed so samples, packaging, labels and product information are ready before manufacturing."]
+      ["Cosmetic & Cosmeceutical Manufacturing","OEM/ODM manufacturing support from approved samples through finished-product production and controlled manufacturing stages."],
+      ["Cosmetic Filling & Packing","Filling, packing and finishing support based on target volume, packaging specifications and each project's rollout plan."],
+      ["Trademark & Product Notification Support","Guidance on brand information, labels, product-notification documentation and preparation before market launch."],
+      ["Cosmetic Bottles & Containers","Support selecting bottles, jars, tubes and capacities that suit product texture, positioning and brand presentation."],
+      ["Cosmetic Packaging Design","Support label direction, information layout and packaging design aligned with brand identity and production specifications."]
     ],
-    processTitle:"Support Process",
+    processTitle:"Service Delivery Process",
     process:[
-      ["Project Consultation & Direction","Align the idea, product category, target customer, market segment and brand positioning to define a practical project direction."],
-      ["Formula R&D & Sampling","Review formula bases, ingredients and product formats, then prepare samples around each project's needs."],
-      ["Ingredients & Product Specifications","Coordinate ingredient direction, texture, capacity and specifications around the intended product positioning."],
-      ["Sample Approval & Alignment","Collect feedback, refine samples and confirm the next workstreams before product documentation is finalized."],
-      ["Packaging, Labels & Finishing","Support container selection, labels and presentation details so the finished product aligns with the brand direction."],
-      ["Documentation & Product Notification","Guide the documentation, notification path and product information that should be completed before mass production."]
+      ["Service Consultation","Review project status, goals and required support to define the appropriate Bio-A service scope."],
+      ["Formula & Product Direction","Clarify product format, formula or benchmark sample and the technical requirements relevant to the project."],
+      ["Packaging & Label Design","Coordinate containers, capacity, label layout and packaging direction around the product and brand."],
+      ["Sample & Specification Approval","Review samples, color, sensory profile, packaging and related information to confirm the final direction."],
+      ["Manufacturing, Filling & Packing","Proceed with manufacturing or the agreed filling and packing scope using approved specifications."],
+      ["Documentation & Product Notification","Guide product information, label documentation and notification preparation according to the project scope."]
     ],
-    scenariosTitle:"Support for Different Project Needs",
+    scenariosTitle:"Solutions for Different Project Needs",
     scenarios:[
-      ["A new brand can work with Bio-A Group to define product categories, formula direction, samples, packaging and the documentation milestones needed to start a project.","New Brand","Sample scenario"],
-      ["An established business can use selected services to add SKUs, refine formulas, change packaging specifications or prepare a new manufacturing plan.","Portfolio Expansion","Sample scenario"],
-      ["A project with an existing formula or benchmark can focus on containers, labels, presentation, product information and documentation before manufacturing.","Packaging & Documentation Completion","Sample scenario"]
+      ["A new brand can combine manufacturing, container selection, packaging design and documentation planning in one coordinated rollout.","New Brand Launch","Sample solution"],
+      ["A project with an existing formula or bulk product can focus on containers, filling, packing and label completion before market launch.","Filling & Finishing","Sample solution"],
+      ["An established business can use individual services such as packaging design, container changes or documentation and notification support.","Portfolio Expansion","Sample solution"]
     ],
     rangeTitle:"Product Groups That Can Use These Services",
     range:[
-      ["Shower Gel","Support can cover formula direction, fragrance and sampling through containers, labels and finishing specifications."],
-      ["Shampoo","Coordinate formula development, sensory targets, capacity and packaging around the brand's market position."],
-      ["Conditioner","Support formula direction, sampling and coordinated specifications for a complete hair-care range."],
-      ["Soap","Review product format, packaging, labels and product information needed for the project plan."],
-      ["Body Cream","Support formulas, samples, sensory profile, jars or bottles and presentation for body-care projects."],
-      ["Lotion","Coordinate formula base and texture through packaging, labels and pre-production completion steps."],
-      ["Body Scrub","Support texture direction, ingredients, samples, packaging and product information around project requirements."]
+      ["Shower Gel","Can combine manufacturing, containers, label design, filling and documentation support depending on project needs."],
+      ["Shampoo","Suitable for coordinated formula, capacity, containers, labels and packing specifications around the brand positioning."],
+      ["Conditioner","Can combine product samples with packaging, filling, packing and product-information completion."],
+      ["Soap","Support can cover manufacturing direction, packaging, labels and finishing items for the commercial plan."],
+      ["Body Cream","Can combine formulation, jars or bottles, packaging design, packing and documentation planning by project."],
+      ["Lotion","Coordinate formulation, containers, labels, filling and finishing before the product rollout."],
+      ["Body Scrub","Can combine manufacturing, packaging selection, label design and related finishing services."]
     ]
   }
 };
+
+const serviceIconMap=[
+  "/assets/service-icon-01-manufacturing.svg",
+  "/assets/service-icon-02-packing.svg",
+  "/assets/service-icon-03-documentation.svg",
+  "/assets/service-icon-04-containers.svg",
+  "/assets/service-icon-05-label-design.svg"
+];
 
 function setCopy(root,selector,value){
   const el=root.find(selector).first();
@@ -103,16 +111,23 @@ function applyWhy($,lang){
   const block=$("#why-choose-us");
   if(!block.length)return;
   setCopy(block,".title-wrapper .title",d.whyTitle);
-  block.find(".grid.desctop .item").each((i,el)=>{
-    const row=d.why[i%d.why.length];
-    setCopy($(el),".item__title",row[0]);
-    setCopy($(el),".item__body",row[1]);
-  });
-  block.find(".mobile .item").each((i,el)=>{
-    const row=d.why[i%d.why.length];
-    setCopy($(el),".item__title",row[0]);
-    setCopy($(el),".item__body",row[1]);
-  });
+  const applyCards=cards=>{
+    cards.each((i,el)=>{
+      const row=d.why[i%d.why.length];
+      const card=$(el);
+      setCopy(card,".item__title",row[0]);
+      setCopy(card,".item__body",row[1]);
+      const img=card.find("img").first();
+      if(img.length){
+        img.attr("src",serviceIconMap[i%d.why.length])
+          .attr("alt",row[0])
+          .removeAttr("srcset sizes")
+          .addClass("bioa-service-pillar-icon");
+      }
+    });
+  };
+  applyCards(block.find(".grid.desctop .item"));
+  applyCards(block.find(".mobile .item"));
 }
 
 function applyProcess($,lang){
@@ -151,8 +166,16 @@ function applyRange($,lang){
     setCopy(block,".title-wrapper .title",d.rangeTitle);
     block.find(".step").each((i,node)=>{
       const row=d.range[i%d.range.length];
-      setCopy($(node),".step__title",row[0]);
-      setCopy($(node),".step__text",row[1]);
+      const step=$(node);
+      setCopy(step,".step__title",row[0]);
+      setCopy(step,".step__text",row[1]);
+      const img=step.find(".step__icon img").first();
+      if(img.length){
+        img.attr("src","/assets/bioa-monogram-cream.svg")
+          .attr("alt","Bio-A Group")
+          .removeAttr("srcset sizes")
+          .addClass("bioa-service-range-logo");
+      }
     });
   });
 }
@@ -162,6 +185,8 @@ function patchRouteCss($){
   $("head").append('<style id="bioa-other-services-style">'+
     '.bioa-service-scenarios .review__author{padding-top:18px!important}'+
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
+    '#why-choose-us .bioa-service-pillar-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
+    '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+
   '</style>');
 }

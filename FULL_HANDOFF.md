@@ -2125,3 +2125,61 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-F2 — OTHER SERVICES BIO-A TAXONOMY + ICON + MOTION ALIGNMENT
+
+Owner feedback:
+- most Other Services sections had no reveal motion;
+- service icons did not match the copy;
+- product-range card icon should use the accepted Bio-A monogram treatment;
+- F1 service taxonomy was too generic compared with Bio-A's actual service list;
+- source-page suitability was reopened.
+
+Source-page decision:
+- KEEP Merywood /hotel-spa-cosmetics/ as the visual/runtime source.
+- Reason: it maps cleanly to this route with 5 service pillars + 6-step How It Works + product-range slider.
+- /private-label-cosmetics/ and /white-label-cosmetics/ add Packaging/Product Formats/Right Choice/Roadmap blocks that duplicate the already PASS Cosmetics route and would require broader restructuring.
+
+Bio-A service taxonomy authority:
+1. Sản Xuất & Gia Công Dược Mỹ Phẩm
+2. Đóng Gói & Sang Chiết Mỹ Phẩm
+3. Đăng Ký Thương Hiệu & Công Bố
+4. Chai Lọ Mỹ Phẩm
+5. Thiết Kế Bao Bì Mỹ Phẩm
+
+Service icon authority:
+- use exact icon artwork from the supplied Merywood export; no redrawing:
+  1. factory/manufacturing;
+  2. packed units;
+  3. document/compliance;
+  4. cosmetic jar/container;
+  5. label/design.
+- Desktop and Mobile use the same positional mapping.
+
+How It Works content is re-aligned to the original source icons:
+1. consultation;
+2. formula/product direction;
+3. packaging & label design;
+4. sample/spec approval;
+5. manufacturing/filling/packing;
+6. documentation/product notification.
+
+Product Range:
+- all repeated product icons now use /assets/bioa-monogram-cream.svg, matching the accepted Bio-A shared artwork language.
+
+MOTION-U1D3:
+- explicit /dich-vu-khac/ branch added to addSharedPageReveal();
+- Hero, service pillars, workflow clients, scenarios and product-range steps now receive source-safe reveal targets;
+- Swiper wrappers/slides remain transform owners and are not marked.
+
+Protected:
+- Header/Footer/Cookie/Chat/Zalo/Mobile Menu/VI-EN;
+- Home/About/Cosmetics PASS;
+- global MOTION-U1D3 timing values;
+- source swiper mechanics and responsive geometry.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST

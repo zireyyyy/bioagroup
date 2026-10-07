@@ -1589,3 +1589,36 @@ Shared locks:
 - preserve Merywood Desktop/Tablet/Mobile DOM and swiper mechanics;
 - use paired VI/EN page copy;
 - do not introduce EU/ISO or other Merywood-only claims.
+
+
+## PATCH-F2 — Other Services semantic/icon/motion authority
+
+Visual/runtime source remains:
+- Merywood /hotel-spa-cosmetics/
+- do not switch the whole route to Private/White Label cosmetics unless the owner explicitly reopens layout architecture.
+
+Why this source stays:
+- exact compact 5-card service-pillar component;
+- exact 6-step workflow component;
+- source-owned product-range swiper;
+- less duplication with the PASS /contract-manufacturing-cosmetics/ page.
+
+Bio-A service-pillar content authority:
+1. Sản Xuất & Gia Công Dược Mỹ Phẩm
+2. Đóng Gói & Sang Chiết Mỹ Phẩm
+3. Đăng Ký Thương Hiệu & Công Bố
+4. Chai Lọ Mỹ Phẩm
+5. Thiết Kế Bao Bì Mỹ Phẩm
+
+Icons:
+- assets/service-icon-01-manufacturing.svg
+- assets/service-icon-02-packing.svg
+- assets/service-icon-03-documentation.svg
+- assets/service-icon-04-containers.svg
+- assets/service-icon-05-label-design.svg
+- exact artwork copied from supplied Merywood source; no generated/recreated icon.
+- product-range repeated icon = assets/bioa-monogram-cream.svg.
+
+Motion:
+- bioa-home-refine.mjs / addSharedPageReveal() owns /dich-vu-khac/ motion.
+- mark safe content nodes only; never swiper-wrapper or swiper-slide.
