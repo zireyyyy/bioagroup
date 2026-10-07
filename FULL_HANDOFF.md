@@ -2603,3 +2603,23 @@ Protected:
 Status:
 - code/syntax PASS;
 - owner runtime test pending.
+
+
+## PATCH-G8 — BLOG PAGINATION VISUAL PARITY + SHARED TOC CTA
+
+Owner feedback after G7:
+- pagination logic/count is correct but visual treatment is too button-like compared with Merywood;
+- TOC contact CTA must reuse the already-PASS shared contact treatment used across the site.
+
+G8:
+- keeps G7 pagination routing and 7-post/page logic unchanged;
+- pagination is visually normalized to Merywood: compact centered numbers, transparent inactive pages, only current page filled, simple prev/next glyphs;
+- current-page fill uses Bio-A primary green while retaining Merywood geometry;
+- TOC CTA keeps its source geometry and Zalo destination but now uses the shared PASS Bio-A Zalo artwork asset and shared contact label:
+  VI: "Liên Hệ Với Chúng Tôi";
+  EN: "Contact us";
+- no article-content, SEO, route, watermark, rich-detail layout, Header/Footer/Chat/Cookie changes.
+
+Status:
+- syntax PASS;
+- owner runtime test pending.

@@ -162,3 +162,18 @@ Owner correction after archive completion:
 - do not replace source pagination with infinite scroll, load-more, query-string paging or a custom component unless the owner explicitly reopens this behavior.
 
 This pagination rule is part of the owner-approved Blog visual/runtime contract.
+
+
+## 11. Pagination / TOC CTA presentation
+
+Blog pagination must remain visually source-like:
+- compact centered page numbers;
+- inactive pages have no filled tile;
+- only the current page is filled;
+- previous/next controls remain minimal.
+
+The Blog TOC CTA must reuse the shared Bio-A contact treatment:
+- Zalo destination;
+- shared owner-approved Zalo artwork;
+- "Liên Hệ Với Chúng Tôi" / "Contact us";
+- do not introduce a Blog-only contact icon or copy variant.

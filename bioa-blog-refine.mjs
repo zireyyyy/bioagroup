@@ -349,8 +349,15 @@ function applyBlogArticle($,route,lang){
   const toc=body.find('.bb-toc__list').first();
   if(toc.length)toc.html(tocHtml(post,lang));
   body.find('.bb-toc__title').first().text(isEn?'Table of contents:':'Mục Lục:');
-  $('.bb-toc__cta-title').text(isEn?'Discuss Your Project':'Trao Đổi Về Dự Án Của Bạn');
-  $('.bb-toc__cta-btn').attr('href','https://zalo.me/84779399379').attr('aria-label','Zalo Bio-A Group').find('.btn__text').text(isEn?'Contact Bio-A Group':'Liên Hệ Bio-A Group');
+  $('.bb-toc__cta-title').text(isEn?'Let’s Discuss Your Project':'Trao Đổi Về Dự Án Của Bạn');
+  const tocCta=$('.bb-toc__cta-btn');
+  tocCta
+    .attr('href','https://zalo.me/84779399379')
+    .attr('target','_blank')
+    .attr('rel','noopener noreferrer')
+    .attr('aria-label',isEn?'Contact Bio-A Group via Zalo':'Liên hệ Bio-A Group qua Zalo');
+  tocCta.find('.btn__icon').html('<img class="bioa-zalo-icon" src="/assets/zalo-bioa-owner.png" alt="" aria-hidden="true">');
+  tocCta.find('.btn__text').text(isEn?'Contact us':'Liên Hệ Với Chúng Tôi');
   $('.btp-share > span,.btpm-share > span').text(isEn?'Share':'Chia sẻ');
 
   const idx=blogPosts.findIndex(p=>p.slug===slug);
@@ -392,6 +399,19 @@ function patchBlogCss($){
     '}'+
     'body.bioa-blog-index .blog-hero__bg{display:none!important}'+
     '.post-feature__img,.post-card-thumb img{object-fit:cover!important}'+
+
+    /* PATCH-G8 — archive pagination visual parity with Merywood:
+       compact text-like numbers, only the active page has a filled surface. */
+    'body.bioa-blog-index .posts-grid-pagination{display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;margin-top:28px!important;text-align:center!important}'+
+    'body.bioa-blog-index .posts-grid-pagination .page-numbers{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:30px!important;height:36px!important;margin:0!important;padding:0 6px!important;border:0!important;border-radius:7px!important;background:transparent!important;box-shadow:none!important;color:#141B14!important;text-decoration:none!important;font-size:14px!important;font-weight:400!important;line-height:1!important}'+
+    'body.bioa-blog-index .posts-grid-pagination .page-numbers.current{min-width:36px!important;background:var(--bioa-primary,#116F47)!important;color:#fff!important}'+
+    'body.bioa-blog-index .posts-grid-pagination a.page-numbers:hover{background:rgba(17,111,71,.08)!important;color:var(--bioa-primary,#116F47)!important}'+
+    'body.bioa-blog-index .posts-grid-pagination .prev,body.bioa-blog-index .posts-grid-pagination .next{min-width:24px!important;padding:0!important;background:transparent!important;font-size:16px!important}'+
+
+    /* PATCH-G8 — TOC contact CTA reuses the shared PASS Zalo artwork treatment. */
+    '.bioa-blog-detail .bb-toc__cta-btn .btn__icon{display:flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;margin:0!important;line-height:0!important}'+
+    '.bioa-blog-detail .bb-toc__cta-btn .bioa-zalo-icon{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;object-fit:contain!important;margin:0!important}'+
+    '.bioa-blog-detail .bb-toc__cta-btn .btn__text{white-space:nowrap!important}'+
 
     /* PATCH-G4 — Rich article geometry guard.
        G3 reuses real Merywood modules; these guards stop source component widths

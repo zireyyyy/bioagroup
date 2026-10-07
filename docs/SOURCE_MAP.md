@@ -1828,3 +1828,19 @@ Static pagination routes:
 - every pagination route uses Merywood `/blog/` as source HTML.
 
 Current inventory: 38 articles -> 6 archive pages (7 + 7 + 7 + 7 + 7 + 3).
+
+
+## PATCH-G8 — Blog pagination + TOC CTA presentation
+
+Archive pagination presentation:
+- owner: Merywood `.posts-grid-pagination`;
+- inactive page numbers are transparent/text-like;
+- active page alone owns the filled rounded surface;
+- compact centered spacing; no large pill/square treatment;
+- routing/page slicing remains PATCH-G7 authority.
+
+TOC contact CTA:
+- DOM/geometry remains Merywood `.bb-toc__cta-btn`;
+- destination is Bio-A Zalo;
+- icon asset is the shared PASS `/assets/zalo-bioa-owner.png`;
+- copy aligns with shared contact CTA: "Liên Hệ Với Chúng Tôi" / "Contact us".
