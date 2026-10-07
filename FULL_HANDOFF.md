@@ -2963,3 +2963,28 @@ Protected:
 - page layouts.
 
 Status: PENDING OWNER TEST.
+
+
+## MOBILE-HEADER-SOURCE1 — MERYWOOD MOBILE HEADER GEOMETRY PARITY
+
+Commit:
+`65152e5fad8799fea36bcf3e03c9a9acf7f600ce`
+
+Scope:
+- Mobile Header/wrapper: 62px;
+- logo shell: 46×48px;
+- Bio-A logo: 38×44px;
+- CTA: 40px height, 15px horizontal padding, radius 14, 13px type;
+- menu trigger: 40×40px, radius 14;
+- hamburger artwork: 2 bars to match Merywood source trigger structure.
+
+Protected:
+- inner mobile menu visual/content/layout;
+- menu first-tap / outside / scroll / Escape runtime;
+- mobile Header down-hide/up-show;
+- scrolled menu contrast from MOBILE-MENU-CONTRAST1;
+- Cookie / Chat;
+- paused bottom bar;
+- Desktop / Tablet.
+
+Status: PENDING OWNER TEST.
