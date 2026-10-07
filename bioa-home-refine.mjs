@@ -4986,6 +4986,11 @@ function addSharedPageReveal($,route){
       $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(120+Math.min(i,6)*55)+'ms');
     });
 
+    mark('#bioa-cosmetics-categories .bioa-categories-head','fade-up',0);
+    $('#bioa-cosmetics-categories .bioa-category-card').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(120+Math.min(i,5)*70)+'ms');
+    });
+
     mark('.block-products-desctop > .container > .title-wrapper','fade-up',0);
     mark('.block-products-desctop .swiper','fade-up',160);
     mark('.block-products-mobile > .container > .title-wrapper','fade-up',0);

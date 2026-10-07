@@ -1447,3 +1447,30 @@ Related content consistency:
 
 Do not reorder these subjects independently of the source icons.
 Do not replace card 06 with a sustainability claim without verified Bio-A evidence.
+
+
+## PATCH-E6/E7 — cosmetics hero + manufacturing categories
+
+E6:
+- asset: assets/cosmetics-hero-bioa.webp
+- renderer: bioa-cosmetics-refine.mjs / applyHeroArtwork()
+- flattened watermark composition; never stack an extra DOM/CSS watermark above products.
+
+E7:
+- owner: bioa-cosmetics-refine.mjs / applyManufacturingCategorySection()
+- section: #bioa-cosmetics-categories
+- placement: after #why-choose-us, before Packaging.
+- taxonomy/assets: exact six /about/ accepted categories + about-icon-01...06.
+- exact About icon optical sizing/offsets reused.
+- 2 columns Desktop/Tablet, 1 column Mobile.
+- card watermark: /assets/bioa-monogram.svg.
+
+Motion:
+- owner: bioa-home-refine.mjs / addSharedPageReveal()
+- head -> fade-up
+- six cards -> staggered fade-up
+
+Semantic lock:
+- Why Choose = Bio-A capabilities/reasons.
+- Manufacturing Categories = product taxonomy.
+- never merge these two roles again.

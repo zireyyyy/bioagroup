@@ -1863,3 +1863,37 @@ Status:
 - Why Choose + copy alignment Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-E6/E7 — HERO BLEND CLEANUP + MANUFACTURING CATEGORY HUB
+
+Owner status before this candidate:
+- PATCH-E5 Why Choose/content: temporarily accepted.
+- E4 Hero layout/content was accepted, then a later close visual review found a rectangular raster compositing artifact behind the tube.
+
+E6:
+- replace only assets/cosmetics-hero-bioa.webp with one flattened seamless composition;
+- preserve product objects, source hero DOM/geometry and cover/center behavior;
+- no second watermark layer.
+
+E7:
+- add #bioa-cosmetics-categories after #why-choose-us and before Packaging;
+- use the approved six /about/ taxonomy groups, PNGs, sizes and optical offsets;
+- large rounded 2-column cards on Desktop/Tablet; 1-column Mobile;
+- faint Bio-A monogram treatment inside cards;
+- no invented links before product subpage authority is finalized.
+
+Shared UX/Motion:
+- bioa-home-refine.mjs / addSharedPageReveal() remains motion authority;
+- section heading fade-up; cards staggered fade-up;
+- no new motion engine, no swiper transform changes.
+
+Protected:
+- Why Choose E5;
+- Packaging / Process / Certification / QC;
+- Header/Footer/Cookie/Chat/Mobile Menu/Zalo/language switching;
+- Home and /about/ PASS/LOCKED.
+
+Status:
+- E6 Desktop/Tablet/Mobile: PENDING OWNER TEST
+- E7 Desktop/Tablet/Mobile: PENDING OWNER TEST
