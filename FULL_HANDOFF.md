@@ -1747,3 +1747,45 @@ Status PATCH-E2:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-E3 — HERO BRAND WATERMARK + FULL VI CONTENT PASS
+
+Owner runtime feedback after PATCH-E2:
+- hero composition still lacked an explicit Bio-A faded logo treatment;
+- multiple deep component strings remained English;
+- sample content should use BIOA-Website.zip as the first content authority.
+
+Legacy BIOA source re-read:
+- cms/pages/home.php:
+  - Nhà Máy Sản Xuất Dược Mỹ Phẩm OEM/ODM Tại Việt Nam
+  - BIOA Group - Đạt chuẩn GMP Bộ Y Tế
+  - Bio-A đồng hành trọn gói từ ý tưởng đến sản phẩm
+- cms/pages/about.php:
+  - Bio-A Group is an OEM/ODM cosmetic/cosmeceutical manufacturer
+  - GMP Bộ Y Tế Việt Nam
+  - HACCP / hệ thống quản lý an toàn thực phẩm
+  - vision/mission centered on quality products and end-to-end support
+
+PATCH-E3 corrections:
+- hero Desktop + Mobile receive a faded /assets/bioa-monogram.svg overlay without changing source hero geometry/image;
+- hero copy is synchronized on both source DOM trees;
+- Packaging Desktop + Mobile are mapped by component selectors, including product names, use cases, feature labels and feature text;
+- Product Formats is fully localized;
+- How It Works / ready-formula / custom-formula columns are fully rewritten with Bio-A sample workflow copy;
+- Certification section uses only Bio-A-supported GMP Bộ Y Tế + HACCP + quality-control language;
+- Testing/QC section is fully localized with project-appropriate sample copy;
+- Roadmap/CTA remain on the PATCH-E1 Bio-A mapping;
+- VI/EN remain paired.
+
+Protected:
+- source Merywood component/layout geometry;
+- hero source product image;
+- swiper runtime and transform owners;
+- PATCH-E2 icons/motion/shared watermark;
+- Home and /about/ PASS/LOCKED shared behavior.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST

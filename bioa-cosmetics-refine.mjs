@@ -28,7 +28,7 @@ function setInner(root,selector,value){
 const content={
   vi:{
     heroTitle:"Gia Công Mỹ Phẩm Trọn Gói",
-    heroLead:"Bio-A Group đồng hành từ ý tưởng, R&D công thức, lựa chọn nguyên liệu, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm theo định hướng thương hiệu.",
+    heroLead:"Bio-A Group là nhà máy sản xuất dược mỹ phẩm OEM/ODM tại Việt Nam, đạt chuẩn GMP Bộ Y Tế; đồng hành trọn gói từ ý tưởng, R&D công thức, lựa chọn nguyên liệu đến bao bì và thành phẩm.",
     categoryTitle:"Danh Mục Gia Công Mỹ Phẩm",
     categories:[
       ["Sản Phẩm Trang Điểm","Các dòng trang điểm được phát triển theo màu sắc, kết cấu, định vị và nhu cầu riêng của thương hiệu."],
@@ -55,7 +55,7 @@ const content={
   },
   en:{
     heroTitle:"Full-Service Cosmetic Manufacturing",
-    heroLead:"Bio-A Group supports brands from product concept and formula R&D to OEM/ODM manufacturing, packaging and finished-product development.",
+    heroLead:"Bio-A Group is a cosmetic and cosmeceutical OEM/ODM manufacturer in Vietnam, supporting brands from product concept and formula R&D through packaging and finished-product production.",
     categoryTitle:"Cosmetic Manufacturing Categories",
     categories:[
       ["Makeup Products","Makeup products developed around color, texture, positioning and each brand's product direction."],
@@ -222,6 +222,223 @@ function applyCategories($,lang){
   });
 }
 
+
+const cosmeticsDeepContent={
+  vi:{
+    packagingTitle:"Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm",
+    packaging:[
+      {
+        title:"Tuýp Mỹ Phẩm",
+        ideal:["Kem Chăm Sóc Body","Sữa Rửa Mặt","Gel Mỹ Phẩm","Sản Phẩm Chăm Sóc Hằng Ngày"],
+        features:["Dễ kiểm soát lượng sản phẩm khi sử dụng","Hạn chế tiếp xúc trực tiếp và lãng phí sản phẩm","Gọn nhẹ, thuận tiện mang theo","Phù hợp nhiều kết cấu gel và kem"]
+      },
+      {
+        title:"Chai Airless",
+        ideal:["Serum","Kem Chăm Sóc Da","Sản Phẩm Chăm Sóc Da Mụn","Kem Kết Cấu Nhẹ","Gel Chứa Hoạt Chất"],
+        features:["Hạn chế công thức tiếp xúc với không khí","Hỗ trợ bảo vệ độ ổn định của công thức","Thiết kế vòi nhấn phù hợp dòng sản phẩm cao cấp","Phù hợp các dòng chăm sóc da cần trải nghiệm sạch và hiện đại"]
+      },
+      {
+        title:"Hũ Mỹ Phẩm",
+        ideal:["Mặt Nạ Da Mặt & Body","Tẩy Tế Bào Chết Body","Sáp / Balm Dạng Đặc","Kem Dưỡng Kết Cấu Đậm"],
+        features:["Dễ lấy sản phẩm có kết cấu đặc","Có thể lựa chọn nhiều dung tích và vật liệu","Tạo cảm giác sử dụng chắc chắn, cao cấp","Phù hợp dòng chăm sóc tại nhà hoặc spa"]
+      },
+      {
+        title:"Chai / Lọ",
+        ideal:["Dầu Gội","Toner","Gel Chăm Sóc Cá Nhân","Sản Phẩm Dạng Lỏng","Sản Phẩm Chăm Sóc Tóc"],
+        features:["Đa dạng vòi nhấn, xịt, nắp bật và nắp vặn","Thuận tiện khi sử dụng và định lượng","Linh hoạt từ phân khúc phổ thông đến cao cấp","Có thể điều chỉnh hình dáng, vật liệu theo nhận diện thương hiệu"]
+      }
+    ],
+    formats:{
+      title:"Các Dạng Sản Phẩm Có Thể Gia Công",
+      lede:"Bio-A Group có thể phát triển công thức và hoàn thiện nhiều dạng sản phẩm tùy theo định hướng thương hiệu.",
+      tab:"Dạng Sản Phẩm",
+      items:["Kem","Serum","Dạng Lỏng","Gel","Xịt","Balm / Sáp","Miếng Pad"],
+      ctaTitle:"Chưa thấy dạng sản phẩm bạn cần?",
+      ctaDescription:"Gửi ý tưởng sản phẩm, Bio-A Group sẽ kiểm tra công thức, quy cách và phương án sản xuất phù hợp.",
+      button:"Chia Sẻ Ý Tưởng"
+    },
+    process:{
+      title:"Quy Trình Gia Công",
+      columns:[
+        {
+          title:"Công Thức Có Sẵn",
+          subtitle:"Giải pháp rút ngắn thời gian phát triển cho thương hiệu cần triển khai sản phẩm nhanh và rõ quy cách.",
+          steps:[
+            ["Xác Định Sản Phẩm","Trao đổi nhóm sản phẩm, khách hàng mục tiêu, định vị, số lượng dự kiến và yêu cầu cảm quan."],
+            ["Chọn Công Thức & Quy Cách","Lựa chọn nền công thức phù hợp, dung tích và phương án đóng gói theo định hướng thương hiệu."],
+            ["Duyệt Mẫu & Thông Tin Sản Phẩm","Kiểm tra mẫu, thống nhất cảm quan, nội dung nhãn và các thông tin cần hoàn thiện trước sản xuất."],
+            ["Chuẩn Bị Bao Bì & Sản Xuất","Chốt chai lọ, nhãn, quy cách đóng gói và kế hoạch đưa sản phẩm vào dây chuyền."],
+            ["Sản Xuất & Bàn Giao","Nhà máy triển khai sản xuất, sang chiết, đóng gói và kiểm tra thành phẩm trước khi bàn giao."]
+          ]
+        },
+        {
+          title:"Công Thức Phát Triển Riêng",
+          subtitle:"Dành cho thương hiệu muốn xây dựng sản phẩm theo định hướng riêng từ R&D mẫu đến thành phẩm.",
+          steps:[
+            ["Làm Rõ Định Hướng Sản Phẩm","Xác định công dụng, nhóm khách hàng, kết cấu, mùi hương, màu sắc và định hướng nguyên liệu."],
+            ["R&D & Làm Mẫu","Đội ngũ R&D lựa chọn nguyên liệu, xây dựng công thức và thực hiện các vòng mẫu thử theo phản hồi."],
+            ["Duyệt Mẫu & Đánh Giá","Tinh chỉnh cảm quan, độ ổn định và khả năng triển khai thực tế trước khi chốt mẫu sản xuất."],
+            ["Hoàn Thiện Quy Trình Sản Xuất","Chuyển công thức đã duyệt sang quy trình sản xuất, đồng bộ bao bì, hồ sơ và kế hoạch bàn giao."]
+          ]
+        }
+      ]
+    },
+    certification:{
+      title:"Năng Lực Sản Xuất & Chứng Nhận",
+      cards:[
+        ["GMP Bộ Y Tế Việt Nam","Bio-A Group đạt chuẩn GMP Bộ Y Tế, tập trung kiểm soát quy trình sản xuất dược mỹ phẩm theo yêu cầu chất lượng đã xác định."],
+        ["HACCP","Hệ thống quản lý an toàn thực phẩm hỗ trợ nhận diện và kiểm soát các điểm cần theo dõi trong quá trình vận hành."],
+        ["Kiểm Soát Chất Lượng","Nguyên liệu, mẫu duyệt, quá trình sản xuất, bao bì và thành phẩm được theo dõi theo từng giai đoạn của dự án."]
+      ],
+      footer:"Bio-A Group đồng hành trọn gói từ ý tưởng đến sản phẩm hoàn thiện, hướng tới sản phẩm chất lượng, phương án sản xuất phù hợp và tiến độ rõ ràng."
+    },
+    quality:{
+      pretitle:"Kiểm Nghiệm Chất Lượng Sản Phẩm",
+      subtitle:"Hạng mục kiểm tra được xác định theo nhóm sản phẩm, công thức và yêu cầu hồ sơ của từng dự án.",
+      title:"Hạng Mục Kiểm Tra",
+      checks:["Kiểm Tra Vi Sinh","Kiểm Tra Kim Loại Nặng","Chỉ Tiêu An Toàn Theo Sản Phẩm","Độ Ổn Định & Cảm Quan"],
+      description:"Các chỉ tiêu được lựa chọn theo đặc tính công thức và định hướng sử dụng của sản phẩm.",
+      highlight:"Kết quả kiểm tra được phối hợp cùng yêu cầu bao bì, mẫu duyệt và quy cách sản xuất để hỗ trợ sản phẩm ổn định khi chuyển sang thành phẩm.",
+      qcTitle:"Kiểm Soát Theo Từng Giai Đoạn",
+      qc:[
+        ["Kiểm Tra Nguyên Liệu","Nguyên liệu đầu vào được rà soát theo tiêu chí phù hợp trước khi đưa vào quy trình sản xuất."],
+        ["Kiểm Soát Trong Sản Xuất","Các thông số và đặc tính cảm quan được theo dõi trong quá trình sản xuất để hạn chế sai lệch so với mẫu đã duyệt."],
+        ["Kiểm Tra Thành Phẩm","Thành phẩm được kiểm tra cảm quan, quy cách đóng gói và các tiêu chí cần thiết trước khi bàn giao."]
+      ]
+    }
+  },
+  en:{
+    packagingTitle:"Packaging Solutions for Cosmetic Brands",
+    packaging:[
+      {title:"Cosmetic Tubes",ideal:["Body Care Creams","Facial Cleansers","Cosmetic Gels","Daily Care Products"],features:["Controlled, hygienic dispensing","Helps reduce direct contact and product waste","Compact and travel-friendly","Suitable for many gel and cream textures"]},
+      {title:"Airless Dispensers",ideal:["Serums","Skin Care Creams","Blemish Care","Light Creams","Active Gels"],features:["Helps reduce formula exposure to air","Supports formula stability","Pump format suited to premium positioning","Clean, modern presentation for skin-care lines"]},
+      {title:"Cosmetic Jars",ideal:["Face & Body Masks","Body Scrubs","Balms","Rich Moisturizers"],features:["Easy access for thicker textures","Multiple materials and capacities available","Premium tactile presentation","Suitable for home-care and spa ranges"]},
+      {title:"Bottles",ideal:["Shampoos","Toners","Personal Care Gels","Liquid Skin Care","Hair Care Products"],features:["Pump, spray, flip-top and screw-cap options","Easy dispensing and everyday use","Flexible across value and premium ranges","Shapes and materials can align with brand identity"]}
+    ],
+    formats:{title:"Product Formats We Can Manufacture",lede:"Bio-A Group can develop and finish multiple product formats around each brand's product direction.",tab:"Product Formats",items:["Creams","Serums","Liquids","Gels","Sprays","Balms","Pads"],ctaTitle:"Do not see your format on the list?",ctaDescription:"Share your product idea and Bio-A Group will review the formula, packaging format and suitable production approach.",button:"Tell Us Your Idea"},
+    process:{
+      title:"Manufacturing Process",
+      columns:[
+        {title:"Ready Formula",subtitle:"A faster route for brands that need a clear product specification and shorter development cycle.",steps:[["Define Your Product","Align product category, target customer, positioning, expected quantity and sensory requirements."],["Select Formula & Format","Choose a suitable formula base, capacity and packaging direction."],["Approve Sample & Product Information","Review the sample, sensory profile, label content and required information before production."],["Prepare Packaging & Production","Finalize containers, labels, packing specifications and production planning."],["Production & Delivery","Manufacture, fill, pack and inspect finished goods before delivery."]]},
+        {title:"Custom Formula Development",subtitle:"For brands that want a differentiated product developed from R&D samples through finished production.",steps:[["Clarify Product Direction","Define benefits, target users, texture, fragrance, color and ingredient direction."],["R&D & Sampling","Develop formulas, select ingredients and refine samples through feedback rounds."],["Sample Approval & Evaluation","Refine sensory details, stability and production feasibility before approval."],["Finalize Production Process","Transfer the approved formula into manufacturing while coordinating packaging, documentation and delivery planning."]]}
+      ]
+    },
+    certification:{title:"Manufacturing Capability & Certifications",cards:[["GMP — Vietnam Ministry of Health","Bio-A Group operates to GMP requirements recorded in the legacy Bio-A source, with controlled cosmetic and cosmeceutical manufacturing processes."],["HACCP","A food-safety management system that supports identification and control of relevant operational risks."],["Quality Control","Materials, approved samples, production, packaging and finished goods are followed through project stages."]],footer:"Bio-A Group supports brands from the initial idea through finished products with practical manufacturing solutions, quality focus and clear project milestones."},
+    quality:{pretitle:"Product Quality Testing",subtitle:"Testing scope is selected according to product category, formula and documentation requirements.",title:"Testing Scope",checks:["Microbiological Testing","Heavy-Metal Testing","Product-Specific Safety Parameters","Stability & Sensory Review"],description:"Testing parameters are selected according to formula characteristics and intended product use.",highlight:"Testing, packaging, approved samples and manufacturing specifications are coordinated to support stable finished-product quality.",qcTitle:"Stage-by-Stage Quality Control",qc:[["Incoming Material Review","Incoming materials are reviewed against relevant criteria before production."],["In-Process Control","Product parameters and sensory characteristics are monitored during manufacturing."],["Finished-Goods Inspection","Finished goods are checked for sensory quality, packaging specifications and required project criteria before delivery."]]}
+  }
+};
+
+function applyHeroBrandWatermark($){
+  if(!$("#bioa-cosmetics-hero-watermark-style").length){
+    $("head").append('<style id="bioa-cosmetics-hero-watermark-style">.page-main[data-bioa-page="cosmetics-hub"] .block-info .composition::after{content:"";position:absolute;z-index:1;left:14%;top:12%;width:72%;height:76%;background:#116F47;opacity:.075;pointer-events:none;-webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain;mask:url("/assets/bioa-monogram.svg") no-repeat center/contain}.page-main[data-bioa-page="cosmetics-hub"] .block-info .composition{isolation:isolate}@media(max-width:768px){.page-main[data-bioa-page="cosmetics-hub"] .block-info .composition::after{left:12%;top:10%;width:76%;height:80%;opacity:.075}}</style>');
+  }
+}
+
+function applyPackaging($,lang){
+  const data=cosmeticsDeepContent[lang];
+  [$(".block-products-desctop"),$(".block-products-mobile")].forEach(block=>{
+    if(!block.length)return;
+    block.find(".title-wrapper .title").each((_,el)=>$(el).text(data.packagingTitle));
+    block.find(".swiper-slide").each((i,el)=>{
+      const d=data.packaging[i%data.packaging.length];
+      const slide=$(el);
+      slide.find(".product__title .title,.product__title").first().text(d.title);
+      slide.find(".product__ideal-for .label").text(lang==="vi"?"Phù Hợp Với":"Used For");
+      slide.find(".product__key-advantages .label").text(lang==="vi"?"Đặc Điểm Chính":"Key Features");
+      slide.find(".product__ideal-for .labels__item").each((j,item)=>{
+        if(d.ideal[j]!=null)$(item).text(d.ideal[j]);
+      });
+      const featureItems=slide.find(".product__key-advantages .list__item");
+      featureItems.each((j,item)=>{
+        if(d.features[j]==null)return;
+        const row=$(item);
+        const t=row.find(".list__item-text").first();
+        if(t.length)t.text(d.features[j]);
+        else row.text(d.features[j]);
+      });
+      slide.find(".product__open-text").text(lang==="vi"?"Xem Thêm":"Show More");
+    });
+  });
+}
+
+function applyFormats($,lang){
+  const d=cosmeticsDeepContent[lang].formats;
+  const root=$(".block-product-formats").first();
+  if(!root.length)return;
+  root.find(".title-wrapper .title").text(d.title);
+  root.find(".formats__lede").text(d.lede);
+  root.find(".formats__tab").text(d.tab);
+  root.find(".formats__panel-title").text(d.tab);
+  root.find(".formats__item-title").each((i,el)=>{if(d.items[i]!=null)$(el).text(d.items[i]);});
+  root.find(".formats__cta-title").text(d.ctaTitle);
+  root.find(".formats__cta-description").text(d.ctaDescription);
+  root.find(".formats__cta-btn .btn__text").text(d.button);
+}
+
+function applyProcess($,lang){
+  const d=cosmeticsDeepContent[lang].process;
+  const root=$(".block-two-columns").first();
+  if(!root.length)return;
+  root.find(".title-wrapper .title").text(d.title);
+  root.find(".two-columns-column").each((i,el)=>{
+    const col=d.columns[i];
+    if(!col)return;
+    const column=$(el);
+    column.find(".two-columns-column-title").text(col.title);
+    column.find(".two-columns-column-subtitle").text(col.subtitle);
+    column.find(".two-columns-item").each((j,item)=>{
+      const step=col.steps[j];
+      if(!step)return;
+      const node=$(item);
+      node.find(".two-columns-item-title").text(step[0]);
+      node.find(".two-columns-item-text").text(step[1]);
+    });
+  });
+}
+
+function applyCertification($,lang){
+  const d=cosmeticsDeepContent[lang].certification;
+  const root=$(".certifications").first();
+  if(!root.length)return;
+  root.find(".certifications-title").text(d.title);
+  root.find(".cert-card").each((i,el)=>{
+    const card=d.cards[i];
+    if(!card)return;
+    const node=$(el);
+    node.find(".cert-card-title").text(card[0]);
+    node.find(".cert-card-description").text(card[1]);
+  });
+  root.find(".certifications-footer-text").text(d.footer);
+}
+
+function applyQuality($,lang){
+  const d=cosmeticsDeepContent[lang].quality;
+  const root=$(".block-we-conduct").first();
+  if(!root.length)return;
+  root.find(".we-conduct-pretitle").text(d.pretitle);
+  root.find(".we-conduct-subtitle").text(d.subtitle);
+  root.find(".we-conduct-title").eq(0).text(d.title);
+  root.find(".we-conduct-card-title").each((i,el)=>{if(d.checks[i]!=null)$(el).text(d.checks[i]);});
+  root.find(".we-conduct-description").text(d.description);
+  root.find(".we-conduct-highlight").text(d.highlight);
+  root.find(".we-conduct-title").eq(1).text(d.qcTitle);
+  root.find(".we-quality-card").each((i,el)=>{
+    const q=d.qc[i];
+    if(!q)return;
+    const node=$(el);
+    node.find(".we-quality-card-title").text(q[0]);
+    node.find(".we-quality-card-text").text(q[1]);
+  });
+}
+
+function applyHeroAndCtas($,lang){
+  const data=content[lang];
+  $(".block-info h1").each((_,el)=>$(el).text(data.heroTitle));
+  $(".block-info .text").each((_,el)=>$(el).text(data.heroLead));
+  $(".block-info .btn__text").text(lang==="vi"?"Nhận Tư Vấn":"Get a Quote");
+  $(".block-roadmap .btn__text").text(lang==="vi"?"Nhận Tư Vấn":"Get a Quote");
+}
+
 function applyScenarios($,lang){
   const data=content[lang];
   $(".block-reviews .title").each((_,el)=>$(el).text(lang==="vi"?"Kịch Bản Hợp Tác Tiêu Biểu":"Typical Collaboration Scenarios"));
@@ -256,15 +473,20 @@ export function applyCosmeticsHubRefinement($,route,lang){
   const key=lang==="en"?"en":"vi";
   const data=content[key];
 
-  root.find("h1").first().text(data.heroTitle);
-  root.find(".text-large").first().text(data.heroLead);
+  root.attr("data-bioa-page","cosmetics-hub");
+  applyHeroBrandWatermark($);
+  applyHeroAndCtas($,key);
 
   replaceRules(root,key==="vi"?viRules:enRules);
   applyCategories($,key);
   applyCategoryArtwork($);
+  applyPackaging($,key);
+  applyFormats($,key);
+  applyProcess($,key);
   applyScenarios($,key);
+  applyCertification($,key);
+  applyQuality($,key);
   applyRoadmap($,key);
 
   $(".whatsapp__title").text(data.cta);
-  root.attr("data-bioa-page","cosmetics-hub");
 }

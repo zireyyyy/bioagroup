@@ -1373,3 +1373,35 @@ Cosmetics motion authority:
 
 Global rule:
 - every new route must first inherit compatible PASS shared behavior/artwork from Home/About before adding page-specific patches.
+
+
+## PATCH-E3 — cosmetics hub deep content mapping
+
+Route owner:
+- bioa-cosmetics-refine.mjs
+
+Hero:
+- .block-info.desctop .composition
+- .block-info.mobile .composition
+- faded Bio-A overlay: /assets/bioa-monogram.svg
+- preserve the source product hero background image and geometry.
+
+Paired content owners:
+- applyHeroAndCtas()
+- applyPackaging()
+- applyFormats()
+- applyProcess()
+- applyCertification()
+- applyQuality()
+- applyRoadmap()
+
+Legacy BIOA content authority:
+- BIOA-Website.zip / cms/pages/home.php
+- BIOA-Website.zip / cms/pages/about.php
+- confirmed wording/claims include OEM/ODM, GMP Bộ Y Tế Việt Nam, HACCP, end-to-end support from idea to finished product.
+- missing detailed service copy may use concise sample text consistent with those confirmed facts.
+
+Rule:
+- do not leave English Merywood service claims in the VI route when the component is mapped;
+- map Desktop and Mobile source DOM trees together;
+- never reintroduce EU/ISO/supplement claims from Merywood unless separately verified for Bio-A.
