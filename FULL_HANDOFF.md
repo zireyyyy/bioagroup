@@ -1819,3 +1819,47 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-E5 — WHY CHOOSE ICON/CONTENT SEMANTIC ALIGNMENT
+
+Owner-confirmed:
+- PATCH-E4 hero: PASS.
+- Why Choose copy direction is approved, but multiple card subjects did not match the original Merywood icon semantics.
+
+Root cause:
+- E4 restored the Merywood Why Choose artwork while retaining an independently ordered capability list.
+- Cards 02–07 therefore described concepts that did not visually match their icons.
+
+Locked card/icon mapping:
+- 01 factory -> Năng Lực OEM/ODM Trọn Gói;
+- 02 handshake -> Hỗ Trợ Toàn Diện;
+- 03 microscope -> R&D Công Thức & Làm Mẫu;
+- 04 category/network -> Danh Mục Sản Phẩm Đa Dạng;
+- 05 package -> Bao Bì & Hoàn Thiện Đồng Bộ;
+- 06 connection/flexible -> Linh Hoạt Theo Dự Án;
+- 07 certificate/document -> Hồ Sơ Trọn Gói & Minh Bạch.
+
+Card 06 uses flexibility rather than sustainability because current Bio-A authority supports flexible project execution; no unsupported sustainability claim is introduced.
+
+Cross-section terminology alignment:
+- Roadmap step 01 -> Tư Vấn & Hỗ Trợ Toàn Diện;
+- Roadmap packaging step -> Bao Bì & Hoàn Thiện Đồng Bộ;
+- Roadmap final step coordinates product information, labels, documentation and approval milestones;
+- Product Formats -> Dạng Sản Phẩm Gia Công Đa Dạng;
+- Process -> Quy Trình Gia Công Linh Hoạt;
+- manufacturing/certification block -> Năng Lực Sản Xuất & Kiểm Soát Chất Lượng;
+- QC copy explicitly keeps documentation/control milestones clear.
+
+Protected:
+- PATCH-E4 hero asset/geometry — OWNER PASS / LOCKED;
+- Why Choose source icons, card geometry and responsive behavior;
+- all route motion/layout mechanics;
+- Packaging artwork/swiper;
+- Home and /about/ PASS/LOCKED shared behavior.
+
+Status:
+- Hero Desktop: PASS / LOCKED
+- Why Choose + copy alignment Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST

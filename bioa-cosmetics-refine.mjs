@@ -31,13 +31,13 @@ const content={
     heroLead:"Bio-A Group là nhà máy sản xuất dược mỹ phẩm OEM/ODM tại Việt Nam, đạt chuẩn GMP Bộ Y Tế; đồng hành trọn gói từ ý tưởng, R&D công thức, lựa chọn nguyên liệu đến bao bì và thành phẩm.",
     categoryTitle:"Tại Sao Nên Chọn Bio-A Group?",
     categories:[
-      ["Năng Lực OEM/ODM Trọn Gói","Bio-A Group đồng hành từ ý tưởng, R&D, lựa chọn nguyên liệu đến sản xuất, bao bì và hoàn thiện thành phẩm."],
-      ["R&D Công Thức & Làm Mẫu","Đội ngũ R&D phát triển nền công thức, thực hiện mẫu thử và tinh chỉnh cảm quan theo định hướng riêng của từng thương hiệu."],
-      ["Nhà Máy Chuẩn GMP Bộ Y Tế","Năng lực sản xuất dược mỹ phẩm theo chuẩn GMP Bộ Y Tế Việt Nam, với quy trình được kiểm soát theo từng giai đoạn."],
-      ["HACCP & Kiểm Soát Chất Lượng","Hệ thống HACCP cùng kiểm soát nguyên liệu, quá trình sản xuất, bao bì và thành phẩm hỗ trợ duy trì chất lượng ổn định."],
+      ["Năng Lực OEM/ODM Trọn Gói","Năng lực nhà máy hỗ trợ sản xuất, sang chiết, đóng gói và hoàn thiện thành phẩm theo định hướng riêng của từng thương hiệu."],
+      ["Hỗ Trợ Toàn Diện","Bio-A Group phối hợp xuyên suốt từ tư vấn ý tưởng, lựa chọn hướng triển khai đến R&D, bao bì, hồ sơ và kế hoạch sản xuất."],
+      ["R&D Công Thức & Làm Mẫu","Đội ngũ R&D phát triển nền công thức, lựa chọn nguyên liệu, thực hiện mẫu thử và tinh chỉnh cảm quan theo phản hồi dự án."],
       ["Danh Mục Sản Phẩm Đa Dạng","Có thể phát triển nhiều nhóm sản phẩm từ chăm sóc da, tóc, body, trang điểm đến cá nhân và mẹ & bé."],
-      ["Bao Bì & Hoàn Thiện Đồng Bộ","Phối hợp lựa chọn chai lọ, quy cách đóng gói và các hạng mục hoàn thiện phù hợp đặc tính sản phẩm và nhận diện thương hiệu."],
-      ["Đồng Hành Minh Bạch & Linh Hoạt","Giải pháp được điều chỉnh theo quy mô, định hướng và tiến độ từng dự án, với thông tin được trao đổi rõ ràng xuyên suốt."]
+      ["Bao Bì & Hoàn Thiện Đồng Bộ","Phối hợp lựa chọn chai lọ, quy cách đóng gói, nhãn và các hạng mục hoàn thiện phù hợp đặc tính sản phẩm và nhận diện thương hiệu."],
+      ["Linh Hoạt Theo Dự Án","Giải pháp được điều chỉnh theo định hướng công thức, quy mô, số lượng dự kiến và tiến độ của từng dự án thay vì áp dụng một lộ trình cố định."],
+      ["Hồ Sơ Trọn Gói & Minh Bạch","Thông tin sản phẩm, nhãn, hồ sơ cần thiết và các mốc duyệt được phối hợp rõ ràng để thương hiệu dễ theo dõi xuyên suốt dự án."]
     ],
     scenarios:[
       ["Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.","Tình Huống 01","Thương hiệu skincare • Nội dung mẫu"],
@@ -46,10 +46,10 @@ const content={
     ],
     roadmapTitle:"Đồng Hành Trọn Chu Kỳ",
     roadmap:[
-      ["Tư Vấn & Lập Kế Hoạch",["Làm rõ ý tưởng, nhóm sản phẩm và khách hàng mục tiêu,","xác định ngân sách, tiến độ và hướng triển khai","cho R&D, bao bì và kế hoạch sản xuất."]],
+      ["Tư Vấn & Hỗ Trợ Toàn Diện",["Làm rõ ý tưởng, nhóm sản phẩm và khách hàng mục tiêu,","xác định quy mô, tiến độ và hướng triển khai,","kết nối R&D, bao bì, hồ sơ và kế hoạch sản xuất."]],
       ["R&D & Hoàn Thiện Công Thức",["Lựa chọn hướng công thức và nguyên liệu phù hợp,","làm mẫu thử, tinh chỉnh cảm quan theo phản hồi","trước khi chốt mẫu chuyển sang sản xuất."]],
-      ["Bao Bì & Nhận Diện",["Phối hợp lựa chọn chai lọ và quy cách đóng gói,","hoàn thiện nhãn cùng các hạng mục nhận diện","phù hợp với đặc tính của từng sản phẩm."]],
-      ["Hồ Sơ, Sản Xuất & Bàn Giao",["Rà soát thông tin cần thiết trước sản xuất,","triển khai sản xuất, sang chiết và đóng gói,","kiểm soát thành phẩm theo kế hoạch đã thống nhất."]]
+      ["Bao Bì & Hoàn Thiện Đồng Bộ",["Phối hợp lựa chọn chai lọ và quy cách đóng gói,","hoàn thiện nhãn cùng các hạng mục nhận diện","phù hợp với đặc tính của từng sản phẩm."]],
+      ["Hồ Sơ, Sản Xuất & Bàn Giao",["Rà soát thông tin, nhãn và hồ sơ cần thiết,","thống nhất các mốc duyệt trước khi sản xuất,","hoàn thiện thành phẩm và bàn giao theo kế hoạch."]]
     ],
     cta:"Trao Đổi Dự Án Cùng Bio-A Group"
   },
@@ -58,13 +58,13 @@ const content={
     heroLead:"Bio-A Group is a cosmetic and cosmeceutical OEM/ODM manufacturer in Vietnam, supporting brands from product concept and formula R&D through packaging and finished-product production.",
     categoryTitle:"Why Choose Bio-A Group?",
     categories:[
-      ["Full-Service OEM/ODM Capability","Bio-A Group supports projects from concept and R&D through materials, manufacturing, packaging and finished products."],
-      ["Formula R&D & Sampling","The R&D team develops formula directions, prepares samples and refines sensory details around each brand brief."],
-      ["GMP — Vietnam Ministry of Health","Cosmetic and cosmeceutical manufacturing capability aligned with GMP requirements recorded in the legacy Bio-A source."],
-      ["HACCP & Quality Control","HACCP and project-stage controls support consistent quality across materials, production, packaging and finished goods."],
-      ["Diverse Product Capability","Multiple categories can be developed across skin care, hair care, body care, makeup, personal care and mother & baby."],
-      ["Packaging & Finishing Support","Containers, packing specifications and finishing details are coordinated around product characteristics and brand identity."],
-      ["Transparent, Flexible Partnership","Project scope, scale and timing can be adjusted with clear communication throughout development and manufacturing."]
+      ["Full-Service OEM/ODM Manufacturing","Factory capability covers manufacturing, filling, packing and finished-product completion around each brand direction."],
+      ["Comprehensive Project Support","Bio-A Group coordinates the project from consultation and direction-setting through R&D, packaging, documentation and production planning."],
+      ["Formula R&D & Sampling","The R&D team develops formula bases, selects ingredients, prepares samples and refines sensory details through project feedback."],
+      ["Diverse Product Portfolio","Multiple categories can be developed across skin care, hair care, body care, makeup, personal care and mother & baby."],
+      ["Packaging & Finishing Support","Containers, packing specifications, labels and finishing details are coordinated around product characteristics and brand identity."],
+      ["Flexible Project Solutions","Formula direction, project scale, expected quantity and timing can be adjusted instead of forcing every project into one fixed route."],
+      ["Complete & Transparent Documentation","Product information, labels, required documentation and approval milestones are coordinated clearly so the brand can follow project progress."]
     ],
     scenarios:[
       ["A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.","Scenario 01","Skincare brand • Sample scenario"],
@@ -73,10 +73,10 @@ const content={
     ],
     roadmapTitle:"Full-Cycle Support",
     roadmap:[
-      ["Consultation & Planning",["Align the product idea, category and target customer,","define budget, timing and project direction","for R&D, packaging and production planning."]],
+      ["Consultation & Comprehensive Support",["Align the product idea, category and target customer,","define scale, timing and project direction,","then connect R&D, packaging, documentation and production planning."]],
       ["R&D & Formula Refinement",["Select suitable formula directions and ingredients,","prepare samples and refine sensory details","before the production sample is approved."]],
-      ["Packaging & Brand Presentation",["Coordinate bottles and filling specifications,","finalize labels and brand presentation assets","to fit the product characteristics."]],
-      ["Documentation, Production & Delivery",["Review required information before manufacturing,","produce, fill and pack according to the plan,","then inspect finished goods before delivery."]]
+      ["Packaging & Coordinated Finishing",["Coordinate bottles and filling specifications,","finalize labels and brand presentation assets","to fit the product characteristics."]],
+      ["Documentation, Production & Delivery",["Review product information, labels and required documentation,","confirm approval milestones before manufacturing,","then finish and deliver goods according to the agreed plan."]]
     ],
     cta:"Discuss Your Project with Bio-A Group"
   }
@@ -149,7 +149,7 @@ const viRules=[
 
 const enRules=[
   [/^Contract Manufacturing of Cosmetics, Skincare & Beauty Products$/i,"Full-Service Cosmetic Manufacturing"],
-  [/^Why Choose Merywood$/i,"Cosmetic Manufacturing Categories"],
+  [/^Why Choose Merywood$/i,"Why Choose Bio-A Group?"],
   [/^Smart Packaging Solutions for Cosmetic Brands$/i,"Packaging Solutions for Cosmetic Brands"],
   [/^How It Works$/i,"Manufacturing Process"],
   [/^Ready-Made Formulas$/i,"Ready Formula"],
@@ -249,8 +249,8 @@ const cosmeticsDeepContent={
       }
     ],
     formats:{
-      title:"Các Dạng Sản Phẩm Có Thể Gia Công",
-      lede:"Bio-A Group có thể phát triển công thức và hoàn thiện nhiều dạng sản phẩm tùy theo định hướng thương hiệu.",
+      title:"Dạng Sản Phẩm Gia Công Đa Dạng",
+      lede:"Bio-A Group có thể phát triển nhiều nhóm và dạng sản phẩm với công thức, kết cấu và quy cách hoàn thiện theo định hướng thương hiệu.",
       tab:"Dạng Sản Phẩm",
       items:["Kem","Serum","Dạng Lỏng","Gel","Xịt","Balm / Sáp","Miếng Pad"],
       ctaTitle:"Chưa thấy dạng sản phẩm bạn cần?",
@@ -258,7 +258,7 @@ const cosmeticsDeepContent={
       button:"Chia Sẻ Ý Tưởng"
     },
     process:{
-      title:"Quy Trình Gia Công",
+      title:"Quy Trình Gia Công Linh Hoạt",
       columns:[
         {
           title:"Công Thức Có Sẵn",
@@ -284,7 +284,7 @@ const cosmeticsDeepContent={
       ]
     },
     certification:{
-      title:"Năng Lực Sản Xuất & Chứng Nhận",
+      title:"Năng Lực Sản Xuất & Kiểm Soát Chất Lượng",
       cards:[
         ["GMP Bộ Y Tế Việt Nam","Bio-A Group đạt chuẩn GMP Bộ Y Tế, tập trung kiểm soát quy trình sản xuất dược mỹ phẩm theo yêu cầu chất lượng đã xác định."],
         ["HACCP","Hệ thống quản lý an toàn thực phẩm hỗ trợ nhận diện và kiểm soát các điểm cần theo dõi trong quá trình vận hành."],
@@ -294,7 +294,7 @@ const cosmeticsDeepContent={
     },
     quality:{
       pretitle:"Kiểm Nghiệm Chất Lượng Sản Phẩm",
-      subtitle:"Hạng mục kiểm tra được xác định theo nhóm sản phẩm, công thức và yêu cầu hồ sơ của từng dự án.",
+      subtitle:"Hạng mục kiểm tra được xác định theo nhóm sản phẩm, công thức và yêu cầu hồ sơ của từng dự án để các mốc kiểm soát luôn rõ ràng.",
       title:"Hạng Mục Kiểm Tra",
       checks:["Kiểm Tra Vi Sinh","Kiểm Tra Kim Loại Nặng","Chỉ Tiêu An Toàn Theo Sản Phẩm","Độ Ổn Định & Cảm Quan"],
       description:"Các chỉ tiêu được lựa chọn theo đặc tính công thức và định hướng sử dụng của sản phẩm.",
@@ -315,16 +315,16 @@ const cosmeticsDeepContent={
       {title:"Cosmetic Jars",ideal:["Face & Body Masks","Body Scrubs","Balms","Rich Moisturizers"],features:["Easy access for thicker textures","Multiple materials and capacities available","Premium tactile presentation","Suitable for home-care and spa ranges"]},
       {title:"Bottles",ideal:["Shampoos","Toners","Personal Care Gels","Liquid Skin Care","Hair Care Products"],features:["Pump, spray, flip-top and screw-cap options","Easy dispensing and everyday use","Flexible across value and premium ranges","Shapes and materials can align with brand identity"]}
     ],
-    formats:{title:"Product Formats We Can Manufacture",lede:"Bio-A Group can develop and finish multiple product formats around each brand's product direction.",tab:"Product Formats",items:["Creams","Serums","Liquids","Gels","Sprays","Balms","Pads"],ctaTitle:"Do not see your format on the list?",ctaDescription:"Share your product idea and Bio-A Group will review the formula, packaging format and suitable production approach.",button:"Tell Us Your Idea"},
+    formats:{title:"Diverse Product Formats",lede:"Bio-A Group can develop multiple product categories and formats with formulas, textures and finishing specifications aligned to each brand direction.",tab:"Product Formats",items:["Creams","Serums","Liquids","Gels","Sprays","Balms","Pads"],ctaTitle:"Do not see your format on the list?",ctaDescription:"Share your product idea and Bio-A Group will review the formula, packaging format and suitable production approach.",button:"Tell Us Your Idea"},
     process:{
-      title:"Manufacturing Process",
+      title:"Flexible Manufacturing Process",
       columns:[
         {title:"Ready Formula",subtitle:"A faster route for brands that need a clear product specification and shorter development cycle.",steps:[["Define Your Product","Align product category, target customer, positioning, expected quantity and sensory requirements."],["Select Formula & Format","Choose a suitable formula base, capacity and packaging direction."],["Approve Sample & Product Information","Review the sample, sensory profile, label content and required information before production."],["Prepare Packaging & Production","Finalize containers, labels, packing specifications and production planning."],["Production & Delivery","Manufacture, fill, pack and inspect finished goods before delivery."]]},
         {title:"Custom Formula Development",subtitle:"For brands that want a differentiated product developed from R&D samples through finished production.",steps:[["Clarify Product Direction","Define benefits, target users, texture, fragrance, color and ingredient direction."],["R&D & Sampling","Develop formulas, select ingredients and refine samples through feedback rounds."],["Sample Approval & Evaluation","Refine sensory details, stability and production feasibility before approval."],["Finalize Production Process","Transfer the approved formula into manufacturing while coordinating packaging, documentation and delivery planning."]]}
       ]
     },
-    certification:{title:"Manufacturing Capability & Certifications",cards:[["GMP — Vietnam Ministry of Health","Bio-A Group operates to GMP requirements recorded in the legacy Bio-A source, with controlled cosmetic and cosmeceutical manufacturing processes."],["HACCP","A food-safety management system that supports identification and control of relevant operational risks."],["Quality Control","Materials, approved samples, production, packaging and finished goods are followed through project stages."]],footer:"Bio-A Group supports brands from the initial idea through finished products with practical manufacturing solutions, quality focus and clear project milestones."},
-    quality:{pretitle:"Product Quality Testing",subtitle:"Testing scope is selected according to product category, formula and documentation requirements.",title:"Testing Scope",checks:["Microbiological Testing","Heavy-Metal Testing","Product-Specific Safety Parameters","Stability & Sensory Review"],description:"Testing parameters are selected according to formula characteristics and intended product use.",highlight:"Testing, packaging, approved samples and manufacturing specifications are coordinated to support stable finished-product quality.",qcTitle:"Stage-by-Stage Quality Control",qc:[["Incoming Material Review","Incoming materials are reviewed against relevant criteria before production."],["In-Process Control","Product parameters and sensory characteristics are monitored during manufacturing."],["Finished-Goods Inspection","Finished goods are checked for sensory quality, packaging specifications and required project criteria before delivery."]]}
+    certification:{title:"Manufacturing Capability & Quality Control",cards:[["GMP — Vietnam Ministry of Health","Bio-A Group operates to GMP requirements recorded in the legacy Bio-A source, with controlled cosmetic and cosmeceutical manufacturing processes."],["HACCP","A food-safety management system that supports identification and control of relevant operational risks."],["Quality Control","Materials, approved samples, production, packaging and finished goods are followed through project stages."]],footer:"Bio-A Group supports brands from the initial idea through finished products with practical manufacturing solutions, quality focus and clear project milestones."},
+    quality:{pretitle:"Product Quality Testing",subtitle:"Testing scope is selected according to product category, formula and documentation requirements so quality-control milestones remain clear.",title:"Testing Scope",checks:["Microbiological Testing","Heavy-Metal Testing","Product-Specific Safety Parameters","Stability & Sensory Review"],description:"Testing parameters are selected according to formula characteristics and intended product use.",highlight:"Testing, packaging, approved samples and manufacturing specifications are coordinated to support stable finished-product quality.",qcTitle:"Stage-by-Stage Quality Control",qc:[["Incoming Material Review","Incoming materials are reviewed against relevant criteria before production."],["In-Process Control","Product parameters and sensory characteristics are monitored during manufacturing."],["Finished-Goods Inspection","Finished goods are checked for sensory quality, packaging specifications and required project criteria before delivery."]]}
   }
 };
 

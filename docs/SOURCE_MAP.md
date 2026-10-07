@@ -1419,3 +1419,31 @@ Why Choose:
 - semantic authority: Bio-A capabilities/reasons to choose the manufacturer, not the product-category catalogue.
 - product-category catalogue authority remains /about/ .mwa-produce with the six owner PNGs.
 - do not call applyCategoryArtwork() for /contract-manufacturing-cosmetics/.
+
+
+## PATCH-E5 — Why Choose semantic mapping
+
+Route:
+- /contract-manufacturing-cosmetics/
+
+Source component:
+- #why-choose-us retains the Merywood DOM, source icons, grid and responsive behavior.
+
+Card/icon content authority:
+1. factory -> OEM/ODM manufacturing;
+2. handshake -> comprehensive support;
+3. microscope -> formula R&D / sampling;
+4. category/network -> diverse product portfolio;
+5. package -> packaging / finishing;
+6. connection/flexible -> flexible project solutions;
+7. certificate/document -> complete, transparent documentation.
+
+Related content consistency:
+- Product Formats supports card 04;
+- Packaging supports card 05;
+- ready/custom formula Process supports cards 03 and 06;
+- Roadmap supports cards 02, 03, 05 and 07;
+- Manufacturing/QC sections support card 01 and the route's quality-control language.
+
+Do not reorder these subjects independently of the source icons.
+Do not replace card 06 with a sustainability claim without verified Bio-A evidence.
