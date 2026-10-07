@@ -1343,3 +1343,33 @@ Patch rules:
 
 Status:
 - Desktop / Tablet / Mobile: PENDING OWNER TEST.
+
+
+## PATCH-E2 — cosmetics hub shared parity
+
+Category artwork:
+- source cards remain #why-choose-us .grid/.mobile .item;
+- cards 01–06 use the exact /about/ PASS PNGs:
+  - about-icon-01-trang-diem.png
+  - about-icon-02-cham-soc-toc.png
+  - about-icon-03-cham-soc-body.png
+  - about-icon-04-cham-soc-da-mat.png
+  - about-icon-05-ca-nhan.png
+  - about-icon-06-me-be.png
+- reuse About accepted optical sizing/offsets exactly:
+  01 36px (-4,+2), 02 38px (0,-2), 03 36px (+2,+2),
+  04 36px (-3,0), 05 34px (+3,-1), 06 36px (-4,+1).
+- card 07 R&D keeps source artwork.
+
+Shared watermark authority:
+- bioa-home-refine.mjs / patchSharedBrandWatermarkCss
+- .product__composition-bg-logo uses /assets/bioa-monogram.svg through the same mask treatment as Home H4.
+- sharedShellCss owns this on subpages; route modules must not duplicate it.
+
+Cosmetics motion authority:
+- bioa-home-refine.mjs / addSharedPageReveal()
+- dedicated /contract-manufacturing-cosmetics/ branch reuses MOTION-U1 safe targets.
+- .swiper-wrapper, .swiper-slide and Roadmap repeated .step nodes remain excluded from reveal transforms.
+
+Global rule:
+- every new route must first inherit compatible PASS shared behavior/artwork from Home/About before adding page-specific patches.

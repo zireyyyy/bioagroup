@@ -168,6 +168,45 @@ const enRules=[
   [/^Before your supplements are delivered/i,"Finished goods are checked for sensory quality, packaging specifications and required project criteria before delivery."]
 ];
 
+
+const categoryIconAssets=[
+  "/assets/about-icon-01-trang-diem.png",
+  "/assets/about-icon-02-cham-soc-toc.png",
+  "/assets/about-icon-03-cham-soc-body.png",
+  "/assets/about-icon-04-cham-soc-da-mat.png",
+  "/assets/about-icon-05-ca-nhan.png",
+  "/assets/about-icon-06-me-be.png"
+];
+
+function applyCategoryArtwork($){
+  const root=$("#why-choose-us").first();
+  if(!root.length)return;
+
+  if(!$("#bioa-cosmetics-category-icon-style").length){
+    $("head").append('<style id="bioa-cosmetics-category-icon-style">#why-choose-us .bioa-cosmetics-category-icon-box{display:grid!important;place-items:center!important}#why-choose-us .bioa-cosmetics-category-icon{display:block!important;width:36px!important;height:36px!important;max-width:none!important;object-fit:contain!important;object-position:center!important;pointer-events:none!important}#why-choose-us .bioa-cosmetics-category-icon--01{transform:translate(-4px,2px)}#why-choose-us .bioa-cosmetics-category-icon--02{width:38px!important;height:38px!important;transform:translate(0,-2px)}#why-choose-us .bioa-cosmetics-category-icon--03{transform:translate(2px,2px)}#why-choose-us .bioa-cosmetics-category-icon--04{transform:translate(-3px,0)}#why-choose-us .bioa-cosmetics-category-icon--05{width:34px!important;height:34px!important;transform:translate(3px,-1px)}#why-choose-us .bioa-cosmetics-category-icon--06{transform:translate(-4px,1px)}</style>');
+  }
+
+  [root.find(".grid .item"),root.find(".mobile .item")].forEach(list=>{
+    list.each((i,el)=>{
+      const src=categoryIconAssets[i];
+      if(!src)return; /* card 07 R&D keeps its source artwork */
+      const card=$(el);
+      const img=card.find('img').first();
+      if(!img.length)return;
+      const iconNo=String(i+1).padStart(2,"0");
+      img.parent().addClass("bioa-cosmetics-category-icon-box");
+      img.attr("src",src)
+        .attr("alt","")
+        .attr("aria-hidden","true")
+        .attr("width","36")
+        .attr("height","36")
+        .removeAttr("srcset")
+        .removeAttr("sizes")
+        .addClass("bioa-cosmetics-category-icon bioa-cosmetics-category-icon--"+iconNo);
+    });
+  });
+}
+
 function applyCategories($,lang){
   const data=content[lang];
   const root=$("#why-choose-us").first();
@@ -222,6 +261,7 @@ export function applyCosmeticsHubRefinement($,route,lang){
 
   replaceRules(root,key==="vi"?viRules:enRules);
   applyCategories($,key);
+  applyCategoryArtwork($);
   applyScenarios($,key);
   applyRoadmap($,key);
 

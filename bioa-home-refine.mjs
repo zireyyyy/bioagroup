@@ -4201,6 +4201,21 @@ const patchH4PackagingWatermarkCss = `
 }
 `;
 
+
+const patchSharedBrandWatermarkCss = `
+/* SHARED-WATERMARK1 — carry the owner-approved Home H4 watermark treatment to
+   every subpage that reuses Merywood product-composition artwork. Geometry,
+   foreground product imagery and slider controls remain source-owned. */
+.product__composition-bg-logo{
+  background-image:none!important;
+  background-color:var(--bioa-brand-logo-green)!important;
+  opacity:.070!important;
+  pointer-events:none!important;
+  -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+  mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
+}
+`;
+
 function setLogo($){
   // Explicit brand slots only. Keep every non-brand image/icon untouched.
   $('.header__logo img,.menu__logo img')
@@ -4956,6 +4971,54 @@ function addSharedPageReveal($,route){
     });
 
     mark('.mwa-cta-wrap .mwa-cta','fade-up',120);
+  }else if(route==='/contract-manufacturing-cosmetics/'){
+    /* PATCH-E2 — carry Home MOTION-U1 logic into the cosmetics hub.
+       Reuse source-safe shell/card targets and never transform swiper-wrapper/slides. */
+    mark('.page-main h1','fade-up',0);
+    mark('.page-main .text-large','fade-up',80);
+    mark('.page-main > section:first-of-type .btn','fade-up',140);
+
+    mark('#why-choose-us > .container > .title-wrapper','fade-up',0);
+    $('#why-choose-us .grid.desctop > .item').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(180+Math.min(i,6)*70)+'ms');
+    });
+    $('#why-choose-us .mobile .item').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(120+Math.min(i,6)*55)+'ms');
+    });
+
+    mark('.block-products-desctop > .container > .title-wrapper','fade-up',0);
+    mark('.block-products-desctop .swiper','fade-up',160);
+    mark('.block-products-mobile > .container > .title-wrapper','fade-up',0);
+    mark('.block-products-mobile .swiper','fade-up',180);
+
+    mark('.block-how-works > .container > .title-wrapper','fade-up',0);
+    $('.block-how-works .step').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(140+Math.min(i,5)*65)+'ms');
+    });
+
+    mark('.block-reviews > .container > .title-wrapper','fade-up',0);
+    $('.block-reviews .review').each((i,el)=>{
+      const effect=i%3===0?'fade-right':(i%3===2?'fade-left':'fade-up');
+      $(el).attr('data-bioa-aos',effect).css('--bioa-aos-delay',(i%3===1?'160ms':'220ms'));
+    });
+
+    /* Roadmap repeated steps keep source/slider transform ownership, as on Home. */
+    mark('.block-roadmap > .container > .title-wrapper','fade-up',0);
+    mark('.whatsapp .whatsapp__content','fade-up',260);
+
+    /* Remaining certification/testing/QC sections: animate one safe outer content
+       unit per source container. Skip anything already mapped and every Swiper
+       translation owner. */
+    $('.page-main .container').each((_,container)=>{
+      $(container).children().each((i,el)=>{
+        const node=$(el);
+        if(node.attr('data-bioa-aos'))return;
+        if(node.is('script,style,.swiper-wrapper,.swiper-slide,.step'))return;
+        if(node.find('[data-bioa-aos]').length)return;
+        if(node.closest('.block-roadmap').length&&node.hasClass('step'))return;
+        node.attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(100+Math.min(i,4)*55)+'ms');
+      });
+    });
   }else{
     /* Generic safe fallback for future subpages: section headings/content only.
        Never mark swiper-wrapper, slides, header, footer, cookie or chat. */
@@ -5177,7 +5240,7 @@ const sharedShellCss =
   patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC5ChannelPaletteCss+patchC6ProactiveCss+
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
-  patchSharedHeroStatsParityCss+
+  patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchMotionU1Css;
 
 export function applySharedShell($,route,lang){

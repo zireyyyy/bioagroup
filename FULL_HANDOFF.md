@@ -1698,3 +1698,52 @@ Status:
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
 - FULL RESPONSIVE PASS: NO
+
+
+## PATCH-E2 — SHARED PARITY FIXES FOR GIA CÔNG MỸ PHẨM
+
+Owner runtime feedback on PATCH-E1:
+- motion FAIL: only titles visibly revealed;
+- category artwork FAIL: Merywood icons remained;
+- watermark FAIL: Merywood product-composition watermark remained visible.
+
+Root causes:
+- addSharedPageReveal() had a dedicated About branch but the cosmetics hub used the generic title-only fallback;
+- E1 changed category copy only and left source Merywood artwork untouched;
+- Home H4 watermark CSS was Home-scoped and was not included in sharedShellCss.
+
+Corrections:
+- /contract-manufacturing-cosmetics/ now receives a route-specific MOTION-U1 mapping using the same safe principles already PASS on Home/About:
+  - title/supporting content first;
+  - category cards stagger;
+  - packaging swiper shell only;
+  - How It Works steps;
+  - review convergence;
+  - safe outer content units for certification/testing/QC;
+  - never transform .swiper-wrapper / .swiper-slide;
+  - Roadmap repeated .step nodes remain source-transform-owned.
+- manufacturing category cards 01–06 reuse the exact owner PNG assets, render sizes and optical offsets accepted on /about/;
+- card 07 R&D retains its source artwork;
+- SHARED-WATERMARK1 promotes the accepted Home H4 Bio-A monogram treatment to subpages using .product__composition-bg-logo.
+
+### GLOBAL SUBPAGE INHERITANCE RULE — LOCKED
+
+For every new route/page after Home and About:
+1. first inherit all compatible PASS/LOCKED shared logic from earlier pages;
+2. do not recreate or leave source-Merywood variants of a component when a Bio-A PASS equivalent already exists;
+3. reuse shared Header, Tablet/Mobile Header, Mobile Menu behavior, Footer, Cookie, Chat, Zalo, language switching, title rules, motion framework and Bio-A watermark logic;
+4. where the same Bio-A taxonomy/artwork is reused, use the already approved asset/mapping before inventing route-local artwork;
+5. route modules own page content and genuinely page-specific mappings only;
+6. owner testing on a new page should normally be limited to page-specific defects, not repeated reimplementation of already PASS shared behavior.
+
+Protected:
+- /about/ FULL RESPONSIVE PASS;
+- Home PASS/LOCKED behavior;
+- shared component geometry and interactions;
+- PATCH-E1 content/layout;
+- Merywood slider/runtime transform owners.
+
+Status PATCH-E2:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST
