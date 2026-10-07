@@ -1558,3 +1558,34 @@ Final icon/copy corrections:
 
 Do not reorder or rewrite these independently of their visible icons.
 Next route work should inherit all shared PASS behavior from Home/About/Cosmetics.
+
+
+## PATCH-F1 — Other Services route authority
+
+Route:
+- /dich-vu-khac/
+- paired route: /en/dich-vu-khac/
+- source route: Merywood /hotel-spa-cosmetics/
+
+Owner:
+- bioa-services-refine.mjs
+- build hook: applyOtherServicesRefinement($,route,lang)
+- shared shell remains bioa-home-refine.mjs / applySharedShell().
+
+Source component mapping:
+- .block-info -> Other Services hero;
+- #why-choose-us -> integrated service pillars;
+- .block-right-choice -> six-step support process;
+- .block-reviews -> project scenarios (not testimonials);
+- .block-how-works -> example product groups.
+
+Content source:
+- BIOA-Website.zip legacy wording confirms R&D consultation, packaging/container/label support, documentation/product-notification guidance and flexible project support.
+- concise sample content is allowed where Merywood has a visual component without an exact legacy Bio-A section.
+
+Shared locks:
+- never duplicate Header/Footer/Cookie/Chat/Mobile Menu/language switch;
+- inherit MOTION-U1D3 through applySharedShell();
+- preserve Merywood Desktop/Tablet/Mobile DOM and swiper mechanics;
+- use paired VI/EN page copy;
+- do not introduce EU/ISO or other Merywood-only claims.

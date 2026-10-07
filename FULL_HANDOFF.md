@@ -2071,3 +2071,57 @@ LOCKED / PASS:
 
 Next project page:
 - move to "Dịch Vụ Khác" only after this commit.
+
+
+## PATCH-F1 — OTHER SERVICES INITIAL BUILD
+
+Route:
+- /dich-vu-khac/
+- EN pair: /en/dich-vu-khac/
+- visual/runtime source: Merywood /hotel-spa-cosmetics/
+- content source: owner-supplied BIOA-Website.zip plus concise sample copy where the legacy source has no one-to-one section.
+
+New owner:
+- bioa-services-refine.mjs
+- build.mjs calls applyOtherServicesRefinement() before applySharedShell().
+
+Initial VI/EN mapping:
+- Hero -> Bio-A brand-support services.
+- Why Choose source grid -> integrated support services:
+  1. professional project support,
+  2. consultation/planning,
+  3. documentation/product notification,
+  4. flexible project solutions,
+  5. pre-production completion support.
+- How It Works source block -> 6-step support process:
+  consultation, R&D/sampling, ingredients/specifications, sample approval, packaging/labels, documentation/product notification.
+- Reviews source slider -> three project-use scenarios, not fictional testimonials.
+- Product Range source slider -> example product groups that can use the support services.
+
+Content authority used from legacy BIOA source:
+- formula/ingredient/product-format/sample R&D consultation;
+- packaging/container/label/brand-presentation support;
+- documentation/product-notification guidance before mass production;
+- flexible support by project scale/stage.
+
+PASS inheritance:
+- shared Header/Desktop/Tablet/Mobile;
+- transparent top-header behavior;
+- Footer + hover/meta;
+- Cookie VI/EN;
+- Chat/Zalo;
+- Mobile Menu outside/scroll dismiss;
+- MOTION-U1D3;
+- shared responsive behavior;
+- title capitalization;
+- Bio-A watermark treatment.
+No new motion engine or duplicated shared component was introduced.
+
+Temporary visual decision:
+- Hero reuses the already clean PASS Bio-A cosmetics hero asset instead of the Merywood hotel/spa raster, avoiding reintroduction of the baked Merywood watermark.
+- owner may replace this with a dedicated Other Services hero artwork in a later small patch.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST
