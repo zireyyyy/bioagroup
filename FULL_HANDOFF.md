@@ -2307,3 +2307,46 @@ Protected:
 
 Status:
 - Product Range Desktop/Tablet/Mobile: PENDING OWNER TEST
+
+
+## PATCH-F6 — SINGLE SERVICE SHOWCASE / REMOVE DUPLICATION
+
+Owner decision:
+- keeping both the static "Dịch Vụ Bio-A Group" five-card grid and a second image-led service section would duplicate the same semantic role;
+- the image-led Merywood slider is visually stronger and should replace the static grid.
+
+F6 structure:
+1. Hero
+2. Dịch Vụ Bio-A Group — image-led source Swiper
+3. Quy Trình Triển Khai Dịch Vụ
+4. Giải Pháp Theo Từng Nhu Cầu
+5. CTA
+6. Footer
+
+Removed:
+- #why-choose-us static five-card service grid on /dich-vu-khac/ only.
+
+Promoted source block:
+- .block-how-works is moved immediately after the Hero.
+- source Swiper/card geometry remains Merywood-owned.
+- source has seven product slides; F6 keeps the first five image-led cards only and maps the five actual Bio-A services:
+  1. Sản Xuất & Gia Công Dược Mỹ Phẩm
+  2. Đóng Gói & Sang Chiết Mỹ Phẩm
+  3. Đăng Ký Thương Hiệu & Công Bố
+  4. Chai Lọ Mỹ Phẩm
+  5. Thiết Kế Bao Bì Mỹ Phẩm
+- VI title: "Dịch Vụ Bio-A Group".
+- EN title: "Bio-A Group Services".
+- source product imagery is temporarily retained as the visual carrier; no new generated artwork.
+- small Merywood mark in each card remains replaced with Bio-A monogram.
+
+Protected:
+- F4 workflow icon scope (only process item 03 uses Bio-A mark);
+- F2 MOTION-U1D3;
+- Hero/shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Home/About/Cosmetics PASS.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST

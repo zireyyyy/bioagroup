@@ -26,15 +26,13 @@ const serviceContent={
       ["Dự án đã có công thức hoặc bán thành phẩm có thể tập trung vào chai lọ, sang chiết, đóng gói và hoàn thiện nhãn trước khi ra thị trường.","Sang Chiết & Hoàn Thiện","Giải pháp mẫu"],
       ["Doanh nghiệp đã có sản phẩm có thể sử dụng riêng từng dịch vụ như thiết kế bao bì, thay đổi chai lọ hoặc hỗ trợ hồ sơ & công bố.","Mở Rộng & Chuẩn Hóa","Giải pháp mẫu"]
     ],
-    rangeTitle:"Danh Mục Sản Phẩm",
+    rangeTitle:"Dịch Vụ Bio-A Group",
     range:[
-      ["Sữa Tắm","Dòng làm sạch cơ thể phù hợp kết hợp với dịch vụ sản xuất, chai lọ, nhãn, sang chiết và đóng gói."],
-      ["Dầu Gội","Dòng chăm sóc tóc có thể triển khai đồng bộ công thức, dung tích, chai lọ, nhãn và quy cách đóng gói."],
-      ["Dầu Xả","Dòng chăm sóc tóc hỗ trợ kết hợp mẫu sản phẩm, bao bì, sang chiết, đóng gói và hoàn thiện thông tin."],
-      ["Xà Phòng","Sản phẩm làm sạch dạng bánh hoặc dạng lỏng, có thể kết hợp bao bì, nhãn và hạng mục hoàn thiện."],
-      ["Kem Body","Dòng chăm sóc cơ thể có thể kết hợp công thức, hũ/chai, thiết kế bao bì và đóng gói."],
-      ["Lotion","Dòng dưỡng thể dạng lỏng nhẹ, phù hợp triển khai cùng chai lọ, nhãn, sang chiết và hoàn thiện sản phẩm."],
-      ["Tẩy Tế Bào Chết","Dòng làm sạch chuyên sâu có thể kết hợp sản xuất, lựa chọn bao bì, thiết kế nhãn và đóng gói."]
+      ["Sản Xuất & Gia Công Dược Mỹ Phẩm","Nhà máy hỗ trợ sản xuất OEM/ODM theo định hướng thương hiệu, từ mẫu đã duyệt đến triển khai thành phẩm và kiểm soát các công đoạn sản xuất."],
+      ["Đóng Gói & Sang Chiết Mỹ Phẩm","Hỗ trợ sang chiết, đóng gói và hoàn thiện sản phẩm theo dung tích, quy cách bao bì và kế hoạch triển khai của từng dự án."],
+      ["Đăng Ký Thương Hiệu & Công Bố","Tư vấn lộ trình thông tin thương hiệu, nhãn, hồ sơ công bố và các hạng mục cần chuẩn bị trước khi đưa sản phẩm ra thị trường."],
+      ["Chai Lọ Mỹ Phẩm","Hỗ trợ lựa chọn chai, lọ, hũ, tuýp và dung tích phù hợp với kết cấu sản phẩm, phân khúc và định hướng nhận diện thương hiệu."],
+      ["Thiết Kế Bao Bì Mỹ Phẩm","Hỗ trợ định hướng nhãn, bố cục thông tin và thiết kế bao bì để sản phẩm đồng bộ với nhận diện thương hiệu và quy cách sản xuất."]
     ]
   },
   en:{
@@ -64,15 +62,13 @@ const serviceContent={
       ["A project with an existing formula or bulk product can focus on containers, filling, packing and label completion before market launch.","Filling & Finishing","Sample solution"],
       ["An established business can use individual services such as packaging design, container changes or documentation and notification support.","Portfolio Expansion","Sample solution"]
     ],
-    rangeTitle:"Product Range",
+    rangeTitle:"Bio-A Group Services",
     range:[
-      ["Shower Gel","A body-cleansing format that can combine manufacturing, containers, labels, filling and packing support."],
-      ["Shampoo","A hair-care format suitable for coordinated formula, capacity, containers, labels and packing specifications."],
-      ["Conditioner","A hair-care format that can combine product sampling with packaging, filling, packing and final product information."],
-      ["Soap","A cleansing format available as bar or liquid, with packaging, label and finishing support."],
-      ["Body Cream","A body-care format that can combine formulation, jars or bottles, packaging design and packing."],
-      ["Lotion","A lightweight body-care format suited to coordinated containers, labels, filling and finishing."],
-      ["Scrub","An exfoliating format that can combine manufacturing, packaging selection, label design and packing."]
+      ["Cosmetic & Cosmeceutical Manufacturing","OEM/ODM manufacturing support from approved samples through finished-product production and controlled manufacturing stages."],
+      ["Cosmetic Filling & Packing","Filling, packing and finishing support based on target volume, packaging specifications and each project's rollout plan."],
+      ["Trademark & Product Notification Support","Guidance on brand information, labels, product-notification documentation and preparation before market launch."],
+      ["Cosmetic Bottles & Containers","Support selecting bottles, jars, tubes and capacities that suit product texture, positioning and brand presentation."],
+      ["Cosmetic Packaging Design","Support label direction, information layout and packaging design aligned with brand identity and production specifications."]
 
     ]
   }
@@ -108,27 +104,9 @@ function applyHero($,lang){
 }
 
 function applyWhy($,lang){
-  const d=serviceContent[lang];
-  const block=$("#why-choose-us");
-  if(!block.length)return;
-  setCopy(block,".title-wrapper .title",d.whyTitle);
-  const applyCards=cards=>{
-    cards.each((i,el)=>{
-      const row=d.why[i%d.why.length];
-      const card=$(el);
-      setCopy(card,".item__title",row[0]);
-      setCopy(card,".item__body",row[1]);
-      const img=card.find("img").first();
-      if(img.length){
-        img.attr("src",serviceIconMap[i%d.why.length])
-          .attr("alt",row[0])
-          .removeAttr("srcset sizes")
-          .addClass("bioa-service-pillar-icon");
-      }
-    });
-  };
-  applyCards(block.find(".grid.desctop .item"));
-  applyCards(block.find(".mobile .item"));
+  /* PATCH-F6 — the image-led source slider is now the single service showcase.
+     Remove the redundant static five-card grid instead of duplicating the same services twice. */
+  $("#why-choose-us").remove();
 }
 
 function applyProcess($,lang){
@@ -179,7 +157,15 @@ function applyRange($,lang){
     const block=$(el);
     setCopy(block,".title-wrapper .title",d.rangeTitle);
 
-    const slides=block.find(".swiper-wrapper").first().children(".swiper-slide");
+    const wrapper=block.find(".swiper-wrapper").first();
+    if(!wrapper.length)return;
+
+    /* Source has seven concrete product slides. For the services page we keep
+       the first five image-led cards and remove the two redundant source slides.
+       No cloning and no swiper wrapper changes. */
+    wrapper.children(".swiper-slide").slice(d.range.length).remove();
+
+    const slides=wrapper.children(".swiper-slide");
     slides.each((i,slideNode)=>{
       const row=d.range[i];
       if(!row)return;
@@ -190,8 +176,6 @@ function applyRange($,lang){
       setCopy(step,".step__title",row[0]);
       setCopy(step,".step__text",row[1]);
 
-      /* Keep Merywood's product image for each concrete product format,
-         but replace the baked Merywood mark in the small icon slot only. */
       const icon=step.find(".step__icon img").first();
       if(icon.length){
         icon.attr("src","/assets/bioa-monogram-cream.svg")
@@ -200,6 +184,11 @@ function applyRange($,lang){
           .addClass("bioa-service-range-logo");
       }
     });
+
+    /* Promote this image-led service section to the position previously owned
+       by the removed static service grid: immediately after the Hero. */
+    const hero=$(".block-info").last();
+    if(hero.length)hero.after(block);
   });
 }
 
@@ -210,7 +199,7 @@ function localizeResidualSourceText($,lang){
     "End-to-End Private Label Solutions for Beauty Products":"Dịch Vụ Bio-A Group",
     "How it works":"Quy Trình Triển Khai Dịch Vụ",
     "Hear What Our Clients Say":"Giải Pháp Theo Từng Nhu Cầu",
-    "Our Product Range":"Danh Mục Sản Phẩm",
+    "Our Product Range":"Dịch Vụ Bio-A Group",
     "Let's discuss your idea":"Trao Đổi Về Dự Án Của Bạn",
     "Let’s discuss your idea":"Trao Đổi Về Dự Án Của Bạn",
     "Get started":"Nhận Tư Vấn",
@@ -231,7 +220,6 @@ function patchRouteCss($){
   $("head").append('<style id="bioa-other-services-style">'+
     '.bioa-service-scenarios .review__author{padding-top:18px!important}'+
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
-    '#why-choose-us .bioa-service-pillar-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
     '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
     '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+

@@ -1682,3 +1682,22 @@ Bio-A mapping:
 Do not expand this block into broad manufacturing taxonomies.
 Those belong to /contract-manufacturing-cosmetics/.
 Do not clone swiper slides for this block.
+
+
+## PATCH-F6 — Other Services single-showcase authority
+
+/dich-vu-khac/ no longer uses #why-choose-us as a visible service grid.
+Do not restore it unless owner explicitly requests a second service-summary layer.
+
+Primary service showcase:
+- source block: .block-how-works
+- position: immediately after Hero
+- title VI: Dịch Vụ Bio-A Group
+- title EN: Bio-A Group Services
+- exactly five service slides, matching Bio-A legacy service taxonomy.
+- source Merywood Swiper/card geometry and existing first-five image slots are preserved.
+- small source mark in .step__icon -> assets/bioa-monogram-cream.svg.
+
+Semantic lock:
+- one primary service listing only.
+- workflow remains process, scenarios remain use cases, CTA remains contact conversion.
