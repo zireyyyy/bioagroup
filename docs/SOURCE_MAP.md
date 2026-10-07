@@ -1755,3 +1755,29 @@ SEO:
 - OG/Twitter article metadata uses the existing local thumbnail;
 - BlogPosting JSON-LD is generated per article;
 - existing article slugs remain stable.
+
+
+## PATCH-G3 — Blog rich-detail source map
+
+Exact owner-supplied reference:
+- export: `what-affects-moq-in-supplement-manufacturing-export.zip`;
+- route equivalent: Merywood `/blog/what-affects-moq-in-supplement-manufacturing/`.
+
+Detail source modules and Bio-A mapping:
+- `.bb-toc` -> generated numbered Bio-A TOC;
+- `.text-block` -> numbered Bio-A H2/body sections;
+- `.image-block` -> local article image in source wide-media geometry;
+- `.merywood-cg-wrap` -> Bio-A summary/support cards using source 2/3-column grids;
+- `.block-green-card` -> Bio-A project CTA / conclusion cards;
+- `.block-flex-table` -> generated 3-column quick checklist;
+- `.bb-post-nav-wrap` -> Bio-A previous/next routes.
+
+Authority rule:
+- do not flatten `.bb-content-col` into one custom article block again;
+- preserve the source module DOM/classes/CSS/runtime and only replace payload;
+- never leave visible Merywood text, CTA, image or link payload in a promoted Bio-A article.
+
+Blog index watermark:
+- owner is `body.bioa-blog-index` fixed background using `/assets/bioa-monogram.svg`;
+- source `.blog-hero__bg` stays hidden on the index;
+- no additional generated artwork.

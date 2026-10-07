@@ -31,17 +31,23 @@ function articleBodyHtml(post,lang){
     '<ul class="bioa-blog-related">'+related.map(x=>'<li><a href="'+x[1]+'">'+esc(x[0])+'</a></li>').join('')+'</ul>';
 }
 
+function stripHeadingNumber(value){
+  return String(value||'').replace(/^\s*\d+\s*[.)-]\s*/,'').trim();
+}
+function displaySectionHeading(section,index,lang){
+  return (index+1)+'. '+stripHeadingNumber(langValue(section,'heading',lang));
+}
 function tocHtml(post,lang){
-  return post.sections.map(s=>'<li class="bb-toc__item bb-toc__item--lv1"><a href="#'+esc(s.id)+'">'+esc(langValue(s,'heading',lang))+'</a></li>').join('')+
-    '<li class="bb-toc__item bb-toc__item--lv1"><a href="#tim-hieu-them">'+(lang==='en'?'Explore More':'Tìm Hiểu Thêm')+'</a></li>';
+  return post.sections.map((s,i)=>'<li class="bb-toc__item bb-toc__item--lv1"><a href="#'+esc(s.id)+'">'+esc(displaySectionHeading(s,i,lang))+'</a></li>').join('');
 }
 
 function applyBlogIndex($,lang){
   const isEn=lang==='en';
   const hero=$('.blog-hero');
+  $('body').addClass('bioa-blog-index');
   setText(hero,'.title',isEn?'Bio-A Group Blog':'Blog Bio-A Group');
   setText(hero,'.text-large',isEn?'Practical articles on cosmetic manufacturing, formulation, skincare, packaging and responsible brand development.':'Kiến thức thực tế về gia công mỹ phẩm, công thức, chăm sóc da, bao bì và phát triển thương hiệu có trách nhiệm.');
-  hero.find('.blog-hero__bg').attr('src','/assets/bioa-monogram.svg').attr('alt','').removeAttr('srcset sizes');
+  hero.find('.blog-hero__bg').attr('src','/assets/bioa-monogram.svg').attr('alt','').attr('aria-hidden','true').removeAttr('srcset sizes');
 
   const feature=blogPosts[0];
   const fc=$('.post-feature__card').first();
@@ -104,9 +110,193 @@ function applyArticleSeo($,post,route,lang){
   $('head').append('<script id="bioa-blog-jsonld" type="application/ld+json">'+JSON.stringify(schema).replace(/<\//g,'<\\/')+'</script>');
 }
 
+function paragraphHtml(items){
+  return (items||[]).map(x=>'<p>'+esc(x)+'</p>').join('');
+}
+function bulletHtml(items){
+  return items&&items.length?'<ul>'+items.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'';
+}
+function shorten(value,max=190){
+  const s=String(value||'').replace(/\s+/g,' ').trim();
+  if(s.length<=max)return s;
+  const cut=s.slice(0,max+1).replace(/\s+\S*$/,'').trim();
+  return cut+'…';
+}
+function sectionBodyHtml(post,section,index,lang){
+  const intro=index===0?(langValue(post,'intro',lang)||[]):[];
+  const paragraphs=langValue(section,'paragraphs',lang)||[];
+  const bullets=langValue(section,'bullets',lang)||[];
+  return paragraphHtml([...intro,...paragraphs])+bulletHtml(bullets);
+}
+function cloneTextBlock($,template,post,section,index,lang){
+  const block=template.clone().addClass('bioa-blog-source-text');
+  const title=block.find('.text-block__title').first();
+  if(title.length)title.attr('id',section.id).text(displaySectionHeading(section,index,lang));
+  block.find('.text-block__content').first().html(sectionBodyHtml(post,section,index,lang));
+  return block;
+}
+function cloneBridgeBlock($,template,textValue){
+  const block=template.clone().addClass('bioa-blog-source-bridge');
+  block.find('.text-block__title').remove();
+  block.find('.text-block__content').first().html('<p>'+esc(textValue)+'</p>');
+  return block;
+}
+function cardSeed(section,lang){
+  const paragraphs=langValue(section,'paragraphs',lang)||[];
+  const bullets=langValue(section,'bullets',lang)||[];
+  return {
+    title:shorten(stripHeadingNumber(langValue(section,'heading',lang)),62),
+    text:shorten(bullets[0]||paragraphs[1]||paragraphs[0]||'',205)
+  };
+}
+function cloneCardGrid($,template,items,cols){
+  if(!template||!template.length||!items.length)return null;
+  const block=template.clone().addClass('bioa-blog-source-cards');
+  const grid=block.find('.merywood-cg-grid').first();
+  grid.removeClass('merywood-cg--cols-2 merywood-cg--cols-3').addClass('merywood-cg--cols-'+cols);
+  const cardTemplate=grid.find('.merywood-cg-card').first().clone();
+  grid.empty();
+  items.slice(0,cols).forEach(item=>{
+    const card=cardTemplate.clone();
+    card.find('.merywood-cg-card__title').first().text(item.title);
+    card.find('.text-block__content.cards').first().html('<p>'+esc(item.text)+'</p>');
+    grid.append(card);
+  });
+  return block;
+}
+function cloneImageBlock($,template,post,title){
+  if(!template||!template.length)return null;
+  const block=template.clone().addClass('bioa-blog-source-image');
+  const img=block.find('.image-block__img').first();
+  img.attr('src',post.image).attr('alt',title).attr('width','1174').attr('height','440').removeAttr('srcset sizes');
+  return block;
+}
+function greenCardLinkHtml(button,label,href){
+  const icon=button.find('.btn__icon').first().toString();
+  return '<a class="btn green-card__btn" href="'+href+'"><span class="btn__text">'+esc(label)+'</span>'+icon+'</a>';
+}
+function cloneGreenCard($,template,post,lang,variant){
+  if(!template||!template.length)return null;
+  const isEn=lang==='en';
+  const block=template.clone().addClass('bioa-blog-source-green bioa-blog-source-green--'+variant);
+  const last=post.sections[post.sections.length-1];
+  const lastParagraph=(langValue(last,'paragraphs',lang)||[])[0]||'';
+  const title=variant==='conclusion'
+    ?(isEn?'Conclusion':'Kết Luận')
+    :(isEn?'Turn the Topic Into a Clear Product Brief':'Chuyển Chủ Đề Thành Một Brief Sản Phẩm Rõ Ràng');
+  const body=variant==='conclusion'
+    ?shorten(lastParagraph+' '+(langValue(post,'note',lang)||''),430)
+    :(isEn
+      ?'Bio-A Group can discuss product positioning, formulation targets, prototypes, packaging and a practical manufacturing plan for a project in this category.'
+      :'Bio-A Group có thể cùng bạn trao đổi định vị sản phẩm, mục tiêu công thức, mẫu thử, bao bì và kế hoạch sản xuất thực tế cho dự án cùng nhóm.');
+  block.find('.green-title').first().text(title);
+  block.find('.green-text').first().html('<p>'+esc(body)+'</p>');
+  const image=block.find('.green-card__img').first();
+  image.attr('src',post.image).attr('alt',isEn?post.titleEn:post.titleVi).removeAttr('srcset sizes');
+  const btn=block.find('.green-card__btn').first();
+  if(btn.length){
+    const href=isEn?'/en/contacts/':'/contacts/';
+    btn.replaceWith(greenCardLinkHtml(btn,isEn?'Contact Bio-A Group':'Liên Hệ Bio-A Group',href));
+  }
+  return block;
+}
+function cloneChecklistTable($,template,post,lang){
+  if(!template||!template.length)return null;
+  const isEn=lang==='en';
+  const block=template.clone().addClass('bioa-blog-source-table');
+  block.find('.flex-table__title').first().text(isEn?'Quick checklist:':'Checklist Nhanh:');
+  const table=block.find('.flex-table').first();
+  table.attr('style','--cols: 3;');
+  const headers=isEn?['Topic','Objective','What to verify']:['Hạng Mục','Mục Tiêu','Điểm Cần Kiểm Tra'];
+  const header=table.find('.flex-table__header').first();
+  header.empty();
+  headers.forEach(x=>header.append('<div class="flex-table__cell flex-table__cell--head" role="columnheader">'+esc(x)+'</div>'));
+  table.find('.flex-table__row').remove();
+  post.sections.slice(0,3).forEach(section=>{
+    const paragraphs=langValue(section,'paragraphs',lang)||[];
+    const bullets=langValue(section,'bullets',lang)||[];
+    const row=$('<div class="flex-table__row" role="row"></div>');
+    [
+      shorten(stripHeadingNumber(langValue(section,'heading',lang)),58),
+      shorten(paragraphs[0]||'',135),
+      shorten(bullets[0]||paragraphs[1]||paragraphs[0]||'',135)
+    ].forEach(value=>row.append('<div class="flex-table__cell" role="cell">'+esc(value)+'</div>'));
+    table.append(row);
+  });
+  return block;
+}
+function renderRichArticleSource($,body,post,lang){
+  const content=body.find('.bb-content-col').first();
+  if(!content.length)return false;
+
+  const textTemplate=content.children('section.text-block').first();
+  const imageTemplate=content.children('section.image-block').first();
+  const gridBlocks=content.children('section.merywood-cg-wrap');
+  const cards2=gridBlocks.filter((_,el)=>$(el).find('.merywood-cg-card').length===2).first();
+  const cards3=gridBlocks.filter((_,el)=>$(el).find('.merywood-cg-card').length===3).first();
+  const greenBlocks=content.children('section.block-green-card');
+  const greenMid=greenBlocks.first();
+  const greenConclusion=greenBlocks.last();
+  const tableTemplate=content.children('section.block-flex-table').first();
+  const navWrap=content.children('.bb-post-nav-wrap').first();
+
+  if(!textTemplate.length||!navWrap.length)return false;
+
+  const insert=node=>{if(node&&node.length)navWrap.before(node);};
+  const seeds=post.sections.map(section=>cardSeed(section,lang));
+  const title=lang==='en'?post.titleEn:post.titleVi;
+  const bridgeA=lang==='en'
+    ?'The practical point is to evaluate the product as a system: formula, user experience, stability, packaging and claims should support the same positioning.'
+    :'Điểm quan trọng là đánh giá sản phẩm như một hệ thống: công thức, trải nghiệm dùng, độ ổn định, bao bì và claim phải cùng phục vụ một định vị.';
+  const bridgeB=lang==='en'
+    ?'For a brand, these criteria should become an approval checklist so commercial, R&D, packaging and production teams are working toward the same target.'
+    :'Với thương hiệu, các tiêu chí này nên được chuyển thành checklist duyệt mẫu để kinh doanh, R&D, bao bì và sản xuất cùng bám một mục tiêu.';
+  const bridgeC=lang==='en'
+    ?'A useful brief records what is fixed, what is flexible and which points still require testing before the formula and packaging are locked.'
+    :'Một brief tốt cần ghi rõ điều gì đã chốt, điều gì còn linh hoạt và hạng mục nào phải kiểm tra trước khi khóa công thức cùng bao bì.';
+
+  content.children('section').remove();
+
+  post.sections.forEach((section,i)=>{
+    insert(cloneTextBlock($,textTemplate,post,section,i,lang));
+    if(i===0)insert(cloneImageBlock($,imageTemplate,post,title));
+    if(i===2){
+      insert(cloneCardGrid($,cards2,seeds.slice(0,2),2));
+      insert(cloneBridgeBlock($,textTemplate,bridgeA));
+      insert(cloneGreenCard($,greenMid,post,lang,'mid'));
+    }
+    if(i===3){
+      insert(cloneCardGrid($,cards3,seeds.slice(2,5),3));
+      insert(cloneBridgeBlock($,textTemplate,bridgeB));
+    }
+    if(i===4){
+      const start=Math.max(0,seeds.length-3);
+      insert(cloneCardGrid($,cards3,seeds.slice(start,start+3),Math.min(3,seeds.length-start)));
+    }
+    if(i===5){
+      const start=Math.max(0,seeds.length-2);
+      insert(cloneCardGrid($,cards2,seeds.slice(start,start+2),Math.min(2,seeds.length-start)));
+      insert(cloneBridgeBlock($,textTemplate,bridgeC));
+    }
+  });
+
+  insert(cloneChecklistTable($,tableTemplate,post,lang));
+  const related=lang==='en'
+    ?'<p><strong>Explore related Bio-A Group pages:</strong> <a href="/en/contract-manufacturing-cosmetics/">Cosmetic Manufacturing</a>, <a href="/en/dich-vu-khac/">Other Services</a> and <a href="/en/contacts/">Contact</a>.</p>'
+    :'<p><strong>Tìm hiểu thêm:</strong> <a href="/contract-manufacturing-cosmetics/">Gia Công Mỹ Phẩm</a>, <a href="/dich-vu-khac/">Dịch Vụ Khác</a> và <a href="/contacts/">Liên Hệ Bio-A Group</a>.</p>';
+  const closing=cloneBridgeBlock($,textTemplate,langValue(post,'note',lang)||'');
+  closing.addClass('bioa-blog-source-note');
+  closing.find('.text-block__content').append(related);
+  insert(closing);
+  insert(cloneGreenCard($,greenConclusion,post,lang,'conclusion'));
+  return true;
+}
+
+
 function applyBlogArticle($,route,lang){
   const slug=route.replace(/^\/blog\//,'').replace(/\/$/,''); const post=bySlug.get(slug); if(!post)return;
   const isEn=lang==='en'; const title=isEn?post.titleEn:post.titleVi;
+  $('body').addClass('bioa-blog-detail');
   $('.block-title-post__title,.block-title-post-mobile__title').text(title);
   $('.btp-date').text(post.date);
   $('.block-title-post .btp-reading').text((isEn?'Reading time: ':'Đọc trong ')+post.readMin+(isEn?' min':' phút'));
@@ -116,11 +306,15 @@ function applyBlogArticle($,route,lang){
   setImg($('body'),'.block-title-post-mobile__image img',post.image,title);
 
   const body=$('.block-blog-body');
-  const content=body.find('.bb-content-col').first();
-  if(content.length)content.html('<section class="text-block bioa-blog-article"><div class="text-block__content">'+articleBodyHtml(post,lang)+'</div></section>');
+  const rendered=renderRichArticleSource($,body,post,lang);
+  if(!rendered){
+    const content=body.find('.bb-content-col').first();
+    if(content.length)content.html('<section class="text-block bioa-blog-article"><div class="text-block__content">'+articleBodyHtml(post,lang)+'</div></section>');
+  }
 
   const toc=body.find('.bb-toc__list').first();
   if(toc.length)toc.html(tocHtml(post,lang));
+  body.find('.bb-toc__title').first().text(isEn?'Table of contents:':'Mục Lục:');
   $('.bb-toc__cta-title').text(isEn?'Discuss Your Project':'Trao Đổi Về Dự Án Của Bạn');
   $('.bb-toc__cta-btn').attr('href','https://zalo.me/84779399379').attr('aria-label','Zalo Bio-A Group').find('.btn__text').text(isEn?'Contact Bio-A Group':'Liên Hệ Bio-A Group');
   $('.btp-share > span,.btpm-share > span').text(isEn?'Share':'Chia sẻ');
@@ -129,25 +323,40 @@ function applyBlogArticle($,route,lang){
   const prev=idx>0?blogPosts[idx-1]:null; const next=idx<blogPosts.length-1?blogPosts[idx+1]:null;
   const nav=$('.bb-post-nav').first();
   if(nav.length){
-    const pa=nav.find('.bb-post-nav__prev'); const na=nav.find('.bb-post-nav__next');
-    if(prev){pa.attr('href',localRoute(prev.slug,lang));pa.find('.bb-post-nav__meta').text(isEn?'Previous article':'Bài trước');pa.find('.bb-post-nav__title').text(isEn?prev.titleEn:prev.titleVi);}else pa.remove();
-    if(next){na.attr('href',localRoute(next.slug,lang));na.find('.bb-post-nav__meta').text(isEn?'Next article':'Bài tiếp theo');na.find('.bb-post-nav__title').text(isEn?next.titleEn:next.titleVi);}else na.remove();
+    const linkTemplate=nav.find('.bb-post-nav__link').first().clone();
+    nav.empty().removeClass('bb-post-nav--only-next bb-post-nav--only-prev');
+    const makeNav=(postItem,kind)=>{
+      if(!postItem||!linkTemplate.length)return null;
+      const link=linkTemplate.clone().removeClass('bb-post-nav__prev bb-post-nav__next').addClass('bb-post-nav__'+kind);
+      link.attr('href',localRoute(postItem.slug,lang));
+      link.find('.bb-post-nav__meta').text(kind==='prev'?(isEn?'Previous article':'Bài trước'):(isEn?'Next article':'Bài tiếp theo'));
+      link.find('.bb-post-nav__title').text(isEn?postItem.titleEn:postItem.titleVi);
+      return link;
+    };
+    const prevLink=makeNav(prev,'prev'); const nextLink=makeNav(next,'next');
+    if(prevLink)nav.append(prevLink);
+    if(nextLink)nav.append(nextLink);
+    if(!prevLink)nav.addClass('bb-post-nav--only-next');
+    if(!nextLink)nav.addClass('bb-post-nav--only-prev');
   }
 
-  $('.block-green-card').remove();
   applyArticleSeo($,post,route,lang);
 }
 
 function patchBlogCss($){
   if($('#bioa-blog-style').length)return;
   $('head').append('<style id="bioa-blog-style">'+
-    /* Keep the Merywood Blog DOM and typography. Only correct the Bio-A artwork fit. */
-    '.blog-hero__bg{opacity:.07!important;object-fit:contain!important;object-position:center 58%!important}'+
+    /* PATCH-G3 — fixed Blog index watermark: whole Bio-A monogram remains visible while scrolling. */
+    'body.bioa-blog-index{background-image:url("/assets/bioa-monogram.svg")!important;background-repeat:no-repeat!important;background-attachment:fixed!important;background-position:center 58vh!important;background-size:min(42vw,650px) auto!important}'+
+    'body.bioa-blog-index .blog-hero__bg{display:none!important}'+
     '.post-feature__img,.post-card-thumb img{object-fit:cover!important}'+
-    '.bioa-blog-note{margin-top:32px}'+
-    '.bioa-blog-related a{text-decoration:underline;text-underline-offset:3px}'+
-    '@media(max-width:1024px){.blog-hero__bg{object-position:center 56%!important}}'+
-    '@media(max-width:768px){.blog-hero__bg{object-position:center 54%!important}}'+
+    /* Rich detail pages keep Merywood source component geometry and only normalize Bio-A media. */
+    '.bioa-blog-detail .bioa-blog-source-image .image-block__img{display:block!important;width:100%!important;aspect-ratio:1174/440!important;object-fit:cover!important}'+
+    '.bioa-blog-detail .bioa-blog-source-green .green-card__img{object-fit:cover!important}'+
+    '.bioa-blog-detail .bioa-blog-source-note .text-block__content>p:first-child{opacity:.82}'+
+    '.bioa-blog-detail .bioa-blog-source-note a{text-decoration:underline;text-underline-offset:3px}'+
+    '@media(max-width:1024px){body.bioa-blog-index{background-position:center 56vh!important;background-size:min(58vw,590px) auto!important}}'+
+    '@media(max-width:768px){body.bioa-blog-index{background-position:center 52vh!important;background-size:min(72vw,520px) auto!important}.bioa-blog-detail .bioa-blog-source-image .image-block__img{aspect-ratio:544/270!important}}'+
   '</style>');
 }
 
@@ -158,4 +367,4 @@ export function applyBlogRefinement($,route,lang='vi'){
   patchBlogCss($);
 }
 
-export const blogRouteDefs=blogPosts.map(p=>['/blog/'+p.slug+'/','/blog/cosmetic-manufacturing-process/']);
+export const blogRouteDefs=blogPosts.map(p=>['/blog/'+p.slug+'/','/blog/what-affects-moq-in-supplement-manufacturing/']);

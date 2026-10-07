@@ -2435,3 +2435,52 @@ Status:
 - Desktop: PENDING OWNER TEST.
 - Tablet: PENDING OWNER TEST.
 - Mobile: PENDING OWNER TEST.
+
+
+## PATCH-G3 — BLOG MERYWOOD RICH ARTICLE PARITY + FIXED WATERMARK
+
+Owner runtime result for G2:
+- content cleanup/SEO direction retained;
+- Blog index watermark still sat too high and did not remain visible while scrolling;
+- detail pages were visually too flat because G2 rendered the article into one text block;
+- owner supplied `what-affects-moq-in-supplement-manufacturing-export.zip` as the exact article-layout reference.
+
+Verified root cause:
+- G2 used `/blog/cosmetic-manufacturing-process/` only as a shell and replaced `.bb-content-col` with one flat section.
+- The supplied source article uses a richer sequence: text blocks, wide image, 2/3-card grids, mid-article green CTA, flexible table/checklist, conclusion green CTA and source prev/next navigation.
+- The Blog index watermark remained an image owned by the hero box, so it could not stay fixed through page scroll.
+
+G3 implementation:
+- Blog detail visual/runtime source is now Merywood `/blog/what-affects-moq-in-supplement-manufacturing/`.
+- Seven Bio-A article routes retain their rewritten G2 VI/EN editorial content and SEO metadata.
+- Content is projected into source Merywood modules rather than flattened:
+  - numbered H2 text blocks;
+  - source wide image block;
+  - source 2/3-card grids;
+  - source mid-article green CTA;
+  - source flexible checklist table;
+  - source conclusion green CTA;
+  - source prev/next card mechanics.
+- TOC headings use the same numbered H2 data as visible content.
+- all visible Merywood CTA/media payloads in those modules are replaced by Bio-A content/assets.
+- Blog detail MOTION-U1D3 now marks the added source-safe modules without touching slider/translate owners.
+
+Blog index watermark:
+- source hero watermark image is visually retired;
+- `body.bioa-blog-index` owns the same Bio-A monogram as a fixed page background;
+- Desktop: centered at 58vh, max width 650px;
+- Tablet: 56vh, max width 590px;
+- Mobile: 52vh, max width 520px;
+- background attachment is fixed, so the monogram remains visible as the owner scrolls.
+
+Protected:
+- Home/About/Cosmetics/Other Services;
+- shared Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- shared language behavior;
+- article slugs, thumbnails and G2 SEO metadata.
+
+Verification:
+- exact supplied Merywood source structure inspected from ZIP;
+- expected source selectors confirmed: text-block, image-block, merywood-cg-wrap, block-green-card, block-flex-table, bb-post-nav-wrap;
+- JS syntax check PASS.
+- Desktop/Tablet/Mobile runtime: PENDING OWNER TEST.

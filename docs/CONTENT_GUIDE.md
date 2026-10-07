@@ -154,3 +154,25 @@ SEO baseline:
 - BlogPosting structured data;
 - relevant internal links to Cosmetic Manufacturing, Other Services and Contact;
 - no keyword stuffing or generic filler written only to increase word count.
+
+
+## Blog rich-layout writing contract — PATCH-G3
+
+Blog detail copy must be written for the Merywood rich-article system, not as one continuous HTML document.
+
+Required structure:
+- H1 remains the article title component;
+- body sections are numbered H2s and feed the sidebar TOC;
+- paragraphs should be short enough to sit comfortably in the source `.text-block`;
+- important supporting ideas may be repeated as concise 2/3-column source cards, but card copy must be shorter than the primary paragraph;
+- use the source green card for one mid-article project CTA and one conclusion;
+- use the source flexible table only for a concise practical checklist/comparison, never for keyword stuffing;
+- keep VI/EN paired;
+- preserve existing article slugs unless an explicit URL migration is approved.
+
+Do not:
+- render raw legacy archive HTML;
+- add editor labels/CTA markers;
+- add duplicated contact details into body copy;
+- create route-local typography that overrides the supplied Merywood article typography;
+- invent medical efficacy, clinical, penetration, guaranteed-result or regulatory claims.

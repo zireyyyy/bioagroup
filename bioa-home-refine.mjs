@@ -5103,8 +5103,8 @@ function addSharedPageReveal($,route){
     mark('.block-title-post__content','fade-up',0);
     mark('.block-title-post__bg','fade-left',70);
     mark('.block-title-post-mobile .container','fade-up',0);
-    $('.block-blog-body .text-block').each((i,el)=>{
-      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(60+Math.min(i,4)*35)+'ms');
+    $('.block-blog-body .text-block,.block-blog-body .image-block,.block-blog-body .merywood-cg-wrap,.block-blog-body .block-green-card,.block-blog-body .block-flex-table').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(60+Math.min(i,5)*30)+'ms');
     });
     mark('.bb-post-nav-wrap','fade-up',80);
     mark('.whatsapp .whatsapp__content','fade-up',120);
