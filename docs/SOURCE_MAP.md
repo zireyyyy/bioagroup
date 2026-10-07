@@ -1542,3 +1542,19 @@ Manufacturing Categories:
   - Tablet 36px;
   - Mobile 30px.
 - internal cards/grid/icons/motion remain E7/E8-owned.
+
+
+## PATCH-E11 — Cosmetics final semantic lock
+
+/contract-manufacturing-cosmetics/ is now PASS/LOCKED after final icon-copy audit.
+
+Final icon/copy corrections:
+- Ready Formula step 04 document icon -> documentation + packaging completion.
+- Quality checks visual order:
+  1. metal/Zn -> heavy-metal testing;
+  2. stability/strength -> stability & sensory review;
+  3. leaf -> product-specific safety parameters;
+  4. medical/health -> microbiological testing.
+
+Do not reorder or rewrite these independently of their visible icons.
+Next route work should inherit all shared PASS behavior from Home/About/Cosmetics.

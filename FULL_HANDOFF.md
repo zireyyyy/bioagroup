@@ -2033,3 +2033,41 @@ Status:
 - Home top header: PENDING OWNER TEST
 - Hero watermark: restored to E8 baseline / PENDING OWNER TEST
 - Category section rhythm: PENDING OWNER TEST
+
+
+## PATCH-E11 — COSMETICS ICON/COPY FINAL ALIGNMENT — PASS
+
+Final owner review:
+- /contract-manufacturing-cosmetics/ visual/layout/motion/header/hero/category hub: PASS.
+- final semantic audit compared visible source icons against the rendered VI/EN copy.
+
+Two final copy/order corrections:
+1. Ready Formula step 04:
+   - source icon reads as documentation/certificate;
+   - title changed from "Chuẩn Bị Bao Bì & Sản Xuất" to "Hoàn Thiện Hồ Sơ & Bao Bì";
+   - copy now explicitly covers product information, required documentation, containers, labels and packing specifications before production.
+2. Product Quality Testing check-card order:
+   - 01 Zn/metal icon -> Kiểm Tra Kim Loại Nặng;
+   - 02 strength/stability icon -> Độ Ổn Định & Cảm Quan;
+   - 03 leaf icon -> Chỉ Tiêu An Toàn Theo Sản Phẩm;
+   - 04 health/medical icon -> Kiểm Tra Vi Sinh.
+   - English order updated identically.
+
+Confirmed aligned without further changes:
+- Custom Formula: direction / R&D / sample approval / production completion;
+- Stage-by-Stage QC: incoming material / in-process / finished-goods inspection;
+- Why Choose E5 icon/content mapping;
+- E7 manufacturing category PNG/content mapping;
+- Packaging content and product-format relationships.
+
+LOCKED / PASS:
+- /contract-manufacturing-cosmetics/ Desktop baseline;
+- shared Header transparent-top behavior;
+- Hero E8 watermark baseline;
+- Manufacturing Categories layout/hover;
+- MOTION-U1D3;
+- Why Choose / Packaging / Process / Certification / QC geometry;
+- VI/EN content mapping.
+
+Next project page:
+- move to "Dịch Vụ Khác" only after this commit.
