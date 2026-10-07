@@ -5201,7 +5201,7 @@ function addMobileBottomNav($,route,lang){
   const html=items.map(item=>
     '<a class="bioa-mobile-bottom-nav__item'+(item.active?' is-active':'')+'" href="'+item.href+'"'+
     (item.active?' aria-current="page"':'')+' data-bioa-mobile-nav="'+item.key+'">'+
-    item.icon+'<span class="bioa-mobile-bottom-nav__label">'+item.label+'</span></a>'
+    '<span class="bioa-mobile-bottom-nav__icon">'+item.icon+'</span><span class="bioa-mobile-bottom-nav__label">'+item.label+'</span></a>'
   ).join('');
 
   $('body').append('<nav class="bioa-mobile-bottom-nav" aria-label="'+(vi?'Điều hướng nhanh trên di động':'Mobile quick navigation')+'">'+html+'</nav>');
@@ -5541,6 +5541,115 @@ html.bioa-cookie-decided #mw-gear{display:none!important}
 }
 `;
 
+const patchMobileBottomNavHotfixCss = `
+/* SHARED-MOBILE1A — bottom-nav collision + icon/label polish.
+   Must be appended AFTER all legacy Chat/Cookie CSS so this remains the final
+   mobile positioning authority. */
+@media(max-width:768px){
+  :root{
+    --bioa-mobile-bottom-h:72px;
+    --bioa-mobile-bottom-gap:14px;
+  }
+
+  body{
+    padding-bottom:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
+  }
+
+  .bioa-mobile-bottom-nav{
+    height:calc(var(--bioa-mobile-bottom-h) + env(safe-area-inset-bottom,0px))!important;
+    padding:6px 8px calc(7px + env(safe-area-inset-bottom,0px))!important;
+    align-items:center!important;
+    overflow:visible!important;
+  }
+  .bioa-mobile-bottom-nav__item{
+    min-height:56px!important;
+    padding:3px 2px 4px!important;
+    gap:3px!important;
+    overflow:visible!important;
+    border-radius:14px!important;
+  }
+  .bioa-mobile-bottom-nav__icon{
+    width:30px!important;
+    height:30px!important;
+    min-width:30px!important;
+    flex:0 0 30px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    border-radius:10px!important;
+    background:rgba(17,111,71,.075)!important;
+    color:var(--bioa-primary)!important;
+    transition:background-color .18s ease,color .18s ease,transform .18s ease!important;
+  }
+  .bioa-mobile-bottom-nav__icon svg{
+    width:18px!important;
+    height:18px!important;
+    flex:0 0 18px!important;
+    stroke-width:1.9!important;
+  }
+  .bioa-mobile-bottom-nav__label{
+    display:block!important;
+    max-width:100%!important;
+    min-height:14px!important;
+    padding:0 1px 1px!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+    white-space:nowrap!important;
+    color:#425048!important;
+    font-size:11px!important;
+    line-height:1.25!important;
+    font-weight:500!important;
+    letter-spacing:-.005em!important;
+    -webkit-font-smoothing:antialiased!important;
+    text-rendering:geometricPrecision!important;
+  }
+  .bioa-mobile-bottom-nav__item.is-active{
+    background:transparent!important;
+    color:var(--bioa-primary)!important;
+  }
+  .bioa-mobile-bottom-nav__item.is-active .bioa-mobile-bottom-nav__icon{
+    background:var(--bioa-primary)!important;
+    color:var(--bioa-footer-cream,#FDFEF5)!important;
+    box-shadow:0 5px 14px rgba(17,111,71,.16)!important;
+  }
+  .bioa-mobile-bottom-nav__item.is-active .bioa-mobile-bottom-nav__label{
+    color:var(--bioa-primary)!important;
+    font-weight:600!important;
+  }
+  .bioa-mobile-bottom-nav__item:active .bioa-mobile-bottom-nav__icon{
+    transform:scale(.94)!important;
+  }
+
+  /* FINAL collision authority: both floating corners clear the entire bar.
+     Chat stays right; Cookie gear stays source-left. */
+  .bioa-contact-fab{
+    right:12px!important;
+    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
+  }
+  #mw-gear{
+    left:12px!important;
+    right:auto!important;
+    bottom:calc(var(--bioa-mobile-bottom-h) + var(--bioa-mobile-bottom-gap) + env(safe-area-inset-bottom,0px))!important;
+  }
+  #mw-consent.bioa-consent{
+    bottom:calc(var(--bioa-mobile-bottom-h) + 12px + env(safe-area-inset-bottom,0px))!important;
+  }
+  .bioa-contact-fab__panel{
+    max-height:calc(100dvh - var(--bioa-mobile-bottom-h) - 34px)!important;
+  }
+
+  body.bioa-mobile-chrome-hidden .bioa-contact-fab{
+    bottom:12px!important;
+  }
+  body.bioa-mobile-chrome-hidden #mw-gear{
+    bottom:12px!important;
+  }
+  body.bioa-mobile-chrome-hidden #mw-consent.bioa-consent{
+    bottom:12px!important;
+  }
+}
+`;
+
 const sharedShellCss =
   css+patchMobileBottomNavCss+
   patchACss+patchA7Css+patchA8Css+patchMobileMenuCss+
@@ -5549,7 +5658,8 @@ const sharedShellCss =
   patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+
   patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchZaloIconCss+
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
-  patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css;
+  patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css+
+  patchMobileBottomNavHotfixCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -5576,7 +5686,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchMobileBottomNavCss+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchMobileBottomNavCss+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css+patchHeroStatsFinalSourceCss+patchMobileBottomNavHotfixCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);

@@ -1907,3 +1907,24 @@ Directional chrome:
 Mobile floating controls:
 - `.bioa-contact-fab`, `#mw-gear`, and `#mw-consent.bioa-consent` sit above the bottom bar;
 - when chrome is hidden they can return to the viewport edge.
+
+
+## SHARED-MOBILE1A — final Mobile bottom-bar positioning authority
+
+Final CSS authority:
+- `bioa-home-refine.mjs > patchMobileBottomNavHotfixCss`;
+- intentionally appended last after legacy Chat patches.
+
+Mobile geometry:
+- bottom bar: 72px + safe area;
+- Chat: right 12px, bottom = bar + 14px + safe area;
+- Cookie gear before consent: left 12px, same bottom clearance;
+- hidden-chrome state: both floating controls return to 12px bottom.
+
+Icon treatment:
+- wrapper: `.bioa-mobile-bottom-nav__icon` 30x30, radius 10;
+- inactive: translucent Bio-A green surface + green line icon;
+- active: Bio-A primary surface + cream line icon;
+- label: 11px, 1.25 line-height, unclipped descenders.
+
+This hotfix is the final positioning owner; do not reintroduce Mobile `.bioa-contact-fab{bottom:12px}` after it.

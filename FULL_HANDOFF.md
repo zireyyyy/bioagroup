@@ -2723,3 +2723,38 @@ Protected:
 Status:
 - CODE/SYNTAX PASS;
 - RUNTIME: PENDING OWNER TEST.
+
+
+## SHARED-MOBILE1A — MOBILE BOTTOM NAV COLLISION + VISUAL POLISH
+
+Owner runtime feedback on SHARED-MOBILE1:
+- Chat launcher overlapped the Contact bottom-nav item.
+- Cookie gear required the same collision audit.
+- nav icons felt visually weak/inconsistent with site icon DNA.
+- labels appeared soft/clipped at the lower edge.
+
+Root cause:
+- legacy Chat PATCH C2 is concatenated after the initial bottom-nav CSS and reasserted `bottom:12px!important` on Mobile.
+
+Fix:
+- add final-order `patchMobileBottomNavHotfixCss` after all legacy shared/Home CSS;
+- mobile bar height: 72px;
+- Chat final bottom position clears bar + 14px gap;
+- Cookie gear is explicitly source-left at 12px and clears bar + 14px gap;
+- consent card clears bar;
+- when directional chrome hides, Chat/Cookie return to 12px bottom;
+- icon artwork gets a consistent 30px green/cream rounded tile treatment;
+- active icon uses Bio-A green fill-surface + cream stroke;
+- labels use 11px / 1.25 line height, anti-aliased rendering and extra bottom room so descenders are not clipped;
+- route/navigation/scroll logic is unchanged.
+
+Protected:
+- Cookie state/consent runtime;
+- Chat runtime and panel content;
+- Mobile Header directional behavior;
+- Desktop/Tablet;
+- all page layouts.
+
+Status:
+- CODE/SYNTAX PASS;
+- RUNTIME: PENDING OWNER TEST.
