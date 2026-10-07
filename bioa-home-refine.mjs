@@ -5091,6 +5091,23 @@ function addSharedPageReveal($,route){
     });
 
     mark('.whatsapp .whatsapp__content','fade-up',180);
+  }else if(route==='/blog/'){
+    /* PATCH-G1 — Blog MOTION-U1D3. */
+    mark('.blog-hero__box','fade-up',0);
+    mark('.post-feature__card','fade-up',70);
+    $('.posts-grid .post-card').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(80+Math.min(i,5)*45)+'ms');
+    });
+    mark('.whatsapp .whatsapp__content','fade-up',120);
+  }else if(route.startsWith('/blog/')){
+    mark('.block-title-post__content','fade-up',0);
+    mark('.block-title-post__bg','fade-left',70);
+    mark('.block-title-post-mobile .container','fade-up',0);
+    $('.block-blog-body .text-block').each((i,el)=>{
+      $(el).attr('data-bioa-aos','fade-up').css('--bioa-aos-delay',(60+Math.min(i,4)*35)+'ms');
+    });
+    mark('.bb-post-nav-wrap','fade-up',80);
+    mark('.whatsapp .whatsapp__content','fade-up',120);
   }else{
     /* Generic safe fallback for future subpages: section headings/content only.
        Never mark swiper-wrapper, slides, header, footer, cookie or chat. */

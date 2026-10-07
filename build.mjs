@@ -6,6 +6,7 @@ import { applyHomeRefinement, applySharedShell } from "./bioa-home-refine.mjs";
 import { applyAboutRefinement } from "./bioa-about-refine.mjs";
 import { applyCosmeticsHubRefinement } from "./bioa-cosmetics-refine.mjs";
 import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
+import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -21,7 +22,7 @@ const routes = [
   "/blog/"
 ];
 
-const routeDefs = withExtraRoutes(routes);
+const routeDefs = [...withExtraRoutes(routes), ...blogRouteDefs];
 
 const pageTitles = {
   "/": "Gia công mỹ phẩm & phát triển thương hiệu",
@@ -40,7 +41,7 @@ const pageTitles = {
   "/weight-loss/": "Sản phẩm chăm sóc vóc dáng",
   "/male-enhancement/": "Sản phẩm chăm sóc nam giới",
   "/diabet/": "Sản phẩm chăm sóc chuyên biệt",
-  "/blog/": "Kiến thức & xu hướng ngành",
+  "/blog/": "Blog Bio-A Group",
   "/privacy-policy/": "Chính sách bảo mật",
   "/cookie-policy/": "Chính sách cookie"
 };
@@ -381,6 +382,7 @@ async function buildOne(route,sourceRoute){
       if(route==="/about/")applyAboutRefinement($,route,lang);
       if(route==="/contract-manufacturing-cosmetics/")applyCosmeticsHubRefinement($,route,lang);
       if(route==="/dich-vu-khac/")applyOtherServicesRefinement($,route,lang);
+      if(route==="/blog/"||route.startsWith("/blog/"))applyBlogRefinement($,route,lang);
       applySharedShell($,route,lang);
     }
 

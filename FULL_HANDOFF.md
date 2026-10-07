@@ -2350,3 +2350,46 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-G1 — BLOG INITIAL BIO-A ARCHIVE BUILD
+
+Owner direction:
+- đổi nhãn "Kiến Thức" thành "Blog";
+- lấy bài viết cũ của website Bio-A làm content source;
+- giữ Merywood Blog làm visual/runtime source;
+- kế thừa toàn bộ shared PASS phù hợp.
+
+Content:
+- dùng 7 bài `kien-thuc` mới nhất trong backup website Bio-A cũ;
+- VI giữ title, excerpt và nội dung bài gốc;
+- ảnh thumbnail gốc được tối ưu WebP và đưa vào /assets/blog/;
+- EN dùng title/excerpt biên tập tương ứng, trang chi tiết EN dùng bản archive overview ngắn để không rò tiếng Việt.
+
+Blog index:
+- source visual: Merywood /blog/;
+- Hero: Blog Bio-A Group;
+- 1 bài feature + 6 card grid;
+- bỏ pagination Merywood ở candidate đầu;
+- toàn bộ card link tới route bài viết thật.
+
+Article detail:
+- source visual/runtime: Merywood /blog/cosmetic-manufacturing-process/;
+- Bio-A owner thay title/date/read time/author/hero/body/TOC/prev-next;
+- author = Bio-A Group;
+- nội dung cũ được sanitize nhưng giữ heading, paragraph, list, emphasis;
+- bỏ green-card sales claim của Merywood;
+- shared Bio-A CTA/chat/footer vẫn dùng owner chung.
+
+Shared PASS:
+- Header Desktop/Tablet/Mobile + transparent top;
+- Mobile Menu outside/scroll dismiss;
+- Footer/hover/meta;
+- Cookie VI/EN;
+- Chat/Zalo;
+- responsive;
+- MOTION-U1D3.
+
+Status:
+- /blog/: PENDING OWNER TEST
+- 7 detail routes: PENDING OWNER TEST

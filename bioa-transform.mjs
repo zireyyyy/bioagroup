@@ -40,7 +40,7 @@ function sharedUiLanguageContract(lang){
    - shared UI (header/footer/cookie/common controls) must always branch on lang here;
    - page content must be owned by route-specific VI/EN maps;
    - never hardcode Vietnamese inside a shared function that also runs on /en/... routes. */
-function menuHtml(lang){const items=lang==='vi'?[['Về Bio-A Group','/about/'],['Gia Công Mỹ Phẩm','/contract-manufacturing-cosmetics/'],['Dịch Vụ Khác','/dich-vu-khac/'],['Kiến Thức','/blog/'],['Liên Hệ','/contacts/']]:[['About Bio-A Group','/about/'],['Cosmetic Manufacturing','/contract-manufacturing-cosmetics/'],['Other Services','/dich-vu-khac/'],['Insights','/blog/'],['Contact','/contacts/']];return '<ul>'+items.map(x=>'<li class="menu-item"><a href="'+localPath(x[1],lang)+'">'+x[0]+'</a></li>').join('')+'</ul>'}
+function menuHtml(lang){const items=lang==='vi'?[['Về Bio-A Group','/about/'],['Gia Công Mỹ Phẩm','/contract-manufacturing-cosmetics/'],['Dịch Vụ Khác','/dich-vu-khac/'],['Blog','/blog/'],['Liên Hệ','/contacts/']]:[['About Bio-A Group','/about/'],['Cosmetic Manufacturing','/contract-manufacturing-cosmetics/'],['Other Services','/dich-vu-khac/'],['Blog','/blog/'],['Contact','/contacts/']];return '<ul>'+items.map(x=>'<li class="menu-item"><a href="'+localPath(x[1],lang)+'">'+x[0]+'</a></li>').join('')+'</ul>'}
 function titleFor(route,lang){
   if(lang==='en'){
     const map={
@@ -49,10 +49,10 @@ function titleFor(route,lang){
       '/contacts/':'Contact Bio-A Group',
       '/dich-vu-khac/':'Other Services',
       '/contract-manufacturing-cosmetics/':'Cosmetic Manufacturing',
-      '/blog/':'Insights',
+      '/blog/':'Bio-A Group Blog',
       '/careers/':'Careers at Bio-A Group'
     };
-    return map[route]||(route.startsWith('/blog/')?'Industry Insights':'Bio-A Group Solutions');
+    return map[route]||(route.startsWith('/blog/')?'Bio-A Group Blog':'Bio-A Group Solutions');
   }
   const map={
     '/':'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group',
@@ -63,10 +63,10 @@ function titleFor(route,lang){
     '/white-label-cosmetics/':'Gia Công Mỹ Phẩm Công Thức Có Sẵn',
     '/private-label-cosmetics/':'Gia Công Mỹ Phẩm Công Thức Độc Quyền',
     '/hotel-spa-cosmetics/':'Gia Công Mỹ Phẩm Spa & Khách Sạn',
-    '/blog/':'Kiến Thức & Xu Hướng Ngành',
+    '/blog/':'Blog Bio-A Group',
     '/careers/':'Tuyển Dụng Bio-A Group'
   };
-  return map[route]||(route.startsWith('/blog/')?'Kiến Thức Chuyên Ngành':'Giải Pháp Bio-A Group');
+  return map[route]||(route.startsWith('/blog/')?'Blog Bio-A Group':'Giải Pháp Bio-A Group');
 }
 
 function applyBrandHead($,route,lang){

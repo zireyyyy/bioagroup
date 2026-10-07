@@ -1701,3 +1701,30 @@ Primary service showcase:
 Semantic lock:
 - one primary service listing only.
 - workflow remains process, scenarios remain use cases, CTA remains contact conversion.
+
+
+## PATCH-G1 — Blog authority
+
+Index:
+- /blog/
+- visual/runtime source: Merywood /blog/
+- owner: bioa-blog-refine.mjs / applyBlogIndex().
+
+Details:
+- 7 route bài Bio-A cũ do blogRouteDefs export;
+- mỗi route dùng Merywood /blog/cosmetic-manufacturing-process/ làm DOM/runtime template;
+- owner: bioa-blog-refine.mjs / applyBlogArticle().
+
+Content authority:
+- legacy Bio-A website archive, records type=kien-thuc;
+- VI giữ nội dung Bio-A cũ;
+- thumbnails local /assets/blog/*.webp;
+- không dùng copy bài supplement của Merywood.
+
+Navigation:
+- /blog/ label = Blog cho VI và EN.
+
+Motion:
+- bioa-home-refine.mjs / addSharedPageReveal();
+- index: hero + feature + post cards + CTA;
+- detail: title/media/body/nav + CTA.
