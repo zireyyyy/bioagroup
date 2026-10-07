@@ -29,15 +29,15 @@ const content={
   vi:{
     heroTitle:"Gia Công Mỹ Phẩm Trọn Gói",
     heroLead:"Bio-A Group là nhà máy sản xuất dược mỹ phẩm OEM/ODM tại Việt Nam, đạt chuẩn GMP Bộ Y Tế; đồng hành trọn gói từ ý tưởng, R&D công thức, lựa chọn nguyên liệu đến bao bì và thành phẩm.",
-    categoryTitle:"Danh Mục Gia Công Mỹ Phẩm",
+    categoryTitle:"Tại Sao Nên Chọn Bio-A Group?",
     categories:[
-      ["Sản Phẩm Trang Điểm","Các dòng trang điểm được phát triển theo màu sắc, kết cấu, định vị và nhu cầu riêng của thương hiệu."],
-      ["Sản Phẩm Chăm Sóc Tóc","Dầu gội, dầu xả, tinh chất và các giải pháp chăm sóc tóc được phát triển theo yêu cầu dự án."],
-      ["Sản Phẩm Chăm Sóc Body","Sữa tắm, lotion, tẩy tế bào chết và các dòng chăm sóc cơ thể theo định hướng thương hiệu."],
-      ["Sản Phẩm Chăm Sóc Da Mặt","Kem, serum, gel, mặt nạ và các dòng chăm sóc da mặt với nhiều hướng công thức và kết cấu."],
-      ["Sản Phẩm Cá Nhân","Các dòng chăm sóc cá nhân được phát triển theo nhu cầu sử dụng, phân khúc và kênh bán."],
-      ["Sản Phẩm Mẹ & Bé","Nhóm sản phẩm chăm sóc mẹ và bé với định hướng công thức phù hợp từng dự án và đối tượng sử dụng."],
-      ["R&D & Phát Triển Công Thức","Hỗ trợ lựa chọn nền công thức, nguyên liệu, làm mẫu, tinh chỉnh cảm quan và hoàn thiện công thức trước sản xuất."]
+      ["Năng Lực OEM/ODM Trọn Gói","Bio-A Group đồng hành từ ý tưởng, R&D, lựa chọn nguyên liệu đến sản xuất, bao bì và hoàn thiện thành phẩm."],
+      ["R&D Công Thức & Làm Mẫu","Đội ngũ R&D phát triển nền công thức, thực hiện mẫu thử và tinh chỉnh cảm quan theo định hướng riêng của từng thương hiệu."],
+      ["Nhà Máy Chuẩn GMP Bộ Y Tế","Năng lực sản xuất dược mỹ phẩm theo chuẩn GMP Bộ Y Tế Việt Nam, với quy trình được kiểm soát theo từng giai đoạn."],
+      ["HACCP & Kiểm Soát Chất Lượng","Hệ thống HACCP cùng kiểm soát nguyên liệu, quá trình sản xuất, bao bì và thành phẩm hỗ trợ duy trì chất lượng ổn định."],
+      ["Danh Mục Sản Phẩm Đa Dạng","Có thể phát triển nhiều nhóm sản phẩm từ chăm sóc da, tóc, body, trang điểm đến cá nhân và mẹ & bé."],
+      ["Bao Bì & Hoàn Thiện Đồng Bộ","Phối hợp lựa chọn chai lọ, quy cách đóng gói và các hạng mục hoàn thiện phù hợp đặc tính sản phẩm và nhận diện thương hiệu."],
+      ["Đồng Hành Minh Bạch & Linh Hoạt","Giải pháp được điều chỉnh theo quy mô, định hướng và tiến độ từng dự án, với thông tin được trao đổi rõ ràng xuyên suốt."]
     ],
     scenarios:[
       ["Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.","Tình Huống 01","Thương hiệu skincare • Nội dung mẫu"],
@@ -56,15 +56,15 @@ const content={
   en:{
     heroTitle:"Full-Service Cosmetic Manufacturing",
     heroLead:"Bio-A Group is a cosmetic and cosmeceutical OEM/ODM manufacturer in Vietnam, supporting brands from product concept and formula R&D through packaging and finished-product production.",
-    categoryTitle:"Cosmetic Manufacturing Categories",
+    categoryTitle:"Why Choose Bio-A Group?",
     categories:[
-      ["Makeup Products","Makeup products developed around color, texture, positioning and each brand's product direction."],
-      ["Hair Care Products","Shampoo, conditioner, treatments and hair-care solutions developed to the project brief."],
-      ["Body Care Products","Body wash, lotions, scrubs and other body-care formats aligned with the brand direction."],
-      ["Facial Skin Care","Creams, serums, gels, masks and facial-care products across multiple formula and texture directions."],
-      ["Personal Care Products","Personal-care lines developed for specific usage needs, market segments and sales channels."],
-      ["Mother & Baby Products","Mother-and-baby care products with formulation directions tailored to each project and user group."],
-      ["R&D & Formula Development","Support with formula direction, ingredients, sampling, sensory refinement and finalization before production."]
+      ["Full-Service OEM/ODM Capability","Bio-A Group supports projects from concept and R&D through materials, manufacturing, packaging and finished products."],
+      ["Formula R&D & Sampling","The R&D team develops formula directions, prepares samples and refines sensory details around each brand brief."],
+      ["GMP — Vietnam Ministry of Health","Cosmetic and cosmeceutical manufacturing capability aligned with GMP requirements recorded in the legacy Bio-A source."],
+      ["HACCP & Quality Control","HACCP and project-stage controls support consistent quality across materials, production, packaging and finished goods."],
+      ["Diverse Product Capability","Multiple categories can be developed across skin care, hair care, body care, makeup, personal care and mother & baby."],
+      ["Packaging & Finishing Support","Containers, packing specifications and finishing details are coordinated around product characteristics and brand identity."],
+      ["Transparent, Flexible Partnership","Project scope, scale and timing can be adjusted with clear communication throughout development and manufacturing."]
     ],
     scenarios:[
       ["A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.","Scenario 01","Skincare brand • Sample scenario"],
@@ -328,10 +328,13 @@ const cosmeticsDeepContent={
   }
 };
 
-function applyHeroBrandWatermark($){
-  if(!$("#bioa-cosmetics-hero-watermark-style").length){
-    $("head").append('<style id="bioa-cosmetics-hero-watermark-style">.page-main[data-bioa-page="cosmetics-hub"] .block-info .composition::after{content:"";position:absolute;z-index:1;left:14%;top:12%;width:72%;height:76%;background:#116F47;opacity:.075;pointer-events:none;-webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain;mask:url("/assets/bioa-monogram.svg") no-repeat center/contain}.page-main[data-bioa-page="cosmetics-hub"] .block-info .composition{isolation:isolate}@media(max-width:768px){.page-main[data-bioa-page="cosmetics-hub"] .block-info .composition::after{left:12%;top:10%;width:76%;height:80%;opacity:.075}}</style>');
-  }
+function applyHeroArtwork($){
+  $("#bioa-cosmetics-hero-watermark-style").remove();
+  $(".block-info .composition").each((_,el)=>{
+    $(el).css("background-image","url('/assets/cosmetics-hero-bioa.webp')")
+      .css("background-size","cover")
+      .css("background-position","center");
+  });
 }
 
 function applyPackaging($,lang){
@@ -474,12 +477,11 @@ export function applyCosmeticsHubRefinement($,route,lang){
   const data=content[key];
 
   root.attr("data-bioa-page","cosmetics-hub");
-  applyHeroBrandWatermark($);
+  applyHeroArtwork($);
   applyHeroAndCtas($,key);
 
   replaceRules(root,key==="vi"?viRules:enRules);
   applyCategories($,key);
-  applyCategoryArtwork($);
   applyPackaging($,key);
   applyFormats($,key);
   applyProcess($,key);

@@ -1789,3 +1789,33 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-E4 — HERO SOURCE-LAYER + WHY CHOOSE RESTORE
+
+Owner feedback after PATCH-E3:
+- FAIL: hero showed the original baked Merywood watermark plus a second Bio-A overlay on top of the products;
+- semantic concern: repurposing the original "Why Choose Merywood" block as another manufacturing-category catalogue duplicated /about/ and changed the intent of the source component.
+
+Root cause:
+- Merywood hero watermark is baked into the source hero raster; E3 added a new DOM/CSS Bio-A layer instead of replacing the artwork source.
+- E1 reused the Why Choose container for product taxonomy even though /about/ already owns the approved manufacturing category catalogue.
+
+E4 correction:
+- retire the E3 hero pseudo-element;
+- hero Desktop/Mobile use /assets/cosmetics-hero-bioa.webp, derived from the exact Merywood hero composition with the Merywood watermark removed and Bio-A watermark placed in the original background treatment while preserving the product composition;
+- restore the section semantic to "Tại Sao Nên Chọn Bio-A Group?" / "Why Choose Bio-A Group?";
+- restore the original Merywood Why Choose source icons because this section is no longer a product-category catalogue;
+- 7 cards now communicate Bio-A capabilities: OEM/ODM, R&D, GMP Bộ Y Tế, HACCP/QC, diverse product capability, packaging/finishing, and transparent/flexible partnership;
+- /about/ remains the authority for the 6 owner-supplied product-category icons and category catalogue.
+
+Protected:
+- PATCH-E3 deep VI/EN mapping for Packaging / Formats / Process / Certification / QC;
+- PATCH-E2 motion/shared watermark;
+- Home and /about/ PASS/LOCKED shared behavior;
+- hero geometry and responsive source layout.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST

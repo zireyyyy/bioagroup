@@ -1405,3 +1405,17 @@ Rule:
 - do not leave English Merywood service claims in the VI route when the component is mapped;
 - map Desktop and Mobile source DOM trees together;
 - never reintroduce EU/ISO/supplement claims from Merywood unless separately verified for Bio-A.
+
+
+## PATCH-E4 — hero artwork and Why Choose authority
+
+Hero:
+- /assets/cosmetics-hero-bioa.webp is the route-owned hero artwork.
+- It replaces the baked Merywood watermark in the source raster; do not add a second pseudo-element watermark over the product composition.
+- .block-info.desctop/.mobile geometry, background-size:cover and background-position:center remain source-authoritative.
+
+Why Choose:
+- #why-choose-us keeps the Merywood source DOM and source icons.
+- semantic authority: Bio-A capabilities/reasons to choose the manufacturer, not the product-category catalogue.
+- product-category catalogue authority remains /about/ .mwa-produce with the six owner PNGs.
+- do not call applyCategoryArtwork() for /contract-manufacturing-cosmetics/.
