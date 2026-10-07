@@ -4,6 +4,7 @@ import { load } from "cheerio";
 import { applyFinalFixes, withExtraRoutes, localPath } from "./bioa-transform.mjs";
 import { applyHomeRefinement, applySharedShell } from "./bioa-home-refine.mjs";
 import { applyAboutRefinement } from "./bioa-about-refine.mjs";
+import { applyCosmeticsHubRefinement } from "./bioa-cosmetics-refine.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -377,6 +378,7 @@ async function buildOne(route,sourceRoute){
       applyHomeRefinement($,route,lang);
     }else{
       if(route==="/about/")applyAboutRefinement($,route,lang);
+      if(route==="/contract-manufacturing-cosmetics/")applyCosmeticsHubRefinement($,route,lang);
       applySharedShell($,route,lang);
     }
 

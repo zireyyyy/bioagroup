@@ -1313,3 +1313,33 @@ Rule:
 - compensate only for asymmetric transparent margins inside owner PNGs with per-icon optical translation;
 - current offsets: 01(-4,+2), 02(0,-2), 03(+2,+2), 04(-3,0), 05(+3,-1), 06(-4,+1) px;
 - .mwa-isq size/background, card geometry, badge, typography, links, motion and responsive structure remain source-owned and must not move.
+
+
+## PATCH-E1 — /contract-manufacturing-cosmetics/ hub
+
+Merywood source:
+- route: /contract-manufacturing-cosmetics/
+- source order retained: Hero -> 7-card feature grid -> Packaging -> How It Works -> Reviews -> Certification/Testing/QC -> Full-Cycle Support -> contact CTA.
+- Desktop / Tablet / Mobile source layout and responsive mechanics remain authoritative.
+
+BIO-A:
+- bioa-cosmetics-refine.mjs
+- applyCosmeticsHubRefinement($,route,lang)
+- build.mjs calls the route owner only for /contract-manufacturing-cosmetics/.
+- applySharedShell() remains the sole owner of Header/Footer/Cookie/Chat/Mobile Menu/language/shared UX after route content mapping.
+
+Content authority:
+- legacy BIO-A product groups: Trang Điểm, Chăm Sóc Tóc, Chăm Sóc Body, Chăm Sóc Da Mặt, Cá Nhân, Mẹ & Bé;
+- R&D/formula development terminology from current Bio-A Home/About project authority;
+- only confirmed GMP/HACCP language is allowed; do not restore Merywood EU/ISO/supplement claims without owner evidence;
+- source review cards are presentation containers only and must not be used to invent customer testimonials. E1 labels them as sample collaboration scenarios.
+
+Patch rules:
+- content/text mapping only inside .page-main;
+- preserve source DOM/layout/images/icons/breakpoints;
+- preserve slider/swiper transform owners;
+- no route-local Header/Footer/Cookie/Chat duplication;
+- VI and EN must stay paired.
+
+Status:
+- Desktop / Tablet / Mobile: PENDING OWNER TEST.

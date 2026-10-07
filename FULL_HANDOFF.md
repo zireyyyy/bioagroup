@@ -1649,3 +1649,52 @@ Protected About state:
 - six owner-supplied manufacturing category PNGs with accepted sizes and optical offsets.
 
 Do not reopen /about/ while implementing PATCH E unless the owner explicitly reports a regression.
+
+
+## PATCH-E1 — GIA CÔNG MỸ PHẨM HUB CONTENT OWNERSHIP
+
+Route:
+- /contract-manufacturing-cosmetics/
+- /en/contract-manufacturing-cosmetics/
+
+Visual/runtime source-of-truth:
+- Merywood /contract-manufacturing-cosmetics/ DOM, layout, artwork, breakpoints and source interactions.
+
+BIO-A route owner:
+- bioa-cosmetics-refine.mjs
+- applyCosmeticsHubRefinement($,route,lang)
+- build.mjs invokes the route owner before applySharedShell().
+
+E1 content mapping:
+- hero -> Gia Công Mỹ Phẩm Trọn Gói / Full-Service Cosmetic Manufacturing;
+- 7 source feature cards -> 6 legacy BIO-A manufacturing categories + R&D/formula development;
+- packaging block -> cosmetic packaging terminology while preserving source layout/artwork;
+- How It Works -> ready-formula and custom-formula manufacturing workflow;
+- source testimonial cards -> explicitly labeled sample collaboration scenarios, not fabricated customer claims;
+- source EU/supplement certification copy -> Bio-A manufacturing/quality-control language using confirmed GMP/HACCP authority only;
+- testing/QC -> microbiology, heavy metals, product-specific safety parameters, stability/sensory review and stage-by-stage QC;
+- Full-Cycle Support -> consultation, R&D, packaging/brand, documentation/production/delivery;
+- VI and EN are paired in the same route module.
+
+Protected / not changed:
+- /about/ FULL RESPONSIVE PASS from 20420850dafc7d05fe9cb442209621bd3b130298;
+- Home;
+- shared Header Desktop/Tablet/Mobile;
+- Mobile Menu behavior;
+- Footer;
+- Cookie;
+- Chat;
+- shared Zalo treatment;
+- MOTION-U1D2/shared reveal;
+- Merywood route geometry, product imagery, source responsive mechanics and slider transform owners.
+
+Verification:
+- route module is content-only and scoped to .page-main;
+- no new global CSS or shared component duplicate is introduced;
+- full network build/runtime requires owner deployment because the build source is fetched from live Merywood.
+
+Status:
+- Desktop: PENDING OWNER TEST
+- Tablet: PENDING OWNER TEST
+- Mobile: PENDING OWNER TEST
+- FULL RESPONSIVE PASS: NO
