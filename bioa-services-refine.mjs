@@ -129,8 +129,8 @@ function applyWhy($,lang){
       setCopy(card,".item__body",row[1]);
       const img=card.find("img").first();
       if(img.length){
-        img.attr("src","/assets/bioa-monogram-cream.svg")
-          .attr("alt","Bio-A Group")
+        img.attr("src",serviceIconMap[i%d.why.length])
+          .attr("alt",row[0])
           .removeAttr("srcset sizes")
           .addClass("bioa-service-pillar-icon");
       }
@@ -147,8 +147,21 @@ function applyProcess($,lang){
     setCopy(block,".title-wrapper .title",d.processTitle);
     block.find(".client").each((i,node)=>{
       const row=d.process[i%d.process.length];
-      setCopy($(node),".client__name .h3",row[0]);
-      setCopy($(node),".client__description",row[1]);
+      const client=$(node);
+      setCopy(client,".client__name .h3",row[0]);
+      setCopy(client,".client__description",row[1]);
+
+      /* PATCH-F4 — source step 03 uses Merywood's mark as the Packaging & Design icon.
+         Replace only this one brand-owned artwork slot; keep all other workflow icons. */
+      if(i%d.process.length===2){
+        const img=client.find(".client__icon img").first();
+        if(img.length){
+          img.attr("src","/assets/bioa-monogram-cream.svg")
+            .attr("alt","Bio-A Group")
+            .removeAttr("srcset sizes")
+            .addClass("bioa-process-bioa-icon");
+        }
+      }
     });
   });
 }
@@ -175,25 +188,34 @@ function applyRange($,lang){
     const block=$(el);
     setCopy(block,".title-wrapper .title",d.rangeTitle);
 
-    let steps=block.find(".step");
-    if(!steps.length)return;
-    const sourceCount=steps.length;
-    const parent=steps.first().parent();
+    const wrapper=block.find(".swiper-wrapper").first();
+    if(!wrapper.length)return;
 
-    while(parent.children(".step").length<d.range.length){
-      const idx=parent.children(".step").length;
-      const template=steps.eq(idx%sourceCount).clone(false,false);
-      template.removeAttr("data-bioa-aos style");
+    let slides=wrapper.children(".swiper-slide");
+    if(!slides.length)return;
+    const sourceCount=slides.length;
+
+    while(wrapper.children(".swiper-slide").length<d.range.length){
+      const idx=wrapper.children(".swiper-slide").length;
+      const template=slides.eq(idx%sourceCount).clone(false,false);
+      template
+        .removeAttr("style role aria-label aria-hidden")
+        .removeClass("swiper-slide-active swiper-slide-next swiper-slide-prev swiper-slide-visible swiper-slide-fully-visible");
       template.find("[id]").removeAttr("id");
-      parent.append(template);
+      template.find("[data-bioa-aos]").removeAttr("data-bioa-aos");
+      template.find("[style]").removeAttr("style");
+      wrapper.append(template);
     }
-    parent.children(".step").slice(d.range.length).remove();
+    wrapper.children(".swiper-slide").slice(d.range.length).remove();
 
-    steps=parent.children(".step");
-    steps.each((i,node)=>{
+    slides=wrapper.children(".swiper-slide");
+    slides.each((i,slideNode)=>{
       const row=d.range[i];
       if(!row)return;
-      const step=$(node);
+      const slide=$(slideNode);
+      const step=slide.find(".step").first();
+      if(!step.length)return;
+
       step.find(".step__number").first().text(String(i+1).padStart(2,"0"));
       setCopy(step,".step__title",row[0]);
       setCopy(step,".step__text",row[1]);
@@ -248,6 +270,7 @@ function patchRouteCss($){
     '.bioa-service-scenarios .review__author{padding-top:18px!important}'+
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
     '#why-choose-us .bioa-service-pillar-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
+    '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
     '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
     '.block-how-works .bioa-service-range-generic{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+

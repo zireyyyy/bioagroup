@@ -2225,3 +2225,41 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## PATCH-F4 — ICON SCOPE ROLLBACK + PRODUCT RANGE SWIPER REPAIR
+
+Owner feedback after F3:
+- F3 overreached by replacing all service-pillar icons with Bio-A monograms.
+- Original request applied only to the Merywood brand-mark icon inside "Quy Trình Triển Khai Dịch Vụ".
+- Product Range layout was broken after expansion to 12 groups.
+
+Root causes:
+1. Icon scope:
+   - #why-choose-us had already-correct semantic icons in F2.
+   - F3 replaced all five unnecessarily.
+2. Product Range:
+   - source hierarchy is .swiper-wrapper > .swiper-slide > .step.
+   - F3 cloned .step children into the first .swiper-slide, stacking products vertically inside one slide.
+
+F4 corrections:
+- restore the F2 five semantic service icons for "Dịch Vụ Bio-A Group";
+- in .block-right-choice only process item 03 (Packaging & Label Design) replaces the source Merywood brand-mark artwork with /assets/bioa-monogram-cream.svg;
+- process items 01, 02, 04, 05, 06 retain their original source icons;
+- Product Range keeps all 12 VI/EN groups from F3 but expansion now clones complete .swiper-slide nodes into .swiper-wrapper;
+- apply to both source Desktop and Mobile blocks;
+- normalize 01–12 numbering;
+- preserve source Swiper navigation and card geometry;
+- Product Range icons remain Bio-A monogram as specifically approved by owner.
+
+Protected:
+- F2/F3 content taxonomy;
+- MOTION-U1D3;
+- shared CTA localization;
+- Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Home/About/Cosmetics PASS.
+
+Status:
+- service icons: PENDING OWNER TEST
+- process icon 03: PENDING OWNER TEST
+- 12-item Product Range Desktop/Tablet/Mobile: PENDING OWNER TEST

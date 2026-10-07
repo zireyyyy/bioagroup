@@ -1647,3 +1647,20 @@ Shared CTA localization:
 VI route source-leak guard:
 - bioa-services-refine.mjs / localizeResidualSourceText().
 - exact known Hotel/SPA headings are translated only on lang=vi.
+
+
+## PATCH-F4 — Other Services icon scope + Swiper hierarchy
+
+Icon scope:
+- #why-choose-us service cards: restore F2 semantic icons service-icon-01...05.
+- .block-right-choice workflow:
+  - item 03 only -> assets/bioa-monogram-cream.svg because source Frame-85.svg is Merywood brand artwork;
+  - all other workflow icons remain source-owned.
+- Product Range .step__icon remains Bio-A monogram.
+
+Product Range structure:
+- source authority: .swiper-wrapper > .swiper-slide > .step.
+- applyRange() may expand to 12 only by cloning complete .swiper-slide nodes into .swiper-wrapper.
+- never append .step directly inside an existing slide.
+- both Desktop and Mobile source blocks use this rule.
+- Swiper initialization/navigation remains source-owned.
