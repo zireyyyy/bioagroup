@@ -5,35 +5,59 @@ Updated: 2026-10-08
 
 ## Current runtime state
 
-Production-confirmed baseline:
-`c6be5735e49510c6e5c340f258dea5b4f85d2a55`
-— **MOBILE-MENU-CONTRAST1 — OWNER PASS**
+Production-confirmed runtime baseline:
+`65152e5fad8799fea36bcf3e03c9a9acf7f600ce`
+— **MOBILE-HEADER-SOURCE1 — OWNER PASS**
+
+Owner confirmed Mobile Header parity PASS.
 
 Current candidate:
-**MOBILE-HEADER-SOURCE1 — Merywood Mobile Header Geometry Parity**
+**CONSULT-POPUP-COLOR1 — Bio-A Green Consultation Popup**
 — **PENDING OWNER TEST**
 
 ## Current block
 
-Owner confirmed the Mobile bottom bar removal is okay.
+Consultation popup.
 
-New issue:
-- Mobile menu button is clear at page top;
-- after scrolling, sticky Header becomes a light surface and the cream menu button visually blends into it.
+Current candidate changes only:
+- `#get-a-quote .cf-modal` background -> Bio-A primary green `#106E45`.
 
-Candidate changes only the scrolled visual state:
-- button background -> very-light Bio-A green;
-- hamburger -> Bio-A green;
-- subtle green inset border;
-- dimensions/position/menu runtime unchanged.
+No form fields or lead-capture logic are changed yet.
+
+## Lead-form finding
+
+Current source form contains:
+- name;
+- email;
+- phone;
+- product type;
+- expected quantity;
+- request/message;
+- privacy consent.
+
+Current capture script waits for five fields:
+`your-name`, `your-email`, `your-phone`, `your-product-type`, `your-request`.
+
+Capture endpoint is already Bio-A:
+`https://bioagroup.vn/wp-admin/admin-ajax.php`
+action: `cf7lt_capture`.
+
+Recommended next candidate after color PASS:
+**LEAD-FORM-SHORT1**
+- required: Họ tên + SĐT/Zalo;
+- optional quick context: Loại sản phẩm;
+- keep privacy consent compact;
+- remove Email / Số lượng / Request from first-step UI;
+- update capture condition together with the UI, never hide fields without fixing capture logic.
 
 ## PASS / FROZEN
 
-- Mobile bottom bar is PAUSED / disabled.
-- Chat/Cookie restored to original positions.
-- Cookie outside-dismiss and confirmed-choice gear behavior.
-- Mobile Menu first-tap + outside/scroll/Escape close.
-- Mobile Header down-hide/up-show behavior.
+- MOBILE-HEADER-SOURCE1.
+- MOBILE-MENU-CONTRAST1.
+- Mobile bottom bar remains PAUSED.
+- Cookie behavior.
+- Mobile Menu internals/runtime.
+- Header down-hide/up-show.
 - Blog PATCH-G8.
 - Contacts CONTACT-C1.
 - shared Footer/Chat/Zalo.
@@ -41,32 +65,8 @@ Candidate changes only the scrolled visual state:
 
 ## Next test
 
-Mobile:
-1. menu button clear at top;
-2. scroll down then up;
-3. scrolled Header menu icon remains clearly visible;
-4. first tap still opens menu;
-5. menu closes outside/scroll/Escape;
-6. no bottom bar reappears.
+1. popup background matches Bio-A logo green;
+2. text/input/dropdown/close control remain readable;
+3. Desktop/Tablet/Mobile popup geometry unchanged.
 
-If PASS:
-lock MOBILE-MENU-CONTRAST1 and continue remaining small fixes -> FULL Tablet -> cleanup -> deploy.
-
-
-### MOBILE-HEADER-SOURCE1
-Mobile Header outer geometry now follows the earlier Merywood-source-preserving dimensions:
-- Header/wrapper 62px;
-- logo shell 46×48px;
-- Bio-A logo 38×44px;
-- CTA 40px height / 15px side padding / radius 14 / 13px;
-- clean menu trigger 40×40px / radius 14;
-- burger visual uses 2 bars like Merywood source markup.
-
-Protected:
-- inner Mobile Menu content/layout;
-- first-tap/outside/scroll/Escape runtime;
-- Header down-hide/up-show;
-- scrolled green menu-button state;
-- Cookie/Chat;
-- bottom bar remains PAUSED;
-- Desktop/Tablet.
+Then owner decides whether to proceed with LEAD-FORM-SHORT1.

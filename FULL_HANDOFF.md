@@ -2,33 +2,28 @@
 
 Updated: 2026-10-08
 
-Production-confirmed baseline:
-`3dd614d873ac311485f0f362a689bbe5c8233ce2` — MOBILE-NAV-PAUSE1 — OWNER PASS.
+Production-confirmed runtime baseline:
+`65152e5fad8799fea36bcf3e03c9a9acf7f600ce` — MOBILE-HEADER-SOURCE1 — OWNER PASS.
 
 Current candidate:
-**MOBILE-MENU-CONTRAST1 — PENDING OWNER TEST**.
+**CONSULT-POPUP-COLOR1 — PENDING OWNER TEST**.
 
-Current issue:
-Mobile menu control blends into the light sticky Header after scrolling.
+Scope:
+consultation popup background only -> Bio-A primary green.
 
-Candidate scope:
-- scrolled Mobile menu button background -> very-light Bio-A green;
-- hamburger -> Bio-A green;
-- subtle green inset border;
-- no geometry/runtime changes.
+Lead-form review:
+current form is too long for first contact and capture waits for 5 fields.
+Recommended next patch after owner approval:
+Họ tên + SĐT/Zalo required, Loại sản phẩm optional, compact privacy consent; remove Email/Số lượng/Request from first step and update capture logic simultaneously.
 
-PASS/FROZEN:
-- Mobile bottom bar paused;
-- Chat/Cookie original positions;
-- Cookie behavior;
-- Mobile Menu runtime;
-- Mobile Header directional behavior;
-- Blog / Contacts / accepted shared content.
+Protected:
+Mobile Header/Menu, Cookie, Chat, paused bottom bar, Blog, Contacts, accepted Home.
 
 Next:
-owner tests menu contrast -> remaining small fixes -> FULL Tablet -> cleanup -> production package/domain.
+owner tests popup color / approves short-form direction -> remaining small fixes -> FULL Tablet -> cleanup -> deploy.
 
 ---
+
 
 
 
@@ -2986,5 +2981,26 @@ Protected:
 - Cookie / Chat;
 - paused bottom bar;
 - Desktop / Tablet.
+
+Status: PENDING OWNER TEST.
+
+
+## CONSULT-POPUP-COLOR1 — BIO-A GREEN BACKGROUND
+
+Owner confirmed MOBILE-HEADER-SOURCE1 PASS.
+
+Change:
+- `#get-a-quote .cf-modal` background is now `var(--bioa)` (#106E45).
+
+No field/capture behavior changed.
+
+Lead UX audit:
+- current source first-contact form asks too much information;
+- current lead-capture script waits for name/email/phone/product/request;
+- capture endpoint already points to Bio-A admin-ajax;
+- future simplification must change UI + capture condition together.
+
+Recommended next:
+LEAD-FORM-SHORT1 = Name + Phone required, Product Type optional, privacy consent retained; remove Email/Quantity/Request from first-step UI.
 
 Status: PENDING OWNER TEST.

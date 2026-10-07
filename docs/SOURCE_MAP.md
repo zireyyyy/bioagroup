@@ -2065,3 +2065,34 @@ BIO-A:
 - `syncMobileHeader($,route,lang)` remains runtime owner.
 
 Only outer Mobile Header geometry was reopened. Inner menu remains PASS/LOCKED.
+
+
+## CONSULT-POPUP-COLOR1 / lead form source
+
+Modal:
+- root: `#get-a-quote`
+- content: `.cf-modal.modal__content`
+- global owner: `bioa-transform.mjs`
+- candidate background: `var(--bioa)` (#106E45).
+
+Current source lead form fields:
+- your-name
+- your-email
+- your-phone
+- your-product-type
+- your-product-quantity
+- your-request
+- your-acceptance
+
+Current capture condition in Merywood-derived source requires:
+- your-name
+- your-email
+- your-phone
+- your-product-type
+- your-request
+
+Current capture endpoint:
+`https://bioagroup.vn/wp-admin/admin-ajax.php`
+action `cf7lt_capture`.
+
+Do not visually remove required fields without updating the capture logic in the same patch.
