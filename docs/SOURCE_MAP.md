@@ -1521,3 +1521,24 @@ Cosmetics Hero:
 - assets/cosmetics-hero-bioa.webp remains flattened layer authority.
 - E9 only re-centers the Bio-A watermark within the raster.
 - product foreground and source cover/center geometry remain locked.
+
+
+## PATCH-E10 — Home header wiring / E8 hero restore
+
+Home header:
+- patchHeaderTopParityCss must be present in BOTH:
+  1. sharedShellCss for subpages;
+  2. the applyHomeRefinement() Home-only stylesheet chain.
+- addHeaderTopParity() remains the single runtime class owner.
+- do not replace this with route-local header architecture.
+
+Cosmetics Hero:
+- assets/cosmetics-hero-bioa.webp restored exactly to PATCH-E8.
+- E9 optical shift is retired.
+
+Manufacturing Categories:
+- outer padding authority:
+  - Desktop 44px;
+  - Tablet 36px;
+  - Mobile 30px.
+- internal cards/grid/icons/motion remain E7/E8-owned.

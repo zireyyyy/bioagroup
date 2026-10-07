@@ -1998,3 +1998,38 @@ Status:
 - Header top parity all routes/devices: PENDING OWNER TEST
 - E7 spacing all devices: PENDING OWNER TEST
 - Hero watermark position: PENDING OWNER TEST
+
+
+## PATCH-E10 — HOME HEADER WIRING + E8 HERO RESTORE + SOURCE RHYTHM
+
+Owner feedback after E9:
+- Home header still showed a tinted top band.
+- E9 hero watermark positioning was worse than E8.
+- E7 Manufacturing Categories still had visibly more vertical breathing room than surrounding source sections.
+
+Root cause:
+- HEADER-TOP1 CSS existed and runtime classes were active, but applyHomeRefinement() did not include patchHeaderTopParityCss in the Home-only stylesheet chain. Shared subpages did include it.
+- E9 unnecessarily shifted the already accepted E8 watermark layer.
+- E9 category padding remained larger than the source section rhythm.
+
+E10:
+- wire patchHeaderTopParityCss into the Home stylesheet chain; no header architecture/position changes;
+- keep addHeaderTopParity() runtime owner unchanged;
+- restore assets/cosmetics-hero-bioa.webp exactly to PATCH-E8 blob;
+- reduce only #bioa-cosmetics-categories outer padding:
+  - Desktop 44px;
+  - Tablet 36px;
+  - Mobile 30px;
+- card geometry, grid, icon treatment, hover, copy and MOTION-U1D3 unchanged.
+
+Protected:
+- Header geometry/actions/menu behavior;
+- MOTION-U1D3;
+- Why Choose / Packaging / Process / Certification / QC;
+- E7 card internals;
+- Home and /about/ locked shared components.
+
+Status:
+- Home top header: PENDING OWNER TEST
+- Hero watermark: restored to E8 baseline / PENDING OWNER TEST
+- Category section rhythm: PENDING OWNER TEST
