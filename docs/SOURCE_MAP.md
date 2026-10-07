@@ -2048,3 +2048,20 @@ Only when `html.bioa-header-scrolled`:
 - subtle inset border increases separation from the light sticky Header.
 
 No geometry or menu runtime change.
+
+
+## MOBILE-HEADER-SOURCE1
+
+Merywood source:
+- `merywood/pages/index/index.html`
+- `.header__wrapper`
+- `.header__logo`
+- `.header__btn`
+- `.menu-burger` (2-bar trigger)
+
+BIO-A:
+- `bioa-home-refine.mjs`
+- `patchMobileHeaderSourceParityCss`
+- `syncMobileHeader($,route,lang)` remains runtime owner.
+
+Only outer Mobile Header geometry was reopened. Inner menu remains PASS/LOCKED.
