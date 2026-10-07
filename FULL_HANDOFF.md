@@ -2393,3 +2393,45 @@ Shared PASS:
 Status:
 - /blog/: PENDING OWNER TEST
 - 7 detail routes: PENDING OWNER TEST
+
+
+## PATCH-G2 — BLOG SEO REWRITE + HERO WATERMARK BALANCE
+
+Owner feedback:
+- Blog hero Bio-A monogram was visually pulled too far upward.
+- Raw legacy article bodies exposed editorial markers and duplicated promotional/contact copy.
+- All seven articles already promoted in G1 must be rewritten as clean Bio-A editorial content while retaining the Merywood article shell.
+
+Root cause:
+- G1 intentionally preserved legacy `bodyVi` almost verbatim.
+- That payload contained authoring markers such as `CTA Section` / `Section nội dung chính`, duplicated CTA/contact blocks and unsupported legacy marketing claims.
+- G1 replaced Merywood article typography with additional route CSS instead of letting the source text-block styles remain primary.
+- The tall Bio-A monogram needed a small optical shift inside the source hero image box.
+
+G2 implementation:
+- `bioa-blog-refine.mjs` now stores seven clean structured article records rather than raw archive HTML.
+- VI and EN are full paired editorial mappings.
+- Article HTML is generated only from known headings, paragraphs and bullet lists; legacy raw HTML is no longer rendered.
+- TOC is generated from the same H2 data as article content, preventing stale/mismatched anchors.
+- Removed raw archive CTA labels, duplicate contact/address/email blocks, competitor top-list filler and unsupported treatment/penetration claims.
+- Restored Merywood text-block typography as presentation authority; only small Blog-specific utility styling remains.
+- Added article-specific SEO title/description, OG/Twitter image metadata and BlogPosting JSON-LD.
+- Existing seven slugs and image assets remain stable.
+- Blog hero monogram keeps the same source element and is optically shifted down via object-position only:
+  Desktop 58%, Tablet 56%, Mobile 54%.
+
+Protected / unchanged:
+- shared Header Desktop/Tablet/Mobile;
+- Mobile Menu behavior;
+- Footer;
+- Cookie VI/EN;
+- Chat/Zalo;
+- Home/About/Cosmetics/Other Services;
+- shared MOTION-U1D3;
+- Merywood Blog DOM/runtime shell and prev/next mechanics.
+
+Status:
+- CODE/SYNTAX CHECK: PASS.
+- Desktop: PENDING OWNER TEST.
+- Tablet: PENDING OWNER TEST.
+- Mobile: PENDING OWNER TEST.

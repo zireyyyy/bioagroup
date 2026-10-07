@@ -1728,3 +1728,30 @@ Motion:
 - bioa-home-refine.mjs / addSharedPageReveal();
 - index: hero + feature + post cards + CTA;
 - detail: title/media/body/nav + CTA.
+
+
+## PATCH-G2 — Blog clean-content / SEO authority
+
+Route ownership remains:
+- `bioa-blog-refine.mjs`.
+- Index source: Merywood `/blog/`.
+- Detail source: Merywood `/blog/cosmetic-manufacturing-process/`.
+
+Content pipeline:
+- G1 raw `bodyVi` archive HTML is retired.
+- Seven currently promoted legacy Bio-A topics are rewritten as structured VI/EN editorial data.
+- Renderer emits only known H2 / paragraph / list / note nodes into the existing Merywood `.text-block__content`.
+- TOC is generated from the same section data; no independent/stale TOC map.
+- Never render archive authoring markers, duplicated CTA/contact payloads or unsupported old marketing claims.
+
+Presentation:
+- Merywood article shell and source typography remain visual/runtime authority.
+- Blog route CSS must not redefine the source heading/body type scale.
+- Bio-A Blog hero monogram uses the existing `.blog-hero__bg` source slot.
+- Optical artwork position: Desktop 58%, Tablet 56%, Mobile 54%; no new watermark layer.
+
+SEO:
+- each detail route owns a concise SEO title + description;
+- OG/Twitter article metadata uses the existing local thumbnail;
+- BlogPosting JSON-LD is generated per article;
+- existing article slugs remain stable.

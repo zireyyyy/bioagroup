@@ -129,3 +129,28 @@ For /about/:
 - when Merywood has a section with no direct legacy Bio-A equivalent, use concise sample copy that does not invent event participation, client counts or unsupported certifications;
 - About VI and EN content must remain paired.
 
+
+
+## Blog editorial / SEO contract — PATCH-G2
+
+For the seven currently promoted legacy Blog topics:
+- legacy Bio-A content is a topic/fact source, not publish-ready HTML;
+- rewrite the article; never paste archived CTA blocks, editor labels or duplicated contact details;
+- use sentence-case body copy and owner title capitalization rules;
+- one visible article H1 comes from the Merywood title component;
+- body uses clear H2 sections, short paragraphs and lists only when useful;
+- TOC must be generated from the same structured headings as the article body;
+- avoid unsupported medical, treatment, penetration, clinical, timing or guaranteed-result claims;
+- where a skincare topic approaches medical advice, include a concise informational disclaimer;
+- manufacturing articles should focus on brief, formulation, stability, packaging, quality, documentation and practical project decisions;
+- preserve stable slugs unless the owner explicitly approves a URL migration;
+- VI and EN remain paired in the same patch.
+
+SEO baseline:
+- unique page title;
+- unique meta description;
+- descriptive H1/H2 hierarchy;
+- local thumbnail as social image;
+- BlogPosting structured data;
+- relevant internal links to Cosmetic Manufacturing, Other Services and Contact;
+- no keyword stuffing or generic filler written only to increase word count.
