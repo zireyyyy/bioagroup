@@ -2892,3 +2892,41 @@ Next intended runtime work:
 - pending owner confirmation of supplied Mobile bottom-nav icon artwork;
 - if confirmed, artwork-only patch;
 - then Tablet -> cleanup -> production package/domain.
+
+
+## MOBILE-NAV-ICON1 — OWNER-SUPPLIED BOTTOM NAV ARTWORK
+
+Parent runtime baseline:
+`76bab2b472b252f804c6022147209631cb691c81` — OWNER PASS.
+
+Scope:
+- replaced only five inline bottom-nav icon artworks;
+- source shapes come from owner-supplied 5-icon artwork sheet;
+- silhouettes were vector-traced into inline SVG paths for crisp mobile rendering;
+- mapping:
+  Home = house;
+  Manufacturing = factory + cosmetic bottle;
+  Services = lab flask + leaf;
+  Blog = document;
+  Contact = headset/support person.
+
+Preserved:
+- 5 labels;
+- all routes;
+- bar geometry;
+- active/inactive tile treatment;
+- directional hide/show;
+- first-tap menu behavior;
+- Cookie behavior;
+- Chat/Cookie clearance;
+- Desktop/Tablet;
+- all route content.
+
+Candidate status:
+**PENDING OWNER TEST**.
+
+Rollback:
+`76bab2b472b252f804c6022147209631cb691c81`.
+
+Handoff correction:
+Bio-A continuation files must contain only real Bio-A architecture. Do not copy or translate PMX Shop-specific Woo/Suite/Child/PMX Shell/Product Card concepts into this project.

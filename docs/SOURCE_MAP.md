@@ -1989,3 +1989,28 @@ Pending Mobile bottom-nav icon artwork:
 - do not redraw;
 - integrate artwork only after explicit owner confirmation;
 - if attachment is unavailable in a new chat, request re-upload before implementation.
+
+
+## MOBILE-NAV-ICON1 — icon artwork authority
+
+Owner:
+`bioa-home-refine.mjs > addMobileBottomNav()`
+
+Artwork authority:
+owner-supplied five-icon image set from 2026-10-07.
+
+Runtime representation:
+inline SVG silhouettes vector-traced from the supplied art for crisp scaling.
+
+Mapping:
+- home -> house
+- manufacturing -> factory + cosmetic bottle
+- services -> flask + leaf
+- blog -> document
+- contact -> support/headset person
+
+State color remains CSS-owned:
+- inactive icon: Bio-A green on very-light green tile;
+- active icon: cream on Bio-A green tile.
+
+Do not redraw these icons or substitute generic library icons without owner approval.
