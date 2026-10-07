@@ -8,10 +8,10 @@ Read START_HERE.md, CURRENT STATE SNAPSHOT in FULL_HANDOFF.md, AGENTS.md, docs/W
 ## Current state
 
 Production-confirmed baseline:
-`3dd614d873ac311485f0f362a689bbe5c8233ce2` — MOBILE-NAV-PAUSE1 — OWNER PASS.
+`c6be5735e49510c6e5c340f258dea5b4f85d2a55` — MOBILE-MENU-CONTRAST1 — OWNER PASS.
 
 Current candidate:
-**MOBILE-MENU-CONTRAST1 — PENDING OWNER TEST**.
+**MOBILE-HEADER-SOURCE1 — PENDING OWNER TEST**.
 
 Only current change:
 when Mobile Header is scrolled/light, the menu button gets a very-light Bio-A green surface + Bio-A green hamburger + subtle border so it no longer blends into the Header.
@@ -35,3 +35,5 @@ Top state -> scroll -> scrolled state contrast -> first-tap menu -> outside/scro
 
 After PASS:
 remaining small fixes -> FULL Tablet -> cleanup -> production package -> domain deploy.
+
+Current candidate changes only Mobile Header outer geometry to match Merywood source proportions. Inner Mobile Menu stays locked and untouched.
