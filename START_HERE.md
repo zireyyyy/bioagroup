@@ -6,11 +6,11 @@ Updated: 2026-10-08
 ## Current runtime state
 
 Production-confirmed baseline:
-`3dd614d873ac311485f0f362a689bbe5c8233ce2`
-— **MOBILE-NAV-PAUSE1 — OWNER PASS**
+`c6be5735e49510c6e5c340f258dea5b4f85d2a55`
+— **MOBILE-MENU-CONTRAST1 — OWNER PASS**
 
 Current candidate:
-**MOBILE-MENU-CONTRAST1 — scrolled-state menu contrast**
+**MOBILE-HEADER-SOURCE1 — Merywood Mobile Header Geometry Parity**
 — **PENDING OWNER TEST**
 
 ## Current block
@@ -51,3 +51,22 @@ Mobile:
 
 If PASS:
 lock MOBILE-MENU-CONTRAST1 and continue remaining small fixes -> FULL Tablet -> cleanup -> deploy.
+
+
+### MOBILE-HEADER-SOURCE1
+Mobile Header outer geometry now follows the earlier Merywood-source-preserving dimensions:
+- Header/wrapper 62px;
+- logo shell 46×48px;
+- Bio-A logo 38×44px;
+- CTA 40px height / 15px side padding / radius 14 / 13px;
+- clean menu trigger 40×40px / radius 14;
+- burger visual uses 2 bars like Merywood source markup.
+
+Protected:
+- inner Mobile Menu content/layout;
+- first-tap/outside/scroll/Escape runtime;
+- Header down-hide/up-show;
+- scrolled green menu-button state;
+- Cookie/Chat;
+- bottom bar remains PAUSED;
+- Desktop/Tablet.
