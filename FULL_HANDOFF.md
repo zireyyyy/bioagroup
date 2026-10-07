@@ -2263,3 +2263,47 @@ Status:
 - service icons: PENDING OWNER TEST
 - process icon 03: PENDING OWNER TEST
 - 12-item Product Range Desktop/Tablet/Mobile: PENDING OWNER TEST
+
+
+## PATCH-F5 — PRODUCT RANGE SOURCE-PARITY RESET
+
+Owner feedback after F4:
+- Product Range was structurally fixed but semantically wrong.
+- Expanded 12-group taxonomy duplicated the manufacturing-category role already owned by /contract-manufacturing-cosmetics/.
+- Owner asked whether the section title should return closer to Merywood /hotel-spa-cosmetics/.
+
+Source audit:
+- Merywood section title: "Our Product Range".
+- Exact seven source product formats:
+  1. Shower Gel
+  2. Shampoo
+  3. Conditioner
+  4. Soap
+  5. Body Cream
+  6. Lotion
+  7. Scrub
+- Each source slide has a dedicated product image matching that concrete format.
+
+F5 decision:
+- VI title -> "Danh Mục Sản Phẩm".
+- EN title -> "Product Range".
+- Restore exactly seven concrete product formats matching source semantics.
+- Remove all 12-group manufacturing taxonomy additions.
+- Remove slide-cloning logic entirely.
+- Preserve the seven original source product images and source Swiper geometry/runtime.
+- Replace only the small Merywood logo artwork in each product card with Bio-A monogram, as owner previously approved.
+
+Semantic separation locked:
+- /contract-manufacturing-cosmetics/ owns broad manufacturing categories.
+- /dich-vu-khac/ Product Range shows concrete example product formats only.
+- Do not merge or duplicate those roles.
+
+Protected:
+- F4 service icon rollback;
+- only workflow step 03 Bio-A icon replacement;
+- F2/F3 motion and VI localization;
+- Header/Footer/Cookie/Chat/Zalo/Mobile Menu;
+- Home/About/Cosmetics PASS.
+
+Status:
+- Product Range Desktop/Tablet/Mobile: PENDING OWNER TEST

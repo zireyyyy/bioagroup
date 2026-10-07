@@ -1664,3 +1664,21 @@ Product Range structure:
 - never append .step directly inside an existing slide.
 - both Desktop and Mobile source blocks use this rule.
 - Swiper initialization/navigation remains source-owned.
+
+
+## PATCH-F5 — Other Services Product Range source parity
+
+Source authority:
+- Merywood /hotel-spa-cosmetics/ -> "Our Product Range".
+- Keep exactly seven concrete product slides:
+  Shower Gel, Shampoo, Conditioner, Soap, Body Cream, Lotion, Scrub.
+
+Bio-A mapping:
+- VI heading: "Danh Mục Sản Phẩm".
+- EN heading: "Product Range".
+- existing seven Merywood product images remain source-owned.
+- only .step__icon artwork becomes assets/bioa-monogram-cream.svg.
+
+Do not expand this block into broad manufacturing taxonomies.
+Those belong to /contract-manufacturing-cosmetics/.
+Do not clone swiper slides for this block.

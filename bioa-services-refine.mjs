@@ -26,20 +26,15 @@ const serviceContent={
       ["Dự án đã có công thức hoặc bán thành phẩm có thể tập trung vào chai lọ, sang chiết, đóng gói và hoàn thiện nhãn trước khi ra thị trường.","Sang Chiết & Hoàn Thiện","Giải pháp mẫu"],
       ["Doanh nghiệp đã có sản phẩm có thể sử dụng riêng từng dịch vụ như thiết kế bao bì, thay đổi chai lọ hoặc hỗ trợ hồ sơ & công bố.","Mở Rộng & Chuẩn Hóa","Giải pháp mẫu"]
     ],
-    rangeTitle:"Nhóm Sản Phẩm Có Thể Kết Hợp Dịch Vụ",
+    rangeTitle:"Danh Mục Sản Phẩm",
     range:[
-      ["Sữa Tắm","Có thể kết hợp sản xuất, chai lọ, thiết kế nhãn, sang chiết và hoàn thiện hồ sơ theo nhu cầu dự án."],
-      ["Dầu Gội","Phù hợp triển khai đồng bộ công thức, dung tích, chai lọ, nhãn và quy cách đóng gói theo định vị thương hiệu."],
-      ["Dầu Xả","Có thể phối hợp từ mẫu sản phẩm đến bao bì, sang chiết, đóng gói và hoàn thiện thông tin sản phẩm."],
-      ["Sữa Rửa Mặt","Hỗ trợ từ định hướng công thức, mẫu thử đến tuýp/chai, nhãn, đóng gói và hồ sơ sản phẩm."],
-      ["Serum & Tinh Chất","Có thể kết hợp công thức, lựa chọn chai/lọ nhỏ giọt, thiết kế nhãn, sang chiết và hoàn thiện sản phẩm."],
-      ["Kem Dưỡng Da","Hỗ trợ công thức, hũ/tuýp, mẫu thử, bao bì và các hạng mục hoàn thiện theo định vị thương hiệu."],
-      ["Mặt Nạ","Có thể phối hợp công thức, quy cách đóng gói, nhãn và thông tin sản phẩm theo từng dòng mặt nạ."],
-      ["Tẩy Tế Bào Chết","Có thể kết hợp sản xuất, lựa chọn bao bì, thiết kế nhãn và các dịch vụ hoàn thiện liên quan."],
-      ["Kem Body & Lotion","Hỗ trợ đồng bộ công thức, chai/hũ, nhãn, sang chiết và hoàn thiện nhóm chăm sóc cơ thể."],
-      ["Sản Phẩm Trang Điểm","Có thể hỗ trợ định hướng sản phẩm, bao bì, nhãn và các hạng mục hoàn thiện phù hợp từng dòng trang điểm."],
-      ["Sản Phẩm Cá Nhân","Kết hợp sản xuất, bao bì, sang chiết, đóng gói hoặc hồ sơ theo nhu cầu của từng sản phẩm cá nhân."],
-      ["Sản Phẩm Mẹ & Bé","Hỗ trợ triển khai công thức, mẫu, bao bì, nhãn và các dịch vụ liên quan theo phạm vi từng dự án."]
+      ["Sữa Tắm","Dòng làm sạch cơ thể phù hợp kết hợp với dịch vụ sản xuất, chai lọ, nhãn, sang chiết và đóng gói."],
+      ["Dầu Gội","Dòng chăm sóc tóc có thể triển khai đồng bộ công thức, dung tích, chai lọ, nhãn và quy cách đóng gói."],
+      ["Dầu Xả","Dòng chăm sóc tóc hỗ trợ kết hợp mẫu sản phẩm, bao bì, sang chiết, đóng gói và hoàn thiện thông tin."],
+      ["Xà Phòng","Sản phẩm làm sạch dạng bánh hoặc dạng lỏng, có thể kết hợp bao bì, nhãn và hạng mục hoàn thiện."],
+      ["Kem Body","Dòng chăm sóc cơ thể có thể kết hợp công thức, hũ/chai, thiết kế bao bì và đóng gói."],
+      ["Lotion","Dòng dưỡng thể dạng lỏng nhẹ, phù hợp triển khai cùng chai lọ, nhãn, sang chiết và hoàn thiện sản phẩm."],
+      ["Tẩy Tế Bào Chết","Dòng làm sạch chuyên sâu có thể kết hợp sản xuất, lựa chọn bao bì, thiết kế nhãn và đóng gói."]
     ]
   },
   en:{
@@ -69,20 +64,16 @@ const serviceContent={
       ["A project with an existing formula or bulk product can focus on containers, filling, packing and label completion before market launch.","Filling & Finishing","Sample solution"],
       ["An established business can use individual services such as packaging design, container changes or documentation and notification support.","Portfolio Expansion","Sample solution"]
     ],
-    rangeTitle:"Product Groups That Can Use These Services",
+    rangeTitle:"Product Range",
     range:[
-      ["Shower Gel","Can combine manufacturing, containers, label design, filling and documentation support depending on project needs."],
-      ["Shampoo","Suitable for coordinated formula, capacity, containers, labels and packing specifications around the brand positioning."],
-      ["Conditioner","Can combine product samples with packaging, filling, packing and product-information completion."],
-      ["Facial Cleanser","Support can cover formula direction and samples through tubes or bottles, labels, packing and product documentation."],
-      ["Serums & Essences","Can combine formulation, dropper or pump packaging, label design, filling and finished-product completion."],
-      ["Face Cream","Support formulas, jars or tubes, samples, packaging and finishing around the intended brand positioning."],
-      ["Face Masks","Coordinate formulas, packing formats, labels and product information around the selected mask format."],
-      ["Body Scrub","Can combine manufacturing, packaging selection, label design and related finishing services."],
-      ["Body Cream & Lotion","Coordinate formulas, bottles or jars, labels, filling and finishing for body-care products."],
-      ["Makeup Products","Support product direction, packaging, labels and finishing requirements across selected makeup formats."],
-      ["Personal Care Products","Combine manufacturing, packaging, filling, packing or documentation according to each personal-care project."],
-      ["Mother & Baby Products","Support formulas, samples, packaging, labels and related services according to each project scope."]
+      ["Shower Gel","A body-cleansing format that can combine manufacturing, containers, labels, filling and packing support."],
+      ["Shampoo","A hair-care format suitable for coordinated formula, capacity, containers, labels and packing specifications."],
+      ["Conditioner","A hair-care format that can combine product sampling with packaging, filling, packing and final product information."],
+      ["Soap","A cleansing format available as bar or liquid, with packaging, label and finishing support."],
+      ["Body Cream","A body-care format that can combine formulation, jars or bottles, packaging design and packing."],
+      ["Lotion","A lightweight body-care format suited to coordinated containers, labels, filling and finishing."],
+      ["Scrub","An exfoliating format that can combine manufacturing, packaging selection, label design and packing."]
+
     ]
   }
 };
@@ -188,54 +179,25 @@ function applyRange($,lang){
     const block=$(el);
     setCopy(block,".title-wrapper .title",d.rangeTitle);
 
-    const wrapper=block.find(".swiper-wrapper").first();
-    if(!wrapper.length)return;
-
-    let slides=wrapper.children(".swiper-slide");
-    if(!slides.length)return;
-    const sourceCount=slides.length;
-
-    while(wrapper.children(".swiper-slide").length<d.range.length){
-      const idx=wrapper.children(".swiper-slide").length;
-      const template=slides.eq(idx%sourceCount).clone(false,false);
-      template
-        .removeAttr("style role aria-label aria-hidden")
-        .removeClass("swiper-slide-active swiper-slide-next swiper-slide-prev swiper-slide-visible swiper-slide-fully-visible");
-      template.find("[id]").removeAttr("id");
-      template.find("[data-bioa-aos]").removeAttr("data-bioa-aos");
-      template.find("[style]").removeAttr("style");
-      wrapper.append(template);
-    }
-    wrapper.children(".swiper-slide").slice(d.range.length).remove();
-
-    slides=wrapper.children(".swiper-slide");
+    const slides=block.find(".swiper-wrapper").first().children(".swiper-slide");
     slides.each((i,slideNode)=>{
       const row=d.range[i];
       if(!row)return;
-      const slide=$(slideNode);
-      const step=slide.find(".step").first();
+      const step=$(slideNode).find(".step").first();
       if(!step.length)return;
 
       step.find(".step__number").first().text(String(i+1).padStart(2,"0"));
       setCopy(step,".step__title",row[0]);
       setCopy(step,".step__text",row[1]);
 
+      /* Keep Merywood's product image for each concrete product format,
+         but replace the baked Merywood mark in the small icon slot only. */
       const icon=step.find(".step__icon img").first();
       if(icon.length){
         icon.attr("src","/assets/bioa-monogram-cream.svg")
           .attr("alt","Bio-A Group")
           .removeAttr("srcset sizes")
           .addClass("bioa-service-range-logo");
-      }
-
-      if(i>=sourceCount){
-        const product=step.find(".step__image img").first();
-        if(product.length){
-          product.attr("src","/assets/cosmetics-hero-bioa.webp")
-            .attr("alt",row[0])
-            .removeAttr("srcset sizes")
-            .addClass("bioa-service-range-generic");
-        }
       }
     });
   });
@@ -248,7 +210,7 @@ function localizeResidualSourceText($,lang){
     "End-to-End Private Label Solutions for Beauty Products":"Dịch Vụ Bio-A Group",
     "How it works":"Quy Trình Triển Khai Dịch Vụ",
     "Hear What Our Clients Say":"Giải Pháp Theo Từng Nhu Cầu",
-    "Our Product Range":"Nhóm Sản Phẩm Có Thể Kết Hợp Dịch Vụ",
+    "Our Product Range":"Danh Mục Sản Phẩm",
     "Let's discuss your idea":"Trao Đổi Về Dự Án Của Bạn",
     "Let’s discuss your idea":"Trao Đổi Về Dự Án Của Bạn",
     "Get started":"Nhận Tư Vấn",
@@ -272,7 +234,6 @@ function patchRouteCss($){
     '#why-choose-us .bioa-service-pillar-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
     '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
     '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
-    '.block-how-works .bioa-service-range-generic{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+
   '</style>');
 }
