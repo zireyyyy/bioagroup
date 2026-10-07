@@ -1,6 +1,6 @@
 # BIO-A GROUP WEBSITE — FULL HANDOFF
 
-Updated: 2026-10-05
+Updated: 2026-10-07
 Repository: https://github.com/zireyyyy/bioagroup
 
 This file is the current-state authority.
@@ -1623,3 +1623,29 @@ Status:
 - Desktop: PENDING OWNER TEST
 - Tablet: PENDING OWNER TEST
 - Mobile: PENDING OWNER TEST
+
+
+## ABOUT-A2 — OWNER CONFIRMED FULL RESPONSIVE PASS
+
+Accepted checkpoint:
+- 20420850dafc7d05fe9cb442209621bd3b130298 — optical centering of owner-supplied manufacturing category artwork.
+
+Owner runtime confirmation on 2026-10-07:
+- /about/ Desktop: PASS / LOCKED
+- /about/ Tablet: PASS / LOCKED
+- /about/ Mobile: PASS / LOCKED
+- FULL RESPONSIVE PASS — OWNER CONFIRMED
+
+Protected About state:
+- Merywood About layout/runtime;
+- About hero geometry with shared stats typography/width treatment;
+- localized Bio-A content;
+- shared Header / Tablet Header / Mobile Header / Mobile Menu;
+- Footer;
+- Cookie VI ↔ EN;
+- Chat;
+- MOTION-U1D2/shared reveal behavior;
+- CTA Bio-A green logo;
+- six owner-supplied manufacturing category PNGs with accepted sizes and optical offsets.
+
+Do not reopen /about/ while implementing PATCH E unless the owner explicitly reports a regression.
