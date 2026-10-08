@@ -410,6 +410,8 @@ async function build(){
   await fs.cp("assets",path.join(OUT,"assets"),{recursive:true});
   await fs.writeFile(path.join(OUT,"_headers"),"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
+  // Auth middleware must intercept assets and APIs, not only HTML.
+  await fs.writeFile(path.join(OUT,"_routes.json"),JSON.stringify({version:1,include:["/*"],exclude:[]},null,2)+"\n");
   console.log("build complete in",Date.now()-started,"ms");
 }
 build().catch(e=>{console.error("BUILD FAILED:", e);process.exit(1)});

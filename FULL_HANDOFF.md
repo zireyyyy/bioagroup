@@ -1,3 +1,7 @@
+## CURRENT STATE — 2026-10-08 — MAINTENANCE-PRIVATE1 (PENDING OWNER TEST)
+Owner website custom-domain/HTTPS & live D1/Sheets lead tests PASS; popup auto-close, ID/CRM PASS. New global Cloudflare Pages middleware default-maintenance gate across all hosts/routes/assets/API, dist/_routes.json include all. Secret URL server verified via BIOA_PREVIEW_SECRET; 8h signed owner cookie; only BIOA_SITE_MODE=public unlocks public after explicit approval. Mandatory Pages Runtime Fail closed or quota exhaustion leaks static assets. User must provision secret and redeploy. Refer docs/MAINTENANCE_ACCESS.md. Turnstile config PASS, live bot test PENDING; Resend PENDING. Frozen Home/Blog/Contact/Merywood shared visual and lead APIs. Rollback pre-patch 0446f80c, unsafe without alternate access control.
+
+---
 ## CURRENT STATE — 2026-10-08 — LEAD-TURNSTILE-READY1
 
 **Owner-confirmed PASS:** auto-close popup, short ID, D1, Google Sheets, CRM dropdown/colors, VI/EN. LOCK all.
