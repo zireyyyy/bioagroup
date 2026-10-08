@@ -476,6 +476,19 @@ function simplifyConsultationModal($,lang){
   const vi=lang==='vi';
   const form=modal.find('form.wpcf7-form').first();
   if(!form.length)return;
+
+  // TEXT-ONLY: preserve Merywood popup title element, geometry and responsive CSS.
+  const oldTitle=/30 giây|30 seconds|200\+ brands/i;
+  const title=modal.find('h1,h2,h3,h4,.cf-modal__title,.modal__title,.cf-modal__heading')
+    .filter((_,el)=>oldTitle.test($(el).text())).first();
+  if(title.length) title.text(vi?'Nhận Tư Vấn Từ Bio-A Group':'Consult Bio-A Group');
+  else{
+    modal.find('*').contents().each((_,node)=>{
+      if(node.type==='text'&&oldTitle.test(node.data||'')){
+        node.data=vi?'Nhận Tư Vấn Từ Bio-A Group':'Consult Bio-A Group';
+      }
+    });
+  }
   const hidden=form.find('fieldset.hidden-fields-container').first();
 
   form.find('[name="your-email"]').closest('.input-base').remove();
@@ -515,25 +528,19 @@ function simplifyConsultationModal($,lang){
 
   form.find('.cf-modal__button').attr('value','Send');
 
+  // Disable old Merywood lead-capture script; it is not Bio-A storage.
   $('script').each((_,el)=>{
-    let body=$(el).html()||'';
-    const oldRequired="var REQUIRED_FIELDS = ['your-name', 'your-email', 'your-phone', 'your-product-type', 'your-request'];";
-    if(!body.includes(oldRequired))return;
-    body=body.replace(oldRequired,"var REQUIRED_FIELDS = ['your-name', 'your-phone'];");
-    const start=body.indexOf('            function hasEmail() {');
-    const endMarker='            // Числовой ID формы';
-    const end=body.indexOf(endMarker,start);
-    if(start>=0&&end>start){
-      const replacement="            function hasConsent() {\n                var el = form.querySelector('[name=\"your-acceptance\"]');\n                return !!(el && el.checked);\n            }\n\n            function shouldCapture() {\n                return allRequiredFilled() && hasConsent();\n            }\n\n";
-      body=body.slice(0,start)+replacement+body.slice(end);
+    const code=$(el).html()||'';
+    if(code.includes("var REQUIRED_FIELDS = ['your-name', 'your-email', 'your-phone', 'your-product-type', 'your-request'];")||
+       code.includes("var REQUIRED_FIELDS = ['your-name', 'your-phone'];")){
+      $(el).remove();
     }
-    $(el).html(body);
   });
-
-  const syncScript="(function(){var form=document.querySelector('#get-a-quote form.wpcf7-form');if(!form)return;form.addEventListener('submit',function(){var chosen=form.querySelector('input[name=\"your-product-type\"]:checked');var fallback=form.querySelector('input[data-bioa-product-fallback=\"1\"]');if(chosen){if(fallback)fallback.remove();var req=form.querySelector('input[name=\"your-request\"]');if(req)req.value=chosen.value;}else if(!fallback){fallback=document.createElement('input');fallback.type='hidden';fallback.name='your-product-type';fallback.value='No idea now';fallback.setAttribute('data-bioa-product-fallback','1');form.appendChild(fallback);}},true);})();";
   modal.find('#bioa-short-lead-sync').remove();
-  modal.append($('<script id="bioa-short-lead-sync"></script>').html(syncScript));
+  $('#bioa-lead-handler').remove();
+  $('body').append('<script id="bioa-lead-handler" defer src="/assets/js/bioa-leads.js"></script>');
 }
+
 function brandCookieBanner($,lang){
   const vi=lang==='vi';
   const root=$('#mw-consent').first();

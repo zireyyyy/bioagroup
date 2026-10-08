@@ -1,3 +1,21 @@
+# CURRENT STATE — 2026-10-08 — LEAD-BACKEND1
+
+**Owner confirmed popup Consent PASS** at `61d2e8b04c2534ad7a178fdb1313fa918637a3ab`. Protected visual runtime/source Merywood.
+
+**New candidate: LEAD-BACKEND1 — PENDING CLOUDFARE BUILD / D1 BINDING / GOOGLE & RESEND SECRET CONFIG / OWNER E2E TEST.**
+
+- Text-only popup heading: VI `Nhận Tư Vấn Từ Bio-A Group`; EN `Consult Bio-A Group`.
+- Form visuals/fields/checks/Consent/Send remain unchanged.
+- Old Merywood lead capture disabled for this modal; new JS submit handler posts same-origin to `/api/lead`.
+- Pages Function writes D1 first, then best-effort Google Sheets + Resend email notification.
+- Code and SQL migration committed, but **resources, credentials, live storage and external delivery have not been provisioned**. Do not claim data currently being collected.
+- Setup guide: `docs/LEAD_BACKEND_SETUP.md` (required).
+- Relevant owners: `bioa-transform.mjs`, `assets/js/bioa-leads.js`, `functions/api/lead.js`, `migrations/0001_bioa_leads.sql`.
+- PASS/FROZEN: Home, Blog, Contacts, Cookie, Chat, Mobile Header/Menu and disabled bottom bar.
+- Next: confirm Cloudflare build; provision D1 & binding, run migration, add secrets, verify Google and Resend, run a synthetic test lead (VI/EN) and inspect all 3 destinations.
+- Rollback if frontend regression: `61d2e8b` previous owner-confirmed state. Do not deploy new form to production domain before D1 configuration / successful E2E test.
+
+---
 ## CURRENT STATE — 2026-10-08 — CONSULT-CONSENT-SOURCE1
 
 Candidate: **CONSULT-CONSENT-SOURCE1 — PENDING CLOUDFLARE BUILD / OWNER TEST**.
@@ -3101,3 +3119,23 @@ Only runtime modifications: delete three scoped Consent CSS selectors plus their
 Owner PASS/FROZEN: shared Mobile Menu including Home; popup short-form fields/selection/Send; Header, Cookie, Chat, Blog, Contacts and paused bottom bar.
 
 Status: PENDING Cloudflare Build / Owner Runtime Test.
+
+
+# CURRENT STATE — 2026-10-08 — LEAD-BACKEND1
+
+**Owner confirmed popup Consent PASS** at `61d2e8b04c2534ad7a178fdb1313fa918637a3ab`. Protected visual runtime/source Merywood.
+
+**New candidate: LEAD-BACKEND1 — PENDING CLOUDFARE BUILD / D1 BINDING / GOOGLE & RESEND SECRET CONFIG / OWNER E2E TEST.**
+
+- Text-only popup heading: VI `Nhận Tư Vấn Từ Bio-A Group`; EN `Consult Bio-A Group`.
+- Form visuals/fields/checks/Consent/Send remain unchanged.
+- Old Merywood lead capture disabled for this modal; new JS submit handler posts same-origin to `/api/lead`.
+- Pages Function writes D1 first, then best-effort Google Sheets + Resend email notification.
+- Code and SQL migration committed, but **resources, credentials, live storage and external delivery have not been provisioned**. Do not claim data currently being collected.
+- Setup guide: `docs/LEAD_BACKEND_SETUP.md` (required).
+- Relevant owners: `bioa-transform.mjs`, `assets/js/bioa-leads.js`, `functions/api/lead.js`, `migrations/0001_bioa_leads.sql`.
+- PASS/FROZEN: Home, Blog, Contacts, Cookie, Chat, Mobile Header/Menu and disabled bottom bar.
+- Next: confirm Cloudflare build; provision D1 & binding, run migration, add secrets, verify Google and Resend, run a synthetic test lead (VI/EN) and inspect all 3 destinations.
+- Rollback if frontend regression: `61d2e8b` previous owner-confirmed state. Do not deploy new form to production domain before D1 configuration / successful E2E test.
+
+---

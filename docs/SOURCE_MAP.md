@@ -2155,3 +2155,7 @@ Only runtime modifications: delete three scoped Consent CSS selectors plus their
 Owner PASS/FROZEN: shared Mobile Menu including Home; popup short-form fields/selection/Send; Header, Cookie, Chat, Blog, Contacts and paused bottom bar.
 
 Status: PENDING Cloudflare Build / Owner Runtime Test.
+
+
+## LEAD-BACKEND1
+Popup heading and client form: `bioa-transform.mjs > simplifyConsultationModal`; submission: `assets/js/bioa-leads.js`; API: `functions/api/lead.js`; D1 schema `migrations/0001_bioa_leads.sql`; setup `docs/LEAD_BACKEND_SETUP.md`. Merywood Consent and rest of modal retained. No keys checked in.
