@@ -1,17 +1,18 @@
-## CURRENT STATE — 2026-10-08 — CONSULT-CONSENT-FLOW1
+## CURRENT STATE — 2026-10-08 — CONSULT-CONSENT-SOURCE1
 
-**Current candidate:** CONSULT-CONSENT-FLOW1 — **PENDING CLOUDFLARE BUILD / OWNER TEST**.
+Candidate: **CONSULT-CONSENT-SOURCE1 — PENDING CLOUDFLARE BUILD / OWNER TEST**.
 
-User confirmed the shared **Mobile Menu PASS**, including the new Trang Chủ/Home link in `d890c0c`. **LOCKED**: do not modify its markup, layout or runtime.
+Owner confirmed shared Mobile Menu + Trang Chủ/Home PASS, FROZEN. Popup consent visuals on 4d3e3da still FAIL on Mobile/Tablet/desktop.
 
-Consultation popup remains a short lead form (Name and Phone/Zalo/Telegram required; Product/Service optional; source checkbox Consent + full legal terms; original-style Send).
-The owner reported the Consent copy and the Privacy Policy link render as separated columns, especially on Mobile/Tablet. Root cause: Bio-A-specific `.label-check {display:flex}` distributes the checkbox wrapper, bare legal text and policy link as independent flex items.
+Compared exact original markup in owner ZIP `merywood-export 210-3.zip` / `merywood/pages/index/index.html`: `label.label-check` directly contains source checkbox span, a plain text node with a trailing space, and inline Privacy Policy link. No new layout markup should be introduced.
 
-Current fix is CSS-only in `bioa-transform.mjs`: one normal inline text flow, checkbox positioned at the left, continuous text + link wrapping in the same line box. Full original terms/link and validation/runtime remain intact. Applies to Desktop/Tablet/Mobile. No popup redesign.
+Correction in `bioa-transform.mjs`:
+- Delete the 3 Bio-A-only Consent layout selector overrides (absolute checkbox position and padded layout). Return visual authority to Merywood's original CSS.
+- Restore the source trailing whitespace in VI localization before Privacy Policy anchor.
 
-**Protected:** Mobile Menu PASS; Mobile Header; Cookie/Chat; bottom bar PAUSED; Blog/Contacts/Home; form fields/dropdown/Send/capture. Previous `9e30c7c` BUILD FAIL must not be used for rollback. `d890c0c` is the immediate pre-patch ref if reversion of CSS becomes necessary (it still has the Consent layout issue).
+No new CSS or DOM, no change to legal wording, privacy URL, acceptance checkbox behavior, lead form fields, dropdown, capture or Send. All Header/Menu/Cookie/Chat/Blog/Contacts and PAUSED bottom-bar behavior protected.
 
-**Next:** Cloudflare build; Mobile/Tablet verify checkbox at left and policy link flows inline; Desktop regression; real submission/capture check remains pending. Do not mark popup PASS before owner confirmation.
+Historical 4d3e3da did not PASS Consent; do not rollback to it as a visual PASS checkpoint. Next test: Cloudflare build, compare Mobile/Tablet/Desktop Consent with Merywood, then test lead submission/capture separately. **Do not mark PASS before owner verifies.**
 
 ---
 
@@ -3088,3 +3089,15 @@ Change: CSS only at `#get-a-quote .label-check`. Use normal block text flow with
 Mobile Menu with Trang Chủ/Home: owner-confirmed PASS; frozen.
 
 Status: PENDING CLOUDFLARE BUILD / OWNER TEST. No other UI/runtime owner modified.
+
+## CONSULT-CONSENT-SOURCE1 (2026-10-08)
+
+Merywood authority (verified owner ZIP): `merywood/pages/index/index.html`, `#get-a-quote label.label-check` with nested `span.wpcf7-form-control-wrap`, direct legal text node (trailing space), followed by `a[href="/privacy-policy"]`. Retain original DOM and original CSS.
+
+Root cause: Bio-A custom Consent CSS in `bioa-transform.mjs` overrode source layout with block/absolute position/padding; VI localization removed original separating space.
+
+Only runtime modifications: delete three scoped Consent CSS selectors plus their comment; restore VI text node's terminal space. No replacement CSS/wrapper/component created, and no other markup/behavior changed.
+
+Owner PASS/FROZEN: shared Mobile Menu including Home; popup short-form fields/selection/Send; Header, Cookie, Chat, Blog, Contacts and paused bottom bar.
+
+Status: PENDING Cloudflare Build / Owner Runtime Test.

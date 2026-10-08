@@ -12,10 +12,6 @@ const css = `
 #get-a-quote .cf-modal{background:var(--bioa)!important}
 #get-a-quote .cf-modal__button{width:100%!important;min-height:56px!important;border:0!important;border-radius:14px!important;background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;box-shadow:none!important}
 #get-a-quote .cf-modal__button:hover,#get-a-quote .cf-modal__button:focus{background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;transform:none!important}
-/* CONSENT-FLOW1: Source text and Privacy Policy link must share one inline text flow. */
-#get-a-quote .label-check{display:block!important;position:relative!important;box-sizing:border-box!important;padding-left:32px!important;margin-top:14px!important;font-size:13px!important;line-height:1.5!important;white-space:normal!important;overflow-wrap:break-word!important}
-#get-a-quote .label-check .wpcf7-form-control-wrap{position:absolute!important;left:0!important;top:1px!important;display:inline-block!important;width:22px!important;margin:0!important;float:none!important;flex:none!important}
-#get-a-quote .label-check a{display:inline!important;float:none!important;position:static!important;white-space:normal!important;color:#fff!important;text-decoration:underline!important;text-underline-offset:2px!important}
 /* Keep Merywood checkboxes and scroll only the extended Bio-A options list. */
 #get-a-quote #ddType .dd-menu{
   max-height:min(242px,38dvh)!important;
@@ -457,7 +453,7 @@ function viCleanup($){
     if(map[k])t=t.replace(k,map[k]);
     else if(/^To provide the best experiences/i.test(k))t='Bio-A Group sử dụng cookie cần thiết để website hoạt động ổn định. Nếu bạn đồng ý, chúng tôi cũng có thể sử dụng cookie thống kê và tiếp thị để hiểu cách website được sử dụng, đo lường hiệu quả nội dung và cải thiện trải nghiệm. Bạn có thể chấp nhận tất cả, chỉ cho phép cookie cần thiết hoặc tùy chỉnh lựa chọn bất cứ lúc nào.';
     else if(/^It takes 30 seconds/i.test(k))t='Chỉ mất khoảng 30 giây để gửi yêu cầu tư vấn.';
-    else if(/^I agree to the processing/i.test(k))t='Tôi đồng ý để Bio-A Group sử dụng thông tin đã cung cấp nhằm mục đích tư vấn và liên hệ.';
+    else if(/^I agree to the processing/i.test(k))t='Tôi đồng ý để Bio-A Group sử dụng thông tin đã cung cấp nhằm mục đích tư vấn và liên hệ. ';
     n.data=t;
   });
   $('[placeholder]').each((_,el)=>{

@@ -2143,3 +2143,15 @@ Change: CSS only at `#get-a-quote .label-check`. Use normal block text flow with
 Mobile Menu with Trang Chủ/Home: owner-confirmed PASS; frozen.
 
 Status: PENDING CLOUDFLARE BUILD / OWNER TEST. No other UI/runtime owner modified.
+
+## CONSULT-CONSENT-SOURCE1 (2026-10-08)
+
+Merywood authority (verified owner ZIP): `merywood/pages/index/index.html`, `#get-a-quote label.label-check` with nested `span.wpcf7-form-control-wrap`, direct legal text node (trailing space), followed by `a[href="/privacy-policy"]`. Retain original DOM and original CSS.
+
+Root cause: Bio-A custom Consent CSS in `bioa-transform.mjs` overrode source layout with block/absolute position/padding; VI localization removed original separating space.
+
+Only runtime modifications: delete three scoped Consent CSS selectors plus their comment; restore VI text node's terminal space. No replacement CSS/wrapper/component created, and no other markup/behavior changed.
+
+Owner PASS/FROZEN: shared Mobile Menu including Home; popup short-form fields/selection/Send; Header, Cookie, Chat, Blog, Contacts and paused bottom bar.
+
+Status: PENDING Cloudflare Build / Owner Runtime Test.
