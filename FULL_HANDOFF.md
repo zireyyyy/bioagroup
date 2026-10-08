@@ -1,3 +1,17 @@
+## CURRENT STATE — 2026-10-08 — CRM-LEAD-RATE-CLOSE1
+
+**Owner-confirmed PASS/LOCKED:** compact `bioa_` lead IDs, Cloudflare D1 persistence, Google Sheets sync, H/I/K dropdown and highlighted rows, Vietnamese success message. **Do not reopen these.**
+
+**Current candidate: CRM-LEAD-RATE-CLOSE1 — PENDING CLOUDFLARE BUILD / OWNER TEST.**
+Owner screenshot: repeated lead submits now show Vietnamese "Chưa gửi được yêu cầu" rather than closing popup. Root cause identified in `functions/api/lead.js`: `created_at` is ISO UTC `2026-10-08T...Z`, but one-hour rate counter compares lexically with `datetime('now','-1 hour')` (space delimiter), so previous same-day leads can erroneously count as still inside last hour. Fixed to ISO UTC `strftime('%Y-%m-%dT%H:%M:%fZ','now','-1 hour')`; security threshold remains **5/IP/rolling hour**, no bypass added. Accurate limit could still be reached during repeated owner tests; the form now distinguishes HTTP 429 with localized retry guidance.
+
+Another fix: after confirmed `/api/lead` success, Merywood `.modal__close.click()` now occurs **outside API try/catch** so any modal listener exception cannot cause false "send failed" text. Merywood animation, source form DOM, consent and visuals stay untouched. No changes to D1 schema, Sheets mapping or Resend.
+
+**Next:** Cloudflare deployment of this commit, wait for valid rate window or check API network status; submit one safe synthetic lead, verify auto-close and newly stored D1/Sheets ID. Verify Desktop/Tablet/Mobile VI/EN. If HTTP 429 continues, do not repeatedly submit; collect HTTP status and check time of last 5 submitted leads using owner D1 Console without copying PII.
+
+**PENDING:** Resend email configuration, stronger Cloudflare Turnstile with server verification. Rollback if necessary: `d24f753fbfcf45f5fa3e8bdf72712d27b125aa12` (owner PASS for D1/Sheets, popup remained open; rate time bug predates it). `e56b11f` is superseded, NOT rollback.
+
+---
 ## CURRENT STATE — 2026-10-08 — CRM-POPUP-CLOSE-SOURCE1
 
 **PASS/LOCKED (owner tested):** short `bioa_` lead IDs; D1 lead persistence; Google Sheets sync and H/I/K dropdown/color for new leads; VI form success message. Do not reopen those systems.
@@ -3241,3 +3255,6 @@ Status: PENDING CLOUDFLARE BUILD / OWNER NEW-LEAD TEST. Protected: full popup an
 ## CRM-POPUP-CLOSE-SOURCE1 — 2026-10-08
 The correct Merywood source handler is `js/modal.js > Modal.listen()`, listening for `.modal__close` click and calling `close(id)`. The previous code targeted nonexistent custom close class names and Escape event; this explains the user-observed no-close despite successful lead capture.
 Changed only success-path selector to `#get-a-quote .modal__close`; source click handler retains 500ms transition and display management. All other behavior frozen. Owner confirmed compact lead IDs, D1, Google Sheets, new row dropdowns/colors PASS. Candidate pending runtime auto-close test.
+
+## CRM-LEAD-RATE-CLOSE1 — source and root cause (2026-10-08)
+Owner PASS D1+Sheets+compact ID; recent repeated tests returned generic send failure. D1 stores UTC ISO timestamps with T delimiter. `functions/api/lead.js` previously compared that string directly against SQLite `datetime('now','-1 hour')` with space delimiter, causing wrong same-day rate counts. API now compares ISO-to-ISO via strftime without changing 5/IP/hour. `assets/js/bioa-leads.js` shows translated 429 guidance. Merywood source is `js/modal.js` from original ZIP: click `#get-a-quote .modal__close` and 500ms native close transition. Success-path click is moved outside network try/catch so a UI error can never reverse stored D1 result. No layout/CSS/DOM or product, navigation, CRM mapping changes. PENDING owner test.

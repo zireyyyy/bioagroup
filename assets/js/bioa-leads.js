@@ -44,6 +44,7 @@
     if(button)button.disabled=true;
     notify(form,lang,lang==="vi"?"Đang gửi yêu cầu…":"Sending request…",false);
     var id=(window.crypto&&window.crypto.getRandomValues)?newSubmissionId():null;
+    var submitted=false;
     try{
       if(!id)throw new Error("browser_not_supported");
       var response=await fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},
@@ -55,17 +56,23 @@
       if(!response.ok)throw new Error("request_"+response.status);
       var data=await response.json();
       if(!data.ok)throw new Error("submission_rejected");
-      notify(form,lang,lang==="vi"?"Bio-A đã nhận thông tin. Chúng tôi sẽ liên hệ với bạn sớm.":"Bio-A has received your request. We will contact you soon.",false);
-      // Trigger the source modal's close affordance; never alter Merywood layout.
-      var modal=document.querySelector("#get-a-quote");
-      if(modal){
-        // Merywood modal.js listens for click on .modal__close and closes with its own animation.
-        var close=modal.querySelector(".modal__close");
-        if(close)close.click();
-      }
+      // API success is authoritative: UI close exceptions must not become a false send failure.
+      submitted=true;
     }catch(error){
       if(button)button.disabled=false;
-      notify(form,lang,lang==="vi"?"Chưa gửi được yêu cầu. Vui lòng thử lại hoặc liên hệ Bio-A trực tiếp.":"Could not send. Please retry or contact Bio-A directly.",true);
+      var limited=error&&error.message==="request_429";
+      notify(form,lang,limited
+        ?(lang==="vi"?"Bạn đã gửi quá nhiều yêu cầu. Vui lòng thử lại sau khoảng một giờ hoặc liên hệ Bio-A trực tiếp.":"Too many requests. Please try again in about an hour or contact Bio-A directly.")
+        :(lang==="vi"?"Chưa gửi được yêu cầu. Vui lòng thử lại hoặc liên hệ Bio-A trực tiếp.":"Could not send. Please retry or contact Bio-A directly."),true);
     }finally{active=false;}
+    if(submitted){
+      notify(form,lang,lang==="vi"?"Bio-A đã nhận thông tin. Chúng tôi sẽ liên hệ với bạn sớm.":"Bio-A has received your request. We will contact you soon.",false);
+      try{
+        // Merywood js/modal.js owns the 500ms close animation.
+        var modal=document.querySelector("#get-a-quote");
+        var close=modal&&modal.querySelector(".modal__close");
+        if(close)close.click();
+      }catch(error){console.warn("Bio-A modal close failed after lead was saved",error);}
+    }
   },true);
 })();

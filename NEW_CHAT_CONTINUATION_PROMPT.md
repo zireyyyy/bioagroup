@@ -1,3 +1,17 @@
+## CURRENT STATE — 2026-10-08 — CRM-LEAD-RATE-CLOSE1
+
+**Owner-confirmed PASS/LOCKED:** compact `bioa_` lead IDs, Cloudflare D1 persistence, Google Sheets sync, H/I/K dropdown and highlighted rows, Vietnamese success message. **Do not reopen these.**
+
+**Current candidate: CRM-LEAD-RATE-CLOSE1 — PENDING CLOUDFLARE BUILD / OWNER TEST.**
+Owner screenshot: repeated lead submits now show Vietnamese "Chưa gửi được yêu cầu" rather than closing popup. Root cause identified in `functions/api/lead.js`: `created_at` is ISO UTC `2026-10-08T...Z`, but one-hour rate counter compares lexically with `datetime('now','-1 hour')` (space delimiter), so previous same-day leads can erroneously count as still inside last hour. Fixed to ISO UTC `strftime('%Y-%m-%dT%H:%M:%fZ','now','-1 hour')`; security threshold remains **5/IP/rolling hour**, no bypass added. Accurate limit could still be reached during repeated owner tests; the form now distinguishes HTTP 429 with localized retry guidance.
+
+Another fix: after confirmed `/api/lead` success, Merywood `.modal__close.click()` now occurs **outside API try/catch** so any modal listener exception cannot cause false "send failed" text. Merywood animation, source form DOM, consent and visuals stay untouched. No changes to D1 schema, Sheets mapping or Resend.
+
+**Next:** Cloudflare deployment of this commit, wait for valid rate window or check API network status; submit one safe synthetic lead, verify auto-close and newly stored D1/Sheets ID. Verify Desktop/Tablet/Mobile VI/EN. If HTTP 429 continues, do not repeatedly submit; collect HTTP status and check time of last 5 submitted leads using owner D1 Console without copying PII.
+
+**PENDING:** Resend email configuration, stronger Cloudflare Turnstile with server verification. Rollback if necessary: `d24f753fbfcf45f5fa3e8bdf72712d27b125aa12` (owner PASS for D1/Sheets, popup remained open; rate time bug predates it). `e56b11f` is superseded, NOT rollback.
+
+---
 ## CURRENT STATE — 2026-10-08 — CRM-POPUP-CLOSE-SOURCE1
 
 **PASS/LOCKED (owner tested):** short `bioa_` lead IDs; D1 lead persistence; Google Sheets sync and H/I/K dropdown/color for new leads; VI form success message. Do not reopen those systems.

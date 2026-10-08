@@ -150,7 +150,7 @@ export async function onRequestPost({request,env}){
   const seen=await db.prepare("SELECT id FROM bioa_leads WHERE id=?1").bind(id).first();
   if(seen)return json({ok:true,id});
   const recent=await db.prepare(
-    "SELECT count(*) AS total FROM bioa_leads WHERE ip_hash=?1 AND created_at>=datetime('now','-1 hour')"
+    "SELECT count(*) AS total FROM bioa_leads WHERE ip_hash=?1 AND created_at>=strftime('%Y-%m-%dT%H:%M:%fZ','now','-1 hour')"
   ).bind(key).first();
   if((recent?.total||0)>=5)return json({ok:false,error:"rate_limited"},429);
 
