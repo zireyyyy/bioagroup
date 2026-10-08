@@ -2167,3 +2167,16 @@ Popup heading and client form: `bioa-transform.mjs > simplifyConsultationModal`;
 - Fixed solely in `assets/js/bioa-leads.js`: locale is derived from URL routing `/en/` for EN, all other current Bio-A routes for VI. All wait/success/error messages and persisted locale now follow route.
 - Checked original Consent/acceptance behavior retained. No default consent selection: site must continue requiring an affirmative user act. No changes to form DOM/style or server validation.
 - Status PENDING Cloudflare Build / Owner VI/EN runtime test. D1 lead still must be independently checked in Console.
+
+
+## LEAD-ID-SHORT1 — Short, stable lead identifier (2026-10-08)
+
+Owner confirmed Cloudflare D1 saved a live test lead and Google Sheets now received a new lead in the `Leads` worksheet: **D1 PASS / Google Sheets PASS**.
+
+Small owner-requested patch: change *only* how new lead IDs are generated/validated. The browser now uses 9 cryptographically random bytes (72 bits), Base64URL-encodes them to 12 safe characters, and prefixes `bioa_`. New ID example format: `bioa_A1b2C3d4E5f6`. API also accepts the original UUID format to support old cached deployments and preserve existing records. D1 `id TEXT PRIMARY KEY` is the uniqueness guard; a random ID is not encryption of personal data.
+
+Previously stored UUIDs must remain unchanged (both D1 and Sheets); do not backfill or modify any existing row IDs. No D1 SQL migration; all 11 sheet-column positions and delivery code remain identical.
+
+Google Sheets columns H (`Trạng thái`), I (`Nhân viên`) and K (`CSKH`) will be assigned owner-built dropdowns later; do not add or alter dropdown rules or fields here. Resend delivery remains not configured.
+
+Status: PENDING CLOUDFLARE BUILD / OWNER NEW-LEAD TEST. Protected: full popup and Consent source layout, VI/EN messages, D1/Sheets dispatch, Header/Menu/Cookie/Chat, all page content.

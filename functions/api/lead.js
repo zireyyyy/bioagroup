@@ -91,7 +91,7 @@ export async function onRequestPost({request,env}){
   const interest=clean(data.interest,240),locale=data.locale==="en"?"en":"vi";
   const page=clean(data.page_path,300);
   if(data.website)return json({ok:true}); // Honeypot: do not store spam.
-  if(!/^[a-f0-9-]{36}$/i.test(id)||!name||name.length<2||!contact||contact.length<4||
+  if(!(/^[a-f0-9-]{36}$/i.test(id)||/^bioa_[A-Za-z0-9_-]{12}$/.test(id))||!name||name.length<2||!contact||contact.length<4||
      contact.length>80||data.consent!==true||!page.startsWith("/")||page.startsWith("//"))
      return json({ok:false,error:"validation"},400);
 

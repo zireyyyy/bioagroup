@@ -2,6 +2,14 @@
 (function(){
   "use strict";
   var active=false;
+  // 72 bits of CSPRNG entropy -> 12 URL-safe characters, prefixed for Bio-A.
+  function newSubmissionId(){
+    var bytes=new Uint8Array(9);
+    window.crypto.getRandomValues(bytes);
+    var binary='';
+    for(var i=0;i<bytes.length;i++)binary+=String.fromCharCode(bytes[i]);
+    return 'bioa_'+btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+  }
   function notify(form,lang,message,isError){
     var el=form.querySelector('[data-bioa-lead-status]');
     if(!el){
@@ -35,7 +43,7 @@
     active=true;
     if(button)button.disabled=true;
     notify(form,lang,lang==="vi"?"Đang gửi yêu cầu…":"Sending request…",false);
-    var id=(window.crypto&&crypto.randomUUID)?crypto.randomUUID():null;
+    var id=(window.crypto&&window.crypto.getRandomValues)?newSubmissionId():null;
     try{
       if(!id)throw new Error("browser_not_supported");
       var response=await fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},

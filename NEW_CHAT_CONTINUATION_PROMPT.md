@@ -1,3 +1,14 @@
+## CURRENT PROJECT STATE — 2026-10-08 — LEAD-ID-SHORT1
+
+**Owner-confirmed live results:** Consultation lead stored in Cloudflare D1 **PASS**; a subsequent test lead appeared in Google Sheets `Leads` with all 11 mapped columns **PASS**. Google Sheets sync is now OWNER-CONFIRMED. **Resend email remains NOT CONFIGURED / PENDING.**
+
+**Current candidate:** LEAD-ID-SHORT1 — **PENDING CLOUDFLARE BUILD / OWNER NEW-LEAD TEST**. The owner requested a shorter ID in D1/Google Sheets: `bioa_` + 12 cryptographically random Base64URL characters (72 bits). Client creates it with Web Crypto `getRandomValues`; server accepts both new IDs and existing UUIDs for backward compatibility. Database primary key remains unique; no migration/backfill; previous leads retain immutable original IDs.
+
+**Source owners:** `assets/js/bioa-leads.js > newSubmissionId()`; `functions/api/lead.js > submission_id validation`. No change to form design, validation requirements, D1/Sheets/Resend delivery, Contact/Blog/Home or header/menu/chat/cookie. The `Trạng thái`, `Nhân viên`, and `CSKH` columns are USER-OWNED in Google Sheets: owner plans dropdowns later, so DO NOT modify their spreadsheet validations or backend mapping as part of this patch.
+
+**Next test:** Cloudflare build then one new synthetic consultation lead; compare the exact new short ID in the D1 record and the new Google Sheets row. Old rows must not be rewritten. Email remains pending Resend setup. Do not mark ID format PASS until owner checks live.
+
+---
 ## CURRENT STATE — 2026-10-08 — LEAD-STATUS-I18N1
 
 **Owner observed real lead-submit success message in English on Vietnamese page.** D1 submission was reported successful by frontend; **database record not yet independently verified**. Owner currently completing Cloudflare D1 setup and will query Console.
