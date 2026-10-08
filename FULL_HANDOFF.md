@@ -1,3 +1,20 @@
+## CURRENT STATE — 2026-10-08 — CONSULT-CONSENT-FLOW1
+
+**Current candidate:** CONSULT-CONSENT-FLOW1 — **PENDING CLOUDFLARE BUILD / OWNER TEST**.
+
+User confirmed the shared **Mobile Menu PASS**, including the new Trang Chủ/Home link in `d890c0c`. **LOCKED**: do not modify its markup, layout or runtime.
+
+Consultation popup remains a short lead form (Name and Phone/Zalo/Telegram required; Product/Service optional; source checkbox Consent + full legal terms; original-style Send).
+The owner reported the Consent copy and the Privacy Policy link render as separated columns, especially on Mobile/Tablet. Root cause: Bio-A-specific `.label-check {display:flex}` distributes the checkbox wrapper, bare legal text and policy link as independent flex items.
+
+Current fix is CSS-only in `bioa-transform.mjs`: one normal inline text flow, checkbox positioned at the left, continuous text + link wrapping in the same line box. Full original terms/link and validation/runtime remain intact. Applies to Desktop/Tablet/Mobile. No popup redesign.
+
+**Protected:** Mobile Menu PASS; Mobile Header; Cookie/Chat; bottom bar PAUSED; Blog/Contacts/Home; form fields/dropdown/Send/capture. Previous `9e30c7c` BUILD FAIL must not be used for rollback. `d890c0c` is the immediate pre-patch ref if reversion of CSS becomes necessary (it still has the Consent layout issue).
+
+**Next:** Cloudflare build; Mobile/Tablet verify checkbox at left and policy link flows inline; Desktop regression; real submission/capture check remains pending. Do not mark popup PASS before owner confirmation.
+
+---
+
 ## CURRENT CANDIDATE — 2026-10-08: CONSULT-CHOICES-MOBILE-HOME1
 
 **PENDING CLOUDFLARE BUILD / OWNER TEST.**
@@ -3059,3 +3076,15 @@ Source: Merywood home exported markup #get-a-quote, #ddType (.wpcf7-checkbox.wpc
 Previous short-form candidate used native radio markup and overwrote legal consent text. Reverted only those divergences and constrained dropdown scrolling. Bio-A optional product/service options preserved.
 Shared Mobile Menu owner: bioa-home-refine.mjs > syncMobileHeader. Added Trang Chủ / Home ahead of current five items; no changes to menu mechanics.
 Status: PENDING BUILD / OWNER TEST.
+
+## CONSULT-CONSENT-FLOW1 — Consent inline-flow / responsive layout (2026-10-08)
+
+Owner requirement: merge the legal agreement text and its Privacy Policy link into one continuous inline paragraph at Mobile and Tablet widths, without altering actual legal copy or consent checkbox behavior.
+
+Root cause: the global Bio-A popup override made `label.label-check` a flex container, so the source text node and the Privacy Policy anchor became separate flex items with narrow competing columns.
+
+Change: CSS only at `#get-a-quote .label-check`. Use normal block text flow with reserved left padding and an absolutely positioned checkbox wrapper; the Privacy Policy anchor remains `display:inline`. All lines align with the legal text and the hyperlink flows naturally. No DOM or JS/capture changes. Effective on Desktop/Tablet/Mobile.
+
+Mobile Menu with Trang Chủ/Home: owner-confirmed PASS; frozen.
+
+Status: PENDING CLOUDFLARE BUILD / OWNER TEST. No other UI/runtime owner modified.

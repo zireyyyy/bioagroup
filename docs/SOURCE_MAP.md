@@ -2131,3 +2131,15 @@ Source: Merywood home exported markup #get-a-quote, #ddType (.wpcf7-checkbox.wpc
 Previous short-form candidate used native radio markup and overwrote legal consent text. Reverted only those divergences and constrained dropdown scrolling. Bio-A optional product/service options preserved.
 Shared Mobile Menu owner: bioa-home-refine.mjs > syncMobileHeader. Added Trang Chủ / Home ahead of current five items; no changes to menu mechanics.
 Status: PENDING BUILD / OWNER TEST.
+
+## CONSULT-CONSENT-FLOW1 — Consent inline-flow / responsive layout (2026-10-08)
+
+Owner requirement: merge the legal agreement text and its Privacy Policy link into one continuous inline paragraph at Mobile and Tablet widths, without altering actual legal copy or consent checkbox behavior.
+
+Root cause: the global Bio-A popup override made `label.label-check` a flex container, so the source text node and the Privacy Policy anchor became separate flex items with narrow competing columns.
+
+Change: CSS only at `#get-a-quote .label-check`. Use normal block text flow with reserved left padding and an absolutely positioned checkbox wrapper; the Privacy Policy anchor remains `display:inline`. All lines align with the legal text and the hyperlink flows naturally. No DOM or JS/capture changes. Effective on Desktop/Tablet/Mobile.
+
+Mobile Menu with Trang Chủ/Home: owner-confirmed PASS; frozen.
+
+Status: PENDING CLOUDFLARE BUILD / OWNER TEST. No other UI/runtime owner modified.

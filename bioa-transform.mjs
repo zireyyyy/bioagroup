@@ -12,9 +12,10 @@ const css = `
 #get-a-quote .cf-modal{background:var(--bioa)!important}
 #get-a-quote .cf-modal__button{width:100%!important;min-height:56px!important;border:0!important;border-radius:14px!important;background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;box-shadow:none!important}
 #get-a-quote .cf-modal__button:hover,#get-a-quote .cf-modal__button:focus{background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;transform:none!important}
-#get-a-quote .label-check{display:flex!important;align-items:flex-start!important;gap:10px!important;margin-top:14px!important;font-size:13px!important;line-height:1.4!important}
-#get-a-quote .label-check .wpcf7-form-control-wrap{flex:0 0 auto!important;margin-top:1px!important}
-#get-a-quote .label-check a{color:#fff!important;text-decoration:underline!important;text-underline-offset:2px!important}
+/* CONSENT-FLOW1: Source text and Privacy Policy link must share one inline text flow. */
+#get-a-quote .label-check{display:block!important;position:relative!important;box-sizing:border-box!important;padding-left:32px!important;margin-top:14px!important;font-size:13px!important;line-height:1.5!important;white-space:normal!important;overflow-wrap:break-word!important}
+#get-a-quote .label-check .wpcf7-form-control-wrap{position:absolute!important;left:0!important;top:1px!important;display:inline-block!important;width:22px!important;margin:0!important;float:none!important;flex:none!important}
+#get-a-quote .label-check a{display:inline!important;float:none!important;position:static!important;white-space:normal!important;color:#fff!important;text-decoration:underline!important;text-underline-offset:2px!important}
 /* Keep Merywood checkboxes and scroll only the extended Bio-A options list. */
 #get-a-quote #ddType .dd-menu{
   max-height:min(242px,38dvh)!important;
