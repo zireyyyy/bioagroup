@@ -1,6 +1,6 @@
 # Bio-A Site Maintenance / Private Preview
 
-**Candidate: MAINTENANCE-PRIVATE1 — owner runtime test pending.** This is server-side private preview for Cloudflare Pages; no Home or shared component changed.
+**Owner confirmed PASS (MAINTENANCE-LOGO-SESSION14D1 @ 0c0f3b8, 2026-10-08).** This is server-side private preview for Cloudflare Pages; no Home or shared component changed.
 
 ## Cloudflare Settings, BEFORE relying on privacy
 1. Pages project bioagroup → Settings → Runtime → **Fail open/closed: Fail closed** (mandatory; Fail open leaks static assets if Functions allowance is exhausted).
@@ -29,3 +29,6 @@ Before patch: 0446f80cbf008370fe5a677909cce8e951719ae9. Rolling back removes mai
 - Preview cookie and HMAC server expiry now both 14 days (Max-Age 1209600 seconds, TTL 1209600000 milliseconds). Visit private link again after deployment to mint a new 14-day session. Each browser/device/hostname has a separate session.
 - Rotate BIOA_PREVIEW_SECRET in Cloudflare Production because prior screenshot displayed the private link; redeploy, re-login with the new link locally. Never share the secret.
 - Keep Pages Fail closed and BIOA_SITE_MODE maintenance; public only with owner approval. Confirm desktop/tablet/mobile and guest vs owner tests before PASS.
+
+## Owner acceptance 2026-10-08
+Owner confirmed the exact official logo + 14-day private preview PASS on production. Lock maintenance until explicit PUBLIC approval. Email notifications are a separate pending configuration milestone (docs/LEAD_SECURITY_NOTIFY_SETUP.md). Guest asset/API gate and Fail closed requirement stay mandatory.

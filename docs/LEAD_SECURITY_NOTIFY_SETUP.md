@@ -1,20 +1,47 @@
-# Bio-A lead Turnstile and Resend activation
+# BIO-A GROUP — LEAD SECURITY & RESEND EMAIL ACTIVATION
 
-**OWNER PASS/FROZEN:** popup auto-close, compact IDs, D1, Google Sheets, CRM dropdowns/colors, VI/EN, Consent and Merywood layout.
+**Checkpoint 2026-10-08 — RESEND-ACTIVATION1 (CONFIGURATION PENDING; NO CODE REWRITE).**
 
-## Turnstile
-The new code is inactive while neither `TURNSTILE_SITE_KEY` nor `TURNSTILE_SECRET_KEY` is set. A partial key setup fails closed. With both keys configured, client requests an invisible Turnstile token and backend checks Cloudflare Siteverify success, action `bioa_lead`, and matching hostname **before D1 insert**.
+### Owner-confirmed PASS/FROZEN
+- Website bioagroup.vn maintenance + exact Bio-A logo + owner preview session 14 days: owner confirmed PASS at commit `0c0f3b8f55b6675701a79f01fb979e85759a71ed`.
+- D1 durable leads; Google Sheets CRM H/I/K dropdown/colors; short `bioa_` IDs; form native Merywood DOM/Consent VI/EN, success close; Cloudflare production custom-domain HTTPS confirmed earlier. Do not reopen these.
+- `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` are owner-configured, and `/api/lead/config` previously returned `enabled:true,misconfigured:false`. **Still PENDING** real server-side rejection of missing/invalid challenge tokens; do not call anti-spam fully verified.
 
-1. Cloudflare → Turnstile → Add widget, configure Invisible widget and hostnames `bioagroup.pages.dev`, `bioagroup.vn`, `www.bioagroup.vn` as needed.
-2. Cloudflare Pages project `bioagroup` → Settings → Production → Variables and secrets: `TURNSTILE_SITE_KEY` as Text and `TURNSTILE_SECRET_KEY` as Secret. Add together; redeploy. Never reveal or commit the secret.
-3. Check `GET /api/lead/config` is enabled. Submit one fake test lead; verify D1 and Sheets. Posting without a token should return 403 with no new D1 record. Test Desktop, Tablet, Mobile and VI/EN.
-4. Obtain approval for privacy disclosure about Cloudflare Turnstile before activating. This patch does not change legal terms.
+### Resend source owner and exact behavior
+- `functions/api/lead.js > sendEmail()` uses `POST https://api.resend.com/emails` after durable D1 insert, concurrently with Google Sheets append. It generates VI internal notification: name, contact, interest, source page, UTC time, ID. `escapeHtml` is used for safe HTML output.
+- `email_status = not_configured | sent | failed` in D1. `sent` means Resend API accepted the request (HTTP 2xx), **not proof of inbox delivery**. Verify actual inbox and Resend event dashboard separately.
+- Existing retry protection: duplicate `submission_id` returns early and does not send another message. There is **no automated delivery retry** if Resend fails. This milestone activates and tests existing integration; adding retries is a separate future patch, not in scope.
+- The D1/Sheets/CRM and form remain unchanged. Public anonymous forms stay locked by MAINTENANCE-PRIVATE1 until owner expressly authorizes PUBLIC. Authenticate with owner preview cookie for one test.
 
-## Resend
-Email code already exists in `functions/api/lead.js`; no new email logic required.
-1. In Resend, Add domain `notify.bioagroup.vn` (sending subdomain recommended to protect corporate inbox records). Copy exact DNS verification records into Cloudflare DNS and verify Resend domain. Preserve existing root MX/SPF/DKIM/DMARC and website records.
-2. Create a sending API key. On Cloudflare Pages Production, set `RESEND_API_KEY` as Secret, `LEAD_FROM` as Text (for example `Bio-A Group <leads@notify.bioagroup.vn>` once verified), and `LEAD_NOTIFY_TO` as Text (approved internal mailbox).
-3. Redeploy and submit one fake test lead. In D1 query `SELECT id,sheet_status,email_status FROM bioa_leads ORDER BY created_at DESC LIMIT 5;`. Expect `sheet_status=sent`, `email_status=sent`, and real delivery to the inbox. No automatic retry currently exists on email failure.
+### Step 1 — DNS for outgoing sender (Cloudflare DNS authority)
+1. In Resend Dashboard → Domains → `notify.bioagroup.vn` (owner previously added this sending subdomain), enable **Sending** only; leave Receiving disabled.
+2. Copy Resend's actual current **DKIM**, **SPF**, and any optional **DMARC** verification records exactly (type, name, target/value). Do **not** infer complete values from truncated screenshots. Current dashboard may display TXT/CNAME/MX depending on selected sending configuration.
+3. In Cloudflare → bioagroup.vn → DNS → Records add the prescribed records under the **sending subdomain**, exactly as Resend specifies. For a CNAME associated with mail verification, set **DNS only** (grey cloud); TXT/MX are DNS-only by nature.
+4. Preserve the corporate mailbox service **iNET/OneMail**: NEVER delete/change existing root-domain MX `mx.inet.vn`, `mx1.onemail.vn`, `mx2.onemail.vn`, `mx3.onemail.vn`, SPF root, DKIM or `mail` A record. If Resend supplies a dedicated bounce MX, its hostname should be the sending/bounce subdomain, NOT root `@`. No receiving migration.
+5. Return to Resend → Domains and click **Verify / I've added the records**; wait until **Sending verified**. Verification must succeed before production email activation.
 
-Current status: code candidate only. Turnstile and Resend **PENDING KEYS / RUNTIME TEST**.
-Rollback source: `88a3a651b4d186460d6b020ff79f69f235e5db0e`.
+### Step 2 — Resend API Key and Cloudflare Pages Production vars
+1. Resend → API Keys → Create API Key, name e.g. `Bio-A Website Leads`; use **Sending access** and restrict it to `notify.bioagroup.vn` when available. Do not use an overprivileged full-access key if sending-only is sufficient.
+2. Cloudflare → Workers & Pages → project `bioagroup` → Settings → Production → Variables and secrets:
+   - Secret: `RESEND_API_KEY` = new private Resend sending key (`re_...`), never share or commit.
+   - Text: `LEAD_FROM` = `Bio-A Group <leads@notify.bioagroup.vn>` (sending identity on verified subdomain; no separate mailbox required).
+   - Text: `LEAD_NOTIFY_TO` = `contact@bioagroup.vn` (only if the existing iNET/OneMail inbox can actually receive email; otherwise use a verified working internal test recipient temporarily).
+3. Save all three values. Confirm D1 binding `BIOA_LEADS_DB` and existing Google Sheets/Turnstile/maintenance variables are **untouched**. Do not set `BIOA_SITE_MODE=public`.
+4. Redeploy **latest main** to apply Production variables.
+
+### Step 3 — Acceptance test (1 lead only)
+1. While maintenance is active, owner first logs into `https://bioagroup.vn/_bioa-access?key=...` using **PRIVATE rotated Secret locally**; do not put it in chat or screenshots.
+2. Submit ONE clearly labelled synthetic lead via the existing consultation popup. After successful response, the popup should close as before.
+3. Cloudflare D1 Console:
+```sql
+SELECT id, created_at, sheet_status, email_status
+FROM bioa_leads ORDER BY created_at DESC LIMIT 5;
+```
+4. Expect latest test row `sheet_status='sent'` and `email_status='sent'`; Google Sheets should contain exactly the same short lead ID. If email_status is `failed`, inspect Resend Logs for errors and Cloudflare Pages Functions logs (avoid exposing PII). If `not_configured`, check all three Production values and redeploy.
+5. Finally check `contact@bioagroup.vn` Inbox/Spam and Resend Emails/Logs for delivery state. Do not equate `sent` database status with delivered email.
+6. Check Desktop / Tablet / Mobile existing form is unchanged (no visual code touched), and VI/EN templates unaffected.
+
+### Rollback / guardrails
+- **Zero application-code changes** for RESEND-ACTIVATION1. If configuration or sender validation fails, do not touch frozen form/API; revert/remove **only Resend vars** to return email_status to `not_configured` for later leads while D1/Sheets continue. Review failures before changing server code.
+- Previous owner-approved site & maintenance release: `0c0f3b8f55b6675701a79f01fb979e85759a71ed`. Never revert to a no-maintenance-gate commit; Cloudflare Pages Runtime must remain Fail closed.
+- Never send API keys/private owner login URLs by chat. Full public launch still awaits explicit owner approval.

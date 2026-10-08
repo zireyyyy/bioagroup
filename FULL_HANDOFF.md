@@ -1,3 +1,12 @@
+## CURRENT CHECKPOINT — 2026-10-08 — RESEND-ACTIVATION1 (CONFIGURATION PENDING)
+Owner confirmed MAINTENANCE-LOGO-SESSION14D1 PASS: official Bio-A logo on maintenance screen + 14-day signed owner session deployed at commit 0c0f3b8f55b6675701a79f01fb979e85759a71ed. Production still in maintenance; do not publish.
+New milestone is NOT a rewrite: functions/api/lead.js already posts new lead notification to Resend and stores email_status, after durable D1 insert; sends concurrently with Google Sheets. User has not yet verified sending subdomain notify.bioagroup.vn nor configured RESEND_API_KEY/LEAD_FROM/LEAD_NOTIFY_TO. These Cloudflare Production resources must be created by owner privately.
+Critical boundaries: preserve iNET/OneMail email records at root; only add required Resend sending-subdomain DNS, no Receiving; no changes to lead popup, D1, CRM, Sheets, Merywood layout, maintenance security. email_status sent confirms API acceptance, not inbox delivery. Single synthetic lead + Resend events + corporate inbox is final test.
+Turnstile enabled-config returned true previously, negative no-token test still pending. Owner private preview secret appeared in screenshot: rotate privately and do not reveal it.
+New docs/LEAD_SECURITY_NOTIFY_SETUP.md is source of truth for exact activation. Next owner action: provide Resend domain DNS verification screen / add records. No application code candidate is pending in this stage; status CONFIG-READY, RUNTIME EMAIL PENDING.
+Rollback: remove only Resend Production vars, keep site private. Owner PASS source 0c0f3b8 is safe recovery baseline. Never roll back to a pre-gate public deployment.
+---
+
 CURRENT CHECKPOINT 2026-10-08 — MAINTENANCE-LOGO-SESSION14D1 (PENDING OWNER TEST).
 Previous owner-observed maintenance baseline commit 6e047643b66308263d92ef73f4173fb575ef5678.
 Patch only replaces placeholder B with exact inlined SVG from assets/bioa-full.svg and increases preview HMAC session and HttpOnly Secure cookie age to 14 days (1209600 seconds). Inline is necessary because /assets remain blocked for anonymous visitors.
