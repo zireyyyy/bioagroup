@@ -481,11 +481,11 @@ function simplifyConsultationModal($,lang){
   const oldTitle=/30 giây|30 seconds|200\+ brands/i;
   const title=modal.find('h1,h2,h3,h4,.cf-modal__title,.modal__title,.cf-modal__heading')
     .filter((_,el)=>oldTitle.test($(el).text())).first();
-  if(title.length) title.text(vi?'Nhận Tư Vấn Từ Bio-A Group':'Consult Bio-A Group');
+  if(title.length) title.text(vi?'Để lại thông tin, đội ngũ Bio-A sẽ liên hệ tư vấn cho bạn.':'Leave your details and the Bio-A team will contact you.');
   else{
     modal.find('*').contents().each((_,node)=>{
       if(node.type==='text'&&oldTitle.test(node.data||'')){
-        node.data=vi?'Nhận Tư Vấn Từ Bio-A Group':'Consult Bio-A Group';
+        node.data=vi?'Để lại thông tin, đội ngũ Bio-A sẽ liên hệ tư vấn cho bạn.':'Leave your details and the Bio-A team will contact you.';
       }
     });
   }

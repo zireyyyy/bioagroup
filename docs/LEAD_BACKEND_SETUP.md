@@ -39,3 +39,13 @@ Never put secrets or service-account JSON into GitHub, JS bundles or screenshots
 SELECT id,created_at,name,contact,interest,sheet_status,email_status
 FROM bioa_leads ORDER BY created_at DESC LIMIT 20;
 ```
+
+## Custom domain deployment (after lead E2E + responsive QA)
+
+- The site builds to `dist` via `npm run build` and Pages Functions live at repository root `functions/api/lead.js`. No separate WordPress/PHP hosting is needed to receive new leads.
+- In **Workers & Pages → bioagroup → Custom domains → Set up a domain**, add `bioagroup.vn`. Apex requires its Cloudflare DNS zone/nameservers in the same Cloudflare account. Pages normally provisions DNS/HTTPS automatically once verified.
+- Consider `www.bioagroup.vn` as well and set a single canonical/redirect. Keep `bioagroup.pages.dev` working for internal preview or redirect its publicly accessible production URL later.
+- If the domain previously served WordPress/another site, switching DNS will replace its public website. Export/back up anything you need first; do not delete MX/TXT/SPF/DKIM/DMARC mail records. Check other DNS subdomains and Resend DNS records before moving nameservers.
+- Audit canonical, Open Graph, robots.txt, sitemap.xml, favicon and hardcoded absolute URLs for `bioagroup.vn`. The code already refers to `https://bioagroup.vn` in some places; ensure the final domain actually serves those paths.
+- Pages binding `BIOA_LEADS_DB` and secret variables are configured per Cloudflare Production/Preview environment, **not per hostname**. Test `POST /api/lead` on the final custom domain only after DNS/SSL is active. Do not assume a successful static page load proves form delivery.
+- Full tablet + mobile + desktop regression and at least one fake test lead verified independently in D1/Sheets/inbox remain mandatory before announcing domain launch.

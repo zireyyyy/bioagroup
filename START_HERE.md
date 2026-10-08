@@ -1,3 +1,20 @@
+# CURRENT STATE — 2026-10-08 — CONSULT-TITLE-COPY1
+
+**Current code candidate:** CONSULT-TITLE-COPY1 — PENDING CLOUDFLARE BUILD + OWNER VISUAL TEST.
+
+Owner approved source-style popup/Consent but rejected the stiff heading "Nhận Tư Vấn Từ Bio-A Group". Text-only replacement:
+- VI: **Để lại thông tin, đội ngũ Bio-A sẽ liên hệ tư vấn cho bạn.**
+- EN: **Leave your details and the Bio-A team will contact you.**
+
+Owner of copy: `bioa-transform.mjs > simplifyConsultationModal()`, exact two text-write paths; no typography, styling, form DOM, Consent, source Merywood layout or submit behavior changed.
+
+**Lead backend state:** `LEAD-BACKEND1` code exists on `main`, but D1/Sheets/Resend resources, secrets and live E2E delivery are still **PENDING CONFIGURATION**. Follow `docs/LEAD_BACKEND_SETUP.md`.
+
+**Domain launch:** use Pages Custom domains to attach `bioagroup.vn`, validate Cloudflare DNS/MX/TXT and mail continuity; choose canonical apex or www, redirect other host, verify SEO URLs, robots/sitemap, all asset/API paths, and that `/api/lead` works on custom domain. **Do not cut over production before lead E2E + full responsive test**.
+
+**FROZEN:** Mobile Header/Menu, Cookie, Chat, bottom bar paused; Blog/Contacts/Home; Consent/checks/Send and consultation popup geometry. Owner-confirmed visual PASS for Consent at `61d2e8b`.
+
+---
 # CURRENT STATE — 2026-10-08 — LEAD-BACKEND1
 
 **Owner confirmed popup Consent PASS** at `61d2e8b04c2534ad7a178fdb1313fa918637a3ab`. Protected visual runtime/source Merywood.
