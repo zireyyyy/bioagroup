@@ -44,3 +44,12 @@ Desktop + Mobile:
 6. source-like Send button;
 7. successful lead capture after Name + Contact + Consent;
 8. no Email / Quantity / Request visible.
+
+
+## LEAD-FORM-SHORT1-HF1 — Cheerio Build Hotfix (2026-10-08)
+
+- Deployment of `9e30c7c6b27fe567132ff026a999a5cdacb84ace` FAILED at `npm run build`.
+- Root cause: `cheerio@1.0.0` does not provide `.detach()` in `simplifyConsultationModal()`, causing a TypeError while generating pages.
+- Hotfix: use `.clone()` to retain the Consent checkbox node when replacing the text; no change to markup structure, field requirements, capture conditions, or Send button presentation.
+- Status: **PENDING CLOUDFLARE BUILD / OWNER TEST** until a new Cloudflare build succeeds and short-form behavior is checked.
+- Previous failed commit is **NOT A ROLLBACK TARGET**. Keep all approved Mobile Header/Menu, Cookie, Chat, Blog and Contact components locked.

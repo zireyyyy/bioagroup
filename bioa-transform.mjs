@@ -507,7 +507,7 @@ function simplifyConsultationModal($,lang){
 
   const consent=form.find('label.label-check').first();
   if(consent.length){
-    const control=consent.find('.wpcf7-form-control-wrap').first().detach();
+    const control=consent.find('.wpcf7-form-control-wrap').first().clone();
     consent.empty().append(control);
     consent.append(documentTextNodeSafe(vi?'Tôi đồng ý để Bio-A Group liên hệ tư vấn. ':'I agree that Bio-A Group may contact me about this request. '));
     consent.append($('<a></a>').attr('href',localPath('/privacy-policy/',lang)).attr('target','_blank').attr('rel','noopener noreferrer').text(vi?'Chính sách bảo mật':'Privacy Policy'));

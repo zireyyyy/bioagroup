@@ -1,3 +1,12 @@
+## CURRENT STATE — 2026-10-08, LEAD-FORM-SHORT1-HF1
+
+- Prior candidate `9e30c7c` **BUILD FAIL** (`detach is not a function` from Cheerio).
+- Current candidate: **LEAD-FORM-SHORT1-HF1** replaces only Consent node `.detach()` with supported `.clone()`.
+- Runtime result **PENDING CLOUDFLARE BUILD / OWNER TEST**. Do not mark PASS until build and lead-form tests succeed.
+- Form: Name + Phone/Zalo/Telegram required; Product/Service optional; Consent retained; Send source style. Shared PASS sections frozen.
+
+---
+
 # CURRENT STATE SNAPSHOT — READ THIS BEFORE HISTORICAL PATCH LOG
 
 Updated: 2026-10-08
@@ -3024,3 +3033,12 @@ Send:
 source-like light grey/green styling restored and isolated from global .btn styling.
 
 Status: PENDING OWNER TEST.
+
+
+## LEAD-FORM-SHORT1-HF1 — Cheerio Build Hotfix (2026-10-08)
+
+- Deployment of `9e30c7c6b27fe567132ff026a999a5cdacb84ace` FAILED at `npm run build`.
+- Root cause: `cheerio@1.0.0` does not provide `.detach()` in `simplifyConsultationModal()`, causing a TypeError while generating pages.
+- Hotfix: use `.clone()` to retain the Consent checkbox node when replacing the text; no change to markup structure, field requirements, capture conditions, or Send button presentation.
+- Status: **PENDING CLOUDFLARE BUILD / OWNER TEST** until a new Cloudflare build succeeds and short-form behavior is checked.
+- Previous failed commit is **NOT A ROLLBACK TARGET**. Keep all approved Mobile Header/Menu, Cookie, Chat, Blog and Contact components locked.
