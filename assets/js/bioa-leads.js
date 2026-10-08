@@ -59,9 +59,9 @@
       // Trigger the source modal's close affordance; never alter Merywood layout.
       var modal=document.querySelector("#get-a-quote");
       if(modal){
-        var close=modal.querySelector('.cf-modal__close,.cf-modal__cross,.cf-modal__btn-close,.cf-modal__exit,[data-modal-close],[aria-label="Close"],[aria-label="Đóng"]');
+        // Merywood modal.js listens for click on .modal__close and closes with its own animation.
+        var close=modal.querySelector(".modal__close");
         if(close)close.click();
-        else document.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true}));
       }
     }catch(error){
       if(button)button.disabled=false;

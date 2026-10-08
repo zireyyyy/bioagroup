@@ -2187,3 +2187,7 @@ Status: PENDING CLOUDFLARE BUILD / OWNER NEW-LEAD TEST. Protected: full popup an
 - New Google Sheets rows: H status dropdown values, I staff dropdown default “Chưa phân công” (real names via `LEAD_STAFF_NAMES` configuration), K CSKH dropdown values, highlight H green / K amber. No historical rows changed, and no spreadsheet permissions/secrets changed.
 - Anti-spam existing: validation, honeypot, simple rate limit, deduplication. Turnstile server validation not yet implemented; **NOT bot-proof**.
 - PENDING runtime QA. No claim dropdowns exist on historical rows.
+
+## CRM-POPUP-CLOSE-SOURCE1 — 2026-10-08
+The correct Merywood source handler is `js/modal.js > Modal.listen()`, listening for `.modal__close` click and calling `close(id)`. The previous code targeted nonexistent custom close class names and Escape event; this explains the user-observed no-close despite successful lead capture.
+Changed only success-path selector to `#get-a-quote .modal__close`; source click handler retains 500ms transition and display management. All other behavior frozen. Owner confirmed compact lead IDs, D1, Google Sheets, new row dropdowns/colors PASS. Candidate pending runtime auto-close test.

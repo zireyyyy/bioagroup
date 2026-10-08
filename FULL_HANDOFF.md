@@ -1,3 +1,14 @@
+## CURRENT STATE — 2026-10-08 — CRM-POPUP-CLOSE-SOURCE1
+
+**PASS/LOCKED (owner tested):** short `bioa_` lead IDs; D1 lead persistence; Google Sheets sync and H/I/K dropdown/color for new leads; VI form success message. Do not reopen those systems.
+
+**Current candidate:** CRM-POPUP-CLOSE-SOURCE1 — **PENDING CLOUDFLARE BUILD / OWNER TEST**. Owner reported consultation popup stays visible after successful Send. Exact Merywood modal runtime was inspected from the user-supplied `what-affects-moq-in-supplement-manufacturing-export.zip`, file `js/modal.js`: handler listens for `.modal__close` and calls `Modal.close(modal.id)`, removing `.open` and hiding after its 500ms transition. Previous code searched for unrelated close class names and dispatched an Escape key event, neither supported by that Merywood modal implementation.
+
+**Fix:** client-only in `assets/js/bioa-leads.js`, after confirmed `/api/lead` `ok:true`, click `#get-a-quote .modal__close`. Let Merywood manage close effect. No CSS, DOM, timing, D1, Sheets, form, VI/EN copy, or login changes.
+
+**Next test:** deploy, submit a new synthetic lead, confirm success closes source modal automatically; test VI/EN Desktop/Tablet/Mobile. Verify D1/Sheets remains good. Resend/Turnstile remains pending independently.
+
+---
 ## CURRENT STATE — CRM-LEAD-UX2 — 2026-10-08
 
 Candidate **PENDING CLOUDFLARE BUILD / OWNER TEST**. Current real owner screenshot shows two UUID IDs; implementation of `bioa_` generator in main was not observed deployed. Cache-bust `/assets/js/bioa-leads.js?v=crm2` to force new code retrieval; D1 accepts both formats, past UUIDs stay unchanged.
@@ -3226,3 +3237,7 @@ Status: PENDING CLOUDFLARE BUILD / OWNER NEW-LEAD TEST. Protected: full popup an
 - New Google Sheets rows: H status dropdown values, I staff dropdown default “Chưa phân công” (real names via `LEAD_STAFF_NAMES` configuration), K CSKH dropdown values, highlight H green / K amber. No historical rows changed, and no spreadsheet permissions/secrets changed.
 - Anti-spam existing: validation, honeypot, simple rate limit, deduplication. Turnstile server validation not yet implemented; **NOT bot-proof**.
 - PENDING runtime QA. No claim dropdowns exist on historical rows.
+
+## CRM-POPUP-CLOSE-SOURCE1 — 2026-10-08
+The correct Merywood source handler is `js/modal.js > Modal.listen()`, listening for `.modal__close` click and calling `close(id)`. The previous code targeted nonexistent custom close class names and Escape event; this explains the user-observed no-close despite successful lead capture.
+Changed only success-path selector to `#get-a-quote .modal__close`; source click handler retains 500ms transition and display management. All other behavior frozen. Owner confirmed compact lead IDs, D1, Google Sheets, new row dropdowns/colors PASS. Candidate pending runtime auto-close test.
