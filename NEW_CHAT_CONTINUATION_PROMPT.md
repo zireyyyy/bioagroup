@@ -1,3 +1,11 @@
+## CURRENT STATE — 2026-10-08 — LEAD-TURNSTILE-READY1
+
+**Owner-confirmed PASS:** auto-close popup, short ID, D1, Google Sheets, CRM dropdown/colors, VI/EN. LOCK all.
+Candidate LEAD-TURNSTILE-READY1: invisible Cloudflare Turnstile client token and server Siteverify enabled only with both Production keys; fail closed if one key missing. Resend sending code pre-exists; setup guidance only. No form DOM/CSS/source behavior changes when Turnstile unconfigured. New config endpoint `functions/api/lead/config.js`, API `functions/api/lead.js`, client `assets/js/bioa-leads.js`.
+**PENDING:** Cloudflare build + owner test, Turnstile domain/keys/privacy approval, Resend domain/keys, E2E inbox.
+Setup `docs/LEAD_SECURITY_NOTIFY_SETUP.md`. Rollback `88a3a65`.
+
+---
 ## CURRENT STATE — 2026-10-08 — CRM-LEAD-RATE-CLOSE1
 
 **Owner-confirmed PASS/LOCKED:** compact `bioa_` lead IDs, Cloudflare D1 persistence, Google Sheets sync, H/I/K dropdown and highlighted rows, Vietnamese success message. **Do not reopen these.**

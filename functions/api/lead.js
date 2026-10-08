@@ -114,6 +114,20 @@ async function sendEmail(env,lead){
   if(!res.ok)throw new Error("email_http_"+res.status);
 }
 
+async function checkTurnstile(env,request,token,ip){
+  if(typeof token!=="string"||!token||token.length>2048)return false;
+  try{
+    const response=await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify",{
+      method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},
+      body:new URLSearchParams({secret:env.TURNSTILE_SECRET_KEY,response:token,remoteip:ip}),
+      signal:AbortSignal.timeout(7000)
+    });
+    if(!response.ok)return false;
+    const result=await response.json();
+    return result.success===true&&result.action==="bioa_lead"&&result.hostname===new URL(request.url).hostname;
+  }catch{return false;}
+}
+
 async function fingerprint(ip,secret){
   const key=await crypto.subtle.importKey("raw",new TextEncoder().encode(secret),{name:"HMAC",hash:"SHA-256"},false,["sign"]);
   const signature=await crypto.subtle.sign("HMAC",key,new TextEncoder().encode(ip));
@@ -125,6 +139,7 @@ export async function onRequestPost({request,env}){
   const origin=request.headers.get("Origin");
   if(origin&&origin!==new URL(request.url).origin)return json({ok:false,error:"forbidden"},403);
   if(!env.BIOA_LEADS_DB||!env.LEAD_RATE_SECRET)return json({ok:false,error:"not_configured"},503);
+  if(Boolean(env.TURNSTILE_SITE_KEY)!==Boolean(env.TURNSTILE_SECRET_KEY))return json({ok:false,error:"turnstile_config"},503);
   if(!(request.headers.get("Content-Type")||"").toLowerCase().includes("application/json"))
     return json({ok:false,error:"content_type"},415);
   if(Number(request.headers.get("Content-Length")||0)>4096)return json({ok:false,error:"too_large"},413);
@@ -153,6 +168,7 @@ export async function onRequestPost({request,env}){
     "SELECT count(*) AS total FROM bioa_leads WHERE ip_hash=?1 AND created_at>=strftime('%Y-%m-%dT%H:%M:%fZ','now','-1 hour')"
   ).bind(key).first();
   if((recent?.total||0)>=5)return json({ok:false,error:"rate_limited"},429);
+  if(env.TURNSTILE_SECRET_KEY&&!await checkTurnstile(env,request,data.turnstile_token,ip))return json({ok:false,error:"turnstile_failed"},403);
 
   const now=new Date().toISOString();
   const lead={id,name,contact,interest,locale,page_path:page,created_at:now};

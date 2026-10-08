@@ -10,6 +10,48 @@
     for(var i=0;i<bytes.length;i++)binary+=String.fromCharCode(bytes[i]);
     return 'bioa_'+btoa(binary).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
   }
+  var tsLoader=null;
+  function turnstileLibrary(){
+    if(window.turnstile)return Promise.resolve(window.turnstile);
+    if(tsLoader)return tsLoader;
+    tsLoader=new Promise(function(resolve,reject){
+      var tag=document.createElement("script");
+      tag.src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      tag.async=true;tag.onload=function(){window.turnstile?resolve(window.turnstile):reject(new Error("turnstile_library"));};
+      tag.onerror=function(){reject(new Error("turnstile_library"));};
+      document.head.appendChild(tag);
+    });
+    return tsLoader;
+  }
+  async function turnstileToken(form){
+    var res=await fetch("/api/lead/config",{credentials:"same-origin",cache:"no-store"});
+    if(!res.ok)throw new Error("turnstile_config");
+    var cfg=await res.json();
+    if(cfg.misconfigured)throw new Error("turnstile_config");
+    if(!cfg.enabled)return "";
+    var ts=await turnstileLibrary();
+    return new Promise(function(resolve,reject){
+      var holder=document.createElement("div"),id=null,settled=false;
+      form.appendChild(holder);
+      var timer=setTimeout(function(){finish(new Error("turnstile_timeout"));},30000);
+      function finish(err,token){
+        if(settled)return;settled=true;clearTimeout(timer);
+        try{if(id!==null)ts.remove(id);}catch(e){}
+        holder.remove();
+        err?reject(err):resolve(token);
+      }
+      try{
+        id=ts.render(holder,{
+          sitekey:cfg.sitekey,action:"bioa_lead",size:"invisible",execution:"execute",
+          callback:function(token){finish(null,token);},
+          "error-callback":function(){finish(new Error("turnstile_failed"));},
+          "timeout-callback":function(){finish(new Error("turnstile_timeout"));},
+          "expired-callback":function(){finish(new Error("turnstile_expired"));}
+        });
+        ts.execute(id);
+      }catch(e){finish(new Error("turnstile_failed"));}
+    });
+  }
   function notify(form,lang,message,isError){
     var el=form.querySelector('[data-bioa-lead-status]');
     if(!el){
@@ -47,11 +89,12 @@
     var submitted=false;
     try{
       if(!id)throw new Error("browser_not_supported");
+      var verification=await turnstileToken(form);
       var response=await fetch("/api/lead",{method:"POST",headers:{"Content-Type":"application/json"},
         credentials:"same-origin",
         body:JSON.stringify({submission_id:id,name:name,contact:contact,
           interest:chosen.map(x=>x.value).join(", "),
-          consent:true,locale:lang,page_path:location.pathname,website:""})
+          consent:true,locale:lang,page_path:location.pathname,website:"",turnstile_token:verification})
       });
       if(!response.ok)throw new Error("request_"+response.status);
       var data=await response.json();

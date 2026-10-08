@@ -2194,3 +2194,12 @@ Changed only success-path selector to `#get-a-quote .modal__close`; source click
 
 ## CRM-LEAD-RATE-CLOSE1 — source and root cause (2026-10-08)
 Owner PASS D1+Sheets+compact ID; recent repeated tests returned generic send failure. D1 stores UTC ISO timestamps with T delimiter. `functions/api/lead.js` previously compared that string directly against SQLite `datetime('now','-1 hour')` with space delimiter, causing wrong same-day rate counts. API now compares ISO-to-ISO via strftime without changing 5/IP/hour. `assets/js/bioa-leads.js` shows translated 429 guidance. Merywood source is `js/modal.js` from original ZIP: click `#get-a-quote .modal__close` and 500ms native close transition. Success-path click is moved outside network try/catch so a UI error can never reverse stored D1 result. No layout/CSS/DOM or product, navigation, CRM mapping changes. PENDING owner test.
+
+## CURRENT STATE — 2026-10-08 — LEAD-TURNSTILE-READY1
+
+**Owner-confirmed PASS:** auto-close popup, short ID, D1, Google Sheets, CRM dropdown/colors, VI/EN. LOCK all.
+Candidate LEAD-TURNSTILE-READY1: invisible Cloudflare Turnstile client token and server Siteverify enabled only with both Production keys; fail closed if one key missing. Resend sending code pre-exists; setup guidance only. No form DOM/CSS/source behavior changes when Turnstile unconfigured. New config endpoint `functions/api/lead/config.js`, API `functions/api/lead.js`, client `assets/js/bioa-leads.js`.
+**PENDING:** Cloudflare build + owner test, Turnstile domain/keys/privacy approval, Resend domain/keys, E2E inbox.
+Setup `docs/LEAD_SECURITY_NOTIFY_SETUP.md`. Rollback `88a3a65`.
+
+---
