@@ -1,10 +1,8 @@
-# BIO-A GROUP — START HERE (2026-10-08)
-Repo zireyyyy/bioagroup. Previous production source baseline 0446f80cbf008370fe5a677909cce8e951719ae9. Current patch candidate **MAINTENANCE-PRIVATE1**: PENDING Cloudflare build + owner private/public test.
-
-**Owner-confirmed PASS/FROZEN:** website bioagroup.vn Cloudflare Pages HTTPS, D1 and Google Sheets receiving lead, compact bioa_ IDs, CRM H/I/K dropdown/colors, successful Send auto-closes popup, Home/Shared Header/Menu/Footer/Cookie/Chat/Blog/Contacts and responsive visual baseline. Turnstile config enabled true but actual rejection tests pending. Resend notify mail still pending; iNET/OneMail mailbox DNS must remain unchanged.
-
-**New GLOBAL Cloudflare security authority**: functions/_middleware.js plus build.mjs emitting dist/_routes.json include /* exclude []. Public/default always gets maintenance 503 with noindex, assets/APIs gated; page.dev also gated. Secret BIOA_PREVIEW_SECRET provisioned only in Cloudflare Production, 32–128 URL-safe chars; private URL /_bioa-access?key=<secret> signs an 8h cookie and redirects; sign out /_bioa-access/exit. Optional BIOA_SITE_MODE defaults maintenance and only explicit public releases it. CRITICAL Cloudflare Runtime Fail closed required, or Functions quota fail-open could reveal static files. Read docs/MAINTENANCE_ACCESS.md.
-
-**PENDING:** Secret setup by user, Fail closed, redeploy, owner guest/incognito and signed-in test across Desktop/Tablet/Mobile, Resend DNS and email sending, live Turnstile verification. Rollback 0446f80c but rollback exposes site. No other code owner touched. GLOBAL / ROUTE / COMPONENT and source Merywood retained.
-
-Prioritize latest START_HERE + NEW_CHAT_CONTINUATION_PROMPT + AGENTS and mandatory docs over historical state in FULL_HANDOFF.
+# BIO-A GROUP — CURRENT STATE — 2026-10-08
+Repo zireyyyy/bioagroup. Candidate MAINTENANCE-LOGO-SESSION14D1, PENDING DEPLOY AND OWNER TEST. Baseline owner-observed maintenance commit 6e047643b66308263d92ef73f4173fb575ef5678.
+GLOBAL owner functions/_middleware.js: exact official assets/bioa-full.svg embedded inline into standalone maintenance page; browser cookie Max-Age=1209600 and signed server TTL=14 days. Guest denial, all-host/pages.dev assets and API lockdown, HMAC, login and logout retained.
+Owner needs rotate BIOA_PREVIEW_SECRET in Cloudflare Production because a secret link appeared in screenshot; redeploy, then generate new link locally. Cookie on each browser/hostname persists up to 14 days, unless expired, logout, browser data clearing or secret rotation.
+Cloudflare Pages fail closed mandatory. BIOA_SITE_MODE=maintenance or unset until explicit owner public launch. Only public+redeploy releases. No boolean true/false setting.
+OWNER PASS/FROZEN prior: custom domain HTTPS, Home/Shared Shell/Header/Menu/Footer/Cookie/Chat/Blog/Contact, D1 and Google Sheets lead sync, compact ID, CRM H/I/K, popup auto-close. Turnstile configured, live negative test pending. Resend emails pending.
+Next tests: Cloudflare deploy this candidate; incognito sees official-logo maintenance on desktop tablet mobile, authenticated preview link redirects Home, 14-day signed cookie, pages.dev/static/API still guest locked. Pending owner approval. Rollback 6e047643; not prior no-gate source.
+Authority: AGENTS.md, this file, NEW_CHAT_CONTINUATION_PROMPT.md, FULL_HANDOFF.md, docs/WORKFLOW.md, docs/SOURCE_MAP.md, docs/MAINTENANCE_ACCESS.md.

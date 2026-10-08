@@ -2207,3 +2207,6 @@ Setup `docs/LEAD_SECURITY_NOTIFY_SETUP.md`. Rollback `88a3a65`.
 
 ## MAINTENANCE-PRIVATE1 Security owner
 functions/_middleware.js: Global Pages middleware. build.mjs emits dist/_routes.json include /* no exclusions to guard static/API/pages.dev; Cloudflare Secret BIOA_PREVIEW_SECRET, optional BIOA_SITE_MODE, critical Runtime Fail closed. No visual baseline touched. See docs/MAINTENANCE_ACCESS.md; pending owner test.
+
+## MAINTENANCE-LOGO-SESSION14D1 source mapping
+GLOBAL maintenance owner: functions/_middleware.js. Official header logo: assets/bioa-full.svg. Must inline this logo within guest maintenance response because assets gate is locked. Signed session TTL 14d and cookie Max-Age=1209600. See docs/MAINTENANCE_ACCESS.md.

@@ -1,3 +1,12 @@
+CURRENT CHECKPOINT 2026-10-08 — MAINTENANCE-LOGO-SESSION14D1 (PENDING OWNER TEST).
+Previous owner-observed maintenance baseline commit 6e047643b66308263d92ef73f4173fb575ef5678.
+Patch only replaces placeholder B with exact inlined SVG from assets/bioa-full.svg and increases preview HMAC session and HttpOnly Secure cookie age to 14 days (1209600 seconds). Inline is necessary because /assets remain blocked for anonymous visitors.
+Owner's earlier screenshot exposed the private access URL. Advise rotation of BIOA_PREVIEW_SECRET through Cloudflare Production and redeploy. Never disclose the secret. Previously issued 8-hour cookies do not automatically extend.
+BIOA_SITE_MODE maintenance (or unset) keeps guest site locked; only public may release, explicitly authorized by owner. Cloudflare Pages Functions Fail closed mandatory.
+Protected: all Home/Shared Header/Menu/Footer/Cookie/Chat, Blog, Contact, D1, Sheets, CRM, popup, Turnstile. Resend email pending; Turnstile no-token server test pending.
+Next: deploy candidate, owner private login redirect, official logo visible on desktop/tablet/mobile guest maintenance, 14-day cookie and pages.dev/API protection verified. Rollback 6e047643 is still private; never rollback to pre-gate 0446f80c.
+---
+
 ## CURRENT STATE — 2026-10-08 — MAINTENANCE-PRIVATE1 (PENDING OWNER TEST)
 Owner website custom-domain/HTTPS & live D1/Sheets lead tests PASS; popup auto-close, ID/CRM PASS. New global Cloudflare Pages middleware default-maintenance gate across all hosts/routes/assets/API, dist/_routes.json include all. Secret URL server verified via BIOA_PREVIEW_SECRET; 8h signed owner cookie; only BIOA_SITE_MODE=public unlocks public after explicit approval. Mandatory Pages Runtime Fail closed or quota exhaustion leaks static assets. User must provision secret and redeploy. Refer docs/MAINTENANCE_ACCESS.md. Turnstile config PASS, live bot test PENDING; Resend PENDING. Frozen Home/Blog/Contact/Merywood shared visual and lead APIs. Rollback pre-patch 0446f80c, unsafe without alternate access control.
 
