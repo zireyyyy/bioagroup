@@ -1,3 +1,13 @@
+## CURRENT CANDIDATE — 2026-10-08: CONSULT-CHOICES-MOBILE-HOME1
+
+**PENDING CLOUDFLARE BUILD / OWNER TEST.**
+Restores Merywood exclusive checkbox DOM and full original Consent/Privacy Policy agreement in the short consultation form. Bio-A product/service options remain optional and the longer dropdown scrolls internally (max 242px/38dvh). Form keeps required Name, Phone/Zalo/Telegram, consent and existing Send/capture path.
+
+Adds one shared Mobile Menu item Trang Chủ (VI /) or Home (EN /en/) before the five existing entries; preserves source arrow style and all menu runtime. Does not reopen Cookie, Chat, Mobile Header, bottom bar (PAUSED), Blog, Contacts, or Home sections.
+
+Parent 5e56e37 is a candidate after a Cheerio build hotfix, not owner-confirmed PASS. Next: Cloudflare build + Desktop/Tablet/Mobile UI/interaction + real lead submission check.
+
+---
 ## CURRENT STATE — 2026-10-08, LEAD-FORM-SHORT1-HF1
 
 - Prior candidate `9e30c7c` **BUILD FAIL** (`detach is not a function` from Cheerio).
@@ -3042,3 +3052,10 @@ Status: PENDING OWNER TEST.
 - Hotfix: use `.clone()` to retain the Consent checkbox node when replacing the text; no change to markup structure, field requirements, capture conditions, or Send button presentation.
 - Status: **PENDING CLOUDFLARE BUILD / OWNER TEST** until a new Cloudflare build succeeds and short-form behavior is checked.
 - Previous failed commit is **NOT A ROLLBACK TARGET**. Keep all approved Mobile Header/Menu, Cookie, Chat, Blog and Contact components locked.
+
+## CONSULT-CHOICES-MOBILE-HOME1 — 2026-10-08
+
+Source: Merywood home exported markup #get-a-quote, #ddType (.wpcf7-checkbox.wpcf7-exclusive-checkbox, input[type=checkbox]), label.label-check with full Privacy Policy terms.
+Previous short-form candidate used native radio markup and overwrote legal consent text. Reverted only those divergences and constrained dropdown scrolling. Bio-A optional product/service options preserved.
+Shared Mobile Menu owner: bioa-home-refine.mjs > syncMobileHeader. Added Trang Chủ / Home ahead of current five items; no changes to menu mechanics.
+Status: PENDING BUILD / OWNER TEST.

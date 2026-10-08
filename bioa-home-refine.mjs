@@ -4396,6 +4396,12 @@ function syncMobileHeader($,route,lang){
   const links=$('<nav class="bioa-mobile-nav-links"></nav>');
 
   const sourceArrow=$('.header__btn .btn__icon').first();
+  const homeLink=$('<a></a>').attr('href',mobileLocalPath('/',lang)).text(lang==='vi'?'Trang Chủ':'Home');
+  const homeArrow=sourceArrow.length?sourceArrow.clone():$('<span class="btn__icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M10 8h6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>');
+  homeArrow.removeClass('btn__icon').addClass('bioa-mobile-nav-arrow').attr('aria-hidden','true');
+  homeLink.append(homeArrow);
+  if(route==='/')homeLink.attr('aria-current','page');
+  links.append(homeLink);
   $('.header__nav a').each((_,el)=>{
     const a=$(el);
     const link=$('<a></a>').attr('href',a.attr('href')||'#').text(a.text().trim());

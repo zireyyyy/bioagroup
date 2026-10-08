@@ -2124,3 +2124,10 @@ Bio-A manufacturing categories + Bio-A support services.
 
 Send button:
 popup-specific source-like style overrides global .btn styling.
+
+## CONSULT-CHOICES-MOBILE-HOME1 — 2026-10-08
+
+Source: Merywood home exported markup #get-a-quote, #ddType (.wpcf7-checkbox.wpcf7-exclusive-checkbox, input[type=checkbox]), label.label-check with full Privacy Policy terms.
+Previous short-form candidate used native radio markup and overwrote legal consent text. Reverted only those divergences and constrained dropdown scrolling. Bio-A optional product/service options preserved.
+Shared Mobile Menu owner: bioa-home-refine.mjs > syncMobileHeader. Added Trang Chủ / Home ahead of current five items; no changes to menu mechanics.
+Status: PENDING BUILD / OWNER TEST.

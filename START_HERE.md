@@ -1,3 +1,13 @@
+## CURRENT CANDIDATE — 2026-10-08: CONSULT-CHOICES-MOBILE-HOME1
+
+**PENDING CLOUDFLARE BUILD / OWNER TEST.**
+Restores Merywood exclusive checkbox DOM and full original Consent/Privacy Policy agreement in the short consultation form. Bio-A product/service options remain optional and the longer dropdown scrolls internally (max 242px/38dvh). Form keeps required Name, Phone/Zalo/Telegram, consent and existing Send/capture path.
+
+Adds one shared Mobile Menu item Trang Chủ (VI /) or Home (EN /en/) before the five existing entries; preserves source arrow style and all menu runtime. Does not reopen Cookie, Chat, Mobile Header, bottom bar (PAUSED), Blog, Contacts, or Home sections.
+
+Parent 5e56e37 is a candidate after a Cheerio build hotfix, not owner-confirmed PASS. Next: Cloudflare build + Desktop/Tablet/Mobile UI/interaction + real lead submission check.
+
+---
 # BIO-A GROUP — START HERE
 
 Status: **CURRENT PROJECT STATE**

@@ -15,6 +15,15 @@ const css = `
 #get-a-quote .label-check{display:flex!important;align-items:flex-start!important;gap:10px!important;margin-top:14px!important;font-size:13px!important;line-height:1.4!important}
 #get-a-quote .label-check .wpcf7-form-control-wrap{flex:0 0 auto!important;margin-top:1px!important}
 #get-a-quote .label-check a{color:#fff!important;text-decoration:underline!important;text-underline-offset:2px!important}
+/* Keep Merywood checkboxes and scroll only the extended Bio-A options list. */
+#get-a-quote #ddType .dd-menu{
+  max-height:min(242px,38dvh)!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain!important;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.45) transparent;
+}
 html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
 .btn,.formats__tab[aria-selected="true"]{background:var(--bioa)!important;border-color:var(--bioa)!important;color:#fff!important}.btn:hover{background:var(--bioa-dark)!important;border-color:var(--bioa-dark)!important}
 .header__email a,.menu__email a,.footer-top__email a,.color-main{color:var(--bioa)!important}.footer-top{background:var(--bioa-deep)!important}.footer-bottom{background:#062c1c!important}.socials__link{background-color:var(--bioa-dark)!important;color:#fff!important}.swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]){background-color:var(--bioa-dark)!important;color:#fff!important}
@@ -501,17 +510,11 @@ function simplifyConsultationModal($,lang){
   const options=topics.map((topic,i)=>{
     const cls='wpcf7-list-item'+(i===0?' first':'')+(i===topics.length-1?' last':'');
     const safe=topic.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    return '<span class="'+cls+'"><label><input name="your-product-type" type="radio" value="'+safe+'"><span class="wpcf7-list-item-label">'+safe+'</span></label></span>';
+    return '<span class="'+cls+'"><label><input name="your-product-type" type="checkbox" value="'+safe+'"><span class="wpcf7-list-item-label">'+safe+'</span></label></span>';
   }).join('');
-  dd.find('.dd-menu').html('<p><span class="wpcf7-form-control-wrap" data-name="your-product-type"><span class="wpcf7-form-control wpcf7-radio">'+options+'</span></span></p>');
+  dd.find('.dd-menu').html('<p><span class="wpcf7-form-control-wrap" data-name="your-product-type"><span class="wpcf7-form-control wpcf7-checkbox wpcf7-exclusive-checkbox">'+options+'</span></span></p>');
 
-  const consent=form.find('label.label-check').first();
-  if(consent.length){
-    const control=consent.find('.wpcf7-form-control-wrap').first().clone();
-    consent.empty().append(control);
-    consent.append(documentTextNodeSafe(vi?'Tôi đồng ý để Bio-A Group liên hệ tư vấn. ':'I agree that Bio-A Group may contact me about this request. '));
-    consent.append($('<a></a>').attr('href',localPath('/privacy-policy/',lang)).attr('target','_blank').attr('rel','noopener noreferrer').text(vi?'Chính sách bảo mật':'Privacy Policy'));
-  }
+  // Preserve source Merywood consent checkbox, full agreement text and Privacy Policy link.
 
   form.find('.cf-modal__button').attr('value','Send');
 
