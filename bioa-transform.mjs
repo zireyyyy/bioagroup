@@ -538,7 +538,7 @@ function simplifyConsultationModal($,lang){
   });
   modal.find('#bioa-short-lead-sync').remove();
   $('#bioa-lead-handler').remove();
-  $('body').append('<script id="bioa-lead-handler" defer src="/assets/js/bioa-leads.js"></script>');
+  $('body').append('<script id="bioa-lead-handler" defer src="/assets/js/bioa-leads.js?v=crm2"></script>');
 }
 
 function brandCookieBanner($,lang){

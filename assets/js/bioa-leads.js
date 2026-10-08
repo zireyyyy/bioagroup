@@ -56,7 +56,13 @@
       var data=await response.json();
       if(!data.ok)throw new Error("submission_rejected");
       notify(form,lang,lang==="vi"?"Bio-A đã nhận thông tin. Chúng tôi sẽ liên hệ với bạn sớm.":"Bio-A has received your request. We will contact you soon.",false);
-      // Preserve the source modal markup and its controls; no automatic dismissal.
+      // Trigger the source modal's close affordance; never alter Merywood layout.
+      var modal=document.querySelector("#get-a-quote");
+      if(modal){
+        var close=modal.querySelector('.cf-modal__close,.cf-modal__cross,.cf-modal__btn-close,.cf-modal__exit,[data-modal-close],[aria-label="Close"],[aria-label="Đóng"]');
+        if(close)close.click();
+        else document.dispatchEvent(new KeyboardEvent("keydown",{key:"Escape",bubbles:true}));
+      }
     }catch(error){
       if(button)button.disabled=false;
       notify(form,lang,lang==="vi"?"Chưa gửi được yêu cầu. Vui lòng thử lại hoặc liên hệ Bio-A trực tiếp.":"Could not send. Please retry or contact Bio-A directly.",true);

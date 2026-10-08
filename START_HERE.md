@@ -1,3 +1,16 @@
+## CURRENT STATE — CRM-LEAD-UX2 — 2026-10-08
+
+Candidate **PENDING CLOUDFLARE BUILD / OWNER TEST**. Current real owner screenshot shows two UUID IDs; implementation of `bioa_` generator in main was not observed deployed. Cache-bust `/assets/js/bioa-leads.js?v=crm2` to force new code retrieval; D1 accepts both formats, past UUIDs stay unchanged.
+
+On successful `/api/lead` response client invokes original modal close control (or Escape event fallback), no automatic close on failure. No change to Merywood popup DOM/Consent/visuals.
+
+Google Sheets backend already writes H=`Mới`, K=`Chưa liên hệ`. After append, now applies H/I/K dropdown validation and highlights new H/K cells. I dropdown defaults to `Chưa phân công`, and can be populated with real staff names later via Cloudflare Text variable `LEAD_STAFF_NAMES` (comma-delimited); no fabricated names. Row formatting failures are logged and do not fail durable D1/Sheets lead capture. Existing rows are not modified.
+
+Security review: server checks origin if supplied, content type/size, consent, honeypot, HMAC IP hashing, max 5 leads/IP/hour, D1 idempotency. **Not bot-proof:** requests without Origin are accepted, honeypot is client-bypassed, IP rate limit is bypassable by distributed bots. Cloudflare Turnstile server token verification and edge WAF rate limits are recommended before public launch. Do not claim hardened anti-bot PASS.
+
+PASS/FROZEN: existing Form layout/Consent; D1+Google Sheets new lead append. Pending: new ID, auto-close, row validations/colors live owner test, Resend and Turnstile setup. Protect Header/Mobile Menu/Chat/Cookie/Blog/Contacts/Home.
+
+---
 ## CURRENT PROJECT STATE — 2026-10-08 — LEAD-ID-SHORT1
 
 **Owner-confirmed live results:** Consultation lead stored in Cloudflare D1 **PASS**; a subsequent test lead appeared in Google Sheets `Leads` with all 11 mapped columns **PASS**. Google Sheets sync is now OWNER-CONFIRMED. **Resend email remains NOT CONFIGURED / PENDING.**

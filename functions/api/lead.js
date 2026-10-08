@@ -41,6 +41,52 @@ async function appendSheet(env,lead){
     "Authorization":"Bearer "+token,"Content-Type":"application/json"
   },body:JSON.stringify({majorDimension:"ROWS",values:[row]}),signal:timeout()});
   if(!res.ok)throw new Error("sheets_http_"+res.status);
+  // Style and validate the newly appended row only; never overwrite staff edits.
+  try{
+    const update=await res.json();
+    const match=String(update.updates?.updatedRange||"").match(/!A(\d+):K\d+$/);
+    if(match){
+      const rowIndex=Number(match[1])-1;
+      const lookup=await fetch("https://sheets.googleapis.com/v4/spreadsheets/"+encodeURIComponent(env.GOOGLE_SHEET_ID)+"?fields=sheets(properties(sheetId,title))",{
+        headers:{"Authorization":"Bearer "+token},signal:timeout()
+      });
+      if(!lookup.ok)throw new Error("sheet_metadata_"+lookup.status);
+      const info=await lookup.json();
+      const sheet=info.sheets?.find(x=>x.properties?.title==="Leads");
+      if(sheet){
+        const sid=sheet.properties.sheetId;
+        const choices=[
+          {col:7,values:["Mới","Đang tư vấn","Đã báo giá","Chốt đơn","Không phù hợp"]},
+          {col:8,values:(env.LEAD_STAFF_NAMES||"Chưa phân công").split(",").map(x=>x.trim()).filter(Boolean)},
+          {col:10,values:["Chưa liên hệ","Đã liên hệ","Cần chăm sóc lại","Hoàn tất"]}
+        ];
+        const requests=choices.map(x=>({
+          setDataValidation:{
+            range:{sheetId:sid,startRowIndex:rowIndex,endRowIndex:rowIndex+1,startColumnIndex:x.col,endColumnIndex:x.col+1},
+            rule:{condition:{type:"ONE_OF_LIST",values:x.values.map(v=>({userEnteredValue:v}))},showCustomUi:true,strict:true}
+          }
+        }));
+        requests.push({
+          repeatCell:{
+            range:{sheetId:sid,startRowIndex:rowIndex,endRowIndex:rowIndex+1,startColumnIndex:7,endColumnIndex:8},
+            cell:{userEnteredFormat:{backgroundColor:{red:0.89,green:0.95,blue:0.89}}},
+            fields:"userEnteredFormat.backgroundColor"
+          }
+        },{
+          repeatCell:{
+            range:{sheetId:sid,startRowIndex:rowIndex,endRowIndex:rowIndex+1,startColumnIndex:10,endColumnIndex:11},
+            cell:{userEnteredFormat:{backgroundColor:{red:1,green:0.92,blue:0.74}}},
+            fields:"userEnteredFormat.backgroundColor"
+          }
+        });
+        const applied=await fetch("https://sheets.googleapis.com/v4/spreadsheets/"+encodeURIComponent(env.GOOGLE_SHEET_ID)+":batchUpdate",{
+          method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},
+          body:JSON.stringify({requests}),signal:timeout()
+        });
+        if(!applied.ok)throw new Error("sheet_validation_"+applied.status);
+      }
+    }
+  }catch(err){console.warn("Bio-A CRM row formatting pending",String(err));}
 }
 
 async function sendEmail(env,lead){

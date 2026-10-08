@@ -2180,3 +2180,10 @@ Previously stored UUIDs must remain unchanged (both D1 and Sheets); do not backf
 Google Sheets columns H (`Trạng thái`), I (`Nhân viên`) and K (`CSKH`) will be assigned owner-built dropdowns later; do not add or alter dropdown rules or fields here. Resend delivery remains not configured.
 
 Status: PENDING CLOUDFLARE BUILD / OWNER NEW-LEAD TEST. Protected: full popup and Consent source layout, VI/EN messages, D1/Sheets dispatch, Header/Menu/Cookie/Chat, all page content.
+
+## CRM-LEAD-UX2
+- Cache versioned JS to avoid old UUID generator from cached `bioa-leads.js`; server keeps backward compatibility.
+- Auto-close after confirmed D1 response via existing Merywood close trigger (Escape fallback), not on request failure.
+- New Google Sheets rows: H status dropdown values, I staff dropdown default “Chưa phân công” (real names via `LEAD_STAFF_NAMES` configuration), K CSKH dropdown values, highlight H green / K amber. No historical rows changed, and no spreadsheet permissions/secrets changed.
+- Anti-spam existing: validation, honeypot, simple rate limit, deduplication. Turnstile server validation not yet implemented; **NOT bot-proof**.
+- PENDING runtime QA. No claim dropdowns exist on historical rows.
