@@ -2159,3 +2159,11 @@ Status: PENDING Cloudflare Build / Owner Runtime Test.
 
 ## LEAD-BACKEND1
 Popup heading and client form: `bioa-transform.mjs > simplifyConsultationModal`; submission: `assets/js/bioa-leads.js`; API: `functions/api/lead.js`; D1 schema `migrations/0001_bioa_leads.sql`; setup `docs/LEAD_BACKEND_SETUP.md`. Merywood Consent and rest of modal retained. No keys checked in.
+
+## LEAD-STATUS-I18N1 — Locale source correction, 2026-10-08
+
+- Owner confirmed popup visual PASS, but VI submit-success message appeared in EN.
+- Root cause: `document.documentElement.lang` is not a reliable runtime owner because source scripts may mutate it after build.
+- Fixed solely in `assets/js/bioa-leads.js`: locale is derived from URL routing `/en/` for EN, all other current Bio-A routes for VI. All wait/success/error messages and persisted locale now follow route.
+- Checked original Consent/acceptance behavior retained. No default consent selection: site must continue requiring an affirmative user act. No changes to form DOM/style or server validation.
+- Status PENDING Cloudflare Build / Owner VI/EN runtime test. D1 lead still must be independently checked in Console.

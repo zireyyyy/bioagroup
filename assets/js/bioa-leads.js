@@ -22,7 +22,7 @@
     e.preventDefault();
     e.stopImmediatePropagation();
     if(active)return;
-    var lang=document.documentElement.lang==="en"?"en":"vi";
+    var lang=/^\/en(?:\/|$)/i.test(location.pathname)?"en":"vi";
     var name=(form.querySelector('[name="your-name"]')?.value||"").trim();
     var contact=(form.querySelector('[name="your-phone"]')?.value||"").trim();
     var consent=form.querySelector('[name="your-acceptance"]');

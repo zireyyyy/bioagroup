@@ -1,3 +1,17 @@
+## CURRENT STATE — 2026-10-08 — LEAD-STATUS-I18N1
+
+**Owner observed real lead-submit success message in English on Vietnamese page.** D1 submission was reported successful by frontend; **database record not yet independently verified**. Owner currently completing Cloudflare D1 setup and will query Console.
+
+**Candidate LEAD-STATUS-I18N1 — PENDING CLOUDFLARE BUILD / OWNER TEST.**
+Root cause: `assets/js/bioa-leads.js` trusted `document.documentElement.lang`, which can be overwritten by legacy Merywood JS at runtime. The actual VI/EN site routing is `/` (VI) and `/en/` (EN). The only runtime change derives lang from `location.pathname` via `/^\\/en(?:\\/|$)/i`. This changes both submit status messages and `locale` metadata in D1. Original copy, form mechanics and data capture unchanged.
+
+**Consent:** owner requested auto-checked personal-data consent. Kept source **unchecked** because consent should be voluntary, explicit, and actively indicated under current privacy requirements. No pre-check code or changed legal copy. Owner can revisit the lawful basis/consent design after legal review. UI / checkbox / validation remain PASS.
+
+**Owner PASS/FROZEN:** Consent Merywood layout; popup form geometry/short fields/Send; shared Mobile Menu+Header; Cookie, Chat, disabled bottom bar; Blog, Contacts, Home. Main pending block is D1 save verification, then Google Sheets / Resend configuration.
+
+**Next:** Cloudflare build; send one test lead from VI path and confirm Vietnamese status, then from /en/ and confirm English; verify D1 Console `SELECT created_at,name,contact,interest,sheet_status,email_status FROM bioa_leads ORDER BY created_at DESC LIMIT 10;`. Avoid sharing personal data in screenshots. No claim of Google Sheets or email delivery without configured credentials and real test.
+
+---
 # CURRENT STATE — 2026-10-08 — CONSULT-TITLE-COPY1
 
 **Current code candidate:** CONSULT-TITLE-COPY1 — PENDING CLOUDFLARE BUILD + OWNER VISUAL TEST.

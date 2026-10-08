@@ -1,3 +1,17 @@
+## CURRENT STATE — 2026-10-08 — LEAD-STATUS-I18N1
+
+**Owner observed real lead-submit success message in English on Vietnamese page.** D1 submission was reported successful by frontend; **database record not yet independently verified**. Owner currently completing Cloudflare D1 setup and will query Console.
+
+**Candidate LEAD-STATUS-I18N1 — PENDING CLOUDFLARE BUILD / OWNER TEST.**
+Root cause: `assets/js/bioa-leads.js` trusted `document.documentElement.lang`, which can be overwritten by legacy Merywood JS at runtime. The actual VI/EN site routing is `/` (VI) and `/en/` (EN). The only runtime change derives lang from `location.pathname` via `/^\\/en(?:\\/|$)/i`. This changes both submit status messages and `locale` metadata in D1. Original copy, form mechanics and data capture unchanged.
+
+**Consent:** owner requested auto-checked personal-data consent. Kept source **unchecked** because consent should be voluntary, explicit, and actively indicated under current privacy requirements. No pre-check code or changed legal copy. Owner can revisit the lawful basis/consent design after legal review. UI / checkbox / validation remain PASS.
+
+**Owner PASS/FROZEN:** Consent Merywood layout; popup form geometry/short fields/Send; shared Mobile Menu+Header; Cookie, Chat, disabled bottom bar; Blog, Contacts, Home. Main pending block is D1 save verification, then Google Sheets / Resend configuration.
+
+**Next:** Cloudflare build; send one test lead from VI path and confirm Vietnamese status, then from /en/ and confirm English; verify D1 Console `SELECT created_at,name,contact,interest,sheet_status,email_status FROM bioa_leads ORDER BY created_at DESC LIMIT 10;`. Avoid sharing personal data in screenshots. No claim of Google Sheets or email delivery without configured credentials and real test.
+
+---
 # CURRENT STATE — 2026-10-08 — CONSULT-TITLE-COPY1
 
 **Current code candidate:** CONSULT-TITLE-COPY1 — PENDING CLOUDFLARE BUILD + OWNER VISUAL TEST.
@@ -3160,3 +3174,11 @@ Status: PENDING Cloudflare Build / Owner Runtime Test.
 
 ## CONSULT-TITLE-COPY1
 Text-only popup title softened; no component layout touched. PENDING OWNER TEST. D1/Sheets/email provisioning and final domain cutover are separate and pending.
+
+## LEAD-STATUS-I18N1 — Locale source correction, 2026-10-08
+
+- Owner confirmed popup visual PASS, but VI submit-success message appeared in EN.
+- Root cause: `document.documentElement.lang` is not a reliable runtime owner because source scripts may mutate it after build.
+- Fixed solely in `assets/js/bioa-leads.js`: locale is derived from URL routing `/en/` for EN, all other current Bio-A routes for VI. All wait/success/error messages and persisted locale now follow route.
+- Checked original Consent/acceptance behavior retained. No default consent selection: site must continue requiring an affirmative user act. No changes to form DOM/style or server validation.
+- Status PENDING Cloudflare Build / Owner VI/EN runtime test. D1 lead still must be independently checked in Console.
