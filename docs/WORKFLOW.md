@@ -503,3 +503,9 @@ Home remains section-by-section.
 
 Use Cloudflare/hosting only when the deployment layer is the true owner.
 If a direct dashboard change is made, backport equivalent configuration or document the exact setting in the repository before PASS.
+
+## Mandatory responsive source parity & Phase 2B convergence
+
+Read `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md` before any responsive UI patch. Source-first here means **verified Merywood HTML + CSS media queries + JS + interaction**; a matching screenshot or a saved HTML DOM alone does not justify claiming source parity. If theme CSS cannot be retrieved, record the evidence gap and investigate before implementing responsive CSS. Reuse the existing source-owned component instead of creating Desktop/Tablet/Mobile forks.
+
+**Current:** finish independent Tablet audit/owner PASS first. **Then mandatory Phase 2B:** audit all VI/EN routes at representative widths and breakpoint boundaries, unify only duplicated or conflicting responsive rules under their existing component owner (never global override by convenience). Require an explicit root cause, tiny diff, independent Desktop/Tablet/Mobile regression and owner confirmation, preserving all LOCKED surfaces. Do not shortcut to Phase 3 cleanup/final package. No code "compaction" or redesign merely for aesthetics.

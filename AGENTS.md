@@ -419,3 +419,13 @@ Preserve Merywood source typography mechanics when source-owned and already corr
 GitHub remains application source-of-truth.
 Direct hosting/Cloudflare edits are allowed only for deployment-owned concerns.
 Any direct hosting change must be documented/backported before PASS.
+
+## 15. Responsive source parity & compact device architecture — owner mandate 2026-10-09
+
+**MANDATORY CONTRACT:** `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`. Read it before **every** UI/responsive patch.
+
+- Preserve original Merywood DOM/CSS/JS/media-query behavior wherever correct; do not redraw UI or invent breakpoints. New code is allowed only for owner-requested features missing from Merywood and must conform to its component conventions.
+- One component owner, shared source structure, source-derived responsive differences. **Compact** means removing unnecessary duplication/contradictory overrides while retaining genuine Desktop/Tablet/Mobile differences; not making all devices identical.
+- If source CSS is missing, mark source parity as unverified. Do not guess and do not call screenshots or diagnosis JSON proof of exact source parity.
+- Tablet Phase 2 remains active; freeze Desktop/Mobile and accepted Tablet surfaces. **After** owner FULL TABLET PASS, run mandatory cross-device convergence audit Phase 2B before Phase 3. Reuse approved Merywood implementations first. Audit/cleanup does not override existing PASS locks or authorize a broad refactor.
+- Every later patch: source compare, minimal owner-layer modification, check all affected widths, Desktop + Tablet + Mobile and VI/EN, record in handoff. No stacking device-specific hacks.

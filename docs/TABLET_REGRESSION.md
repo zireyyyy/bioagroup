@@ -23,3 +23,9 @@ Optional: paste `tools/tablet-regression-audit.js` into Console on the authentic
 On defect report: route, viewport width, screenshot, original Merywood expected, BIO-A observed. Patch exact component ONLY after source comparison. Desktop & Mobile regression checks mandatory, no broad CSS.
 
 Turnstile owner negative QA: **owner PASS**, trace not independently inspected. D1/Sheets/CRM/Resend/maintenance/noindex FROZEN. 404 PNG source integrity PASS, live Cloudflare image/404 status and Tablet behavior remain PENDING. Next Phase 3: cleanup + SEO/sitemap; Phase 4 final build/package. Sanity Free FUTURE only.
+
+## Permanent source-first / post-Tablet convergence rule (owner 2026-10-09)
+
+The previous T1 audit script provides **measurements**, not a Merywood Tablet source-derived fix. The archived HTML and JS alone cannot establish exact CSS parity because the original theme `main.css` is absent. Do not implement guessed Tablet styles; obtain verified CSS/media-query evidence for the target component first and preserve source DOM and interactions. See `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`.
+
+Once owner FULL TABLET PASS is confirmed, **Phase 2B is mandatory** before cleanup: audit Desktop + Tablet + Mobile across VI/EN routes, source breakpoint-adjacent widths and actual interactions, and compact ownership by removing only verified duplication/overrides through individually reviewed component patches. Preserve locked behavior at every step. This does not mean making all three device layouts identical.
