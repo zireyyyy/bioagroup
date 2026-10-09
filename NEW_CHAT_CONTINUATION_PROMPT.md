@@ -1,4 +1,5 @@
 # NEW CHAT CONTINUATION — BIO-A GROUP (2026-10-09)
+**Owner QA reporting rule (2026-10-09):** every future commit response must contain a concrete 'BẠN CẦN TEST GÌ' owner acceptance checklist (exact route/device/action/expected outcome, PASS/FAIL, evidence, and what remains PENDING). DOCS-only commits explicitly require NO website runtime retest. See AGENTS.md §16 and docs/WORKFLOW.md. This is a documentation-only instruction, no production behavior changed.
 
 Repository: https://github.com/zireyyyy/bioagroup. Read current main, `START_HERE.md`, `AGENTS.md`, `FULL_HANDOFF.md`, `docs/WORKFLOW.md`, `docs/SOURCE_MAP.md`, `docs/404_PAGE_CONTRACT.md`, `docs/BRAND_PALETTE.md`, `docs/MAINTENANCE_ACCESS.md`, `docs/TABLET_REGRESSION.md`, and **`docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`** BEFORE UI changes. Actual GitHub main and latest owner confirmations take priority over historical patch logs.
 

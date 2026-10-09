@@ -1,3 +1,6 @@
+## 2026-10-09 — OWNER QA CHECKLIST REPORTING GATE (DOCS ONLY)
+Owner requests that **EVERY update** include a concise exact-scope "BẠN CẦN TEST GÌ" checklist with relevant page/device/locale/actions/expected PASS/FAIL and evidence to report. Added permanent AGENTS.md §16 and docs/WORKFLOW.md. DOCS-only updates require no website runtime test. Do not request broad retest of frozen unrelated areas or claim Cloudflare visual PASS without user verification. No production files changed; Tablet source audit remains active and not owner full PASS. Rollback base `eaec56c31bb98265b599a7828ca19f81096eb72e`, maintenance remains intact.
+---
 ## CURRENT CHECKPOINT — 2026-10-09 — OWNER RESPONSIVE SOURCE-FIRST / COMPACT DEVICE CONTRACT
 
 New owner instruction: Merywood responsive/Desktop/Tablet/Mobile source must be **the implementation authority**, not just visual inspiration. Reuse exact source DOM/CSS/media queries/JS where correct; only add owner-requested absent behavior following Merywood conventions. **Compact** means one component owner/source structure, original source-derived responsive variants, reduced contradictory CSS/JS overrides, rather than separate per-device correction loops. No forced identical device layouts, no speculative CSS redraw.

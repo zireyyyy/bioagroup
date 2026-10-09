@@ -429,3 +429,17 @@ Any direct hosting change must be documented/backported before PASS.
 - If source CSS is missing, mark source parity as unverified. Do not guess and do not call screenshots or diagnosis JSON proof of exact source parity.
 - Tablet Phase 2 remains active; freeze Desktop/Mobile and accepted Tablet surfaces. **After** owner FULL TABLET PASS, run mandatory cross-device convergence audit Phase 2B before Phase 3. Reuse approved Merywood implementations first. Audit/cleanup does not override existing PASS locks or authorize a broad refactor.
 - Every later patch: source compare, minimal owner-layer modification, check all affected widths, Desktop + Tablet + Mobile and VI/EN, record in handoff. No stacking device-specific hacks.
+
+## 16. Mandatory owner-facing test checklist after EVERY update (2026-10-09)
+
+For **every GitHub push / patch / candidate**, the owner MUST receive a concise **"BẠN CẦN TEST GÌ"** acceptance section in the same completion message, even when the change is docs-only, asset-only, config-only, or has no website impact. Never finish with only a commit SHA, vague "please test", or a general roadmap.
+
+Each checklist must include:
+1. Exact commit SHA and changed files / affected component; identify what is NOT changed.
+2. Classification: DOCS-ONLY / ASSET / UI-RESPONSIVE / FUNCTION-BACKEND / DEPLOY-CONFIG. For docs-only, say explicitly that full site QA is unnecessary.
+3. Owner test entry point (exact relevant route or admin surface), device / viewport / locale when applicable, step-by-step actions and expected visible/network outcome. Protect privacy: never ask to paste secrets, private preview links, PII or tokens.
+4. PASS / FAIL conditions observable by owner, with requested screenshot, error, console output or report for a FAIL. Say what cannot be verified by the agent (build, Cloudflare deployment, actual runtime).
+5. Surface matrix for UI changes: Desktop, Tablet, Mobile and relevant VI/EN; test only the changed component and affected boundary widths, plus necessary locked regressions. Preserve already PASS/FROZEN unrelated components. For non-UI updates, choose tests according to actual impact.
+6. Explicit current state: CODE/BUILD/AUTOMATED/OWNER RUNTIME PASS or PENDING separately, and next step only after requested owner PASS.
+
+If no owner action is required, write **"KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY"** and give the precise reason. Never say PASS from code inspection alone. Update the handoff with this exact test scope/status so another chat uses the same gate.

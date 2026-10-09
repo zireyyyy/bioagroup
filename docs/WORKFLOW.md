@@ -509,3 +509,14 @@ If a direct dashboard change is made, backport equivalent configuration or docum
 Read `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md` before any responsive UI patch. Source-first here means **verified Merywood HTML + CSS media queries + JS + interaction**; a matching screenshot or a saved HTML DOM alone does not justify claiming source parity. If theme CSS cannot be retrieved, record the evidence gap and investigate before implementing responsive CSS. Reuse the existing source-owned component instead of creating Desktop/Tablet/Mobile forks.
 
 **Current:** finish independent Tablet audit/owner PASS first. **Then mandatory Phase 2B:** audit all VI/EN routes at representative widths and breakpoint boundaries, unify only duplicated or conflicting responsive rules under their existing component owner (never global override by convenience). Require an explicit root cause, tiny diff, independent Desktop/Tablet/Mobile regression and owner confirmation, preserving all LOCKED surfaces. Do not shortcut to Phase 3 cleanup/final package. No code "compaction" or redesign merely for aesthetics.
+
+## Owner acceptance checklist — required after each patch/commit
+
+Follow AGENTS.md §16. Completion message MUST include **BẠN CẦN TEST GÌ**:
+- commit + affected path(s), impact classification and protected areas;
+- step-by-step route/device/locale tests with expected outcomes;
+- explicit PASS/FAIL criteria and what evidence to return;
+- build/test status vs Cloudflare runtime/owner-PASS distinguished;
+- no redundant whole-site QA after a docs-only/no-runtime patch.
+
+If a patch only updates AGENTS/WORKFLOW/handoff: `DOCS-ONLY — KHÔNG CẦN TEST WEBSITE`; optional verification is the newly committed document content. If asset-only: verify correct production asset URL/network status and relevant visual use after deploy. For responsive patch: check all 3 surfaces independently and relevant source breakpoint-adjacent widths, but only the affected components/neighboring frozen surfaces. For lead/security patch: controlled safe negative/positive tests, no secrets or uncontrolled test submissions. Where tests cannot be executed from the assistant environment, mark runtime PENDING and ask for explicit owner evidence. Never promote runtime before owner PASS.
