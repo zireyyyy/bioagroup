@@ -2280,3 +2280,20 @@ OWNER TEST: 834px iPad portrait Home / + /en/: nav one line, CTA/lang/social clu
 ## 2026-10-09 — BIOA-TABLET-DESKTOP-FLUID2 — CANDIDATE
 Owner videos: Merywood Video1 31.8s, BIO-A Video2 66.6s. At Tablet Desktop-mode viewport >=769, Merywood keeps desktop footer and uniformly scales header/controls via vw. BIO-A still had a two-column Tablet footer and an unscaled 28px Zalo image inside a 2.4479vw (~20px at 834px) control plus 42px fixed email pill. ROOT CAUSE traced to `bioa-home-refine.mjs` patchA7 + patchD5FooterTabletCss, not to need for a separate Tablet layout. **Code candidate:** in existing patchA7 responsive rule, match email pill and BIO-A social Zalo/SVG icon box/internal image to Merywood 2.4479vw / 1.4583vw units; keep CTA/lang centered. In existing patchD5 owner, replace Tablet 2-column menu with four BIO-A category columns on one desktop-style row; responsive left identity/desktop company text and right contact controls use vw at 769–1200. In Footer-bottom D6, scale copyright similarly. Desktop >=1201 and Mobile <=768 CSS untouched; 404 and previous Home cold-load PASS remain frozen. No changes to lead backend, security, D1/Sheets/Resend, Sanity future. New test `tests/tablet-desktop-fluid.test.mjs` static source assertions; production build/runtime NOT independently verified. Full tablet PASS awaits owner VI/EN Home, other routes, mobile/desktop regression. Rollback to `93170c3038000135779a34d797e805eaba95dc06` (signed maintenance/noindex preserved). 
 **Owner QA:** private Home VI/EN 834,1024,1180 CSS px: header Zalo icon centered inside own button with no CTA collision, email/lang/CTA compact as a single row; footer company+4 categories+socials in one Desktop-like horizontal row (no 2x2 Tablet grid). Verify 768 Mobile and 390 phone existing footer/menu unchanged, 1366/1440 Desktop unchanged. Quick shared shell on About/Cosmetics/Services/Blog/Contacts. For failures supply URL, width, screenshot.
+
+
+## CURRENT CHECKPOINT — 2026-10-09 — TABLET PASS-RECOVERY3 — CANDIDATE
+
+Owner shows four Tablet screenshots with regressions in previously approved components: footer label microtypography, Zalo in green contact CTA enlarged versus tiny button text, custom Why Choose card artwork not shrinking consistently, and Hero size differences still to be verified.
+
+Source: owner Merywood main.txt uses html/body font-size:.8333vw at 769–1920px; original CTA/Why Choose/footer also use viewport geometry.
+
+ACTUAL code in bioa-home-refine.mjs: removed second forced font reduction for 769–1200 Footer category/company/email/copyright text, inheriting source root; source Footer remains four BIO-A groups in a desktop-like row. In the existing 769–1200 Zalo component rule, synchronizes the original owner Zalo image and icon slot to 1.25vw, with source-style gap .5208vw. In existing Why Choose artwork rule, scales only custom BIO-A icon artwork to 1.1458vw × 1.4063vw inside the Merywood-sized slot. No markup/route/brand redesign.
+
+Test coverage: new tests/tablet-source-regression.test.mjs, test:responsive package script now includes all 3 regression files. Actual Node build/tests and Cloudflare live check still not executed in this environment.
+
+FROZEN/UNCHANGED: Mobile <=768, Desktop >=1201, approved 404, Home 13-inch first-load, text, full shared shell except these scoped custom parts, footer link groups, D1/Sheets/Resend/Turnstile, private signed maintenance 14d/noindex; Sanity Free future only.
+
+OWNER REQUIRED TEST: VI/EN Home at 834/1024/1180 — 4 footer groups on one row and source-sized legible labels, Zalo icon inside CTA and adjacent readable text, custom Why Choose icon fits tile, Hero remains aligned. Check 390/768 Mobile and 1366/1440 Desktop unchanged. Check CTA link opens Zalo. Send route+CSS viewport+screenshot if FAIL. Do not claim Full Tablet PASS yet.
+
+ROLLBACK gated SHA: c450e7217abd53597b4808dd249187e099312878. Next targeted section fixes only after screenshot evidence; then whole-site tablet acceptance and compact Phase2B.

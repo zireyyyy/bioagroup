@@ -3613,11 +3613,11 @@ const patchD5FooterTabletCss = `
   }
   .footer-top__nav{width:auto!important;min-width:0!important}
   .footer-top__nav > ul > li:first-child > a{
-    font-size:.8333vw!important;
+    font-size:inherit!important;
     line-height:1.22!important;
   }
   .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:.7292vw!important;
+    font-size:inherit!important;
     line-height:1.45!important;
     white-space:normal!important;
     overflow-wrap:break-word!important;
@@ -3634,17 +3634,21 @@ const patchD5FooterTabletCss = `
     height:2.4479vw!important;
     padding:0 .5208vw!important;
     border-radius:.8333vw!important;
-    font-size:.7292vw!important;
+    font-size:inherit!important;
     white-space:nowrap!important;
     box-sizing:border-box!important;
   }
   .footer-top__socials{width:100%!important;min-width:0!important;gap:.4167vw!important}
   .footer-top__socials a,
   .footer-top__socials a[aria-label="Zalo"]{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
     width:2.4479vw!important;
     min-width:2.4479vw!important;
     height:2.4479vw!important;
     border-radius:.8333vw!important;
+    overflow:hidden!important;
   }
   .footer-top__socials a .bioa-zalo-icon,
   .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
@@ -3664,13 +3668,13 @@ const patchD5FooterTabletCss = `
   .bioa-footer-company-info--responsive{display:none!important}
   .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
     margin-bottom:.5208vw!important;
-    font-size:.7292vw!important;
+    font-size:inherit!important;
     line-height:1.3!important;
     white-space:normal!important;
   }
   .bioa-footer-company-info--desktop .bioa-footer-company-info__row{
     margin-bottom:.3646vw!important;
-    font-size:.6771vw!important;
+    font-size:inherit!important;
     line-height:1.4!important;
   }
 }
@@ -3740,7 +3744,7 @@ const patchD6FooterMetaCss = `
 }
 @media(min-width:769px) and (max-width:1200px){
   .footer-bottom__wrapper{min-height:1.9792vw!important;padding:.4167vw 0!important}
-  .footer-bottom__copyright{font-size:.7292vw!important}
+  .footer-bottom__copyright{font-size:inherit!important}
 }
 @media(max-width:768px){
   .footer-bottom__wrapper{
@@ -3809,13 +3813,47 @@ const patchZaloIconCss = `
   max-height:24px!important;
   flex-basis:24px!important;
 }
-@media(max-width:1200px) and (min-width:769px){
+/* Merywood Desktop-fluid CTA is 2.8125vw high and its icon is 1.0417vw.
+   The original owner Zalo image was fixed 24px, overflowing Tablet CTA. */
+@media(min-width:769px) and (max-width:1200px){
+  .whatsapp__btn{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:.5208vw!important;
+  }
+  .whatsapp__btn .btn__icon{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:1.25vw!important;
+    min-width:1.25vw!important;
+    height:1.25vw!important;
+    flex:0 0 1.25vw!important;
+    margin:0!important;
+    line-height:0!important;
+  }
+  .whatsapp__btn .bioa-zalo-icon{
+    width:1.25vw!important;
+    max-width:1.25vw!important;
+    height:1.25vw!important;
+    max-height:1.25vw!important;
+    flex:0 0 1.25vw!important;
+    margin:0!important;
+  }
+  .whatsapp__btn .btn__text{
+    margin:0!important;
+    font-size:inherit!important;
+    line-height:inherit!important;
+    white-space:nowrap!important;
+  }
   .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
-    width:28px!important;
-    height:28px!important;
-    max-width:28px!important;
-    max-height:28px!important;
-    flex-basis:28px!important;
+    width:1.5625vw!important;
+    height:1.5625vw!important;
+    max-width:1.5625vw!important;
+    max-height:1.5625vw!important;
+    flex:0 0 1.5625vw!important;
+    margin:0!important;
   }
 }
 /* Mobile menu social controls now share one interaction language. */
@@ -4017,6 +4055,16 @@ const patchWhyChooseIconCss = `
   max-height:27px!important;
   object-fit:contain!important;
   filter:none!important;
+}
+/* Original Merywood Why Choose icon slot is 2.8646vw with inner art
+   1.5625vw. Only scale the BIO-A-specific replacement artwork. */
+@media(min-width:769px) and (max-width:1200px){
+  #why-choose-us .bioa-why-icon-bioa{
+    width:1.1458vw!important;
+    max-width:1.1458vw!important;
+    height:1.4063vw!important;
+    max-height:1.4063vw!important;
+  }
 }
 `;
 
