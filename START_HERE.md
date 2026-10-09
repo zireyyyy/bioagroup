@@ -1,3 +1,6 @@
+# ACTIVE: TABLET-T1 AUDIT — 2026-10-09
+Tablet audit-only tools and matrix: docs/TABLET_REGRESSION.md + tools/tablet-regression-audit.js. No production CSS/DOM changed. Tablet owner runtime PENDING; Desktop/Mobile protected. Turnstile owner PASS. 404 original PNG Git PASS, live 404/three surfaces PENDING. Maintenance noindex 14d LOCKED; Sanity Free future only.
+
 # BIO-A GROUP — START HERE
 2026-10-09: Owner confirmed Turnstile negative test PASS; Phase 2 Full Tablet Regression active. Owner removed AVIF in commit 1749da1; this patch removes dangling 404 fallback and obsolete test. PNG exact original remains. 404 live runtime and Tablet independently PENDING. Maintenance 14d/noindex preserved, all locked UI/CRM/Resend untouched. Sanity Free future only.
 

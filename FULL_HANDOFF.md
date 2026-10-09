@@ -1,3 +1,6 @@
+## CHECKPOINT — 2026-10-09 — TABLET-T1 AUDIT TOOLING
+Audit-only docs/TABLET_REGRESSION.md and tools/tablet-regression-audit.js added to gather Tablet layout evidence at 768/820/1024/1180. NO production CSS/DOM/JS touched. Merywood archive source HTML verified; theme main.css remotely linked and not archived. Tablet overall PENDING, selected previously owner PASS components locked. Turnstile owner PASS; 404 original PNG Git PASS but Cloudflare/Tablet still PENDING. Signed maintenance 14d/noindex remains LOCKED. Next: owner Tablet screenshots/audit results, minimal evidence-driven component patches; then cleanup/SEO/final package.
+---
 ## CURRENT CHECKPOINT — TABLET PHASE 2
 2026-10-09: Owner confirmed Turnstile negative test PASS; Phase 2 Full Tablet Regression active. Owner removed AVIF in commit 1749da1; this patch removes dangling 404 fallback and obsolete test. PNG exact original remains. 404 live runtime and Tablet independently PENDING. Maintenance 14d/noindex preserved, all locked UI/CRM/Resend untouched. Sanity Free future only.
 
