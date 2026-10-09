@@ -12,19 +12,26 @@ test("both / and /en/ 404 documents use one original English copy",()=>{
   assert.match(html,/We can’t find the page you’re looking for/);
   assert.doesNotMatch(html,/Không tìm thấy trang|Page not found/);
 });
-test("CTA follows source pattern and no fade overlay is present",()=>{
+test("Merywood CTA DOM and arrow SVG restored without text glyph",()=>{
   const html=renderNotFound();
   assert.match(html,/class="btn bioa-404__cta" href="\/" aria-label="Back home"/);
   assert.match(html,/class="btn__icon"/);
   assert.match(html,/class="btn__text">Back home/);
-  assert.match(html,/min-width:164px;min-height:54px/);
+  assert.match(html,/min-width:142px;min-height:47px/);
+  assert.match(html,/font-size:14px;font-weight:500/);
+  assert.match(html,/class=\\"icon btn__icon arrow\\"/);
+  assert.match(html,/<svg width=\\"20\\" height=\\"20\\"/);
+  assert.doesNotMatch(html,/aria-hidden=\\"true\\">←<\\/span>/);
   assert.doesNotMatch(html,/linear-gradient\(|bioa-404:before/);
   assert.match(html,/name="robots" content="noindex,nofollow,noarchive"/);
 });
-test("artwork path exists but higher-quality binary is not yet promoted",async()=>{
-  const blob=await readFile(new URL("../assets/bioa-404-art.avif",import.meta.url));
-  assert.equal(blob.subarray(4,12).toString("ascii"),"ftypavif");
-  assert.match(renderNotFound(),/src="\/assets\/bioa-404-art\.avif"/);
+test("404 prefers the untouched owner PNG and retains old image only as temporary fallback",async()=>{
+  const html=renderNotFound();
+  assert.match(html,/src="\\/assets\\/bioa-404-original\\.png"/);
+  assert.match(html,/bioa-404-art\\.avif/);
+  assert.match(html,/onerror=/);
+  const fallback=await readFile(new URL("../assets/bioa-404-art.avif",import.meta.url));
+  assert.equal(fallback.subarray(4,12).toString("ascii"),"ftypavif");
 });
 test("build still emits 404.html and en/404.html via Cloudflare Pages",async()=>{
   const build=await readFile(new URL("../build.mjs",import.meta.url),"utf8");

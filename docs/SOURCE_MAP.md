@@ -2219,3 +2219,6 @@ GLOBAL maintenance owner: functions/_middleware.js. Official header logo: assets
 
 ## BIOA-404-SOURCE-PARITY2 — 2026-10-09
 Merywood original English 404 screenshot/content -> Bio-A `bioa-404.mjs`; both `dist/404.html` and `dist/en/404.html` same source text. Button source family `btn / btn__icon / btn__text` visually screenshot matched; exact Merywood 404 CSS not yet retrieved. 1808×870 owner artwork is committed only in overcompressed 18.5KB AVIF — HIGH-QUALITY ASSET NOT YET DEPLOYED. Desktop/Tablet/Mobile candidate PENDING. Maintenance and robots noindex untouched.
+
+## BIOA-404-SOURCE-DOM3 — CTA source evidence (2026-10-09)
+- Original archive `BIOA-Website.zip` → `pages/index/index.html`: actual Merywood button DOM `.btn > i.icon.btn__icon.arrow > svg 20x20 > path d="M13.75 12.25H12.25V8.81055L6.53027 14.5303L5.46973 13.4697L11.1895 7.75H7.75V6.25H13.75V12.25Z" + span.btn__text`. This is source-confirmed shared CTA structure, NOT the original 404-specific PHP/CSS. Restore markup in `bioa-404.mjs`; retain minimal route-scoped style while 404 CSS source unavailable. Original PNG still binary upload PENDING; no image PASS. 3 responsive surfaces need owner test. Status contract `docs/404_PAGE_CONTRACT.md`.

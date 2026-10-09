@@ -1,17 +1,6 @@
-# BIO-A GROUP — START HERE — 2026-10-09
-
-## Authoritative current 404 candidate
-`BIOA-404-SOURCE-PARITY2` scoped code fix. Owner wants Merywood English ORIGINAL 404 copy for both VI and EN missing routes. No separate 404 translation; CTA goes /; no opacity gradient; button patterned on existing Merywood/Bio-A classes.
-**IMAGE QUALITY STILL PENDING:** current GitHub AVIF is only 18.5KB, sourced from original owner PNG 1808×870. High-quality asset not yet committed. MUST NOT claim full 404 PASS. Exact Merywood CTA CSS also not retrieved; dimensions visually matched from screenshot only.
-Test `npm run test:404`, Cloudflare CI build, and owner preview both missing paths on independent Desktop/Tablet/Mobile. Check true HTTP 404 authenticated, 503 anonymous, noindex.
-## Four-phase owner roadmap
-1. Finish requested tiny patches incl 404 binary/CTA and live Turnstile negative QA, freezing only owner PASS.
-2. FULL TABLET PASS whole site independently.
-3. Cleanup/hardening CSS/JS/assets/Merywood residue, SEO VI/EN and offline baseline.
-4. Final dist package, sitemap/robots/404 and public ONLY on explicit owner request.
-## Locked PASS
-Maintenance with official logo and 14-day signed preview; D1 + Sheets CRM + Resend (owner confirmed notification+forwarding); prior Home/Header/Footer/Cookie/Chat/Menu/Blog/Contacts. Don't touch protected code, DNS, secrets, or turn `BIOA_SITE_MODE` public.
-## Deferred CMS
-WordPress Headless + Rank Math familiar to owner, alternative Sanity; neither deployed. Current blog content static in source.
-## Rollback
-`c7d29cbdbd901849fc0e664222059873fa21bfef` is the pre-404 protected baseline; previous 404 candidate `5528f9975fa6b725faee3e55df070d21f0878c35` superseded.
+# BIO-A GROUP — START HERE (2026-10-09)
+**Current active candidate**: `BIOA-404-SOURCE-DOM3`; image quality and exact source 404 CTA require final confirmation. Previous HEAD `d6c938bf914514384aab6442dc19cc29b1ae22f4` (404 Source Parity2, NOT owner PASS). **Code-only push:** bioa-404.mjs reuses original Merywood `btn > i.icon.btn__icon.arrow (SVG exact path) + span.btn__text` DOM based on owner-supplied `BIOA-Website.zip/pages/index/index.html`; 404 screenshot geometry corrected. Source 404 stylesheet not available, no claim exact pixel parity.
+**Critical asset PENDING:** owner original `404 BIO-A(1).png` (1808x870, 2,404,033 B; SHA256 00a6939ecab5ddbb6964a26c24d72ee56c8bf8c574f80bef07cce477cd13c076) is not yet uploaded to GitHub. Markup prefers /assets/bioa-404-original.png with onerror fallback AVIF; never report high-quality image as deployed until file exists. Asset ZIP prepared for owner GitHub upload if needed.
+**PASS/FROZEN:** Maintenance page original brand logo, signed private 14-day preview, production D1 + Google Sheets + Resend + email forwarding, Home/Shared Shell/Blog/Contact/Menu/Header/Footer/Cookie/Chat per owner confirmations. SITE STILL PRIVATE; never set BIOA_SITE_MODE=public; noindex intact.
+**Next:** upload original PNG to assets/bioa-404-original.png and verify SHA256, test 404 Desktop/Tablet/Mobile, image 200, CTA parity, HTTP404 owner/503 guest. Then controlled Turnstile negative test. Roadmap: patch closeout → full Tablet → cleanup (Merywood snapshot + SEO) → final build package. Future Sanity Free CMS selected but not yet installed.
+**Rollback:** `d6c938bf914514384aab6442dc19cc29b1ae22f4` retains maintenance gate; previous candidate `5528f997` superseded. Docs/404_PAGE_CONTRACT.md current gate; AGENTS.md + WORKFLOW.md authoritative.
