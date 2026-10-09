@@ -1,26 +1,24 @@
 # BIO-A GROUP — START HERE — 2026-10-09
 
-Repository zireyyyy/bioagroup. Read latest main SHA before further work, owner instructions override docs.
+Repository `zireyyyy/bioagroup`, owner-selected baseline main before patch `c7d29cbdbd901849fc0e664222059873fa21bfef`; obtain actual new main SHA from GitHub after patch. **New candidate: BIOA-404-VI-EN1 — PENDING CLOUDFLARE BUILD + OWNER RUNTIME TEST.**
 
-## Phase roadmap — OWNER AUTHORITY
-1. PHASE 1: owner supplies remaining small patches; each is tested and frozen individually. **Current active: TURNSTILE-RUNTIME-NEGATIVE-QA1**. Production runtime test pending. Do not auto-jump into phase 2 until this final pending QA is resolved and owner agrees.
-2. PHASE 2: FULL TABLET PASS — inspect whole website Tablet independently of already-accepted Desktop/Mobile. Some Tablet components are PASS (e.g., Footer), but SITE-WIDE Tablet is not PASS.
-3. PHASE 3: cleanup/hardening only after Tablet PASS: unused CSS/JS, duplicate selectors, Merywood residue, assets/routes/helpers, VI/EN, SEO/canonical, link and overflow QA.
-4. PHASE 4: production clean dist build and custom domain, sitemap/robots/404; final package and owner public launch approval. **404 artwork pending owner new image; must not create a guessed 404 page now.**
+## Owner's fixed four-phase plan
+1. Remaining small owner-requested patches, each tested then frozen. Current isolated 404 patch is authorized because artwork was supplied. `TURNSTILE-RUNTIME-NEGATIVE-QA1` live negative test remains PENDING.
+2. FULL TABLET PASS across all site routes and components, Tablet independent of Desktop/Mobile.
+3. Cleanup/hardening: dead/duplicate CSS/JS, Merywood residue, unused route/helper/assets, VI/EN, SEO/canonical/link/overflow and offline-repeatable Merywood baseline.
+4. Final clean dist/ package, domain bioagroup.vn, sitemap/robots, verify 404 and public launch only with owner explicit approval. Sitemap generation and full SEO release remain pending.
 
-## Production-confirmed PASS/FROZEN
-- Current accepted production `bioagroup.vn` remains in maintenance with real Bio-A logo + signed owner preview 14 days. `BIOA_SITE_MODE` stays `maintenance` or unset; Pages Functions Fail closed required. Only explicit owner approval may open `public`.
-- Popup short form + auto-close, Cloudflare D1, Google Sheets CRM short IDs + H/I/K controls, Resend actual corporate email and personal forwarding PASS. `sheet_status=sent`, `email_status=sent` verified. Keep code, environment and UI untouched.
-- Previously owner-approved Merywood-derived Home, Header/Menu, Footer, Cookie/Chat, Blog, Contacts, VI/EN and page content are frozen for surfaces actually tested. Tablet must never be implied by Desktop or Mobile PASS.
+## Current 404 candidate
+- New `bioa-404.mjs` creates **separate VI and EN HTML error pages**; `build.mjs` emits root `dist/404.html` and `dist/en/404.html` for Cloudflare Pages nearest 404 mechanism. User's exact 404 artwork composition encoded as optimized full-res `assets/bioa-404-art.avif`. One back-home CTA reuses Merywood-derived `btn`/`btn__icon`/`btn__text` convention. Code/handoff `docs/404_PAGE_CONTRACT.md`.
+- Copy: VI title 'Không tìm thấy trang' / EN 'Page not found', descriptions and CTA link root `/` or `/en/`. No global language switch hack; `/en/...` 404 is served by `en/404.html`.
+- SEO: noindex/nofollow/noarchive on both 404 variants; expected HTTP 404 for missing routes, not a 200 route or redirect. Cloudflare confirmation PENDING OWNER TEST.
 
-## Active patch checkpoint
-- `TURNSTILE-RUNTIME-NEGATIVE-QA1` — test-only/documentation candidate. Source handler (`functions/api/lead.js`) and client/lead system remain unchanged.
-- Repeatable offline tests added in `tests/lead-turnstile.test.mjs`, npm command `npm run test:turnstile`. Fake D1, fake siteverify; no external network. Negative new-lead requests must reject with 403 and cause zero inserts/deliveries; valid confirmation permits D1 continuation. See `docs/TURNSTILE_RUNTIME_QA.md`.
-- Actual Cloudflare production negative test **PENDING OWNER TEST**. Owner should execute ONE controlled malformed-token request within authenticated site and verify 403 + zero matching ID in D1 + Sheets + Resend. Already-live positive form/Resend PASS remains frozen.
-- A retry with *existing* submission ID returns `ok:true` by idempotency prior to challenge verification. It creates no new lead. Use unique ID for negative test; do not 'fix' retry semantics without evidence/owner request.
+## Production PASS/FROZEN (DO NOT CHANGE)
+- Cloudflare Pages maintenance and 14-day private viewer with official Bio-A logo; `BIOA_SITE_MODE=maintenance` or unset, Pages Runtime `Fail closed`; all anonymous pages/asset/API requests remain gated. Do not publish.
+- Existing Home/shared Header/Menu/Footer/Cookie/Chat, Blog, Contacts and responsive owner-approved behavior, VI/EN, lead popup auto-close, Cloudflare D1 + Google Sheets CRM short IDs/H/I/K, Resend actual corporate & forwarded email PASS.
+- Previously live Turnstile config `enabled:true,misconfigured:false`; mock negative tests ready `npm run test:turnstile` but **one production negative test remains PENDING**. Do not touch lead API.
 
-## Strict boundaries
-- Do not change, leak or request `BIOA_PREVIEW_SECRET`, Resend or Google credentials. Keep all iNET/OneMail DNS untouched.
-- Do not use PMX/Woo architecture. GLOBAL middleware / ROUTE transformed pages / COMPONENT lead endpoint. Source Merywood authority; patch tiny, build and test then push and write fresh handoff.
-- Current rollback reference for this test-only patch: `74ac3533113db8b4d4a9a19ce677733afde16240`, which preserves security/production lead flow.
-- 404 artwork **PENDING**; no replacement/auto-generation. Sitemap/robots cleanup **PENDING PHASE 3/4**.
+## Next test / rollback
+- Cloudflare deploy new candidate; authenticated owner test `/khong-ton-tai-404-qa/` & `/en/non-existent-404-qa/` and response HTTP 404, localized CTA and artwork on Desktop/Tablet/Mobile; incognito stays maintenance 503. See `docs/404_PAGE_CONTRACT.md`.
+- Rollback code baseline `c7d29cbdbd901849fc0e664222059873fa21bfef` (maintenance remains protected); do not rollback to pre-maintenance insecure source.
+- Reassess pending Turnstile QA and owner's remaining small patches before Phase 2. Do not mark final 404 or Phase 1 PASS without owner feedback.

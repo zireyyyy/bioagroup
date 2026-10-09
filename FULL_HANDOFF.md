@@ -1,3 +1,12 @@
+## CURRENT CHECKPOINT — 2026-10-09 — BIOA-404-VI-EN1 (CANDIDATE / PENDING OWNER TEST)
+
+Owner provided final Bio-A 404 illustration, 1808×870, after earlier handoff said artwork pending. This supersedes ALL earlier '404 artwork pending' notices. Patch scope: optimized AVIF asset `assets/bioa-404-art.avif` (Git SHA `a6e4f83b921200194133662bede0ee2103cdad98`), isolated `bioa-404.mjs` page with exact approved bilingual copy and a single Merywood-derived CTA (`btn`, `btn__icon`, `btn__text`); `build.mjs` writes `dist/404.html` VI + `dist/en/404.html` EN for Cloudflare Pages closest 404, expected true HTTP 404. Tiny `test:404` coverage plus `docs/404_PAGE_CONTRACT.md`.
+
+**Status:** source patch candidate; Cloudflare live 404 response and Desktop/Tablet/Mobile rendering **PENDING OWNER TEST**. Original homepage/other routes, Merywood global shared shell, D1/Sheets/Resend/Turnstile and maintenance middleware remain UNTOUCHED. PUBLIC SITE STILL LOCKED: maintenance default 503 for unauthorized; `BIOA_SITE_MODE` NOT changed; existing pages.dev security still required. Both 404 pages meta noindex/nofollow/noarchive; sitemap/robots production review still Phase 3–4.
+
+**Next:** deploy candidate, owner private session visit `/khong-ton-tai-404-qa/` and `/en/non-existent-404-qa/`, inspect HTTP 404, correct VI/EN, CTA route, artwork and three independent responsive surfaces. Incognito 503 maintenance remains. After owner 404 PASS, resume Turnstile one controlled server-negative test and remaining small patches; then FULL TABLET PASS etc. **Rollback:** previous protected source `c7d29cbdbd901849fc0e664222059873fa21bfef`. No failed candidate newly recorded.
+
+---
 ## CURRENT CHECKPOINT 2026-10-09 — TURNSTILE-RUNTIME-NEGATIVE-QA1 — TEST CANDIDATE
 
 **Production-confirmed PASS FROZEN:** maintenance Bio-A original logo/14-day owner private preview, D1→Sheets→Resend→company inbox→personal forward, popup auto-close, CRM statuses, all previously owner-approved Merywood UI. Owner explicitly restated four-phase closeout plan: (1) remaining small patches, (2) FULL TABLET PASS, (3) cleanup/hardening, (4) clean production dist/package, launch only with owner explicit approval.

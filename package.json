@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "node build.mjs",
-    "test:turnstile": "node --test tests/lead-turnstile.test.mjs"
+    "test:turnstile": "node --test tests/lead-turnstile.test.mjs",
+    "test:404": "node --test tests/not-found.test.mjs"
   },
   "engines": {
     "node": ">=20"

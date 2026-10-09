@@ -8,6 +8,7 @@ import { applyCosmeticsHubRefinement } from "./bioa-cosmetics-refine.mjs";
 import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
 import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
+import { renderNotFound } from "./bioa-404.mjs";
 
 const BASE = "https://merywood.com";
 const OUT = "dist";
@@ -406,6 +407,11 @@ async function build(){
     const batch=routeDefs.slice(i,i+batchSize);
     await Promise.all(batch.map(([route,sourceRoute])=>buildOne(route,sourceRoute)));
   }
+
+  // Pages closest-404: VI at root, EN for unknown /en/... URLs. Keep true HTTP 404.
+  await fs.writeFile(path.join(OUT,"404.html"),renderNotFound("vi"));
+  await fs.mkdir(path.join(OUT,"en"),{recursive:true});
+  await fs.writeFile(path.join(OUT,"en","404.html"),renderNotFound("en"));
 
   await fs.cp("assets",path.join(OUT,"assets"),{recursive:true});
   await fs.writeFile(path.join(OUT,"_headers"),"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");

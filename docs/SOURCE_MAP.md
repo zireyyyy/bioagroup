@@ -2210,3 +2210,9 @@ functions/_middleware.js: Global Pages middleware. build.mjs emits dist/_routes.
 
 ## MAINTENANCE-LOGO-SESSION14D1 source mapping
 GLOBAL maintenance owner: functions/_middleware.js. Official header logo: assets/bioa-full.svg. Must inline this logo within guest maintenance response because assets gate is locked. Signed session TTL 14d and cookie Max-Age=1209600. See docs/MAINTENANCE_ACCESS.md.
+
+## BIOA-404-VI-EN1 — owner-provided 404 artwork and bilingual nearest-404 routes (2026-10-09)
+- **Merywood reference:** owner screenshot of Merywood 404 full-canvas artwork/text/one back-home CTA; CTA class convention reused from current Merywood-derived `btn`, `btn__icon`, `btn__text`. No new CTA system.
+- **BIO-A code owner:** `bioa-404.mjs` only; `build.mjs` writes `dist/404.html` (VI) and `dist/en/404.html` (EN); `assets/bioa-404-art.avif` is owner's original artwork optimized (same 1808×870 composition). No shared-shell/lead changes.
+- **Security owner unchanged:** `functions/_middleware.js` intercepts before static Pages nearest-404 and blocks guests with maintenance 503; authenticated visitors get 404. No global CSS injected.
+- **Runtime status:** Desktop PENDING / Tablet PENDING / Mobile PENDING (owner test required). Follow `docs/404_PAGE_CONTRACT.md`.
