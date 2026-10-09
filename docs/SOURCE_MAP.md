@@ -2216,3 +2216,6 @@ GLOBAL maintenance owner: functions/_middleware.js. Official header logo: assets
 - **BIO-A code owner:** `bioa-404.mjs` only; `build.mjs` writes `dist/404.html` (VI) and `dist/en/404.html` (EN); `assets/bioa-404-art.avif` is owner's original artwork optimized (same 1808×870 composition). No shared-shell/lead changes.
 - **Security owner unchanged:** `functions/_middleware.js` intercepts before static Pages nearest-404 and blocks guests with maintenance 503; authenticated visitors get 404. No global CSS injected.
 - **Runtime status:** Desktop PENDING / Tablet PENDING / Mobile PENDING (owner test required). Follow `docs/404_PAGE_CONTRACT.md`.
+
+## BIOA-404-SOURCE-PARITY2 — 2026-10-09
+Merywood original English 404 screenshot/content -> Bio-A `bioa-404.mjs`; both `dist/404.html` and `dist/en/404.html` same source text. Button source family `btn / btn__icon / btn__text` visually screenshot matched; exact Merywood 404 CSS not yet retrieved. 1808×870 owner artwork is committed only in overcompressed 18.5KB AVIF — HIGH-QUALITY ASSET NOT YET DEPLOYED. Desktop/Tablet/Mobile candidate PENDING. Maintenance and robots noindex untouched.
