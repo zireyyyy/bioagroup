@@ -1,3 +1,16 @@
+## CURRENT CHECKPOINT — 2026-10-09 — RESEND-ACTIVATION1 OWNER-CONFIRMED PASS / LOCKED
+
+**Production-confirmed by owner (not inferred):** Resend sending DNS configured; one real test lead showed Cloudflare D1 `sheet_status = sent` and `email_status = sent`, notification email actually received at company `contact@bioagroup.vn` **and** forwarded to owner's personal mailbox. Thus the end-to-end pipeline **form → D1 → Google Sheets → Resend → company inbox → personal forward** is PASS/LOCKED. Code/config already deployed in production; no application code changes are needed for this promotion.
+
+**Maintenance remains OWNER PASS/LOCKED** (official Bio-A logo and 14-day signed owner preview, earlier source checkpoint `0c0f3b8f55b6675701a79f01fb979e85759a71ed`); custom domain `bioagroup.vn` MUST stay in maintenance until owner explicitly approves public. Preserve Pages `Fail closed`, `BIOA_PREVIEW_SECRET` secrecy, and current `BIOA_SITE_MODE` maintenance (or omitted); only owner-authorized `public` may release.
+
+**Frozen functional owners:** `functions/api/lead.js` (server-side D1 canonical lead save, Sheets and Resend side effects), `assets/js/bioa-leads.js` (client/auto-close), CRM sheet H/I/K, source-authored popup, Resend DNS/Cloudflare environment configuration, `functions/_middleware.js` global private access; existing Merywood-derived Home/Blog/Contact/shared shell. Never change these for unrelated work.
+
+**Next active block (PENDING):** `TURNSTILE-RUNTIME-NEGATIVE-QA1` — confirm server rejects missing/invalid Turnstile tokens on the lead POST without creating a D1/Sheets/Resend record, while legitimate authenticated submission works. Prior `/api/lead/config` response `enabled:true, misconfigured:false` confirms configuration only, not full anti-bot effectiveness. Perform a controlled low-volume test; preserve rate limits and do not spam test leads. Then final prelaunch QA across Desktop/Tablet/Mobile, VI/EN, maintenance guest/API/assets lock, public launch only with explicit approval. Automated Resend retries are not implemented; defer unless owner requests.
+
+**Current code baseline:** main at `c869d3cda1cee5c1dd56bf23dfda2e32fefe96d7` before this docs-only promotion. **This is a documentation-only PASS update**, no new runtime candidate. Rollback source: latest owner-confirmed maintenance + production lead functionality on main; rollback of email config only if needed, NEVER to pre-maintenance unsecured code. No FAIL/PARTIAL new candidate.
+
+---
 ## CURRENT CHECKPOINT — 2026-10-08 — RESEND-ACTIVATION1 (CONFIGURATION PENDING)
 Owner confirmed MAINTENANCE-LOGO-SESSION14D1 PASS: official Bio-A logo on maintenance screen + 14-day signed owner session deployed at commit 0c0f3b8f55b6675701a79f01fb979e85759a71ed. Production still in maintenance; do not publish.
 New milestone is NOT a rewrite: functions/api/lead.js already posts new lead notification to Resend and stores email_status, after durable D1 insert; sends concurrently with Google Sheets. User has not yet verified sending subdomain notify.bioagroup.vn nor configured RESEND_API_KEY/LEAD_FROM/LEAD_NOTIFY_TO. These Cloudflare Production resources must be created by owner privately.

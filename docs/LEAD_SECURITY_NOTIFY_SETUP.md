@@ -1,11 +1,18 @@
 # BIO-A GROUP — LEAD SECURITY & RESEND EMAIL ACTIVATION
 
-**Checkpoint 2026-10-08 — RESEND-ACTIVATION1 (CONFIGURATION PENDING; NO CODE REWRITE).**
+**Checkpoint 2026-10-09 — RESEND-ACTIVATION1 OWNER LIVE PASS / FROZEN (NO CODE REWRITE).**
 
 ### Owner-confirmed PASS/FROZEN
 - Website bioagroup.vn maintenance + exact Bio-A logo + owner preview session 14 days: owner confirmed PASS at commit `0c0f3b8f55b6675701a79f01fb979e85759a71ed`.
 - D1 durable leads; Google Sheets CRM H/I/K dropdown/colors; short `bioa_` IDs; form native Merywood DOM/Consent VI/EN, success close; Cloudflare production custom-domain HTTPS confirmed earlier. Do not reopen these.
 - `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` are owner-configured, and `/api/lead/config` previously returned `enabled:true,misconfigured:false`. **Still PENDING** real server-side rejection of missing/invalid challenge tokens; do not call anti-spam fully verified.
+
+### Owner LIVE acceptance — 2026-10-09
+- **PASS**: Cloudflare D1 test returned `sheet_status = sent` and `email_status = sent`.
+- **PASS**: Email notification actually arrived at `contact@bioagroup.vn` and also reached the owner's configured personal-mail forwarding recipient.
+- **PASS**: Resend DNS and Production configuration successfully supported real email delivery; maintenance/private-preview stays enabled.
+- **LOCKED**: form, backend, D1, Sheets and Resend code/config should not be changed without a concrete defect. A newly observed future failure warrants status/log inspection, not speculative refactoring.
+- **NEXT PENDING**: runtime negative Turnstile verification; configured keys and endpoint alone do not demonstrate enforced anti-spam.
 
 ### Resend source owner and exact behavior
 - `functions/api/lead.js > sendEmail()` uses `POST https://api.resend.com/emails` after durable D1 insert, concurrently with Google Sheets append. It generates VI internal notification: name, contact, interest, source page, UTC time, ID. `escapeHtml` is used for safe HTML output.
@@ -45,3 +52,6 @@ FROM bioa_leads ORDER BY created_at DESC LIMIT 5;
 - **Zero application-code changes** for RESEND-ACTIVATION1. If configuration or sender validation fails, do not touch frozen form/API; revert/remove **only Resend vars** to return email_status to `not_configured` for later leads while D1/Sheets continue. Review failures before changing server code.
 - Previous owner-approved site & maintenance release: `0c0f3b8f55b6675701a79f01fb979e85759a71ed`. Never revert to a no-maintenance-gate commit; Cloudflare Pages Runtime must remain Fail closed.
 - Never send API keys/private owner login URLs by chat. Full public launch still awaits explicit owner approval.
+
+### Supersession note
+The setup steps above document the historical activation process and are **already completed** as of the owner-confirmed PASS date. Do not treat them as new instructions to recreate keys, DNS records, or resend leads. Do not expose company/personal mailbox configuration secrets. No code modifications to Resend were made during PASS promotion.
