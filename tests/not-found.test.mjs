@@ -15,7 +15,7 @@ test("both / and /en/ 404 documents use one original English copy",()=>{
 test("Merywood CTA DOM and arrow SVG restored without text glyph",()=>{
   const html=renderNotFound();
   assert.match(html,/class="btn bioa-404__cta" href="\/" aria-label="Back home"/);
-  assert.match(html,/class="btn__icon"/);
+  assert.ok(html.includes('class="icon btn__icon arrow"'));
   assert.match(html,/class="btn__text">Back home/);
   assert.match(html,/min-width:142px;min-height:47px/);
   assert.match(html,/font-size:14px;font-weight:500/);
@@ -28,7 +28,7 @@ test("Merywood CTA DOM and arrow SVG restored without text glyph",()=>{
 test("404 prefers the untouched owner PNG and retains old image only as temporary fallback",async()=>{
   const html=renderNotFound();
   assert.ok(html.includes('src="/assets/bioa-404-original.png"'));
-  assert.match(html,/bioa-404-art\\.avif/);
+  assert.ok(html.includes("bioa-404-art.avif"));
   assert.match(html,/onerror=/);
   const fallback=await readFile(new URL("../assets/bioa-404-art.avif",import.meta.url));
   assert.equal(fallback.subarray(4,12).toString("ascii"),"ftypavif");
