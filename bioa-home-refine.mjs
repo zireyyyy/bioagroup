@@ -222,8 +222,8 @@ const patchACss = `
   .header__inner{height:64px!important;min-height:64px!important}
   .header__logo{width:54px!important;height:54px!important;flex-basis:54px!important;margin-right:10px!important}
   .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
-  .header__nav ul{gap:20px!important}
-  .header__nav a{font-size:16px!important}
+  .header__nav ul{gap:13px!important}
+  .header__nav a{font-size:12px!important}
   .header__contacts{gap:8px!important}
   .header__contacts + .bioa-lang{margin-left:8px!important}
   .bioa-lang + .header__btn{margin-left:8px!important}
@@ -1192,7 +1192,7 @@ const patchB5Css = `
 .bioa-footer-mobile-head{display:none!important}
 
 @media(max-width:1200px){
-  .header__nav a{font-size:15px!important}
+  .header__nav a{font-size:12px!important}
 }
 
 @media(max-width:768px){
@@ -1380,7 +1380,7 @@ const patchB6Css = `
 
 /* Nav desktop: one pixel down from the approved larger setting */
 .header__nav a{font-size:16px!important}
-@media(max-width:1200px){.header__nav a{font-size:15px!important}}
+@media(max-width:1200px){.header__nav a{font-size:12px!important}}
 
 /* Hero stats — compact geometry + genuinely light typography on every nested node */
 .block-title .info.desctop{

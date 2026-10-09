@@ -33,3 +33,6 @@ Status: **TABLET FULL-SITE FAIL / SOURCE CSS BLOCKER**. This is video evidence a
 
 ## Baseline
 Video audit baseline `b12e4ff681fe4bdce22620ea69d9d29732f25116` (Home cold-load owner PASS in latest statement; 404 visuals Desktop/Tablet/Mobile owner PASS). No production modifications in this documentation checkpoint. If source CSS is absent, **STOP responsive code patch**, do not claim site-wide parity.
+
+## T3 — Code fix candidate
+A genuine source-cascade patch `TABLET-HEADER-COMPACT1` now reuses BIO-A's existing compact 12px nav / 13px gap at <=1200px. No separate new CSS override. Owner runtime at 834px must verify one-line navbar; not full Tablet PASS. Original Merywood main.css still essential for systematic whole-site Tablet repair.

@@ -2248,3 +2248,6 @@ Responsive status:
 - No stylesheet, breakpoint, footer, source Swiper initialization, DOM, typography, navigation, animation timings, or global/shared scripts were modified.
 - Causal classification: evidence-backed first-load sizing race hypothesis; owner cold-load test still required to confirm. No invented visual dimensions.
 - Desktop 13-inch first visit: CANDIDATE / PENDING; Desktop previously owner PASS after normal reload remains protected. Tablet/Mobile: regression-check only, no intended change. EN Home: same home builder owns script, regression-check.
+
+## TABLET-HEADER-COMPACT1 (2026-10-09)
+Existing BIO-A CSS base <=1100px header nav 12px/gap13 was overridden by later <=1200 rules 15/16px/gap20. BIO-A iPad 834 nav wrapped while Merywood stayed one line. Narrow shared-shell owner correction sets same existing values (12px/13px) in three existing media rule declarations, with no new CSS blocks/breakpoints. Desktop >=1201 remains 16px. Owner Tablet 820/834/1024/1180 and Desktop/Mobile regression PENDING. Original Merywood main.css absent from ZIP, so source pixel parity not claimed. See docs/TABLET_VIDEO_PARITY_AUDIT.md. Rollback gated 1d8ad6a9e9293b952d807956d4cecaeadc8f481d.
