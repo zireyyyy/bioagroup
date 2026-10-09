@@ -39,3 +39,13 @@ test("build still emits 404.html and en/404.html via Cloudflare Pages",async()=>
   assert.match(build,/path\.join\(OUT,"en","404\.html"\),renderNotFound\("en"\)/);
   assert.match(build,/include:\["\/\*"\],exclude:\[\]/);
 });
+
+test("committed original PNG is byte-identical to owner-approved 404 asset",async()=>{
+  const {createHash}=await import("node:crypto");
+  const png=await readFile(new URL("../assets/bioa-404-original.png",import.meta.url));
+  assert.equal(png.length,2404033);
+  assert.equal(png.subarray(0,8).toString("hex"),"89504e470d0a1a0a");
+  assert.equal(png.readUInt32BE(16),1808);
+  assert.equal(png.readUInt32BE(20),870);
+  assert.equal(createHash("sha256").update(png).digest("hex"),"00a6939ecab5ddbb6964a26c24d72ee56c8bf8c574f80bef07cce477cd13c076");
+});

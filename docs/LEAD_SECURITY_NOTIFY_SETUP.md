@@ -55,3 +55,49 @@ FROM bioa_leads ORDER BY created_at DESC LIMIT 5;
 
 ### Supersession note
 The setup steps above document the historical activation process and are **already completed** as of the owner-confirmed PASS date. Do not treat them as new instructions to recreate keys, DNS records, or resend leads. Do not expose company/personal mailbox configuration secrets. No code modifications to Resend were made during PASS promotion.
+
+## LEAD-TURNSTILE-NEGATIVE-LIVE1 — Safe private production rejection QA (PENDING OWNER EXECUTION)
+
+**Goal:** prove that production Pages Function refuses a syntactically valid lead with a missing or deliberately invalid Turnstile token, and makes NO writes/notifications. This is a test procedure, NOT authorization to disable Turnstile or reopen frozen code.
+
+**Prerequisites:**
+- Use `https://bioagroup.vn` in your already-authorized 14-day preview browser session. Never paste `_bioa-access?key=...` or preview secret into logs, chat, or source control.
+- Open browser DevTools Console on that domain, and run the following only in your own session. It checks `/api/lead/config` first; **stops if Turnstile is not fully enabled**, avoiding an accidental accepted synthetic lead. Existing frontend form must remain untouched.
+- A production API that returns anything other than 403 needs investigation before a second attempt. Do NOT run the snippet repeatedly.
+
+```js
+(async () => {
+  const configResponse = await fetch('/api/lead/config', {
+    credentials: 'same-origin', cache: 'no-store'
+  });
+  if (!configResponse.ok) {
+    console.warn('STOP: config HTTP', configResponse.status); return;
+  }
+  const cfg = await configResponse.json();
+  if (cfg.enabled !== true || cfg.misconfigured === true) {
+    console.warn('STOP: Turnstile not configured/enabled'); return;
+  }
+  const raw = crypto.getRandomValues(new Uint8Array(9));
+  const suffix = btoa(String.fromCharCode(...raw))
+    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  const id = 'bioa_' + suffix;
+  const response = await fetch('/api/lead', {
+    method: 'POST', credentials: 'same-origin',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      submission_id: id, name: 'BIOA Negative Security QA',
+      contact: 'QA-INVALID-TOKEN', interest: 'Security QA, reject only',
+      consent: true, locale: 'vi', page_path: '/contacts/',
+      website: '', turnstile_token: 'intentional-invalid-test-token'
+    })
+  });
+  const result = await response.json().catch(() => ({}));
+  console.log({test_id: id, status: response.status, result});
+  if (response.status !== 403 || result.error !== 'turnstile_failed') {
+    console.warn('NOT PASS: stop, inspect backend/config; do not retry.');
+  }
+})();
+```
+
+**Acceptance:** one valid-shaped synthetic request => HTTP **403** and `{ok:false,error:"turnstile_failed"}`. Check D1 Console for the printed `test_id`: `SELECT id FROM bioa_leads WHERE id='bioa_...';` must return 0 rows. No corresponding Google Sheets row or Resend email should exist. This rejects the token before D1 INSERT. A 503 maintenance error means the private session was not active or API was blocked; it does NOT prove Turnstile works. HTTP 429 means prior rate-limit activity masks the test; do not retry until controlled window.
+**Scope:** no new credentials, no real lead contact details, no global middleware/rate limit changes. Desktop/Tablet/Mobile form visuals protected, no UI patch. After PASS update START_HERE, NEW_CHAT_CONTINUATION_PROMPT and FULL_HANDOFF, then begin full Tablet phase.
