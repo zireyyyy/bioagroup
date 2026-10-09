@@ -315,20 +315,44 @@ const patchA7Css = `
     border-radius:.8333vw!important;
     white-space:nowrap!important;
   }
+  .bioa-header-actions .header__email a{
+    height:2.4479vw!important;
+    min-height:2.4479vw!important;
+    padding:0 1.1458vw!important;
+    border-radius:.8333vw!important;
+    font-size:inherit!important;
+  }
   .bioa-header-actions .header__socials .socials__link{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
     width:2.4479vw!important;
+    min-width:2.4479vw!important;
     height:2.4479vw!important;
     border-radius:.8333vw!important;
+    overflow:hidden!important;
+  }
+  .bioa-header-actions .header__socials .bioa-zalo-icon,
+  .bioa-header-actions .header__socials .socials__link svg{
+    width:1.4583vw!important;
+    max-width:1.4583vw!important;
+    height:1.4583vw!important;
+    max-height:1.4583vw!important;
+    flex:0 0 auto!important;
+    object-fit:contain!important;
   }
   .bioa-header-actions .bioa-lang{
     height:2.4479vw!important;
+    padding:.1563vw!important;
     margin-left:.5208vw!important;
+    border-radius:.8333vw!important;
   }
   .bioa-header-actions .bioa-lang a{
     width:1.8229vw!important;
     min-width:1.8229vw!important;
     height:1.8229vw!important;
-    font-size:.625vw!important;
+    border-radius:.5208vw!important;
+    font-size:.8333vw!important;
   }
 }
 `;
@@ -3558,69 +3582,96 @@ const patchC5ChannelPaletteCss = `
 
 
 const patchD5FooterTabletCss = `
-/* FOOTER-D5B — Tablet balance polish only.
-   Keep Desktop/Mobile source layout protected; refine the existing 769–1200 band
-   for Bio-A's longer labels without introducing a new breakpoint. */
-@media(max-width:1200px) and (min-width:769px){
+/* FOOTER-D5C — Desktop-like single row for all 769+ source viewports.
+   Merywood's viewport-sized shell remains the base. BIO-A has four approved
+   navigation groups, so those groups form four columns instead of Merywood's
+   two; previously passed Desktop >=1201 and Mobile <=768 remain untouched. */
+@media(min-width:769px) and (max-width:1200px){
   .footer-top__wrapper{
     display:grid!important;
-    grid-template-columns:88px minmax(0,1fr) 196px!important;
+    grid-template-columns:minmax(0,16.6667vw) minmax(0,1fr) minmax(0,16.6667vw)!important;
     align-items:start!important;
-    column-gap:24px!important;
+    column-gap:2.0833vw!important;
     row-gap:0!important;
   }
-  .footer-top__left{
-    grid-column:1!important;
-    min-width:0!important;
-  }
+  .footer-top__left{grid-column:1!important;min-width:0!important;width:100%!important}
   .footer-top__logo img,
   .footer__logo img{
-    width:88px!important;
-    max-width:88px!important;
+    width:6.7188vw!important;
+    max-width:6.7188vw!important;
+    height:auto!important;
   }
   .footer-top__menu{
     grid-column:2!important;
     display:grid!important;
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    column-gap:36px!important;
-    row-gap:28px!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    column-gap:1.0417vw!important;
+    row-gap:0!important;
     width:100%!important;
     min-width:0!important;
     align-content:start!important;
   }
-  .footer-top__nav{
-    width:auto!important;
-    min-width:0!important;
-  }
+  .footer-top__nav{width:auto!important;min-width:0!important}
   .footer-top__nav > ul > li:first-child > a{
-    font-size:17px!important;
+    font-size:.8333vw!important;
     line-height:1.22!important;
   }
   .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:13.5px!important;
-    line-height:1.38!important;
+    font-size:.7292vw!important;
+    line-height:1.45!important;
     white-space:normal!important;
+    overflow-wrap:break-word!important;
   }
   .footer-top__right{
     grid-column:3!important;
-    min-width:196px!important;
-    width:196px!important;
+    min-width:0!important;
+    width:100%!important;
     justify-self:end!important;
   }
   .footer-top__email a{
-    width:196px!important;
-    min-width:196px!important;
+    width:100%!important;
+    min-width:0!important;
+    height:2.4479vw!important;
+    padding:0 .5208vw!important;
+    border-radius:.8333vw!important;
+    font-size:.7292vw!important;
+    white-space:nowrap!important;
+    box-sizing:border-box!important;
   }
-  .footer-top__socials{
-    width:196px!important;
-    min-width:196px!important;
-    gap:8px!important;
-  }
+  .footer-top__socials{width:100%!important;min-width:0!important;gap:.4167vw!important}
   .footer-top__socials a,
   .footer-top__socials a[aria-label="Zalo"]{
-    width:43px!important;
-    min-width:43px!important;
-    height:43px!important;
+    width:2.4479vw!important;
+    min-width:2.4479vw!important;
+    height:2.4479vw!important;
+    border-radius:.8333vw!important;
+  }
+  .footer-top__socials a .bioa-zalo-icon,
+  .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
+    width:1.5625vw!important;
+    height:1.5625vw!important;
+    min-width:0!important;
+    max-width:1.5625vw!important;
+    max-height:1.5625vw!important;
+    flex-basis:auto!important;
+  }
+  .bioa-footer-company-info--desktop{
+    display:block!important;
+    width:100%!important;
+    max-width:100%!important;
+    margin-top:1.0417vw!important;
+  }
+  .bioa-footer-company-info--responsive{display:none!important}
+  .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
+    margin-bottom:.5208vw!important;
+    font-size:.7292vw!important;
+    line-height:1.3!important;
+    white-space:normal!important;
+  }
+  .bioa-footer-company-info--desktop .bioa-footer-company-info__row{
+    margin-bottom:.3646vw!important;
+    font-size:.6771vw!important;
+    line-height:1.4!important;
   }
 }
 `;
@@ -3686,6 +3737,10 @@ const patchD6FooterMetaCss = `
 }
 .footer-bottom__links{
   display:none!important;
+}
+@media(min-width:769px) and (max-width:1200px){
+  .footer-bottom__wrapper{min-height:1.9792vw!important;padding:.4167vw 0!important}
+  .footer-bottom__copyright{font-size:.7292vw!important}
 }
 @media(max-width:768px){
   .footer-bottom__wrapper{
