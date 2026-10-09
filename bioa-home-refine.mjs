@@ -4943,6 +4943,50 @@ function addHomeReveal($){
   $('body').append($('<script id="bioa-home-reveal-js"></script>').html(script));
 }
 
+/* HOME-ROADMAP-COLDLOAD1 — keep Merywood's Swiper and Scrollbar as the
+   only measurement owners. On a cold load, images and the actual Manrope font
+   can settle after their initial measurements. Reuse the source resize path
+   once after those resources finish instead of adding layout overrides. */
+function addHomeRoadmapColdLoadSync($){
+  $('#bioa-roadmap-coldload-sync').remove();
+  const script=`(function(){
+    var section=document.querySelector('.block-roadmap');
+    if(!section)return;
+    var settled=false;
+    function syncSourceMeasurements(){
+      if(settled)return;
+      settled=true;
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          // Merywood main.js owns swiperAutoHeight via jQuery resize.
+          if(window.jQuery)window.jQuery(window).triggerHandler('resize');
+          // Smooth Scrollbar owns the scroll-content geometry, including footer.
+          var page=document.querySelector('.smooth-scrollbar');
+          var sourceScrollbar=page&&window.Scrollbar&&typeof window.Scrollbar.get==='function'
+            ?window.Scrollbar.get(page):null;
+          if(sourceScrollbar&&typeof sourceScrollbar.update==='function')
+            sourceScrollbar.update();
+        });
+      });
+    }
+    function waitForSourceAssets(){
+      var images=Array.prototype.slice.call(section.querySelectorAll('.step__image img'));
+      var pendingImages=images.map(function(img){
+        if(img.complete)return Promise.resolve();
+        return new Promise(function(resolve){
+          img.addEventListener('load',resolve,{once:true});
+          img.addEventListener('error',resolve,{once:true});
+        });
+      });
+      var fonts=document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve();
+      Promise.all([fonts].concat(pendingImages)).then(syncSourceMeasurements,syncSourceMeasurements);
+    }
+    if(document.readyState==='complete')waitForSourceAssets();
+    else window.addEventListener('load',waitForSourceAssets,{once:true});
+  })();`;
+  $('body').append($('<script id="bioa-roadmap-coldload-sync"></script>').html(script));
+}
+
 function addSharedPageReveal($,route){
   $('#bioa-shared-reveal-js').remove();
   $('[data-bioa-aos]').removeAttr('data-bioa-aos').css('--bioa-aos-delay','');
@@ -5578,6 +5622,7 @@ export function applyHomeRefinement($,route,lang){
   addHeaderTopParity($);
   addMobileHeaderScroll($);
   addHomeReveal($);
+  addHomeRoadmapColdLoadSync($);
   addContactLauncher($,lang);
   normalizeViTitleCase($,lang);
 }

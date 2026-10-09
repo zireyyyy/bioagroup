@@ -2240,3 +2240,11 @@ Responsive status:
 - Tablet 769-1200px: CANDIDATE, OWNER RUNTIME PENDING.
 - Mobile <=768px: CANDIDATE, OWNER RUNTIME PENDING.
 - FULL RESPONSIVE PASS: NO.
+## HOME-ROADMAP-COLDLOAD1 — source-backed first-load measurement sync (2026-10-09)
+
+- Owner reports 13-inch laptop Home FIRST cold load roadmap and footer visually overlap; normal reload appears correct. Screenshots 2026-10-09. Do not mistake this for static Desktop/Tablet CSS breakpoint failure.
+- Original Merywood source: owner `BIOA-Website.zip/pages/index/assets/js/main.js`. `swiperAutoHeight(swiperRoadmap)` assigns height of tallest .swiper-slide on load and jQuery window resize; Smooth Scrollbar also measures fixed .smooth-scrollbar content with footer and listens to resize.
+- HOME code: `bioa-home-refine.mjs > addHomeRoadmapColdLoadSync($)` schedules **one** Merywood-owned resize recomputation after `load`, `document.fonts.ready`, and roadmap image load/error. It then calls existing `Scrollbar.get(page).update()` for any stale scroll-content extent.
+- No stylesheet, breakpoint, footer, source Swiper initialization, DOM, typography, navigation, animation timings, or global/shared scripts were modified.
+- Causal classification: evidence-backed first-load sizing race hypothesis; owner cold-load test still required to confirm. No invented visual dimensions.
+- Desktop 13-inch first visit: CANDIDATE / PENDING; Desktop previously owner PASS after normal reload remains protected. Tablet/Mobile: regression-check only, no intended change. EN Home: same home builder owns script, regression-check.
