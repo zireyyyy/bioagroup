@@ -58,7 +58,6 @@ html,body{background:var(--bioa-cream)!important}
 .bioa-contact-fab__links{display:grid;grid-template-columns:1fr 1fr;gap:8px}.bioa-contact-fab__links a{display:flex;align-items:center;gap:9px;padding:10px 11px;border-radius:14px;background:#fff;color:var(--bioa-deep);text-decoration:none;border:1px solid rgba(17,111,71,.10)}.bioa-contact-fab__links svg{width:19px;height:19px;fill:var(--bioa-primary)}
 .bioa-contact-fab__toggle{width:68px;height:68px;border:0;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bioa-ivory);box-shadow:0 10px 32px rgba(5,47,33,.28);cursor:pointer;padding:11px}.bioa-contact-fab__toggle img{width:100%;height:100%;object-fit:contain}.bioa-contact-fab__toggle:after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#21A366;right:4px;bottom:6px;border:2px solid var(--bioa-ivory)}
 [id*="dashly" i],[class*="dashly" i],[id*="carrot" i],[class*="carrot" i],iframe[src*="dashly" i],iframe[src*="carrot" i]{display:none!important}
-@media(max-width:1100px){.header__logo img{width:112px!important;max-width:112px!important}.header__nav a{font-size:12px!important}.header__nav ul{gap:13px!important}}
 @media(max-width:768px){.bioa-contact-fab{right:14px;bottom:14px}.bioa-contact-fab__panel{width:min(320px,calc(100vw - 28px))}.bioa-contact-fab__toggle{width:60px;height:60px}}
 `;
 
@@ -102,7 +101,6 @@ const patchACss = `
   height:74px!important;
   object-fit:contain!important;
 }
-.header__nav ul{gap:28px!important}
 
 /* A6 deterministic utility spacing */
 .header__wrapper{
@@ -122,16 +120,9 @@ const patchACss = `
   margin-left:10px!important;
   margin-right:0!important;
 }
-.header__nav a{
-  font-size:17px!important;
-  line-height:1.1!important;
-  font-weight:400!important;
-  letter-spacing:-.01em!important;
-}
 .header__contacts{
   display:flex!important;
   align-items:center!important;
-  gap:10px!important;
   margin-left:auto!important;
   margin-right:0!important;
 }
@@ -177,11 +168,6 @@ const patchACss = `
   background:var(--bioa-primary)!important;
   color:#fff!important;
 }
-.header__btn{
-  min-width:126px!important;
-  padding-left:18px!important;
-  padding-right:18px!important;
-}
 .header__email,.header__socials{margin-left:0!important;margin-right:0!important}
 .header__btn{
   margin-left:10px!important;
@@ -217,16 +203,6 @@ const patchACss = `
 .whatsapp:hover .whatsapp__logo{
   transform:translate(-50%,-50%) scale(1.10)!important;
   opacity:.085!important;
-}
-@media(max-width:1200px){
-  .header__inner{height:64px!important;min-height:64px!important}
-  .header__logo{width:54px!important;height:54px!important;flex-basis:54px!important;margin-right:10px!important}
-  .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
-  .header__nav ul{gap:13px!important}
-  .header__nav a{font-size:clamp(9px,1vw,12px)!important}
-  .header__contacts{gap:8px!important}
-  .header__contacts + .bioa-lang{margin-left:8px!important}
-  .bioa-lang + .header__btn{margin-left:8px!important}
 }
 `;
 
@@ -325,30 +301,34 @@ const patchA7Css = `
   position:relative!important;
   z-index:1!important;
 }
-/* Merywood keeps the desktop shell from 769px and scales with vw.
-   Adapt only the added BIO-A action controls in their existing owner; preserve
-   the approved >=1201px Desktop and <=768px Mobile geometry. */
+/* BIO-A-added controls use the original Merywood 769+ viewport-based
+   desktop scaling. Source header/navigation stays exclusively main.css-owned.
+   Owner-accepted 1201+ Desktop and <=768px Mobile variants stay untouched. */
 @media(min-width:769px) and (max-width:1200px){
-  .bioa-header-actions{gap:clamp(4px,.5208vw,8px)!important}
-  .bioa-header-actions .header__contacts{gap:clamp(4px,.5208vw,8px)!important}
+  .bioa-header-actions{gap:.5208vw!important}
+  .bioa-header-actions .header__contacts{gap:.5208vw!important}
   .bioa-header-actions .header__btn{
-    height:clamp(28px,3.2vw,42px)!important;
-    min-height:clamp(28px,3.2vw,42px)!important;
-    padding-left:clamp(8px,1vw,20px)!important;
-    padding-right:clamp(8px,1vw,20px)!important;
-    font-size:clamp(10px,.85vw,14px)!important;
+    height:2.4479vw!important;
+    min-height:2.4479vw!important;
+    padding:0 1.1458vw!important;
+    font-size:inherit!important;
+    border-radius:.8333vw!important;
     white-space:nowrap!important;
   }
   .bioa-header-actions .header__socials .socials__link{
-    width:clamp(28px,3.2vw,42px)!important;
-    height:clamp(28px,3.2vw,42px)!important;
+    width:2.4479vw!important;
+    height:2.4479vw!important;
+    border-radius:.8333vw!important;
   }
-  .bioa-header-actions .bioa-lang{height:clamp(28px,3.2vw,42px)!important}
+  .bioa-header-actions .bioa-lang{
+    height:2.4479vw!important;
+    margin-left:.5208vw!important;
+  }
   .bioa-header-actions .bioa-lang a{
-    width:clamp(22px,2.6vw,35px)!important;
-    min-width:clamp(22px,2.6vw,35px)!important;
-    height:clamp(22px,2.6vw,35px)!important;
-    font-size:clamp(10px,.85vw,12px)!important;
+    width:1.8229vw!important;
+    min-width:1.8229vw!important;
+    height:1.8229vw!important;
+    font-size:.625vw!important;
   }
 }
 `;
@@ -1164,9 +1144,6 @@ const patchB5Css = `
 /* HOME Patch B5 — final visual tightening after B4 review */
 
 /* Desktop nav: one step smaller than Patch A */
-.header__nav a{
-  font-size:16px!important;
-}
 
 /* Hero statistics: smaller, lighter, more editorial like the Merywood source */
 .block-title .info.desctop{
@@ -1213,9 +1190,6 @@ const patchB5Css = `
 /* Mobile-only cloned footer contact header */
 .bioa-footer-mobile-head{display:none!important}
 
-@media(min-width:769px) and (max-width:1200px){
-  .header__nav a{font-size:clamp(9px,1vw,12px)!important}
-}
 
 @media(max-width:768px){
   /* keep mobile header/menu exactly as PASS */
@@ -1401,8 +1375,6 @@ const patchB6Css = `
 /* HOME Patch B6 — targeted cleanup; mobile header/menu stays on the B4 PASS baseline */
 
 /* Nav desktop: one pixel down from the approved larger setting */
-.header__nav a{font-size:16px!important}
-@media(min-width:769px) and (max-width:1200px){.header__nav a{font-size:clamp(9px,1vw,12px)!important}}
 
 /* Hero stats — compact geometry + genuinely light typography on every nested node */
 .block-title .info.desctop{

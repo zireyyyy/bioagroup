@@ -17,7 +17,7 @@ For any route/component:
 6. If the exact original CSS/breakpoint is unavailable, record a **source evidence blocker**, gather additional legitimate evidence (live source stylesheet, archived assets, computed rules), or ask for the precise missing source. Do not represent screenshot approximation/custom CSS as source parity.
 7. Verify changes across representative viewport widths and source breakpoint boundaries. Never treat a Desktop PASS as Tablet/Mobile PASS.
 
-**Current source limit (2026-10-09):** owner ZIP `BIOA-Website.zip` preserves original page HTML/JS and some font CSS, but not the full theme `main.css` used for exact responsive behavior. The Tablet audit harness is **diagnostic only**; it is not a substitute for missing source CSS. Do not initiate broad Tablet CSS changes solely from audit hints.
+**Current source verified (2026-10-09):** owner supplied original complete Merywood `main.txt` theme CSS. The original HTML/JS and source media rules can now be compared directly. Layout uses <=768px Mobile and >=769px fluid Desktop. Do not infer device breakpoints from physical inches. Keep source CSS authority and preserve owner-approved BIO-A-specific presentation/behavior.
 
 ## Component responsive ownership
 - Keep canonical component DOM/JS and baseline CSS in the right source-owned module.
@@ -59,3 +59,6 @@ Every future visual change MUST state:
 
 ### Original Merywood responsive CSS recovered — 2026-10-09
 The owner supplied `main.txt` in chat (11,358 lines); source recovered. `@media(max-width:768px)` is the mobile layout and `@media(min-width:769px) and (max-width:1920px)` contains the fluid desktop `vw` rules. Use actual CSS viewport, not physical Tablet inches. Never port entire stylesheet blindly or distribute third-party full CSS into public repo; preserve existing BIO-A-approved adaptations. Scope each new fix and run 3-surface regression. Current core candidate described in START_HERE.md.
+
+## Owner 2026-10-09 mandate: source responsive core ON ALL ROUTES
+The owner's explicit latest instruction supersedes the older phase restriction against global **audit**. The original Merywood layout remains the authority for all Merywood-owned selectors; BIO-A self-written device-wide workarounds that defeat source breakpoints must be removed at their owner module rather than layered with yet another CSS override. Protect approved BIO-A-specific additions (longer VI text, new brand controls, logo/brand, services, lead forms, chat) and frozen 404/Footer/Mobile where their deviations were owner accepted. A source-like 769–1920 fluid Desktop path and <=768 Mobile applies by actual CSS viewport to Home, About, Cosmetics, Services, Blog and Contacts. Whole-site runtime remains independent QA; a file-wide source cleanup is not automatically owner PASS.
