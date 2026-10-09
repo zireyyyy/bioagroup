@@ -29,3 +29,6 @@ Turnstile owner negative QA: **owner PASS**, trace not independently inspected. 
 The previous T1 audit script provides **measurements**, not a Merywood Tablet source-derived fix. The archived HTML and JS alone cannot establish exact CSS parity because the original theme `main.css` is absent. Do not implement guessed Tablet styles; obtain verified CSS/media-query evidence for the target component first and preserve source DOM and interactions. See `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`.
 
 Once owner FULL TABLET PASS is confirmed, **Phase 2B is mandatory** before cleanup: audit Desktop + Tablet + Mobile across VI/EN routes, source breakpoint-adjacent widths and actual interactions, and compact ownership by removing only verified duplication/overrides through individually reviewed component patches. Preserve locked behavior at every step. This does not mean making all three device layouts identical.
+
+## Latest 2026-10-09 video evaluation
+Owner VIDEO1 Bio-A and VIDEO2 Merywood at iPad Pro 11 834px show Full Tablet NOT PASS. Shared Header nav wraps on BIO-A, not on original. Exact original theme CSS missing. See `docs/TABLET_VIDEO_PARITY_AUDIT.md`. Full-site source responsive parity not implemented; no UI changes in this audit commit.
