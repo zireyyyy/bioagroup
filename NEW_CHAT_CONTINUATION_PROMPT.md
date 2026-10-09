@@ -1,3 +1,6 @@
+# CURRENT STATE — BIO-A GROUP
+2026-10-09: Owner confirmed Turnstile negative test PASS; Phase 2 Full Tablet Regression active. Owner removed AVIF in commit 1749da1; this patch removes dangling 404 fallback and obsolete test. PNG exact original remains. 404 live runtime and Tablet independently PENDING. Maintenance 14d/noindex preserved, all locked UI/CRM/Resend untouched. Sanity Free future only.
+
 # NEW CHAT CONTINUATION — BIO-A GROUP (2026-10-09)
 Repo https://github.com/zireyyyy/bioagroup; inspect actual main. Read AGENTS.md, START_HERE.md, FULL_HANDOFF.md, docs/WORKFLOW.md, docs/SOURCE_MAP.md, docs/404_PAGE_CONTRACT.md, docs/BRAND_PALETTE.md, docs/MAINTENANCE_ACCESS.md before any patch. Source-first Merywood, frozen PASS components protected, small reversible commits + handoff, independent Desktop/Tablet/Mobile.
 

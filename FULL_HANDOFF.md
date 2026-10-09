@@ -1,3 +1,7 @@
+## CURRENT CHECKPOINT — TABLET PHASE 2
+2026-10-09: Owner confirmed Turnstile negative test PASS; Phase 2 Full Tablet Regression active. Owner removed AVIF in commit 1749da1; this patch removes dangling 404 fallback and obsolete test. PNG exact original remains. 404 live runtime and Tablet independently PENDING. Maintenance 14d/noindex preserved, all locked UI/CRM/Resend untouched. Sanity Free future only.
+
+---
 ## CURRENT CHECKPOINT 2026-10-09 — OWNER ORIGINAL 404 PNG VERIFIED; TURNSTILE NEGATIVE QA NEXT
 
 **Main asset commit:** `4b0864736cf1233116df826019b942a5f6591e56`, created by owner after replacing wrong-sized prior upload. **404 PNG in Git PASS:** `assets/bioa-404-original.png`, 2,404,033 bytes, 1808×870, Git blob `adc8d907c01c8bd8f6fcbfbf9416f4ad94e4f05b` identical to verified owner original SHA256 `00a6939ecab5ddbb6964a26c24d72ee56c8bf8c574f80bef07cce477cd13c076`. A new 404 test guards these exact bytes. **Cloudflare runtime/image 200 still unverified; do not mark 404 responsive FULL PASS.** Owner stated other 404 visual parts PASS and asked to proceed; no CTA/layout/source edits. Fallback AVIF retained for separate owner-approved cleanup.

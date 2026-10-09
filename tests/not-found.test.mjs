@@ -25,14 +25,7 @@ test("Merywood CTA DOM and arrow SVG restored without text glyph",()=>{
   assert.doesNotMatch(html,/linear-gradient\(|bioa-404:before/);
   assert.match(html,/name="robots" content="noindex,nofollow,noarchive"/);
 });
-test("404 prefers the untouched owner PNG and retains old image only as temporary fallback",async()=>{
-  const html=renderNotFound();
-  assert.ok(html.includes('src="/assets/bioa-404-original.png"'));
-  assert.ok(html.includes("bioa-404-art.avif"));
-  assert.match(html,/onerror=/);
-  const fallback=await readFile(new URL("../assets/bioa-404-art.avif",import.meta.url));
-  assert.equal(fallback.subarray(4,12).toString("ascii"),"ftypavif");
-});
+test("404 references original PNG without obsolete AVIF",()=>{const html=renderNotFound();assert.ok(html.includes('src="/assets/bioa-404-original.png"'));assert.ok(!html.includes("bioa-404-art.avif"));assert.ok(!html.includes("onerror="));});
 test("build still emits 404.html and en/404.html via Cloudflare Pages",async()=>{
   const build=await readFile(new URL("../build.mjs",import.meta.url),"utf8");
   assert.match(build,/path\.join\(OUT,"404\.html"\),renderNotFound\("vi"\)/);
