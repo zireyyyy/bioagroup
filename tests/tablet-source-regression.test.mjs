@@ -12,7 +12,7 @@ test("Footer inherits Merywood font scale at 769-1200 rather than shrinking Bio-
   assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));
   for(const forbidden of ["font-size:.7292vw!important","font-size:.6771vw!important","font-size:.8333vw!important"])
     assert.ok(!css.includes(forbidden));
-  assert.ok(css.includes("font-size:inherit!important"));
+  assert.ok(css.includes("font-size:clamp(11px,.88vw,14px)!important"));\n  assert.ok(css.includes(".footer-top__email{\n    display:flex!important"));
   assert.ok(src.includes("@media(max-width:768px)"));
 });
 test("Zalo CTA artwork uses original source viewport scaling on desktop-like Tablet",async()=>{

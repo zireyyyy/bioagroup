@@ -18,9 +18,9 @@ test("Original Merywood is the responsive owner for all shared shell routes",asy
 test("New BIO-A controls use actual Merywood desktop units at 769+ without a duplicate mobile layout",async()=>{
  const home=await load("bioa-home-refine.mjs");
  assert.ok(home.includes("@media(min-width:769px) and (max-width:1200px){\n  .bioa-header-actions{gap:.5208vw!important}"));
- assert.ok(home.includes(".bioa-header-actions .header__btn{\n    height:2.4479vw!important;"));
- assert.ok(home.includes("padding:0 1.1458vw!important"));
- assert.ok(home.includes(".bioa-header-actions .bioa-lang a{\n    width:1.8229vw!important;"));
+ assert.ok(home.includes(".bioa-header-actions .header__btn{\n    height:clamp(28px,2.4479vw,42px)!important;"));
+ assert.ok(home.includes("padding:0 clamp(8px,1.1458vw,20px)!important"));
+ assert.ok(home.includes(".bioa-header-actions .bioa-lang a{\n    width:clamp(22px,1.8229vw,35px)!important;"));
  assert.ok(home.includes("@media(max-width:768px)"));
  assert.ok(home.includes("const patchD5FooterTabletCss")); // owner PASS / locked
  assert.ok(home.includes("function addHomeRoadmapColdLoadSync($)")); // cold-load PASS

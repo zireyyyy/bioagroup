@@ -308,51 +308,44 @@ const patchA7Css = `
   .bioa-header-actions{gap:.5208vw!important}
   .bioa-header-actions .header__contacts{gap:.5208vw!important}
   .bioa-header-actions .header__btn{
-    height:2.4479vw!important;
-    min-height:2.4479vw!important;
-    padding:0 1.1458vw!important;
-    font-size:inherit!important;
-    border-radius:.8333vw!important;
+    height:clamp(28px,2.4479vw,42px)!important;
+    min-height:clamp(28px,2.4479vw,42px)!important;
+    padding:0 clamp(8px,1.1458vw,20px)!important;
+    font-size:clamp(10px,.85vw,14px)!important;
+    border-radius:clamp(9px,.8333vw,14px)!important;
     white-space:nowrap!important;
-  }
-  .bioa-header-actions .header__email a{
-    height:2.4479vw!important;
-    min-height:2.4479vw!important;
-    padding:0 1.1458vw!important;
-    border-radius:.8333vw!important;
-    font-size:inherit!important;
   }
   .bioa-header-actions .header__socials .socials__link{
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
-    width:2.4479vw!important;
-    min-width:2.4479vw!important;
-    height:2.4479vw!important;
-    border-radius:.8333vw!important;
+    width:clamp(28px,2.4479vw,42px)!important;
+    min-width:clamp(28px,2.4479vw,42px)!important;
+    height:clamp(28px,2.4479vw,42px)!important;
+    border-radius:clamp(9px,.8333vw,14px)!important;
     overflow:hidden!important;
   }
   .bioa-header-actions .header__socials .bioa-zalo-icon,
   .bioa-header-actions .header__socials .socials__link svg{
-    width:1.4583vw!important;
-    max-width:1.4583vw!important;
-    height:1.4583vw!important;
-    max-height:1.4583vw!important;
+    width:clamp(14px,1.4583vw,20px)!important;
+    max-width:clamp(14px,1.4583vw,20px)!important;
+    height:clamp(14px,1.4583vw,20px)!important;
+    max-height:clamp(14px,1.4583vw,20px)!important;
     flex:0 0 auto!important;
     object-fit:contain!important;
   }
   .bioa-header-actions .bioa-lang{
-    height:2.4479vw!important;
-    padding:.1563vw!important;
+    height:clamp(28px,2.4479vw,42px)!important;
+    padding:clamp(2px,.1563vw,3px)!important;
     margin-left:.5208vw!important;
-    border-radius:.8333vw!important;
+    border-radius:clamp(9px,.8333vw,14px)!important;
   }
   .bioa-header-actions .bioa-lang a{
-    width:1.8229vw!important;
-    min-width:1.8229vw!important;
-    height:1.8229vw!important;
-    border-radius:.5208vw!important;
-    font-size:.8333vw!important;
+    width:clamp(22px,1.8229vw,35px)!important;
+    min-width:clamp(22px,1.8229vw,35px)!important;
+    height:clamp(22px,1.8229vw,35px)!important;
+    border-radius:clamp(7px,.5208vw,10px)!important;
+    font-size:clamp(10px,.8333vw,12px)!important;
   }
 }
 `;
@@ -383,6 +376,30 @@ const patchA8Css = `
   box-shadow:none!important;
   color:var(--bioa-primary)!important;
   line-height:1!important;
+}
+/* A8 is the sole owner of BIO-A email pill geometry at desktop-fluid widths. */
+@media(min-width:769px) and (max-width:1200px){
+  .bioa-header-actions .header__email{
+    display:flex!important;
+    align-items:center!important;
+    width:auto!important;
+    min-width:0!important;
+    height:auto!important;
+    padding:0!important;
+  }
+  .bioa-header-actions .header__email a{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    height:clamp(28px,2.4479vw,42px)!important;
+    min-height:clamp(28px,2.4479vw,42px)!important;
+    padding:0 clamp(7px,.85vw,14px)!important;
+    border-radius:clamp(9px,.8333vw,14px)!important;
+    font-size:clamp(10.5px,.83vw,14px)!important;
+    line-height:1.15!important;
+    white-space:nowrap!important;
+    box-sizing:border-box!important;
+  }
 }
 
 /* Keep the full Bio-A monogram visible while making it fill the card more naturally */
@@ -886,6 +903,13 @@ const patchB4Css = `
   line-height:1.18!important;
 }
 
+/* Keep Desktop source typography fluid but BIO-A's longer descriptive copy
+   readable above the 768px Mobile switch. Do not change Hero geometry. */
+@media(min-width:769px) and (max-width:1200px){
+  .block-title .content .text-large{
+    font-size:clamp(11.5px,.9896vw,16px)!important;
+  }
+}
 /* 2) Mobile header: original source shell, strong left/right alignment */
 @media(max-width:768px){
   .header,
@@ -3613,11 +3637,11 @@ const patchD5FooterTabletCss = `
   }
   .footer-top__nav{width:auto!important;min-width:0!important}
   .footer-top__nav > ul > li:first-child > a{
-    font-size:inherit!important;
+    font-size:clamp(12px,1vw,16px)!important;
     line-height:1.22!important;
   }
   .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:inherit!important;
+    font-size:clamp(11px,.88vw,14px)!important;
     line-height:1.45!important;
     white-space:normal!important;
     overflow-wrap:break-word!important;
@@ -3628,15 +3652,37 @@ const patchD5FooterTabletCss = `
     width:100%!important;
     justify-self:end!important;
   }
-  .footer-top__email a{
+  /* Earlier owner CSS gives footer email a fixed 208px shell. Keep exactly
+     one pill sized to its fluid right column; never nest two hit areas. */
+  .footer-top__email{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
     width:100%!important;
     min-width:0!important;
-    height:2.4479vw!important;
-    padding:0 .5208vw!important;
-    border-radius:.8333vw!important;
-    font-size:inherit!important;
+    height:auto!important;
+    padding:0!important;
+    margin:0!important;
+    background:transparent!important;
+    border:0!important;
+    border-radius:0!important;
+    box-shadow:none!important;
+    box-sizing:border-box!important;
+  }
+  .footer-top__email a{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:100%!important;
+    min-width:0!important;
+    height:clamp(30px,2.4479vw,42px)!important;
+    min-height:clamp(30px,2.4479vw,42px)!important;
+    padding:0 clamp(5px,.5208vw,10px)!important;
+    border-radius:clamp(9px,.8333vw,14px)!important;
+    font-size:clamp(10.5px,.83vw,14px)!important;
     white-space:nowrap!important;
     box-sizing:border-box!important;
+    line-height:1.15!important;
   }
   .footer-top__socials{width:100%!important;min-width:0!important;gap:.4167vw!important}
   .footer-top__socials a,
@@ -3668,13 +3714,13 @@ const patchD5FooterTabletCss = `
   .bioa-footer-company-info--responsive{display:none!important}
   .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
     margin-bottom:.5208vw!important;
-    font-size:inherit!important;
+    font-size:clamp(11.5px,1vw,15px)!important;
     line-height:1.3!important;
     white-space:normal!important;
   }
   .bioa-footer-company-info--desktop .bioa-footer-company-info__row{
     margin-bottom:.3646vw!important;
-    font-size:inherit!important;
+    font-size:clamp(10.5px,.88vw,13px)!important;
     line-height:1.4!important;
   }
 }
@@ -3744,7 +3790,7 @@ const patchD6FooterMetaCss = `
 }
 @media(min-width:769px) and (max-width:1200px){
   .footer-bottom__wrapper{min-height:1.9792vw!important;padding:.4167vw 0!important}
-  .footer-bottom__copyright{font-size:inherit!important}
+  .footer-bottom__copyright{font-size:clamp(10px,.75vw,12px)!important}
 }
 @media(max-width:768px){
   .footer-bottom__wrapper{
@@ -3843,8 +3889,8 @@ const patchZaloIconCss = `
   }
   .whatsapp__btn .btn__text{
     margin:0!important;
-    font-size:inherit!important;
-    line-height:inherit!important;
+    font-size:clamp(12px,.95vw,15px)!important;
+    line-height:1.2!important;
     white-space:nowrap!important;
   }
   .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
