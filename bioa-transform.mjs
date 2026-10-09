@@ -44,6 +44,26 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
     font-size:clamp(20px,1.8vw,32px)!important;
     line-height:1.2!important;
   }
+  .block-product-formats .formats__cta-btn{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    min-height:clamp(34px,3vw,48px)!important;
+    padding:0 clamp(14px,1.25vw,22px)!important;
+    gap:clamp(5px,.52vw,9px)!important;
+    white-space:nowrap!important;
+  }
+  .block-product-formats .formats__cta-btn .btn__text{
+    font-size:clamp(12px,1vw,16px)!important;
+    line-height:1.2!important;
+    font-weight:600!important;
+  }
+  .block-product-formats .formats__cta-btn .btn__icon,
+  .block-product-formats .formats__cta-btn .btn__icon svg{
+    width:clamp(13px,1.1vw,18px)!important;
+    height:clamp(13px,1.1vw,18px)!important;
+    flex-shrink:0!important;
+  }
   .whatsapp__description{font-size:clamp(11px,.95vw,15px)!important}
   .whatsapp__btn .btn__text{
     font-size:clamp(12px,.95vw,15px)!important;

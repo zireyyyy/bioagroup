@@ -22,7 +22,7 @@ test("One Footer email shell rather than inherited 208px parent",async()=>{
  assert.ok(d5.includes(".footer-top__email{\n    display:flex!important"));
  assert.ok(d5.includes("width:100%!important;\n    min-width:0!important;\n    height:auto!important"));
  assert.ok(d5.includes("font-size:clamp(10.5px,.83vw,14px)!important"));
- assert.ok(d5.includes("grid-template-columns:repeat(4,minmax(0,1fr))!important"));
+ assert.ok(d5.includes("grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important"));
 });
 test("BIO-A new copy receives readable Tablet text floors without changing Merywood sections",async()=>{
  const h=await load("bioa-home-refine.mjs"),t=await load("bioa-transform.mjs");

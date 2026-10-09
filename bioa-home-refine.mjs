@@ -305,6 +305,12 @@ const patchA7Css = `
    desktop scaling. Source header/navigation stays exclusively main.css-owned.
    Owner-accepted 1201+ Desktop and <=768px Mobile variants stay untouched. */
 @media(min-width:769px) and (max-width:1200px){
+  /* BIO-A's longer Vietnamese nav labels must be readable while retaining
+     the Merywood desktop single-row navigation and source spacing. */
+  .header__nav a{
+    font-size:clamp(10px,.95vw,12px)!important;
+    white-space:nowrap!important;
+  }
   .bioa-header-actions{gap:.5208vw!important}
   .bioa-header-actions .header__contacts{gap:.5208vw!important}
   .bioa-header-actions .header__btn{
@@ -3613,7 +3619,7 @@ const patchD5FooterTabletCss = `
 @media(min-width:769px) and (max-width:1200px){
   .footer-top__wrapper{
     display:grid!important;
-    grid-template-columns:minmax(0,16.6667vw) minmax(0,1fr) minmax(0,16.6667vw)!important;
+    grid-template-columns:minmax(0,15.625vw) minmax(0,1fr) minmax(0,15.1vw)!important;
     align-items:start!important;
     column-gap:2.0833vw!important;
     row-gap:0!important;
@@ -3628,7 +3634,7 @@ const patchD5FooterTabletCss = `
   .footer-top__menu{
     grid-column:2!important;
     display:grid!important;
-    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important;
     column-gap:1.0417vw!important;
     row-gap:0!important;
     width:100%!important;
@@ -3644,7 +3650,9 @@ const patchD5FooterTabletCss = `
     font-size:clamp(11px,.88vw,14px)!important;
     line-height:1.45!important;
     white-space:normal!important;
-    overflow-wrap:break-word!important;
+    overflow-wrap:normal!important;
+    word-break:normal!important;
+    hyphens:none!important;
   }
   .footer-top__right{
     grid-column:3!important;
@@ -5507,8 +5515,17 @@ function addContactLauncher($,lang){
     var teaserShown=false;
 
     function hideTeaser(){root.classList.remove('is-teaser');}
+    /* The automatic chat suggestion is not allowed to cover the Tablet footer.
+       User-initiated chat and the avatar toggle remain available unchanged. */
+    function footerVisibleOnTablet(){
+      if(!window.matchMedia||!window.matchMedia('(min-width:769px) and (max-width:1200px)').matches)return false;
+      var footer=document.querySelector('.footer-top');
+      if(!footer)return false;
+      var bounds=footer.getBoundingClientRect();
+      return bounds.top<window.innerHeight&&bounds.bottom>0;
+    }
     function showTeaser(){
-      if(teaserShown||teaserDismissed||root.classList.contains('is-open'))return;
+      if(teaserShown||teaserDismissed||root.classList.contains('is-open')||footerVisibleOnTablet())return;
       teaserShown=true;
       root.classList.add('is-teaser');
     }
@@ -5568,6 +5585,17 @@ function addContactLauncher($,lang){
       if(root.classList.contains('is-open')&&!root.contains(e.target))close();
     });
 
+    /* Smooth Scrollbar moves content with transforms; IntersectionObserver
+       tracks the real footer in both native and source scroll modes. */
+    if(typeof IntersectionObserver==='function'){
+      var footerForTeaser=document.querySelector('.footer-top');
+      if(footerForTeaser){
+        new IntersectionObserver(function(entries){
+          if(entries.some(function(entry){return entry.isIntersecting})&&footerVisibleOnTablet()&&!root.classList.contains('is-open'))
+            hideTeaser();
+        },{threshold:0}).observe(footerForTeaser);
+      }
+    }
     var teaserTimer=setTimeout(showTeaser,4200);
     function onScroll(){
       var doc=document.documentElement;

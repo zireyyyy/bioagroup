@@ -6,13 +6,14 @@ const section=(src,start,end)=>src.slice(src.indexOf(start),src.indexOf(end,src.
 test("Footer inherits Merywood font scale at 769-1200 rather than shrinking Bio-A labels further",async()=>{
   const src=await read();
   const css=section(src,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
-  assert.ok(css.includes("grid-template-columns:repeat(4,minmax(0,1fr))!important"));
+  assert.ok(css.includes("grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important"));
   assert.ok(!css.includes("grid-template-columns:repeat(2,minmax(0,1fr))"));
   assert.ok(css.includes(".bioa-footer-company-info--desktop{\n    display:block!important"));
   assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));
   for(const forbidden of ["font-size:.7292vw!important","font-size:.6771vw!important","font-size:.8333vw!important"])
     assert.ok(!css.includes(forbidden));
-  assert.ok(css.includes("font-size:clamp(11px,.88vw,14px)!important"));\n  assert.ok(css.includes(".footer-top__email{\n    display:flex!important"));
+  assert.ok(css.includes("font-size:clamp(11px,.88vw,14px)!important"));
+  assert.ok(css.includes(".footer-top__email{\n    display:flex!important"));
   assert.ok(src.includes("@media(max-width:768px)"));
 });
 test("Zalo CTA artwork uses original source viewport scaling on desktop-like Tablet",async()=>{

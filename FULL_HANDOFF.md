@@ -1,3 +1,16 @@
+## 2026-10-09 — TABLET-SHARED-COMPACT5 — CODE CANDIDATE / OWNER QA PENDING
+Owner latest four screenshots show: Header first row cramped but now visible; BIO-A product-format CTA label "Chia sẻ ý tưởng" still disproportionately tiny; Footer four columns have poor line-break distribution; proactive Chat teaser covers Footer content. Owner explicitly requests fixing these issues sitewide (shared shell), not a Home-only patch.
+ACTUAL ROOT: Shared Header/Footer and Chat all owned by `bioa-home-refine.mjs` and rendered by `applySharedShell()` on every non-Home route and `applyHomeRefinement()` at Home; BIO-A-added formats CTA is owned by `bioa-transform.mjs` across source-based pages. Existing D5 Tablet footer grid used four equal columns despite unequal BIO-A lists, causing line wraps; teaser was always shown on timer or scroll regardless of footer intersection.
+ACTUAL CODE PATCH:
+- Shared Header existing 769–1200 rules give only BIO-A longer nav labels a small legible minimum, preserve source desktop one-row DOM, all contacts and other already fixed email pill owner.
+- Shared Footer 769–1200 row uses four content-weighted BIO-A group tracks 1.3fr/1.45fr/.82fr/.83fr, slightly rebalance left/right outer rails; natural word wrapping with no midword splits. Keep same 4 group categories, logo, company details, email/socials, original Desktop >=1201 and Mobile <=768.
+- Shared `addContactLauncher()`: automatic teaser won't show if Tablet Footer is visible; IntersectionObserver hides a teaser that was already shown when Footer appears; manual avatar/panel stays active. No submit backend or chat contents altered.
+- `bioa-transform.mjs`: actual BIO-A product-format green "Chia sẻ ý tưởng" button gains readable explicit label/icon, hitbox and spacing only at 769–1200; maintains original source form tabs, products, interaction/URLs.
+- Static regression tests changed to weighted footer tracking; fix malformed historic test string and add `tests/tablet-cross-route-regression.test.mjs` proving shared owner across routes; npm `test:responsive` includes all 5 files.
+NO production API, D1/Sheets/CRM/Resend/Turnstile, 14d maintenance/noindex, Sanity CMS, 404, Mobile <=768, Desktop >=1201 changes. Other accepted section motion/layout preserved. Rollback to gated `1cba6c5b73367b076818b6277caddcf22370d693`.
+**Owner QA** after Cloudflare deploy: (A) 834/1024/1180 CSS px Home Header/email/nav and Footer 4 single-row groups with no awkward wrapping; popup teaser hides when Footer enters viewport while avatar can still manually open; (B) Cosmetics Hub product formats tabs/products and "Chia sẻ ý tưởng" CTA at same widths, click tab and CTA; (C) VI/EN shared Header/Footer on About, Other Services, Blog, Contacts; (D) 390/768 Mobile and 1366/1440 Desktop no regression, 404 unchanged. If FAIL, send URL + viewport CSS px + screenshot. Static test/build/Cloudflare runtime not independently verified; owner full Tablet PASS PENDING.
+
+---
 ## CURRENT CHECKPOINT 2026-10-09 — TABLET-READABILITY-EMAIL4 — CODE CANDIDATE
 Owner screenshots at Tablet desktop-like width show tiny Footer, Home Hero descriptions, BIO-A product format text, Zalo CTA label, and mis-sized Header/Footer email pills. These are source responsive extension regressions, not requests to redesign.
 EXACT CODE CHANGE:
