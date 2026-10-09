@@ -223,7 +223,7 @@ const patchACss = `
   .header__logo{width:54px!important;height:54px!important;flex-basis:54px!important;margin-right:10px!important}
   .header__logo img{width:44px!important;max-width:44px!important;height:52px!important;max-height:52px!important}
   .header__nav ul{gap:13px!important}
-  .header__nav a{font-size:12px!important}
+  .header__nav a{font-size:clamp(9px,1vw,12px)!important}
   .header__contacts{gap:8px!important}
   .header__contacts + .bioa-lang{margin-left:8px!important}
   .bioa-lang + .header__btn{margin-left:8px!important}
@@ -325,9 +325,31 @@ const patchA7Css = `
   position:relative!important;
   z-index:1!important;
 }
-@media(max-width:1200px){
-  .bioa-header-actions{gap:8px!important}
-  .bioa-header-actions .header__contacts{gap:8px!important}
+/* Merywood keeps the desktop shell from 769px and scales with vw.
+   Adapt only the added BIO-A action controls in their existing owner; preserve
+   the approved >=1201px Desktop and <=768px Mobile geometry. */
+@media(min-width:769px) and (max-width:1200px){
+  .bioa-header-actions{gap:clamp(4px,.5208vw,8px)!important}
+  .bioa-header-actions .header__contacts{gap:clamp(4px,.5208vw,8px)!important}
+  .bioa-header-actions .header__btn{
+    height:clamp(28px,3.2vw,42px)!important;
+    min-height:clamp(28px,3.2vw,42px)!important;
+    padding-left:clamp(8px,1vw,20px)!important;
+    padding-right:clamp(8px,1vw,20px)!important;
+    font-size:clamp(10px,.85vw,14px)!important;
+    white-space:nowrap!important;
+  }
+  .bioa-header-actions .header__socials .socials__link{
+    width:clamp(28px,3.2vw,42px)!important;
+    height:clamp(28px,3.2vw,42px)!important;
+  }
+  .bioa-header-actions .bioa-lang{height:clamp(28px,3.2vw,42px)!important}
+  .bioa-header-actions .bioa-lang a{
+    width:clamp(22px,2.6vw,35px)!important;
+    min-width:clamp(22px,2.6vw,35px)!important;
+    height:clamp(22px,2.6vw,35px)!important;
+    font-size:clamp(10px,.85vw,12px)!important;
+  }
 }
 `;
 
@@ -1191,8 +1213,8 @@ const patchB5Css = `
 /* Mobile-only cloned footer contact header */
 .bioa-footer-mobile-head{display:none!important}
 
-@media(max-width:1200px){
-  .header__nav a{font-size:12px!important}
+@media(min-width:769px) and (max-width:1200px){
+  .header__nav a{font-size:clamp(9px,1vw,12px)!important}
 }
 
 @media(max-width:768px){
@@ -1380,7 +1402,7 @@ const patchB6Css = `
 
 /* Nav desktop: one pixel down from the approved larger setting */
 .header__nav a{font-size:16px!important}
-@media(max-width:1200px){.header__nav a{font-size:12px!important}}
+@media(min-width:769px) and (max-width:1200px){.header__nav a{font-size:clamp(9px,1vw,12px)!important}}
 
 /* Hero stats — compact geometry + genuinely light typography on every nested node */
 .block-title .info.desctop{

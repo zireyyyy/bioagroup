@@ -56,3 +56,6 @@ Every future visual change MUST state:
 - owner PASS, updated SOURCE_MAP + handoff + reversible SHA.
 
 **Definition of success:** fixing one component changes the intended behavior at the correct owner/source layer, with all device variants remaining consistent **without separately patching Desktop, Tablet and Mobile each time**. It does NOT promise every future responsive change is mechanically zero-risk; verification remains mandatory.
+
+### Original Merywood responsive CSS recovered — 2026-10-09
+The owner supplied `main.txt` in chat (11,358 lines); source recovered. `@media(max-width:768px)` is the mobile layout and `@media(min-width:769px) and (max-width:1920px)` contains the fluid desktop `vw` rules. Use actual CSS viewport, not physical Tablet inches. Never port entire stylesheet blindly or distribute third-party full CSS into public repo; preserve existing BIO-A-approved adaptations. Scope each new fix and run 3-surface regression. Current core candidate described in START_HERE.md.

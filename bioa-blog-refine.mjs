@@ -461,9 +461,9 @@ function patchBlogCss($){
 
     '@media(max-width:1024px){'+
       'body.bioa-blog-index{background-size:100% 100%,min(52vw,520px) auto!important}'+
-      '.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-2,.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-3{grid-template-columns:minmax(0,1fr)!important}'+
-    '}'+
+      '}'+
     '@media(max-width:768px){'+
+      '.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-2,.bioa-blog-detail .merywood-cg-grid.merywood-cg--cols-3{grid-template-columns:minmax(0,1fr)!important}'+
       'body.bioa-blog-index{background-size:100% 100%,min(68vw,440px) auto!important}'+
       '.bioa-blog-detail .bioa-blog-source-image .image-block__img{aspect-ratio:544/270!important}'+
       '.bioa-blog-detail .flex-table{min-width:680px!important}'+
