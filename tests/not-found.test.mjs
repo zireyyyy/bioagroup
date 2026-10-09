@@ -19,15 +19,15 @@ test("Merywood CTA DOM and arrow SVG restored without text glyph",()=>{
   assert.match(html,/class="btn__text">Back home/);
   assert.match(html,/min-width:142px;min-height:47px/);
   assert.match(html,/font-size:14px;font-weight:500/);
-  assert.match(html,/class=\\"icon btn__icon arrow\\"/);
-  assert.match(html,/<svg width=\\"20\\" height=\\"20\\"/);
-  assert.doesNotMatch(html,/aria-hidden=\\"true\\">←<\\/span>/);
+  assert.ok(html.includes('class="icon btn__icon arrow"'));
+  assert.ok(html.includes('<svg width="20" height="20"'));
+  assert.ok(!html.includes('aria-hidden="true">←</span>'));
   assert.doesNotMatch(html,/linear-gradient\(|bioa-404:before/);
   assert.match(html,/name="robots" content="noindex,nofollow,noarchive"/);
 });
 test("404 prefers the untouched owner PNG and retains old image only as temporary fallback",async()=>{
   const html=renderNotFound();
-  assert.match(html,/src="\\/assets\\/bioa-404-original\\.png"/);
+  assert.ok(html.includes('src="/assets/bioa-404-original.png"'));
   assert.match(html,/bioa-404-art\\.avif/);
   assert.match(html,/onerror=/);
   const fallback=await readFile(new URL("../assets/bioa-404-art.avif",import.meta.url));
