@@ -3,7 +3,7 @@
 Website giới thiệu công ty Bio-A Group, triển khai trên Cloudflare Pages.
 
 ## Mục tiêu bản V0.1
-- Giữ phong cách/layout từ source Merywood do chủ dự án cung cấp
+- Giữ phong cách/layout từ source do chủ dự án cung cấp
 - Việt hóa giao diện
 - Rebrand theo Bio-A Group
 - Chuẩn bị vòng lặp deploy -> kiểm thử -> sửa -> push
