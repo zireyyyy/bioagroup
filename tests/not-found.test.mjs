@@ -42,3 +42,19 @@ test("committed original PNG is byte-identical to owner-approved 404 asset",asyn
   assert.equal(png.readUInt32BE(20),870);
   assert.equal(createHash("sha256").update(png).digest("hex"),"00a6939ecab5ddbb6964a26c24d72ee56c8bf8c574f80bef07cce477cd13c076");
 });
+
+test("compact 404 uses source screenshot order: heading description contained art CTA",()=>{
+  const html=renderNotFound();
+  assert.match(html,/@media\(max-width:1200px\)/);
+  assert.match(html,/@media\(max-width:768px\)/);
+  assert.match(html,/\.bioa-404__content\{display:contents\}/);
+  assert.match(html,/\.bioa-404__title\{grid-column:1;grid-row:1/);
+  assert.match(html,/\.bioa-404__description\{grid-column:1;grid-row:2/);
+  assert.match(html,/\.bioa-404__art\{position:relative;inset:auto;z-index:auto;grid-column:1;grid-row:3/);
+  assert.match(html,/\.bioa-404__art img\{width:100%;height:auto;object-fit:contain/);
+  assert.match(html,/\.bioa-404__cta\.btn\{grid-column:1;grid-row:4/);
+  assert.match(html, /\.bioa-404__cta\.btn\{width:100%;margin-top:26px\}/);
+  assert.match(html,/\.bioa-404__art\{position:absolute;inset:0;z-index:-1;pointer-events:none\}/);
+  assert.match(html,/src="\/assets\/bioa-404-original.png"/);
+  assert.match(html,/name="robots" content="noindex,nofollow,noarchive"/);
+});

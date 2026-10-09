@@ -2222,3 +2222,21 @@ Merywood original English 404 screenshot/content -> Bio-A `bioa-404.mjs`; both `
 
 ## BIOA-404-SOURCE-DOM3 — CTA source evidence (2026-10-09)
 - Original archive `BIOA-Website.zip` → `pages/index/index.html`: actual Merywood button DOM `.btn > i.icon.btn__icon.arrow > svg 20x20 > path d="M13.75 12.25H12.25V8.81055L6.53027 14.5303L5.46973 13.4697L11.1895 7.75H7.75V6.25H13.75V12.25Z" + span.btn__text`. This is source-confirmed shared CTA structure, NOT the original 404-specific PHP/CSS. Restore markup in `bioa-404.mjs`; retain minimal route-scoped style while 404 CSS source unavailable. Original PNG still binary upload PENDING; no image PASS. 3 responsive surfaces need owner test. Status contract `docs/404_PAGE_CONTRACT.md`.
+
+## BIOA-404-RESPONSIVE-SOURCEFLOW1 — 404 Mobile/Tablet
+
+Merywood reference evidence:
+- Owner original Merywood iPhone 16 Pro screenshot (2026-10-09): title "Ooops!", description, contained 404 illustration, then full-width lower CTA. The original Merywood 404 CSS is not in archived `BIOA-Website.zip`; no claim source exact CSS parity.
+- Existing Merywood site breakpoint families include 768px and 1200px; route 404 owns its own CSS, not shared header/footer.
+
+BIO-A:
+- ROUTE `bioa-404.mjs` `renderNotFound()`; base desktop styles/protected DOM remain unchanged.
+- Compact <=1200px: CSS grid places source nodes into four rows with `display:contents` on existing wrapper; `.bioa-404__art img` height-auto contain.
+- Mobile <=768px: body padding and CTA full width; same PNG source and exact SVG.
+- Maintain `docs/404_PAGE_CONTRACT.md` for test and rollback instructions.
+
+Responsive status:
+- Desktop >1200px: OWNER PASS / PROTECTED; post-candidate regression PENDING.
+- Tablet 769-1200px: CANDIDATE, OWNER RUNTIME PENDING.
+- Mobile <=768px: CANDIDATE, OWNER RUNTIME PENDING.
+- FULL RESPONSIVE PASS: NO.
