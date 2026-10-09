@@ -1,3 +1,14 @@
+## CURRENT CHECKPOINT 2026-10-09 — TURNSTILE-RUNTIME-NEGATIVE-QA1 — TEST CANDIDATE
+
+**Production-confirmed PASS FROZEN:** maintenance Bio-A original logo/14-day owner private preview, D1→Sheets→Resend→company inbox→personal forward, popup auto-close, CRM statuses, all previously owner-approved Merywood UI. Owner explicitly restated four-phase closeout plan: (1) remaining small patches, (2) FULL TABLET PASS, (3) cleanup/hardening, (4) clean production dist/package, launch only with owner explicit approval.
+
+**Current QA scope:** no production code changes. Node native mock test suite `tests/lead-turnstile.test.mjs`, npm command `test:turnstile`, covers missing/empty/invalid tokens, wrong Turnstile action/hostname, valid response, misconfigured env; records no D1 inserts/Sheets/Resend on invalid token. Production Turnstile negative live test remains PENDING OWNER TEST. Run one authenticated test and verify 403 + D1 no ID + no Google Sheets/Resend effects; details docs/TURNSTILE_RUNTIME_QA.md. Positive lead/Resend owner confirmed earlier. Rate-limited 429 is not proof of Turnstile enforcement. Existing duplicate ID idempotency returns OK before Turnstile and causes NO new effects; use fresh ID for negative test.
+
+**Next:** owner Turnstile negative test, then only after Phase1 close move to full-site Tablet independent QA. Some Tablet status PASS component-wise; overall Tablet still PENDING. Explicit 404 screenshot is only reference, owner will supply NEW ARTWORK — **NO 404 IMPLEMENTATION until image arrives**. Sitemap/robots cleanup belongs to Phase 3/4. CMS Sanity discussed conceptually, NOT installed or current scope.
+
+**Rollback** from new docs/test-only commit to `74ac3533113db8b4d4a9a19ce677733afde16240`; no production UI/API altered. Do not roll back to public/no-gate build. Continue updates to START_HERE and NEW_CHAT_CONTINUATION_PROMPT based on active version, not legacy PMX handoff.
+
+---
 ## CURRENT CHECKPOINT — 2026-10-09 — RESEND-ACTIVATION1 OWNER-CONFIRMED PASS / LOCKED
 
 **Production-confirmed by owner (not inferred):** Resend sending DNS configured; one real test lead showed Cloudflare D1 `sheet_status = sent` and `email_status = sent`, notification email actually received at company `contact@bioagroup.vn` **and** forwarded to owner's personal mailbox. Thus the end-to-end pipeline **form → D1 → Google Sheets → Resend → company inbox → personal forward** is PASS/LOCKED. Code/config already deployed in production; no application code changes are needed for this promotion.

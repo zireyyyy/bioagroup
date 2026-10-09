@@ -1,20 +1,26 @@
 # BIO-A GROUP — START HERE — 2026-10-09
-Repo: https://github.com/zireyyyy/bioagroup; use latest main HEAD and owner's production-confirmed evidence. Documentation-only PASS promotion from prior main c869d3cda1cee5c1dd56bf23dfda2e32fefe96d7. No code or environment variables changed in this checkpoint.
 
-## Production PASS / FROZEN
-- Owner confirmed RESEND-ACTIVATION1 end-to-end LIVE PASS: D1 `sheet_status=sent`, D1 `email_status=sent`, email received at `contact@bioagroup.vn` AND forwarded to owner's personal mailbox. Sending subdomain DNS/Resend/API Key was configured and production code accepted the test. Do not reopen Resend/D1/Sheets/CRM or popup without a defect.
-- MAINTENANCE-LOGO-SESSION14D1 confirmed PASS: correct Bio-A logo and host-only HMAC signed private preview session lasting 14 days; site remains intentionally closed to public. Production requires Pages Fail closed; only explicit owner authorization may set `BIOA_SITE_MODE=public` and redeploy. `BIOA_PREVIEW_SECRET` is private and must not appear in repo/chat.
-- Prior PASS/LOCKED owner surfaces: Merywood-derived Home/shared Header/Mobile Menu/Footer/Cookie/Chat, Blog structure, Contacts, VI/EN, popup source UI & Consent, success auto-close, D1 canonical lead record, Google Sheets CRM short `bioa_` IDs and H/I/K dropdown/colors. Source authority and Desktop/Tablet/Mobile independent regression rules remain.
+Repository zireyyyy/bioagroup. Read latest main SHA before further work, owner instructions override docs.
 
-## Next active block: TURNSTILE-RUNTIME-NEGATIVE-QA1 (PENDING)
-- `TURNSTILE_SITE_KEY`/`TURNSTILE_SECRET_KEY` production configuration and `GET /api/lead/config` enabled:true/misconfigured:false previously observed. **Negative server validation of absent or invalid challenge token and no D1/Sheets/Resend side effects remains unverified.** Do not mark anti-spam full PASS based solely on configuration.
-- Then prelaunch check: authenticated site navigation, consent, popup, single legitimate test, maintenance guest/alternate domain lock, HTTPS and UI regression on Desktop/Tablet/Mobile in VI/EN. **Do not go public until owner explicitly asks.**
-- Resend API already in `functions/api/lead.js`, no code rewrite needed. Delivery to inbox owner verified. Retries for failed email not implemented; defer until requested.
+## Phase roadmap — OWNER AUTHORITY
+1. PHASE 1: owner supplies remaining small patches; each is tested and frozen individually. **Current active: TURNSTILE-RUNTIME-NEGATIVE-QA1**. Production runtime test pending. Do not auto-jump into phase 2 until this final pending QA is resolved and owner agrees.
+2. PHASE 2: FULL TABLET PASS — inspect whole website Tablet independently of already-accepted Desktop/Mobile. Some Tablet components are PASS (e.g., Footer), but SITE-WIDE Tablet is not PASS.
+3. PHASE 3: cleanup/hardening only after Tablet PASS: unused CSS/JS, duplicate selectors, Merywood residue, assets/routes/helpers, VI/EN, SEO/canonical, link and overflow QA.
+4. PHASE 4: production clean dist build and custom domain, sitemap/robots/404; final package and owner public launch approval. **404 artwork pending owner new image; must not create a guessed 404 page now.**
 
-## Architecture / operational contracts
-- GLOBAL security: `functions/_middleware.js`, all-routes `_routes.json` from `build.mjs`, Cloudflare Pages Fail closed and private 14-day owner preview.
-- COMPONENT lead pipeline: `functions/api/lead.js` → Cloudflare D1 source of truth; Google Sheets mirror; Resend optional email notification; client `assets/js/bioa-leads.js` handles UX. ROUTE website from Merywood transformations. No PMX/Woo-specific concepts.
-- DNS: Cloudflare authoritative; `notify.bioagroup.vn` Resend sender; root `bioagroup.vn` corporate mail iNET/OneMail MX/SPF/DKIM stays unchanged.
-- PASS promotion entails docs only. Rollback strategy: retain existing maintenance-enabled owner-PASS main; if Resend fails, inspect `email_status` + Resend Events and restore configuration without touching lead UI/D1/Sheets. Never revert to no-gate baseline.
+## Production-confirmed PASS/FROZEN
+- Current accepted production `bioagroup.vn` remains in maintenance with real Bio-A logo + signed owner preview 14 days. `BIOA_SITE_MODE` stays `maintenance` or unset; Pages Functions Fail closed required. Only explicit owner approval may open `public`.
+- Popup short form + auto-close, Cloudflare D1, Google Sheets CRM short IDs + H/I/K controls, Resend actual corporate email and personal forwarding PASS. `sheet_status=sent`, `email_status=sent` verified. Keep code, environment and UI untouched.
+- Previously owner-approved Merywood-derived Home, Header/Menu, Footer, Cookie/Chat, Blog, Contacts, VI/EN and page content are frozen for surfaces actually tested. Tablet must never be implied by Desktop or Mobile PASS.
 
-Authority: latest START_HERE + NEW_CHAT_CONTINUATION_PROMPT, AGENTS, WORKFLOW, SOURCE_MAP, feature docs. Historic FULL_HANDOFF sections may show superseded pending statuses; current top checkpoint overrides them.
+## Active patch checkpoint
+- `TURNSTILE-RUNTIME-NEGATIVE-QA1` — test-only/documentation candidate. Source handler (`functions/api/lead.js`) and client/lead system remain unchanged.
+- Repeatable offline tests added in `tests/lead-turnstile.test.mjs`, npm command `npm run test:turnstile`. Fake D1, fake siteverify; no external network. Negative new-lead requests must reject with 403 and cause zero inserts/deliveries; valid confirmation permits D1 continuation. See `docs/TURNSTILE_RUNTIME_QA.md`.
+- Actual Cloudflare production negative test **PENDING OWNER TEST**. Owner should execute ONE controlled malformed-token request within authenticated site and verify 403 + zero matching ID in D1 + Sheets + Resend. Already-live positive form/Resend PASS remains frozen.
+- A retry with *existing* submission ID returns `ok:true` by idempotency prior to challenge verification. It creates no new lead. Use unique ID for negative test; do not 'fix' retry semantics without evidence/owner request.
+
+## Strict boundaries
+- Do not change, leak or request `BIOA_PREVIEW_SECRET`, Resend or Google credentials. Keep all iNET/OneMail DNS untouched.
+- Do not use PMX/Woo architecture. GLOBAL middleware / ROUTE transformed pages / COMPONENT lead endpoint. Source Merywood authority; patch tiny, build and test then push and write fresh handoff.
+- Current rollback reference for this test-only patch: `74ac3533113db8b4d4a9a19ce677733afde16240`, which preserves security/production lead flow.
+- 404 artwork **PENDING**; no replacement/auto-generation. Sitemap/robots cleanup **PENDING PHASE 3/4**.
