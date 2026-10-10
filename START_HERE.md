@@ -1,3 +1,12 @@
+## 2026-10-10 — Candidate 1 redeploy request (branch-only)
+
+The owner reports setting the site public and explicitly requests a new push/redeploy to inspect Source Component Rebuild Candidate 1. This commit retriggers the connected GitHub-to-Cloudflare Pages Preview deployment (if configured). NO production merge, no content/layout/middleware/CRM changes, and no change to BIOA_SITE_MODE, 14d protection code, noindex logic, D1/Sheets/Resend/Turnstile. Candidate 1 source remains the same as `81e6b6c`. Full runtime Tablet/desktop/mobile acceptance still pending.
+
+A validation GitHub Actions workflow now checks Node 22 installation, responsive source tests, and build on candidate pushes/PRs. Build verification remains PENDING until the workflow actually runs and reports a result. Cloudflare Preview deployment and custom-domain publication are managed independently by Cloudflare, not inferred from the GitHub push. Rollback: main `b5c83ad` remains unmodified.
+
+Owner test after a confirmed Preview build: VI/EN Home Header+CTA+Footer at 834/1024/1180px, compare frozen Desktop 1366/1440 and Mobile 390/768; verify other route shared shell and Zalo interactions. Do not claim Full Tablet PASS before that.
+
+---
 # BIO-A — SOURCE COMPONENT REBUILD candidate (2026-10-10)
 
 **Authority:** current protected main b5c83ad628960456db68a1c7adc68a17e2f61a1a. This is a separate review branch; main unchanged pending verification. Merywood owner's main.txt supplies Header/Footer DOM responsive rules (769–1920px viewport-fluid, <=768px Mobile). Merywood main.txt does NOT include source CSS for the BIO-A custom project CTA, so preserve BIO-A CTA DOM and make visibility reliable at 769–1200 rather than falsely claiming exact source parity.

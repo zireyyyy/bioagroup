@@ -1,0 +1,32 @@
+name: BIO-A Candidate Build Validation
+on:
+  push:
+    branches:
+      - candidate/source-component-rebuild-tablet
+  pull_request:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  candidate-validation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact commit
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Validate candidate JavaScript syntax
+        run: |
+          node --check bioa-source-components.mjs
+          node --check bioa-home-refine.mjs
+          node --check bioa-transform.mjs
+      - name: Responsive source regression
+        run: npm run test:responsive
+      - name: Build static website
+        run: npm run build
