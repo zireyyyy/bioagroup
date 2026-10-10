@@ -5,7 +5,8 @@ test("source responsive footer retains four Bio-A columns on 769-1200",async()=>
  const end=src.indexOf("const patchCookieConsentCss = `",start);
  const css=src.slice(start,end);
  assert.ok(css.includes("@media(min-width:769px) and (max-width:1200px)"));
- assert.ok(css.includes("grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important"));
+ assert.ok(css.includes(".footer-top__menu{\n    display:flex!important"));
+ assert.ok(css.includes(".footer-top__nav:nth-child(4){flex:.88 1 0!important}"));
  assert.ok(!css.includes("grid-template-columns:repeat(2,minmax(0,1fr))"));
  assert.ok(css.includes(".bioa-footer-company-info--desktop{\n    display:block!important"));
  assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));

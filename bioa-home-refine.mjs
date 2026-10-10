@@ -3476,7 +3476,7 @@ const patchFooterInfo1Css = `
     white-space:nowrap!important;
   }
 }
-@media(max-width:1200px){
+@media(max-width:768px){
   .bioa-footer-company-info--desktop{display:none!important}
   .bioa-footer-company-info--responsive{
     display:block!important;
@@ -3612,19 +3612,22 @@ const patchC5ChannelPaletteCss = `
 
 
 const patchD5FooterTabletCss = `
-/* FOOTER-D5C — Desktop-like single row for all 769+ source viewports.
-   Merywood's viewport-sized shell remains the base. BIO-A has four approved
-   navigation groups, so those groups form four columns instead of Merywood's
-   two; previously passed Desktop >=1201 and Mobile <=768 remain untouched. */
+/* FOOTER-SOURCE-FLEX — Merywood desktop footer owns the layout from 769px.
+   BIO-A retains four approved navigation groups (vs source's two); preserve
+   the original flex structure, and adapt only the added group proportions.
+   Do not create a separate Tablet grid or hide any approved links. */
 @media(min-width:769px) and (max-width:1200px){
   .footer-top__wrapper{
-    display:grid!important;
-    grid-template-columns:minmax(0,15.625vw) minmax(0,1fr) minmax(0,15.1vw)!important;
-    align-items:start!important;
-    column-gap:2.0833vw!important;
-    row-gap:0!important;
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:space-between!important;
+    gap:1.35vw!important;
   }
-  .footer-top__left{grid-column:1!important;min-width:0!important;width:100%!important}
+  .footer-top__left{
+    flex:0 0 15vw!important;
+    min-width:0!important;
+    width:auto!important;
+  }
   .footer-top__logo img,
   .footer__logo img{
     width:6.7188vw!important;
@@ -3632,50 +3635,59 @@ const patchD5FooterTabletCss = `
     height:auto!important;
   }
   .footer-top__menu{
-    grid-column:2!important;
-    display:grid!important;
-    grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important;
-    column-gap:1.0417vw!important;
-    row-gap:0!important;
-    width:100%!important;
+    display:flex!important;
+    align-items:flex-start!important;
+    justify-content:space-between!important;
+    flex:1 1 auto!important;
+    width:auto!important;
     min-width:0!important;
-    align-content:start!important;
+    gap:1.15vw!important;
   }
-  .footer-top__nav{width:auto!important;min-width:0!important}
+  .footer-top__nav{
+    width:auto!important;
+    min-width:0!important;
+    flex:1.25 1 0!important;
+  }
+  .footer-top__nav:nth-child(2){flex:1.45 1 0!important}
+  .footer-top__nav:nth-child(3){flex:.86 1 0!important}
+  .footer-top__nav:nth-child(4){flex:.88 1 0!important}
   .footer-top__nav > ul > li:first-child > a{
-    font-size:clamp(12px,1vw,16px)!important;
-    line-height:1.22!important;
+    font-size:clamp(12px,.9vw,16px)!important;
+    line-height:1.28!important;
   }
   .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:clamp(11px,.88vw,14px)!important;
-    line-height:1.45!important;
+    font-size:clamp(11px,.82vw,14px)!important;
+    line-height:1.5!important;
     white-space:normal!important;
-    overflow-wrap:normal!important;
     word-break:normal!important;
+    overflow-wrap:normal!important;
     hyphens:none!important;
   }
   .footer-top__right{
-    grid-column:3!important;
+    flex:0 0 16.5vw!important;
     min-width:0!important;
-    width:100%!important;
-    justify-self:end!important;
+    width:auto!important;
+    align-self:flex-start!important;
   }
-  /* Earlier owner CSS gives footer email a fixed 208px shell. Keep exactly
-     one pill sized to its fluid right column; never nest two hit areas. */
+  .footer-top__contacts{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    width:100%!important;
+    gap:.65vw!important;
+  }
   .footer-top__email{
     display:flex!important;
-    align-items:center!important;
     justify-content:center!important;
+    align-items:center!important;
     width:100%!important;
     min-width:0!important;
     height:auto!important;
     padding:0!important;
     margin:0!important;
-    background:transparent!important;
     border:0!important;
-    border-radius:0!important;
+    background:transparent!important;
     box-shadow:none!important;
-    box-sizing:border-box!important;
   }
   .footer-top__email a{
     display:inline-flex!important;
@@ -3684,52 +3696,57 @@ const patchD5FooterTabletCss = `
     width:100%!important;
     min-width:0!important;
     height:clamp(30px,2.4479vw,42px)!important;
-    min-height:clamp(30px,2.4479vw,42px)!important;
-    padding:0 clamp(5px,.5208vw,10px)!important;
+    padding:0 .52vw!important;
     border-radius:clamp(9px,.8333vw,14px)!important;
-    font-size:clamp(10.5px,.83vw,14px)!important;
-    white-space:nowrap!important;
-    box-sizing:border-box!important;
+    font-size:clamp(10px,.78vw,12px)!important;
     line-height:1.15!important;
+    box-sizing:border-box!important;
+    white-space:nowrap!important;
   }
-  .footer-top__socials{width:100%!important;min-width:0!important;gap:.4167vw!important}
+  .footer-top__socials{
+    display:flex!important;
+    justify-content:space-between!important;
+    gap:.35vw!important;
+    width:100%!important;
+    min-width:0!important;
+  }
   .footer-top__socials a,
   .footer-top__socials a[aria-label="Zalo"]{
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
-    width:2.4479vw!important;
-    min-width:2.4479vw!important;
-    height:2.4479vw!important;
-    border-radius:.8333vw!important;
+    flex:0 0 clamp(25px,2.45vw,38px)!important;
+    width:clamp(25px,2.45vw,38px)!important;
+    min-width:0!important;
+    height:clamp(25px,2.45vw,38px)!important;
+    border-radius:clamp(8px,.8333vw,14px)!important;
     overflow:hidden!important;
   }
   .footer-top__socials a .bioa-zalo-icon,
   .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
-    width:1.5625vw!important;
-    height:1.5625vw!important;
-    min-width:0!important;
-    max-width:1.5625vw!important;
-    max-height:1.5625vw!important;
-    flex-basis:auto!important;
+    width:clamp(17px,1.56vw,26px)!important;
+    max-width:clamp(17px,1.56vw,26px)!important;
+    height:clamp(17px,1.56vw,26px)!important;
+    max-height:clamp(17px,1.56vw,26px)!important;
+    flex:0 0 auto!important;
   }
   .bioa-footer-company-info--desktop{
     display:block!important;
     width:100%!important;
     max-width:100%!important;
-    margin-top:1.0417vw!important;
+    margin-top:1vw!important;
   }
   .bioa-footer-company-info--responsive{display:none!important}
   .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
-    margin-bottom:.5208vw!important;
-    font-size:clamp(11.5px,1vw,15px)!important;
-    line-height:1.3!important;
+    margin-bottom:.55vw!important;
+    font-size:clamp(11.5px,.9vw,15px)!important;
+    line-height:1.35!important;
     white-space:normal!important;
   }
   .bioa-footer-company-info--desktop .bioa-footer-company-info__row{
-    margin-bottom:.3646vw!important;
-    font-size:clamp(10.5px,.88vw,13px)!important;
-    line-height:1.4!important;
+    margin-bottom:.38vw!important;
+    font-size:clamp(10.5px,.85vw,13px)!important;
+    line-height:1.45!important;
   }
 }
 `;

@@ -21,8 +21,9 @@ test("Footer category widths adapt to BIO-A content without introducing a separa
  const home=await load("bioa-home-refine.mjs");
  const footer=block(home,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
  assert.ok(footer.includes("@media(min-width:769px) and (max-width:1200px)"));
- assert.ok(footer.includes("grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important"));
- assert.ok(!footer.includes("grid-template-columns:repeat(2"));
+ assert.ok(footer.includes(".footer-top__menu{\n    display:flex!important"));
+ assert.ok(footer.includes(".footer-top__nav:nth-child(4){flex:.88 1 0!important}"));
+ assert.ok(!footer.includes("grid-template-columns:"));
  assert.ok(footer.includes("overflow-wrap:normal!important"));
  assert.ok(home.includes("@media(max-width:768px)"));
 });

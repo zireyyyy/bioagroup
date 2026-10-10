@@ -6,7 +6,8 @@ const section=(src,start,end)=>src.slice(src.indexOf(start),src.indexOf(end,src.
 test("Footer inherits Merywood font scale at 769-1200 rather than shrinking Bio-A labels further",async()=>{
   const src=await read();
   const css=section(src,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
-  assert.ok(css.includes("grid-template-columns:minmax(0,1.3fr) minmax(0,1.45fr) minmax(0,.82fr) minmax(0,.83fr)!important"));
+  assert.ok(css.includes(".footer-top__menu{\n    display:flex!important"));
+ assert.ok(css.includes(".footer-top__nav:nth-child(4){flex:.88 1 0!important}"));
   assert.ok(!css.includes("grid-template-columns:repeat(2,minmax(0,1fr))"));
   assert.ok(css.includes(".bioa-footer-company-info--desktop{\n    display:block!important"));
   assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));
