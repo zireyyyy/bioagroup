@@ -41,7 +41,7 @@ try {
        '.footer-top__menu','.footer-top__nav','.footer-top__nav > ul > li:not(:first-child) > a',
        '.footer-top__right','.footer-top__email','.footer-top__email a','.footer-top__socials',
        '.footer-top__socials a[aria-label="Zalo"]','.footer-top__socials .bioa-zalo-icon',
-       '.footer-top__socials a[aria-label="WhatsApp"]'
+       '.footer-top__socials a[aria-label="WhatsApp"]','.bioa-contact-fab__toggle','.bioa-chat__teaser'
      ];
      const values={};
      for(const sel of list){
@@ -85,7 +85,19 @@ try {
      assert.ok(ratio>expected*.80 && ratio<expected*1.20,
        selector+' must shrink proportionally to the desktop reference @'+width);
    }
-   const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
+   for(const selector of ['.header__logo','.header__logo img','.footer-top__left','.footer-top__email a','.footer-top__socials a[aria-label="Zalo"]','.footer-top__socials .bioa-zalo-icon','.bioa-contact-fab__toggle']){
+     const tablet=cur.values[selector],reference=desktop.values[selector];
+     assert.ok(tablet&&reference&&tablet.w>0&&reference.w>0,'component geometry present '+selector);
+     const expected=reference.w*width/1440;
+     console.log('SHELL_SCALE_RATIO '+JSON.stringify({width,selector,actual:tablet.w,reference:reference.w,expected}));
+     assert.ok(Math.abs(tablet.w-expected)<Math.max(2,expected*.10),selector+' must scale like approved Desktop @'+width);
+   }
+   const footer=cur.values['.footer-top__wrapper'];
+   assert.ok(footer?.grid && footer.grid!=='none','approved BIO-A Desktop footer grid retained @'+width);
+   const socials=cur.values['.footer-top__socials a[aria-label="Zalo"]'];
+   const art=cur.values['.footer-top__socials .bioa-zalo-icon'];
+   assert.ok(art.w<=socials.w&&art.h<=socials.h,'Zalo artwork fits within social button @'+width);
+      const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
    assert.ok(email&&button&&Math.abs(email.h-button.h)<2,'Header contact alignment @'+width);
  }
 } finally {
