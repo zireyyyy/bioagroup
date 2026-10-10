@@ -2,7 +2,9 @@ name: BIO-A Candidate Build Validation
 on:
   push:
     branches:
+      - main
       - candidate/source-component-rebuild-tablet
+      - candidate/tablet-source-recovery-20261010
   pull_request:
     branches:
       - main
@@ -11,7 +13,7 @@ permissions:
 jobs:
   candidate-validation:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Checkout exact commit
         uses: actions/checkout@v4
@@ -21,12 +23,19 @@ jobs:
           node-version: '22'
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-      - name: Validate candidate JavaScript syntax
+      - name: Validate changed JavaScript syntax
         run: |
           node --check bioa-source-components.mjs
           node --check bioa-home-refine.mjs
           node --check bioa-transform.mjs
+          node --check tests/tablet-browser-smoke.mjs
       - name: Responsive source regression
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Install browser smoke dependencies
+        run: |
+          npm install --no-save --no-audit --no-fund playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify real component sizes at Tablet viewports
+        run: node tests/tablet-browser-smoke.mjs

@@ -1,3 +1,23 @@
+# BIO-A CURRENT — TABLET SOURCE RECOVERY2 — CANDIDATE
+
+## 2026-10-10 — BIOA-TABLET-SOURCE-RECOVERY2 (candidate, screenshot follow-up)
+
+Owner sent four actual tablet runtime screenshots after the production Source Component Rebuild commit `bf5b6c6`. They show: (1) Header email visibly taller than adjacent Zalo/language/CTA and small nav labels; (2) project CTA overly short with unreadable title/description/label (no longer blank); (3) BIO-A product formats tabs, list, description and heading remain too small; (4) footer Zalo artwork is much larger than its adjacent WhatsApp/Facebook/Telegram icons, with microtype across four BIO-A columns and company details. The source screenshot also shows horizontal page scrolling; investigate any remaining excess width using browser measurements rather than globally suppressing scrolling. Other Home sections, 404, Mobile and Desktop PASS frozen.
+
+**Verified cascade root causes:** `patchA7Css` still assigns Header email link `min-height:42px!important` outside media queries. The new source owner overrode `height` but not `min-height`, so browser honors the stale 42px minimum. `patchZaloIconCss` sets Footer Zalo to `30px` `flex-basis:30px!important` at a higher CSS specificity than the generic source owner. These are proven rule conflicts. BIO-A-added project CTA and formats are using 1920-derived `vw` typography without a content-length floor, despite having more text than Merywood.
+
+**Actual patch:**
+- `bioa-source-components.mjs`: in its **existing and only 769–1200** media block, set Header email `min-height:0` and align email/social/lang/consult to shared accessible hit heights, while retaining source Header flex/DOM; protect CTA title/body/link readability with min-height ~165px and line-height/font floors; make Footer Zalo more specific with artwork, width, height **and flex-basis** bound to the same source icon slot. Improve Footer four-column/company text floors without changing columns or order.
+- `bioa-transform.mjs`: in the already-existing added-product-formats 769–1200 owner only, set type/size floors on BIO-A tabs, items and description; no markup or interaction change.
+- Add `tests/tablet-regression-screenshot-20261010.test.mjs` static checks and `tests/tablet-browser-smoke.mjs` that starts a local built-site server and uses actual Playwright Chromium computed layout at viewport widths 834,1024,1180. CI workflow runs responsive tests, build and browser checks. Real browser checks are a separate gate and must not be reported PASS until GitHub Actions confirms.
+
+**Deployment workflow:** validate new candidate on branch `candidate/tablet-source-recovery-20261010` before fast-forwarding `main` with owner-requested fix. Preserve main `bf5b6c6` as rollback until owner runtime PASS. GitHub CI does not prove Cloudflare finished deployment. Full Tablet still FAIL/PENDING until owner checks source parity after deployment.
+
+**Protected surfaces:** Merywood breakpoint 769+ Desktop-like, <=768 Mobile unchanged; >=1201 Desktop CSS unchanged; 404 PASS; Hero five accepted stats; shared VI/EN; Footer company identity and all four BIO-A columns preserved; forms and lead pipeline D1/Sheets/Resend, Turnstile, maintenance 14d/noindex middleware untouched; Sanity Free future only.
+
+**Owner QA:** after confirmed production deployment compare at 834/1024/1180 CSS px: Home Header equal-height email/Zalo/lang/CTA and readable nav; project CTA full title, description and Zalo button on first load and after scroll; product-format tabs and list readable; Footer four columns+email/socials with same-size Zalo and no overflow. Check VI/EN shared header/footer on About, Cosmetics, Other Services, Blog, Contact. Regression at 390/768 Mobile and 1366/1440 Desktop must remain unchanged. Report each FAIL with screenshot/route/viewport.
+
+---
 ## 2026-10-10 — Candidate 1 redeploy request (branch-only)
 
 The owner reports setting the site public and explicitly requests a new push/redeploy to inspect Source Component Rebuild Candidate 1. This commit retriggers the connected GitHub-to-Cloudflare Pages Preview deployment (if configured). NO production merge, no content/layout/middleware/CRM changes, and no change to BIOA_SITE_MODE, 14d protection code, noindex logic, D1/Sheets/Resend/Turnstile. Candidate 1 source remains the same as `81e6b6c`. Full runtime Tablet/desktop/mobile acceptance still pending.
