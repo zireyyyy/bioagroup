@@ -7,7 +7,7 @@
     "build": "node build.mjs",
     "test:turnstile": "node --test tests/lead-turnstile.test.mjs",
     "test:404": "node --test tests/not-found.test.mjs",
-    "test:responsive": "node --test tests/tablet-header-compact.test.mjs tests/tablet-desktop-fluid.test.mjs tests/tablet-source-regression.test.mjs tests/tablet-type-email-regression.test.mjs tests/tablet-cross-route-regression.test.mjs tests/tablet-footer-merywood-flex.test.mjs tests/tablet-cta-reveal-and-layout.test.mjs tests/source-component-rebuild-contract.test.mjs tests/tablet-regression-screenshot-20261010.test.mjs"
+    "test:responsive": "node --test tests/tablet-header-compact.test.mjs tests/tablet-desktop-fluid.test.mjs tests/tablet-source-regression.test.mjs tests/tablet-type-email-regression.test.mjs tests/tablet-cross-route-regression.test.mjs tests/tablet-footer-merywood-flex.test.mjs tests/tablet-cta-reveal-and-layout.test.mjs tests/source-component-rebuild-contract.test.mjs tests/tablet-desktop-scale-contract.test.mjs"
   },
   "engines": {
     "node": ">=20"

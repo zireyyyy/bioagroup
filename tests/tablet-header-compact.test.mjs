@@ -14,5 +14,5 @@ test('Header inherits Merywood DOM and has just one tablet CSS owner',async()=>{
  assert.ok(s.includes("normalizeHeaderActions($);"));
  assert.ok(css.includes('.header .header__wrapper'));
  assert.ok(css.includes('.header .bioa-header-actions'));
- assert.ok(css.includes('height:clamp(30px,2.4479vw,42px) !important'));
+ assert.ok(css.includes('height:2.4479vw !important'));
 });
