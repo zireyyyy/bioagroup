@@ -1,3 +1,10 @@
+## 2026-10-10 — MERYWOOD-DESKTOP-SCALE-RESTORE — candidate only
+
+Owner rejected production e0a9c53 because independently imposed clamp(px,vw,px) minimums changed the Desktop-co-shrinking-into-Tablet system. EXACT Merywood owner-supplied main.txt reviewed: 769–1920px uses html/body font-size:.8333vw, header/email/button height 2.4479vw, footer Merywood Flex and viewport spacing. Owner requires 769px+ preserve Desktop-like structure, <=768 Mobile frozen; no whole-page transform:scale. This **candidate** removes the independently introduced 769–1200 clamp floors in bioa-source-components.mjs and bioa-transform.mjs; retains only two targeted cascade fixes: legacy BIO-A Header email min-height 42px is countered with min-height:0 while retaining Merywood height 2.4479vw; Zalo footer 30px forced artwork flex-basis is countered by a specific rule setting image dimensions and basis to 1.5625vw. No new breakpoint, no change to layout/DOM outside these source components.
+
+Do not state Full Tablet PASS without actual cross-viewport visual parity. The previous pixel-minimum Chromium assertions were inappropriate for the user's parity requirement and disabled in candidate CI, pending ratio-driven browser regression. Other owner PASS surfaces (Desktop >=1201, Mobile <=768, 404, lead pipeline, Cloudflare security, Sanity FUTURE) are untouched. Main remains e0a9c53969088fe87a69cb8eb58f24cd37973637 until explicit owner approval after preview. Rollback/candidate base: e0a9c53. QA: compare Tablet 834/1024/1180 against Merywood Desktop-co-shrink for Header, Footer, CTA and product formats; check VI/EN Home and shared shell routes; verify link interactions; also Desktop 1366/1440 and Mobile 390/768 frozen. This candidate is deliberately a return to Desktop co-scale, not an attempt to make Tablet text separately bigger.
+
+---
 # BIO-A CURRENT — TABLET SOURCE RECOVERY2 — CANDIDATE
 
 ## 2026-10-10 — BIOA-TABLET-SOURCE-RECOVERY2 (candidate, screenshot follow-up)
