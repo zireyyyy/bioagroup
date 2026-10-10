@@ -40,7 +40,7 @@ try {
        '.footer-top','.footer-top__wrapper','.footer-top__left','.footer-top__logo img',
        '.footer-top__menu','.footer-top__nav','.footer-top__nav > ul > li:not(:first-child) > a',
        '.footer-top__right','.footer-top__email','.footer-top__email a','.footer-top__socials',
-       '.footer-top__socials a[aria-label="Zalo"]',
+       '.footer-top__socials a[aria-label="Zalo"]','.footer-top__socials .bioa-zalo-icon',
        '.footer-top__socials a[aria-label="WhatsApp"]','.footer-top__socials a[aria-label="Facebook"]','.footer-top__socials a[aria-label="Telegram"]','.footer-top__socials a[aria-label="WhatsApp"] svg','.footer-top__socials a[aria-label="Zalo"] img','.bioa-contact-fab__toggle','.bioa-chat__teaser'
      ];
      const values={};
