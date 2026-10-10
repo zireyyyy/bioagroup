@@ -11,7 +11,7 @@ test('Merywood Desktop remains viewport-fluid on Tablet, without per-widget clam
  assert.ok(css.includes('.footer-top .footer-top__wrapper'));
  assert.ok(css.includes('grid-template-columns:22.2222vw minmax(0,1fr) 14.4444vw'));
  assert.ok(css.includes('.footer-top .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon'));
- assert.ok(css.includes('flex:0 0 2.0833vw !important'));
+ assert.ok(css.includes('flex:0 0 1.5972vw !important'));
 });
 test('BIO-A formats return to shared 1920-relative scale and approved layout',async()=>{
  const t=await read('bioa-transform.mjs');
