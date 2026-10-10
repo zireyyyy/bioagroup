@@ -6,6 +6,7 @@ on:
       - candidate/source-component-rebuild-tablet
       - candidate/tablet-source-recovery-20261010
       - candidate/merywood-desktop-scale-restore
+      - candidate/bioa-desktop-shell-scale9
   pull_request:
     branches:
       - main
