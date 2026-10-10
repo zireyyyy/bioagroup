@@ -10,6 +10,18 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
 @media (min-width:769px) and (max-width:1200px) {
   /* SOURCE HEADER — original logo/nav shell, BIO-A actions in source flow */
   .header .header__wrapper { display:flex !important; align-items:center !important; min-width:0 !important; }
+  /* Source Desktop 1440 approved BIO-A image is 58x58 shell / 48x56 artwork.
+     Scale that SAME Desktop identity alongside the original Merywood menu. */
+  .header .header__logo {
+    width:4.0278vw !important; min-width:4.0278vw !important;
+    height:4.0278vw !important; flex:0 0 4.0278vw !important;
+    margin-right:0 !important; overflow:visible !important;
+  }
+  .header .header__logo img {
+    display:block !important; width:3.3333vw !important; max-width:3.3333vw !important;
+    height:3.8889vw !important; max-height:3.8889vw !important;
+    object-fit:contain !important;
+  }
   .header .header__nav { min-width:0 !important; margin-right:auto !important; }
   .header .header__nav > ul { display:flex !important; flex-wrap:nowrap !important; }
   .header .header__nav > ul > li > a { white-space:nowrap !important; font-size:inherit !important; }
@@ -66,33 +78,34 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   /* SOURCE FOOTER — Merywood flex, BIO-A-approved four groups in place.
      All four footer columns and company rows remain in the original DOM. */
   .footer-top .footer-top__wrapper {
-    display:flex !important; align-items:flex-start !important; justify-content:space-between !important;
-    gap:1.5625vw !important;
+    display:grid !important; align-items:start !important;
+    grid-template-columns:22.2222vw minmax(0,1fr) 14.4444vw !important;
+    column-gap:2vw !important;
   }
   .footer-top .footer-top__left {
-    display:block !important; flex:0 0 14.5833vw !important; min-width:0 !important; width:auto !important;
+    display:block !important; flex:none !important; min-width:0 !important; width:100% !important;
   }
   .footer-top .footer-top__logo img,
   .footer-top .footer__logo img {
     width:6.7188vw !important; max-width:6.7188vw !important; height:auto !important;
   }
   .footer-top .footer-top__menu {
-    display:flex !important; align-items:flex-start !important; justify-content:space-between !important;
-    flex:1 1 0 !important; min-width:0 !important; width:auto !important; gap:1.0417vw !important;
+    display:grid !important; align-items:start !important;
+    grid-template-columns:minmax(0,1.08fr) minmax(0,1.18fr) minmax(0,.86fr) minmax(0,.86fr) !important;
+    column-gap:1.45vw !important; gap:1.45vw !important;
+    min-width:0 !important; width:100% !important;
   }
-  .footer-top .footer-top__nav { flex:1.25 1 0 !important; min-width:0 !important; width:auto !important; }
-  .footer-top .footer-top__nav:nth-child(2) { flex-grow:1.45 !important; }
-  .footer-top .footer-top__nav:nth-child(3) { flex-grow:.86 !important; }
-  .footer-top .footer-top__nav:nth-child(4) { flex-grow:.88 !important; }
+  .footer-top .footer-top__nav { flex:none !important; min-width:0 !important; width:auto !important; }
   .footer-top .footer-top__nav > ul > li:first-child > a {
-    font-size:.9375vw !important; line-height:1.3 !important;
+    font-size:1.25vw !important; line-height:1.2 !important;
   }
   .footer-top .footer-top__nav > ul > li:not(:first-child) > a {
     font-size:.8333vw !important; line-height:1.45 !important;
     white-space:normal !important; overflow-wrap:normal !important; word-break:normal !important;
   }
   .footer-top .footer-top__right {
-    display:block !important; flex:0 0 16.1458vw !important; min-width:0 !important; width:auto !important;
+    display:block !important; flex:none !important; min-width:0 !important;
+    width:100% !important; justify-self:end !important;
   }
   .footer-top .footer-top__contacts {
     display:flex !important; flex-direction:column !important; align-items:stretch !important;
@@ -106,35 +119,79 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   .footer-top .footer-top__email a {
     display:inline-flex !important; align-items:center !important; justify-content:center !important;
     box-sizing:border-box !important; width:100% !important; min-width:0 !important;
-    height:2.4479vw !important; padding:0 .5208vw !important; border-radius:.8333vw !important;
-    font-size:.8333vw !important; line-height:1 !important; white-space:nowrap !important;
+    height:3.1944vw !important; min-height:0 !important; max-height:3.1944vw !important;
+    padding:0 .5208vw !important; border-radius:.9028vw !important;
+    font-size:.9028vw !important; line-height:1 !important; white-space:nowrap !important;
   }
   .footer-top .footer-top__socials {
     display:flex !important; align-items:center !important; justify-content:space-between !important;
-    width:100% !important; min-width:0 !important; gap:.4167vw !important;
+    width:100% !important; height:auto !important; min-height:0 !important;
+    min-width:0 !important; gap:.5556vw !important;
   }
   .footer-top .footer-top__socials .socials__link {
     display:inline-flex !important; align-items:center !important; justify-content:center !important;
-    box-sizing:border-box !important; flex:0 0 2.4479vw !important;
-    width:2.4479vw !important; min-width:0 !important; height:2.4479vw !important;
-    border-radius:.8333vw !important; overflow:hidden !important;
+    box-sizing:border-box !important; flex:0 0 3.1944vw !important;
+    width:3.1944vw !important; min-width:0 !important; height:3.1944vw !important;
+    min-height:0 !important; max-height:3.1944vw !important;
+    border-radius:.9028vw !important; overflow:hidden !important;
   }
   .footer-top .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon {
-    width:1.5625vw !important; max-width:1.5625vw !important;
-    height:1.5625vw !important; max-height:1.5625vw !important;
-    flex:0 0 1.5625vw !important;
+    width:2.0833vw !important; max-width:2.0833vw !important;
+    height:2.0833vw !important; max-height:2.0833vw !important;
+    flex:0 0 2.0833vw !important;
   }
   .footer-top .bioa-footer-company-info--desktop {
-    display:block !important; width:100% !important; max-width:100% !important; margin-top:1.0417vw !important;
+    display:block !important; width:100% !important; max-width:100% !important;
+    margin-top:1.3889vw !important;
+  }
+  .footer-top .footer-top__socials a[aria-label="Zalo"] {
+    width:3.1944vw !important; min-width:0 !important; max-width:3.1944vw !important;
+    flex:0 0 3.1944vw !important;
+  }
+  .footer-top .footer-top__socials .socials__link svg {
+    width:1.5972vw !important; height:1.5972vw !important;
+    max-width:1.5972vw !important; max-height:1.5972vw !important;
+    flex:0 0 auto !important;
   }
   .footer-top .bioa-footer-company-info--responsive { display:none !important; }
   .footer-top .bioa-footer-company-info--desktop .bioa-footer-company-info__title {
-    font-size:.7813vw !important; line-height:1.35 !important; white-space:normal !important;
+    font-size:1.0417vw !important; line-height:1.3 !important; white-space:normal !important;
   }
   .footer-top .bioa-footer-company-info--desktop .bioa-footer-company-info__row {
-    font-size:.6510vw !important; line-height:1.45 !important;
+    font-size:.8681vw !important; line-height:1.45 !important;
   }
 
+  /* Owner-added chat launcher uses the SAME desktop scale as the Page shell.
+     Desktop toggle 68px and avatar 68px at 1440 => 4.7222vw on Tablet. */
+  .bioa-contact-fab {
+    right:1.5278vw !important; bottom:1.5278vw !important;
+    gap:.8333vw !important;
+  }
+  .bioa-contact-fab .bioa-contact-fab__toggle {
+    box-sizing:border-box !important;
+    width:4.7222vw !important; height:4.7222vw !important;
+    min-width:4.7222vw !important; min-height:4.7222vw !important;
+    padding:0 !important; border-width:.2083vw !important;
+  }
+  .bioa-contact-fab .bioa-contact-fab__toggle img {
+    display:block !important; width:100% !important; height:100% !important;
+    object-fit:contain !important;
+  }
+  .bioa-contact-fab .bioa-contact-fab__toggle:after {
+    width:.8333vw !important; height:.8333vw !important;
+    right:.2778vw !important; bottom:.4167vw !important;
+    border-width:.1389vw !important;
+  }
+  .bioa-contact-fab .bioa-chat__teaser {
+    right:5.2778vw !important; bottom:.5556vw !important;
+    width:23.6111vw !important; max-width:calc(100vw - 6.5vw) !important;
+    min-height:5.1389vw !important; padding:.7639vw 2.7778vw .7639vw .7639vw !important;
+    gap:.8333vw !important;
+  }
+  .bioa-contact-fab .bioa-chat__teaser-avatar {
+    width:3.3333vw !important; height:3.3333vw !important;
+    flex:0 0 3.3333vw !important;
+  }
   /* BIO-A-added CTA — preserve Desktop row and real link; never allow the
      scroll-reveal observer to leave its content invisible on Tablet. */
   .whatsapp-wrapper { margin-top:3.125vw !important; padding:0 1.3021vw !important; }
