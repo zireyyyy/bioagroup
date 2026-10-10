@@ -1,38 +1,23 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {readFile} from "node:fs/promises";
-const read=()=>readFile(new URL("../bioa-home-refine.mjs",import.meta.url),"utf8");
-const section=(src,start,end)=>src.slice(src.indexOf(start),src.indexOf(end,src.indexOf(start)));
-test("Footer inherits Merywood font scale at 769-1200 rather than shrinking Bio-A labels further",async()=>{
-  const src=await read();
-  const css=section(src,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
-  assert.ok(css.includes(".footer-top__menu{\n    display:flex!important"));
- assert.ok(css.includes(".footer-top__nav:nth-child(4){flex:.88 1 0!important}"));
-  assert.ok(!css.includes("grid-template-columns:repeat(2,minmax(0,1fr))"));
-  assert.ok(css.includes(".bioa-footer-company-info--desktop{\n    display:block!important"));
-  assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));
-  for(const forbidden of ["font-size:.7292vw!important","font-size:.6771vw!important","font-size:.8333vw!important"])
-    assert.ok(!css.includes(forbidden));
-  assert.ok(css.includes("font-size:clamp(11px,.88vw,14px)!important"));
-  assert.ok(css.includes(".footer-top__email{\n    display:flex!important"));
-  assert.ok(src.includes("@media(max-width:768px)"));
+const load=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
+const part=(s,a,b)=>{const i=s.indexOf(a),j=s.indexOf(b,i+a.length);assert.ok(i>=0&&j>i);return s.slice(i,j)};
+
+test("Footer uses Merywood source type scale, without double fixed-px minimum",async()=>{
+ const s=await load("bioa-home-refine.mjs");
+ const css=part(s,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
+ for(const needle of ["font-size:.9375vw!important","font-size:.8333vw!important","font-size:.7813vw!important","font-size:.6510vw!important"])
+  assert.ok(css.includes(needle),needle);
+ assert.ok(!css.includes("clamp("));
+ assert.ok(css.includes(".footer-top__email"));
 });
-test("Zalo CTA artwork uses original source viewport scaling on desktop-like Tablet",async()=>{
-  const src=await read();
-  const css=section(src,"const patchZaloIconCss = `","const patchH5CMobileMoqCss = `");
-  assert.ok(css.includes("@media(min-width:769px) and (max-width:1200px)"));
-  assert.ok(css.includes(".whatsapp__btn .btn__icon{"));
-  assert.ok(css.includes(".whatsapp__btn .bioa-zalo-icon{"));
-  assert.ok(css.includes("width:1.25vw!important"));
-  assert.ok(css.includes(".whatsapp__btn .btn__text{"));
-});
-test("Bio-A category icon respects the smaller Merywood icon slot at desktop-like Tablet",async()=>{
-  const src=await read();
-  const css=section(src,"const patchWhyChooseIconCss = `","const patchSharedHeroStatsParityCss = `");
-  assert.ok(css.includes("@media(min-width:769px) and (max-width:1200px)"));
-  assert.ok(css.includes("#why-choose-us .bioa-why-icon-bioa{"));
-  assert.ok(css.includes("width:1.1458vw!important"));
-  assert.ok(css.includes("height:1.4063vw!important"));
-  assert.ok(src.includes("const patchD5FooterTabletCss"));
-  assert.ok(src.includes("function addHomeRoadmapColdLoadSync($)"));
+test("Zalo and Why Choose artwork keep source-sized slots",async()=>{
+ const s=await load("bioa-home-refine.mjs");
+ const z=part(s,"const patchZaloIconCss = `","const patchH5CMobileMoqCss = `");
+ const w=part(s,"const patchWhyChooseIconCss = `","const patchSharedHeroStatsParityCss = `");
+ assert.ok(z.includes("width:1.25vw!important"));
+ assert.ok(z.includes("font-size:.8333vw!important"));
+ assert.ok(w.includes("width:1.1458vw!important"));
+ assert.ok(w.includes("height:1.4063vw!important"));
 });

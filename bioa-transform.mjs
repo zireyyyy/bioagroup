@@ -33,41 +33,48 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
 /* Product format chooser is BIO-A-added. Keep Merywood source 769px
    desktop grid; only restore text readability, not card/section geometry. */
 @media(min-width:769px) and (max-width:1200px){
-  .block-product-formats .formats__tab,
+  /* Same ratio as Merywood's 1920px Desktop source. These selectors belong
+     to BIO-A-added elements, not to the original source components. */
+  .whatsapp-wrapper{margin-top:3.125vw!important;padding:0 1.3021vw!important}
+  .whatsapp{border-radius:3.125vw!important;padding:2.0833vw 2.6042vw!important}
+  .whatsapp__content{gap:2.0833vw!important}
+  .whatsapp__title{font-size:1.5625vw!important;margin-bottom:.3125vw!important}
+  .whatsapp__description{font-size:.8333vw!important;max-width:32.2917vw!important}
+  .whatsapp__btn{
+    min-width:17.7083vw!important;height:3.4375vw!important;
+    padding:0 2.0833vw!important;gap:.625vw!important;
+    border-radius:.9375vw!important;
+  }
+  .whatsapp__btn .btn__text{font-size:.8333vw!important;line-height:1.2!important}
+  .whatsapp__decoration{
+    top:-21.875vw!important;right:-9.375vw!important;
+    width:58.3333vw!important;height:58.3333vw!important;
+  }
+  .block-product-formats .formats{padding:2.3438vw 3.125vw!important;border-radius:2.3438vw!important}
+  .block-product-formats .formats__tabs{
+    gap:.5208vw!important;margin-bottom:1.8229vw!important;padding-bottom:1.8229vw!important;
+  }
+  .block-product-formats .formats__tab{
+    height:2.4479vw!important;padding:0 1.1458vw!important;
+    border-radius:.8333vw!important;font-size:.8333vw!important;
+  }
+  .block-product-formats .formats__panels{min-height:6.25vw!important}
+  .block-product-formats .formats__list{gap:.7292vw 1.6667vw!important}
   .block-product-formats .formats__item,
-  .block-product-formats .formats__more,
-  .block-product-formats .formats__cta-description{
-    font-size:clamp(11px,.92vw,14px)!important;
-    line-height:1.45!important;
-  }
-  .block-product-formats .formats__cta-title{
-    font-size:clamp(20px,1.8vw,32px)!important;
-    line-height:1.2!important;
-  }
+  .block-product-formats .formats__more{gap:.5208vw!important;font-size:.8333vw!important}
+  .block-product-formats .formats__cta{margin-top:3.9063vw!important}
+  .block-product-formats .formats__cta-content{gap:2.0833vw!important}
+  .block-product-formats .formats__cta-title{font-size:1.6667vw!important;line-height:1.2!important}
+  .block-product-formats .formats__cta-description{font-size:.8333vw!important;line-height:1.45!important}
   .block-product-formats .formats__cta-btn{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    min-height:clamp(34px,3vw,48px)!important;
-    padding:0 clamp(14px,1.25vw,22px)!important;
-    gap:clamp(5px,.52vw,9px)!important;
-    white-space:nowrap!important;
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    min-height:2.5vw!important;padding:0 1.1458vw!important;
+    gap:.5208vw!important;white-space:nowrap!important;
   }
-  .block-product-formats .formats__cta-btn .btn__text{
-    font-size:clamp(12px,1vw,16px)!important;
-    line-height:1.2!important;
-    font-weight:600!important;
-  }
+  .block-product-formats .formats__cta-btn .btn__text{font-size:.8333vw!important;line-height:1.2!important;font-weight:600!important}
   .block-product-formats .formats__cta-btn .btn__icon,
   .block-product-formats .formats__cta-btn .btn__icon svg{
-    width:clamp(13px,1.1vw,18px)!important;
-    height:clamp(13px,1.1vw,18px)!important;
-    flex-shrink:0!important;
-  }
-  .whatsapp__description{font-size:clamp(11px,.95vw,15px)!important}
-  .whatsapp__btn .btn__text{
-    font-size:clamp(12px,.95vw,15px)!important;
-    line-height:1.2!important;
+    width:.9375vw!important;height:.9375vw!important;flex-shrink:0!important;
   }
 }
 

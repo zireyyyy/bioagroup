@@ -305,53 +305,35 @@ const patchA7Css = `
    desktop scaling. Source header/navigation stays exclusively main.css-owned.
    Owner-accepted 1201+ Desktop and <=768px Mobile variants stay untouched. */
 @media(min-width:769px) and (max-width:1200px){
-  /* BIO-A's longer Vietnamese nav labels must be readable while retaining
-     the Merywood desktop single-row navigation and source spacing. */
-  .header__nav a{
-    font-size:clamp(10px,.95vw,12px)!important;
-    white-space:nowrap!important;
-  }
-  .bioa-header-actions{gap:.5208vw!important}
+  /* Desktop Merywood remains the authority at 769+. Scale ONLY BIO-A
+     additions in the source's exact viewport units; do not create Tablet UI. */
+  .header__nav a{font-size:inherit!important;white-space:nowrap!important}
+  .bioa-header-actions,
   .bioa-header-actions .header__contacts{gap:.5208vw!important}
   .bioa-header-actions .header__btn{
-    height:clamp(28px,2.4479vw,42px)!important;
-    min-height:clamp(28px,2.4479vw,42px)!important;
-    padding:0 clamp(8px,1.1458vw,20px)!important;
-    font-size:clamp(10px,.85vw,14px)!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    white-space:nowrap!important;
+    height:2.4479vw!important;min-height:2.4479vw!important;
+    padding:0 1.1458vw!important;font-size:inherit!important;
+    border-radius:.8333vw!important;white-space:nowrap!important;
   }
   .bioa-header-actions .header__socials .socials__link{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:clamp(28px,2.4479vw,42px)!important;
-    min-width:clamp(28px,2.4479vw,42px)!important;
-    height:clamp(28px,2.4479vw,42px)!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    overflow:hidden!important;
+    display:inline-flex!important;align-items:center!important;justify-content:center!important;
+    width:2.4479vw!important;min-width:2.4479vw!important;
+    height:2.4479vw!important;border-radius:.8333vw!important;overflow:hidden!important;
   }
   .bioa-header-actions .header__socials .bioa-zalo-icon,
   .bioa-header-actions .header__socials .socials__link svg{
-    width:clamp(14px,1.4583vw,20px)!important;
-    max-width:clamp(14px,1.4583vw,20px)!important;
-    height:clamp(14px,1.4583vw,20px)!important;
-    max-height:clamp(14px,1.4583vw,20px)!important;
-    flex:0 0 auto!important;
-    object-fit:contain!important;
+    width:1.4583vw!important;max-width:1.4583vw!important;
+    height:1.4583vw!important;max-height:1.4583vw!important;
+    flex:0 0 auto!important;object-fit:contain!important;
   }
   .bioa-header-actions .bioa-lang{
-    height:clamp(28px,2.4479vw,42px)!important;
-    padding:clamp(2px,.1563vw,3px)!important;
-    margin-left:.5208vw!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
+    height:2.4479vw!important;padding:.1563vw!important;
+    margin-left:.5208vw!important;border-radius:.8333vw!important;
   }
   .bioa-header-actions .bioa-lang a{
-    width:clamp(22px,1.8229vw,35px)!important;
-    min-width:clamp(22px,1.8229vw,35px)!important;
-    height:clamp(22px,1.8229vw,35px)!important;
-    border-radius:clamp(7px,.5208vw,10px)!important;
-    font-size:clamp(10px,.8333vw,12px)!important;
+    width:1.8229vw!important;min-width:1.8229vw!important;
+    height:1.8229vw!important;border-radius:.5208vw!important;
+    font-size:.8333vw!important;
   }
 }
 `;
@@ -397,11 +379,11 @@ const patchA8Css = `
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
-    height:clamp(28px,2.4479vw,42px)!important;
-    min-height:clamp(28px,2.4479vw,42px)!important;
-    padding:0 clamp(7px,.85vw,14px)!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    font-size:clamp(10.5px,.83vw,14px)!important;
+    height:2.4479vw!important;
+    min-height:2.4479vw!important;
+    padding:0 1.1458vw!important;
+    border-radius:.8333vw!important;
+    font-size:inherit!important;
     line-height:1.15!important;
     white-space:nowrap!important;
     box-sizing:border-box!important;
@@ -912,9 +894,25 @@ const patchB4Css = `
 /* Keep Desktop source typography fluid but BIO-A's longer descriptive copy
    readable above the 768px Mobile switch. Do not change Hero geometry. */
 @media(min-width:769px) and (max-width:1200px){
-  .block-title .content .text-large{
-    font-size:clamp(11.5px,.9896vw,16px)!important;
+  /* Five BIO-A stats are accepted. Only their fixed Desktop px metrics
+     inherit the original Merywood 1920px-relative fluid scaling. */
+  .block-title .info.desctop{
+    width:22.1354vw!important;min-width:0!important;
+    max-width:22.1354vw!important;gap:.625vw!important;
   }
+  .block-title .info .item{
+    min-height:3.9583vw!important;padding:.5729vw .9375vw!important;
+    grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr)!important;
+    column-gap:.7813vw!important;border-radius:.8333vw!important;
+  }
+  .block-title .info .item__number,
+  .block-title .info .item:nth-child(3) .item__number,
+  .block-title .info .item:nth-child(4) .item__number,
+  .block-title .info .item:nth-child(5) .item__number{
+    font-size:1.6667vw!important;
+  }
+  .block-title .info .item__text{font-size:.7292vw!important}
+  .block-title .content .text-large{font-size:.9896vw!important}
 }
 /* 2) Mobile header: original source shell, strong left/right alignment */
 @media(max-width:768px){
@@ -3652,11 +3650,11 @@ const patchD5FooterTabletCss = `
   .footer-top__nav:nth-child(3){flex:.86 1 0!important}
   .footer-top__nav:nth-child(4){flex:.88 1 0!important}
   .footer-top__nav > ul > li:first-child > a{
-    font-size:clamp(12px,.9vw,16px)!important;
+    font-size:.9375vw!important;
     line-height:1.28!important;
   }
   .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:clamp(11px,.82vw,14px)!important;
+    font-size:.8333vw!important;
     line-height:1.5!important;
     white-space:normal!important;
     word-break:normal!important;
@@ -3695,10 +3693,10 @@ const patchD5FooterTabletCss = `
     justify-content:center!important;
     width:100%!important;
     min-width:0!important;
-    height:clamp(30px,2.4479vw,42px)!important;
+    height:2.4479vw!important;
     padding:0 .52vw!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    font-size:clamp(10px,.78vw,12px)!important;
+    border-radius:.8333vw!important;
+    font-size:.8333vw!important;
     line-height:1.15!important;
     box-sizing:border-box!important;
     white-space:nowrap!important;
@@ -3715,19 +3713,19 @@ const patchD5FooterTabletCss = `
     display:inline-flex!important;
     align-items:center!important;
     justify-content:center!important;
-    flex:0 0 clamp(25px,2.45vw,38px)!important;
-    width:clamp(25px,2.45vw,38px)!important;
+    flex:0 0 2.4479vw!important;
+    width:2.4479vw!important;
     min-width:0!important;
-    height:clamp(25px,2.45vw,38px)!important;
-    border-radius:clamp(8px,.8333vw,14px)!important;
+    height:2.4479vw!important;
+    border-radius:.8333vw!important;
     overflow:hidden!important;
   }
   .footer-top__socials a .bioa-zalo-icon,
   .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
-    width:clamp(17px,1.56vw,26px)!important;
-    max-width:clamp(17px,1.56vw,26px)!important;
-    height:clamp(17px,1.56vw,26px)!important;
-    max-height:clamp(17px,1.56vw,26px)!important;
+    width:1.5625vw!important;
+    max-width:1.5625vw!important;
+    height:1.5625vw!important;
+    max-height:1.5625vw!important;
     flex:0 0 auto!important;
   }
   .bioa-footer-company-info--desktop{
@@ -3739,13 +3737,13 @@ const patchD5FooterTabletCss = `
   .bioa-footer-company-info--responsive{display:none!important}
   .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
     margin-bottom:.55vw!important;
-    font-size:clamp(11.5px,.9vw,15px)!important;
+    font-size:.7813vw!important;
     line-height:1.35!important;
     white-space:normal!important;
   }
   .bioa-footer-company-info--desktop .bioa-footer-company-info__row{
     margin-bottom:.38vw!important;
-    font-size:clamp(10.5px,.85vw,13px)!important;
+    font-size:.6510vw!important;
     line-height:1.45!important;
   }
 }
@@ -3815,7 +3813,7 @@ const patchD6FooterMetaCss = `
 }
 @media(min-width:769px) and (max-width:1200px){
   .footer-bottom__wrapper{min-height:1.9792vw!important;padding:.4167vw 0!important}
-  .footer-bottom__copyright{font-size:clamp(10px,.75vw,12px)!important}
+  .footer-bottom__copyright{font-size:.7292vw!important}
 }
 @media(max-width:768px){
   .footer-bottom__wrapper{
@@ -3914,7 +3912,7 @@ const patchZaloIconCss = `
   }
   .whatsapp__btn .btn__text{
     margin:0!important;
-    font-size:clamp(12px,.95vw,15px)!important;
+    font-size:.8333vw!important;
     line-height:1.2!important;
     white-space:nowrap!important;
   }
