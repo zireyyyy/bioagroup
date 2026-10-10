@@ -1,3 +1,7 @@
+## 2026-10-10 — FOOTER SOCIAL ICON PARITY10
+Owner Tablet screenshots showed WhatsApp/Zalo unequal, Zalo in a tall pill. Root cause: footerSocials() appended Zalo without .socials__link so the Tablet CSS only targeted three earlier links, while a legacy Zalo 46px height remained. PATCH: bioa-source-components.mjs single 769–1200 owner now targets all four direct Footer social anchors; equal square slots 3.1944vw, images/SVG artwork 1.5972vw, no source DOM/asset/other section changes. tests/tablet-browser-smoke.mjs asserts equal square tiles and matching WhatsApp/Zalo artwork at 769/820/834/1024/1180. GitHub Actions source tests, static build and Chromium PASS on commit 5bb1732527b74f466777d47192a3f23570c87690; live Cloudflare deploy and owner visual QA remain PENDING. Rejected older Zalo 30px desktop visual size as comparison target; accepted equality with other three icons. Rollback production c320f2868a46aafd141a7178c03337a1d07b3a82. Freeze Header/Footer grid, Mobile <=768, Desktop >=1201, 404, security, D1/Sheets/Resend, other approved sections. Sanity Free future only.
+
+---
 # BIO-A NEW CHAT CONTINUATION — SCALE9
 Read main and mandatory repository contracts before patch. ## 2026-10-10 — BIOA-TABLET-DESKTOP-SHELL-SCALE9 — Candidate for owner QA
 
