@@ -8,6 +8,7 @@ on:
       - candidate/merywood-desktop-scale-restore
       - candidate/bioa-desktop-shell-scale9
       - candidate/footer-social-parity10
+      - candidate/header-whatsapp-artwork11
   pull_request:
     branches:
       - main

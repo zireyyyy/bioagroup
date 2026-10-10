@@ -4282,6 +4282,12 @@ function normalizeHeaderActions($){
   const btn=$('.header__btn').first();
   if(!contacts.length || !lang.length || !btn.length) return;
 
+  /* Header WhatsApp keeps the source Merywood link/hover behavior, but
+     must use the same BIO-A-approved SVG artwork as Footer. The prior
+     transform only changed href and left the original phone icon behind. */
+  const headerWhatsApp=contacts.find('.header__socials a').first();
+  if(headerWhatsApp.length) headerWhatsApp.html(icons.whatsapp);
+
   let group=$('.bioa-header-actions').first();
   if(!group.length){
     group=$('<div class="bioa-header-actions"></div>');

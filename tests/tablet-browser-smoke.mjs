@@ -25,6 +25,38 @@ try {
    await page.goto('http://127.0.0.1:'+address.port+'/',{waitUntil:'domcontentloaded',timeout:30000});
    await page.waitForSelector('.header__wrapper',{timeout:12000});
    await page.evaluate(()=>document.fonts?.ready);
+   if(width>=769){
+     const iconParity=await page.evaluate(()=>{
+       const head=document.querySelector('.header__socials a');
+       const footer=document.querySelector('.footer-top__socials a[aria-label="WhatsApp"]');
+       const headSvg=head?.querySelector('svg');
+       const footSvg=footer?.querySelector('svg');
+       const rect=e=>{if(!e)return null;const r=e.getBoundingClientRect();return {w:r.width,h:r.height};};
+       return {
+         headerSvg:headSvg?.outerHTML||'',
+         footerSvg:footSvg?.outerHTML||'',
+         headerLink:head?.getAttribute('href'),
+         footerLink:footer?.getAttribute('href'),
+         headerBox:rect(head),headerArt:rect(headSvg),
+         aria:head?.getAttribute('aria-label')
+       };
+     });
+     assert.ok(iconParity.headerSvg.length>100 && iconParity.footerSvg.length>100,
+       'Header and Footer WhatsApp SVGs must exist @'+width);
+     assert.equal(iconParity.headerSvg,iconParity.footerSvg,
+       'Header must reuse approved Footer WhatsApp artwork @'+width);
+     assert.equal(iconParity.headerLink,iconParity.footerLink,
+       'Header WhatsApp contact URL remains unchanged @'+width);
+     assert.ok(iconParity.headerBox && iconParity.headerArt &&
+       iconParity.headerArt.w>0 && iconParity.headerArt.h>0 &&
+       iconParity.headerArt.w<=iconParity.headerBox.w+1 &&
+       iconParity.headerArt.h<=iconParity.headerBox.h+1,
+       'Header WhatsApp artwork must fit inside original button @'+width);
+     console.log('HEADER_WHATSAPP_PARITY '+JSON.stringify({
+       width,svg:'same-as-Footer',href:iconParity.headerLink,
+       box:iconParity.headerBox,art:iconParity.headerArt
+     }));
+   }
    const diagnostic=await page.evaluate(()=>{
      const list=[
        'html','body','.header','.header__wrapper','.header__inner','.header__logo','.header__logo img',
