@@ -1,22 +1,24 @@
-import test from "node:test";
-import assert from "node:assert/strict";
-import {readFile} from "node:fs/promises";
-const load=p=>readFile(new URL("../"+p,import.meta.url),"utf8");
-const part=(s,a,b)=>{const i=s.indexOf(a),j=s.indexOf(b,i+a.length);assert.ok(i>=0&&j>i);return s.slice(i,j)};
-
-test("Merywood Footer flex is reused for all four BIO-A groups",async()=>{
- const src=await load("bioa-home-refine.mjs");
- const css=part(src,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
+import test from "node:test";import assert from "node:assert/strict";import{readFile}from"node:fs/promises";
+test("source responsive footer retains four Bio-A columns on 769-1200",async()=>{
+ const src=await readFile(new URL("../bioa-home-refine.mjs",import.meta.url),"utf8");
+ const start=src.indexOf("const patchD5FooterTabletCss = `");
+ const end=src.indexOf("const patchCookieConsentCss = `",start);
+ const css=src.slice(start,end);
  assert.ok(css.includes("@media(min-width:769px) and (max-width:1200px)"));
- assert.ok(css.includes("display:flex!important"));
+ assert.ok(css.includes(".footer-top__menu{\n    display:flex!important"));
  assert.ok(css.includes(".footer-top__nav:nth-child(4){flex:.88 1 0!important}"));
- assert.ok(!css.includes("grid-template-columns:"));
- assert.ok(css.includes(".bioa-footer-company-info--desktop"));
+ assert.ok(!css.includes("grid-template-columns:repeat(2,minmax(0,1fr))"));
+ assert.ok(css.includes(".bioa-footer-company-info--desktop{\n    display:block!important"));
+ assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));
+ assert.ok(src.includes("const patchFooterInfo1Css"));
+ assert.ok(src.includes("@media(max-width:768px)"));
 });
-test("Zalo/email Header controls inherit source viewport units",async()=>{
- const s=await load("bioa-home-refine.mjs");
- const a8=part(s,"const patchA8Css = `","const patchBCss = `");
- assert.ok(a8.includes("height:2.4479vw!important"));
- assert.ok(a8.includes("font-size:inherit!important"));
- assert.ok(s.includes("width:1.4583vw!important"));
+test("added BIO-A header icons and email scale with the Merywood viewport",async()=>{
+ const src=await readFile(new URL("../bioa-home-refine.mjs",import.meta.url),"utf8");
+ assert.ok(src.includes(".bioa-header-actions .header__socials .bioa-zalo-icon"));
+ assert.ok(src.includes("width:clamp(14px,1.4583vw,20px)!important"));
+ assert.ok(src.includes(".bioa-header-actions .header__email a{\n    display:inline-flex!important"));
+ assert.ok(src.includes("overflow:hidden!important"));
+ assert.ok(src.includes(".bioa-header-actions .bioa-lang a{\n    width:clamp(22px,1.8229vw,35px)!important"));
+ assert.ok(src.includes("function addHomeRoadmapColdLoadSync($)"));
 });

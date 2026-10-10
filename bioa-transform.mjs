@@ -38,14 +38,14 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
   .whatsapp-wrapper{margin-top:3.125vw!important;padding:0 1.3021vw!important}
   .whatsapp{border-radius:3.125vw!important;padding:2.0833vw 2.6042vw!important}
   .whatsapp__content{gap:2.0833vw!important}
-  .whatsapp__title{font-size:1.5625vw!important;margin-bottom:.3125vw!important}
-  .whatsapp__description{font-size:.8333vw!important;max-width:32.2917vw!important}
+  .whatsapp__title{font-size:clamp(16px,1.5625vw,30px)!important;margin-bottom:.3125vw!important}
+  .whatsapp__description{font-size:clamp(11px,.8333vw,16px)!important;max-width:32.2917vw!important}
   .whatsapp__btn{
-    min-width:17.7083vw!important;height:3.4375vw!important;
+    min-width:max(17.7083vw,200px)!important;height:clamp(42px,3.4375vw,66px)!important;
     padding:0 2.0833vw!important;gap:.625vw!important;
     border-radius:.9375vw!important;
   }
-  .whatsapp__btn .btn__text{font-size:.8333vw!important;line-height:1.2!important}
+  .whatsapp__btn .btn__text{font-size:clamp(11px,.8333vw,16px)!important;line-height:1.2!important}
   .whatsapp__decoration{
     top:-21.875vw!important;right:-9.375vw!important;
     width:58.3333vw!important;height:58.3333vw!important;
@@ -68,10 +68,10 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
   .block-product-formats .formats__cta-description{font-size:.8333vw!important;line-height:1.45!important}
   .block-product-formats .formats__cta-btn{
     display:inline-flex!important;align-items:center!important;justify-content:center!important;
-    min-height:2.5vw!important;padding:0 1.1458vw!important;
+    min-height:clamp(32px,2.5vw,48px)!important;padding:0 1.1458vw!important;
     gap:.5208vw!important;white-space:nowrap!important;
   }
-  .block-product-formats .formats__cta-btn .btn__text{font-size:.8333vw!important;line-height:1.2!important;font-weight:600!important}
+  .block-product-formats .formats__cta-btn .btn__text{font-size:clamp(11px,.8333vw,16px)!important;line-height:1.2!important;font-weight:600!important}
   .block-product-formats .formats__cta-btn .btn__icon,
   .block-product-formats .formats__cta-btn .btn__icon svg{
     width:.9375vw!important;height:.9375vw!important;flex-shrink:0!important;
