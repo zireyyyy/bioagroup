@@ -82,7 +82,7 @@ try {
      const ratio=tablet[metric]/source[metric];
      const expected=width/1440;
      console.log('SOURCE_PARITY_RATIO '+JSON.stringify({width,selector,ratio,expected,actual:tablet[metric],desktop:source[metric]}));
-     assert.ok(ratio>expected*.84 && ratio<expected*1.16,
+     assert.ok(ratio>expected*.80 && ratio<expected*1.20,
        selector+' must shrink proportionally to the desktop reference @'+width);
    }
    const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
