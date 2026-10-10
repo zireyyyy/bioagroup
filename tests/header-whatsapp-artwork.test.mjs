@@ -15,3 +15,14 @@ test('Header WhatsApp visual reuses approved Footer SVG instead of old Merywood 
    'same accepted WhatsApp SVG remains canonical in Footer');
  assert.ok(!owner.includes('icons.zalo'),'do not change other Header controls');
 });
+
+test('White WhatsApp paint is scoped to Header only and retains unchanged geometry',async()=>{
+ const s=await read('bioa-home-refine.mjs');
+ const first=s.indexOf('const patchA7Css =');
+ const last=s.indexOf('const patchA8Css =',first);
+ assert.ok(first>=0&&last>first);
+ const css=s.slice(first,last);
+ assert.ok(css.includes('.header .bioa-header-actions .header__socials a[aria-label^="WhatsApp"] svg path'));
+ assert.ok(css.includes('fill:#fff!important'));
+ assert.ok(!css.includes('.footer-top__socials svg path'));
+});

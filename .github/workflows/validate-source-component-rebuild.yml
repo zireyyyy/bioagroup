@@ -9,6 +9,7 @@ on:
       - candidate/bioa-desktop-shell-scale9
       - candidate/footer-social-parity10
       - candidate/header-whatsapp-artwork11
+      - candidate/header-whatsapp-white12
   pull_request:
     branches:
       - main

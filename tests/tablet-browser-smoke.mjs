@@ -38,13 +38,17 @@ try {
          headerLink:head?.getAttribute('href'),
          footerLink:footer?.getAttribute('href'),
          headerBox:rect(head),headerArt:rect(headSvg),
-         aria:head?.getAttribute('aria-label')
+         aria:head?.getAttribute('aria-label'),
+         headerPathFill:headSvg?.querySelector('path')?getComputedStyle(headSvg.querySelector('path')).fill:null,
+         footerPathFill:footSvg?.querySelector('path')?getComputedStyle(footSvg.querySelector('path')).fill:null
        };
      });
      assert.ok(iconParity.headerSvg.length>100 && iconParity.footerSvg.length>100,
        'Header and Footer WhatsApp SVGs must exist @'+width);
      assert.equal(iconParity.headerSvg,iconParity.footerSvg,
        'Header must reuse approved Footer WhatsApp artwork @'+width);
+     assert.equal(iconParity.headerPathFill,'rgb(255, 255, 255)',
+       'Header WhatsApp path must render white on green at viewport '+width);
      assert.equal(iconParity.headerLink,iconParity.footerLink,
        'Header WhatsApp contact URL remains unchanged @'+width);
      assert.ok(iconParity.headerBox && iconParity.headerArt &&

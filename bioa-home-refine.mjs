@@ -250,6 +250,13 @@ const patchA7Css = `
   height:42px!important;
   margin:0!important;
 }
+/* HEADER-WA-COLOR12: Header retains the exact owner-PASS WhatsApp SVG,
+   but Merywood's original Header icon paint inherits dark fill.
+   Match the approved white-on-green Header treatment without changing
+   Footer, hover mechanics, button dimensions or responsive layout. */
+.header .bioa-header-actions .header__socials a[aria-label^="WhatsApp"] svg path{
+  fill:#fff!important;
+}
 .bioa-header-actions .bioa-lang{
   height:42px!important;
   padding:3px!important;
