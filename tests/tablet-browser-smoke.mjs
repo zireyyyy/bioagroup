@@ -41,7 +41,7 @@ try {
        '.footer-top__menu','.footer-top__nav','.footer-top__nav > ul > li:not(:first-child) > a',
        '.footer-top__right','.footer-top__email','.footer-top__email a','.footer-top__socials',
        '.footer-top__socials a[aria-label="Zalo"]','.footer-top__socials .bioa-zalo-icon',
-       '.footer-top__socials a[aria-label="WhatsApp"]','.bioa-contact-fab__toggle','.bioa-chat__teaser'
+       '.footer-top__socials a[aria-label="WhatsApp"]','.footer-top__socials a[aria-label="Facebook"]','.footer-top__socials a[aria-label="Telegram"]','.footer-top__socials a[aria-label="WhatsApp"] svg','.footer-top__socials a[aria-label="Zalo"] img','.bioa-contact-fab__toggle','.bioa-chat__teaser'
      ];
      const values={};
      for(const sel of list){
@@ -97,6 +97,15 @@ try {
    const socials=cur.values['.footer-top__socials a[aria-label="Zalo"]'];
    const art=cur.values['.footer-top__socials .bioa-zalo-icon'];
    assert.ok(art.w<=socials.w&&art.h<=socials.h,'Zalo artwork fits within social button @'+width);
+   const labels=['WhatsApp','Facebook','Telegram','Zalo'];
+   const tiles=labels.map(x=>cur.values['.footer-top__socials a[aria-label="'+x+'"]']);
+   assert.ok(tiles.every(t=>t&&t.w>0&&t.h>0),'four footer social anchors present @'+width);
+   for(const tile of tiles) {
+     assert.ok(Math.abs(tile.w-tile.h)<1.5,'footer icon tile square @'+width);
+     assert.ok(Math.abs(tile.w-tiles[0].w)<1.5,'four footer icon tiles equal @'+width);
+   }
+   const wa=cur.values['.footer-top__socials a[aria-label="WhatsApp"] svg'];
+   assert.ok(wa&&wa.w>0&&Math.abs(wa.w-art.w)<1.5,'WhatsApp SVG and Zalo artwork equal size @'+width);
       const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
    assert.ok(email&&button&&Math.abs(email.h-button.h)<2,'Header contact alignment @'+width);
  }

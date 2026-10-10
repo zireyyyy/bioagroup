@@ -128,17 +128,24 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
     width:100% !important; height:auto !important; min-height:0 !important;
     min-width:0 !important; gap:.5556vw !important;
   }
-  .footer-top .footer-top__socials .socials__link {
+  /* The 4th Bio-A Zalo anchor is appended by footerSocials() without a
+     source socials__link class; target ALL direct icon anchors here.
+     The old fixed-height 46px Zalo rule was turning its Tablet tile vertical. */
+  .footer-top .footer-top__socials > a {
     display:inline-flex !important; align-items:center !important; justify-content:center !important;
     box-sizing:border-box !important; flex:0 0 3.1944vw !important;
-    width:3.1944vw !important; min-width:0 !important; height:3.1944vw !important;
-    min-height:0 !important; max-height:3.1944vw !important;
-    border-radius:.9028vw !important; overflow:hidden !important;
+    width:3.1944vw !important; min-width:0 !important; max-width:3.1944vw !important;
+    height:3.1944vw !important; min-height:0 !important; max-height:3.1944vw !important;
+    padding:0 !important; border-radius:.9028vw !important; overflow:hidden !important;
+    line-height:0 !important; vertical-align:middle !important;
   }
+  /* Match image and SVG artwork slots while preserving owner supplied art. */
   .footer-top .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon {
-    width:2.0833vw !important; max-width:2.0833vw !important;
-    height:2.0833vw !important; max-height:2.0833vw !important;
-    flex:0 0 2.0833vw !important;
+    display:block !important; width:1.5972vw !important; max-width:1.5972vw !important;
+    height:1.5972vw !important; max-height:1.5972vw !important;
+    min-width:0 !important; min-height:0 !important;
+    flex:0 0 1.5972vw !important; margin:0 !important;
+    border-radius:50% !important; object-fit:contain !important;
   }
   .footer-top .bioa-footer-company-info--desktop {
     display:block !important; width:100% !important; max-width:100% !important;
@@ -146,12 +153,16 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   }
   .footer-top .footer-top__socials a[aria-label="Zalo"] {
     width:3.1944vw !important; min-width:0 !important; max-width:3.1944vw !important;
+    height:3.1944vw !important; min-height:0 !important; max-height:3.1944vw !important;
     flex:0 0 3.1944vw !important;
   }
-  .footer-top .footer-top__socials .socials__link svg {
+  .footer-top .footer-top__socials > a > svg {
+    display:block !important;
     width:1.5972vw !important; height:1.5972vw !important;
     max-width:1.5972vw !important; max-height:1.5972vw !important;
-    flex:0 0 auto !important;
+    min-width:0 !important; min-height:0 !important;
+    flex:0 0 1.5972vw !important; margin:0 !important;
+    fill:currentColor !important;
   }
   .footer-top .bioa-footer-company-info--responsive { display:none !important; }
   .footer-top .bioa-footer-company-info--desktop .bioa-footer-company-info__title {
