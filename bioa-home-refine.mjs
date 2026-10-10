@@ -1,3 +1,4 @@
+import { sourceComponentCss } from './bioa-source-components.mjs';
 const company = {
   email:'contact@bioagroup.vn',
   phone:'0779 399 379',
@@ -304,56 +305,7 @@ const patchA7Css = `
 /* BIO-A-added controls use the original Merywood 769+ viewport-based
    desktop scaling. Source header/navigation stays exclusively main.css-owned.
    Owner-accepted 1201+ Desktop and <=768px Mobile variants stay untouched. */
-@media(min-width:769px) and (max-width:1200px){
-  /* BIO-A's longer Vietnamese nav labels must be readable while retaining
-     the Merywood desktop single-row navigation and source spacing. */
-  .header__nav a{
-    font-size:clamp(10px,.95vw,12px)!important;
-    white-space:nowrap!important;
-  }
-  .bioa-header-actions{gap:.5208vw!important}
-  .bioa-header-actions .header__contacts{gap:.5208vw!important}
-  .bioa-header-actions .header__btn{
-    height:clamp(28px,2.4479vw,42px)!important;
-    min-height:clamp(28px,2.4479vw,42px)!important;
-    padding:0 clamp(8px,1.1458vw,20px)!important;
-    font-size:clamp(10px,.85vw,14px)!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    white-space:nowrap!important;
-  }
-  .bioa-header-actions .header__socials .socials__link{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:clamp(28px,2.4479vw,42px)!important;
-    min-width:clamp(28px,2.4479vw,42px)!important;
-    height:clamp(28px,2.4479vw,42px)!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    overflow:hidden!important;
-  }
-  .bioa-header-actions .header__socials .bioa-zalo-icon,
-  .bioa-header-actions .header__socials .socials__link svg{
-    width:clamp(14px,1.4583vw,20px)!important;
-    max-width:clamp(14px,1.4583vw,20px)!important;
-    height:clamp(14px,1.4583vw,20px)!important;
-    max-height:clamp(14px,1.4583vw,20px)!important;
-    flex:0 0 auto!important;
-    object-fit:contain!important;
-  }
-  .bioa-header-actions .bioa-lang{
-    height:clamp(28px,2.4479vw,42px)!important;
-    padding:clamp(2px,.1563vw,3px)!important;
-    margin-left:.5208vw!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-  }
-  .bioa-header-actions .bioa-lang a{
-    width:clamp(22px,1.8229vw,35px)!important;
-    min-width:clamp(22px,1.8229vw,35px)!important;
-    height:clamp(22px,1.8229vw,35px)!important;
-    border-radius:clamp(7px,.5208vw,10px)!important;
-    font-size:clamp(10px,.8333vw,12px)!important;
-  }
-}
+/* Tablet-specific override removed; BIO-A source component owner manages 769–1200px. */
 `;
 
 
@@ -384,29 +336,7 @@ const patchA8Css = `
   line-height:1!important;
 }
 /* A8 is the sole owner of BIO-A email pill geometry at desktop-fluid widths. */
-@media(min-width:769px) and (max-width:1200px){
-  .bioa-header-actions .header__email{
-    display:flex!important;
-    align-items:center!important;
-    width:auto!important;
-    min-width:0!important;
-    height:auto!important;
-    padding:0!important;
-  }
-  .bioa-header-actions .header__email a{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    height:clamp(28px,2.4479vw,42px)!important;
-    min-height:clamp(28px,2.4479vw,42px)!important;
-    padding:0 clamp(7px,.85vw,14px)!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    font-size:clamp(10.5px,.83vw,14px)!important;
-    line-height:1.15!important;
-    white-space:nowrap!important;
-    box-sizing:border-box!important;
-  }
-}
+/* Tablet-specific override removed; BIO-A source component owner manages 769–1200px. */
 
 /* Keep the full Bio-A monogram visible while making it fill the card more naturally */
 .block-we-produce .bg__decoration{
@@ -3627,145 +3557,7 @@ const patchC5ChannelPaletteCss = `
 `;
 
 
-const patchD5FooterTabletCss = `
-/* FOOTER-SOURCE-FLEX — Merywood desktop footer owns the layout from 769px.
-   BIO-A retains four approved navigation groups (vs source's two); preserve
-   the original flex structure, and adapt only the added group proportions.
-   Do not create a separate Tablet grid or hide any approved links. */
-@media(min-width:769px) and (max-width:1200px){
-  .footer-top__wrapper{
-    display:flex!important;
-    align-items:flex-start!important;
-    justify-content:space-between!important;
-    gap:1.35vw!important;
-  }
-  .footer-top__left{
-    flex:0 0 15vw!important;
-    min-width:0!important;
-    width:auto!important;
-  }
-  .footer-top__logo img,
-  .footer__logo img{
-    width:6.7188vw!important;
-    max-width:6.7188vw!important;
-    height:auto!important;
-  }
-  .footer-top__menu{
-    display:flex!important;
-    align-items:flex-start!important;
-    justify-content:space-between!important;
-    flex:1 1 auto!important;
-    width:auto!important;
-    min-width:0!important;
-    gap:1.15vw!important;
-  }
-  .footer-top__nav{
-    width:auto!important;
-    min-width:0!important;
-    flex:1.25 1 0!important;
-  }
-  .footer-top__nav:nth-child(2){flex:1.45 1 0!important}
-  .footer-top__nav:nth-child(3){flex:.86 1 0!important}
-  .footer-top__nav:nth-child(4){flex:.88 1 0!important}
-  .footer-top__nav > ul > li:first-child > a{
-    font-size:clamp(12px,.9vw,16px)!important;
-    line-height:1.28!important;
-  }
-  .footer-top__nav > ul > li:not(:first-child) > a{
-    font-size:clamp(11px,.82vw,14px)!important;
-    line-height:1.5!important;
-    white-space:normal!important;
-    word-break:normal!important;
-    overflow-wrap:normal!important;
-    hyphens:none!important;
-  }
-  .footer-top__right{
-    flex:0 0 16.5vw!important;
-    min-width:0!important;
-    width:auto!important;
-    align-self:flex-start!important;
-  }
-  .footer-top__contacts{
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:stretch!important;
-    width:100%!important;
-    gap:.65vw!important;
-  }
-  .footer-top__email{
-    display:flex!important;
-    justify-content:center!important;
-    align-items:center!important;
-    width:100%!important;
-    min-width:0!important;
-    height:auto!important;
-    padding:0!important;
-    margin:0!important;
-    border:0!important;
-    background:transparent!important;
-    box-shadow:none!important;
-  }
-  .footer-top__email a{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:100%!important;
-    min-width:0!important;
-    height:clamp(30px,2.4479vw,42px)!important;
-    padding:0 .52vw!important;
-    border-radius:clamp(9px,.8333vw,14px)!important;
-    font-size:clamp(10px,.78vw,12px)!important;
-    line-height:1.15!important;
-    box-sizing:border-box!important;
-    white-space:nowrap!important;
-  }
-  .footer-top__socials{
-    display:flex!important;
-    justify-content:space-between!important;
-    gap:.35vw!important;
-    width:100%!important;
-    min-width:0!important;
-  }
-  .footer-top__socials a,
-  .footer-top__socials a[aria-label="Zalo"]{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    flex:0 0 clamp(25px,2.45vw,38px)!important;
-    width:clamp(25px,2.45vw,38px)!important;
-    min-width:0!important;
-    height:clamp(25px,2.45vw,38px)!important;
-    border-radius:clamp(8px,.8333vw,14px)!important;
-    overflow:hidden!important;
-  }
-  .footer-top__socials a .bioa-zalo-icon,
-  .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
-    width:clamp(17px,1.56vw,26px)!important;
-    max-width:clamp(17px,1.56vw,26px)!important;
-    height:clamp(17px,1.56vw,26px)!important;
-    max-height:clamp(17px,1.56vw,26px)!important;
-    flex:0 0 auto!important;
-  }
-  .bioa-footer-company-info--desktop{
-    display:block!important;
-    width:100%!important;
-    max-width:100%!important;
-    margin-top:1vw!important;
-  }
-  .bioa-footer-company-info--responsive{display:none!important}
-  .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
-    margin-bottom:.55vw!important;
-    font-size:clamp(11.5px,.9vw,15px)!important;
-    line-height:1.35!important;
-    white-space:normal!important;
-  }
-  .bioa-footer-company-info--desktop .bioa-footer-company-info__row{
-    margin-bottom:.38vw!important;
-    font-size:clamp(10.5px,.85vw,13px)!important;
-    line-height:1.45!important;
-  }
-}
-`;
+const patchD5FooterTabletCss = `/* Tablet Footer layout now has one owner: bioa-source-components.mjs. */`;
 
 const patchCookieConsentCss = `
 /* COOKIE-C2 — professional Bio-A consent presentation.
@@ -3902,47 +3694,7 @@ const patchZaloIconCss = `
 }
 /* Merywood Desktop-fluid CTA is 2.8125vw high and its icon is 1.0417vw.
    The original owner Zalo image was fixed 24px, overflowing Tablet CTA. */
-@media(min-width:769px) and (max-width:1200px){
-  .whatsapp__btn{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    gap:.5208vw!important;
-  }
-  .whatsapp__btn .btn__icon{
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:1.25vw!important;
-    min-width:1.25vw!important;
-    height:1.25vw!important;
-    flex:0 0 1.25vw!important;
-    margin:0!important;
-    line-height:0!important;
-  }
-  .whatsapp__btn .bioa-zalo-icon{
-    width:1.25vw!important;
-    max-width:1.25vw!important;
-    height:1.25vw!important;
-    max-height:1.25vw!important;
-    flex:0 0 1.25vw!important;
-    margin:0!important;
-  }
-  .whatsapp__btn .btn__text{
-    margin:0!important;
-    font-size:clamp(12px,.95vw,15px)!important;
-    line-height:1.2!important;
-    white-space:nowrap!important;
-  }
-  .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon{
-    width:1.5625vw!important;
-    height:1.5625vw!important;
-    max-width:1.5625vw!important;
-    max-height:1.5625vw!important;
-    flex:0 0 1.5625vw!important;
-    margin:0!important;
-  }
-}
+/* Tablet-specific override removed; BIO-A source component owner manages 769–1200px. */
 /* Mobile menu social controls now share one interaction language. */
 .bioa-mobile-contact-row .bioa-mobile-social{
   transition:background-color .2s ease,color .2s ease,transform .18s ease!important;
@@ -5796,7 +5548,7 @@ const sharedShellCss =
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css+
   patchMobileHeaderScrollCss+
-  patchMobileHeaderSourceParityCss;
+  patchMobileHeaderSourceParityCss+sourceComponentCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -5823,7 +5575,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+'</style>');
   localizeHomeCtas($,lang);
   setLogo($);
   replaceBrandWatermarks($);

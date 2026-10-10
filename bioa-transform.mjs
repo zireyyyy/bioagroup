@@ -35,21 +35,7 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
 @media(min-width:769px) and (max-width:1200px){
   /* Same ratio as Merywood's 1920px Desktop source. These selectors belong
      to BIO-A-added elements, not to the original source components. */
-  .whatsapp-wrapper{margin-top:3.125vw!important;padding:0 1.3021vw!important}
-  .whatsapp{border-radius:3.125vw!important;padding:2.0833vw 2.6042vw!important}
-  .whatsapp__content{gap:2.0833vw!important}
-  .whatsapp__title{font-size:clamp(16px,1.5625vw,30px)!important;margin-bottom:.3125vw!important}
-  .whatsapp__description{font-size:clamp(11px,.8333vw,16px)!important;max-width:32.2917vw!important}
-  .whatsapp__btn{
-    min-width:max(17.7083vw,200px)!important;height:clamp(42px,3.4375vw,66px)!important;
-    padding:0 2.0833vw!important;gap:.625vw!important;
-    border-radius:.9375vw!important;
-  }
-  .whatsapp__btn .btn__text{font-size:clamp(11px,.8333vw,16px)!important;line-height:1.2!important}
-  .whatsapp__decoration{
-    top:-21.875vw!important;right:-9.375vw!important;
-    width:58.3333vw!important;height:58.3333vw!important;
-  }
+  /* CTA desktop-fluid now owned by bioa-source-components.mjs. */
   .block-product-formats .formats{padding:2.3438vw 3.125vw!important;border-radius:2.3438vw!important}
   .block-product-formats .formats__tabs{
     gap:.5208vw!important;margin-bottom:1.8229vw!important;padding-bottom:1.8229vw!important;

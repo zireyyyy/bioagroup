@@ -1,38 +1,15 @@
-import test from "node:test";
-import assert from "node:assert/strict";
-import {readFile} from "node:fs/promises";
-const read=()=>readFile(new URL("../bioa-home-refine.mjs",import.meta.url),"utf8");
-const section=(src,start,end)=>src.slice(src.indexOf(start),src.indexOf(end,src.indexOf(start)));
-test("Footer inherits Merywood font scale at 769-1200 rather than shrinking Bio-A labels further",async()=>{
-  const src=await read();
-  const css=section(src,"const patchD5FooterTabletCss = `","const patchCookieConsentCss = `");
-  assert.ok(css.includes(".footer-top__menu{\n    display:flex!important"));
- assert.ok(css.includes(".footer-top__nav:nth-child(4){flex:.88 1 0!important}"));
-  assert.ok(!css.includes("grid-template-columns:repeat(2,minmax(0,1fr))"));
-  assert.ok(css.includes(".bioa-footer-company-info--desktop{\n    display:block!important"));
-  assert.ok(css.includes(".bioa-footer-company-info--responsive{display:none!important}"));
-  for(const forbidden of ["font-size:.7292vw!important","font-size:.6771vw!important","font-size:.8333vw!important"])
-    assert.ok(!css.includes(forbidden));
-  assert.ok(css.includes("font-size:clamp(11px,.88vw,14px)!important"));
-  assert.ok(css.includes(".footer-top__email{\n    display:flex!important"));
-  assert.ok(src.includes("@media(max-width:768px)"));
-});
-test("Zalo CTA artwork uses original source viewport scaling on desktop-like Tablet",async()=>{
-  const src=await read();
-  const css=section(src,"const patchZaloIconCss = `","const patchH5CMobileMoqCss = `");
-  assert.ok(css.includes("@media(min-width:769px) and (max-width:1200px)"));
-  assert.ok(css.includes(".whatsapp__btn .btn__icon{"));
-  assert.ok(css.includes(".whatsapp__btn .bioa-zalo-icon{"));
-  assert.ok(css.includes("width:1.25vw!important"));
-  assert.ok(css.includes(".whatsapp__btn .btn__text{"));
-});
-test("Bio-A category icon respects the smaller Merywood icon slot at desktop-like Tablet",async()=>{
-  const src=await read();
-  const css=section(src,"const patchWhyChooseIconCss = `","const patchSharedHeroStatsParityCss = `");
-  assert.ok(css.includes("@media(min-width:769px) and (max-width:1200px)"));
-  assert.ok(css.includes("#why-choose-us .bioa-why-icon-bioa{"));
-  assert.ok(css.includes("width:1.1458vw!important"));
-  assert.ok(css.includes("height:1.4063vw!important"));
-  assert.ok(src.includes("const patchD5FooterTabletCss"));
-  assert.ok(src.includes("function addHomeRoadmapColdLoadSync($)"));
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {sourceComponentCss as css} from '../bioa-source-components.mjs';
+const read=p=>readFile(new URL('../'+p,import.meta.url),'utf8');
+const own=(s,a,b)=>{const i=s.indexOf(a),j=s.indexOf(b,i+a.length);assert.ok(i>=0&&j>i);return s.slice(i,j)};
+
+test('Source footer is kept in place with exactly four Bio-A groups',async()=>{
+ const s=await read('bioa-home-refine.mjs');
+ assert.ok(s.includes("const navs=$('.footer-top__menu .footer-top__nav');"));
+ assert.ok(s.includes("navs.slice(cols.length).remove()"));
+ assert.ok(css.includes('.footer-top .footer-top__nav:nth-child(4)'));
+ assert.ok(css.includes('.bioa-footer-company-info--desktop'));
+ assert.ok(css.includes('.footer-top .footer-top__socials'));
 });
