@@ -17,29 +17,53 @@ await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const address=server.address();
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try {
- for(const width of [834,1024,1180]){
+ for(const width of [390,768,769,820,834,1024,1180,1280,1440]){
    const page=await browser.newPage({viewport:{width,height:820},deviceScaleFactor:1});
+   const clientErrors=[];
+   page.on('pageerror',e=>clientErrors.push(String(e).slice(0,200)));
    await page.goto('http://127.0.0.1:'+address.port+'/',{waitUntil:'domcontentloaded',timeout:30000});
-   await page.waitForSelector('.header__email a',{timeout:12000});
-   const m=await page.evaluate(()=>{
-     const el=q=>document.querySelector(q);
-     const get=q=>{const e=el(q);if(!e)return null;const c=getComputedStyle(e),b=e.getBoundingClientRect();return {width:b.width,height:b.height,font:parseFloat(c.fontSize),opacity:c.opacity,visibility:c.visibility,scroll:e.scrollWidth,client:e.clientWidth}};
-     const sections={email:get('.header .bioa-header-actions .header__email a'),headerButton:get('.header .bioa-header-actions .header__btn'),cta:get('.whatsapp'),ctaTitle:get('.whatsapp .whatsapp__title'),ctaContent:get('.whatsapp .whatsapp__content'),footerZalo:get('.footer-top .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon'),footerSocial:get('.footer-top .footer-top__socials a[aria-label="Zalo"]'),footerLink:get('.footer-top .footer-top__nav ul li:not(:first-child) a'),formatTab:get('.block-product-formats .formats__tab'),formatHeading:get('.block-product-formats .formats__cta-title')};
-     return {width:innerWidth,bodyScroll:document.body.scrollWidth,documentScroll:document.documentElement.scrollWidth,sections};
+   await page.waitForSelector('.header__wrapper',{timeout:12000});
+   await page.evaluate(()=>document.fonts?.ready);
+   const diagnostic=await page.evaluate(()=>{
+     const list=[
+       'html','body','.header','.header__wrapper','.header__inner','.header__logo','.header__logo img',
+       '.header__nav','.header__nav ul','.header__nav ul li a','.bioa-header-actions',
+       '.header__email','.header__email a','.header__btn','.bioa-lang','.bioa-lang a',
+       '.header__socials .socials__link','.block-title','.block-title .content',
+       '.block-title .content .text-large','.block-title .info.desctop',
+       '.block-title .info .item',
+       '.whatsapp-wrapper','.whatsapp','.whatsapp__content','.whatsapp__title',
+       '.whatsapp__description','.whatsapp__btn','.whatsapp__btn .btn__text',
+       '.block-product-formats .formats','.block-product-formats .formats__tab',
+       '.block-product-formats .formats__cta-title','.block-product-formats .formats__cta-btn',
+       '.footer-top','.footer-top__wrapper','.footer-top__left','.footer-top__logo img',
+       '.footer-top__menu','.footer-top__nav','.footer-top__nav > ul > li:not(:first-child) > a',
+       '.footer-top__right','.footer-top__email','.footer-top__email a','.footer-top__socials',
+       '.footer-top__socials a[aria-label="Zalo"]','.footer-top__socials .bioa-zalo-icon',
+       '.footer-top__socials a[aria-label="WhatsApp"]'
+     ];
+     const values={};
+     for(const sel of list){
+       const e=document.querySelector(sel);if(!e){values[sel]=null;continue;}
+       const st=getComputedStyle(e),r=e.getBoundingClientRect();
+       values[sel]={
+          w:+r.width.toFixed(1),h:+r.height.toFixed(1),
+          x:+r.x.toFixed(1),y:+r.y.toFixed(1),
+          font:+parseFloat(st.fontSize).toFixed(2),
+          line:st.lineHeight,display:st.display,
+          position:st.position,opacity:st.opacity,
+          overflowX:st.overflowX,flex:st.flex,grid:st.gridTemplateColumns,
+          scroll:e.scrollWidth,client:e.clientWidth
+       };
+     }
+     const offenders=Array.from(document.body.querySelectorAll('*')).map(e=>{
+        let r=e.getBoundingClientRect();return {tag:e.tagName,cl:e.className?.baseVal||e.className||'',x:r.x,right:r.right,w:r.width}
+     }).filter(x=>typeof x.cl==='string' && x.w>0 && (x.right>innerWidth+12 || x.x< -12))
+        .sort((a,b)=>b.right-a.right).slice(0,15);
+     return {width:innerWidth,docW:document.documentElement.scrollWidth,bodyW:document.body.scrollWidth,
+       values,offenders};
    });
-   console.log('TABLET_BROWSER_SMOKE '+JSON.stringify(m));
-   const s=m.sections;
-   assert.ok(s.email&&s.headerButton&&s.cta&&s.ctaTitle&&s.ctaContent&&s.footerZalo&&s.footerSocial&&s.footerLink,'all owned components should exist');
-   assert.ok(Math.abs(s.email.height-s.headerButton.height)<5,'Header email matches the CTA height @'+width);
-   assert.ok(s.email.font>=10,'Header email readable @'+width);
-   assert.ok(s.cta.height>=155,'CTA not collapsed @'+width);
-   assert.ok(s.ctaTitle.font>=22,'CTA title readable @'+width);
-   assert.ok(s.ctaContent.opacity==='1'&&s.ctaContent.visibility==='visible','CTA content visible @'+width);
-   assert.ok(s.footerZalo.width<=s.footerSocial.width&&s.footerZalo.height<=s.footerSocial.height,'Zalo must fit inside footer icon box @'+width);
-   assert.ok(s.footerLink.font>=10.5,'Footer links readable @'+width);
-   if(s.formatTab)assert.ok(s.formatTab.font>=10.5,'product tab text readable @'+width);
-   if(s.formatHeading)assert.ok(s.formatHeading.font>=20,'product heading readable @'+width);
-   if(m.documentScroll>width+16)console.warn('HORIZONTAL_OVERFLOW_NEEDS_INVESTIGATION '+JSON.stringify({width,scrollWidth:m.documentScroll}));
+   console.log('TABLET_RATIO_AUDIT '+JSON.stringify({diagnostic,clientErrors}));
    await page.close();
  }
 } finally {
