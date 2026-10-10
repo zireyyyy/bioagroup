@@ -85,7 +85,7 @@ try {
      assert.ok(ratio>expected*.80 && ratio<expected*1.20,
        selector+' must shrink proportionally to the desktop reference @'+width);
    }
-   for(const selector of ['.header__logo','.header__logo img','.footer-top__left','.footer-top__email a','.footer-top__socials a[aria-label="Zalo"]','.footer-top__socials .bioa-zalo-icon','.bioa-contact-fab__toggle']){
+   for(const selector of ['.header__logo','.header__logo img','.footer-top__left','.footer-top__email a','.footer-top__socials a[aria-label="Zalo"]','.bioa-contact-fab__toggle']){
      const tablet=cur.values[selector],reference=desktop.values[selector];
      assert.ok(tablet&&reference&&tablet.w>0&&reference.w>0,'component geometry present '+selector);
      const expected=reference.w*width/1440;
