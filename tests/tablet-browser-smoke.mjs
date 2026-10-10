@@ -17,6 +17,7 @@ await new Promise(r=>server.listen(0,'127.0.0.1',r));
 const address=server.address();
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try {
+ const measurements=new Map();
  for(const width of [390,768,769,820,834,1024,1180,1280,1440]){
    const page=await browser.newPage({viewport:{width,height:820},deviceScaleFactor:1});
    const clientErrors=[];
@@ -64,7 +65,28 @@ try {
        values,offenders};
    });
    console.log('TABLET_RATIO_AUDIT '+JSON.stringify({diagnostic,clientErrors}));
+   measurements.set(width,diagnostic);
    await page.close();
+ }
+ /* Compare with the approved 1440px Desktop component dimensions, not
+    arbitrary minimum type sizes. BIO-A's bottom CTA must shrink at roughly
+    the SAME rate as the Desktop source component. */
+ const desktop=measurements.get(1440);
+ for(const width of [769,820,834,1024,1180]){
+   const cur=measurements.get(width);
+   assert.equal(cur.docW,width,'no document horizontal overflow @'+width);
+   for(const selector of ['.whatsapp','.whatsapp__title','.whatsapp__btn']){
+     const tablet=cur.values[selector],source=desktop.values[selector];
+     assert.ok(tablet&&source,'CTA component present '+selector);
+     const metric=selector==='.whatsapp__title'?'font':'h';
+     const ratio=tablet[metric]/source[metric];
+     const expected=width/1440;
+     console.log('SOURCE_PARITY_RATIO '+JSON.stringify({width,selector,ratio,expected,actual:tablet[metric],desktop:source[metric]}));
+     assert.ok(ratio>expected*.84 && ratio<expected*1.16,
+       selector+' must shrink proportionally to the desktop reference @'+width);
+   }
+   const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
+   assert.ok(email&&button&&Math.abs(email.h-button.h)<2,'Header contact alignment @'+width);
  }
 } finally {
  await browser.close();

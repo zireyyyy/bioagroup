@@ -138,7 +138,7 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   /* BIO-A-added CTA — preserve Desktop row and real link; never allow the
      scroll-reveal observer to leave its content invisible on Tablet. */
   .whatsapp-wrapper { margin-top:3.125vw !important; padding:0 1.3021vw !important; }
-  .whatsapp { position:relative !important; width:100% !important; padding:2.0833vw 2.6042vw !important; border-radius:3.125vw !important; }
+  .whatsapp { position:relative !important; box-sizing:border-box !important; width:100% !important; min-height:10.1389vw !important; padding:2.7778vw 3.4722vw !important; border-radius:3.125vw !important; }
   .whatsapp .whatsapp__content {
     display:flex !important; align-items:center !important; justify-content:space-between !important;
     gap:2.0833vw !important; opacity:1 !important; visibility:visible !important;
@@ -149,11 +149,11 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
     opacity:1 !important; visibility:visible !important; transform:none !important; transition:none !important;
   }
   .whatsapp .whatsapp__text { flex:1 1 auto !important; min-width:0 !important; }
-  .whatsapp .whatsapp__title { font-size:1.5625vw !important; line-height:1.2 !important; margin-bottom:.3125vw !important; }
-  .whatsapp .whatsapp__description { font-size:.8333vw !important; max-width:32.2917vw !important; line-height:1.5 !important; }
+  .whatsapp .whatsapp__title { font-size:2.0833vw !important; line-height:1.2 !important; margin-bottom:.4167vw !important; }
+  .whatsapp .whatsapp__description { font-size:1.1111vw !important; max-width:32.2917vw !important; line-height:1.5 !important; }
   .whatsapp .whatsapp__btn {
     display:inline-flex !important; align-items:center !important; justify-content:center !important;
-    flex:0 0 auto !important; min-width:17.7083vw !important; width:auto !important; height:3.4375vw !important;
+    flex:0 0 auto !important; min-width:23.6111vw !important; width:auto !important; height:4.5833vw !important;
     gap:.625vw !important; padding:0 2.0833vw !important; border-radius:.9375vw !important; white-space:nowrap !important;
   }
   .whatsapp .whatsapp__btn .btn__icon {
@@ -165,7 +165,7 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
     width:1.25vw !important; max-width:1.25vw !important; height:1.25vw !important;
     max-height:1.25vw !important; flex:0 0 auto !important; margin:0 !important;
   }
-  .whatsapp .whatsapp__btn .btn__text { font-size:.8333vw !important; line-height:1.2 !important; white-space:nowrap !important; }
+  .whatsapp .whatsapp__btn .btn__text { font-size:1.1111vw !important; line-height:1.2 !important; white-space:nowrap !important; }
   .whatsapp .whatsapp__decoration {
     top:-21.875vw !important; right:-9.375vw !important; width:58.3333vw !important; height:58.3333vw !important;
   }
