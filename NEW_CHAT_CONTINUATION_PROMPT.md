@@ -1,3 +1,11 @@
+## 2026-10-13 — A3 audit evidence and diagnostic repair (latest)
+
+Owner baseline `c320f2868a46aafd141a7178c03337a1d07b3a82` on `main` remains untouched. Historical SCALE9 Tablet changes are not an accepted source. In PR #3 audit branch: initial automatic build/style probe run `38339149965` reported FAILURE on audit-script Invalid URL (remote Merywood URL), **not a BIO-A site regression**; build/responsive and browser geometry steps PASSED. Generated evidence: 106 HTML files, 32 assets including leads JS, all 6 About icons referenced, apparent missing `/assets/img/logo-bg.svg` (requires computed evidence). Fixed measurement harness to guard invalid URLs, scan inline style attributes, and normalize root `/` instead of `//`.
+
+Scope **AUDIT-INSTRUMENTATION ONLY**, no production/UI CSS/JS/images/components touched. Next consume new CI computed JSON after workflow completes and identify verified cascade winner + desired Merywood behavior BEFORE component edits. Desktop/Mobile LOCKED, Tablet PENDING; no visual PASS promoted.
+
+---
+
 # BIO-A — NEW CHAT CONTINUATION (authoritative 2026-10-13)
 Repository: https://github.com/zireyyyy/bioagroup
 Owner-approved rollback and production baseline: `c320f2868a46aafd141a7178c03337a1d07b3a82` (`main` confirmed 2026-10-13).

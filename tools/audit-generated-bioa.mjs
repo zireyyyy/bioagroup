@@ -39,12 +39,18 @@ const references=new Map(existingAssets.map(a=>[a,{pages:[],directImages:[],styl
 const pageData=[];
 const missing=new Set();
 for(const filepath of htmlFiles){
- const route="/"+path.relative(dist,filepath).replaceAll(path.sep,"/").replace(/(?:^|\/)index\.html$/,"/");
+ // Root dist/index.html must be "/" (not "//"). Preserve nested routes.
+ const relative=path.relative(dist,filepath).replaceAll(path.sep,"/");
+ const route=relative.endsWith("index.html")
+   ? "/"+relative.slice(0,-"index.html".length)
+   : "/"+relative;
  const html=await fs.readFile(filepath,"utf8");
  const $=load(html);
  const inlineStyles=$("style").toArray().map(e=>({id:$(e).attr("id")||"(unlabeled)",text:$(e).html()||""}));
  const loadedAssets=new Set();
  const imageAssets=new Set();
+ const attributeStyleAssets=new Set();
+ const missingOrigins=[];
  $("img,source,video,link").each((_,el)=>{
    for(const attr of ["src","poster","href"]){
      const value=normalizeAsset($(el).attr(attr));
@@ -56,7 +62,22 @@ for(const filepath of htmlFiles){
      if(src){loadedAssets.add(src);if(el.name==="img"||el.tagName==="img")imageAssets.add(src);}
    }
  });
+ // Cheerio .css('background-image',...) serializes into an element style
+ // attribute, not a <style> block. Audit both to avoid false unused reports.
+ $("[style]").each((_,el)=>{
+   const css=$(el).attr("style")||"";
+   for(const asset of localPaths(css)){
+     attributeStyleAssets.add(asset);
+     loadedAssets.add(asset);
+   }
+ });
  for(const style of inlineStyles)for(const asset of localPaths(style.text))loadedAssets.add(asset);
+ for(const asset of loadedAssets)if(!references.has(asset)){
+   const stylesheet=inlineStyles.filter(s=>s.text.includes(asset)).map(s=>s.id);
+   missingOrigins.push({asset,inlineStyleOwners:stylesheet,
+     hasStyleAttribute:attributeStyleAssets.has(asset),
+     imageElement:imageAssets.has(asset)});
+ }
  for(const asset of loadedAssets){
    if(references.has(asset)){references.get(asset).pages.push(route);if(imageAssets.has(asset))references.get(asset).directImages.push(route);}
    else missing.add(asset);
@@ -72,6 +93,8 @@ for(const filepath of htmlFiles){
    hasFooter:$(".footer-top").length>0,
    styles:inlineStyles.map(x=>({id:x.id,chars:x.text.length,important:(x.text.match(/!important/g)||[]).length,media:(x.text.match(/@media/g)||[]).length})),
    imageAssets:[...imageAssets].sort(),
+   styleAttributeAssets:[...attributeStyleAssets].sort(),
+   missingAssetOrigins:missingOrigins,
    aboutIconReferences:[...loadedAssets].filter(v=>v.includes("/about-icon-")).sort(),
    missingRefs:[...loadedAssets].filter(a=>!references.has(a)).sort()
  });
@@ -86,7 +109,9 @@ const report={
  assetUsage:[...references].map(([asset,p])=>({asset,
    pageReferences:[...new Set(p.pages)].sort(),
    directImgPages:[...new Set(p.directImages)].sort(),
-   cssPages:[...new Set(p.styles)].sort()})).sort((a,b)=>a.asset.localeCompare(b.asset)),
+   cssPages:[...new Set(p.styles)].sort(),
+   styleAttributePages:pageData.filter(x=>x.styleAttributeAssets.includes(asset)).map(x=>x.route).sort()
+ })).sort((a,b)=>a.asset.localeCompare(b.asset)),
  missingAssetReferences:[...missing].sort(),
  pages:pageData
 };

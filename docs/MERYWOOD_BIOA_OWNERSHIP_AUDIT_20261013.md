@@ -60,3 +60,11 @@ A6. Only after reproducible root-cause evidence, send one component-only reversi
 
 ## 6. Negative scope / safety
 This audit modifies **documentation only**. No HTML/CSS/JS/build/runtime/backend/assets/Cloudflare/maintenance/CRM production code changes. No new claim of FULL TABLET PASS or all-routes visual pass. Keep original `main` SHA unchanged and use a separate branch/PR.
+
+## 2026-10-13 — A3 evidence review and read-only audit tool repair
+
+- Original run `38339149965` at `9afe7e4`: **FAILED** at new computed CSS collector, while existing responsive test, build, generated-HTML audit and Chromium component ratio smoke **PASSED**. Root cause: the *audit tool*, not UI source, called `new URL(req.url())` without handling malformed remote source URL `https://bio-a%20group.com/wp-json/mw-guard/v1/token`. Keep URL redacted in diagnostics; do not infer the production lead endpoint from it.
+- Generated audit artifact `11786471899`: 106 HTML files, 32 files under `dist/assets/` (31 artwork + leads JS), 6 About artwork refs found in VI/EN About, CSS string reference to missing `/assets/img/logo-bg.svg`. This missing path is a **static reference**, not proof that a live visible watermark is broken. Source icon map for Services exists but the 5 icon assets are not referenced by HTML (the grid was removed in the previously approved service layout). Do not reintroduce it without approval.
+- Diagnostics flaws identified: Home route appeared as `//` due route normalization; style attributes like `background-image:url('/assets/cosmetics-hero-bioa.webp')` were not scanned and could incorrectly label assets unused; malformed external request URL aborted all computed CSS collection.
+- Patch target: **audit instrumentation only**, two tools. Recover UI-independent CSS computed/asset evidence, including inline `style` and invalid URL cases. No website UI/source media queries, artwork, backend, deployment or shared component changes. Existing `main` at `c320f28` stays protected. Automated probe outputs are NOT visual owner PASS.
+- Current task: analyze collector artifact on next passing run before any targeted Header/Footer/Chat production patch. No runtime owner QA needed for this instrumentation.

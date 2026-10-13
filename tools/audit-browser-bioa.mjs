@@ -35,9 +35,15 @@ try{
   for(const width of widths){
    const page=await browser.newPage({viewport:{width,height:840},deviceScaleFactor:1});
    const failed=[];
+   // Original Merywood pages can emit malformed remote URLs. These are data
+   // to classify, never reasons for the audit harness itself to crash.
    page.on("requestfailed",req=>{
-     const u=new URL(req.url());
-     failed.push({host:u.host,path:u.pathname,error:req.failure()?.errorText||"unknown"});
+     let host="(invalid-url)",pathname="(redacted-invalid-url)";
+     try{
+       const u=new URL(req.url());
+       host=u.hostname;pathname=u.pathname;
+     }catch{}
+     failed.push({host,path:pathname,error:req.failure()?.errorText||"unknown"});
    });
    let navError=null;
    try{
@@ -47,6 +53,10 @@ try{
    let diagnostic=null;
    if(!navError){
     diagnostic=await page.evaluate((sels)=>{
+     const safePath=(raw)=>{
+       if(!raw)return null;
+       try{return new URL(raw,location.href).pathname;}catch{return "(invalid-url)";}
+     };
      const entries={};
      for(const selector of sels){
        const e=document.querySelector(selector);if(!e){entries[selector]=null;continue;}
@@ -80,11 +90,11 @@ try{
        entries[selector]={x:+r.x.toFixed(2),y:+r.y.toFixed(2),w:+r.width.toFixed(2),h:+r.height.toFixed(2),
          css:{fontSize:s.fontSize,display:s.display,width:s.width,height:s.height,objectFit:s.objectFit,
            color:s.color,backgroundColor:s.backgroundColor,opacity:s.opacity,gridTemplateColumns:s.gridTemplateColumns},
-         image:e instanceof HTMLImageElement?{complete:e.complete,naturalWidth:e.naturalWidth,naturalHeight:e.naturalHeight,currentSrc:e.currentSrc?new URL(e.currentSrc).pathname:null}:null,
+         image:e instanceof HTMLImageElement?{complete:e.complete,naturalWidth:e.naturalWidth,naturalHeight:e.naturalHeight,currentSrc:safePath(e.currentSrc)}:null,
          matchingInlineRules:inlineCandidates.slice(-16)};
      }
      return {documentWidth:document.documentElement.scrollWidth,viewportWidth:innerWidth,
-       styles:[...document.styleSheets].map(s=>({owner:s.ownerNode?.id||"",url:s.href?new URL(s.href).pathname:null,
+       styles:[...document.styleSheets].map(s=>({owner:s.ownerNode?.id||"",url:safePath(s.href),
          accessible:(()=>{try{return s.cssRules.length>=0}catch{return false}})()})),
        entries};
     },selectors);
