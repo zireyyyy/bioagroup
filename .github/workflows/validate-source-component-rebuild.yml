@@ -32,6 +32,7 @@ jobs:
           node --check bioa-transform.mjs
           node --check tests/tablet-browser-smoke.mjs
           node --check tests/first-paint-browser.test.mjs
+          node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
         run: node --test tests/maintenance-host-gate.test.mjs
       - name: Responsive source regression
@@ -54,3 +55,13 @@ jobs:
         run: node tests/first-paint-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
         run: node tests/tablet-browser-smoke.mjs
+      - name: Verify EN Footer wrap and record first-paint movement
+        run: node tests/footer-en-layout-browser.test.mjs
+      - name: Preserve Footer EN screenshot + layout-shift evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-footer-en-wrap-layout-shift
+          path: audit-artifacts/footer-en-wrap/
+          if-no-files-found: warn
+          retention-days: 14

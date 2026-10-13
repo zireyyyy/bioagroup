@@ -1,3 +1,16 @@
+## 2026-10-13 — FOOTER-EN-WRAP1 / loading nonregression (authoritative latest)
+
+Owner reported PR #9 EN Footer title OVERFLOW/OVERLAP and repeat page-load/navigation slight shift; main `44879b4` reportedly still shifts once on initial load. **PR #9 was already CI FAIL** on `tests/tablet-cross-route-regression.test.mjs` expecting obsolete `addFooterCompanyInfo($)` signature; never merge the failed candidate. Review screenshot at Desktop ~1900px: the EN name collides with Cosmetic Manufacturing section.
+
+**Verified first-order root cause for EN overlap:** existing `bioa-home-refine.mjs` `patchFooterInfo1Css` includes `@media(min-width:1201px) .bioa-footer-company-info--desktop .bioa-footer-company-info__title{ white-space:nowrap!important }`. English name is much longer than approved Vietnamese copy and exceeds its 320–360px grid column. Correct with an **English-only** overriding rule adjacent to this original rule at Desktop: `html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title {white-space:normal!important;overflow-wrap:break-word!important;max-width:100%!important}`. No grid/font/line-height/VI CSS changes. Source output HTML `lang` is explicitly set by `bioa-transform.mjs`.
+
+**CI guard hardening:** update stale cross-route assertion to the new `addFooterCompanyInfo($,lang)` and assert EN wrapping rule; add Playwright read-only tests for actual English Footer rectangles / overflow at Tablet 834/1024 and Desktop 1280/1440/1900, with screenshot artifacts. Also capture initial/settled Header/scrollbar and layout-shift events as **diagnostics**, NOT presume the loaded page is motion-free solely because page source style is unchanged.
+
+**First-paint freeze:** `bioa-transform.mjs`, `#bioa-first-paint-stability`, `functions/_middleware.js`, source Smooth Scrollbar and fonts are unchanged. The trace-proven 8px BODY reset remains owner PASS from `d328e76f`. The reported intermittent navigation jerk on main predates PR #9 and is NOT proven caused by the English copy. Need compare actual shift timing/sources from captured metrics and, if necessary, obtain owner clean-browser trace. Do not add global scrollbar/font/JS transition patches without root-cause evidence.
+
+**Frozen PASS:** Zalo `/assets/zalo-bioa-owner.png` white background (sole canonical), no Headquarters/Estonia, existing Footer VI, Home Desktop/Mobile, private production/public read-only Preview. **PR #9 remains draft** until CI PASS and owner visual QA of EN at 1440/1900 + Tablet 834/1024 and repeat navigation. Production stays `44879b4` pending owner PASS.
+
+---
 
 ## 2026-10-13 — ZALO CANONICAL WHITE BACKGROUND + ASSET CLEANUP (owner request)
 

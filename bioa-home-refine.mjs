@@ -3421,6 +3421,13 @@ const patchFooterInfo1Css = `
     font-size:clamp(14px,.84vw,16px)!important;
     white-space:nowrap!important;
   }
+  /* FOOTER-EN-WRAP1: only English text exceeds the preapproved identity
+     column. Preserve Vietnamese nowrap and all original grid geometry. */
+  html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
+    white-space:normal!important;
+    overflow-wrap:break-word!important;
+    max-width:100%!important;
+  }
 }
 @media(max-width:768px){
   .bioa-footer-company-info--desktop{display:none!important}
