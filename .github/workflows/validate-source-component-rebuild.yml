@@ -38,6 +38,8 @@ jobs:
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Check generated BIO-A watermark assets
+        run: node tests/brand-watermark-assets.test.mjs
       - name: Check generated HTML first-paint order
         run: node tests/first-paint-build.test.mjs
       - name: Install browser smoke dependencies
