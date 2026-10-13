@@ -22,8 +22,14 @@ for(const route of routes){
    "exactly one owner BIO-A business info block: "+filename);
  assert.equal(left.children().not(".footer-top__logo,.footer__logo,.bioa-footer-company-info--desktop").length,0,
    "logo/company-info are the only children in left footer: "+filename);
- assert.match(content,/Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group/,
-   "BIO-A factory identity persists: "+filename);
+ if(route.startsWith("en/")){
+   assert.match(content,/Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory/,"EN company title: "+filename);
+   assert.match(content,/Business Tax ID:/,"EN tax label: "+filename);
+   assert.doesNotMatch(content,/Nhà Máy Sản Xuất|Mã số thuế doanh nghiệp/,"EN has no VI footer labels: "+filename);
+ }else{
+   assert.match(content,/Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group/,"VI company title: "+filename);
+   assert.match(content,/Mã số thuế doanh nghiệp:/,"VI tax label: "+filename);
+ }
  const anchors=footer.find(".footer-top__socials > a");
  assert.equal(anchors.length,4,"exactly four Footer social links: "+filename);
  for(const label of ["WhatsApp","Facebook","Telegram","Zalo"]){

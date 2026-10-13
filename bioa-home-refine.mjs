@@ -4664,17 +4664,21 @@ function refineFooterMeta($){
   $('.footer-bottom__copyright').first().text('© Bio-A Group | All rights reserved');
 }
 
-function addFooterCompanyInfo($){
+function addFooterCompanyInfo($,lang){
   $('.bioa-footer-company-info').remove();
 
   const footer=$('.footer-top').first();
   if(!footer.length)return;
 
+  const english=lang==='en';
+  const name=english?'Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory':'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group';
+  const addressLabel=english?'Address:':'Địa chỉ:';
+  const taxLabel=english?'Business Tax ID:':'Mã số thuế doanh nghiệp:';
   const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}">
-    <div class="bioa-footer-company-info__title">Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group</div>
-    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.location}</span><strong>Địa chỉ:</strong> <span class="bioa-footer-company-info__value">${company.address}</span></p>
+    <div class="bioa-footer-company-info__title">${name}</div>
+    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.location}</span><strong>${addressLabel}</strong> <span class="bioa-footer-company-info__value">${company.address}</span></p>
     <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.phone}</span><strong>Hotline:</strong> <span class="bioa-footer-company-info__value">${company.phoneIntl}</span></p>
-    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.tax}</span><strong>Mã số thuế doanh nghiệp:</strong> <span class="bioa-footer-company-info__value">${company.taxId}</span></p>
+    <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.tax}</span><strong>${taxLabel}</strong> <span class="bioa-footer-company-info__value">${company.taxId}</span></p>
   </div>`;
 
   const left=footer.find('.footer-top__left').first();
@@ -5579,7 +5583,7 @@ export function applySharedShell($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
-  addFooterCompanyInfo($);
+  addFooterCompanyInfo($,lang);
   addHeroCounters($);
   addHeaderTopParity($);
   addMobileHeaderScroll($);
@@ -5603,7 +5607,7 @@ export function applyHomeRefinement($,route,lang){
   refineFooterMeta($);
   footerSocials($);
   buildMobileFooterV2($);
-  addFooterCompanyInfo($);
+  addFooterCompanyInfo($,lang);
   addHeroCounters($);
   addHeaderTopParity($);
   addMobileHeaderScroll($);

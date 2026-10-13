@@ -1,3 +1,7 @@
+## 2026-10-13 — FOOTER-EN-COPY1 candidate (owner visual pending)
+PR #8 PASS merged on main `44879b49c180a5f9433a9a118b9ff9979b329f3d`: no Headquarters/Estonia, canonical white-background PNG Zalo. FIRST-PAINT1 `d328e76f` is still the mandatory locked loading behavior. No broad Tablet PASS. Shared `addFooterCompanyInfo` hardcoded VI content on EN routes. Translate title, address and tax labels only; keep exact VI text, official address/phone/tax and all DOM/CSS/image assets unchanged. Test generated VI/EN Footer labels across 10 routes. EN title wrapping needs owner visual QA at 834/1024 Tablet, Desktop 1440 and Mobile 390. No production merge without approval.
+
+---
 
 ## 2026-10-13 — ZALO CANONICAL WHITE BACKGROUND + ASSET CLEANUP (owner request)
 
