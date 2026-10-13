@@ -38,6 +38,10 @@ jobs:
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Verify sole canonical Zalo asset and all VI/EN routes
+        run: node tests/zalo-canonical-asset.test.mjs
+      - name: Verify Footer brand and social DOM output
+        run: node tests/footer-brand-socials.test.mjs
       - name: Check generated BIO-A watermark assets
         run: node tests/brand-watermark-assets.test.mjs
       - name: Check generated HTML first-paint order

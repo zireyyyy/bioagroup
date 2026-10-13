@@ -3661,6 +3661,7 @@ const patchZaloIconCss = `
   max-width:30px!important;
   max-height:30px!important;
   flex-basis:30px!important;
+  border-radius:50%!important;
 }
 .bioa-footer-mobile-v2__socials a[aria-label="Zalo"] .bioa-zalo-icon,
 .bioa-footer-mobile-socials a[aria-label="Zalo"] .bioa-zalo-icon{
@@ -4677,7 +4678,15 @@ function addFooterCompanyInfo($){
   </div>`;
 
   const left=footer.find('.footer-top__left').first();
-  if(left.length)left.append(markup('desktop'));
+  if(left.length){
+    /* Merywood's live Footer now injects its own Headquarters/address
+       under this logo. Original exported source had only the logo here.
+       BIO-A owns the company info; discard source-only siblings (and
+       stray text) before adding exactly one approved BIO-A info block. */
+    left.children().not('.footer-top__logo,.footer__logo').remove();
+    left.contents().filter((_,node)=>node.type==='text'&&/\S/.test(node.data||'')).remove();
+    left.append(markup('desktop'));
+  }
 
   const host=footer.find('.footer-top__inner').first().length
     ? footer.find('.footer-top__inner').first()
@@ -4703,14 +4712,15 @@ function footerSocials($){
   ];
   let anchors=wrap.find('a');
   while(anchors.length<defs.length){
-    wrap.append('<a href="#"></a>');
+    wrap.append('<a href="#" class="socials__link"></a>');
     anchors=wrap.find('a');
   }
   anchors.each((i,el)=>{
     if(!defs[i]){$(el).remove();return;}
     const [href,label,visual]=defs[i];
     const a=$(el).attr('href',href).attr('target','_blank').attr('rel','noopener noreferrer').attr('aria-label',label);
-    a.html(visual);
+    if(label==='Zalo')a.addClass('socials__link'); // Merywood source owner, same box as siblings.
+    a.html(visual); // Owner-approved /assets/zalo-bioa-owner.png for Zalo everywhere.
   });
 }
 
