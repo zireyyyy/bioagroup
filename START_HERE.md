@@ -1,3 +1,9 @@
+## 2026-10-13 — FIRST-PAINT1 candidate (owner QA pending)
+
+Candidate repairs trace-proven initial BODY 8px shift by source-identical head-first normalize; addresses suspected 15px root scrollbar fluctuation using `scrollbar-width:none` only >768 with original Merywood Smooth Scrollbar kept unchanged. Owner trace contained third-party `rstest` overlay at second shift, so don't assert all horizontal movement solved without live proof. See `docs/FIRST_PAINT_LAYOUT_SHIFT_TRACE_20261013.md`. Separate Footer Tablet Zalo square fix remains pending PR #4; do not merge without owner runtime acceptance. `main` rollback `c320f2868a46aafd141a7178c03337a1d07b3a82` frozen. Desktop/Mobile visual PASS protected; Tablet FAIL/PENDING.
+
+---
+
 ## 2026-10-10 — BIOA-TABLET-DESKTOP-SHELL-SCALE9 — Candidate for owner QA
 
 OWNER BUG EVIDENCE: owner screenshot Tablet still has oversized Header BIO-A logo, Footer differs from owner-confirmed Desktop, floating chat avatar and WhatsApp/Zalo presentation too large/inconsistent. Other page sections already stabilized and must be frozen. Source comparator: owner-supplied original Merywood main.txt maintains desktop structure on 769–1920 CSS px (mobile <=768). Critically current approved BIO-A Desktop >=1201 (in patchFooterInfo1Css) is now grid: left company+logo / central 4 category columns / right contacts, whereas previous Tablet owner forced flex. Thus source-first means preserve original breakpoint and scaled *owner-approved* BIO-A desktop composition, NOT blindly use Merywood old three-list flex. The baseline Tablet 834 had Header image 48x56px independent of viewport (same as 1440), Footer contact/email/social fixed 46px height despite text scaling; approved Desktop 1440 Footer logo 92x109.1, left width320, menu779, right208, four categories, chat avatar fixed68.

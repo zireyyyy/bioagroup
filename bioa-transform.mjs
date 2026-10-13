@@ -116,6 +116,17 @@ function titleFor(route,lang){
 }
 
 function applyBrandHead($,route,lang){
+  /* FIRST-PAINT1 — emit before third-party Merywood stylesheets.
+     Original Merywood main.css normalizes all elements to zero margin,
+     padding and border-box. Without this critical subset, Chrome trace
+     shows BODY at (8,8) for one painted frame before it moves to (0,0).
+     Above 768px Merywood uses Smooth Scrollbar as scroll owner; hide
+     transient *native* document scrollbar so its 15px gutter cannot
+     change width when the source JS takes ownership. Scrolling remains
+     enabled; the original Smooth Scrollbar is NOT removed or replaced.
+     The final approved site layout/typography/geometry is unchanged. */
+  $('#bioa-first-paint-stability').remove();
+  $('head').prepend('<style id="bioa-first-paint-stability">*{margin:0;padding:0;box-sizing:border-box}@media(min-width:769px){html{scrollbar-width:none}}</style>');
   const title=titleFor(route,lang);
   const fullTitle=route==='/'?title:(/Bio-A Group/i.test(title)?title:title+' | Bio-A Group');
   const description=lang==='vi'
