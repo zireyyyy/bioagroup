@@ -5,9 +5,9 @@ import {load} from "cheerio";
 /* Root cause regression:
  * Merywood's live footer may add its historical Headquarters content under
  * the source logo. BIO-A owns that column. Zalo previously missed source
- * socials__link and showed a circular image oversized relative to siblings.
+ * socials__link. The owner's original circular PNG must be preserved.
  */
-await access("dist/assets/zalo-bioa.svg");
+await access("dist/assets/zalo-bioa-owner.png");
 const routes=["","en/","about/","en/about/","dich-vu-khac/","en/dich-vu-khac/","blog/","en/blog/","contacts/","en/contacts/"];
 for(const route of routes){
  const filename="dist/"+route+"index.html";
@@ -32,8 +32,8 @@ for(const route of routes){
    assert.ok(a.hasClass("socials__link"),"source social class must be preserved for "+label+": "+filename);
  }
  const zalo=anchors.filter('[aria-label="Zalo"]');
- assert.equal(zalo.find("img.bioa-zalo-icon").attr("src"),"/assets/zalo-bioa.svg",
-   "Footer Zalo must use preexisting cream vector, not circular Mobile PNG: "+filename);
+ assert.equal(zalo.find("img.bioa-zalo-icon").attr("src"),"/assets/zalo-bioa-owner.png",
+   "Footer Zalo must preserve original owner-approved PNG, not SVG: "+filename);
  assert.ok(zalo.attr("href")?.startsWith("https://zalo.me/"),"Zalo CTA retained: "+filename);
  const mobile=footer.find(".bioa-footer-mobile-v2__socials a[aria-label='Zalo'] img");
  if(mobile.length) assert.equal(mobile.attr("src"),"/assets/zalo-bioa-owner.png",

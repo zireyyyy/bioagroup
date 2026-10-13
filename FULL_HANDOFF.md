@@ -1,3 +1,12 @@
+## 2026-10-13 — FOOTER-ZALO-ARTWORK-RESTORE: owner correction to PR #8
+
+Owner's screenshot of candidate `74405dc`: **"Headquarters / Estonia" removal PASS**, **Zalo artwork substitution FAIL**. The project must never treat assistant artwork changes as an owner-approved design update. Previous PR #8 incorrectly changed Footer Zalo `/assets/zalo-bioa-owner.png` (cream circular approved PNG) to `/assets/zalo-bioa.svg` and shrank it from Desktop 30px / Tablet 2.0833vw to 23px / 1.5972vw. Reversed **only this artwork and inner image sizing** back to the prior used PNG. Retained the already-approved removal of Merywood Headquarters and one BIO-A business info block. Retained `.socials__link` source class on the outer anchor, four channels and URLs. No other icon artwork, Header/Footer grid, company info, hover or responsive source change.
+
+**Hard freeze:** FIRST-PAINT1 `#bioa-first-paint-stability` and source Smooth Scrollbar at `d328e76f` were the ONLY PASS at that checkpoint; do not alter `bioa-transform.mjs` or first paint. Production `main` remains `4f0c186`, and PR #8 is candidate until owner checks corrected Zalo and Footer. Never claim the entire Footer PASS from absence of Headquarters alone.
+
+Regression: all ten VI/EN routes must use original `/assets/zalo-bioa-owner.png` in Footer; original CSS 30px Desktop and 2.0833vw on Tablet, Zalo square outer slot retained, no Headquarters source text and exactly one BIO-A business info. Confirm Preview image at 834/1024 Tablet and 1440 Desktop and Mobile 390; scrolling first-paint must stay stable. If user rejects, modify only the Footer artwork owner; do not touch loading.
+
+---
 ## 2026-10-13 — FOOTER-LEGACY-SOURCE1: corrections after explicit owner FAIL
 
 **Owner explicitly corrected the historical PASS wording:** only `FIRST-PAINT1` at `d328e76f8320b608694751034915fa0bca63010f` was PASS (no lateral movement on page load/navigation). It is **permanently frozen** and must survive EVERY future release; do not treat this as full Footer/Zalo PASS. The earlier claims describing all responsive areas as PASS were mistaken. **Footer Zalo icon and leftover Headquarters are FAIL** on user-provided 2026-10-13 Tablet screenshots, including after `d328e76` and following commits. Desktop and Mobile previously accepted sections must remain unaffected except exact owner-requested Footer artwork correction.

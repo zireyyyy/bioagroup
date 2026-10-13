@@ -136,10 +136,11 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
     border-radius:.9028vw !important; overflow:hidden !important;
   }
   .footer-top .footer-top__socials a[aria-label="Zalo"] .bioa-zalo-icon {
-    /* 23px/1440: same optical size band as sibling SVG artwork. */
-    width:1.5972vw !important; max-width:1.5972vw !important;
-    height:1.5972vw !important; max-height:1.5972vw !important;
-    flex:0 0 1.5972vw !important; border-radius:0 !important;
+    /* Preserve previously used Zalo PNG circle and 30px/1440 artwork ratio.
+       Only the containing social anchor uses the shared source link box. */
+    width:2.0833vw !important; max-width:2.0833vw !important;
+    height:2.0833vw !important; max-height:2.0833vw !important;
+    flex:0 0 2.0833vw !important; border-radius:50% !important;
   }
   .footer-top .bioa-footer-company-info--desktop {
     display:block !important; width:100% !important; max-width:100% !important;
