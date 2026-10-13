@@ -4198,6 +4198,10 @@ function replaceBrandWatermarks($){
   const green='/assets/bioa-monogram.svg';
   const patterns=[
     /https:\/\/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/img\/logo-bg\.svg/gi,
+    /* Live Merywood sometimes emits a root-relative version of the same
+       watermark. It resolved to a missing local /assets/img file in BIO-A
+       Home + Other Services (VI/EN). Replace only this exact brand mark. */
+    /\/assets\/img\/logo-bg\.svg(?=["')?#]|$)/gi,
     /(?:https?:\/\/[^"'() ]+\/)?[^"'() ]*merywood_[^"'() ]+\.svg/gi,
     /(?:https?:\/\/[^"'() ]+\/)?[^"'() ]*merywood-logo[^"'() ]+\.svg/gi
   ];
