@@ -1,3 +1,13 @@
+## 2026-10-13 — FOOTER VISUAL EVIDENCE PASS (measurement only)
+
+Owner confirmed BRAND-WATERMARK1 candidate `24ec3b1` PASS. Merged PR #6 by squash to `main` commit `4f0c186b2e8276c261acd4c00ce7ee3e206ab0f8`. The previous deploy/privacy/scroll and Footer Zalo square PASS remain protected. This approval does not constitute full Tablet visual PASS.
+
+Next work targets the remaining Tablet Footer mismatch shown in the earlier owner screenshot. Current 769–1200px `bioa-source-components.mjs` uses owner-approved Desktop grid scaled from 1440px; Desktop/Mobile visuals MUST NOT be changed. Existing Chromium browser smoke passed and checked overflow/proportions but did not compare screenshots of all footer subsections or font wrap. Do not add further CSS before measuring actual output.
+
+Added `tools/capture-footer-parity.mjs`: captures **read-only** Header and Footer screenshots and geometry for Home/About/Other Services VI/EN at 390/768/769/834/1024/1180/1440. CI uploads as `bioa-footer-visual-evidence`; no runtime mutation, no new CSS, no API or Production privacy changes. Review 834 and 1024 against 1440 accepted Desktop and source Merywood, identify one verified mismatch, then make separate component patch. Tablet pending visual approval.
+
+---
+
 ## 2026-10-13 — OWNER DEPLOY PASS + BRAND-WATERMARK-RELATIVE-URL1 (candidate)
 
 Owner reported **PASS** on previous deployment/privacy/scroll and Footer Zalo update at GitHub `main` `d328e76f8320b608694751034915fa0bca63010f`. This PASS does **not** imply that all Tablet sections are now fully visually approved. Desktop and Mobile previously accepted surfaces remain LOCKED, Tablet follow-on audit remains OPEN.

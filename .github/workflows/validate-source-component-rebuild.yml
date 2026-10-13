@@ -50,3 +50,13 @@ jobs:
         run: node tests/first-paint-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
         run: node tests/tablet-browser-smoke.mjs
+      - name: Capture Footer and Header visual parity evidence
+        run: node tools/capture-footer-parity.mjs
+      - name: Upload Footer QA evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-footer-visual-evidence
+          path: audit-artifacts/footer-parity/
+          retention-days: 14
+          if-no-files-found: warn
