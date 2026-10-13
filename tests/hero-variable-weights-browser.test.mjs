@@ -14,7 +14,7 @@ const server=createServer(async(req,res)=>{
  const url=new URL(req.url,"http://localhost");
  const file=path.resolve(root,"."+(url.pathname.endsWith("/")?url.pathname+"index.html":url.pathname));
  if(!file.startsWith(root+path.sep)){res.writeHead(403);res.end();return;}
- try{res.writeHead(200,{"Content-Type":mime[path.extname(file)]||"application/octet-stream"});res.end(await fs.readFile(file));}
+ try{const bytes=await fs.readFile(file);res.writeHead(200,{"Content-Type":mime[path.extname(file)]||"application/octet-stream"});res.end(bytes);}
  catch{res.writeHead(404);res.end("not found");}
 });
 await new Promise(resolve=>server.listen(0,"127.0.0.1",resolve));
