@@ -31,13 +31,28 @@ jobs:
           node --check bioa-home-refine.mjs
           node --check bioa-transform.mjs
           node --check tests/tablet-browser-smoke.mjs
+          node --check tools/audit-generated-bioa.mjs
+          node --check tools/audit-browser-bioa.mjs
       - name: Responsive source regression
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Record generated HTML and asset references (read-only)
+        run: node tools/audit-generated-bioa.mjs
       - name: Install browser smoke dependencies
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.56.1
           npx playwright install --with-deps chromium
       - name: Collect actual browser geometry across desktop and tablet
         run: node tests/tablet-browser-smoke.mjs
+      - name: Record computed shared-shell CSS across routes and devices (read-only)
+        if: success()
+        run: node tools/audit-browser-bioa.mjs
+      - name: Upload independent audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-source-ownership-audit
+          path: audit-artifacts/*.json
+          if-no-files-found: warn
+          retention-days: 14

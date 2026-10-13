@@ -1,3 +1,21 @@
+## 2026-10-13 — A3 audit evidence and diagnostic repair (latest)
+
+Owner baseline `c320f2868a46aafd141a7178c03337a1d07b3a82` on `main` remains untouched. Historical SCALE9 Tablet changes are not an accepted source. In PR #3 audit branch: initial automatic build/style probe run `38339149965` reported FAILURE on audit-script Invalid URL (remote Merywood URL), **not a BIO-A site regression**; build/responsive and browser geometry steps PASSED. Generated evidence: 106 HTML files, 32 assets including leads JS, all 6 About icons referenced, apparent missing `/assets/img/logo-bg.svg` (requires computed evidence). Fixed measurement harness to guard invalid URLs, scan inline style attributes, and normalize root `/` instead of `//`.
+
+Scope **AUDIT-INSTRUMENTATION ONLY**, no production/UI CSS/JS/images/components touched. Next consume new CI computed JSON after workflow completes and identify verified cascade winner + desired Merywood behavior BEFORE component edits. Desktop/Mobile LOCKED, Tablet PENDING; no visual PASS promoted.
+
+---
+
+# 2026-10-13 — Owner rollback + Merywood/BIO-A Phase A1 audit (latest authority)
+
+**AUTHORITATIVE PRODUCTION/ROLLBACK BASELINE:** `c320f2868a46aafd141a7178c03337a1d07b3a82`, confirmed as `main` on 2026-10-13. The owner rejected later Tablet/WhatsApp fixes and explicitly requested the original approved BIO-A presentation remain frozen. **Do not re-promote the older SCALE9 candidate just because it appears in the historical log below.**
+
+Current work: audit-only in branch `audit/merywood-bioa-ownership-20261013`; see `docs/MERYWOOD_BIOA_OWNERSHIP_AUDIT_20261013.md` and `docs/BIOA_ASSET_SOURCE_REGISTER_20261013.md`. Findings include live-remote-Merywood build fetch (snapshot reproducibility risk), 47 Home patchCss declarations with 2508 !important occurrences, Home-vs-shared CSS assembly differences, and 5 unreferenced-by-literal assets. These are **static evidence / risks, not authorized code cleanup**.
+
+State: DOCS-ONLY. `main` and Cloudflare unchanged by this audit. Desktop/Mobile PASS elements LOCKED, Tablet not globally PASS. No new build/runtime validation. **KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY.** Next: capture generated DOM/CSS computed/asset proofs, original Merywood source version, then one narrowly scoped reviewable candidate only. No blind CSS deletion or redesign.
+
+---
+
 ## 2026-10-10 — BIOA-TABLET-DESKTOP-SHELL-SCALE9 — Candidate for owner QA
 
 OWNER BUG EVIDENCE: owner screenshot Tablet still has oversized Header BIO-A logo, Footer differs from owner-confirmed Desktop, floating chat avatar and WhatsApp/Zalo presentation too large/inconsistent. Other page sections already stabilized and must be frozen. Source comparator: owner-supplied original Merywood main.txt maintains desktop structure on 769–1920 CSS px (mobile <=768). Critically current approved BIO-A Desktop >=1201 (in patchFooterInfo1Css) is now grid: left company+logo / central 4 category columns / right contacts, whereas previous Tablet owner forced flex. Thus source-first means preserve original breakpoint and scaled *owner-approved* BIO-A desktop composition, NOT blindly use Merywood old three-list flex. The baseline Tablet 834 had Header image 48x56px independent of viewport (same as 1440), Footer contact/email/social fixed 46px height despite text scaling; approved Desktop 1440 Footer logo 92x109.1, left width320, menu779, right208, four categories, chat avatar fixed68.
