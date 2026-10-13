@@ -31,13 +31,18 @@ jobs:
           node --check bioa-home-refine.mjs
           node --check bioa-transform.mjs
           node --check tests/tablet-browser-smoke.mjs
+          node --check tests/first-paint-browser.test.mjs
       - name: Responsive source regression
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Check generated HTML first-paint order
+        run: node tests/first-paint-build.test.mjs
       - name: Install browser smoke dependencies
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Verify first-paint computed style across routes and viewports
+        run: node tests/first-paint-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
         run: node tests/tablet-browser-smoke.mjs

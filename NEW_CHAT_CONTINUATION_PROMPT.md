@@ -1,3 +1,9 @@
+## 2026-10-13 — FIRST-PAINT1 candidate (owner QA pending)
+
+Candidate repairs trace-proven initial BODY 8px shift by source-identical head-first normalize; addresses suspected 15px root scrollbar fluctuation using `scrollbar-width:none` only >768 with original Merywood Smooth Scrollbar kept unchanged. Owner trace contained third-party `rstest` overlay at second shift, so don't assert all horizontal movement solved without live proof. See `docs/FIRST_PAINT_LAYOUT_SHIFT_TRACE_20261013.md`. Separate Footer Tablet Zalo square fix remains pending PR #4; do not merge without owner runtime acceptance. `main` rollback `c320f2868a46aafd141a7178c03337a1d07b3a82` frozen. Desktop/Mobile visual PASS protected; Tablet FAIL/PENDING.
+
+---
+
 # BIO-A NEW CHAT CONTINUATION — SCALE9
 Read main and mandatory repository contracts before patch. ## 2026-10-10 — BIOA-TABLET-DESKTOP-SHELL-SCALE9 — Candidate for owner QA
 
