@@ -43,6 +43,12 @@ html,body{background:var(--bioa-cream)!important}
 .footer-bottom{background:#03271B!important}
 .header__nav a,.menu__nav a{color:var(--bioa-deep)!important}
 .header__nav a:hover,.menu__nav a:hover,.header__email a{color:var(--bioa-primary)!important}
+/* MVR-TYPE1: user-confirmed relative hierarchy for Google Manrope Variable.
+   Only font weight: original DOM/motion, button geometry and colors stay fixed.
+   Unmodified VI/EN source nav anchors inherit 400 and look underweight with the
+   variable face; CTA glyphs need less than the Merywood 600 face. */
+.header .header__nav > ul > li > a{font-weight:500}
+.btn,.btn .btn__text{font-weight:500}
 .btn,.header__socials a,.menu__socials a{background:var(--bioa-primary)!important}
 .btn:hover,.header__socials a:hover,.menu__socials a:hover{background:var(--bioa-dark)!important}
 .block-product-formats .formats,.whatsapp{background:linear-gradient(135deg,var(--bioa-ivory),#EDF5EE)!important}
@@ -1165,14 +1171,12 @@ const patchB5Css = `
 .block-title .info .item:nth-child(5) .item__number{
   font-size:27px!important;
   font-weight:300;
-  font-variation-settings:"wght" 300!important;
   line-height:1!important;
   letter-spacing:-.02em!important;
 }
 .block-title .info .item__text{
   font-size:13px!important;
   font-weight:400;
-  font-variation-settings:"wght" 400!important;
   line-height:1.16!important;
 }
 
@@ -1205,7 +1209,6 @@ const patchB5Css = `
   .block-title-mobile .info .item__number{
     font-size:24px!important;
     font-weight:300;
-    font-variation-settings:"wght" 300!important;
     line-height:1!important;
   }
   .block-title-continue .info .item__text,
@@ -1396,8 +1399,7 @@ const patchB6Css = `
 .block-title .info .item:nth-child(4) .item__number,
 .block-title .info .item:nth-child(5) .item__number{
   font-size:24px!important;
-  font-weight:200;
-  font-variation-settings:"wght" 200!important;
+  font-weight:300;
   line-height:1!important;
   letter-spacing:-.018em!important;
   color:#565656!important;
@@ -1407,7 +1409,6 @@ const patchB6Css = `
 .block-title .info .item__text *{
   font-size:12.5px!important;
   font-weight:300;
-  font-variation-settings:"wght" 300!important;
   line-height:1.16!important;
   color:#4f4f4f!important;
   -webkit-font-smoothing:antialiased!important;
@@ -1472,8 +1473,7 @@ const patchB6Css = `
   .block-title-mobile .info .item__number,
   .block-title-mobile .info .item__number *{
     font-size:22px!important;
-    font-weight:200;
-    font-variation-settings:"wght" 200!important;
+    font-weight:300;
     line-height:1!important;
     -webkit-font-smoothing:antialiased!important;
   }
@@ -1483,7 +1483,6 @@ const patchB6Css = `
   .block-title-mobile .info .item__text *{
     font-size:11px!important;
     font-weight:300;
-    font-variation-settings:"wght" 300!important;
     line-height:1.15!important;
     -webkit-font-smoothing:antialiased!important;
   }
@@ -2284,9 +2283,10 @@ const patchHeroStatsSourceCss = `
 
 
 const patchHeroStatsOriginalTypeCss = `
-/* HERO STATS — original Merywood typography authority.
-   The supplied Merywood source loads Manrope at 400/600/700 only.
-   Use the original regular 400 face; do not request synthetic 200/300 weights. */
+/* HERO STATS — Merywood main.txt source has item__number at weight 300,
+   and item labels at inherited regular 400. With Manrope Variable 200–800,
+   use that single hierarchy (including child spans) rather than historical
+   200/300/400 experiments or forced variable font axes. */
 .block-title .info .item__number,
 .block-title .info .item__number *,
 .block-title-continue .info .item__number,
@@ -2294,9 +2294,8 @@ const patchHeroStatsOriginalTypeCss = `
 .block-title-mobile .info .item__number,
 .block-title-mobile .info .item__number *{
   font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-  font-weight:400;
+  font-weight:300;
   font-style:normal!important;
-  font-variation-settings:normal!important;
   font-synthesis:none!important;
   text-shadow:none!important;
   -webkit-text-stroke:0!important;
@@ -2312,7 +2311,6 @@ const patchHeroStatsOriginalTypeCss = `
   font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   font-weight:400;
   font-style:normal!important;
-  font-variation-settings:normal!important;
   font-synthesis:none!important;
   text-shadow:none!important;
   -webkit-text-stroke:0!important;

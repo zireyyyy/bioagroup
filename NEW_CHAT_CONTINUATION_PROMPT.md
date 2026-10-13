@@ -1,3 +1,19 @@
+## 2026-10-13 — MVR-TYPE1 owner visual feedback / scoped weight parity (candidate)
+
+Owner supplied side-by-side screenshot BIO-A vs Merywood on Desktop: BIO-A Header main nav underweight, CTA labels too bold, Hero 5 number values visually inconsistent. This is **owner FAIL on typography only**, not a reason to change frozen layout/first-paint/Footer/Zalo. PR #9 source `fd8e9b2b0f449d911e44b9f3c5622c0ac3375856` latest prior successful CI.
+
+Measured **original Merywood main.txt**:
+- `.btn` font-weight 600 (with original/static face, visually lighter than current Google Variable at 600); owner wants **500** for all BIO-A CTAs under Google Manrope Variable; this is an intentional BIO-A adaptation.
+- Hero `.block-title .info .list .item__number` weight **300**. Labels inherit regular **400**.
+- Nav inherits 400 in Merywood source, but owner's BIO-A screenshot is underweight with Variable Manrope; user-directed visual adaptation to **500** on desktop/Tablet main header links only.
+
+**Verified root cause:** `bioa-home-refine.mjs` contains historical `font-weight:200` experiments and seven `font-variation-settings:"wght" 200|300|400!important` declarations plus a `patchHeroStatsOriginalTypeCss` rule setting `.item__number, .item__number *` to 400 while final card number owner sets 300. This allows parent/child glyph weights to disagree and forces variable-axis values independent of CSS `font-weight`. Corrected at existing owners: one 300 value on all Hero number elements and descendants, 400 on labels, removed nine forced axis settings (7 numeric plus 2 `normal`); 2 historical numeric 200→300. Scoped Header nav 500 and CTA 500 with ordinary CSS (no !important, no new global typography force).
+
+**Protection:** no changes to `bioa-transform.mjs` loading, no font URL change, no DOM, images, geometry, line heights, palette, motion, Footer/Chat copy, Zalo, Cloudflare gate. 390/834/1440 VI/EN browser computed font-weight regression and old source layout test required. Owner visual QA on Preview is mandatory: nav, Header/Hero CTA, all five Hero numbers uniform; verify other CTAs throughout site, Footer EN and Page initial paint.
+
+**Future rule:** No `font-weight:...!important` or direct manual `font-variation-settings:"wght" ...` for BIO-A typography. Adjust explicit weight using ordinary scoped `font-weight` in the component that owns it; do not use assistant-fabricated global overrides.
+
+---
 # BIO-A VARIABLE FONT POLICY — permanent, owner-approved 2026-10-13
 - Google Fonts Manrope Variable normal 200..800: `https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap`
 - All future component typography uses `font-family: "Manrope", sans-serif` by inheritance; `font-optical-sizing:auto`; weights 200–800 with regular 400. Do NOT add new local font files, alternate font families or `font-weight:...!important` / `font-family:...!important` in BIO-A CSS. Use ordinary `font-weight` scoped to the component when an explicit owner-approved change is needed.

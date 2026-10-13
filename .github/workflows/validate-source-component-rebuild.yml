@@ -39,6 +39,8 @@ jobs:
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Verify typography source weight ownership
+        run: node tests/hero-variable-weights-source.test.mjs
       - name: Verify single Merywood font source across routes
         run: node tests/single-manrope-font-source.test.mjs
       - name: Verify sole canonical Zalo asset and all VI/EN routes
@@ -55,6 +57,8 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify first-paint computed style across routes and viewports
         run: node tests/first-paint-browser.test.mjs
+      - name: Verify Hero/Nav/CTA computed Manrope weight hierarchy
+        run: node tests/hero-variable-weights-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
         run: node tests/tablet-browser-smoke.mjs
       - name: Verify EN Footer wrap and record first-paint movement
