@@ -144,8 +144,13 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
     display:block !important; width:100% !important; max-width:100% !important;
     margin-top:1.3889vw !important;
   }
+  /* Zalo is appended as an anchor without the original .socials__link
+     class, so the sibling social rule above never assigned its height.
+     Keep the accepted Desktop 46x46 button proportions in the source
+     769–1200 fluid band; do not touch Desktop or Mobile classes/assets. */
   .footer-top .footer-top__socials a[aria-label="Zalo"] {
     width:3.1944vw !important; min-width:0 !important; max-width:3.1944vw !important;
+    height:3.1944vw !important; min-height:0 !important; max-height:3.1944vw !important;
     flex:0 0 3.1944vw !important;
   }
   .footer-top .footer-top__socials .socials__link svg {
