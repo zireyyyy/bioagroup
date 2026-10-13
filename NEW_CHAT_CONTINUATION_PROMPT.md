@@ -1,3 +1,11 @@
+
+## 2026-10-13 — ZALO CANONICAL WHITE BACKGROUND + ASSET CLEANUP (owner request)
+
+The owner accepts Zalo's existing 96×96 circular design and explicitly wants ONLY its interior cream to become pure white site-wide. The canonical source remains `/assets/zalo-bioa-owner.png` across shared Header, Footer, Mobile, Chat and CTA (existing source references unchanged). Applied an in-place pixel recolor of cream to RGB(255,255,255), retained PNG RGBA 96×96, positioning, green lettering, alpha and all source CSS/JS. Three obsolete assets confirmed not referenced by rendering modules nor tests: `assets/zalo-bioa.svg`, `assets/zalo-bioa-circle-cream.svg`, `assets/zalo-bioa-framed-cream.png`; delete from candidate Git tree. If old historical docs mention these files, treat them as removed superseded artwork, NEVER authoritative. Added test `tests/zalo-canonical-asset.test.mjs` to enforce the canonical asset and no stale alternatives in source/build.
+
+Other confirmed areas: Headquarters/Estonia removal PASS by owner; Zalo geometry/design before color change PASS by owner. **FIRST-PAINT1** approved at `d328e76f` is FROZEN. This candidate changes only Zalo asset bytes + removes 3 obsolete assets + regression tests/docs; Desktop/Mobile layout and smooth scrollbar unchanged. Owner visual QA pending for white pixel color only. If passed, merge PR #8; not otherwise.
+
+---
 ## 2026-10-13 — FOOTER-ZALO-ARTWORK-RESTORE: owner correction to PR #8
 
 Owner's screenshot of candidate `74405dc`: **"Headquarters / Estonia" removal PASS**, **Zalo artwork substitution FAIL**. The project must never treat assistant artwork changes as an owner-approved design update. Previous PR #8 incorrectly changed Footer Zalo `/assets/zalo-bioa-owner.png` (cream circular approved PNG) to `/assets/zalo-bioa.svg` and shrank it from Desktop 30px / Tablet 2.0833vw to 23px / 1.5972vw. Reversed **only this artwork and inner image sizing** back to the prior used PNG. Retained the already-approved removal of Merywood Headquarters and one BIO-A business info block. Retained `.socials__link` source class on the outer anchor, four channels and URLs. No other icon artwork, Header/Footer grid, company info, hover or responsive source change.
