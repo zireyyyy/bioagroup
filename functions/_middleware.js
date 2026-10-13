@@ -12,7 +12,7 @@ const privateHeaders={"Cache-Control":"private, no-store, max-age=0","X-Robots-T
 // Explicitly recognize a ONE-label Pages preview hostname; unknown hosts are
 // fail-closed. Never match the apex pages.dev or nested untrusted suffixes.
 const isPagesPreviewHost=host=>/^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.bioagroup\.pages\.dev$/i.test(host);
-const isPreviewPrivatePath=path=>path==="/api"||path.startsWith("/api/")||path==="/ _bioa-access".replace(" ","")||path.startsWith(ENTRY+"/");
+const isPreviewPrivatePath=path=>path==="/api"||path.startsWith("/api/")||path===ENTRY||path.startsWith(ENTRY+"/");
 const previewStaticResponse=async context=>{
   const response=await context.next();
   const out=new Response(response.body,response);

@@ -16,7 +16,7 @@ test("Production exact domains and www remain private without owner cookie",asyn
     const r=await run("https://"+host+"/");
     assert.equal(r.response.status,503,host);
     assert.equal(r.forwarded,0);
-    assert.match(r.response.headers.get("X-Robots-Tag")||"","noindex");
+    assert.match(r.response.headers.get("X-Robots-Tag")||"",/noindex/);
     const api=await run("https://"+host+"/api/lead/config");
     assert.equal(api.response.status,503);
     assert.equal(api.forwarded,0);
@@ -29,7 +29,7 @@ test("Preview deployments and branch aliases show static UI without a secret",as
       const r=await run("https://"+host+path);
       assert.equal(r.response.status,200,host+path);
       assert.equal(r.forwarded,1);
-      assert.match(r.response.headers.get("X-Robots-Tag")||"","noindex");
+      assert.match(r.response.headers.get("X-Robots-Tag")||"",/noindex/);
     }
   }
 });
