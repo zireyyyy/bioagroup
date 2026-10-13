@@ -101,6 +101,9 @@ try {
       and its old fixed 46px height must not survive Tablet scaling. */
    assert.ok(Math.abs(socials.w-socials.h)<1.5,
       'Footer Zalo button must remain square on fluid Desktop/Tablet @'+width);
+   const whatsapp=cur.values['.footer-top__socials a[aria-label="WhatsApp"]'];
+   assert.ok(whatsapp&&Math.abs(whatsapp.w-socials.w)<1.5&&Math.abs(whatsapp.h-socials.h)<1.5,
+     'Footer Zalo must use same source social box as WhatsApp @'+width);
       const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
    assert.ok(email&&button&&Math.abs(email.h-button.h)<2,'Header contact alignment @'+width);
  }
