@@ -39,6 +39,8 @@ jobs:
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Verify single Merywood font source across routes
+        run: node tests/single-manrope-font-source.test.mjs
       - name: Verify sole canonical Zalo asset and all VI/EN routes
         run: node tests/zalo-canonical-asset.test.mjs
       - name: Verify Footer brand and social DOM output

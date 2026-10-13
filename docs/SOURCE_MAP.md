@@ -1,3 +1,20 @@
+## 2026-10-13 — FONT-SOURCE1 / trace-grounded cold-load candidate (visual QA PENDING)
+
+**Owner decision:** Footer EN (translated company title and approved wrapping) PASS, but repeated loading/navigation jolt on PR #9 FAIL relative to `44879b4`. Do NOT merge until first-paint parity owner PASS. Production `main` remains `44879b49c180a5f9433a9a118b9ff9979b329f3d`; approved initial BODY margin/gutter fix from `d328e76f` MUST stay bitwise unchanged.
+
+**Actual uploaded Chromium trace** `Trace-20261013T154358.json.gz`, page `5db31fd8.bioagroup.pages.dev/`:
+- Navigation t=0; first paint ≈132ms; Manrope static TTFs from Merywood requested ≈192ms, completed ≈334ms.
+- Extra Google Fonts Manrope WOFF2s requested ≈338ms, loaded ≈377ms.
+- Single scored main-frame LayoutShift ≈434ms, 0.000305, 6px max affecting hero text and header anchors. Potential font-family swap, but trace does not prove every perceptual movement; CSS transform/reveal animations are unscored by CLS.
+- Earlier user Trace 10:38 had 3 main-frame shifts (8px BODY reset first, 15px late scrollbar-related). New trace no initial 8px BODY reset; retains only small text-related movement.
+- CI generated layout-shift JSON from PR#9 has separate cookie-consent `bioa-consent show` shifts (approx 0.004–0.019 depending viewport), **not evidence of full-page content movement**.
+- Original owner-supplied `main.txt` CSS contains original Merywood `@font-face` for Manrope 300/400/500/600/700/800, all `font-display:swap`. The live source also embeds redundant `https://fonts.googleapis.com/css2?family=Manrope...` style/preload, producing a later font face download. Double-font-source is independently evidenced by the trace.
+
+**Minimal FONT-SOURCE1 candidate:** only in `bioa-transform.mjs` `cleanupExternal`, remove stylesheet and style-preload links pointing to Google CSS *and containing Manrope*. Keep Merywood `main.css` and all original font-face rules; no custom fonts, font sizes, animations, transitions, first-paint style, breakpoint, layouts, Cookie scripts, content or Zalo changes. This may remove the second font swap but does **not** guarantee zero perceptual motion; first print/scroll and route-switch screenshot test still required. New CI test ensures no duplicated Google Manrope stylesheet while original Merywood stylesheet + first paint guard remain on ten routes.
+
+**Owner verification:** after Preview redeploy check repeated hard refresh Home VI/EN, Home→About→Home, cold browser incognito at Desktop 1440/1900, Tablet 834/1024, Mobile 390. Check typography and Cookie, all previously PASS Footer visual and loading. No merge if motion/jolt persists, investigate source `lockHeight` and intentional AOS transform separately. Do not add global opacity blockers or change SmoothScrollbar speculatively.
+
+---
 ## 2026-10-13 — FOOTER-EN-WRAP1 / loading nonregression (authoritative latest)
 
 Owner reported PR #9 EN Footer title OVERFLOW/OVERLAP and repeat page-load/navigation slight shift; main `44879b4` reportedly still shifts once on initial load. **PR #9 was already CI FAIL** on `tests/tablet-cross-route-regression.test.mjs` expecting obsolete `addFooterCompanyInfo($)` signature; never merge the failed candidate. Review screenshot at Desktop ~1900px: the EN name collides with Cosmetic Manufacturing section.

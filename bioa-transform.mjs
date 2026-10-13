@@ -157,6 +157,18 @@ function headerAndLinks($,route,lang){
 function cleanupExternal($){
   $('script').each((_,el)=>{const src=($(el).attr('src')||'').toLowerCase(),body=($(el).html()||'').toLowerCase();if(/dashly\.app|yandex|mc\.yandex|googletagmanager\.com|google-analytics\.com/.test(src)||/dashly\.connect\(|gtm-ndkp5rxk|ym\(/.test(body))$(el).remove()});
   $('noscript').each((_,el)=>{if(/googletagmanager|yandex/i.test($.html(el)))$(el).remove()});
+  /* FONT-SOURCE1 / cold-load race:
+     Merywood main.css already owns @font-face Manrope 300/400/500/600/700/800.
+     The live export additionally imports Google Manrope with font-display:swap,
+     triggering a second, later font download and reflow (trace 2026-10-13
+     shows 377ms font ready -> 434ms text/header shift). Remove ONLY redundant
+     Google Manrope style/preload links; retain original Merywood font files,
+     main.css, preconnect and all typography rules unchanged.
+     This is a scoped candidate: owner must verify text appearance, loading. */
+  $('head link[rel="stylesheet"],head link[rel="preload"][as="style"]').each((_,el)=>{
+    const href=($(el).attr('href')||'').replace(/&amp;/gi,'&');
+    if(/^(?:https?:)?\/\/fonts\.googleapis\.com\/css2?\?/i.test(href)&&/\bfamily=Manrope(?:[:&]|$)/i.test(href))$(el).remove();
+  });
 }
 function palette($){$('style').each((_,el)=>{let s=$(el).html()||'';s=s.replace(/#546B51/gi,'#106E45').replace(/#556B51/gi,'#106E45').replace(/#587156/gi,'#106E45').replace(/rgba\(84\s*,\s*107\s*,\s*81/gi,'rgba(16,110,69');$(el).html(s)});$('head').append('<style id="bioa-v3">'+css+'</style>')}
 
