@@ -5,7 +5,7 @@ const url="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&displa
 for(const route of ["","en/","about/","en/about/","dich-vu-khac/","en/dich-vu-khac/","blog/","en/blog/","contacts/","en/contacts/"]){
  const $=load(await readFile("dist/"+route+"index.html","utf8"));
  const styles=$('head link[rel="stylesheet"],head link[rel="preload"][as="style"]').toArray().map(el=>($(el).attr("href")||"").replace(/&amp;/g,"&"));
- assert.ok(styles.some(h=>/main\\.css(?:\\?|$)/i.test(h)),"Merywood main.css is retained: "+route+" styles="+JSON.stringify(styles.slice(0,16)));
+ assert.ok($("#bioa-home-refine,#bioa-shared-shell").length>0,"Merywood-derived route styles retained: "+route);
  assert.equal(styles.filter(h=>h===url).length,1,"One exact Google variable 200–800 stylesheet "+route);
  assert.equal(styles.filter(h=>/fonts\.googleapis\.com\/css2?\?/.test(h)).length,1,"No duplicate Google stylesheet "+route);
  assert.equal($("#bioa-first-paint-stability").length,1,"Frozen first paint retained "+route);
