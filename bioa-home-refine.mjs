@@ -2437,7 +2437,7 @@ const patchHeroStatsFinalSourceCss = `
   }
   body .block-title .info.desctop .list > .item .item__text p{
     margin:0!important;
-    font:inherit!important;
+    font:inherit;
     color:inherit!important;
   }
 }

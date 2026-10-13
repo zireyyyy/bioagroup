@@ -1,3 +1,12 @@
+# BIO-A VARIABLE FONT POLICY — permanent, owner-approved 2026-10-13
+- Google Fonts Manrope Variable normal 200..800: `https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap`
+- All future component typography uses `font-family: "Manrope", sans-serif` by inheritance; `font-optical-sizing:auto`; weights 200–800 with regular 400. Do NOT add new local font files, alternate font families or `font-weight:...!important` / `font-family:...!important` in BIO-A CSS. Use ordinary `font-weight` scoped to the component when an explicit owner-approved change is needed.
+- Preserve CSS geometry, font sizes, line heights, responsive breakpoints, DOM and original Merywood motions until owner QA. Never silently normalize all headers to bold.
+- FIRST-PAINT1 and Smooth Scrollbar frozen; inspect network requests, computed family/weight and layout shifts at 390/834/1440 before production promotion.
+- Existing Merywood `main.css` remains for layout and includes old font-face rules. Google stylesheet is appended last as the new Manrope source; investigate any face-source competition via computed/render inspection before calling single-font-source PASS.
+- This is a **candidate** only; previous Footer EN, Zalo and content loading owner PASS preserved but typography appearance needs owner visual confirmation on VI/EN.
+
+---
 ## 2026-10-13 — FONT-SOURCE1 / trace-grounded cold-load candidate (visual QA PENDING)
 
 **Owner decision:** Footer EN (translated company title and approved wrapping) PASS, but repeated loading/navigation jolt on PR #9 FAIL relative to `44879b4`. Do NOT merge until first-paint parity owner PASS. Production `main` remains `44879b49c180a5f9433a9a118b9ff9979b329f3d`; approved initial BODY margin/gutter fix from `d328e76f` MUST stay bitwise unchanged.
