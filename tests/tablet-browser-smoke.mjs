@@ -97,6 +97,10 @@ try {
    const socials=cur.values['.footer-top__socials a[aria-label="Zalo"]'];
    const art=cur.values['.footer-top__socials .bioa-zalo-icon'];
    assert.ok(art.w<=socials.w&&art.h<=socials.h,'Zalo artwork fits within social button @'+width);
+   /* Root-cause regression: BIO-A Zalo is not given .socials__link,
+      and its old fixed 46px height must not survive Tablet scaling. */
+   assert.ok(Math.abs(socials.w-socials.h)<1.5,
+      'Footer Zalo button must remain square on fluid Desktop/Tablet @'+width);
       const email=cur.values['.header__email a'],button=cur.values['.header__btn'];
    assert.ok(email&&button&&Math.abs(email.h-button.h)<2,'Header contact alignment @'+width);
  }

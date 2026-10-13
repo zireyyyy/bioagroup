@@ -1,3 +1,14 @@
+## 2026-10-13 — HOST-SCOPED MAINTENANCE + PRODUCTION SOURCE UPDATE (owner-directed)
+
+**New owner instruction:** push current passing candidate fixes to `main` for QA despite previous Preview-only status; keep both `bioagroup.vn` and root `bioagroup.pages.dev` private. Open new `*.bioagroup.pages.dev` hashed/branch Preview static UX without authentication; **never expose Preview `/api/*` nor `/_bioa-access`**. Only owner can confirm visual PASS.
+
+**Production source changes:** adopt exact previously CI-green Footer Zalo Tablet square candidate `6ec1ee2` and FIRST-PAINT1 candidate `7a5f44e`, plus hostname-scoped protection in `functions/_middleware.js`. Regression tests cover host isolation, real Chrome first-paint and Tablet Zalo. Cloudflare automatic deployment is **disabled in owner screenshot**; push/CI success does NOT prove runtime deployment. Owner must enable Cloudflare Branch control Production `main`, Preview branches and/or manually redeploy current `main`; see `docs/DEPLOYMENT_BRANCH_ACCESS_GUIDE.md`.
+
+**Scope protection:** Guest exact production host maintenance remains ON by default; Cloudflare Function fail-closed and signed owner cookie remain. PR#4 and PR#5 were separate CI candidates, incorporated explicitly on main per owner deployment instruction without declaring responsive OWNER PASS. No unrelated redesign, no forms/business logic changes.
+
+**Owner test:** Desktop 1440 Home/About VI/EN; Tablet 834/1024 Footer Zalo icon square and scroll/layout shift; Mobile 390/768 stable native scrolling; Guest public Preview static read-only noindex and both production roots maintenance 503; backend preview blocked.
+
+---
 ## 2026-10-10 — BIOA-TABLET-DESKTOP-SHELL-SCALE9 — Candidate for owner QA
 
 OWNER BUG EVIDENCE: owner screenshot Tablet still has oversized Header BIO-A logo, Footer differs from owner-confirmed Desktop, floating chat avatar and WhatsApp/Zalo presentation too large/inconsistent. Other page sections already stabilized and must be frozen. Source comparator: owner-supplied original Merywood main.txt maintains desktop structure on 769–1920 CSS px (mobile <=768). Critically current approved BIO-A Desktop >=1201 (in patchFooterInfo1Css) is now grid: left company+logo / central 4 category columns / right contacts, whereas previous Tablet owner forced flex. Thus source-first means preserve original breakpoint and scaled *owner-approved* BIO-A desktop composition, NOT blindly use Merywood old three-list flex. The baseline Tablet 834 had Header image 48x56px independent of viewport (same as 1440), Footer contact/email/social fixed 46px height despite text scaling; approved Desktop 1440 Footer logo 92x109.1, left width320, menu779, right208, four categories, chat avatar fixed68.

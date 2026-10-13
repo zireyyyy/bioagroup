@@ -32,3 +32,7 @@ Before patch: 0446f80cbf008370fe5a677909cce8e951719ae9. Rolling back removes mai
 
 ## Owner acceptance 2026-10-08
 Owner confirmed the exact official logo + 14-day private preview PASS on production. Lock maintenance until explicit PUBLIC approval. Email notifications are a separate pending configuration milestone (docs/LEAD_SECURITY_NOTIFY_SETUP.md). Guest asset/API gate and Fail closed requirement stay mandatory.
+
+## Host privacy gate update — owner request 2026-10-13
+
+Source of truth `docs/DEPLOYMENT_BRANCH_ACCESS_GUIDE.md`. User wants exact production root hosts private and hash/branch Preview static UX publicly viewable. Never set `BIOA_SITE_MODE=public` merely to unblock Preview. Keep maintenance secret/session rules intact. Cloudflare may also require preview Access Policy to be disabled or narrowed separately; no code patch can override upstream Cloudflare Access.
