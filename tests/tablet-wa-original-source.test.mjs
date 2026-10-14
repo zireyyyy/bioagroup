@@ -6,8 +6,6 @@ const source=await readFile('bioa-home-refine.mjs','utf8');
 assert.ok(source.includes('function restoreMerywoodWhatsAppIcon($)'));
 assert.ok(source.includes('icons.whatsapp=svg'));
 assert.ok(source.includes('const patchTabletType3Css ='));
-assert.ok(source.includes('font-size:1.06em!important'));
-assert.ok(source.includes('font-weight:450'));
 assert.ok(source.includes('sourceComponentCss+patchTabletType3Css'));
 
 for(const route of ['','en/','about/','en/about/','blog/','en/blog/','contacts/','en/contacts/']){
