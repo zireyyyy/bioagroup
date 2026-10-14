@@ -4305,6 +4305,23 @@ function normalizeViTitleCase($,lang){
 }
 
 
+/* WA-SOURCE1 — reuse the literal icon DOM supplied by Merywood source.
+   The builder fetches original page HTML for every route. BIO-A previously
+   replaced WhatsApp with a manually reconstructed path; avoid that entirely.
+   Do not rewrite Zalo, shared button geometry, or non-WhatsApp artwork. */
+function restoreMerywoodWhatsAppIcon($){
+  const original=$('.header__socials .socials__link svg, .menu__socials .socials__link svg').first();
+  if(!original.length)return;
+  const svg=$.html(original.clone());
+  // An external SVG <use> can depend on source-domain assets; only accept
+  // self-contained original paths/shapes. Keep existing markup otherwise.
+  if(!svg||!original.find('path,circle,rect,polygon,polyline,ellipse').length)return;
+  icons.whatsapp=svg;
+  $('.header__socials .socials__link, .menu__socials .socials__link').each((_,el)=>{
+    $(el).html(svg);
+  });
+}
+
 function normalizeHeaderActions($){
   const contacts=$('.header__contacts').first();
   const lang=$('.header > .container .bioa-lang, .header__wrapper > .bioa-lang').first();
@@ -5597,6 +5614,7 @@ export function applySharedShell($,route,lang){
   $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+'</style>');
 
   /* SHARED-UX1: every route inherits the Home-approved global experience. */
+  restoreMerywoodWhatsAppIcon($);
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
@@ -5619,6 +5637,7 @@ export function applySharedShell($,route,lang){
 export function applyHomeRefinement($,route,lang){
   $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+'</style>');
   localizeHomeCtas($,lang);
+  restoreMerywoodWhatsAppIcon($);
   setLogo($);
   replaceBrandWatermarks($);
   syncWhyChooseIcons($);
