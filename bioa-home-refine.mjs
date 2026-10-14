@@ -75,19 +75,26 @@ html,body{background:var(--bioa-cream)!important}
    Root font may scale with viewport in original Merywood CSS, hence nav
    uses a small proportional improvement rather than a fixed global size. */
 const patchTabletType3Css = `
-@media(min-width:769px) and (max-width:1200px){
+/* NAV-READABLE1: Merywood nav scales with 0.8333vw; BIO-A's longer
+   VI/EN labels become too small at 769-1200. The 12px floor rejoins the
+   original Merywood fluid size at 1440 with no jump at 1200. */
+@media(min-width:769px){
   .header .header__nav > ul > li > a{
-    font-size:1.06em!important;
+    font-size:max(12px,.8333vw)!important;
   }
+}
+/* TABLET-TYPE3B: regular-weight section headings and gently lighter
+   descriptive copy. Original Hero Stats, CTA, Cookie, Footer excluded. */
+@media(min-width:769px) and (max-width:1200px){
   .page-main h1,.page-main h2,.page-main h3,
   .page-main .title-wrapper .title,
   .page-main .mwa-sec__title{
-    font-weight:450;
+    font-weight:400;
   }
   .page-main .text-large,.page-main .mwa-hero__lead,
   .page-main .mwa-lede,.page-main .mwa-story__text,
   .page-main .blog-body p{
-    font-weight:400;
+    font-weight:375;
   }
 }
 `;
