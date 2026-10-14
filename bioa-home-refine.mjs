@@ -3648,13 +3648,13 @@ const patchCookieConsentCss = `
 #mw-consent.bioa-consent p{
   line-height:1.55!important;
 }
-/* COOKIE-TYPE2: only consent labels, preserve the Merywood button geometry. */
+/* COOKIE-TYPE3: owner reopens only Cookie text weight, preserve all source geometry and button actions. */
 #mw-consent.bioa-consent .mw-actions .mw-btn,
 #mw-prefs .mw-actions .mw-btn{
   font-family:"Manrope",sans-serif;
   font-optical-sizing:auto;
   font-size:12px;
-  font-weight:600;
+  font-weight:350;
   line-height:1.2;
   min-width:0;
   white-space:normal;
