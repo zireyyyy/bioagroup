@@ -47,8 +47,8 @@ html,body{background:var(--bioa-cream)!important}
    Only font weight: original DOM/motion, button geometry and colors stay fixed.
    Unmodified VI/EN source nav anchors inherit 400 and look underweight with the
    variable face; CTA glyphs need less than the Merywood 600 face. */
-.header .header__nav > ul > li > a{font-weight:500}
-.btn,.btn .btn__text{font-weight:500}
+.header .header__nav > ul > li > a{font-weight:550}
+.btn,.btn .btn__text{font-weight:550}
 .btn,.header__socials a,.menu__socials a{background:var(--bioa-primary)!important}
 .btn:hover,.header__socials a:hover,.menu__socials a:hover{background:var(--bioa-dark)!important}
 .block-product-formats .formats,.whatsapp{background:linear-gradient(135deg,var(--bioa-ivory),#EDF5EE)!important}
@@ -3588,6 +3588,22 @@ const patchCookieConsentCss = `
 }
 #mw-consent.bioa-consent p{
   line-height:1.55!important;
+}
+/* COOKIE-TYPE2: only consent labels, preserve the Merywood button geometry. */
+#mw-consent.bioa-consent .mw-actions .mw-btn,
+#mw-prefs .mw-actions .mw-btn{
+  font-family:"Manrope",sans-serif;
+  font-optical-sizing:auto;
+  font-size:12px;
+  font-weight:600;
+  line-height:1.2;
+  min-width:0;
+  white-space:normal;
+  text-align:center;
+}
+/* COOKIE-FONT-GATE1: no visible fallback font before localization and fonts. */
+#mw-consent.bioa-consent:not(.bioa-consent-font-ready) #mw-card{
+  visibility:hidden;
 }
 @media(max-width:768px){
   #mw-consent.bioa-consent{

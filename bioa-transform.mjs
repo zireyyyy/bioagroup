@@ -625,7 +625,7 @@ function brandCookieBanner($,lang){
     title:'Quản Lý Cookie',
     body:'Để mang lại trải nghiệm tốt nhất, chúng tôi sử dụng các công nghệ như cookie để lưu trữ và/hoặc truy cập thông tin thiết bị. Khi đồng ý với các công nghệ này, bạn cho phép chúng tôi xử lý dữ liệu như hành vi duyệt web hoặc mã định danh duy nhất trên website. Việc không đồng ý hoặc rút lại sự đồng ý có thể ảnh hưởng đến một số tính năng và chức năng.',
     accept:'Đồng Ý Tất Cả',
-    necessary:'Chỉ Cookie Cần Thiết',
+    necessary:'Từ chối',
     customize:'Tùy Chỉnh',
     prefs:'Tùy Chọn Cookie',
     functional:'Cookie Cần Thiết',
@@ -640,7 +640,7 @@ function brandCookieBanner($,lang){
     title:'Manage Consent',
     body:'To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.',
     accept:'Accept all',
-    necessary:'Necessary only',
+    necessary:'Reject',
     customize:'Customize',
     prefs:'Cookie preferences',
     functional:'Necessary cookies',
@@ -713,6 +713,13 @@ function brandCookieBanner($,lang){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
   })();`;
   $('body').append($('<script id="bioa-cookie-copy-sync"></script>').html(runtimeScript));
+
+  /* COOKIE-FONT-GATE1: wait for variable Manrope/localized copy before
+     visually showing the existing Merywood consent card; preserve consent
+     storage/events and source .show/.in/.out transitions. */
+  $('#bioa-cookie-font-ready').remove();
+  const fontReadyScript="(function(){\n var root=document.getElementById('mw-consent');if(!root)return;\n var ready=false;\n function show(){if(ready)return;ready=true;root.classList.add('bioa-consent-font-ready');}\n var failSafe=setTimeout(show,1800);\n function init(){\n  if(!document.fonts||!document.fonts.load){clearTimeout(failSafe);show();return;}\n  Promise.all([\n   document.fonts.load('400 12px \"Manrope\"','Quản Lý Cookie'),\n   document.fonts.load('600 12px \"Manrope\"','Từ chối'),\n   document.fonts.load('700 16px \"Manrope\"','Quản Lý Cookie')\n  ]).then(function(){return document.fonts.ready;})\n    .then(function(){requestAnimationFrame(function(){clearTimeout(failSafe);show();});})\n    .catch(function(){clearTimeout(failSafe);show();});\n }\n if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});\n else init();\n})();";
+  $('body').append($('<script id="bioa-cookie-font-ready"></script>').html(fontReadyScript));
 
   /* COOKIE-C3 — hide only the floating gear after a confirmed choice.
      The source consent popup/storage/buttons remain the runtime authority. */

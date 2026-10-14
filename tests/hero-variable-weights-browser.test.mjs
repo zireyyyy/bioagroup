@@ -43,8 +43,8 @@ try{
         rootScrollbar:getComputedStyle(document.documentElement).scrollbarWidth,
         pageWidth:document.documentElement.scrollWidth,viewport:innerWidth};
     });
-    if(width>768)assert.equal(info.navWeight,"500","Main navigation medium "+route+" @"+width);
-    assert.equal(info.ctaWeight,"500","Header CTA should be medium "+route+" @"+width);
+    if(width>768)assert.equal(info.navWeight,"550","Main navigation medium "+route+" @"+width);
+    assert.equal(info.ctaWeight,"550","Header CTA should be medium "+route+" @"+width);
     assert.ok(info.numbers.length>=5,"Five hero numbers exist "+route+" @"+width);
     for(const n of info.numbers){assert.equal(n.weight,"300","Hero number lightweight "+route+" @"+width+" "+n.text);for(const w of n.spans)assert.equal(w,"300","Nested hero number same axis "+n.text);}
     for(const w of info.labels)assert.equal(w,"400","Hero label regular "+route+" @"+width);
