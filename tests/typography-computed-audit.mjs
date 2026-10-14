@@ -15,7 +15,21 @@ const output=[];try{
    const sels=['.blog-hero .title','.blog-hero .text-large','.post-feature__title','.post-feature__title a','.post-feature__subtitle','.post-card .post-feature__title a','.block-title .content h1','.block-title .content .text-large','#mw-consent .mw-actions .mw-btn','#mw-card-title','.header__btn .btn__text','.post-feature__actions .btn__text'];
    const obj={};
    for(const q of sels){let e=document.querySelector(q);if(!e)continue;let c=getComputedStyle(e);obj[q]={fontFamily:c.fontFamily,fontWeight:c.fontWeight,fontSize:c.fontSize,fontVariationSettings:c.fontVariationSettings,tag:e.tagName,classes:e.className};}
-   return {styles:obj,loaded:[...document.fonts].filter(f=>f.status==='loaded').slice(0,8).map(f=>({family:f.family,weight:f.weight}))};
+   const sources={};
+   for(const q of ['.blog-hero .title','#mw-card-title']){
+     const node=document.querySelector(q);if(!node)continue;
+     const hits=[];
+     const walk=(rules,url)=>{for(const rule of rules){
+       if(rule.cssRules){try{walk(rule.cssRules,url)}catch{}continue;}
+       if(!rule.selectorText||!rule.style?.fontWeight)continue;
+       try{if(node.matches(rule.selectorText)){hits.push({selector:rule.selectorText.slice(0,160),weight:rule.style.fontWeight,important:rule.style.getPropertyPriority('font-weight'),source:url});}}catch{}
+     }};
+     for(const sheet of document.styleSheets){
+       try{walk(sheet.cssRules,sheet.href?new URL(sheet.href).pathname:'inline')}catch{}
+     }
+     sources[q]={inlineStyle:node.getAttribute('style'),matches:hits.slice(-24)};
+   }
+   return {styles:obj,sources,loaded:[...document.fonts].filter(f=>f.status==='loaded').slice(0,8).map(f=>({family:f.family,weight:f.weight}))};
   });const o={route,width,...result};output.push(o);console.log('BIOA_TYPO_AUDIT '+JSON.stringify(o));
   }catch(e){console.log('BIOA_TYPO_AUDIT_ERROR '+route+' '+width+' '+String(e));process.exitCode=1}finally{await page.close()}
  }
