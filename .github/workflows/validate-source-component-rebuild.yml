@@ -75,6 +75,15 @@ jobs:
           retention-days: 14
       - name: Verify first-paint computed style across routes and viewports
         run: node tests/first-paint-browser.test.mjs
+      - name: Audit actual computed typography across VI/EN routes
+        run: node tests/typography-computed-audit.mjs
+      - name: Upload typography computed evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-typography-computed-audit
+          path: audit-artifacts/typography/
+          if-no-files-found: warn
       - name: Verify Hero/Nav/CTA computed Manrope weight hierarchy
         run: node tests/hero-variable-weights-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
