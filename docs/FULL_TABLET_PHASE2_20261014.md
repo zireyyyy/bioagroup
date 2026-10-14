@@ -33,3 +33,10 @@
 
 ## Owner test for this audit-only change
 **KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY** because this commit creates only read-only CI diagnostics and this handoff; existing website output is unchanged. Review the Actions job and its route-matrix artifact. Any visual defect reports must include route, VI/EN, viewport, screenshot and source expected result. No secrets or private authorization links.
+
+## Phase 2 audit findings — CI run 38504183758 and refined diagnostics
+- Original CI attempt 1 PASS: **48/48** VI/EN route-by-width navigations HTTP 200; document width == viewport throughout, shared Header/Footer present. This is structural CI PASS only.
+- Initial analyzer reported `runtimeErrors: ["Object"]` for every route, because `String(e)` on a nonstandard Playwright pageerror object lost error details. **No application root cause is yet established.** Updated audit collects name/message/stack to diagnose.
+- Initial offscreen warnings are mostly Swiper slides, other carousel cards and intentionally displaced children; slide bounding boxes past the viewport do not imply a user-visible horizontal-scroll regression. Updated audit records clipping ancestors and separates unclassified offscreen elements.
+- Added representative Blog detail and independent 404.html VI/EN checks for structural coverage; 404 is a standalone page without shared Header/Footer by design, so it is not asserted to have them.
+- New browser run is required after these test-only edits. On any new error inspect raw CI output before changing site code. No owner-approved visual surface has been edited.
