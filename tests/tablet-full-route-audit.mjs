@@ -20,6 +20,8 @@ const routes=['/','/about/','/contract-manufacturing-cosmetics/','/dich-vu-khac/
 const widths=[768,834,1024,1180]; // 768 boundary plus source-fluid Tablet widths
 const output=[];
 let failures=0;
+const visualDir='audit-artifacts/tablet-phase2/visual';
+await mkdir(visualDir,{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 try{
  for(const route of routes)for(const lang of ['vi','en'])for(const width of widths){
@@ -66,6 +68,16 @@ try{
    });
    const result={route:pathname,width,status:response?.status()||0,...report,runtimeErrors};
    output.push(result);
+   // Save representative visual QA evidence WITHOUT changing the page or user state.
+   // Screenshots are advisory for owner QA, not visual PASS.
+   if((width===834||width===1024)&&response?.status()===200){
+    const filename=pathname.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,90);
+    await page.screenshot({path:visualDir+'/'+filename+'-'+width+'-top.png',animations:'disabled',timeout:12000});
+    const footer=page.locator('.footer-top').first();
+    if(await footer.count()){
+      await footer.screenshot({path:visualDir+'/'+filename+'-'+width+'-footer.png',animations:'disabled',timeout:12000});
+    }
+   }
    if(result.status!==200||(route!=='/404.html'&&(!result.header||!result.footer))||result.docWidth>width+2)failures++;
    console.log('TABLET_PHASE2 '+JSON.stringify(result));
   }catch(error){failures++;output.push({route:pathname,width,error:String(error)});console.log('TABLET_PHASE2_ERROR '+pathname+' '+width+' '+String(error));}
