@@ -75,27 +75,43 @@ html,body{background:var(--bioa-cream)!important}
    Root font may scale with viewport in original Merywood CSS, hence nav
    uses a small proportional improvement rather than a fixed global size. */
 const patchTabletType3Css = `
-/* NAV-READABLE1: Merywood nav scales with 0.8333vw; BIO-A's longer
-   VI/EN labels become too small at 769-1200. The 12px floor rejoins the
-   original Merywood fluid size at 1440 with no jump at 1200. */
+/* NAV-FLUID2 — original Merywood .8333vw gets too small on compact
+   13-inch laptop, while 130%-zoom Tablet emulation makes the old
+   fixed 12px floor visually oversized. Use one continuous, source-owned
+   viewport curve, no device sniffing or JS/font-size injection.
+   834px = 11px, 1280px = 13.26px, 1440px = 14.09px, 1920px = 16.5px. */
 @media(min-width:769px){
   .header .header__nav > ul > li > a{
-    font-size:max(12px,.8333vw)!important;
+    font-size:clamp(11px,calc(6.6px + .52vw),16.5px)!important;
   }
 }
-/* TABLET-TYPE3B: regular-weight section headings and gently lighter
-   descriptive copy. Original Hero Stats, CTA, Cookie, Footer excluded. */
-@media(min-width:769px) and (max-width:1200px){
-  .page-main h1,.page-main h2,.page-main h3,
-  .page-main .title-wrapper .title,
-  .page-main .mwa-sec__title{
-    font-weight:400;
-  }
-  .page-main .text-large,.page-main .mwa-hero__lead,
-  .page-main .mwa-lede,.page-main .mwa-story__text,
-  .page-main .blog-body p{
-    font-weight:375;
-  }
+/* TYPE-BALANCE2 — shared semantic typography for Home and all subpages.
+   Keep normal Manrope Variable weight axis, not synthetic bold. Scope
+   solely to content titles and prose. Protected: Header nav/CTA 550,
+   Home/About Hero Stats 300/400, Cookie 600, Footer, buttons, icon art.
+   No !important on font-weight; source layout and size unchanged. */
+.page-main h1,.page-main h2,.page-main h3,
+.page-main .title-wrapper .title,
+.page-main .mwa-sec__title,
+.page-main .mwa-hero__title,
+.block-title .content h1,
+.block-title .content .title,
+.blog-hero .title,
+.post-feature__title,.post-feature__title a,
+.post-card .post-feature__title,
+.merywood-cg-card__title{
+  font-weight:375;
+}
+.page-main .text-large,
+.page-main .mwa-hero__lead,.page-main .mwa-lede,
+.page-main .mwa-story__text,
+.page-main .blog-body p,
+.block-title .content .text-large,
+.blog-hero .text-large,
+.post-feature__subtitle,
+.post-card .post-feature__subtitle,
+.block-blog-body .text-block__content p{
+  font-weight:350;
 }
 `;
 
