@@ -3648,22 +3648,22 @@ const patchCookieConsentCss = `
 #mw-consent.bioa-consent p{
   line-height:1.55!important;
 }
-/* COOKIE-TYPE3: owner explicitly requests light Cookie typography 350.
-   The Merywood modal title was still rendered at 700 in Chromium,
-   despite its actions already being 350. Match heading and dialog
-   preferences labels to this one accepted Cookie typography owner. */
+/* COOKIE-TYPE4: owner reopened only Cookie modal-title and action text.
+   Manrope Variable 500 is the middle weight between rejected 400 (too
+   light) and original 600/700 (too heavy). Preserve Merywood consent
+   geometry, content, button count/actions, font-readiness gate. */
 #mw-consent.bioa-consent #mw-card-title,
 #mw-prefs .mw-title,
 #mw-prefs .mw-row .label{
-  font-weight:400;
+  font-weight:500;
 }
-/* COOKIE-TYPE3: owner reopens only Cookie text weight, preserve all source geometry and button actions. */
+/* COOKIE-TYPE4: all three action buttons and preferences actions share this source-owned weight. */
 #mw-consent.bioa-consent .mw-actions .mw-btn,
 #mw-prefs .mw-actions .mw-btn{
   font-family:"Manrope",sans-serif;
   font-optical-sizing:auto;
   font-size:12px;
-  font-weight:400;
+  font-weight:500;
   line-height:1.2;
   min-width:0;
   white-space:normal;
