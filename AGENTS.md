@@ -443,3 +443,15 @@ Each checklist must include:
 6. Explicit current state: CODE/BUILD/AUTOMATED/OWNER RUNTIME PASS or PENDING separately, and next step only after requested owner PASS.
 
 If no owner action is required, write **"KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY"** and give the precise reason. Never say PASS from code inspection alone. Update the handoff with this exact test scope/status so another chat uses the same gate.
+
+
+# BIO-A VARIABLE FONT POLICY — permanent, owner-approved 2026-10-13
+- Google Fonts Manrope Variable normal 200..800: `https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap`
+- All future component typography uses `font-family: "Manrope", sans-serif` by inheritance; `font-optical-sizing:auto`; weights 200–800 with regular 400. Do NOT add new local font files, alternate font families or `font-weight:...!important` / `font-family:...!important` in BIO-A CSS. Use ordinary `font-weight` scoped to the component when an explicit owner-approved change is needed.
+- Preserve CSS geometry, font sizes, line heights, responsive breakpoints, DOM and original Merywood motions until owner QA. Never silently normalize all headers to bold.
+- FIRST-PAINT1 and Smooth Scrollbar frozen; inspect network requests, computed family/weight and layout shifts at 390/834/1440 before production promotion.
+- Existing Merywood `main.css` remains for layout and includes old font-face rules. Google stylesheet is appended last as the new Manrope source; investigate any face-source competition via computed/render inspection before calling single-font-source PASS.
+- This is a **candidate** only; previous Footer EN, Zalo and content loading owner PASS preserved but typography appearance needs owner visual confirmation on VI/EN.
+
+
+Cookie authority: `brandCookieBanner` is copy owner and Merywood `.mw-deny` action is functional owner. Consent CTA typography 12px/600 scoped only to cookie. Hero Stats 300/400 owner PASS frozen. New Nav/CTA weight 550 candidate. No typography `!important`.

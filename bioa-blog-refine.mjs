@@ -403,7 +403,7 @@ function patchBlogCss($){
     /* PATCH-G8 — archive pagination visual parity with Merywood:
        compact text-like numbers, only the active page has a filled surface. */
     'body.bioa-blog-index .posts-grid-pagination{display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;margin-top:28px!important;text-align:center!important}'+
-    'body.bioa-blog-index .posts-grid-pagination .page-numbers{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:30px!important;height:36px!important;margin:0!important;padding:0 6px!important;border:0!important;border-radius:7px!important;background:transparent!important;box-shadow:none!important;color:#141B14!important;text-decoration:none!important;font-size:14px!important;font-weight:400!important;line-height:1!important}'+
+    'body.bioa-blog-index .posts-grid-pagination .page-numbers{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:30px!important;height:36px!important;margin:0!important;padding:0 6px!important;border:0!important;border-radius:7px!important;background:transparent!important;box-shadow:none!important;color:#141B14!important;text-decoration:none!important;font-size:14px!important;font-weight:400;line-height:1!important}'+
     'body.bioa-blog-index .posts-grid-pagination .page-numbers.current{min-width:36px!important;background:var(--bioa-primary,#116F47)!important;color:#fff!important}'+
     'body.bioa-blog-index .posts-grid-pagination a.page-numbers:hover{background:rgba(17,111,71,.08)!important;color:var(--bioa-primary,#116F47)!important}'+
     'body.bioa-blog-index .posts-grid-pagination .prev,body.bioa-blog-index .posts-grid-pagination .next{min-width:24px!important;padding:0!important;background:transparent!important;font-size:16px!important}'+
@@ -432,9 +432,9 @@ function patchBlogCss($){
     '.bioa-blog-detail .merywood-cg-card--gray{background:#E7ECE7!important}'+
     '.bioa-blog-detail .merywood-cg-card--sand{background:#F5F2EA!important}'+
     '.bioa-blog-detail .merywood-cg-card--white{background:#FFFFFF!important}'+
-    '.bioa-blog-detail .merywood-cg-card__title{margin:0 0 10px!important;min-height:0!important;font-size:clamp(18px,1.28vw,23px)!important;line-height:1.28!important;font-weight:600!important;letter-spacing:0!important}'+
-    '.bioa-blog-detail .merywood-cg-wrap .text-block__content.cards{margin:0!important;font-size:clamp(14px,.98vw,16px)!important;line-height:1.55!important;font-weight:400!important;color:#2a2a2a!important}'+
-    '.bioa-blog-detail .merywood-cg-wrap .text-block__content.cards p{margin:0!important;font-weight:400!important}'+
+    '.bioa-blog-detail .merywood-cg-card__title{margin:0 0 10px!important;min-height:0!important;font-size:clamp(18px,1.28vw,23px)!important;line-height:1.28!important;font-weight:600;letter-spacing:0!important}'+
+    '.bioa-blog-detail .merywood-cg-wrap .text-block__content.cards{margin:0!important;font-size:clamp(14px,.98vw,16px)!important;line-height:1.55!important;font-weight:400;color:#2a2a2a!important}'+
+    '.bioa-blog-detail .merywood-cg-wrap .text-block__content.cards p{margin:0!important;font-weight:400}'+
 
     /* Keep source CTA/image modules inside the same content rail. */
     '.bioa-blog-detail .bioa-blog-source-image .image-block__img{display:block!important;width:100%!important;aspect-ratio:1174/440!important;object-fit:cover!important}'+
@@ -442,7 +442,7 @@ function patchBlogCss($){
     '.bioa-blog-detail .bioa-blog-source-green .green-card__img{object-fit:cover!important}'+
     /* PATCH-G5 — restore Merywood CTA contrast after replacing source button with Bio-A anchor. */
     '.bioa-blog-detail .bioa-blog-source-green .green-card__btn{display:inline-flex!important;align-items:center!important;gap:8px!important;width:auto!important;min-width:0!important;margin:0!important;padding:13px 20px!important;border:1px solid rgba(255,255,255,.72)!important;border-radius:12px!important;background:#fff!important;color:#0f5f42!important;text-decoration:none!important;box-shadow:none!important}'+
-    '.bioa-blog-detail .bioa-blog-source-green .green-card__btn .btn__text,.bioa-blog-detail .bioa-blog-source-green .green-card__btn .btn__icon{color:#0f5f42!important;fill:currentColor!important;font-weight:600!important}'+
+    '.bioa-blog-detail .bioa-blog-source-green .green-card__btn .btn__text,.bioa-blog-detail .bioa-blog-source-green .green-card__btn .btn__icon{color:#0f5f42!important;fill:currentColor!important;font-weight:600}'+
     '.bioa-blog-detail .bioa-blog-source-green .green-card__btn:hover{background:#f7f4e8!important;color:#0b4f37!important}'+
     /* PATCH-G5 — source next arrow points right; previous must mirror it. */
     '.bioa-blog-detail .bb-post-nav__prev .bb-post-nav__arrow{transform:rotate(180deg)!important;transform-origin:center!important}'+
@@ -454,8 +454,8 @@ function patchBlogCss($){
     '.bioa-blog-detail .flex-table-scroll{width:100%!important;max-width:100%!important;overflow-x:auto!important}'+
     '.bioa-blog-detail .flex-table{width:100%!important;min-width:0!important;--cols:3!important;--ft-col-min:0px!important}'+
     '.bioa-blog-detail .flex-table__header,.bioa-blog-detail .flex-table__row{grid-template-columns:repeat(3,minmax(0,1fr))!important}'+
-    '.bioa-blog-detail .flex-table .flex-table__cell--head{font-weight:600!important;font-size:clamp(16px,1.12vw,20px)!important;line-height:1.3!important;letter-spacing:0!important;padding:clamp(14px,1.25vw,20px) clamp(14px,1.15vw,22px)!important;overflow-wrap:normal!important;word-break:normal!important}'+
-    '.bioa-blog-detail .flex-table__cell{font-weight:400!important;font-size:clamp(14px,.95vw,17px)!important;line-height:1.55!important;overflow-wrap:break-word!important;word-break:normal!important}'+
+    '.bioa-blog-detail .flex-table .flex-table__cell--head{font-weight:600;font-size:clamp(16px,1.12vw,20px)!important;line-height:1.3!important;letter-spacing:0!important;padding:clamp(14px,1.25vw,20px) clamp(14px,1.15vw,22px)!important;overflow-wrap:normal!important;word-break:normal!important}'+
+    '.bioa-blog-detail .flex-table__cell{font-weight:400;font-size:clamp(14px,.95vw,17px)!important;line-height:1.55!important;overflow-wrap:break-word!important;word-break:normal!important}'+
     '.bioa-blog-detail .bioa-blog-source-note .text-block__content>p:first-child{opacity:.82}'+
     '.bioa-blog-detail .bioa-blog-source-note a{text-decoration:underline;text-underline-offset:3px}'+
 

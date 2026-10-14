@@ -1,3 +1,66 @@
+## 2026-10-14 — MVR-TYPE2 + COOKIE-FONT-GATE1 candidate
+Owner confirms Hero Stats PASS (numbers 300 labels 400); immutable. Nav and CTA 500 too light: raise narrowly to 550 ordinary weight. Cookie banner shifts/resizes after navigation: preserve Merywood consent behavior, keep visual card hidden until fonts ready (max 1800ms fallback), 12px/600 button labels, copy VI deny `Từ chối`, EN `Reject`; underlying .mw-deny still rejects optional consent. No layout/scroll/other UI changes. Production main 44879b4; PR #9 candidate until owner visual QA. Prior footer/Zalo/loading PASS frozen. Test Home/About VI/EN Desktop/Tablet/Mobile and cold navigation.
+
+---
+## 2026-10-13 — MVR-TYPE1 owner visual feedback / scoped weight parity (candidate)
+
+Owner supplied side-by-side screenshot BIO-A vs Merywood on Desktop: BIO-A Header main nav underweight, CTA labels too bold, Hero 5 number values visually inconsistent. This is **owner FAIL on typography only**, not a reason to change frozen layout/first-paint/Footer/Zalo. PR #9 source `fd8e9b2b0f449d911e44b9f3c5622c0ac3375856` latest prior successful CI.
+
+Measured **original Merywood main.txt**:
+- `.btn` font-weight 600 (with original/static face, visually lighter than current Google Variable at 600); owner wants **500** for all BIO-A CTAs under Google Manrope Variable; this is an intentional BIO-A adaptation.
+- Hero `.block-title .info .list .item__number` weight **300**. Labels inherit regular **400**.
+- Nav inherits 400 in Merywood source, but owner's BIO-A screenshot is underweight with Variable Manrope; user-directed visual adaptation to **500** on desktop/Tablet main header links only.
+
+**Verified root cause:** `bioa-home-refine.mjs` contains historical `font-weight:200` experiments and seven `font-variation-settings:"wght" 200|300|400!important` declarations plus a `patchHeroStatsOriginalTypeCss` rule setting `.item__number, .item__number *` to 400 while final card number owner sets 300. This allows parent/child glyph weights to disagree and forces variable-axis values independent of CSS `font-weight`. Corrected at existing owners: one 300 value on all Hero number elements and descendants, 400 on labels, removed nine forced axis settings (7 numeric plus 2 `normal`); 2 historical numeric 200→300. Scoped Header nav 500 and CTA 500 with ordinary CSS (no !important, no new global typography force).
+
+**Protection:** no changes to `bioa-transform.mjs` loading, no font URL change, no DOM, images, geometry, line heights, palette, motion, Footer/Chat copy, Zalo, Cloudflare gate. 390/834/1440 VI/EN browser computed font-weight regression and old source layout test required. Owner visual QA on Preview is mandatory: nav, Header/Hero CTA, all five Hero numbers uniform; verify other CTAs throughout site, Footer EN and Page initial paint.
+
+**Future rule:** No `font-weight:...!important` or direct manual `font-variation-settings:"wght" ...` for BIO-A typography. Adjust explicit weight using ordinary scoped `font-weight` in the component that owns it; do not use assistant-fabricated global overrides.
+
+---
+# BIO-A VARIABLE FONT POLICY — permanent, owner-approved 2026-10-13
+- Google Fonts Manrope Variable normal 200..800: `https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap`
+- All future component typography uses `font-family: "Manrope", sans-serif` by inheritance; `font-optical-sizing:auto`; weights 200–800 with regular 400. Do NOT add new local font files, alternate font families or `font-weight:...!important` / `font-family:...!important` in BIO-A CSS. Use ordinary `font-weight` scoped to the component when an explicit owner-approved change is needed.
+- Preserve CSS geometry, font sizes, line heights, responsive breakpoints, DOM and original Merywood motions until owner QA. Never silently normalize all headers to bold.
+- FIRST-PAINT1 and Smooth Scrollbar frozen; inspect network requests, computed family/weight and layout shifts at 390/834/1440 before production promotion.
+- Existing Merywood `main.css` remains for layout and includes old font-face rules. Google stylesheet is appended last as the new Manrope source; investigate any face-source competition via computed/render inspection before calling single-font-source PASS.
+- This is a **candidate** only; previous Footer EN, Zalo and content loading owner PASS preserved but typography appearance needs owner visual confirmation on VI/EN.
+
+---
+## 2026-10-13 — FONT-SOURCE1 / trace-grounded cold-load candidate (visual QA PENDING)
+
+**Owner decision:** Footer EN (translated company title and approved wrapping) PASS, but repeated loading/navigation jolt on PR #9 FAIL relative to `44879b4`. Do NOT merge until first-paint parity owner PASS. Production `main` remains `44879b49c180a5f9433a9a118b9ff9979b329f3d`; approved initial BODY margin/gutter fix from `d328e76f` MUST stay bitwise unchanged.
+
+**Actual uploaded Chromium trace** `Trace-20261013T154358.json.gz`, page `5db31fd8.bioagroup.pages.dev/`:
+- Navigation t=0; first paint ≈132ms; Manrope static TTFs from Merywood requested ≈192ms, completed ≈334ms.
+- Extra Google Fonts Manrope WOFF2s requested ≈338ms, loaded ≈377ms.
+- Single scored main-frame LayoutShift ≈434ms, 0.000305, 6px max affecting hero text and header anchors. Potential font-family swap, but trace does not prove every perceptual movement; CSS transform/reveal animations are unscored by CLS.
+- Earlier user Trace 10:38 had 3 main-frame shifts (8px BODY reset first, 15px late scrollbar-related). New trace no initial 8px BODY reset; retains only small text-related movement.
+- CI generated layout-shift JSON from PR#9 has separate cookie-consent `bioa-consent show` shifts (approx 0.004–0.019 depending viewport), **not evidence of full-page content movement**.
+- Original owner-supplied `main.txt` CSS contains original Merywood `@font-face` for Manrope 300/400/500/600/700/800, all `font-display:swap`. The live source also embeds redundant `https://fonts.googleapis.com/css2?family=Manrope...` style/preload, producing a later font face download. Double-font-source is independently evidenced by the trace.
+
+**Minimal FONT-SOURCE1 candidate:** only in `bioa-transform.mjs` `cleanupExternal`, remove stylesheet and style-preload links pointing to Google CSS *and containing Manrope*. Keep Merywood `main.css` and all original font-face rules; no custom fonts, font sizes, animations, transitions, first-paint style, breakpoint, layouts, Cookie scripts, content or Zalo changes. This may remove the second font swap but does **not** guarantee zero perceptual motion; first print/scroll and route-switch screenshot test still required. New CI test ensures no duplicated Google Manrope stylesheet while original Merywood stylesheet + first paint guard remain on ten routes.
+
+**Owner verification:** after Preview redeploy check repeated hard refresh Home VI/EN, Home→About→Home, cold browser incognito at Desktop 1440/1900, Tablet 834/1024, Mobile 390. Check typography and Cookie, all previously PASS Footer visual and loading. No merge if motion/jolt persists, investigate source `lockHeight` and intentional AOS transform separately. Do not add global opacity blockers or change SmoothScrollbar speculatively.
+
+---
+## 2026-10-13 — FOOTER-EN-WRAP1 / loading nonregression (authoritative latest)
+
+Owner reported PR #9 EN Footer title OVERFLOW/OVERLAP and repeat page-load/navigation slight shift; main `44879b4` reportedly still shifts once on initial load. **PR #9 was already CI FAIL** on `tests/tablet-cross-route-regression.test.mjs` expecting obsolete `addFooterCompanyInfo($)` signature; never merge the failed candidate. Review screenshot at Desktop ~1900px: the EN name collides with Cosmetic Manufacturing section.
+
+**Verified first-order root cause for EN overlap:** existing `bioa-home-refine.mjs` `patchFooterInfo1Css` includes `@media(min-width:1201px) .bioa-footer-company-info--desktop .bioa-footer-company-info__title{ white-space:nowrap!important }`. English name is much longer than approved Vietnamese copy and exceeds its 320–360px grid column. Correct with an **English-only** overriding rule adjacent to this original rule at Desktop: `html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title {white-space:normal!important;overflow-wrap:break-word!important;max-width:100%!important}`. No grid/font/line-height/VI CSS changes. Source output HTML `lang` is explicitly set by `bioa-transform.mjs`.
+
+**CI guard hardening:** update stale cross-route assertion to the new `addFooterCompanyInfo($,lang)` and assert EN wrapping rule; add Playwright read-only tests for actual English Footer rectangles / overflow at Tablet 834/1024 and Desktop 1280/1440/1900, with screenshot artifacts. Also capture initial/settled Header/scrollbar and layout-shift events as **diagnostics**, NOT presume the loaded page is motion-free solely because page source style is unchanged.
+
+**First-paint freeze:** `bioa-transform.mjs`, `#bioa-first-paint-stability`, `functions/_middleware.js`, source Smooth Scrollbar and fonts are unchanged. The trace-proven 8px BODY reset remains owner PASS from `d328e76f`. The reported intermittent navigation jerk on main predates PR #9 and is NOT proven caused by the English copy. Need compare actual shift timing/sources from captured metrics and, if necessary, obtain owner clean-browser trace. Do not add global scrollbar/font/JS transition patches without root-cause evidence.
+
+**Frozen PASS:** Zalo `/assets/zalo-bioa-owner.png` white background (sole canonical), no Headquarters/Estonia, existing Footer VI, Home Desktop/Mobile, private production/public read-only Preview. **PR #9 remains draft** until CI PASS and owner visual QA of EN at 1440/1900 + Tablet 834/1024 and repeat navigation. Production stays `44879b4` pending owner PASS.
+
+---
+## 2026-10-13 — FOOTER-EN-COPY1 candidate (owner visual pending)
+PR #8 PASS merged on main `44879b49c180a5f9433a9a118b9ff9979b329f3d`: no Headquarters/Estonia, canonical white-background PNG Zalo. FIRST-PAINT1 `d328e76f` is still the mandatory locked loading behavior. No broad Tablet PASS. Shared `addFooterCompanyInfo` hardcoded VI content on EN routes. Translate title, address and tax labels only; keep exact VI text, official address/phone/tax and all DOM/CSS/image assets unchanged. Test generated VI/EN Footer labels across 10 routes. EN title wrapping needs owner visual QA at 834/1024 Tablet, Desktop 1440 and Mobile 390. No production merge without approval.
+
+---
 
 ## 2026-10-13 — ZALO CANONICAL WHITE BACKGROUND + ASSET CLEANUP (owner request)
 

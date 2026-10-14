@@ -32,12 +32,19 @@ jobs:
           node --check bioa-transform.mjs
           node --check tests/tablet-browser-smoke.mjs
           node --check tests/first-paint-browser.test.mjs
+          node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
         run: node --test tests/maintenance-host-gate.test.mjs
       - name: Responsive source regression
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Verify Cookie i18n and font readiness guard
+        run: node tests/cookie-consent-stability-source.test.mjs
+      - name: Verify typography source weight ownership
+        run: node tests/hero-variable-weights-source.test.mjs
+      - name: Verify single Merywood font source across routes
+        run: node tests/single-manrope-font-source.test.mjs
       - name: Verify sole canonical Zalo asset and all VI/EN routes
         run: node tests/zalo-canonical-asset.test.mjs
       - name: Verify Footer brand and social DOM output
@@ -52,5 +59,17 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Verify first-paint computed style across routes and viewports
         run: node tests/first-paint-browser.test.mjs
+      - name: Verify Hero/Nav/CTA computed Manrope weight hierarchy
+        run: node tests/hero-variable-weights-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
         run: node tests/tablet-browser-smoke.mjs
+      - name: Verify EN Footer wrap and record first-paint movement
+        run: node tests/footer-en-layout-browser.test.mjs
+      - name: Preserve Footer EN screenshot + layout-shift evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-footer-en-wrap-layout-shift
+          path: audit-artifacts/footer-en-wrap/
+          if-no-files-found: warn
+          retention-days: 14

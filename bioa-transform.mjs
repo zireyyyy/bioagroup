@@ -26,7 +26,7 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
 .header__email a,.menu__email a,.footer-top__email a,.color-main{color:var(--bioa)!important}.footer-top{background:var(--bioa-deep)!important}.footer-bottom{background:#062c1c!important}.socials__link{background-color:var(--bioa-dark)!important;color:#fff!important}.swiper-button:not(.swiper-button-disabled):not([aria-disabled="true"]){background-color:var(--bioa-dark)!important;color:#fff!important}
 .review{background-color:var(--bioa-dark)!important}.review,.review *{color:#fff!important}
 .bioa-lang{display:flex;align-items:center;gap:4px;margin-left:8px;white-space:nowrap}.bioa-lang a{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;padding:0 7px;border-radius:999px;font-size:12px;text-decoration:none;color:var(--bioa-deep);background:rgba(16,110,69,.08)}.bioa-lang a.is-active{background:var(--bioa);color:#fff}
-.whatsapp-wrapper{margin-top:60px!important;padding:0 25px!important}.whatsapp{position:relative!important;width:100%!important;background:#fff!important;border-radius:60px!important;padding:40px 50px!important;overflow:hidden!important}.whatsapp__content{position:relative!important;z-index:2!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:40px!important}.whatsapp__title{font-weight:400!important;font-size:30px!important;line-height:1.2!important;color:#141B14!important;margin-bottom:6px!important}.whatsapp__description{line-height:1.5!important;color:#141B14!important;max-width:620px!important;opacity:.6!important}.whatsapp__btn{flex:0 0 auto!important;gap:12px!important;min-width:340px!important;height:66px!important;padding:0 40px!important;border-radius:18px!important}.whatsapp__decoration{position:absolute!important;top:-420px!important;right:-180px!important;width:1120px!important;height:1120px!important;border-radius:50%!important;background:var(--bioa)!important;opacity:.08!important;pointer-events:none!important}
+.whatsapp-wrapper{margin-top:60px!important;padding:0 25px!important}.whatsapp{position:relative!important;width:100%!important;background:#fff!important;border-radius:60px!important;padding:40px 50px!important;overflow:hidden!important}.whatsapp__content{position:relative!important;z-index:2!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:40px!important}.whatsapp__title{font-weight:400;font-size:30px!important;line-height:1.2!important;color:#141B14!important;margin-bottom:6px!important}.whatsapp__description{line-height:1.5!important;color:#141B14!important;max-width:620px!important;opacity:.6!important}.whatsapp__btn{flex:0 0 auto!important;gap:12px!important;min-width:340px!important;height:66px!important;padding:0 40px!important;border-radius:18px!important}.whatsapp__decoration{position:absolute!important;top:-420px!important;right:-180px!important;width:1120px!important;height:1120px!important;border-radius:50%!important;background:var(--bioa)!important;opacity:.08!important;pointer-events:none!important}
 .product,.product__content,.product__row,.product__col{min-width:0!important}.product__content,.product__content *{overflow-wrap:break-word!important;word-break:normal!important}.product__content .list__item-text{line-height:1.35!important}.product__content .h2,.product__content .h3{line-height:1.08!important}
 .block-product-formats .formats{position:relative!important;width:100%!important;padding:45px 60px!important;background:linear-gradient(120deg,#fff 0%,#fff 35%,#F2F6F1 100%)!important;border-radius:45px!important;overflow:hidden!important}.block-product-formats .formats__tabs{display:flex!important;flex-wrap:wrap!important;gap:10px!important;margin-bottom:35px!important;padding-bottom:35px!important;border-bottom:1px solid rgba(9,61,38,.12)!important}.block-product-formats .formats__tab{display:inline-flex!important;align-items:center!important;height:47px!important;padding:0 22px!important;border:0!important;border-radius:16px!important;cursor:pointer!important;color:var(--bioa-dark)!important;background:rgba(16,110,69,.10)!important}.block-product-formats .formats__tab[aria-selected="true"]{background:var(--bioa)!important;color:#fff!important}.block-product-formats .formats__panels{position:relative!important;z-index:2!important;min-height:120px}.block-product-formats .formats__panel{display:none!important;position:relative!important;opacity:1!important;visibility:visible!important}.block-product-formats .formats__panel.is-active{display:block!important}.block-product-formats .formats__list{display:flex!important;flex-wrap:wrap!important;align-items:center!important;gap:14px 32px!important;margin:0!important;padding:0!important;list-style:none!important}.block-product-formats .formats__item,.block-product-formats .formats__more{display:inline-flex!important;align-items:center!important;gap:10px!important}.block-product-formats .formats__item.is-hidden{display:none!important}.block-product-formats .formats__item::before{background:var(--bioa)!important}.block-product-formats .formats__more a{color:var(--bioa)!important}.block-product-formats .formats__cta{position:relative!important;z-index:2!important;margin-top:75px!important}.block-product-formats .formats__cta-content{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:40px!important}
 
@@ -57,7 +57,7 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
     min-height:2.5vw!important;padding:0 1.1458vw!important;
     gap:.5208vw!important;white-space:nowrap!important;
   }
-  .block-product-formats .formats__cta-btn .btn__text{font-size:.8333vw!important;line-height:1.2!important;font-weight:600!important}
+  .block-product-formats .formats__cta-btn .btn__text{font-size:.8333vw!important;line-height:1.2!important;font-weight:600}
   .block-product-formats .formats__cta-btn .btn__icon,
   .block-product-formats .formats__cta-btn .btn__icon svg{
     width:.9375vw!important;height:.9375vw!important;flex-shrink:0!important;
@@ -127,6 +127,15 @@ function applyBrandHead($,route,lang){
      The final approved site layout/typography/geometry is unchanged. */
   $('#bioa-first-paint-stability').remove();
   $('head').prepend('<style id="bioa-first-paint-stability">*{margin:0;padding:0;box-sizing:border-box}@media(min-width:769px){html{scrollbar-width:none}}</style>');
+  /* Variable Manrope 200–800 is the only NEW font provider for BIO-A.
+     Load the provided Google CSS as a render-blocking head stylesheet,
+     AFTER original Merywood main.css and before BIO-A styles. The original
+     Merywood theme stylesheet/layout/motion remains completely intact.
+     Preconnect only once and never lazy-inject a font after first paint. */
+  $('head link[rel="preconnect"]').filter((_,el)=>/^(?:https?:)?\/\/fonts\.(?:googleapis|gstatic)\.com\/?/i.test($(el).attr('href')||'')).remove();
+  $('#bioa-first-paint-stability').after('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>');
+  $('head').append('<link id="bioa-manrope-variable" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap">');
+  $('head').append('<style id="bioa-variable-font-policy">:root{--bioa-font-family:"Manrope",sans-serif}html,body,button,input,textarea,select{font-family:var(--bioa-font-family);font-optical-sizing:auto;font-style:normal}html,body{font-weight:400}</style>');
   const title=titleFor(route,lang);
   const fullTitle=route==='/'?title:(/Bio-A Group/i.test(title)?title:title+' | Bio-A Group');
   const description=lang==='vi'
@@ -157,6 +166,18 @@ function headerAndLinks($,route,lang){
 function cleanupExternal($){
   $('script').each((_,el)=>{const src=($(el).attr('src')||'').toLowerCase(),body=($(el).html()||'').toLowerCase();if(/dashly\.app|yandex|mc\.yandex|googletagmanager\.com|google-analytics\.com/.test(src)||/dashly\.connect\(|gtm-ndkp5rxk|ym\(/.test(body))$(el).remove()});
   $('noscript').each((_,el)=>{if(/googletagmanager|yandex/i.test($.html(el)))$(el).remove()});
+  /* FONT-SOURCE1 / cold-load race:
+     Merywood main.css already owns @font-face Manrope 300/400/500/600/700/800.
+     The live export additionally imports Google Manrope with font-display:swap,
+     triggering a second, later font download and reflow (trace 2026-10-13
+     shows 377ms font ready -> 434ms text/header shift). Remove ONLY redundant
+     Google Manrope style/preload links; retain original Merywood font files,
+     main.css, preconnect and all typography rules unchanged.
+     This is a scoped candidate: owner must verify text appearance, loading. */
+  $('head link[rel="stylesheet"],head link[rel="preload"][as="style"]').each((_,el)=>{
+    const href=($(el).attr('href')||'').replace(/&amp;/gi,'&');
+    if(/^(?:https?:)?\/\/fonts\.googleapis\.com\/css2?\?/i.test(href)&&/\bfamily=Manrope(?:[:&]|$)/i.test(href))$(el).remove();
+  });
 }
 function palette($){$('style').each((_,el)=>{let s=$(el).html()||'';s=s.replace(/#546B51/gi,'#106E45').replace(/#556B51/gi,'#106E45').replace(/#587156/gi,'#106E45').replace(/rgba\(84\s*,\s*107\s*,\s*81/gi,'rgba(16,110,69');$(el).html(s)});$('head').append('<style id="bioa-v3">'+css+'</style>')}
 
@@ -604,7 +625,7 @@ function brandCookieBanner($,lang){
     title:'Quản Lý Cookie',
     body:'Để mang lại trải nghiệm tốt nhất, chúng tôi sử dụng các công nghệ như cookie để lưu trữ và/hoặc truy cập thông tin thiết bị. Khi đồng ý với các công nghệ này, bạn cho phép chúng tôi xử lý dữ liệu như hành vi duyệt web hoặc mã định danh duy nhất trên website. Việc không đồng ý hoặc rút lại sự đồng ý có thể ảnh hưởng đến một số tính năng và chức năng.',
     accept:'Đồng Ý Tất Cả',
-    necessary:'Chỉ Cookie Cần Thiết',
+    necessary:'Từ chối',
     customize:'Tùy Chỉnh',
     prefs:'Tùy Chọn Cookie',
     functional:'Cookie Cần Thiết',
@@ -619,7 +640,7 @@ function brandCookieBanner($,lang){
     title:'Manage Consent',
     body:'To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.',
     accept:'Accept all',
-    necessary:'Necessary only',
+    necessary:'Reject',
     customize:'Customize',
     prefs:'Cookie preferences',
     functional:'Necessary cookies',
@@ -692,6 +713,13 @@ function brandCookieBanner($,lang){
     if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync,{once:true});else sync();
   })();`;
   $('body').append($('<script id="bioa-cookie-copy-sync"></script>').html(runtimeScript));
+
+  /* COOKIE-FONT-GATE1: wait for variable Manrope/localized copy before
+     visually showing the existing Merywood consent card; preserve consent
+     storage/events and source .show/.in/.out transitions. */
+  $('#bioa-cookie-font-ready').remove();
+  const fontReadyScript="(function(){\n var root=document.getElementById('mw-consent');if(!root)return;\n var ready=false;\n function show(){if(ready)return;ready=true;root.classList.add('bioa-consent-font-ready');}\n var failSafe=setTimeout(show,1800);\n function init(){\n  if(!document.fonts||!document.fonts.load){clearTimeout(failSafe);show();return;}\n  Promise.all([\n   document.fonts.load('400 12px \"Manrope\"','Quản Lý Cookie'),\n   document.fonts.load('600 12px \"Manrope\"','Từ chối'),\n   document.fonts.load('700 16px \"Manrope\"','Quản Lý Cookie')\n  ]).then(function(){return document.fonts.ready;})\n    .then(function(){requestAnimationFrame(function(){clearTimeout(failSafe);show();});})\n    .catch(function(){clearTimeout(failSafe);show();});\n }\n if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});\n else init();\n})();";
+  $('body').append($('<script id="bioa-cookie-font-ready"></script>').html(fontReadyScript));
 
   /* COOKIE-C3 — hide only the floating gear after a confirmed choice.
      The source consent popup/storage/buttons remain the runtime authority. */
