@@ -452,3 +452,6 @@ If no owner action is required, write **"KHÔNG CẦN TEST RUNTIME CHO PATCH NÀ
 - FIRST-PAINT1 and Smooth Scrollbar frozen; inspect network requests, computed family/weight and layout shifts at 390/834/1440 before production promotion.
 - Existing Merywood `main.css` remains for layout and includes old font-face rules. Google stylesheet is appended last as the new Manrope source; investigate any face-source competition via computed/render inspection before calling single-font-source PASS.
 - This is a **candidate** only; previous Footer EN, Zalo and content loading owner PASS preserved but typography appearance needs owner visual confirmation on VI/EN.
+
+
+Cookie authority: `brandCookieBanner` is copy owner and Merywood `.mw-deny` action is functional owner. Consent CTA typography 12px/600 scoped only to cookie. Hero Stats 300/400 owner PASS frozen. New Nav/CTA weight 550 candidate. No typography `!important`.

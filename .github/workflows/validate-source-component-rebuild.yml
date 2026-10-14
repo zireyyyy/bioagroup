@@ -39,6 +39,8 @@ jobs:
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Verify Cookie i18n and font readiness guard
+        run: node tests/cookie-consent-stability-source.test.mjs
       - name: Verify typography source weight ownership
         run: node tests/hero-variable-weights-source.test.mjs
       - name: Verify single Merywood font source across routes

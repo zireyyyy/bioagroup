@@ -1,3 +1,7 @@
+## 2026-10-14 — MVR-TYPE2 + COOKIE-FONT-GATE1 candidate
+Owner confirms Hero Stats PASS (numbers 300 labels 400); immutable. Nav and CTA 500 too light: raise narrowly to 550 ordinary weight. Cookie banner shifts/resizes after navigation: preserve Merywood consent behavior, keep visual card hidden until fonts ready (max 1800ms fallback), 12px/600 button labels, copy VI deny `Từ chối`, EN `Reject`; underlying .mw-deny still rejects optional consent. No layout/scroll/other UI changes. Production main 44879b4; PR #9 candidate until owner visual QA. Prior footer/Zalo/loading PASS frozen. Test Home/About VI/EN Desktop/Tablet/Mobile and cold navigation.
+
+---
 ## 2026-10-13 — MVR-TYPE1 owner visual feedback / scoped weight parity (candidate)
 
 Owner supplied side-by-side screenshot BIO-A vs Merywood on Desktop: BIO-A Header main nav underweight, CTA labels too bold, Hero 5 number values visually inconsistent. This is **owner FAIL on typography only**, not a reason to change frozen layout/first-paint/Footer/Zalo. PR #9 source `fd8e9b2b0f449d911e44b9f3c5622c0ac3375856` latest prior successful CI.
