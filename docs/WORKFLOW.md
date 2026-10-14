@@ -47,6 +47,20 @@ REQUEST
 
 If runtime verification is unavailable, push the verified build candidate and report BUILD PASS — NEEDS OWNER TEST rather than stopping before implementation.
 
+## 1B. PASS → CANONICAL REUSE GATE — mandatory
+
+Every implementation MUST ask: **Does an owner-PASS version of this same
+component already exist?** If yes, inspect and reuse its canonical source owner
+and approved behavior sitewide (VI/EN, Desktop/Tablet/Mobile as applicable)
+before writing custom CSS or markup. Verify equivalence as well as regression.
+Log any justified difference in `docs/SOURCE_MAP.md`. Merely leaving the old
+PASS instance unchanged while inventing an inconsistent new instance is FAIL.
+
+Explicit owner-reopened properties (for example Cookie button weight) may be
+updated in their one owner; unrelated PASS attributes stay locked. Consult
+`AGENTS.md §7A`. Check the actual CSS cascade and computed values before
+making further font-weight adjustments; never stack speculative overrides.
+
 ## 2. INSPECT
 
 Before changing anything:
