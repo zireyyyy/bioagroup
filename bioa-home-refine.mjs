@@ -3648,6 +3648,15 @@ const patchCookieConsentCss = `
 #mw-consent.bioa-consent p{
   line-height:1.55!important;
 }
+/* COOKIE-TYPE3: owner explicitly requests light Cookie typography 350.
+   The Merywood modal title was still rendered at 700 in Chromium,
+   despite its actions already being 350. Match heading and dialog
+   preferences labels to this one accepted Cookie typography owner. */
+#mw-consent.bioa-consent #mw-card-title,
+#mw-prefs .mw-title,
+#mw-prefs .mw-row .label{
+  font-weight:350;
+}
 /* COOKIE-TYPE3: owner reopens only Cookie text weight, preserve all source geometry and button actions. */
 #mw-consent.bioa-consent .mw-actions .mw-btn,
 #mw-prefs .mw-actions .mw-btn{
