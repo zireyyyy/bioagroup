@@ -46,6 +46,42 @@ Before implementation:
 10. inspect the BIO-A counterpart;
 11. only then diagnose or implement.
 
+## 2A. GitHub connector capability gate — mandatory / permanent (2026-10-14)
+
+The owner connected GitHub for direct repository work. **Never say GitHub
+write/push tools are unavailable or ask the owner to move to a different chat
+unless availability has been checked in the current conversation.**
+
+For every repository mutation request:
+1. Discover available GitHub connector tools in the current environment
+   (including deferred tools; do not rely on the visible top-level namespace).
+2. Read the exact repository and branch/PR state via a real GitHub tool call.
+3. Verify repository permissions with `get_repo` when permission is in doubt.
+   Do not confuse absence of a convenient directly exposed tool with the
+   absence of GitHub access. In the Code Mode tool registry, GitHub actions
+   are available as `mcp__GitHub__*` through `functions.exec`.
+4. If tools are present and a read/write test succeeds, execute the
+   authorized task; do not hand off to another coding assistant, generate a
+   prompt instead of implementing, or claim GitHub is unavailable.
+5. If a tool fails, report the **actual tool error**, whether the problem is
+   tool discovery, connector service, OAuth permissions, repository policy,
+   validation, or transient rate limits. Retry a safe read/check where
+   appropriate. Do not say the owner disconnected/revoked GitHub without
+   affirmative evidence.
+6. Do not require the owner to reconnect, reauthorize, or open a new chat
+   as a default workaround. Only request those actions when a specific
+   permission/connection error proves they are needed.
+7. A successful read and a `push:true` permission check establish that
+   repository write access is available; they do not by themselves prove a
+   later write succeeded. Report a commit SHA only after the write response
+   confirms it. Never fabricate a push/merge/deploy.
+
+This rule applies equally after long chats, tool context compaction, new
+model turns, and new sessions. If the platform genuinely does not expose
+any GitHub connector, explain precisely what was checked and do not claim
+a successful push. Store project status and new-chat instructions in the
+repository; do not rely solely on chat memory for connector capability.
+
 ## 3. Merywood source-of-truth
 
 The original Merywood source supplied by the owner is the visual/runtime reference.
