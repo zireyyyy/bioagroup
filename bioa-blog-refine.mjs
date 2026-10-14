@@ -72,6 +72,18 @@ function applyBlogIndex($,lang,route='/blog/'){
   const hero=$('.blog-hero');
   $('body').addClass('bioa-blog-index');
   setText(hero,'.title',isEn?'Bio-A Group Blog':'Blog Bio-A Group');
+  /* BLOG-TITLE-ROOT1: Merywood source delivers an inline
+     style="font-weight:600;" on Blog H2. Chromium confirmed it wins
+     over our approved shared 350 style (VI/EN, all widths).
+     Remove ONLY the inherited inline weight while keeping all other
+     source inline properties, geometry and motion untouched. */
+  hero.find('.title').each((_,el)=>{
+    const title=$(el);
+    const original=title.attr('style')||'';
+    if(!/(?:^|;)\s*font-weight\s*:/i.test(original))return;
+    const retained=original.split(';').filter(x=>x.trim()&&!/^\s*font-weight\s*:/i.test(x)).join(';');
+    if(retained)title.attr('style',retained); else title.removeAttr('style');
+  });
   setText(hero,'.text-large',isEn?'Practical articles on cosmetic manufacturing, formulation, skincare, packaging and responsible brand development.':'Kiến thức thực tế về gia công mỹ phẩm, công thức, chăm sóc da, bao bì và phát triển thương hiệu có trách nhiệm.');
   hero.find('.blog-hero__bg').attr('src','/assets/bioa-monogram.svg').attr('alt','').attr('aria-hidden','true').removeAttr('srcset sizes');
 
