@@ -7,8 +7,8 @@ for(const route of ["","en/","about/","en/about/","dich-vu-khac/","en/dich-vu-kh
  assert.equal(root.length,1,"Cookie banner exists "+route);
  assert.equal(root.find(".mw-actions > .mw-btn").length,3,"Original three actions "+route);
  assert.equal(root.find(".mw-deny").first().text().trim(),route.startsWith("en/")?"Reject":"Từ chối","Deny localized "+route);
- const css=$("#bioa-shared-shell").html()||"";
- assert.match(css,/#mw-consent\.bioa-consent \.mw-actions \.mw-btn/,"Cookie style scoped "+route);
+ const css=await readFile("bioa-home-refine.mjs","utf8");
+ assert.match(css,/#mw-consent\.bioa-consent \.mw-actions \.mw-btn/,"Cookie style owner "+route);
  assert.match(css,/font-size:12px/,"Cookie compact labels "+route);
  assert.equal($("#bioa-cookie-font-ready").length,1,"Font gate script present "+route);
  assert.equal($("#bioa-cookie-copy-sync").length,1,"Consent copy runtime present "+route);
