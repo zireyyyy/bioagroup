@@ -72,11 +72,13 @@ try{
    // Screenshots are advisory for owner QA, not visual PASS.
    if((width===834||width===1024)&&response?.status()===200){
     const filename=pathname.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,90);
-    await page.screenshot({path:visualDir+'/'+filename+'-'+width+'-top.png',animations:'disabled',timeout:12000});
-    const footer=page.locator('.footer-top').first();
-    if(await footer.count()){
-      await footer.screenshot({path:visualDir+'/'+filename+'-'+width+'-footer.png',animations:'disabled',timeout:12000});
-    }
+    try{
+      await page.screenshot({path:visualDir+'/'+filename+'-'+width+'-top.png',animations:'disabled',timeout:12000});
+      const footer=page.locator('.footer-top').first();
+      if(await footer.count()){
+        await footer.screenshot({path:visualDir+'/'+filename+'-'+width+'-footer.png',animations:'disabled',timeout:12000});
+      }
+    }catch(e){result.visualCaptureWarning=String(e).slice(0,260);}
    }
    if(result.status!==200||(route!=='/404.html'&&(!result.header||!result.footer))||result.docWidth>width+2)failures++;
    console.log('TABLET_PHASE2 '+JSON.stringify(result));
