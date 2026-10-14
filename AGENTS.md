@@ -232,6 +232,37 @@ If a locked surface must be touched:
 
 Never perform opportunistic cleanup in locked components.
 
+## 7A. OWNER PASS AS SHARED CANONICAL COMPONENT — permanent (2026-10-14)
+
+Owner mandate: **everything explicitly accepted as PASS is the canonical reusable
+baseline for equivalent components across the entire site**, on all intended
+routes and VI/EN. PASS is not merely a warning not to touch code.
+
+Before authoring any new or parallel Header, CTA, Cookie, typography, icon,
+Footer, navigation, card, motion or other reusable UI element:
+1. Look up the accepted PASS source component, markup, asset, CSS/JS owner,
+   tokens and state behavior in SOURCE_MAP and handoff.
+2. Reuse that source owner, class/component or canonical style token rather
+   than create a visual near-copy, per-page override, re-drawn icon, or
+   independent weight/spacing rule. For equivalent CTA text, the
+   owner-approved Header CTA is the starting authority; Cookie actions have
+   an independently approved owner.
+3. Apply it consistently to all applicable VI/EN routes and independent
+   Desktop/Tablet/Mobile surfaces. Sitewide parity is mandatory where the
+   component is equivalent, while each device surface still needs its own QA.
+4. Differences are allowed only when function, content or explicit owner
+   instructions demand them. Record those exceptions in SOURCE_MAP with their
+   exact owner and test contract.
+5. If a later owner request reopens one previously PASS property, change only
+   that named property in its canonical owner; keep all other PASS geometry,
+   semantics, motion, colors and interactions frozen.
+6. Before promotion compare equivalent instances against the canonical source;
+   a new implementation that only *looks* close is not an accepted reuse.
+
+Do not add multiple layers of CSS/JS overrides to simulate canonical parity.
+Prefer source consolidation at the actual component owner and minimal diffs.
+Latest explicit owner acceptance supersedes older historical status.
+
 ## 8. Patch contract
 
 Every patch must define:
