@@ -46,3 +46,9 @@
 - Chromium emits an unhelpful page error described as `Object` for 55/64 cases. This is a **diagnostic lead**, not a proven UI defect; no patch is justified until provenance is understood.
 - Added `tests/tablet-runtime-investigation.mjs` that collects the in-page error event location/type and read-only request/console failures at 3 representative routes, without storing visitor inputs or credentials. CI will upload scrubbed diagnostics in the same Phase 2 artifact.
 - This patch only touches test harness, CI workflow and this handoff. Website JS, CSS, DOM and owner-frozen look remain identical.
+
+## Visual evidence pass — candidate update 2026-10-14
+- The earlier 64-case run `38505207647` is automated PASS, **not owner visual PASS**. Browser pageerror `Object` remains unproven and must not trigger speculative CSS/runtime edits.
+- Updated `tests/tablet-full-route-audit.mjs` saves representative viewport screenshots (834/1024px, VI/EN each route) plus Footer screenshots under `audit-artifacts/tablet-phase2/visual/`. Capture warnings are recorded as advisory and do not fail otherwise passing structural tests.
+- Screenshot evidence is for owner comparison to Merywood and protected prior PASS components. No site output, source component or production code is modified.
+- Owner QA remains PENDING for Tablet visual/interaction parity and source authority; do not promote Phase 2 on screenshots or CI alone.
