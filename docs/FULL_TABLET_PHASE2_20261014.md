@@ -1,0 +1,35 @@
+# BIO-A — PHASE 2 FULL TABLET REGRESSION (2026-10-14)
+
+## Authority and promotion
+- Owner **VISUAL PASS**: PR #9 `0aeb989` for Manrope Variable Main Menu 550, site CTA 550, Hero Stats 300/400 and Cookie label size/copy/readiness. PR #9 merged to `main` as `cb4e92f73c1ef800f7507db2330347664fc323d4` following a PASS rerun of GitHub Actions.
+- `main` is the production baseline. Phase 2 lives in `candidate/full-tablet-regression-phase2-20261014`. No unverified responsive change may overwrite production.
+- Desktop, Mobile, existing accepted Tablet components and all approved Footer/Zalo, FIRST-PAINT1, Cookie, Hero Stats, Header/CTA weights, maintenance/noindex, lead backend are FROZEN.
+- Merywood's supplied original responsive CSS/DOM/JS are the source of truth; 768px Mobile boundary and fluid >=769px Desktop mode apply. No arbitrary Tablet redesign or fresh breakpoint.
+
+## Current implementation — audit only
+- `tests/tablet-full-route-audit.mjs` visits VI/EN Home, About, Cosmetics, Other Services, Blog index and Contacts across 768/834/1024/1180px in isolated Chromium pages; collects document width, shell geometry, possible horizontal overflow elements and JS exceptions. No form submissions, network mutations, Cookie clicks or style changes.
+- `.github/workflows/validate-source-component-rebuild.yml` runs the script after build and browser dependencies; stores `audit-artifacts/tablet-phase2/route-matrix.json` as an artifact. A browser script PASS means routing/shared-shell presence ONLY — not visual source parity.
+- This audit does not yet cover every Blog detail, 404, every breakpoint-adjacent width, or actual touch/scroll/interaction parity. These remain PENDING.
+- **No UI, CSS, DOM, site JavaScript or deployed routes modified in this patch.** No sitewide Full Tablet PASS claim.
+
+## Tablet QA matrix — still owner runtime PENDING
+| Surface | Tablet 768/834/1024/1180 | VI/EN | Visual signoff |
+| --- | --- | --- | --- |
+| Shared Header/Nav | single-row source layout; logo/actions/lang do not collide | both | PENDING |
+| Shared Footer | four groups, brand info, social icons/links fit | both | PENDING |
+| Cookie, Chat/Zalo | source look and accepted no-jolt behavior | both | PR #9 Cookie owner PASS; Tablet wider regression PENDING |
+| Home | Hero/Stats, product formats, reviews, CTA, roadmap | both | PENDING |
+| About | hero, icon set, typography and cards | both | PENDING |
+| Cosmetics + Services | grids, tabs, scroll/carousels, CTA | both | PENDING |
+| Blog index/detail | pagination, article text, sticky TOC | both | PENDING |
+| Contacts | map, FAQ and safe form visuals; no actual lead POST | both | PENDING |
+| 404 | frozen approved artwork and routes/status check | both | previous visual PASS frozen; technical response PENDING |
+
+## Decision gate
+1. CI audit generates the matrix; inspect possible overflow/exception evidence.
+2. Compare any real failure with exact original Merywood source CSS and corresponding BIO-A component owner in `docs/SOURCE_MAP.md`.
+3. For a proved defect only: one minimal source-owned patch; validate Desktop/Tablet/Mobile independently and VI/EN. Do not patch a PASS area by guess.
+4. Owner accepts Tablet runtime, then Phase 2B cross-device convergence audit. Phase 3 cleanup and SEO follow only after Phase 2B.
+
+## Owner test for this audit-only change
+**KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY** because this commit creates only read-only CI diagnostics and this handoff; existing website output is unchanged. Review the Actions job and its route-matrix artifact. Any visual defect reports must include route, VI/EN, viewport, screenshot and source expected result. No secrets or private authorization links.
