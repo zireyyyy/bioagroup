@@ -34,6 +34,7 @@ jobs:
           node --check tests/tablet-full-route-audit.mjs
           node --check tests/tablet-runtime-investigation.mjs
           node --check tests/tablet-blog-toc-interactions.mjs
+          node --check tests/tablet-services-swiper-interactions.mjs
           node --check tests/first-paint-browser.test.mjs
           node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
@@ -66,6 +67,8 @@ jobs:
         run: node tests/tablet-runtime-investigation.mjs
       - name: Audit Blog detail TOC anchor interactions (Tablet VI/EN)
         run: node tests/tablet-blog-toc-interactions.mjs
+      - name: Audit Cosmetics and Other Services Swiper interactions on Tablet VI/EN
+        run: node tests/tablet-services-swiper-interactions.mjs
       - name: Audit full Tablet route matrix VI/EN (read-only)
         run: node tests/tablet-full-route-audit.mjs
       - name: Upload Tablet Phase 2 route audit
