@@ -39,8 +39,8 @@ const output=[];try{
   }
   const cookieTitle=result.styles['#mw-card-title'];
   const cookieButton=result.styles['#mw-consent .mw-actions .mw-btn'];
-  if(cookieTitle?.fontWeight!=='400'||cookieButton?.fontWeight!=='400'){
-    throw Error('Cookie title/actions must use owner 400: '+route+' @'+width);
+  if(cookieTitle?.fontWeight!=='500'||cookieButton?.fontWeight!=='500'){
+    throw Error('Cookie title/actions must use owner 500: '+route+' @'+width);
   }
   }catch(e){console.log('BIOA_TYPO_AUDIT_ERROR '+route+' '+width+' '+String(e));process.exitCode=1}finally{await page.close()}
  }
