@@ -32,6 +32,7 @@ jobs:
           node --check bioa-transform.mjs
           node --check tests/tablet-browser-smoke.mjs
           node --check tests/tablet-full-route-audit.mjs
+          node --check tests/tablet-runtime-investigation.mjs
           node --check tests/first-paint-browser.test.mjs
           node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
@@ -58,6 +59,8 @@ jobs:
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Investigate source of Tablet browser exceptions (read-only)
+        run: node tests/tablet-runtime-investigation.mjs
       - name: Audit full Tablet route matrix VI/EN (read-only)
         run: node tests/tablet-full-route-audit.mjs
       - name: Upload Tablet Phase 2 route audit
