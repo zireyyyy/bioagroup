@@ -4010,7 +4010,10 @@ const patchSharedHeroStatsParityCss = `
   }
   .mwa-hero .mwa-stat__l{
     font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    font-size:.9375rem!important;
+    /* About Tablet: BIO-A long VI/EN labels were only ~8-10 CSS px
+       under the source's fluid root rem scale at 834-1024. Preserve the
+       original flex card, font weight and line-height; clamp type only. */
+    font-size:clamp(12px,.9375rem,15px)!important;
     font-weight:400;
     line-height:1.4!important;
   }
