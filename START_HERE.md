@@ -1,3 +1,7 @@
+## CURRENT — 2026-10-14 — PR #9 COMPLETE; TABLET PHASE 2 ACTIVE
+PR #9 final source `0aeb989` owner visual PASS and rerun GitHub Actions PASS; merged as `cb4e92f73c1ef800f7507db2330347664fc323d4` on main. Main Menu/CTA weight 550, Hero Stats 300/400, Cookie 12px/600 and localized Reject are owner-frozen. Active separate audit candidate `candidate/full-tablet-regression-phase2-20261014`. See `docs/FULL_TABLET_PHASE2_20261014.md` for route matrix, CI artifacts, pending Tablet visual gate. No UI changes in this audit; continue Phase 2 source-first review, not Phase 2B cleanup until full Tablet PASS. Old PR #9 draft/CI pending paragraphs below are historical and superseded.
+
+---
 ## 2026-10-14 — MVR-TYPE2 + COOKIE-FONT-GATE1 candidate
 Owner confirms Hero Stats PASS (numbers 300 labels 400); immutable. Nav and CTA 500 too light: raise narrowly to 550 ordinary weight. Cookie banner shifts/resizes after navigation: preserve Merywood consent behavior, keep visual card hidden until fonts ready (max 1800ms fallback), 12px/600 button labels, copy VI deny `Từ chối`, EN `Reject`; underlying .mw-deny still rejects optional consent. No layout/scroll/other UI changes. Production main 44879b4; PR #9 candidate until owner visual QA. Prior footer/Zalo/loading PASS frozen. Test Home/About VI/EN Desktop/Tablet/Mobile and cold navigation.
 
