@@ -8,15 +8,15 @@ const server=createServer(async(req,res)=>{const u=new URL(req.url,'http://local
 await new Promise(done=>server.listen(0,'127.0.0.1',done));
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const output=[];try{
- for(const route of ['/blog/','/en/blog/','/','/about/'])for(const width of [390,834,1280,1440]){
+ for(const route of ['/blog/','/en/blog/','/','/about/','/en/about/','/contacts/','/en/contacts/'])for(const width of [390,834,1280,1440]){
   const page=await browser.newPage({viewport:{width,height:900}});
   try{await page.goto('http://127.0.0.1:'+server.address().port+route,{waitUntil:'domcontentloaded',timeout:30000});await page.evaluate(()=>document.fonts?.ready);
   const result=await page.evaluate(()=>{
-   const sels=['.blog-hero .title','.blog-hero .text-large','.post-feature__title','.post-feature__title a','.post-feature__subtitle','.post-card .post-feature__title a','.block-title .content h1','.block-title .content .text-large','#mw-consent .mw-actions .mw-btn','#mw-card-title','.header__btn .btn__text','.post-feature__actions .btn__text'];
+   const sels=['.mwa-hero__title','.contacts-title','main h1','.page-main h1','h1','.blog-hero .title','.blog-hero .text-large','.post-feature__title','.post-feature__title a','.post-feature__subtitle','.post-card .post-feature__title a','.block-title .content h1','.block-title .content .text-large','#mw-consent .mw-actions .mw-btn','#mw-card-title','.header__btn .btn__text','.post-feature__actions .btn__text'];
    const obj={};
    for(const q of sels){let e=document.querySelector(q);if(!e)continue;let c=getComputedStyle(e);obj[q]={fontFamily:c.fontFamily,fontWeight:c.fontWeight,fontSize:c.fontSize,fontVariationSettings:c.fontVariationSettings,tag:e.tagName,classes:e.className};}
    const sources={};
-   for(const q of ['.blog-hero .title','#mw-card-title']){
+   for(const q of ['.mwa-hero__title','h1','.blog-hero .title','#mw-card-title']){
      const node=document.querySelector(q);if(!node)continue;
      const hits=[];
      const walk=(rules,url)=>{for(const rule of rules){
