@@ -31,6 +31,17 @@ const output=[];try{
    }
    return {styles:obj,sources,loaded:[...document.fonts].filter(f=>f.status==='loaded').slice(0,8).map(f=>({family:f.family,weight:f.weight}))};
   });const o={route,width,...result};output.push(o);console.log('BIOA_TYPO_AUDIT '+JSON.stringify(o));
+  if(route==='/blog/'||route==='/en/blog/'){
+    const hero=result.styles['.blog-hero .title'];
+    if(hero?.fontWeight!=='350'||/font-weight/i.test(result.sources?.['.blog-hero .title']?.inlineStyle||'')){
+      throw Error('Blog hero title still uses inherited inline/bold font instead of canonical 350: '+route+' @'+width+' (computed '+hero?.fontWeight+')');
+    }
+  }
+  const cookieTitle=result.styles['#mw-card-title'];
+  const cookieButton=result.styles['#mw-consent .mw-actions .mw-btn'];
+  if(cookieTitle?.fontWeight!=='350'||cookieButton?.fontWeight!=='350'){
+    throw Error('Cookie title/actions must use owner 350: '+route+' @'+width);
+  }
   }catch(e){console.log('BIOA_TYPO_AUDIT_ERROR '+route+' '+width+' '+String(e));process.exitCode=1}finally{await page.close()}
  }
 }finally{await mkdir('audit-artifacts/typography',{recursive:true});await writeFile('audit-artifacts/typography/computed.json',JSON.stringify(output,null,2));await browser.close();await new Promise(done=>server.close(done));}
