@@ -40,3 +40,9 @@
 - Initial offscreen warnings are mostly Swiper slides, other carousel cards and intentionally displaced children; slide bounding boxes past the viewport do not imply a user-visible horizontal-scroll regression. Updated audit records clipping ancestors and separates unclassified offscreen elements.
 - Added representative Blog detail and independent 404.html VI/EN checks for structural coverage; 404 is a standalone page without shared Header/Footer by design, so it is not asserted to have them.
 - New browser run is required after these test-only edits. On any new error inspect raw CI output before changing site code. No owner-approved visual surface has been edited.
+
+## Further investigation — 2026-10-14
+- CI `38505207647` **PASS**: 64/64 VI/EN routes at widths 768/834/1024/1180, no root scrolling overflow, wrapped main navigation, or EN footer title overflow. All offscreen candidates have clipping ancestors, normally expected for source sliders.
+- Chromium emits an unhelpful page error described as `Object` for 55/64 cases. This is a **diagnostic lead**, not a proven UI defect; no patch is justified until provenance is understood.
+- Added `tests/tablet-runtime-investigation.mjs` that collects the in-page error event location/type and read-only request/console failures at 3 representative routes, without storing visitor inputs or credentials. CI will upload scrubbed diagnostics in the same Phase 2 artifact.
+- This patch only touches test harness, CI workflow and this handoff. Website JS, CSS, DOM and owner-frozen look remain identical.
