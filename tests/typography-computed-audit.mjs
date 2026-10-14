@@ -33,14 +33,14 @@ const output=[];try{
   });const o={route,width,...result};output.push(o);console.log('BIOA_TYPO_AUDIT '+JSON.stringify(o));
   if(route==='/blog/'||route==='/en/blog/'){
     const hero=result.styles['.blog-hero .title'];
-    if(hero?.fontWeight!=='350'||/font-weight/i.test(result.sources?.['.blog-hero .title']?.inlineStyle||'')){
-      throw Error('Blog hero title still uses inherited inline/bold font instead of canonical 350: '+route+' @'+width+' (computed '+hero?.fontWeight+')');
+    if(hero?.fontWeight!=='400'||/font-weight/i.test(result.sources?.['.blog-hero .title']?.inlineStyle||'')){
+      throw Error('Blog hero title still uses inherited inline/bold font instead of canonical 400: '+route+' @'+width+' (computed '+hero?.fontWeight+')');
     }
   }
   const cookieTitle=result.styles['#mw-card-title'];
   const cookieButton=result.styles['#mw-consent .mw-actions .mw-btn'];
-  if(cookieTitle?.fontWeight!=='350'||cookieButton?.fontWeight!=='350'){
-    throw Error('Cookie title/actions must use owner 350: '+route+' @'+width);
+  if(cookieTitle?.fontWeight!=='400'||cookieButton?.fontWeight!=='400'){
+    throw Error('Cookie title/actions must use owner 400: '+route+' @'+width);
   }
   }catch(e){console.log('BIOA_TYPO_AUDIT_ERROR '+route+' '+width+' '+String(e));process.exitCode=1}finally{await page.close()}
  }
