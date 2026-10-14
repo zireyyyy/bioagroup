@@ -4,7 +4,7 @@ import {readFile,mkdir,writeFile} from 'node:fs/promises';
 import {resolve,sep,extname} from 'node:path';
 const root=resolve('dist');
 const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.woff2':'font/woff2','.png':'image/png','.webp':'image/webp','.svg':'image/svg+xml'};
-const server=createServer(async(req,res)=>{const u=new URL(req.url,'http://localhost'),file=resolve(root,'.'+(u.pathname.endsWith('/')?u.pathname+'index.html':u.pathname));if(!file.startsWith(root+sep)){res.writeHead(403).end();return;}try{res.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream'}).end(await readFile(file));}catch{res.writeHead(404).end('Not found')}});
+const server=createServer(async(req,res)=>{const u=new URL(req.url,'http://localhost'),file=resolve(root,'.'+(u.pathname.endsWith('/')?u.pathname+'index.html':u.pathname));if(!file.startsWith(root+sep)){res.writeHead(403).end();return;}try{const payload=await readFile(file);res.writeHead(200,{'Content-Type':types[extname(file)]||'application/octet-stream'}).end(payload);}catch{if(!res.headersSent)res.writeHead(404).end('Not found');else res.end();}});
 await new Promise(done=>server.listen(0,'127.0.0.1',done));
 const browser=await chromium.launch({headless:true,args:['--no-sandbox']});
 const output=[];try{
