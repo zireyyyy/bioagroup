@@ -400,6 +400,18 @@ function patchBlogCss($){
     'body.bioa-blog-index .blog-hero__bg{display:none!important}'+
     '.post-feature__img,.post-card-thumb img{object-fit:cover!important}'+
 
+    /* BLOG-TYPE-PARITY1 — owner comparison against Merywood Blog.
+       Use real Manrope Variable normal axis, not synthetic bold, no JS font
+       tricks. Limit to Tablet 769-1200; preserve hero/card geometry. */
+    '@media(min-width:769px) and (max-width:1200px){'+
+      'body.bioa-blog-index .blog-hero .title,'+
+      'body.bioa-blog-index .blog-hero h1,'+
+      'body.bioa-blog-index .post-feature__title,'+
+      'body.bioa-blog-index .post-feature__title a{font-weight:400}'+
+      'body.bioa-blog-index .blog-hero .text-large,'+
+      'body.bioa-blog-index .post-feature__subtitle{font-weight:375}'+
+    '}'+
+
     /* PATCH-G8 — archive pagination visual parity with Merywood:
        compact text-like numbers, only the active page has a filled surface. */
     'body.bioa-blog-index .posts-grid-pagination{display:flex!important;align-items:center!important;justify-content:center!important;gap:12px!important;margin-top:28px!important;text-align:center!important}'+
