@@ -73,10 +73,23 @@ try{
    if((width===834||width===1024)&&response?.status()===200){
     const filename=pathname.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,90);
     try{
-      await page.screenshot({path:visualDir+'/'+filename+'-'+width+'-top.png',animations:'disabled',timeout:12000});
+      // Capture untouched first visit as a separate, explicitly labeled state.
+      await page.screenshot({path:visualDir+'/'+filename+'-'+width+'-first-visit.png',animations:'disabled',timeout:12000});
+      // On this throwaway local test page only, exercise the existing source
+      // Reject/deny control. Never set a fake consent flag or patch runtime DOM.
+      const deny=page.locator('#mw-consent .mw-deny').first();
+      if(await deny.count()&&await deny.isVisible()){
+        try{await deny.click({timeout:3500});result.cookieDenyInteraction='clicked';}
+        catch(e){result.cookieDenyInteraction='unavailable: '+String(e).slice(0,160);}
+      }else result.cookieDenyInteraction='not visible';
+      await page.screenshot({path:visualDir+'/'+filename+'-'+width+'-content.png',animations:'disabled',timeout:12000});
       const footer=page.locator('.footer-top').first();
       if(await footer.count()){
-        await footer.screenshot({path:visualDir+'/'+filename+'-'+width+'-footer.png',animations:'disabled',timeout:12000});
+        // Merywood footer uses scroll-triggered reveal. Capture after actually
+        // entering viewport, unlike the old off-screen element screenshot.
+        await footer.scrollIntoViewIfNeeded({timeout:5000});
+        await page.waitForTimeout(850);
+        await footer.screenshot({path:visualDir+'/'+filename+'-'+width+'-footer-scrolled.png',animations:'disabled',timeout:12000});
       }
     }catch(e){result.visualCaptureWarning=String(e).slice(0,260);}
    }
