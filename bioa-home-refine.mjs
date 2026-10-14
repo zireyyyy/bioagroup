@@ -69,6 +69,29 @@ html,body{background:var(--bioa-cream)!important}
 `;
 
 
+/* TABLET-TYPE3 — owner feedback 2026-10-14.
+   Typography change is Tablet-only and source-component scoped. Preserve
+   Hero Stats 300/400, Cookie 600, CTA 550, Footer and Desktop/Mobile.
+   Root font may scale with viewport in original Merywood CSS, hence nav
+   uses a small proportional improvement rather than a fixed global size. */
+const patchTabletType3Css = `
+@media(min-width:769px) and (max-width:1200px){
+  .header .header__nav > ul > li > a{
+    font-size:1.06em!important;
+  }
+  .page-main h1,.page-main h2,.page-main h3,
+  .page-main .title-wrapper .title,
+  .page-main .mwa-sec__title{
+    font-weight:450;
+  }
+  .page-main .text-large,.page-main .mwa-hero__lead,
+  .page-main .mwa-lede,.page-main .mwa-story__text,
+  .page-main .blog-body p{
+    font-weight:400;
+  }
+}
+`;
+
 const patchACss = `
 /* HOME Patch A — brand cleanup + compact translucent header */
 .header{
@@ -5611,7 +5634,7 @@ const sharedShellCss =
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
-  $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+'</style>');
+  $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+patchTabletType3Css+'</style>');
 
   /* SHARED-UX1: every route inherits the Home-approved global experience. */
   restoreMerywoodWhatsAppIcon($);
@@ -5635,7 +5658,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+patchTabletType3Css+'</style>');
   localizeHomeCtas($,lang);
   restoreMerywoodWhatsAppIcon($);
   setLogo($);
