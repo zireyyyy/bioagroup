@@ -1,3 +1,7 @@
+## GITHUB CAPABILITY CHECK — PERMANENT
+GitHub is connected in the project workflow. Before claiming write/push unavailable, discover GitHub connector tools including deferred `mcp__GitHub__*` via `functions.exec`; call `get_repo` and check permission. Use `update_file`/`create_file`/PR tools for authorized implementation. Never ask user to switch chat from unsupported assumption; report actual connector errors. Refer to `AGENTS.md §2A` for mandatory policy. Last confirmed `get_repo` on 2026-10-14 reported push/admin true. Recheck live capability each session.
+
+---
 ## ACTIVE NEW-CHAT INSTRUCTION — 2026-10-14 — PHASE 2 TABLET
 GitHub `zireyyyy/bioagroup`, production `main` baseline `cb4e92f73c1ef800f7507db2330347664fc323d4` (PR #9 owner PASS and CI PASS, merged). PR #9 typography/cookie and all previously PASS surfaces are FROZEN. Current working branch `candidate/full-tablet-regression-phase2-20261014`: **audit only**, NOT new site UI. Read `AGENTS.md`, `FULL_HANDOFF.md`, `docs/WORKFLOW.md`, `docs/SOURCE_MAP.md`, `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md` and `docs/FULL_TABLET_PHASE2_20261014.md`. Inspect read-only Tablet VI/EN matrix CI artifact; only change source-owned component for independently verified defects; all Desktop/Tablet/Mobile parity needs QA. Do NOT mistake earlier PR #9 pending/failure historical notes for current state. FULL TABLET PASS still PENDING. Phase 2B only afterward. No new CSS overrides, full component rewrites, visual redesign, broad compaction, or production deployment without owner acceptance.
 
