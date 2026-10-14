@@ -75,43 +75,56 @@ html,body{background:var(--bioa-cream)!important}
    Root font may scale with viewport in original Merywood CSS, hence nav
    uses a small proportional improvement rather than a fixed global size. */
 const patchTabletType3Css = `
-/* NAV-FLUID2 — original Merywood .8333vw gets too small on compact
-   13-inch laptop, while 130%-zoom Tablet emulation makes the old
-   fixed 12px floor visually oversized. Use one continuous, source-owned
-   viewport curve, no device sniffing or JS/font-size injection.
-   834px = 11px, 1280px = 13.26px, 1440px = 14.09px, 1920px = 16.5px. */
+/* NAV-FLUID2 — approved source-owned continuous navigation curve. */
 @media(min-width:769px){
   .header .header__nav > ul > li > a{
     font-size:clamp(11px,calc(6.6px + .52vw),16.5px)!important;
   }
 }
-/* TYPE-BALANCE2 — shared semantic typography for Home and all subpages.
-   Keep normal Manrope Variable weight axis, not synthetic bold. Scope
-   solely to content titles and prose. Protected: Header nav/CTA 550,
-   Home/About Hero Stats 300/400, Cookie 600, Footer, buttons, icon art.
-   No !important on font-weight; source layout and size unchanged. */
-.page-main h1,.page-main h2,.page-main h3,
-.page-main .title-wrapper .title,
-.page-main .mwa-sec__title,
-.page-main .mwa-hero__title,
-.block-title .content h1,
-.block-title .content .title,
-.blog-hero .title,
-.post-feature__title,.post-feature__title a,
-.post-card .post-feature__title,
-.merywood-cg-card__title{
-  font-weight:375;
+/* CTA-PARITY1 — Header's approved 550 Manrope Variable axis is canonical.
+   The original source renders article cards/format CTAs with independent
+   children and sometimes strong descendants. Align text weight across all
+   CTA variants WITHOUT changing size, colors, geometry, hover or JS.
+   Cookie consent controls (.mw-btn) are a separate LOCKED owner. */
+body .btn,body a.btn,body button.btn,
+body .btn .btn__text,body .btn .btn_text,
+body .btn .btn__text *,body .btn .btn_text *,
+body .post-feature__actions a,
+body .posts-grid .post-card .btn,
+body .posts-grid .post-card .btn__text,
+body .block-product-formats .formats__cta-btn .btn__text{
+  font-weight:550;
 }
-.page-main .text-large,
-.page-main .mwa-hero__lead,.page-main .mwa-lede,
-.page-main .mwa-story__text,
-.page-main .blog-body p,
-.block-title .content .text-large,
-.blog-hero .text-large,
-.post-feature__subtitle,
-.post-card .post-feature__subtitle,
-.block-blog-body .text-block__content p{
+/* TYPE-BALANCE3 — all-page Manrope Variable text hierarchy.
+   Previous 375/350 still appeared visually heavy on owner comparison;
+   use the normal variable axis with lower values at the exact semantic
+   component owners. Preserve Merywood layout, font sizes, motion, and
+   all existing component-specific line heights.
+   Excluded: Header 550, CTA 550, Stats number 300/label 400, Cookie 600,
+   Footer owner-frozen type, icon and logo geometry. */
+body .page-main h1,body .page-main h2,body .page-main h3,
+body .page-main .title-wrapper .title,
+body .page-main .mwa-sec__title,
+body .page-main .mwa-hero__title,
+body .block-title .content h1,
+body .block-title .content .title,
+body .blog-hero .title,body .blog-hero h1,
+body .post-feature__title,body .post-feature__title a,
+body .post-card .post-feature__title,
+body .post-card .post-feature__title a,
+body .bioa-blog-detail .merywood-cg-card__title{
   font-weight:350;
+}
+body .page-main .text-large,
+body .page-main .mwa-hero__lead,body .page-main .mwa-lede,
+body .page-main .mwa-story__text,
+body .page-main .blog-body p,
+body .block-title .content .text-large,
+body .blog-hero .text-large,
+body .post-feature__subtitle,
+body .post-card .post-feature__subtitle,
+body .block-blog-body .text-block__content p{
+  font-weight:325;
 }
 `;
 
