@@ -95,7 +95,7 @@ body .posts-grid .post-card .btn__text,
 body .block-product-formats .formats__cta-btn .btn__text{
   font-weight:550;
 }
-/* TYPE-BALANCE3 — all-page Manrope Variable text hierarchy.
+/* TITLE-CANONICAL-ABOUT1 — all-page Manrope Variable text hierarchy.
    Previous 375/350 still appeared visually heavy on owner comparison;
    use the normal variable axis with lower values at the exact semantic
    component owners. Preserve Merywood layout, font sizes, motion, and
@@ -113,7 +113,7 @@ body .post-feature__title,body .post-feature__title a,
 body .post-card .post-feature__title,
 body .post-card .post-feature__title a,
 body .bioa-blog-detail .merywood-cg-card__title{
-  font-weight:350;
+  font-weight:400;
 }
 body .page-main .text-large,
 body .page-main .mwa-hero__lead,body .page-main .mwa-lede,
@@ -3655,7 +3655,7 @@ const patchCookieConsentCss = `
 #mw-consent.bioa-consent #mw-card-title,
 #mw-prefs .mw-title,
 #mw-prefs .mw-row .label{
-  font-weight:350;
+  font-weight:400;
 }
 /* COOKIE-TYPE3: owner reopens only Cookie text weight, preserve all source geometry and button actions. */
 #mw-consent.bioa-consent .mw-actions .mw-btn,
@@ -3663,7 +3663,7 @@ const patchCookieConsentCss = `
   font-family:"Manrope",sans-serif;
   font-optical-sizing:auto;
   font-size:12px;
-  font-weight:350;
+  font-weight:400;
   line-height:1.2;
   min-width:0;
   white-space:normal;
