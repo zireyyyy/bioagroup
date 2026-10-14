@@ -1,3 +1,8 @@
+## MANDATORY OWNER PASS REUSE RULE — 2026-10-14
+Before modifying/creating any UI element in BIO-A, locate and reuse the same component's owner-PASS source across all applicable VI/EN pages and Desktop/Tablet/Mobile. No per-page imitations/duplicate CSS and no new icons when a canonical icon was accepted. Only the exact owner-reopened property may change; the rest remains frozen. `AGENTS.md §7A`, `docs/WORKFLOW.md §1B` are controlling permanent rules. Current owner feedback: WA icon and all other unspecified UI PASS; Cookie text weight explicitly reopened to 350; title weight must be diagnosed in computed style, not guessed. PR #10 candidate / production separate.
+
+---
+
 ## GITHUB CAPABILITY CHECK — PERMANENT
 GitHub is connected in the project workflow. Before claiming write/push unavailable, discover GitHub connector tools including deferred `mcp__GitHub__*` via `functions.exec`; call `get_repo` and check permission. Use `update_file`/`create_file`/PR tools for authorized implementation. Never ask user to switch chat from unsupported assumption; report actual connector errors. Refer to `AGENTS.md §2A` for mandatory policy. Last confirmed `get_repo` on 2026-10-14 reported push/admin true. Recheck live capability each session.
 
