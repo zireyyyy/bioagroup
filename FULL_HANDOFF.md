@@ -25,6 +25,12 @@
 - **BẠN CẦN TEST GÌ:** after confirmed Preview deploy, `/contract-manufacturing-cosmetics/` VI/EN at Tablet 834/1024, Desktop 1440 and Mobile 390: Why Choose same original source copy/icons and six manufacturing cards with correct artwork/sizing; no duplicated styles or misaligned cards. No need to repeat the Footer EN visual approval; spot-check shared shell only if CI reports a regression.
 - PR #11 stays Draft; no merge PR #10 or Production changes. Prior known-good phase2b visual checkpoint `cc50416` is immediate rollback.
 
+## Phase 2B Owner PASS / About unused helper — 2026-10-15
+- **Owner confirmed Phase 2B Cosmetics candidate at `2e03898d424299df6e7e064738b29e52059dbdfd` PASS.** Corresponding CI run `38702808572` SUCCESS. Freeze accepted Cosmetics Why Choose and six manufacturing category artwork plus prior Footer EN Desktop/Tablet and shared components.
+- New narrow source-only candidate in `bioa-about-refine.mjs`: unused `setDirectParagraphs(root, selector, values)` had exactly one source occurrence (its declaration) and is not referenced in About rendering or from `build.mjs`. Removed only that 149-character unused helper. **All active About functions, the original Merywood DOM, responsive CSS/JS, content, VI/EN, icons and geometry are unchanged.**
+- Treat this as a developer cleanup candidate until CI confirms output. No owner visual PASS inferred from earlier Cosmetics PASS. Production `main` and PR #10 remain unchanged; PR #11 draft remains the working branch.
+- **BẠN CẦN TEST GÌ:** SOURCE-ONLY / no runtime change intended. CI verify the build, VI/EN About and cross-device regression. Owner does **not** need to repeat visual QA of a helper that never runs; optional spot-check About VI/EN 1440/834/390 on new Preview. Do not reopen Cosmetics or Footer.
+
 ## Phase 2B implementation gate / next
 1. Confirm the small candidate CI and `tests/phase2b-services-convergence.test.mjs`: VI/EN single showcase, five slides, Bio-A canonical icons; full responsive CI including shared/frozen contracts. For owner: only focused new-candidate comparison on Other Services VI/EN at 390/834/1024/1440 and slider/click/scroll; do not redo accepted Phase 2 patch-by-patch.
 2. **Do not merge PR #10 or Phase 2B candidate automatically.** Preserve `ed7324c` as accepted rollback until the appropriate release gate.
