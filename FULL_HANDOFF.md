@@ -1,28 +1,24 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Snapshot date:** 2026-10-15 (post-owner continue request). **Source of truth:** verified GitHub repo `zireyyyy/bioagroup`, live branch/PR and latest explicit owner instruction. **THIS SINGLE BLOCK IS THE ONLY ACTIVE STATUS**. Historical dated entries below are references, not authority.
+**Snapshot date:** 2026-10-15. **Authority:** owner's explicit `FULL TABLET PASS` for PR #10 on VI/EN Tablet; verified GitHub checkpoint. This is the single active status block; dated historical notes are not current authority.
 
-## Production / candidate
-- **Production `main`:** `cb4e92f73c1ef800f7507db2330347664fc323d4` (PR #9 merged; site remains private/maintenance under existing Cloudflare policy).
-- **Candidate:** PR #10 `candidate/full-tablet-regression-phase2-20261014`. Code at `cecefe65bb881d6a5f9f0b92b41353c6a6f62308` had CI SUCCESS (`38677337859`); later docs-only CMS contract and handoff improvements added. **Verify live PR HEAD and latest CI before future code changes.** PR remains OPEN/DRAFT/UNMERGED; do NOT treat candidate as production.
-- **This update:** doc-only final Tablet exit-gate verification and refreshed exact-commit owner QA link. No website code change. No app UI, Merywood source mechanics, routes, lead/backend or deployment behavior changed.
+## Production and candidate
+- Production `main`: `cb4e92f73c1ef800f7507db2330347664fc323d4` — not modified, private maintenance retained.
+- Owner-FULL-TABLET-PASS source: PR #10 `candidate/full-tablet-regression-phase2-20261014`, HEAD `ed7324c016bd3e3954702d50da1b058042d7ad72`. CI run `38682716633` success. **Owner confirmed overall Full Tablet PASS 2026-10-15**. PR #10 remains unmerged/draft at Phase 2B kickoff. Never equate owner approval with permission to open Production or bypass deployment gates.
+- **Active Phase 2B:** separate branch `candidate/phase2b-source-convergence-20261015` forked from owner-approved `ed7324c`. First small candidate removes proven unused static-grid data in `bioa-services-refine.mjs`, adding `tests/phase2b-services-convergence.test.mjs` and CI gate. Verify live branch HEAD, CI run and Preview after new commits. No route CSS/DOM/JS interactions/animation, business API, artwork or responsive breakpoint changes in this cleanup. No claim of developer/owner visual PASS until actual checks.
 
-## Owner PASS/FROZEN
-- Latest owner explicitly says **PASS** for the final Home-canonical Bio-A icon reuse on Other Services and improved Blog detail TOC CTA label. Previous owner PASS: Blog detail Sticky TOC fix and preserved article layout, Cookie modal heading/3 actions Manrope 500, major page title 400 (About authority), shared Header/nav and commerce CTA 550, original Merywood WhatsApp icon and Zalo artwork, Home Hero Stats numbers/labels 300/400, approved Footer, approved 404 visual.
-- PASS is **component/surface-specific**; do not silently call the entire website “FULL TABLET PASS” without the owner's explicit overall confirmation.
-- Canonical reuse across equivalent components is mandatory: `AGENTS.md §7A`; independent VI/EN and Desktop/Tablet/Mobile QA: `AGENTS.md §5`; safe CMS content model: `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`.
-- Keep all owner-approved Merywood DOM/CSS/JS, animations and breakpoints unless explicitly reopened.
+## PASS/FROZEN and scope
+- **FULL TABLET VI/EN: OWNER PASS / FROZEN** on PR #10 accepted snapshot, including shared shell, Home/About, Cosmetics/Other Services, Blog/Sticky TOC, Contacts and 404; Desktop/Mobile previously accepted components remain FROZEN. Distinguish verified owner approval of *baseline* from pending regression approval of Phase 2B changes.
+- Canonical Home-owned icons, source Merywood slider/DOM/motion, Manrope typography/CTA, Cookie, WhatsApp/Zalo, first paint and Footer frozen; no cosmetic redesign. Keep security/noindex, lead D1/Sheets and Sanity-not-live untouched.
+- Target source owner: `bioa-services-refine.mjs`, where `applyWhy` removes the redundant `#why-choose-us` grid and `applyRange` retains exactly five Merywood slides. The old `why` VI/EN data arrays, `whyTitle` fields and `serviceIconMap` were not referenced by the current render path; removed. This is data dead-code only. The removed original source wrapper/slide mechanics are NOT recreated.
 
-## Active stage / pending / next
-1. **Awaiting explicit owner FULL TABLET PASS on PR #10**, or one route-specific unresolved defect. Owner accepted recent individual patches, but did NOT yet declare entire Tablet complete. Updated `docs/FULL_TABLET_OWNER_QA_CHECKLIST_20261014.md` for source commit `39d79b4` CI run `38681924922` SUCCESS, same-commit Cloudflare deploy Preview `https://e1dda8a2.bioagroup.pages.dev`. Docs commits after source SHA have no site UI edits. Obtain whole-Tablet approval without reopening accepted components; no Phase 2B cleanup until then.
-2. On explicit FULL TABLET PASS, enter mandatory **Phase 2B** cross-device source convergence audit, correcting only measured duplicate/dead/conflicting styles and logic within a modified component, with before/after Desktop/Tablet/Mobile + VI/EN parity. No mass refactor.
-3. Only afterward progress through approved SEO/hardening/release gates. **Sanity CMS is not integrated**; future hookup requires separate owner instruction, schemas, staging and security.
-4. Retain known-good **production main `cb4e92f`** as rollback for candidate UI. For per-component rollback use verified Git commit/diff, not historical rejected candidates or an assumed ZIP.
+## Phase 2B implementation gate / next
+1. Confirm the small candidate CI and `tests/phase2b-services-convergence.test.mjs`: VI/EN single showcase, five slides, Bio-A canonical icons; full responsive CI including shared/frozen contracts. For owner: only focused new-candidate comparison on Other Services VI/EN at 390/834/1024/1440 and slider/click/scroll; do not redo accepted Phase 2 patch-by-patch.
+2. **Do not merge PR #10 or Phase 2B candidate automatically.** Preserve `ed7324c` as accepted rollback until the appropriate release gate.
+3. Continue measured per-component cascade/JS source convergence with exact Merywood mapping, inspect verified runtime data and owner-PASS guardrails. No bulk CSS refactor, no unproven deletion. Phase 3 only after Phase 2B acceptance.
+4. Current documentation uses `START_HERE.md`, `AGENTS.md`, this single active snapshot, `docs/WORKFLOW.md`, `docs/SOURCE_MAP.md`, one stable `NEW_CHAT_CONTINUATION_PROMPT.md` and task-specific contracts; never proliferate status files.
 
-## QA / handoff integrity
-- Technical tests and Cloudflare Preview are distinct from owner visual PASS; stale reference URLs and dates in historic notes must not override current verified CI/deploy.
-- No current Production change; GitHub CI for code SHA `39d79b4` SUCCESS, Cloudflare deploy reported SUCCESS. **No new website-runtime test required for this documentation-only patch**. Confirm updated markdown exists and current branch matches expected HEAD.
-- Historical release/incident notes remain below intact for traceability; do not append another current-state section. **Replace only this snapshot in place** after meaningful future changes.
-- Current handoff architecture stays BIO-A-specific: `START_HERE.md` (stable entry), `NEW_CHAT_CONTINUATION_PROMPT.md` (stable one prompt), `AGENTS.md` (permanent rules), `docs/WORKFLOW.md` (execution), `docs/SOURCE_MAP.md` (component owners), `FULL_HANDOFF.md` (this active snapshot + historical archive). No mandatory new seven-file folder structure or per-commit ZIP.
+## BẠN CẦN TEST GÌ?
+Classification: SOURCE-ONLY DEAD-DATA + TEST/CI/DOCS. No site visual change intended. On Phase 2B Preview (after confirmed deploy), VI/EN `/dich-vu-khac/` at Tablet 834/1024, smoke Desktop 1440/Mobile 390: one five-card service slider, arrows/swipe and three related sections unchanged, correct approved Bio-A icons, text and CTA, no body overflow. No form submissions; do not open Production. GitHub CI success is a technical guard, not a claim of visual regression PASS.
 
 ---
 
