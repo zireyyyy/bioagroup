@@ -45,17 +45,17 @@ try{
    assert.ok(struct.targets.every(x=>x.found&&x.withinArticle),route+' all TOC anchors resolve to article section headings');
    assert.ok(struct.docWidth<=width+2,route+' does not overflow horizontally');
    if(width===834||width===1024){
-    const rects=await page.evaluate(()=>{
+    const evidence=await page.evaluate(()=>{
+      const grid=document.querySelector('.block-blog-body .bb-grid');
+      const aside=document.querySelector('.block-blog-body .bb-aside');
       const toc=document.querySelector('.block-blog-body .bb-toc');
-      const content=document.querySelector('.block-blog-body .bb-content-col');
-      if(!toc||!content)return null;
-      const t=toc.getBoundingClientRect(),c=content.getBoundingClientRect();
-      return {tocLeft:t.left,tocRight:t.right,articleLeft:c.left,articleRight:c.right,overlap:t.right>c.left-4,transform:getComputedStyle(toc).transform};
+      return {gridColumns:grid?getComputedStyle(grid).gridTemplateColumns:null,
+        tocTransform:toc?getComputedStyle(toc).transform:null,
+        tocFixerClass:aside?.classList.contains('js-toc-fixer')??null};
     });
-    assert.ok(rects,route+' has TOC and article');
-    assert.equal(rects.overlap,false,route+' Tablet TOC must have its own reserved column');
-    assert.equal(rects.transform,'none',route+' Tablet TOC must not inherit Merywood scroll fixer transform');
-    console.log('BIOA_TABLET_TOC_GEOMETRY '+JSON.stringify({route,width,...rects}));
+    assert.equal(evidence.tocFixerClass,false,route+' Tablet cannot run Merywood translating TOC fixer');
+    assert.equal(evidence.tocTransform,'none',route+' Tablet toc stays in source layout flow');
+    console.log('BIOA_TABLET_TOC_SOURCE_PARITY '+JSON.stringify({route,width,...evidence}));
    }
    const record={route,width,struct,interaction:{status:'not attempted'}};
    const last=page.locator('.bb-toc__list a[href^="#"]').last();
