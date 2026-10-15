@@ -3976,7 +3976,11 @@ const patchWhyChooseIconCss = `
 #why-choose-us .bioa-why-icon-cream{
   filter:brightness(0) saturate(100%) invert(99%) sepia(8%) saturate(407%) hue-rotate(24deg) brightness(104%) contrast(99%)!important;
 }
-#why-choose-us .bioa-why-icon-bioa{
+/* Shared canonical BIO-A monogram artwork; reuse the approved Home
+   class on every equivalent icon, never duplicate route-specific sizing. */
+#why-choose-us img.bioa-why-icon-bioa,
+.block-how-works img.bioa-why-icon-bioa,
+.block-right-choice img.bioa-why-icon-bioa{
   display:block!important;
   width:22px!important;
   max-width:22px!important;
@@ -3988,7 +3992,9 @@ const patchWhyChooseIconCss = `
 /* Original Merywood Why Choose icon slot is 2.8646vw with inner art
    1.5625vw. Only scale the BIO-A-specific replacement artwork. */
 @media(min-width:769px) and (max-width:1200px){
-  #why-choose-us .bioa-why-icon-bioa{
+  #why-choose-us img.bioa-why-icon-bioa,
+  .block-how-works img.bioa-why-icon-bioa,
+  .block-right-choice img.bioa-why-icon-bioa{
     width:1.1458vw!important;
     max-width:1.1458vw!important;
     height:1.4063vw!important;
@@ -5675,7 +5681,7 @@ const sharedShellCss =
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css+
   patchMobileHeaderScrollCss+
-  patchMobileHeaderSourceParityCss+sourceComponentCss;
+  patchMobileHeaderSourceParityCss+patchWhyChooseIconCss+sourceComponentCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
@@ -5703,7 +5709,7 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+patchTabletType3Css+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+patchTabletType3Css+'</style>');
   localizeHomeCtas($,lang);
   restoreMerywoodWhatsAppIcon($);
   setLogo($);
