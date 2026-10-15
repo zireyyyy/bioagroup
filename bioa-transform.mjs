@@ -41,26 +41,26 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
     gap:.5208vw!important;margin-bottom:1.8229vw!important;padding-bottom:1.8229vw!important;
   }
   .block-product-formats .formats__tab{
-    height:2.4479vw!important;padding:0 1.1458vw!important;
-    border-radius:.8333vw!important;font-size:.8333vw!important;
+    height:max(34px,2.4479vw)!important;padding:0 max(12px,1.1458vw)!important;
+    border-radius:.8333vw!important;font-size:clamp(12px,.8333vw,16px)!important;
   }
   .block-product-formats .formats__panels{min-height:6.25vw!important}
   .block-product-formats .formats__list{gap:.7292vw 1.6667vw!important}
   .block-product-formats .formats__item,
-  .block-product-formats .formats__more{gap:.5208vw!important;font-size:.8333vw!important}
+  .block-product-formats .formats__more{gap:.5208vw!important;font-size:clamp(12px,.8333vw,16px)!important}
   .block-product-formats .formats__cta{margin-top:3.9063vw!important}
   .block-product-formats .formats__cta-content{gap:2.0833vw!important}
-  .block-product-formats .formats__cta-title{font-size:1.6667vw!important;line-height:1.2!important}
-  .block-product-formats .formats__cta-description{font-size:.8333vw!important;line-height:1.45!important}
+  .block-product-formats .formats__cta-title{font-size:clamp(20px,1.6667vw,32px)!important;line-height:1.2!important}
+  .block-product-formats .formats__cta-description{font-size:clamp(13px,.8333vw,16px)!important;line-height:1.45!important}
   .block-product-formats .formats__cta-btn{
     display:inline-flex!important;align-items:center!important;justify-content:center!important;
-    min-height:2.5vw!important;padding:0 1.1458vw!important;
+    min-height:max(40px,2.5vw)!important;padding:0 max(12px,1.1458vw)!important;
     gap:.5208vw!important;white-space:nowrap!important;
   }
-  .block-product-formats .formats__cta-btn .btn__text{font-size:.8333vw!important;line-height:1.2!important;font-weight:600}
+  .block-product-formats .formats__cta-btn .btn__text{font-size:clamp(13px,.8333vw,16px)!important;line-height:1.2!important;font-weight:550}
   .block-product-formats .formats__cta-btn .btn__icon,
   .block-product-formats .formats__cta-btn .btn__icon svg{
-    width:.9375vw!important;height:.9375vw!important;flex-shrink:0!important;
+    width:max(16px,.9375vw)!important;height:max(16px,.9375vw)!important;flex-shrink:0!important;
   }
 }
 
