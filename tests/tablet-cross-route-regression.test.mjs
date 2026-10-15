@@ -14,5 +14,5 @@ test('Shared pages and Home use the same source component stylesheet',async()=>{
  assert.ok(homepage.includes('+sourceComponentCss'));
  assert.ok(s.includes('refineFooterNavigation($,lang)'));
  assert.ok(s.includes('addFooterCompanyInfo($,lang)'));
- assert.ok(s.includes('html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title'));
+ assert.ok(s.includes('.bioa-footer-company-info--desktop[lang="en"] .bioa-footer-company-info__title'));
 });
