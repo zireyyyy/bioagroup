@@ -47,6 +47,10 @@ REQUEST
 
 If runtime verification is unavailable, push the verified build candidate and report BUILD PASS — NEEDS OWNER TEST rather than stopping before implementation.
 
+## 1C. CMS publishing vs frontend code gate
+
+Mandatory `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`: classify each request as routine CONTENT-ONLY, RISKY CONTENT, or TEMPLATE/INTERACTION CHANGE before touching frontend code. CONTENT-ONLY inside the validated schema is edited and published once with normal validation and Preview; do NOT reopen individual Desktop/Tablet/Mobile code. RISKY CONTENT gets scoped device Preview; TEMPLATE CHANGE is implemented once in its canonical component and independently QA'd across device classes and VI/EN. Do not assert Sanity is currently wired. See AGENTS.md §2B.
+
 ## 1B. PASS → CANONICAL REUSE GATE — mandatory
 
 Every implementation MUST ask: **Does an owner-PASS version of this same
