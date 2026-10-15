@@ -438,6 +438,8 @@ function patchBlogCss($){
     /* PATCH-G8 — TOC contact CTA reuses the shared PASS Zalo artwork treatment. */
     '.bioa-blog-detail .bb-toc__cta-btn .btn__icon{display:flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;margin:0!important;line-height:0!important}'+
     '.bioa-blog-detail .bb-toc__cta-btn .bioa-zalo-icon{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;object-fit:contain!important;margin:0!important}'+
+    /* TOC-CTA-READABLE1 — text only; original button/icon and TOC geometry PASS. */
+    '@media(min-width:769px) and (max-width:1200px){.bioa-blog-detail .bb-toc__cta-btn .btn__text{font-size:clamp(12px,1.05vw,14px)!important}}'+
     '.bioa-blog-detail .bb-toc__cta-btn .btn__text{white-space:nowrap!important}'+
 
     /* PATCH-G4 — Rich article geometry guard.
