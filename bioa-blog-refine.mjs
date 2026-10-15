@@ -72,6 +72,18 @@ function applyBlogIndex($,lang,route='/blog/'){
   const hero=$('.blog-hero');
   $('body').addClass('bioa-blog-index');
   setText(hero,'.title',isEn?'Bio-A Group Blog':'Blog Bio-A Group');
+  /* BLOG-TITLE-ROOT1: Merywood source delivers an inline
+     style="font-weight:600;" on Blog H2. Chromium confirmed it wins
+     over our approved shared 350 style (VI/EN, all widths).
+     Remove ONLY the inherited inline weight while keeping all other
+     source inline properties, geometry and motion untouched. */
+  hero.find('.title').each((_,el)=>{
+    const title=$(el);
+    const original=title.attr('style')||'';
+    if(!/(?:^|;)\s*font-weight\s*:/i.test(original))return;
+    const retained=original.split(';').filter(x=>x.trim()&&!/^\s*font-weight\s*:/i.test(x)).join(';');
+    if(retained)title.attr('style',retained); else title.removeAttr('style');
+  });
   setText(hero,'.text-large',isEn?'Practical articles on cosmetic manufacturing, formulation, skincare, packaging and responsible brand development.':'Kiến thức thực tế về gia công mỹ phẩm, công thức, chăm sóc da, bao bì và phát triển thương hiệu có trách nhiệm.');
   hero.find('.blog-hero__bg').attr('src','/assets/bioa-monogram.svg').attr('alt','').attr('aria-hidden','true').removeAttr('srcset sizes');
 
@@ -381,6 +393,21 @@ function applyBlogArticle($,route,lang){
     if(!nextLink)nav.addClass('bb-post-nav--only-prev');
   }
 
+  /* TABLET-TOC-ROOT1 — Original Merywood article includes a script with
+     js-toc-fixer which translates the TOC even after source @max991px
+     stacks .bb-grid into one column. That transform causes overlap on
+     iPad. Keep the original Desktop (>1200px) behavior; do not start the
+     incompatible Smooth Scrollbar TOC fixer at Tablet/Mobile widths.
+     Existing source anchor click handler remains unchanged. */
+  $('.page-main script').each((_,el)=>{
+    const node=$(el);
+    const code=node.html()||'';
+    if(!code.includes('js-toc-fixer')||!code.includes('function enableSB(sb)'))return;
+    if(code.includes('BIOA_TABLET_TOC_GUARD'))return;
+    node.html(code.replace('  ready(function(){',
+      '  ready(function(){\n    /* BIOA_TABLET_TOC_GUARD */\n    if(window.matchMedia("(max-width:1200px)").matches)return;'));
+  });
+
   applyArticleSeo($,post,route,lang);
 }
 
@@ -411,6 +438,8 @@ function patchBlogCss($){
     /* PATCH-G8 — TOC contact CTA reuses the shared PASS Zalo artwork treatment. */
     '.bioa-blog-detail .bb-toc__cta-btn .btn__icon{display:flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;margin:0!important;line-height:0!important}'+
     '.bioa-blog-detail .bb-toc__cta-btn .bioa-zalo-icon{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;object-fit:contain!important;margin:0!important}'+
+    /* TOC-CTA-READABLE1 — text only; original button/icon and TOC geometry PASS. */
+    '@media(min-width:769px) and (max-width:1200px){.bioa-blog-detail .bb-toc__cta-btn .btn__text{font-size:clamp(12px,1.05vw,14px)!important}}'+
     '.bioa-blog-detail .bb-toc__cta-btn .btn__text{white-space:nowrap!important}'+
 
     /* PATCH-G4 — Rich article geometry guard.

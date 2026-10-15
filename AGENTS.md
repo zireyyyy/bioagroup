@@ -46,6 +46,46 @@ Before implementation:
 10. inspect the BIO-A counterpart;
 11. only then diagnose or implement.
 
+## 2B. CMS-safe future content publishing — mandatory
+
+For every future content/image/Blog/section request, read `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`. Routine CMS content within an approved component's schema and text/image limits MUST inherit the existing PASS Desktop/Tablet/Mobile layout without independent device-specific code. Adding a genuinely new component is engineering ONCE at the canonical source owner plus VI/EN and cross-device QA; after owner PASS it may be exposed as a reusable CMS block. Validate content envelopes, image ratio, card count, translations, TOC headings and security before publish; reject unsupported arbitrary HTML/CSS. Existing BIO-A currently does NOT have a live Sanity integration; do not claim that editors can already publish via CMS or silently migrate the site. Full Tablet PASS, Phase 2B and explicit CMS approval remain required gates.
+
+## 2A. GitHub connector capability gate — mandatory / permanent (2026-10-14)
+
+The owner connected GitHub for direct repository work. **Never say GitHub
+write/push tools are unavailable or ask the owner to move to a different chat
+unless availability has been checked in the current conversation.**
+
+For every repository mutation request:
+1. Discover available GitHub connector tools in the current environment
+   (including deferred tools; do not rely on the visible top-level namespace).
+2. Read the exact repository and branch/PR state via a real GitHub tool call.
+3. Verify repository permissions with `get_repo` when permission is in doubt.
+   Do not confuse absence of a convenient directly exposed tool with the
+   absence of GitHub access. In the Code Mode tool registry, GitHub actions
+   are available as `mcp__GitHub__*` through `functions.exec`.
+4. If tools are present and a read/write test succeeds, execute the
+   authorized task; do not hand off to another coding assistant, generate a
+   prompt instead of implementing, or claim GitHub is unavailable.
+5. If a tool fails, report the **actual tool error**, whether the problem is
+   tool discovery, connector service, OAuth permissions, repository policy,
+   validation, or transient rate limits. Retry a safe read/check where
+   appropriate. Do not say the owner disconnected/revoked GitHub without
+   affirmative evidence.
+6. Do not require the owner to reconnect, reauthorize, or open a new chat
+   as a default workaround. Only request those actions when a specific
+   permission/connection error proves they are needed.
+7. A successful read and a `push:true` permission check establish that
+   repository write access is available; they do not by themselves prove a
+   later write succeeded. Report a commit SHA only after the write response
+   confirms it. Never fabricate a push/merge/deploy.
+
+This rule applies equally after long chats, tool context compaction, new
+model turns, and new sessions. If the platform genuinely does not expose
+any GitHub connector, explain precisely what was checked and do not claim
+a successful push. Store project status and new-chat instructions in the
+repository; do not rely solely on chat memory for connector capability.
+
 ## 3. Merywood source-of-truth
 
 The original Merywood source supplied by the owner is the visual/runtime reference.
@@ -195,6 +235,37 @@ If a locked surface must be touched:
 4. verify the previously approved behavior afterwards.
 
 Never perform opportunistic cleanup in locked components.
+
+## 7A. OWNER PASS AS SHARED CANONICAL COMPONENT — permanent (2026-10-14)
+
+Owner mandate: **everything explicitly accepted as PASS is the canonical reusable
+baseline for equivalent components across the entire site**, on all intended
+routes and VI/EN. PASS is not merely a warning not to touch code.
+
+Before authoring any new or parallel Header, CTA, Cookie, typography, icon,
+Footer, navigation, card, motion or other reusable UI element:
+1. Look up the accepted PASS source component, markup, asset, CSS/JS owner,
+   tokens and state behavior in SOURCE_MAP and handoff.
+2. Reuse that source owner, class/component or canonical style token rather
+   than create a visual near-copy, per-page override, re-drawn icon, or
+   independent weight/spacing rule. For equivalent CTA text, the
+   owner-approved Header CTA is the starting authority; Cookie actions have
+   an independently approved owner.
+3. Apply it consistently to all applicable VI/EN routes and independent
+   Desktop/Tablet/Mobile surfaces. Sitewide parity is mandatory where the
+   component is equivalent, while each device surface still needs its own QA.
+4. Differences are allowed only when function, content or explicit owner
+   instructions demand them. Record those exceptions in SOURCE_MAP with their
+   exact owner and test contract.
+5. If a later owner request reopens one previously PASS property, change only
+   that named property in its canonical owner; keep all other PASS geometry,
+   semantics, motion, colors and interactions frozen.
+6. Before promotion compare equivalent instances against the canonical source;
+   a new implementation that only *looks* close is not an accepted reuse.
+
+Do not add multiple layers of CSS/JS overrides to simulate canonical parity.
+Prefer source consolidation at the actual component owner and minimal diffs.
+Latest explicit owner acceptance supersedes older historical status.
 
 ## 8. Patch contract
 

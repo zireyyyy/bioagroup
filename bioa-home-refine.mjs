@@ -69,6 +69,65 @@ html,body{background:var(--bioa-cream)!important}
 `;
 
 
+/* TABLET-TYPE3 — owner feedback 2026-10-14.
+   Typography change is Tablet-only and source-component scoped. Preserve
+   Hero Stats 300/400, Cookie 600, CTA 550, Footer and Desktop/Mobile.
+   Root font may scale with viewport in original Merywood CSS, hence nav
+   uses a small proportional improvement rather than a fixed global size. */
+const patchTabletType3Css = `
+/* NAV-FLUID2 — approved source-owned continuous navigation curve. */
+@media(min-width:769px){
+  .header .header__nav > ul > li > a{
+    font-size:clamp(11px,calc(6.6px + .52vw),16.5px)!important;
+  }
+}
+/* CTA-PARITY1 — Header's approved 550 Manrope Variable axis is canonical.
+   The original source renders article cards/format CTAs with independent
+   children and sometimes strong descendants. Align text weight across all
+   CTA variants WITHOUT changing size, colors, geometry, hover or JS.
+   Cookie consent controls (.mw-btn) are a separate LOCKED owner. */
+body .btn,body a.btn,body button.btn,
+body .btn .btn__text,body .btn .btn_text,
+body .btn .btn__text *,body .btn .btn_text *,
+body .post-feature__actions a,
+body .posts-grid .post-card .btn,
+body .posts-grid .post-card .btn__text,
+body .block-product-formats .formats__cta-btn .btn__text{
+  font-weight:550;
+}
+/* TITLE-CANONICAL-ABOUT1 — all-page Manrope Variable text hierarchy.
+   Previous 375/350 still appeared visually heavy on owner comparison;
+   use the normal variable axis with lower values at the exact semantic
+   component owners. Preserve Merywood layout, font sizes, motion, and
+   all existing component-specific line heights.
+   Excluded: Header 550, CTA 550, Stats number 300/label 400, Cookie 600,
+   Footer owner-frozen type, icon and logo geometry. */
+body .page-main h1,body .page-main h2,body .page-main h3,
+body .page-main .title-wrapper .title,
+body .page-main .mwa-sec__title,
+body .page-main .mwa-hero__title,
+body .block-title .content h1,
+body .block-title .content .title,
+body .blog-hero .title,body .blog-hero h1,
+body .post-feature__title,body .post-feature__title a,
+body .post-card .post-feature__title,
+body .post-card .post-feature__title a,
+body .bioa-blog-detail .merywood-cg-card__title{
+  font-weight:400;
+}
+body .page-main .text-large,
+body .page-main .mwa-hero__lead,body .page-main .mwa-lede,
+body .page-main .mwa-story__text,
+body .page-main .blog-body p,
+body .block-title .content .text-large,
+body .blog-hero .text-large,
+body .post-feature__subtitle,
+body .post-card .post-feature__subtitle,
+body .block-blog-body .text-block__content p{
+  font-weight:325;
+}
+`;
+
 const patchACss = `
 /* HOME Patch A — brand cleanup + compact translucent header */
 .header{
@@ -3589,13 +3648,22 @@ const patchCookieConsentCss = `
 #mw-consent.bioa-consent p{
   line-height:1.55!important;
 }
-/* COOKIE-TYPE2: only consent labels, preserve the Merywood button geometry. */
+/* COOKIE-TYPE4: owner reopened only Cookie modal-title and action text.
+   Manrope Variable 500 is the middle weight between rejected 400 (too
+   light) and original 600/700 (too heavy). Preserve Merywood consent
+   geometry, content, button count/actions, font-readiness gate. */
+#mw-consent.bioa-consent #mw-card-title,
+#mw-prefs .mw-title,
+#mw-prefs .mw-row .label{
+  font-weight:500;
+}
+/* COOKIE-TYPE4: all three action buttons and preferences actions share this source-owned weight. */
 #mw-consent.bioa-consent .mw-actions .mw-btn,
 #mw-prefs .mw-actions .mw-btn{
   font-family:"Manrope",sans-serif;
   font-optical-sizing:auto;
   font-size:12px;
-  font-weight:600;
+  font-weight:500;
   line-height:1.2;
   min-width:0;
   white-space:normal;
@@ -3908,7 +3976,11 @@ const patchWhyChooseIconCss = `
 #why-choose-us .bioa-why-icon-cream{
   filter:brightness(0) saturate(100%) invert(99%) sepia(8%) saturate(407%) hue-rotate(24deg) brightness(104%) contrast(99%)!important;
 }
-#why-choose-us .bioa-why-icon-bioa{
+/* Shared canonical BIO-A monogram artwork; reuse the approved Home
+   class on every equivalent icon, never duplicate route-specific sizing. */
+#why-choose-us img.bioa-why-icon-bioa,
+.block-how-works img.bioa-why-icon-bioa,
+.block-right-choice img.bioa-why-icon-bioa{
   display:block!important;
   width:22px!important;
   max-width:22px!important;
@@ -3920,7 +3992,9 @@ const patchWhyChooseIconCss = `
 /* Original Merywood Why Choose icon slot is 2.8646vw with inner art
    1.5625vw. Only scale the BIO-A-specific replacement artwork. */
 @media(min-width:769px) and (max-width:1200px){
-  #why-choose-us .bioa-why-icon-bioa{
+  #why-choose-us img.bioa-why-icon-bioa,
+  .block-how-works img.bioa-why-icon-bioa,
+  .block-right-choice img.bioa-why-icon-bioa{
     width:1.1458vw!important;
     max-width:1.1458vw!important;
     height:1.4063vw!important;
@@ -4010,7 +4084,10 @@ const patchSharedHeroStatsParityCss = `
   }
   .mwa-hero .mwa-stat__l{
     font-family:Manrope,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
-    font-size:.9375rem!important;
+    /* About Tablet: BIO-A long VI/EN labels were only ~8-10 CSS px
+       under the source's fluid root rem scale at 834-1024. Preserve the
+       original flex card, font weight and line-height; clamp type only. */
+    font-size:clamp(12px,.9375rem,15px)!important;
     font-weight:400;
     line-height:1.4!important;
   }
@@ -4301,6 +4378,23 @@ function normalizeViTitleCase($,lang){
   });
 }
 
+
+/* WA-SOURCE1 — reuse the literal icon DOM supplied by Merywood source.
+   The builder fetches original page HTML for every route. BIO-A previously
+   replaced WhatsApp with a manually reconstructed path; avoid that entirely.
+   Do not rewrite Zalo, shared button geometry, or non-WhatsApp artwork. */
+function restoreMerywoodWhatsAppIcon($){
+  const original=$('.header__socials .socials__link svg, .menu__socials .socials__link svg').first();
+  if(!original.length)return;
+  const svg=$.html(original.clone());
+  // An external SVG <use> can depend on source-domain assets; only accept
+  // self-contained original paths/shapes. Keep existing markup otherwise.
+  if(!svg||!original.find('path,circle,rect,polygon,polyline,ellipse').length)return;
+  icons.whatsapp=svg;
+  $('.header__socials .socials__link, .menu__socials .socials__link').each((_,el)=>{
+    $(el).html(svg);
+  });
+}
 
 function normalizeHeaderActions($){
   const contacts=$('.header__contacts').first();
@@ -5587,13 +5681,14 @@ const sharedShellCss =
   patchSharedHeroStatsParityCss+patchSharedBrandWatermarkCss+
   patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchHeaderTopParityCss+patchMotionU1Css+
   patchMobileHeaderScrollCss+
-  patchMobileHeaderSourceParityCss+sourceComponentCss;
+  patchMobileHeaderSourceParityCss+patchWhyChooseIconCss+sourceComponentCss;
 
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
-  $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+'</style>');
+  $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+patchTabletType3Css+'</style>');
 
   /* SHARED-UX1: every route inherits the Home-approved global experience. */
+  restoreMerywoodWhatsAppIcon($);
   setLogo($);
   replaceBrandWatermarks($);
   fixLang($,route,lang);
@@ -5614,8 +5709,9 @@ export function applySharedShell($,route,lang){
 }
 
 export function applyHomeRefinement($,route,lang){
-  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchWhyChooseIconCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+'</style>');
+  $('head').append('<style id="bioa-home-refine">'+css+patchACss+patchA7Css+patchA8Css+patchBCss+patchB2Css+patchMobileMenuCss+patchB4Css+patchB6Css+patchB7Css+patchB8Css+patchMobileMenuDismissCss+patchB9Css+patchB12Css+patchB13Css+patchB14Css+patchHeroStatsSourceCss+patchHeroStatsOriginalTypeCss+patchC2Css+patchC3Css+patchC4AShellCss+patchC4BComposerCss+patchC4CMotionCss+patchC6ProactiveCss+patchDFooterTypeCss+patchD3FooterBrandCss+patchD4FooterHierarchyCss+patchFooterInfo1Css+patchFooterHover1Css+patchC5ChannelPaletteCss+patchD5FooterTabletCss+patchCookieConsentCss+patchD6FooterMetaCss+patchH2HomeControlPaletteCss+patchH3MobileContactCss+patchH4PackagingWatermarkCss+patchZaloIconCss+patchH5CMobileMoqCss+patchHeaderTopParityCss+patchMotionU1Css +patchHeroStatsFinalSourceCss+patchMobileHeaderScrollCss+patchMobileHeaderSourceParityCss+sourceComponentCss+patchTabletType3Css+'</style>');
   localizeHomeCtas($,lang);
+  restoreMerywoodWhatsAppIcon($);
   setLogo($);
   replaceBrandWatermarks($);
   syncWhyChooseIcons($);

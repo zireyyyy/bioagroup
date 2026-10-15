@@ -47,6 +47,24 @@ REQUEST
 
 If runtime verification is unavailable, push the verified build candidate and report BUILD PASS — NEEDS OWNER TEST rather than stopping before implementation.
 
+## 1C. CMS publishing vs frontend code gate
+
+Mandatory `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`: classify each request as routine CONTENT-ONLY, RISKY CONTENT, or TEMPLATE/INTERACTION CHANGE before touching frontend code. CONTENT-ONLY inside the validated schema is edited and published once with normal validation and Preview; do NOT reopen individual Desktop/Tablet/Mobile code. RISKY CONTENT gets scoped device Preview; TEMPLATE CHANGE is implemented once in its canonical component and independently QA'd across device classes and VI/EN. Do not assert Sanity is currently wired. See AGENTS.md §2B.
+
+## 1B. PASS → CANONICAL REUSE GATE — mandatory
+
+Every implementation MUST ask: **Does an owner-PASS version of this same
+component already exist?** If yes, inspect and reuse its canonical source owner
+and approved behavior sitewide (VI/EN, Desktop/Tablet/Mobile as applicable)
+before writing custom CSS or markup. Verify equivalence as well as regression.
+Log any justified difference in `docs/SOURCE_MAP.md`. Merely leaving the old
+PASS instance unchanged while inventing an inconsistent new instance is FAIL.
+
+Explicit owner-reopened properties (for example Cookie button weight) may be
+updated in their one owner; unrelated PASS attributes stay locked. Consult
+`AGENTS.md §7A`. Check the actual CSS cascade and computed values before
+making further font-weight adjustments; never stack speculative overrides.
+
 ## 2. INSPECT
 
 Before changing anything:
@@ -476,15 +494,21 @@ A Blog SEO task is content work, not permission to redesign the Blog component s
 ## Handoff continuation contract
 
 At every durable handoff:
-- rewrite `START_HERE.md`;
-- rewrite `NEW_CHAT_CONTINUATION_PROMPT.md`;
-- record runtime-confirmed baseline, current candidate, PARTIAL/FAIL commits that are not rollback targets, current block, PASS/FROZEN areas, PENDING areas, next test and rollback;
-- update `FULL_HANDOFF.md` current snapshot.
+- preserve `START_HERE.md` as one *stable navigation and precedence guide*. Do NOT prepend version notes or rewrite it after each candidate;
+- preserve one *stable* `NEW_CHAT_CONTINUATION_PROMPT.md`, updated only when bootstrap instructions genuinely change; never store current project status or create versioned copies;
+- **replace the one CURRENT RUNTIME SNAPSHOT at the top of `FULL_HANDOFF.md` in place** after meaningful candidates and owner PASS. Store production, candidate SHA/PR, PASS/FROZEN, active/pending tasks, verified vs unverified QA, rollback, superseded candidates, next action;
+- keep architectural rules in `AGENTS.md`, component owner mapping in `docs/SOURCE_MAP.md`, specific QA matrices and domain contracts in existing docs;
+- historical incident logs may be retained as archive/reference, but MUST NOT be treated as current status or copied into the bootstrap files;
+- record reusable root-cause lessons only when demonstrated, within the applicable existing source/owner documentation, not a new patch diary;
+- for explicit portable FULL HANDOFF requests, use the verified Git commit as canonical source, include only appropriate files/verified rollback and SHA-256 checksums if an actual ZIP is created; never include secrets or invent packages.
 
-A new chat should not need to reconstruct current state from historical patch logs.
+A new chat must identify the current task in minutes from the snapshot, without replaying patch history.
 
 Current-state precedence:
-`START_HERE.md` -> `NEW_CHAT_CONTINUATION_PROMPT.md` -> mandatory contracts -> `AGENTS.md` -> current snapshot in `FULL_HANDOFF.md` -> historical log.
+latest explicit owner instruction -> `AGENTS.md` and task-specific mandatory contracts -> source owner in `docs/SOURCE_MAP.md` -> verified CURRENT RUNTIME SNAPSHOT in `FULL_HANDOFF.md` -> actual GitHub commit/CI/deploy evidence -> historical log.
+If a snapshot conflicts with live repo, mark the mismatch and reconcile before editing.
+
+**BIO-A exception:** Do not copy the other project's seven-MD folder design wholesale. Keep existing BIO-A documents, Merywood authority, three-surface QA, VI/EN, Cloudflare gating, Phase 2B, and current promotion workflow.
 
 ## Layer ownership before implementation
 

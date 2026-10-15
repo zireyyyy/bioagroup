@@ -1,185 +1,38 @@
-## 2026-10-14 — MVR-TYPE2 + COOKIE-FONT-GATE1 candidate
-Owner confirms Hero Stats PASS (numbers 300 labels 400); immutable. Nav and CTA 500 too light: raise narrowly to 550 ordinary weight. Cookie banner shifts/resizes after navigation: preserve Merywood consent behavior, keep visual card hidden until fonts ready (max 1800ms fallback), 12px/600 button labels, copy VI deny `Từ chối`, EN `Reject`; underlying .mw-deny still rejects optional consent. No layout/scroll/other UI changes. Production main 44879b4; PR #9 candidate until owner visual QA. Prior footer/Zalo/loading PASS frozen. Test Home/About VI/EN Desktop/Tablet/Mobile and cold navigation.
-
----
-## 2026-10-13 — MVR-TYPE1 owner visual feedback / scoped weight parity (candidate)
-
-Owner supplied side-by-side screenshot BIO-A vs Merywood on Desktop: BIO-A Header main nav underweight, CTA labels too bold, Hero 5 number values visually inconsistent. This is **owner FAIL on typography only**, not a reason to change frozen layout/first-paint/Footer/Zalo. PR #9 source `fd8e9b2b0f449d911e44b9f3c5622c0ac3375856` latest prior successful CI.
-
-Measured **original Merywood main.txt**:
-- `.btn` font-weight 600 (with original/static face, visually lighter than current Google Variable at 600); owner wants **500** for all BIO-A CTAs under Google Manrope Variable; this is an intentional BIO-A adaptation.
-- Hero `.block-title .info .list .item__number` weight **300**. Labels inherit regular **400**.
-- Nav inherits 400 in Merywood source, but owner's BIO-A screenshot is underweight with Variable Manrope; user-directed visual adaptation to **500** on desktop/Tablet main header links only.
-
-**Verified root cause:** `bioa-home-refine.mjs` contains historical `font-weight:200` experiments and seven `font-variation-settings:"wght" 200|300|400!important` declarations plus a `patchHeroStatsOriginalTypeCss` rule setting `.item__number, .item__number *` to 400 while final card number owner sets 300. This allows parent/child glyph weights to disagree and forces variable-axis values independent of CSS `font-weight`. Corrected at existing owners: one 300 value on all Hero number elements and descendants, 400 on labels, removed nine forced axis settings (7 numeric plus 2 `normal`); 2 historical numeric 200→300. Scoped Header nav 500 and CTA 500 with ordinary CSS (no !important, no new global typography force).
-
-**Protection:** no changes to `bioa-transform.mjs` loading, no font URL change, no DOM, images, geometry, line heights, palette, motion, Footer/Chat copy, Zalo, Cloudflare gate. 390/834/1440 VI/EN browser computed font-weight regression and old source layout test required. Owner visual QA on Preview is mandatory: nav, Header/Hero CTA, all five Hero numbers uniform; verify other CTAs throughout site, Footer EN and Page initial paint.
-
-**Future rule:** No `font-weight:...!important` or direct manual `font-variation-settings:"wght" ...` for BIO-A typography. Adjust explicit weight using ordinary scoped `font-weight` in the component that owns it; do not use assistant-fabricated global overrides.
-
----
-# BIO-A VARIABLE FONT POLICY — permanent, owner-approved 2026-10-13
-- Google Fonts Manrope Variable normal 200..800: `https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap`
-- All future component typography uses `font-family: "Manrope", sans-serif` by inheritance; `font-optical-sizing:auto`; weights 200–800 with regular 400. Do NOT add new local font files, alternate font families or `font-weight:...!important` / `font-family:...!important` in BIO-A CSS. Use ordinary `font-weight` scoped to the component when an explicit owner-approved change is needed.
-- Preserve CSS geometry, font sizes, line heights, responsive breakpoints, DOM and original Merywood motions until owner QA. Never silently normalize all headers to bold.
-- FIRST-PAINT1 and Smooth Scrollbar frozen; inspect network requests, computed family/weight and layout shifts at 390/834/1440 before production promotion.
-- Existing Merywood `main.css` remains for layout and includes old font-face rules. Google stylesheet is appended last as the new Manrope source; investigate any face-source competition via computed/render inspection before calling single-font-source PASS.
-- This is a **candidate** only; previous Footer EN, Zalo and content loading owner PASS preserved but typography appearance needs owner visual confirmation on VI/EN.
-
----
-## 2026-10-13 — FONT-SOURCE1 / trace-grounded cold-load candidate (visual QA PENDING)
-
-**Owner decision:** Footer EN (translated company title and approved wrapping) PASS, but repeated loading/navigation jolt on PR #9 FAIL relative to `44879b4`. Do NOT merge until first-paint parity owner PASS. Production `main` remains `44879b49c180a5f9433a9a118b9ff9979b329f3d`; approved initial BODY margin/gutter fix from `d328e76f` MUST stay bitwise unchanged.
-
-**Actual uploaded Chromium trace** `Trace-20261013T154358.json.gz`, page `5db31fd8.bioagroup.pages.dev/`:
-- Navigation t=0; first paint ≈132ms; Manrope static TTFs from Merywood requested ≈192ms, completed ≈334ms.
-- Extra Google Fonts Manrope WOFF2s requested ≈338ms, loaded ≈377ms.
-- Single scored main-frame LayoutShift ≈434ms, 0.000305, 6px max affecting hero text and header anchors. Potential font-family swap, but trace does not prove every perceptual movement; CSS transform/reveal animations are unscored by CLS.
-- Earlier user Trace 10:38 had 3 main-frame shifts (8px BODY reset first, 15px late scrollbar-related). New trace no initial 8px BODY reset; retains only small text-related movement.
-- CI generated layout-shift JSON from PR#9 has separate cookie-consent `bioa-consent show` shifts (approx 0.004–0.019 depending viewport), **not evidence of full-page content movement**.
-- Original owner-supplied `main.txt` CSS contains original Merywood `@font-face` for Manrope 300/400/500/600/700/800, all `font-display:swap`. The live source also embeds redundant `https://fonts.googleapis.com/css2?family=Manrope...` style/preload, producing a later font face download. Double-font-source is independently evidenced by the trace.
-
-**Minimal FONT-SOURCE1 candidate:** only in `bioa-transform.mjs` `cleanupExternal`, remove stylesheet and style-preload links pointing to Google CSS *and containing Manrope*. Keep Merywood `main.css` and all original font-face rules; no custom fonts, font sizes, animations, transitions, first-paint style, breakpoint, layouts, Cookie scripts, content or Zalo changes. This may remove the second font swap but does **not** guarantee zero perceptual motion; first print/scroll and route-switch screenshot test still required. New CI test ensures no duplicated Google Manrope stylesheet while original Merywood stylesheet + first paint guard remain on ten routes.
-
-**Owner verification:** after Preview redeploy check repeated hard refresh Home VI/EN, Home→About→Home, cold browser incognito at Desktop 1440/1900, Tablet 834/1024, Mobile 390. Check typography and Cookie, all previously PASS Footer visual and loading. No merge if motion/jolt persists, investigate source `lockHeight` and intentional AOS transform separately. Do not add global opacity blockers or change SmoothScrollbar speculatively.
-
----
-## 2026-10-13 — FOOTER-EN-WRAP1 / loading nonregression (authoritative latest)
-
-Owner reported PR #9 EN Footer title OVERFLOW/OVERLAP and repeat page-load/navigation slight shift; main `44879b4` reportedly still shifts once on initial load. **PR #9 was already CI FAIL** on `tests/tablet-cross-route-regression.test.mjs` expecting obsolete `addFooterCompanyInfo($)` signature; never merge the failed candidate. Review screenshot at Desktop ~1900px: the EN name collides with Cosmetic Manufacturing section.
-
-**Verified first-order root cause for EN overlap:** existing `bioa-home-refine.mjs` `patchFooterInfo1Css` includes `@media(min-width:1201px) .bioa-footer-company-info--desktop .bioa-footer-company-info__title{ white-space:nowrap!important }`. English name is much longer than approved Vietnamese copy and exceeds its 320–360px grid column. Correct with an **English-only** overriding rule adjacent to this original rule at Desktop: `html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title {white-space:normal!important;overflow-wrap:break-word!important;max-width:100%!important}`. No grid/font/line-height/VI CSS changes. Source output HTML `lang` is explicitly set by `bioa-transform.mjs`.
-
-**CI guard hardening:** update stale cross-route assertion to the new `addFooterCompanyInfo($,lang)` and assert EN wrapping rule; add Playwright read-only tests for actual English Footer rectangles / overflow at Tablet 834/1024 and Desktop 1280/1440/1900, with screenshot artifacts. Also capture initial/settled Header/scrollbar and layout-shift events as **diagnostics**, NOT presume the loaded page is motion-free solely because page source style is unchanged.
-
-**First-paint freeze:** `bioa-transform.mjs`, `#bioa-first-paint-stability`, `functions/_middleware.js`, source Smooth Scrollbar and fonts are unchanged. The trace-proven 8px BODY reset remains owner PASS from `d328e76f`. The reported intermittent navigation jerk on main predates PR #9 and is NOT proven caused by the English copy. Need compare actual shift timing/sources from captured metrics and, if necessary, obtain owner clean-browser trace. Do not add global scrollbar/font/JS transition patches without root-cause evidence.
-
-**Frozen PASS:** Zalo `/assets/zalo-bioa-owner.png` white background (sole canonical), no Headquarters/Estonia, existing Footer VI, Home Desktop/Mobile, private production/public read-only Preview. **PR #9 remains draft** until CI PASS and owner visual QA of EN at 1440/1900 + Tablet 834/1024 and repeat navigation. Production stays `44879b4` pending owner PASS.
-
----
-## 2026-10-13 — FOOTER-EN-COPY1 candidate (owner visual pending)
-PR #8 PASS merged on main `44879b49c180a5f9433a9a118b9ff9979b329f3d`: no Headquarters/Estonia, canonical white-background PNG Zalo. FIRST-PAINT1 `d328e76f` is still the mandatory locked loading behavior. No broad Tablet PASS. Shared `addFooterCompanyInfo` hardcoded VI content on EN routes. Translate title, address and tax labels only; keep exact VI text, official address/phone/tax and all DOM/CSS/image assets unchanged. Test generated VI/EN Footer labels across 10 routes. EN title wrapping needs owner visual QA at 834/1024 Tablet, Desktop 1440 and Mobile 390. No production merge without approval.
-
----
-
-## 2026-10-13 — ZALO CANONICAL WHITE BACKGROUND + ASSET CLEANUP (owner request)
-
-The owner accepts Zalo's existing 96×96 circular design and explicitly wants ONLY its interior cream to become pure white site-wide. The canonical source remains `/assets/zalo-bioa-owner.png` across shared Header, Footer, Mobile, Chat and CTA (existing source references unchanged). Applied an in-place pixel recolor of cream to RGB(255,255,255), retained PNG RGBA 96×96, positioning, green lettering, alpha and all source CSS/JS. Three obsolete assets confirmed not referenced by rendering modules nor tests: `assets/zalo-bioa.svg`, `assets/zalo-bioa-circle-cream.svg`, `assets/zalo-bioa-framed-cream.png`; delete from candidate Git tree. If old historical docs mention these files, treat them as removed superseded artwork, NEVER authoritative. Added test `tests/zalo-canonical-asset.test.mjs` to enforce the canonical asset and no stale alternatives in source/build.
-
-Other confirmed areas: Headquarters/Estonia removal PASS by owner; Zalo geometry/design before color change PASS by owner. **FIRST-PAINT1** approved at `d328e76f` is FROZEN. This candidate changes only Zalo asset bytes + removes 3 obsolete assets + regression tests/docs; Desktop/Mobile layout and smooth scrollbar unchanged. Owner visual QA pending for white pixel color only. If passed, merge PR #8; not otherwise.
-
----
-## 2026-10-13 — FOOTER-ZALO-ARTWORK-RESTORE: owner correction to PR #8
-
-Owner's screenshot of candidate `74405dc`: **"Headquarters / Estonia" removal PASS**, **Zalo artwork substitution FAIL**. The project must never treat assistant artwork changes as an owner-approved design update. Previous PR #8 incorrectly changed Footer Zalo `/assets/zalo-bioa-owner.png` (cream circular approved PNG) to `/assets/zalo-bioa.svg` and shrank it from Desktop 30px / Tablet 2.0833vw to 23px / 1.5972vw. Reversed **only this artwork and inner image sizing** back to the prior used PNG. Retained the already-approved removal of Merywood Headquarters and one BIO-A business info block. Retained `.socials__link` source class on the outer anchor, four channels and URLs. No other icon artwork, Header/Footer grid, company info, hover or responsive source change.
-
-**Hard freeze:** FIRST-PAINT1 `#bioa-first-paint-stability` and source Smooth Scrollbar at `d328e76f` were the ONLY PASS at that checkpoint; do not alter `bioa-transform.mjs` or first paint. Production `main` remains `4f0c186`, and PR #8 is candidate until owner checks corrected Zalo and Footer. Never claim the entire Footer PASS from absence of Headquarters alone.
-
-Regression: all ten VI/EN routes must use original `/assets/zalo-bioa-owner.png` in Footer; original CSS 30px Desktop and 2.0833vw on Tablet, Zalo square outer slot retained, no Headquarters source text and exactly one BIO-A business info. Confirm Preview image at 834/1024 Tablet and 1440 Desktop and Mobile 390; scrolling first-paint must stay stable. If user rejects, modify only the Footer artwork owner; do not touch loading.
-
----
-## 2026-10-13 — FOOTER-LEGACY-SOURCE1: corrections after explicit owner FAIL
-
-**Owner explicitly corrected the historical PASS wording:** only `FIRST-PAINT1` at `d328e76f8320b608694751034915fa0bca63010f` was PASS (no lateral movement on page load/navigation). It is **permanently frozen** and must survive EVERY future release; do not treat this as full Footer/Zalo PASS. The earlier claims describing all responsive areas as PASS were mistaken. **Footer Zalo icon and leftover Headquarters are FAIL** on user-provided 2026-10-13 Tablet screenshots, including after `d328e76` and following commits. Desktop and Mobile previously accepted sections must remain unaffected except exact owner-requested Footer artwork correction.
-
-**Root-cause source comparison:** Merywood original ZIP `pages/index/index.html` has a single original logo child under `.footer-top__left` and three source `.socials__link` buttons. Modern live Merywood source appears to add Headquarters/Estonia information under this logo, captured in the owner's Tablet screenshot. BIO-A's `addFooterCompanyInfo()` appended the correct factory info *without removing source-only nonlogo siblings*. Separately, `footerSocials()` adds a fourth Zalo `<a>` without `.socials__link` and uses 30px circular PNG; prior square-height override only addressed outer box size, not DOM/artwork parity.
-
-**Minimal candidate, not a redesign:** in `bioa-home-refine.mjs`, retain the existing Merywood Footer logo, remove source-only direct children in `.footer-top__left` then append one approved BIO-A company info block. Construct Footer Zalo as a Merywood `.socials__link` using already committed `/assets/zalo-bioa.svg` cream glyph (Footer only); preserve links, hover, four category columns and Mobile Zalo PNG. Normalize Desktop icon optical size to 23px and Tablet to 1.5972vw (the 23/1440 ratio) at the original owners; no new breakpoint/CSS injection/brand asset regeneration. Responsive source smoke compares Tablet square/social sizes. Added a generated-HTML test across 10 VI/EN routes to ensure no Headquarters/Estonia, exactly one BIO-A company block, source social class/cream vector, mobile icon untouched.
-
-**PROTECTED:** `bioa-transform.mjs` first-paint normalization + 769px scroll-gutter CSS `#bioa-first-paint-stability` **bitwise unchanged**; `functions/_middleware.js` hostname privacy & read-only Preview **unchanged**; all source animation/motion, untouched sections, Hero/404/assets, D1/Sheets/Resend/Turnstile unchanged.
-
-**Owner QA:** after candidate Preview build, inspect Footer at Tablet 834/1024 and compare to Desktop 1440 on Home + About (VI/EN). No Headquarters/Estonia anywhere in left column; exactly one correct BIO-A address/hotline/tax; Zalo square button with cream artwork visually aligned alongside WhatsApp/Facebook/Telegram (same hover/link). Mobile 390/768 same as accepted earlier; first-paint/navigation without sideways snap. If FAIL, screenshot + viewport + route; **do not promote**. If PASS, promote explicitly, update handoff with exact SHA and preserve first-paint guarantee.
-
----
-## 2026-10-13 — OWNER DEPLOY PASS + BRAND-WATERMARK-RELATIVE-URL1 (candidate)
-
-Owner reported **PASS** on previous deployment/privacy/scroll and Footer Zalo update at GitHub `main` `d328e76f8320b608694751034915fa0bca63010f`. This PASS does **not** imply that all Tablet sections are now fully visually approved. Desktop and Mobile previously accepted surfaces remain LOCKED, Tablet follow-on audit remains OPEN.
-
-Verified in actual 106-page generated HTML artifact from GitHub Actions run `38339522271`: exactly `/assets/img/logo-bg.svg` was referenced in inline style for `/`, `/en/`, `/dich-vu-khac/`, `/en/dich-vu-khac/`, but that file does not exist in output. Original Merywood ZIP uses watermark path `https://merywood.com/wp-content/themes/mery-wood/assets/img/logo-bg.svg`. BIO-A `replaceBrandWatermarks()` previously matched only that full URL, not root-relative `/assets/img/logo-bg.svg`. Correct owner is `bioa-home-refine.mjs`, shared Home and service shell.
-
-Minimal patch: add exactly one relative-path pattern mapping the known Merywood brand watermark to pre-approved `/assets/bioa-monogram.svg` in existing helper (no DOM/shape/breakpoint/color change). Build-output regression checks both VI/EN Home and Other Services. No new design/asset regeneration, Footer/Header/Chat, lead API, privacy middleware or Cloudflare changes.
-
-This is a newly restored artwork reference, so **automated build PASS is not owner visual PASS**. QA Home and Dịch Vụ Khác VI/EN at Desktop 1440 / Tablet 834/1024 / Mobile 390; visual watermark only, no giant logo, clipping, unintended fill. Preserve owner PASS components and original Merywood hover/motion. Do not roll back other already PASS fixes if this fails.
-
----
-## 2026-10-13 — HOST-SCOPED MAINTENANCE + PRODUCTION SOURCE UPDATE (owner-directed)
-
-**New owner instruction:** push current passing candidate fixes to `main` for QA despite previous Preview-only status; keep both `bioagroup.vn` and root `bioagroup.pages.dev` private. Open new `*.bioagroup.pages.dev` hashed/branch Preview static UX without authentication; **never expose Preview `/api/*` nor `/_bioa-access`**. Only owner can confirm visual PASS.
-
-**Production source changes:** adopt exact previously CI-green Footer Zalo Tablet square candidate `6ec1ee2` and FIRST-PAINT1 candidate `7a5f44e`, plus hostname-scoped protection in `functions/_middleware.js`. Regression tests cover host isolation, real Chrome first-paint and Tablet Zalo. Cloudflare automatic deployment is **disabled in owner screenshot**; push/CI success does NOT prove runtime deployment. Owner must enable Cloudflare Branch control Production `main`, Preview branches and/or manually redeploy current `main`; see `docs/DEPLOYMENT_BRANCH_ACCESS_GUIDE.md`.
-
-**Scope protection:** Guest exact production host maintenance remains ON by default; Cloudflare Function fail-closed and signed owner cookie remain. PR#4 and PR#5 were separate CI candidates, incorporated explicitly on main per owner deployment instruction without declaring responsive OWNER PASS. No unrelated redesign, no forms/business logic changes.
-
-**Owner test:** Desktop 1440 Home/About VI/EN; Tablet 834/1024 Footer Zalo icon square and scroll/layout shift; Mobile 390/768 stable native scrolling; Guest public Preview static read-only noindex and both production roots maintenance 503; backend preview blocked.
-
----
-## 2026-10-10 — BIOA-TABLET-DESKTOP-SHELL-SCALE9 — Candidate for owner QA
-
-OWNER BUG EVIDENCE: owner screenshot Tablet still has oversized Header BIO-A logo, Footer differs from owner-confirmed Desktop, floating chat avatar and WhatsApp/Zalo presentation too large/inconsistent. Other page sections already stabilized and must be frozen. Source comparator: owner-supplied original Merywood main.txt maintains desktop structure on 769–1920 CSS px (mobile <=768). Critically current approved BIO-A Desktop >=1201 (in patchFooterInfo1Css) is now grid: left company+logo / central 4 category columns / right contacts, whereas previous Tablet owner forced flex. Thus source-first means preserve original breakpoint and scaled *owner-approved* BIO-A desktop composition, NOT blindly use Merywood old three-list flex. The baseline Tablet 834 had Header image 48x56px independent of viewport (same as 1440), Footer contact/email/social fixed 46px height despite text scaling; approved Desktop 1440 Footer logo 92x109.1, left width320, menu779, right208, four categories, chat avatar fixed68.
-
-ACTUAL PATCH (single owner bioa-source-components.mjs, only 769–1200):
-- Header logo shell and image: use 58/1440 = 4.0278vw, artwork48/1440=3.3333vw wide and 56/1440=3.8889vw high; keep original source DOM/brand asset.
-- Footer: match owner-accepted BIO-A Desktop three-region grid, 4-column inner grid, company typography, email and social sizing proportional to approved Desktop 1440. Keep four BIO-A category contents unchanged. Unlike Merywood default flex, source Desktop BIO-A is approved grid due to expanded content; scaling this approved grid is the required source-preserving adaptation.
-- Footer Zalo: match 30/1440px =2.0833vw artwork with flex-basis; same social-box scale 46/1440=3.1944vw for all four social boxes. All other icons use source-scaled dimensions.
-- Floating BIO-A chat button/avatar: previously fixed 68px in custom BIO-A widget, now 4.7222vw and teaser ratios on Tablet only; preserve Chat interactions, positions, Desktop+Mobile separate PASS.
-- Unrelated Homepage sections, Hero, CTA project section and product tabs remain unchanged.
-
-Verification: npm source tests/build, Chromium browser checks pending until Actions confirms. Do not claim owner-approved Tablet PASS based on automation. Test Tablet 769,834,1024,1180 header Logo, four Footer sections and icons, contact email/Zalo, floating Avatar/chat teaser. Validate VI/EN all shared routes and Desktop 1440 and Mobile 390/768 regression. Production rollback 01c2731abb68ac1feb487b00ae60dfd0cfab27ef. Cloudflare deploy not controlled or confirmed from GitHub tool. Keep all backend D1/Sheets/Resend/Turnstile, maintenance access/noindex, 404 and Sanity FUTURE unchanged.
-
----
-## 2026-10-10 — MERYWOOD TABLET CTA SCALE AUDIT — CANDIDATE FOR OWNER QA
-
-Owner rejected repeated contradictory Tablet fixes. This patch targets only the empirically non-proportional BIO-A custom project CTA, based on Chromium geometry at 390, 768, 769, 820, 834, 1024, 1180, 1280, 1440 CSS px. User supplied original Merywood CSS `main.txt` verified: source fluid Desktop 769–1920 uses vw; <=768 Mobile distinct. Base candidate already restores source scaling by removing widget-level clamp floors; this narrow follow-up normalizes the BIO-A-only CTA to the already-accepted actual Desktop 1440 geometry. No whole-page transform scaling, no extra breakpoint.
-OBSERVED before fix: 1440 Desktop CTA outer 146px tall, CTA title 30px, CTA button 66px tall / 340px wide. At 834 Tablet CTA outer 63.4px and title 13.03px (under-scaled vs Desktop ratio). After fix: at 834 outer 98.4px, title 17.37px, button 38.2px. Direct target at ratio 834/1440 would be CTA outer 84.6px, title 17.38px and button 38.23px. Outer has extra height because longer BIO-A copy needs lines; keeping visible copy rather than clipping is intentional. CTA outer ratio is ~16.4% taller than ideal; no global font enlargement or other section changes. 769/820/1024/1180 have analogous title and button ratios ~1.0x relative to 1440. Header Email and CTA match component heights within 2px throughout the same viewport matrix. Full document scrollWidth equals viewport at tested widths (no document-level horizontal overflow); offscreen carousel slide bounding rectangles must not be mistaken for overflow.
-ACTUAL FILES: bioa-source-components.mjs CTA only to derive title/description/button/padding from approved Desktop 1440 reference via vw. tests/tablet-browser-smoke.mjs now measures geometry in Chromium and fails if component proportions drift by >20%, while accepting text-wrap height difference. Keeps earlier candidate targeted fixes: Header email minimum 42px conflict resolved with min-height 0; Footer Zalo forced 30px flex basis resolved at original vw, no layout redesign. bioa-transform.mjs product format existing owner has removed bad independent clamp floors. Shared shell applies across VI/EN Home/About/Cosmetics/Services/Blog/Contact.
-VERIFICATION: npm test:responsive, Node build and Chromium geometry browser job all SUCCESS on code commit `4600ca14e92cfe0c08b81fa25ebed358d5c5f972`. This verifies proportions against BIO-A approved Desktop geometry, not direct pixel-by-pixel live Merywood comparison. Owner Tablet runtime still NOT PASS; other route visuals not all automatically tested. Do not claim full cross-device UI PASS. Approved Mobile<=768, Desktop>=1201, 404, brand assets, all other pages/sections, D1/Sheets/Resend/Turnstile and maintenance access modules untouched. Production base/rollback `e0a9c53969088fe87a69cb8eb58f24cd37973637` currently unapproved Tablet.
-OWNER QA (after production Cloudflare deploy): Home VI/EN at 834/1024/1180px compare Header, hero, CTA bottom and Footer to Desktop 1440; CTA title/button fully visible, positions remain desktop row. Test Cosmetics formats (tabs and CTA), Header/Footer on About, Services, Blog, Contact; mobile390/768 and desktop1366/1440 unchanged. Confirm Zalo, email, navbar, dropdown, Chat functionality. Send screenshot+viewport+route for FAIL.
-
----
-## 2026-10-10 — MERYWOOD-DESKTOP-SCALE-RESTORE — candidate only
-
-Owner rejected production e0a9c53 because independently imposed clamp(px,vw,px) minimums changed the Desktop-co-shrinking-into-Tablet system. EXACT Merywood owner-supplied main.txt reviewed: 769–1920px uses html/body font-size:.8333vw, header/email/button height 2.4479vw, footer Merywood Flex and viewport spacing. Owner requires 769px+ preserve Desktop-like structure, <=768 Mobile frozen; no whole-page transform:scale. This **candidate** removes the independently introduced 769–1200 clamp floors in bioa-source-components.mjs and bioa-transform.mjs; retains only two targeted cascade fixes: legacy BIO-A Header email min-height 42px is countered with min-height:0 while retaining Merywood height 2.4479vw; Zalo footer 30px forced artwork flex-basis is countered by a specific rule setting image dimensions and basis to 1.5625vw. No new breakpoint, no change to layout/DOM outside these source components.
-
-Do not state Full Tablet PASS without actual cross-viewport visual parity. The previous pixel-minimum Chromium assertions were inappropriate for the user's parity requirement and disabled in candidate CI, pending ratio-driven browser regression. Other owner PASS surfaces (Desktop >=1201, Mobile <=768, 404, lead pipeline, Cloudflare security, Sanity FUTURE) are untouched. Main remains e0a9c53969088fe87a69cb8eb58f24cd37973637 until explicit owner approval after preview. Rollback/candidate base: e0a9c53. QA: compare Tablet 834/1024/1180 against Merywood Desktop-co-shrink for Header, Footer, CTA and product formats; check VI/EN Home and shared shell routes; verify link interactions; also Desktop 1366/1440 and Mobile 390/768 frozen. This candidate is deliberately a return to Desktop co-scale, not an attempt to make Tablet text separately bigger.
-
----
-# BIO-A CURRENT — TABLET SOURCE RECOVERY2 — CANDIDATE
-
-## 2026-10-10 — BIOA-TABLET-SOURCE-RECOVERY2 (candidate, screenshot follow-up)
-
-Owner sent four actual tablet runtime screenshots after the production Source Component Rebuild commit `bf5b6c6`. They show: (1) Header email visibly taller than adjacent Zalo/language/CTA and small nav labels; (2) project CTA overly short with unreadable title/description/label (no longer blank); (3) BIO-A product formats tabs, list, description and heading remain too small; (4) footer Zalo artwork is much larger than its adjacent WhatsApp/Facebook/Telegram icons, with microtype across four BIO-A columns and company details. The source screenshot also shows horizontal page scrolling; investigate any remaining excess width using browser measurements rather than globally suppressing scrolling. Other Home sections, 404, Mobile and Desktop PASS frozen.
-
-**Verified cascade root causes:** `patchA7Css` still assigns Header email link `min-height:42px!important` outside media queries. The new source owner overrode `height` but not `min-height`, so browser honors the stale 42px minimum. `patchZaloIconCss` sets Footer Zalo to `30px` `flex-basis:30px!important` at a higher CSS specificity than the generic source owner. These are proven rule conflicts. BIO-A-added project CTA and formats are using 1920-derived `vw` typography without a content-length floor, despite having more text than Merywood.
-
-**Actual patch:**
-- `bioa-source-components.mjs`: in its **existing and only 769–1200** media block, set Header email `min-height:0` and align email/social/lang/consult to shared accessible hit heights, while retaining source Header flex/DOM; protect CTA title/body/link readability with min-height ~165px and line-height/font floors; make Footer Zalo more specific with artwork, width, height **and flex-basis** bound to the same source icon slot. Improve Footer four-column/company text floors without changing columns or order.
-- `bioa-transform.mjs`: in the already-existing added-product-formats 769–1200 owner only, set type/size floors on BIO-A tabs, items and description; no markup or interaction change.
-- Add `tests/tablet-regression-screenshot-20261010.test.mjs` static checks and `tests/tablet-browser-smoke.mjs` that starts a local built-site server and uses actual Playwright Chromium computed layout at viewport widths 834,1024,1180. CI workflow runs responsive tests, build and browser checks. Real browser checks are a separate gate and must not be reported PASS until GitHub Actions confirms.
-
-**Deployment workflow:** validate new candidate on branch `candidate/tablet-source-recovery-20261010` before fast-forwarding `main` with owner-requested fix. Preserve main `bf5b6c6` as rollback until owner runtime PASS. GitHub CI does not prove Cloudflare finished deployment. Full Tablet still FAIL/PENDING until owner checks source parity after deployment.
-
-**Protected surfaces:** Merywood breakpoint 769+ Desktop-like, <=768 Mobile unchanged; >=1201 Desktop CSS unchanged; 404 PASS; Hero five accepted stats; shared VI/EN; Footer company identity and all four BIO-A columns preserved; forms and lead pipeline D1/Sheets/Resend, Turnstile, maintenance 14d/noindex middleware untouched; Sanity Free future only.
-
-**Owner QA:** after confirmed production deployment compare at 834/1024/1180 CSS px: Home Header equal-height email/Zalo/lang/CTA and readable nav; project CTA full title, description and Zalo button on first load and after scroll; product-format tabs and list readable; Footer four columns+email/socials with same-size Zalo and no overflow. Check VI/EN shared header/footer on About, Cosmetics, Other Services, Blog, Contact. Regression at 390/768 Mobile and 1366/1440 Desktop must remain unchanged. Report each FAIL with screenshot/route/viewport.
-
----
-## 2026-10-10 — Candidate 1 redeploy request (branch-only)
-
-The owner reports setting the site public and explicitly requests a new push/redeploy to inspect Source Component Rebuild Candidate 1. This commit retriggers the connected GitHub-to-Cloudflare Pages Preview deployment (if configured). NO production merge, no content/layout/middleware/CRM changes, and no change to BIOA_SITE_MODE, 14d protection code, noindex logic, D1/Sheets/Resend/Turnstile. Candidate 1 source remains the same as `81e6b6c`. Full runtime Tablet/desktop/mobile acceptance still pending.
-
-A validation GitHub Actions workflow now checks Node 22 installation, responsive source tests, and build on candidate pushes/PRs. Build verification remains PENDING until the workflow actually runs and reports a result. Cloudflare Preview deployment and custom-domain publication are managed independently by Cloudflare, not inferred from the GitHub push. Rollback: main `b5c83ad` remains unmodified.
-
-Owner test after a confirmed Preview build: VI/EN Home Header+CTA+Footer at 834/1024/1180px, compare frozen Desktop 1366/1440 and Mobile 390/768; verify other route shared shell and Zalo interactions. Do not claim Full Tablet PASS before that.
-
----
-# BIO-A — SOURCE COMPONENT REBUILD candidate (2026-10-10)
-
-**Authority:** current protected main b5c83ad628960456db68a1c7adc68a17e2f61a1a. This is a separate review branch; main unchanged pending verification. Merywood owner's main.txt supplies Header/Footer DOM responsive rules (769–1920px viewport-fluid, <=768px Mobile). Merywood main.txt does NOT include source CSS for the BIO-A custom project CTA, so preserve BIO-A CTA DOM and make visibility reliable at 769–1200 rather than falsely claiming exact source parity.
-
-**Code delta (only 3 components):** New bioa-source-components.mjs is single owned 769–1200px stylesheet for Merywood-derived Header and Footer and BIO-A custom project CTA. Original class/DOM retained, brand, 5 nav links, four footer category groups and company information preserved. Removed old 769–1200 overrides from patchA7Css, patchA8Css, patchD5FooterTabletCss, patchZaloIconCss; removed duplicate CTA compact Tablet rules from bioa-transform.mjs, leaving independent product format components untouched. Both Home and applySharedShell use same owner style. CTA content has a visible fallback when data-bioa-aos reveal and Smooth Scrollbar do not synchronize.
-
-**PROTECTION:** Desktop >=1201px and Mobile <=768px owner PASS unchanged, all other sections locked. 404 owner PASS, maintenance signed 14 days / noindex, D1/Sheets/Resend/Turnstile, consent/lead/chat behavior preserved. No Sanity integration.
-
-**VERIFICATION HONESTY:** JS candidate and test sources parsed successfully. GitHub connector cannot run build; no successful npm test/build or real browser visual regression has been measured yet. Do NOT promote to main or label Tablet PASS until candidate is built and reviewed. There may still be earlier fixed-pixel desktop rules; the new scoped owner is last in shared and Home style chains.
-
-**OWNER QA / NEXT:** On a preview build test VI+EN Home, About, Cosmetics, Services, Blog, Contacts at 834/1024/1180: Header one row; email and icons contained; Footer logo/company + four columns + socials in same Desktop-style row; CTA text, Zalo icon and link visible on first load and after scroll. Check 390/768 Mobile and 1366/1440 Desktop against frozen screenshots. Then address only evidenced failures, update handoff, promote on owner PASS. Rollback candidate by staying on main b5c83ad.
+# BIO-A GROUP — START HERE
+
+**Stable entry point for project continuation.** Do not place patch logs, version-specific candidates or current UI measurements in this file. For the current state, read the **single CURRENT RUNTIME SNAPSHOT at the top of `FULL_HANDOFF.md`** and verify its commit/branch against live GitHub.
+
+## Authoritative repository and project
+- Repository: `zireyyyy/bioagroup`; GitHub commit/branch is source truth. Cloudflare Pages builds the approved branch. The current Production and candidate SHAs MUST be read from `FULL_HANDOFF.md` and verified, not hard-coded in this entry file.
+- Original Merywood HTML/CSS/JavaScript/layout/motion is the source-parity reference wherever correct. Only explicit BIO-A brand/content/functions and owner-approved deviations may differ.
+- Website languages: VI + EN. Responsive acceptance: independent Desktop + Tablet + Mobile, including breakpoint boundaries and touch/scroll behavior.
+- Home-approved shared components and every owner-PASS equivalent are canonical and must be reused. The source owner may be GLOBAL, ROUTE or COMPONENT; check `docs/SOURCE_MAP.md`.
+- Production maintenance and preview security remain controlled by `AGENTS.md`, `docs/DEPLOYMENT_BRANCH_ACCESS_GUIDE.md` and Cloudflare middleware. Never expose secrets or open Production without explicit owner authorization.
+
+## Read in this order
+1. `START_HERE.md` — this navigation page.
+2. `AGENTS.md` — permanent authority, PASS/FROZEN, source ownership, connection verification and project limits.
+3. `FULL_HANDOFF.md` **CURRENT RUNTIME SNAPSHOT ONLY first** — production baseline, candidate, phase, recent owner PASS, pending QA, rollback, next task. Read specific history only if the task needs it.
+4. `docs/WORKFLOW.md` — coding/CI/QA/promotion contract.
+5. `docs/SOURCE_MAP.md` — inspect only the relevant component mapping and its existing source owner.
+6. Task-specific contracts (read only when relevant): `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`, `docs/CONTENT_GUIDE.md`, `docs/BLOG_CONTENT_CONTRACT.md`, `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`, `docs/BRAND_PALETTE.md`, `docs/TABLET_REGRESSION.md` and applicable security/deployment docs.
+7. `NEW_CHAT_CONTINUATION_PROMPT.md` — one canonical bootstrap prompt, no alternate versioned continuation prompts.
+
+## Precedence and verification
+1. Latest explicit owner instruction and owner-declared authoritative baseline.
+2. `AGENTS.md` and applicable mandatory contracts.
+3. Verified component owner in `docs/SOURCE_MAP.md`.
+4. CURRENT RUNTIME SNAPSHOT in `FULL_HANDOFF.md` for dynamic status **after checking GitHub**.
+5. Current repository code and test evidence. Historical dated notes are references, not authority to restore superseded behavior.
+
+If instructions and verified runtime disagree, record the discrepancy, do not silently choose the convenient source. Never infer that all Tablet surfaces passed just because one component or CI passed.
+
+## Change-and-handoff contract
+- INSPECT → REPRODUCE → SOURCE COMPARE → SCOPE → MINIMAL PATCH → **FIX HERE, CLEAN HERE** → BUILD/CI → Desktop/Tablet/Mobile + VI/EN regression → owner QA where required → promote only when authorized.
+- Keep one code owner for each shared behavior. Reuse accepted Home pattern, original Merywood mechanics and exact approved artwork; preserve unrelated PASS/FROZEN behaviors.
+- Each code candidate must report changed files/commit, QA verified vs unverified, owner test steps and rollback. A code or CI PASS is not an owner visual PASS.
+- After a meaningful candidate or owner PASS, **replace the CURRENT RUNTIME SNAPSHOT block in `FULL_HANDOFF.md` in place**. Add concise historical lessons only if material. Do not prepend “CURRENT” sections to this file or rewrite this file per release.
+- GitHub repository is the canonical source package. An optional portable ZIP/checksum manifest is created **only** when an explicit handoff/export requires it; no dummy source/rollback/archive folders, no secrets/dependencies/caches in ZIP.
+- For CMS content updates, use the approved responsive component's validated schema; it does not require separate per-device CSS unless a new template/behavior is explicitly being engineered.
+
+**No site code changes are implied by editing this document.**

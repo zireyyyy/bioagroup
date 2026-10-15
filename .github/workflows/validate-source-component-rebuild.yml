@@ -31,6 +31,11 @@ jobs:
           node --check bioa-home-refine.mjs
           node --check bioa-transform.mjs
           node --check tests/tablet-browser-smoke.mjs
+          node --check tests/tablet-full-route-audit.mjs
+          node --check tests/tablet-runtime-investigation.mjs
+          node --check tests/tablet-blog-toc-interactions.mjs
+          node --check tests/tablet-services-swiper-interactions.mjs
+          node --check tests/tablet-contacts-404-interactions.mjs
           node --check tests/first-paint-browser.test.mjs
           node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
@@ -49,6 +54,8 @@ jobs:
         run: node tests/zalo-canonical-asset.test.mjs
       - name: Verify Footer brand and social DOM output
         run: node tests/footer-brand-socials.test.mjs
+      - name: Verify WhatsApp source icon parity across VI/EN routes
+        run: node tests/tablet-wa-original-source.test.mjs
       - name: Check generated BIO-A watermark assets
         run: node tests/brand-watermark-assets.test.mjs
       - name: Check generated HTML first-paint order
@@ -57,8 +64,35 @@ jobs:
         run: |
           npm install --no-save --no-audit --no-fund playwright@1.56.1
           npx playwright install --with-deps chromium
+      - name: Investigate source of Tablet browser exceptions (read-only)
+        run: node tests/tablet-runtime-investigation.mjs
+      - name: Audit Blog detail TOC anchor interactions (Tablet VI/EN)
+        run: node tests/tablet-blog-toc-interactions.mjs
+      - name: Audit Cosmetics and Other Services Swiper interactions on Tablet VI/EN
+        run: node tests/tablet-services-swiper-interactions.mjs
+      - name: Verify Contacts FAQ and private 404 host behavior VI/EN
+        run: node tests/tablet-contacts-404-interactions.mjs
+      - name: Audit full Tablet route matrix VI/EN (read-only)
+        run: node tests/tablet-full-route-audit.mjs
+      - name: Upload Tablet Phase 2 route audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-full-tablet-regression-phase2
+          path: audit-artifacts/tablet-phase2/
+          if-no-files-found: warn
+          retention-days: 14
       - name: Verify first-paint computed style across routes and viewports
         run: node tests/first-paint-browser.test.mjs
+      - name: Audit actual computed typography across VI/EN routes
+        run: node tests/typography-computed-audit.mjs
+      - name: Upload typography computed evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bioa-typography-computed-audit
+          path: audit-artifacts/typography/
+          if-no-files-found: warn
       - name: Verify Hero/Nav/CTA computed Manrope weight hierarchy
         run: node tests/hero-variable-weights-browser.test.mjs
       - name: Collect actual browser geometry across desktop and tablet
