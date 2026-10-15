@@ -1,3 +1,31 @@
+# CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
+**Snapshot date:** 2026-10-15. **Source of truth:** verified GitHub repo `zireyyyy/bioagroup`, live branch/PR and latest explicit owner instruction. **THIS SINGLE BLOCK IS THE ONLY ACTIVE STATUS**. Historical dated entries below are references, not authority.
+
+## Production / candidate
+- **Production `main`:** `cb4e92f73c1ef800f7507db2330347664fc323d4` (PR #9 merged; site remains private/maintenance under existing Cloudflare policy).
+- **Candidate:** PR #10 `candidate/full-tablet-regression-phase2-20261014`. Code at `cecefe65bb881d6a5f9f0b92b41353c6a6f62308` had CI SUCCESS (`38677337859`); later docs-only CMS contract and handoff improvements added. **Verify live PR HEAD and latest CI before future code changes.** PR remains OPEN/DRAFT/UNMERGED; do NOT treat candidate as production.
+- **This update:** documentation-only optimization adapting selected ideas from owner's external “CANONICAL BASE + RUNTIME + FULL HANDOFF v1.0” reference. No app UI, Merywood source mechanics, routes, lead/backend or deployment behavior changed.
+
+## Owner PASS/FROZEN
+- Latest owner explicitly says **PASS** for the final Home-canonical Bio-A icon reuse on Other Services and improved Blog detail TOC CTA label. Previous owner PASS: Blog detail Sticky TOC fix and preserved article layout, Cookie modal heading/3 actions Manrope 500, major page title 400 (About authority), shared Header/nav and commerce CTA 550, original Merywood WhatsApp icon and Zalo artwork, Home Hero Stats numbers/labels 300/400, approved Footer, approved 404 visual.
+- PASS is **component/surface-specific**; do not silently call the entire website “FULL TABLET PASS” without the owner's explicit overall confirmation.
+- Canonical reuse across equivalent components is mandatory: `AGENTS.md §7A`; independent VI/EN and Desktop/Tablet/Mobile QA: `AGENTS.md §5`; safe CMS content model: `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`.
+- Keep all owner-approved Merywood DOM/CSS/JS, animations and breakpoints unless explicitly reopened.
+
+## Active stage / pending / next
+1. **Awaiting full Tablet signoff gate for PR #10**, or specific remaining defect. Recent individually reported defects have been accepted by owner; no reason to reopen them. Exact review plan in `docs/FULL_TABLET_OWNER_QA_CHECKLIST_20261014.md`, but its old candidate Preview/CI references are historical — verify the current commit before testing.
+2. On explicit FULL TABLET PASS, enter mandatory **Phase 2B** cross-device source convergence audit, correcting only measured duplicate/dead/conflicting styles and logic within a modified component, with before/after Desktop/Tablet/Mobile + VI/EN parity. No mass refactor.
+3. Only afterward progress through approved SEO/hardening/release gates. **Sanity CMS is not integrated**; future hookup requires separate owner instruction, schemas, staging and security.
+4. Retain known-good **production main `cb4e92f`** as rollback for candidate UI. For per-component rollback use verified Git commit/diff, not historical rejected candidates or an assumed ZIP.
+
+## QA / handoff integrity
+- Technical tests and Cloudflare Preview are distinct from owner visual PASS; stale reference URLs and dates in historic notes must not override current verified CI/deploy.
+- No current Production change and **no new website-runtime test required for this documentation-only patch**. Confirm updated markdown exists and current branch matches expected HEAD.
+- Historical release/incident notes remain below intact for traceability; do not append another current-state section. **Replace only this snapshot in place** after meaningful future changes.
+- Current handoff architecture stays BIO-A-specific: `START_HERE.md` (stable entry), `NEW_CHAT_CONTINUATION_PROMPT.md` (stable one prompt), `AGENTS.md` (permanent rules), `docs/WORKFLOW.md` (execution), `docs/SOURCE_MAP.md` (component owners), `FULL_HANDOFF.md` (this active snapshot + historical archive). No mandatory new seven-file folder structure or per-commit ZIP.
+
+---
+
 ## 2026-10-15 — OWNER PASS + FUTURE CMS RESPONSIVE-SAFE PUBLISHING CONTRACT
 Owner explicitly states latest icon reuse and Blog TOC CTA candidate **PASS**. Lock these individual components and do not repeat visual patching. Owner asks whether future updates and Sanity CMS content require hand-coding per device. Verified AGENTS/WORKFLOW responsive canonical component and 3-surface QA policy already exist; **no specific CMS data/schema/publish contract previously existed**. Added permanent `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`, with references mandatory in `AGENTS.md §2B`, `docs/WORKFLOW.md §1C` and `NEW_CHAT_CONTINUATION_PROMPT.md`. Standard content edits/images/Blog/FAQ/items within approved schema and content envelopes should reuse ONE responsive PASS component across devices without new CSS/JS; a truly new section type must be developed once then QA'd for VI/EN and Desktop/Tablet/Mobile before CMS exposes it. Long/unsupported content gets validation and targeted preview, not silent CSS hacks. `docs/CONTENT_GUIDE.md` remains source for text budgets; Blog TOC generated from headings; asset ratio/alt and locale validation mandatory. `package.json` has only Cheerio and current build contains no Sanity integration. **Sanity is planned, not active**. No CMS architecture migration, no site code/assets, and no production branch change in this docs-only commit. Later CMS hookup explicitly requires owner authorization and security/backend planning; do not expose maintenance-gated Production. PR #10 remains candidate (owner individual fixes PASS; do not infer owner Full Tablet PASS without explicit overall signoff). Phase 2B convergence remains next only after explicit full Tablet acceptance.
 **BẠN CẦN TEST GÌ:** DOCS-ONLY — KHÔNG CẦN TEST WEBSITE; optionally verify repository document references. CI/Preview state for prior website fixes remains separate.
