@@ -1,10 +1,10 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Snapshot date:** 2026-10-15. **Source of truth:** verified GitHub repo `zireyyyy/bioagroup`, live branch/PR and latest explicit owner instruction. **THIS SINGLE BLOCK IS THE ONLY ACTIVE STATUS**. Historical dated entries below are references, not authority.
+**Snapshot date:** 2026-10-15 (post-owner continue request). **Source of truth:** verified GitHub repo `zireyyyy/bioagroup`, live branch/PR and latest explicit owner instruction. **THIS SINGLE BLOCK IS THE ONLY ACTIVE STATUS**. Historical dated entries below are references, not authority.
 
 ## Production / candidate
 - **Production `main`:** `cb4e92f73c1ef800f7507db2330347664fc323d4` (PR #9 merged; site remains private/maintenance under existing Cloudflare policy).
 - **Candidate:** PR #10 `candidate/full-tablet-regression-phase2-20261014`. Code at `cecefe65bb881d6a5f9f0b92b41353c6a6f62308` had CI SUCCESS (`38677337859`); later docs-only CMS contract and handoff improvements added. **Verify live PR HEAD and latest CI before future code changes.** PR remains OPEN/DRAFT/UNMERGED; do NOT treat candidate as production.
-- **This update:** documentation-only optimization adapting selected ideas from owner's external “CANONICAL BASE + RUNTIME + FULL HANDOFF v1.0” reference. No app UI, Merywood source mechanics, routes, lead/backend or deployment behavior changed.
+- **This update:** doc-only final Tablet exit-gate verification and refreshed exact-commit owner QA link. No website code change. No app UI, Merywood source mechanics, routes, lead/backend or deployment behavior changed.
 
 ## Owner PASS/FROZEN
 - Latest owner explicitly says **PASS** for the final Home-canonical Bio-A icon reuse on Other Services and improved Blog detail TOC CTA label. Previous owner PASS: Blog detail Sticky TOC fix and preserved article layout, Cookie modal heading/3 actions Manrope 500, major page title 400 (About authority), shared Header/nav and commerce CTA 550, original Merywood WhatsApp icon and Zalo artwork, Home Hero Stats numbers/labels 300/400, approved Footer, approved 404 visual.
@@ -13,14 +13,14 @@
 - Keep all owner-approved Merywood DOM/CSS/JS, animations and breakpoints unless explicitly reopened.
 
 ## Active stage / pending / next
-1. **Awaiting full Tablet signoff gate for PR #10**, or specific remaining defect. Recent individually reported defects have been accepted by owner; no reason to reopen them. Exact review plan in `docs/FULL_TABLET_OWNER_QA_CHECKLIST_20261014.md`, but its old candidate Preview/CI references are historical — verify the current commit before testing.
+1. **Awaiting explicit owner FULL TABLET PASS on PR #10**, or one route-specific unresolved defect. Owner accepted recent individual patches, but did NOT yet declare entire Tablet complete. Updated `docs/FULL_TABLET_OWNER_QA_CHECKLIST_20261014.md` for source commit `39d79b4` CI run `38681924922` SUCCESS, same-commit Cloudflare deploy Preview `https://e1dda8a2.bioagroup.pages.dev`. Docs commits after source SHA have no site UI edits. Obtain whole-Tablet approval without reopening accepted components; no Phase 2B cleanup until then.
 2. On explicit FULL TABLET PASS, enter mandatory **Phase 2B** cross-device source convergence audit, correcting only measured duplicate/dead/conflicting styles and logic within a modified component, with before/after Desktop/Tablet/Mobile + VI/EN parity. No mass refactor.
 3. Only afterward progress through approved SEO/hardening/release gates. **Sanity CMS is not integrated**; future hookup requires separate owner instruction, schemas, staging and security.
 4. Retain known-good **production main `cb4e92f`** as rollback for candidate UI. For per-component rollback use verified Git commit/diff, not historical rejected candidates or an assumed ZIP.
 
 ## QA / handoff integrity
 - Technical tests and Cloudflare Preview are distinct from owner visual PASS; stale reference URLs and dates in historic notes must not override current verified CI/deploy.
-- No current Production change and **no new website-runtime test required for this documentation-only patch**. Confirm updated markdown exists and current branch matches expected HEAD.
+- No current Production change; GitHub CI for code SHA `39d79b4` SUCCESS, Cloudflare deploy reported SUCCESS. **No new website-runtime test required for this documentation-only patch**. Confirm updated markdown exists and current branch matches expected HEAD.
 - Historical release/incident notes remain below intact for traceability; do not append another current-state section. **Replace only this snapshot in place** after meaningful future changes.
 - Current handoff architecture stays BIO-A-specific: `START_HERE.md` (stable entry), `NEW_CHAT_CONTINUATION_PROMPT.md` (stable one prompt), `AGENTS.md` (permanent rules), `docs/WORKFLOW.md` (execution), `docs/SOURCE_MAP.md` (component owners), `FULL_HANDOFF.md` (this active snapshot + historical archive). No mandatory new seven-file folder structure or per-commit ZIP.
 
