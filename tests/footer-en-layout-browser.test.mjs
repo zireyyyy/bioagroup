@@ -68,6 +68,8 @@ try{
    observations.push(record);
    if(route.startsWith("/en/")){
      assert.ok(settled.title && settled.left && settled.menu,"Footer EN geometry "+route+" @"+width);
+     assert.equal(await page.locator(".footer-top .bioa-footer-company-info--desktop").first().getAttribute("lang"),"en",
+       "Footer company owner has stable EN language even if document lang changes "+route+" @"+width);
      assert.ok(settled.titleScrollWidth<=settled.titleClientWidth+2,
        "Footer EN title spills outside its own block "+route+" @"+width+" "+JSON.stringify(record));
      assert.ok(settled.title.right<=settled.left.right+2,
