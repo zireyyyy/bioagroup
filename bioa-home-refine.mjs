@@ -3478,9 +3478,9 @@ const patchFooterInfo1Css = `
     font-size:clamp(14px,.84vw,16px)!important;
     white-space:nowrap!important;
   }
-  /* FOOTER-EN-WRAP1: only English text exceeds the preapproved identity
-     column. Preserve Vietnamese nowrap and all original grid geometry. */
-  html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
+  /* FOOTER-EN-WRAP2: use the rendered company's own language, not a mutable
+     document lang flag. Only EN can wrap; preserve VI and approved grid. */
+  .bioa-footer-company-info--desktop[lang="en"] .bioa-footer-company-info__title{
     white-space:normal!important;
     overflow-wrap:break-word!important;
     max-width:100%!important;
@@ -4789,7 +4789,7 @@ function addFooterCompanyInfo($,lang){
   const name=english?'Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory':'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group';
   const addressLabel=english?'Address:':'Địa chỉ:';
   const taxLabel=english?'Business Tax ID:':'Mã số thuế doanh nghiệp:';
-  const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}">
+  const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}" lang="${english?'en':'vi'}">
     <div class="bioa-footer-company-info__title">${name}</div>
     <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.location}</span><strong>${addressLabel}</strong> <span class="bioa-footer-company-info__value">${company.address}</span></p>
     <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.phone}</span><strong>Hotline:</strong> <span class="bioa-footer-company-info__value">${company.phoneIntl}</span></p>
