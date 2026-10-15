@@ -7,6 +7,7 @@ on:
       - candidate/tablet-source-recovery-20261010
       - candidate/merywood-desktop-scale-restore
       - candidate/bioa-desktop-shell-scale9
+      - candidate/phase2b-source-convergence-20261015
   pull_request:
     branches:
       - main
@@ -44,6 +45,8 @@ jobs:
         run: npm run test:responsive
       - name: Build static website
         run: npm run build
+      - name: Verify Phase 2B Other Services dead-data and owner-PASS output
+        run: node tests/phase2b-services-convergence.test.mjs
       - name: Verify Cookie i18n and font readiness guard
         run: node tests/cookie-consent-stability-source.test.mjs
       - name: Verify typography source weight ownership
