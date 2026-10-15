@@ -19,12 +19,6 @@ function text(root, selector, value){
   if(node.length)node.text(value);
 }
 
-function setDirectParagraphs(root, selector, values){
-  root.find(selector).each((i,el)=>{
-    if(values[i]!=null)root(el).text(values[i]);
-  });
-}
-
 function setAboutHero($,lang){
   const vi=lang==="vi";
   const hero=$(".mwa-hero").first();
