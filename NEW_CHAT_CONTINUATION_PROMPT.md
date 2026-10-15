@@ -1,3 +1,8 @@
+## PERMANENT CMS / CONTENT RESPONSIVE RULE — 2026-10-15
+Current BIO-A CMS/Sanity is planned, not integrated. Read `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md` for any content edit, image replacement, Blog publish or new section. Existing owner-PASS responsive components render CMS content once across Desktop/Tablet/Mobile without per-device code when validated content envelopes are met. New UI block or behavior requires canonical implementation only once with VI/EN/3-device QA. Never silently initiate CMS migration. Latest owner confirms icon reuse and Blog TOC CTA candidate PASS, pending formal whole-Tablet and Phase 2B gates.
+
+---
+
 ## MANDATORY OWNER PASS REUSE RULE — 2026-10-14
 Before modifying/creating any UI element in BIO-A, locate and reuse the same component's owner-PASS source across all applicable VI/EN pages and Desktop/Tablet/Mobile. No per-page imitations/duplicate CSS and no new icons when a canonical icon was accepted. Only the exact owner-reopened property may change; the rest remains frozen. `AGENTS.md §7A`, `docs/WORKFLOW.md §1B` are controlling permanent rules. Current owner feedback: WA icon and all other unspecified UI PASS; Cookie text weight explicitly reopened to 350; title weight must be diagnosed in computed style, not guessed. PR #10 candidate / production separate.
 
