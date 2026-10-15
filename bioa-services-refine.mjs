@@ -220,8 +220,18 @@ function patchRouteCss($){
   $("head").append('<style id="bioa-other-services-style">'+
     '.bioa-service-scenarios .review__author{padding-top:18px!important}'+
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
-    '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
-    '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
+    /* SERVICE-ICON-PARITY1 — use Home's already accepted Bio-A icon
+       proportions and source-owned icon slots, including row three.
+       Preserve original source slide/row DOM and non-Bio-A icons. */
+    '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:22px!important;height:27px!important;max-width:22px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
+    '.block-how-works .bioa-service-range-logo{display:block!important;width:22px!important;height:27px!important;max-width:22px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
+    '@media(min-width:769px) and (max-width:1200px){'+
+      '.block-how-works .step__icon img.bioa-service-range-logo,.block-right-choice .client__icon img.bioa-process-bioa-icon{width:clamp(18px,1.5625vw,26px)!important;max-width:100%!important;height:clamp(22px,1.875vw,30px)!important;max-height:100%!important;object-fit:contain!important}'+
+      '.block-how-works .step__icon,.block-right-choice .client__icon{display:flex!important;align-items:center!important;justify-content:center!important}'+
+      '.whatsapp__btn .btn__icon,.whatsapp__btn .bioa-zalo-icon{width:max(18px,1.25vw)!important;height:max(18px,1.25vw)!important;max-width:none!important;max-height:none!important}'+
+      '.block-how-works .step__title{font-size:clamp(16px,1.4vw,22px)!important}'+
+      '.block-how-works .step__text{font-size:clamp(12px,.98vw,16px)!important}'+
+    '}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+
   '</style>');
 }
