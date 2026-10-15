@@ -393,6 +393,21 @@ function applyBlogArticle($,route,lang){
     if(!nextLink)nav.addClass('bb-post-nav--only-prev');
   }
 
+  /* TABLET-TOC-ROOT1 — Original Merywood article includes a script with
+     js-toc-fixer which translates the TOC even after source @max991px
+     stacks .bb-grid into one column. That transform causes overlap on
+     iPad. Keep the original Desktop (>1200px) behavior; do not start the
+     incompatible Smooth Scrollbar TOC fixer at Tablet/Mobile widths.
+     Existing source anchor click handler remains unchanged. */
+  $('.page-main script').each((_,el)=>{
+    const node=$(el);
+    const code=node.html()||'';
+    if(!code.includes('js-toc-fixer')||!code.includes('function enableSB(sb)'))return;
+    if(code.includes('BIOA_TABLET_TOC_GUARD'))return;
+    node.html(code.replace('  ready(function(){',
+      '  ready(function(){\\n    /* BIOA_TABLET_TOC_GUARD */\\n    if(window.matchMedia("(max-width:1200px)").matches)return;'));
+  });
+
   applyArticleSeo($,post,route,lang);
 }
 
@@ -419,6 +434,23 @@ function patchBlogCss($){
     'body.bioa-blog-index .posts-grid-pagination .page-numbers.current{min-width:36px!important;background:var(--bioa-primary,#116F47)!important;color:#fff!important}'+
     'body.bioa-blog-index .posts-grid-pagination a.page-numbers:hover{background:rgba(17,111,71,.08)!important;color:var(--bioa-primary,#116F47)!important}'+
     'body.bioa-blog-index .posts-grid-pagination .prev,body.bioa-blog-index .posts-grid-pagination .next{min-width:24px!important;padding:0!important;background:transparent!important;font-size:16px!important}'+
+
+    /* TABLET-TOC-ROOT1 — Merywood source has a 430px sticky aside plus
+       transform-based fixer. At 769–1200 reserve separate real column
+       space, but disable the transform which was overpainting article
+       content. At <=768 use native single-column reading flow. */
+    '@media(min-width:769px) and (max-width:1200px){'+
+      '.bioa-blog-detail .block-blog-body .bb-grid{display:grid!important;grid-template-columns:minmax(190px,26%) minmax(0,1fr)!important;gap:clamp(18px,2.2vw,28px)!important;align-items:start!important}'+
+      '.bioa-blog-detail .block-blog-body .bb-aside{position:static!important;width:auto!important;min-width:0!important;align-self:start!important}'+
+      '.bioa-blog-detail .block-blog-body .bb-toc{width:100%!important;max-width:100%!important;min-width:0!important;position:static!important;transform:none!important;will-change:auto!important;box-sizing:border-box!important;padding:clamp(16px,2vw,24px)!important}'+
+      '.bioa-blog-detail .block-blog-body .bb-toc__list{min-width:0!important;overflow-wrap:break-word!important}'+
+      '.bioa-blog-detail .block-blog-body .bb-content-col{min-width:0!important;width:auto!important}'+
+    '}'+
+    '@media(max-width:768px){'+
+      '.bioa-blog-detail .block-blog-body .bb-grid{display:grid!important;grid-template-columns:minmax(0,1fr)!important}'+
+      '.bioa-blog-detail .block-blog-body .bb-aside{position:static!important;min-width:0!important;width:100%!important}'+
+      '.bioa-blog-detail .block-blog-body .bb-toc{position:static!important;transform:none!important;will-change:auto!important;max-width:100%!important}'+
+    '}'+
 
     /* PATCH-G8 — TOC contact CTA reuses the shared PASS Zalo artwork treatment. */
     '.bioa-blog-detail .bb-toc__cta-btn .btn__icon{display:flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;margin:0!important;line-height:0!important}'+
