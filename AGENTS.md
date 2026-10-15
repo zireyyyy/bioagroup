@@ -46,6 +46,10 @@ Before implementation:
 10. inspect the BIO-A counterpart;
 11. only then diagnose or implement.
 
+## 2B. CMS-safe future content publishing — mandatory
+
+For every future content/image/Blog/section request, read `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`. Routine CMS content within an approved component's schema and text/image limits MUST inherit the existing PASS Desktop/Tablet/Mobile layout without independent device-specific code. Adding a genuinely new component is engineering ONCE at the canonical source owner plus VI/EN and cross-device QA; after owner PASS it may be exposed as a reusable CMS block. Validate content envelopes, image ratio, card count, translations, TOC headings and security before publish; reject unsupported arbitrary HTML/CSS. Existing BIO-A currently does NOT have a live Sanity integration; do not claim that editors can already publish via CMS or silently migrate the site. Full Tablet PASS, Phase 2B and explicit CMS approval remain required gates.
+
 ## 2A. GitHub connector capability gate — mandatory / permanent (2026-10-14)
 
 The owner connected GitHub for direct repository work. **Never say GitHub
