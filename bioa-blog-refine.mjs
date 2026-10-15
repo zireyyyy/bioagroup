@@ -405,7 +405,7 @@ function applyBlogArticle($,route,lang){
     if(!code.includes('js-toc-fixer')||!code.includes('function enableSB(sb)'))return;
     if(code.includes('BIOA_TABLET_TOC_GUARD'))return;
     node.html(code.replace('  ready(function(){',
-      '  ready(function(){\\n    /* BIOA_TABLET_TOC_GUARD */\\n    if(window.matchMedia("(max-width:1200px)").matches)return;'));
+      '  ready(function(){\n    /* BIOA_TABLET_TOC_GUARD */\n    if(window.matchMedia("(max-width:1200px)").matches)return;'));
   });
 
   applyArticleSeo($,post,route,lang);
