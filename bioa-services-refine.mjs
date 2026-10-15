@@ -220,7 +220,7 @@ function patchRouteCss($){
   $("head").append('<style id="bioa-other-services-style">'+
     '.bioa-service-scenarios .review__author{padding-top:18px!important}'+
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
-    '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:24px!important;height:24px!important;max-width:24px!important;max-height:24px!important;object-fit:contain!important;filter:none!important}'+
+    '.block-right-choice .bioa-process-bioa-icon{display:block!important;width:22px!important;height:27px!important;max-width:22px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
     '.block-how-works .bioa-service-range-logo{display:block!important;width:23px!important;height:27px!important;max-width:23px!important;max-height:27px!important;object-fit:contain!important;filter:none!important}'+
     '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+
   '</style>');
