@@ -1,8 +1,17 @@
 # BIO-A GROUP — FULL TABLET PHASE 2: FINAL OWNER QA / SIGNOFF
 
-**Checkpoint:** 2026-10-14. **Candidate PR:** #10, `candidate/full-tablet-regression-phase2-20261014`. **Production `main`:** `cb4e92f73c1ef800f7507db2330347664fc323d4` (UNCHANGED; still maintenance).
-**CI at candidate `8d3e281`:** run `38540541536` SUCCESS. **Cloudflare GitHub deployment report:** Preview `https://bcc7aa8d.bioagroup.pages.dev` SUCCESS for exact candidate `8d3e281`; branch alias `https://candidate-full-tablet-regres.bioagroup.pages.dev`.
-**IMPORTANT:** GitHub CI success is technical validation, NOT owner runtime Full Tablet visual PASS. Live unknown-route status has not been independently fetched. This checkpoint is pending owner signoff.
+**Verified checkpoint (2026-10-15):** PR #10 branch `candidate/full-tablet-regression-phase2-20261014`, source HEAD `39d79b4e3cbdc611aa3456b3a307abdfa93f6ff7`. Production `main` remains `cb4e92f73c1ef800f7507db2330347664fc323d4` (private maintenance). **GitHub Actions CI:** run `38681924922` SUCCESS on exactly `39d79b4`. Cloudflare Pages PR comment reports SUCCESS for the same commit; immutable code-preview URL **https://e1dda8a2.bioagroup.pages.dev**, branch alias `https://candidate-full-tablet-regres.bioagroup.pages.dev`.
+
+**STATUS:** named components owner-PASS; final **FULL TABLET PASS has not been explicitly declared by owner**. This document is the sole up-to-date route-level acceptance gate; older run IDs and earlier Preview hash URLs, when listed in Historical evidence below, are past evidence ONLY.
+
+## Recently accepted changes — do NOT retest each patch in isolation
+- Blog detail Sticky TOC source layout and safe scroll-fixer behavior: owner explicitly **PASS**. Blog TOC CTA text legibility: owner explicitly **PASS**.
+- Other Services: reused Home Bio-A canonical icon class and artwork for slide/process; owner explicitly **PASS**. Original slider/card/process layout remains locked.
+- Cookie title and three action labels Manrope 500, sitewide page title 400 (About authority), canonical CTA 550, WhatsApp original artwork, shared Header/Footer/Home Hero Stats: **owner accepted on respective components**.
+- Last technical CI all green at current code SHA; **CI is not visual owner PASS**. Do not open a new styling round without a specific new failure.
+
+## Final single-pass gate
+The owner has already reviewed multiple sections and screenshots. Do **not** request another full patch-by-patch cycle. For the CURRENT immutable Preview above, owner only needs to confirm whether the overall VI/EN Tablet site at CSS widths 834px / 1024px has **any remaining issue** after the accepted fixes. If none, ask for the one explicit statement **`FULL TABLET PASS`**. If a fault is present, get exact route/locale/width/screenshot and reopen **only** that component. Avoid speculative fixes.
 
 ## Source and immutable owner-approved behavior
 - Original **Merywood** layout, DOM, source motion, responsive media modes and controls are design/runtime source of truth. BIO-A replaces requested brand content/artwork, does not redraw source icons.
@@ -11,7 +20,7 @@
 
 ## Owner checks — perform at 100% browser zoom
 
-Use the **exact commit Preview** URL above, rather than relying on a branch alias that might be updated to a newer commit. At minimum, check Tablet 834px and 1024px, both **VI and EN**; 768px boundary, 820px and 1180px are useful if a fault occurs. Quick regression at Desktop 1440px and Mobile 390px. Real iPad Safari check is preferable where available.
+Use the **verified exact-commit Preview** URL above, not the branch alias. Do not judge the candidate against an old 8d3e281 snapshot. At minimum, check Tablet 834px and 1024px, both **VI and EN**; 768px boundary, 820px and 1180px are useful if a fault occurs. Quick regression at Desktop 1440px and Mobile 390px. Real iPad Safari check is preferable where available.
 
 | # | Surface / route (test VI + matching /en/) | What constitutes owner PASS |
 |---|---|---|
@@ -26,7 +35,7 @@ Use the **exact commit Preview** URL above, rather than relying on a branch alia
 
 **Cookie functional regression:** To view first-visit Cookie without overwriting an already consented session, open a *fresh incognito Preview*; click **Từ chối / Reject** or other choice only for that isolated test. Check heading + all 3 button weights match approved 500 and the dialog remains stable on route navigation.
 
-## Technical evidence available
+## Historical technical evidence (prior builds)
 - Run `38535428373`: Blog detail 8 VI/EN route/viewport checks with five valid anchored TOC entries. Last TOC click moved scroll on Tablet. A Desktop EN sample moved but did not settle adjacent to target, thus it remains an owner QA focus rather than verified source defect.
 - Run `38537525917`: 16/16 VI/EN Cosmetics+Other Services cases, source Swiper initialized and enabled Next advanced, no page-root overflow.
 - Run `38540541536`: **SUCCESS**, 8/8 Contacts FAQ click-open cases at 390/834/1024/1440, map and address links present. Mock Cloudflare Preview forwards upstream 404; unauthed production 503. This does NOT certify live Cloudflare unknown URL responses.
