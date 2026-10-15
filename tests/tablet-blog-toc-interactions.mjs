@@ -44,6 +44,19 @@ try{
    assert.ok(struct.tocCount>=3,route+' has TOC with at least 3 links');
    assert.ok(struct.targets.every(x=>x.found&&x.withinArticle),route+' all TOC anchors resolve to article section headings');
    assert.ok(struct.docWidth<=width+2,route+' does not overflow horizontally');
+   if(width===834||width===1024){
+    const rects=await page.evaluate(()=>{
+      const toc=document.querySelector('.block-blog-body .bb-toc');
+      const content=document.querySelector('.block-blog-body .bb-content-col');
+      if(!toc||!content)return null;
+      const t=toc.getBoundingClientRect(),c=content.getBoundingClientRect();
+      return {tocLeft:t.left,tocRight:t.right,articleLeft:c.left,articleRight:c.right,overlap:t.right>c.left-4,transform:getComputedStyle(toc).transform};
+    });
+    assert.ok(rects,route+' has TOC and article');
+    assert.equal(rects.overlap,false,route+' Tablet TOC must have its own reserved column');
+    assert.equal(rects.transform,'none',route+' Tablet TOC must not inherit Merywood scroll fixer transform');
+    console.log('BIOA_TABLET_TOC_GEOMETRY '+JSON.stringify({route,width,...rects}));
+   }
    const record={route,width,struct,interaction:{status:'not attempted'}};
    const last=page.locator('.bb-toc__list a[href^="#"]').last();
    if(width>768&&await last.isVisible()){
