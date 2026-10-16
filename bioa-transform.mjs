@@ -79,6 +79,7 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
   #get-a-quote .wpcf7-form .wpcf7-acceptance,
   #get-a-quote .wpcf7-form .wpcf7-acceptance a{font-size:12px!important;line-height:1.5!important}
 }
+
 .block-reviews{overflow:hidden!important}.block-reviews .review{min-width:0!important;overflow:hidden!important}.block-reviews .review__text{overflow:hidden!important;overflow-wrap:break-word!important}
 @media(max-width:768px){.bioa-lang{margin:18px 0 0}.whatsapp-wrapper{margin-top:40px!important;padding:0!important}.whatsapp{text-align:center!important;border-radius:30px!important;padding:30px 20px!important}.whatsapp__content{flex-direction:column!important;gap:20px!important}.whatsapp__title{font-size:20px!important}.whatsapp__description{font-size:14px!important;max-width:100%!important}.whatsapp__btn{width:100%!important;min-width:0!important;height:54px!important;padding:0 20px!important;border-radius:16px!important}.block-product-formats .formats{padding:30px 20px!important;border-radius:24px!important}.block-product-formats .formats__tabs{flex-wrap:nowrap!important;overflow-x:auto!important;padding-bottom:24px!important;margin-bottom:24px!important}.block-product-formats .formats__tab{flex:0 0 auto!important;height:40px!important;padding:0 16px!important;white-space:nowrap!important}.block-product-formats .formats__cta{margin-top:45px!important}.block-product-formats .formats__cta-content{flex-direction:column!important;align-items:flex-start!important;gap:20px!important}}
 `;
