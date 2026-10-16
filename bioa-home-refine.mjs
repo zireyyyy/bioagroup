@@ -1205,86 +1205,7 @@ const patchB4Css = `
 `;
 
 
-const patchB5Css = `
-/* HOME Patch B5 — final visual tightening after B4 review */
 
-/* Desktop nav: one step smaller than Patch A */
-
-/* Hero statistics: smaller, lighter, more editorial like the Merywood source */
-.block-title .info.desctop{
-  width:clamp(360px,21vw,395px)!important;
-  min-width:360px!important;
-  max-width:395px!important;
-  gap:10px!important;
-}
-.block-title .info .item{
-  min-height:64px!important;
-  padding:9px 16px!important;
-  grid-template-columns:minmax(175px,1.12fr) minmax(120px,.88fr)!important;
-  column-gap:13px!important;
-  border-radius:14px!important;
-}
-.block-title .info .item__number,
-.block-title .info .item:nth-child(3) .item__number,
-.block-title .info .item:nth-child(4) .item__number,
-.block-title .info .item:nth-child(5) .item__number{
-  font-size:27px!important;
-  font-weight:300;
-  line-height:1!important;
-  letter-spacing:-.02em!important;
-}
-.block-title .info .item__text{
-  font-size:13px!important;
-  font-weight:400;
-  line-height:1.16!important;
-}
-
-/* Desktop footer social sizing: Zalo wordmark needs a wider hit area */
-.footer-top__socials a[aria-label="Zalo"]{
-  width:48px!important;
-  min-width:48px!important;
-}
-.footer-top__socials a[aria-label="Zalo"] svg{
-  width:31px!important;
-  height:22px!important;
-  max-width:31px!important;
-}
-
-@media(max-width:768px){
-  /* keep mobile header/menu exactly as PASS */
-
-  /* mobile hero stats use the same lighter visual language */
-  .block-title-continue .info .item,
-  .block-title-mobile .info .item{
-    min-height:60px!important;
-    padding:8px 12px!important;
-    border-radius:13px!important;
-  }
-  .block-title-continue .info .item__number,
-  .block-title-mobile .info .item__number{
-    font-size:24px!important;
-    font-weight:300;
-    line-height:1!important;
-  }
-  .block-title-continue .info .item__text,
-  .block-title-mobile .info .item__text{
-    font-size:11.5px!important;
-    font-weight:400;
-    line-height:1.15!important;
-  }
-
-  /* Mobile footer: logo left, contact stack right on one row */
-  .footer-top > .container > .footer-top__logo,
-  .footer-top > .container > .footer-top__email,
-  .footer-top > .container > .footer-top__socials,
-  .footer-top__inner > .footer-top__logo,
-  .footer-top__inner > .footer-top__email,
-  .footer-top__inner > .footer-top__socials{
-    display:none!important;
-  }
-
-}
-`;
 
 
 const patchB6Css = `
@@ -1961,25 +1882,7 @@ const patchB9Css = `
 `;
 
 
-const patchB11Css = `
-/* HOME Patch B11 — restore pre-B10 We Produce and keep Bio-A watermark beneath product artwork */
-@media(max-width:768px){
-  .bioa-produce-mobile-direct__media{
-    position:relative!important;
-    isolation:isolate!important;
-    background:transparent!important;
-  }
-  .bioa-produce-mobile-direct__media:after{
-    z-index:0!important;
-    opacity:.055!important;
-  }
-  .bioa-produce-mobile-direct__media picture,
-  .bioa-produce-mobile-direct__media img{
-    position:relative!important;
-    z-index:1!important;
-  }
-}
-`;
+
 
 
 const patchB12Css = `
