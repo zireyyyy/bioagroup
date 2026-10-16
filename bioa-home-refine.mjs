@@ -3750,12 +3750,13 @@ const patchWhyChooseIconCss = `
   #why-choose-us img.bioa-why-icon-bioa,
   .block-how-works img.bioa-why-icon-bioa,
   .block-right-choice img.bioa-why-icon-bioa{
-    /* Keep the Home-accepted artwork optically readable on Tablet.
-       Never scale the monogram below its canonical 22x27 artwork box. */
-    width:22px!important;
-    max-width:22px!important;
-    height:27px!important;
-    max-height:27px!important;
+    /* Home PASS uses Merywood's original 1.5625vw artwork inside the
+       2.8646vw badge on Tablet. Match that computed footprint exactly;
+       22x27 fixed art overflowed the 23.9px badge at 834px. */
+    width:1.5625vw!important;
+    max-width:1.5625vw!important;
+    height:1.5625vw!important;
+    max-height:1.5625vw!important;
   }
 }
 `;
