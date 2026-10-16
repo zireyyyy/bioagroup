@@ -95,6 +95,8 @@ jobs:
           retention-days: 14
       - name: Verify first-paint computed style across routes and viewports
         run: node tests/first-paint-browser.test.mjs
+      - name: Audit Phase 2B cross-device VI/EN component owners
+        run: node tests/phase2b-cross-device-owner-audit.mjs
       - name: Audit actual computed typography across VI/EN routes
         run: node tests/typography-computed-audit.mjs
       - name: Upload typography computed evidence
