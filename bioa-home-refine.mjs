@@ -3750,10 +3750,12 @@ const patchWhyChooseIconCss = `
   #why-choose-us img.bioa-why-icon-bioa,
   .block-how-works img.bioa-why-icon-bioa,
   .block-right-choice img.bioa-why-icon-bioa{
-    width:1.1458vw!important;
-    max-width:1.1458vw!important;
-    height:1.4063vw!important;
-    max-height:1.4063vw!important;
+    /* Keep the Home-accepted artwork optically readable on Tablet.
+       Never scale the monogram below its canonical 22x27 artwork box. */
+    width:22px!important;
+    max-width:22px!important;
+    height:27px!important;
+    max-height:27px!important;
   }
 }
 `;
