@@ -29,6 +29,12 @@
 - CI for this new test is pending. Inspect evidence and compare with original Merywood + user-approved BIO-A deviations before authorizing any cascade cleanup.
 - Scope/QA: TEST/CI/DOCS ONLY. No owner website retest needed. All PASS/FROZEN preserved; PR #10 and Production untouched, PR #11 Draft.
 
+## Phase 2B cascade outcome / frozen contracts — 2026-10-16
+- Actual CI `38847560941` at `7d7452c` **SUCCESS**; all 32 CSS cascade probes passed. Active inline style owner is `bioa-home-refine` only for Home, `bioa-shared-shell` on Other Services. The Mobile→fluid breakpoint 768/769 and Tablet→Desktop breakpoint 1200/1201 behaved per approved contract in Home and Other Services VI/EN.
+- Evidence from computed styles: Footer company `white-space` remains `normal` at <=1200 for both locales, `nowrap` for VI at >=1201, `normal` for EN at >=1201. Tablet 769–1200 reports approved competing `font-size` declarations (Nav and Footer company) but no confirmed incorrect output. Do **not** remove any active CSS without measured regression and approved exception.
+- Test-only follow-up `ed4c613`: `tests/phase2b-css-cascade-boundaries.mjs` now asserts this frozen VI/EN wrap contract and fluid nav presence at all eight probes. New CI pending. **No website runtime modification.**
+- Next action: evaluate new CI, then request explicit owner closeout of Phase 2B before a merge/Phase 3. Do not merge automatically; PR #10 and #11 remain Draft and Production main remains maintenance-gated.
+
 ## BẠN CẦN TEST GÌ?
 **Current change is TEST/CI/DOCS only** (no website runtime edits). Owner does not need to retest the website unless CI finds a concrete regression. If new CI fails, fix its true root cause rather than weakening assertions or altering PASS UI. Last owner-PASS rollback: `bb82b0d` (Footer cleanup); last green technical baseline `052023b`. No Production modifications.
 
