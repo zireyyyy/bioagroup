@@ -99,6 +99,8 @@ jobs:
         run: node tests/phase2b-cross-device-owner-audit.mjs
       - name: Collect Phase 2B CSS cascade boundary evidence
         run: node tests/phase2b-css-cascade-boundaries.mjs
+      - name: Measure scoped icons and Tablet modal typography
+        run: node tests/phase2b-targeted-icon-form-measure.mjs
       - name: Audit actual computed typography across VI/EN routes
         run: node tests/typography-computed-audit.mjs
       - name: Upload typography computed evidence
