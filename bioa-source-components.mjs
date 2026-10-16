@@ -233,4 +233,21 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   .whatsapp .whatsapp__decoration {
     top:-21.875vw !important; right:-9.375vw !important; width:58.3333vw !important; height:58.3333vw !important;
   }
+
+  /* TABLET-TYPE-SOURCE1: real computed audit found 6.95px at 834px and
+     8.53px at 1024px in source body-copy slots. Keep original Desktop
+     layout, wrapper sizes, Tablet breakpoint and Home-approved title scale;
+     normalize only the named source owners that contain paragraphs.
+     Do not change Header, Footer, icons, hero titles or any other PASS area. */
+  .page-main .block-how-works .step__text,
+  .page-main .block-how-works .step__text p,
+  .page-main .block-right-choice .client__description,
+  .page-main .block-right-choice .client__description p,
+  .page-main .block-reviews .review__text,
+  .page-main .block-reviews .review__text p,
+  .page-main #why-choose-us .item p,
+  .page-main .block-product-formats .formats__description {
+    font-size:12px !important;
+    line-height:1.5 !important;
+  }
 }`;
