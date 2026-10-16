@@ -101,6 +101,8 @@ jobs:
         run: node tests/phase2b-css-cascade-boundaries.mjs
       - name: Measure scoped icons and Tablet modal typography
         run: node tests/phase2b-targeted-icon-form-measure.mjs
+      - name: Inventory Tablet copy and Home icon slot geometry (read-only)
+        run: node tests/phase2b-tablet-readability-inventory.mjs
       - name: Audit actual computed typography across VI/EN routes
         run: node tests/typography-computed-audit.mjs
       - name: Upload typography computed evidence
