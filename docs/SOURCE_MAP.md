@@ -21,6 +21,14 @@ This is a component ownership map, not a version/status log. `FULL_HANDOFF.md` i
 
 **Technical regression matrix:** `tests/phase2b-cross-device-owner-audit.mjs` probes 6 core route families × VI/EN × 390/834/1440 CSS px (36 structural checks, not screenshots or owner visual approval). Existing Tablet audit covers 768/834/1024/1180 and 404/article cases; separate browser tests cover Swiper, Blog TOC, Contacts/404, first paint, typography and Footer geometry. All PASS/FROZEN claims derive from the owner and are recorded only in the active `FULL_HANDOFF.md`. No code/style deletion is justified merely by the presence of duplicate CSS selectors; computed cascade and Merywood source parity evidence are required.
 
+### Phase 2B computed CSS cascade evidence — accepted baseline, no visual rewrite
+
+- Technical reference: `tests/phase2b-css-cascade-boundaries.mjs`, CI run `38849818878` SUCCESS on `537c938`. 4 routes (Home/Other Services × VI/EN) × 8 CSS viewport widths: 390/768/769/834/1024/1200/1201/1440 (32 cases). This is a bounded evidence sample, not a claim that all site CSS is mathematically conflict-free.
+- One owner stylesheet per route: `style#bioa-home-refine` on Home; `style#bioa-shared-shell` on non-Home. Preserves distinct Merywood-derived Home and shared-shell owners.
+- Footer company title computed `white-space`: both VI/EN use `normal` at <=1200; VI uses `nowrap` at >=1201; EN uses `normal` at >=1201 through `.bioa-footer-company-info--desktop[lang="en"]`. This protects the owner-accepted Desktop EN fix without changing the VI layout.
+- 769–1200: CSS diagnostics show differing `font-size` declarations for Header navigation and Footer company copy; existing final computed styles and CI checks pass. Treat these as intentional layered responsive rules **until a measured user-visible defect proves otherwise**. Do not blindly remove or consolidate them, and never add override-on-override CSS as a cleanup substitute.
+- Footer/other UI work must compare with Merywood source, the authoritative owner file and Desktop/Tablet/Mobile VI/EN checkpoints. Technical CI SUCCESS is not a fresh owner visual PASS.
+
 ---
 
 ## 2026-10-13 — MVR-TYPE1 owner visual feedback / scoped weight parity (candidate)
