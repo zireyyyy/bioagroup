@@ -8,7 +8,10 @@ for(const token of ["buildMobileFooterContact","bioa-footer-mobile-head","bioa-f
 }
 assert.match(source,/function buildMobileFooterV2\(/);
 assert.match(source,/function addFooterCompanyInfo\(/);
-assert.match(source,/\.footer-top > \.container > \.footer-top__logo,/);
+// The old Merywood direct-child selector lived only inside an unreferenced CSS
+// string (patchB5Css). The active Footer v2 owns hiding via this class.
+assert.match(source,/\.bioa-footer-original-contact\s*\{\s*display:none!important\s*\}/);
+assert.match(source,/originals\.addClass\('bioa-footer-original-contact'\)/);
 assert.match(source,/bioa-footer-company-info--desktop\[lang="en"\]/);
 for(const locale of ["","en/"]){
  const $=load(await readFile("dist/"+locale+"index.html","utf8"));
