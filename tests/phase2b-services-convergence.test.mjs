@@ -33,8 +33,13 @@ for(const lang of ["vi","en"]){
   const processIcon=$(".block-right-choice .client").eq(2).find(".client__icon img").first();
   assert.equal(processIcon.attr("src"),"/assets/bioa-monogram-cream.svg",lang+" workflow monogram source");
   assert.ok(processIcon.hasClass("bioa-why-icon-bioa"),lang+" workflow shares Home canonical class");
-  const serviceCss=$("#bioa-other-services-style").html()||"";
-  assert.match(serviceCss,/min-width:42px!important/,lang+" mobile artwork box parity");
+  const routeCss=$("#bioa-other-services-style").html()||"";
+  assert.doesNotMatch(routeCss,/bioa-why-icon-bioa/,lang+" icon geometry must have one shared owner");
+  const canonicalCss=$("#bioa-shared-shell").html()||"";
+  assert.match(canonicalCss,/\.block-how-works \.step__icon:has\(> img\.bioa-why-icon-bioa\)/,
+    lang+" mobile artwork box lives in Home canonical shared stylesheet");
+  assert.match(canonicalCss,/width:1\.5625vw!important/,
+    lang+" Tablet monogram matches the accepted Home footprint");
   assert.equal($("#bioa-other-services-style").length,1,
     lang+" existing route-only CSS owner is unchanged");
   console.log("BIOA_PHASE2B_SERVICE_OWNER "+lang+" PASS");
