@@ -197,7 +197,11 @@ function patchRouteCss($){
   $("head").append('<style id="bioa-other-services-style">'+
     '.bioa-service-scenarios .review__author{padding-top:18px!important}'+
     '.bioa-service-scenarios .review__author-name{color:inherit!important}'+
-    '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}}'+
+    '@media(max-width:768px){.bioa-service-scenarios .review__author{padding-top:14px!important}'+
+      '.block-how-works .step__icon:has(> img.bioa-why-icon-bioa),'+
+      '.block-right-choice .client__icon:has(> img.bioa-why-icon-bioa){width:42px!important;height:42px!important;min-width:42px!important;min-height:42px!important;display:flex!important;align-items:center!important;justify-content:center!important}'+
+      '.block-how-works .step__icon img.bioa-why-icon-bioa,'+
+      '.block-right-choice .client__icon img.bioa-why-icon-bioa{width:22px!important;height:27px!important;max-width:22px!important;max-height:27px!important;object-fit:contain!important}}'+
   '</style>');
 }
 
