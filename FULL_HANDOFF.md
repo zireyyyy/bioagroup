@@ -1,78 +1,30 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Snapshot date:** 2026-10-15. **Authority:** owner's explicit `FULL TABLET PASS` for PR #10 on VI/EN Tablet; verified GitHub checkpoint. This is the single active status block; dated historical notes are not current authority.
+**Date:** 2026-10-16. This is the single ACTIVE snapshot. Below the divider is historical archive, not an overriding status authority.
 
-## Production and candidate
-- Production `main`: `cb4e92f73c1ef800f7507db2330347664fc323d4` — not modified, private maintenance retained.
-- Owner-FULL-TABLET-PASS source: PR #10 `candidate/full-tablet-regression-phase2-20261014`, HEAD `ed7324c016bd3e3954702d50da1b058042d7ad72`. CI run `38682716633` success. **Owner confirmed overall Full Tablet PASS 2026-10-15**. PR #10 remains unmerged/draft at Phase 2B kickoff. Never equate owner approval with permission to open Production or bypass deployment gates.
-- **Active Phase 2B:** separate branch `candidate/phase2b-source-convergence-20261015` forked from owner-approved `ed7324c`. First small candidate removes proven unused static-grid data in `bioa-services-refine.mjs`, adding `tests/phase2b-services-convergence.test.mjs` and CI gate. Verify live branch HEAD, CI run and Preview after new commits. No route CSS/DOM/JS interactions/animation, business API, artwork or responsive breakpoint changes in this cleanup. No claim of developer/owner visual PASS until actual checks.
+## Authority and deployment
+- Repository: `zireyyyy/bioagroup`; Production `main` = `cb4e92f73c1ef800f7507db2330347664fc323d4`, unchanged and maintenance-protected.
+- PR #10 `candidate/full-tablet-regression-phase2-20261014`, source `ed7324c016bd3e3954702d50da1b058042d7ad72`: **OWNER FULL TABLET VI/EN PASS / FROZEN**, CI `38682716633` SUCCESS. Draft, unmerged.
+- PR #11 `candidate/phase2b-source-convergence-20261015`: **ACTIVE PHASE 2B SOURCE-CONVERGENCE CANDIDATE**, based on PR #10, Draft/unmerged. Check live GitHub HEAD, Actions and Cloudflare Preview before reporting build/visual status. Never merge automatically.
+- Last verified Phase 2B build `052023b1a4e5f9c7cb60d80c064e974277b419ff`: CI `38844267133` SUCCESS. The two dead CSS constant deletions are technically verified; owner has not separately reported visual PASS for that deletion (no change expected).
+- Latest work **technical audit-only:** `tests/phase2b-cross-device-owner-audit.mjs` and CI gate; further commits may follow. Validate new CI before asserting PASS.
 
-## PASS/FROZEN and scope
-- **FULL TABLET VI/EN: OWNER PASS / FROZEN** on PR #10 accepted snapshot, including shared shell, Home/About, Cosmetics/Other Services, Blog/Sticky TOC, Contacts and 404; Desktop/Mobile previously accepted components remain FROZEN. Distinguish verified owner approval of *baseline* from pending regression approval of Phase 2B changes.
-- Canonical Home-owned icons, source Merywood slider/DOM/motion, Manrope typography/CTA, Cookie, WhatsApp/Zalo, first paint and Footer frozen; no cosmetic redesign. Keep security/noindex, lead D1/Sheets and Sanity-not-live untouched.
-- Target source owner: `bioa-services-refine.mjs`, where `applyWhy` removes the redundant `#why-choose-us` grid and `applyRange` retains exactly five Merywood slides. The old `why` VI/EN data arrays, `whyTitle` fields and `serviceIconMap` were not referenced by the current render path; removed. This is data dead-code only. The removed original source wrapper/slide mechanics are NOT recreated.
+## Owner PASS/FROZEN
+- Full Tablet VI/EN at PR #10 accepted baseline; previous Desktop/Mobile approved components remain frozen.
+- Phase 2B owner-accepted iterations: Other Services dead grid data; Cosmetics Why Choose vs 6-card categories and icons; About unused paragraph helper; Home Mobile We Produce legacy renderer; Mobile Footer v2 legacy cleanup; Desktop EN Footer title wrap. User explicitly accepted the affected candidate visuals.
+- Shared header/nav, logos, Footer VI/EN, Cookie, Chat, Zalo canonical PNG, CTA, Hero stats/typography, Blog TOC, responsive Merywood layout/motion and forms/API/maintenance access must remain untouched unless expressly reopened.
+- Phase 2B source changes remove only proven unused JS/CSS declarations, never alter canonical render path without source parity and owner approval.
 
-## Active owner regression — 2026-10-15 FOOTER-EN-WRAP2
-- Owner reports Desktop EN Footer company title crosses into first category column on Phase 2B Preview screenshot; all other observed surfaces PASS. Do not call Phase 2B FULL PASS. This is a scoped **Desktop EN FAIL**; Tablet VI/EN owner PASS and Desktop VI/Mobile remain FROZEN.
-- Evidence: existing Desktop `@media(min-width:1201px)` title rule imposes `white-space:nowrap!important` and its EN exception depended on `html[lang="en"]`, a document-level selector that is less robust than the already-known language of the Footer content owner. The exact runtime cause of the screenshot has not been independently replayed, so CI and owner screenshot QA remain necessary.
-- Patch: `bioa-home-refine.mjs` in `patchFooterInfo1Css` changes only the exception to `.bioa-footer-company-info--desktop[lang="en"]`; `addFooterCompanyInfo` writes an explicit `lang` on its own wrapper for VI/EN. The existing EN wrap properties, CSS order, Footer columns/widths, VI nowrap, logo and social artwork are untouched. Extended `tests/footer-en-layout-browser.test.mjs` to verify owner language and existing geometry/overflow at 834/1024/1280/1440/1900. CI is pending, NOT a declared owner PASS.
-- Prior Phase 2B HEAD `6cdffe4` had CI FAILURE in the Swiper browser interaction test although the immediately prior `c758cc5` CI succeeded. Do not describe failed latest CI as green; inspect nondeterminism/runtime separately and never cover up a genuine regression. Production main and PR #10 remain unchanged.
-- **BẠN CẦN TEST GÌ:** Desktop EN Home `/en/` at 1440 and ~1900px: company title must wrap entirely within left identity column, not overlap 'Cosmetic Manufacturing'. Compare Footer VI at `/` same width (unchanged); smoke EN Tablet 834/1024 and Mobile 390 plus any one EN subpage Footer. No need to retest other owner PASS components unless CI shows a concrete regression.
-
-## Phase 2B Cosmetics dead-owner cleanup — 2026-10-15
-- Owner confirmed **Footer EN Desktop PASS** after commit `cc50416aa8195fdd5c496769f05fc5a739ac80d1`; full GitHub CI run `38699590358` SUCCESS. Footer EN, Footer VI, Tablet and all previously approved surfaces are now FROZEN. No additional Footer changes in this patch.
-- New scoped candidate: `bioa-cosmetics-refine.mjs` unused `applyCategoryArtwork()` targeted `#why-choose-us` with a redundant style `#bioa-cosmetics-category-icon-style`. No current call path invoked it. Remove only this dead function (not `categoryIconAssets`), preserving active `applyCategories()` and `applyManufacturingCategorySection()`, the Merywood Why Choose source and six canonical About-derived category assets/optical offsets. No CSS/layout/DOM/interaction change is intended in generated output.
-- Added `tests/phase2b-cosmetics-convergence.test.mjs` and CI gate to assert VI/EN one Why Choose block, one six-card manufacturing categories section, exact icon sources and absence of dead CSS. Current candidate CI and Preview deployment must be verified; no owner PASS claimed before evidence.
-- **BẠN CẦN TEST GÌ:** after confirmed Preview deploy, `/contract-manufacturing-cosmetics/` VI/EN at Tablet 834/1024, Desktop 1440 and Mobile 390: Why Choose same original source copy/icons and six manufacturing cards with correct artwork/sizing; no duplicated styles or misaligned cards. No need to repeat the Footer EN visual approval; spot-check shared shell only if CI reports a regression.
-- PR #11 stays Draft; no merge PR #10 or Production changes. Prior known-good phase2b visual checkpoint `cc50416` is immediate rollback.
-
-## Phase 2B Owner PASS / About unused helper — 2026-10-15
-- **Owner confirmed Phase 2B Cosmetics candidate at `2e03898d424299df6e7e064738b29e52059dbdfd` PASS.** Corresponding CI run `38702808572` SUCCESS. Freeze accepted Cosmetics Why Choose and six manufacturing category artwork plus prior Footer EN Desktop/Tablet and shared components.
-- New narrow source-only candidate in `bioa-about-refine.mjs`: unused `setDirectParagraphs(root, selector, values)` had exactly one source occurrence (its declaration) and is not referenced in About rendering or from `build.mjs`. Removed only that 149-character unused helper. **All active About functions, the original Merywood DOM, responsive CSS/JS, content, VI/EN, icons and geometry are unchanged.**
-- Treat this as a developer cleanup candidate until CI confirms output. No owner visual PASS inferred from earlier Cosmetics PASS. Production `main` and PR #10 remain unchanged; PR #11 draft remains the working branch.
-- **BẠN CẦN TEST GÌ:** SOURCE-ONLY / no runtime change intended. CI verify the build, VI/EN About and cross-device regression. Owner does **not** need to repeat visual QA of a helper that never runs; optional spot-check About VI/EN 1440/834/390 on new Preview. Do not reopen Cosmetics or Footer.
-
-## Phase 2B About owner PASS + Transform helper audit — 2026-10-16
-- Owner confirms Phase 2B About candidate (source cleanup `a091e25`, handoff `bd19600`) visually unchanged, **OWNER PASS/FROZEN**. CI `38704166172` passed on the code commit. Later docs-only `bd19600` had CI failure at Swiper interaction step (not from About code).
-- Swiper CI evidence at `38704215919`: 2/16 Cosmetics cases (834 VI, 1024 EN) clicked while **all** source Swipers were still uninitialized after fixed 900ms; 14/16 other checks advanced normally, owner reports site unchanged. Replaced the fixed delay in the read-only `tests/tablet-services-swiper-interactions.mjs` with a bounded 12s wait for a real initialized source Swiper with enabled visible Next. Missing initialization still FAILS; no website Swiper source was changed.
-- Next Phase 2B narrow owner `bioa-transform.mjs`: verified unused `setText` and `sharedUiLanguageContract` each appeared only in their declaration. Removed the two dead helpers (153 characters); retained actual shared language functions, `applyFinalFixes`, route rendering, source HTML, assets and all PASS UI. No runtime output change intended.
-- Candidate awaits new CI plus optional runtime smoke. Do not assume owner PASS for this new scope or call build green until GitHub Actions confirms it. Production `main` `cb4e92f` unchanged. PR #10 and PR #11 remain Draft/unmerged. Rollback for last owner-PASS About/previous UI: `a091e25` (source), `bd19600` (handoff), before these candidate changes.
-- **BẠN CẦN TEST GÌ:** SOURCE-ONLY. New code removes unreachable JS helpers only; no visual regression test required from owner if CI succeeds and source output is unchanged. For Swiper test guard, CI must verify 16 VI/EN, 390/834/1024/1440 click cases or visibly FAIL, never skip initialization. Do not repeat entire site QA.
-
-## Phase 2B Home mobile redundant renderer — 2026-10-16
-- Phase 2B prior code `c92a6fc` GitHub CI `38839124302` SUCCESS (including source Swiper initialization guard). Production main `cb4e92f` and owner-FULL-TABLET-PASS PR #10 `ed7324c` remain unchanged and unmerged.
-- New scoped cleanup on `bioa-home-refine.mjs`: `refineMobileProduce` appeared only in its own declaration, never invoked by Home or shared shell. Removed its 1,545-character obsolete JS plus 1,986 characters of corresponding obsolete `.bioa-produce-mobile-card/title/copy/media` CSS. The approved active `replaceMobileProduceSection()`, `.bioa-produce-mobile-clean`, `buildMobileFooterV2()`, Footer EN wrap, original Merywood runtime and all VI/EN/Desktop/Tablet/Mobile geometry are untouched. Do not change the unrelated dormant Footer function at this stage.
-- Added `tests/phase2b-home-mobile-convergence.test.mjs` and CI step to assert both VI/EN Home keep canonical mobile Produce and Footer v2 and do not emit old card DOM/CSS. This new candidate is **PENDING new CI and owner QA**, not automatically PASS.
-- **BẠN CẦN TEST GÌ:** after green CI + Preview, Home VI/EN Mobile 390: approved We Produce image/cards, text, watermark, transitions and Footer v2 remain the same. Quick Tablet 834 and Desktop 1440 check only for regressions if needed. Never reopen owner-PASS Footer EN.
-- Candidate branch `candidate/phase2b-source-convergence-20261015`, PR #11 Draft, do not merge to `main`. Rollback of latest owner-protected stage `c92a6fc`; revert only this narrow scope if a new defect is observed.
-
-## Phase 2B Footer v1→v2 owner convergence — 2026-10-16
-- **Owner confirmed Phase 2B Home Mobile We Produce cleanup at `a9a66e44fdd2399f7cdfbc3f4594cd4c812f002b` PASS / FROZEN.** CI `38840216027` SUCCESS. Preserve Home VI/EN Mobile Produce, Desktop, Tablet and all previously approved components.
-- New limited source cleanup: `bioa-home-refine.mjs` contained uncalled `buildMobileFooterContact()` (old mobile Footer v1) and CSS exclusively for `.bioa-footer-mobile-head/logo/contact/email/socials`. Remove old function, old selectors, and old selector arms inside Zalo/Telegram rules. Preserve Merywood mobile hiding rules, working `buildMobileFooterV2()`, `addFooterCompanyInfo()`, approved EN Desktop language-based wrap, all source Footer structure and responsive treatment unchanged. No runtime visual change intended.
-- Added `tests/phase2b-footer-owner-convergence.test.mjs` and CI step to guard VI/EN Footer v2, company title and removal of old source. Candidate is **PENDING CI / owner QA**, not yet visually PASS.
-- **BẠN CẦN TEST GÌ:** after green CI/Cloudflare Preview, inspect Footer VI/EN Mobile 390: v2 logo, channels, Zalo original image, alignment and company info; quick Desktop EN 1440 (name wraps within first column) and Tablet 834. Do not retest unrelated PASS components.
-- PR #11 remains Draft; PR #10 and Production `main` are unchanged. Latest owner-PASS rollback `a9a66e4`.
-
-## Phase 2B Footer Mobile v2 PASS + Home CSS dead constants — 2026-10-16
-- Owner confirmed Phase 2B Footer v1→v2 cleanup at `bb82b0db8b75c555598f20ffec522729fca7b91e` PASS. CI `38841352403` SUCCESS. **Footer VI/EN Mobile v2 and Desktop EN Footer are OWNER PASS/FROZEN.**
-- New source-only candidate: `bioa-home-refine.mjs` contained exactly two unused CSS string constants `patchB5Css` (2341 characters) and `patchB11Css` (547 characters) with no references or stylesheet inclusion. Removed declarations only, leaving all active patch constants, Home/shared style output, Merywood source mechanics, Desktop/Tablet/Mobile, VI/EN and prior PASS unchanged.
-- Added `tests/phase2b-home-dead-css.test.mjs` and CI gate. Candidate `55f471d` source, subsequent test/CI/docs commits pending new CI. Do not equate the prior owner's Footer PASS with new candidate PASS.
-- **BẠN CẦN TEST GÌ:** SOURCE-ONLY UNUSED DECLARATIONS — no visual change expected; GitHub build and full VI/EN/browser regression are primary gate. Owner need not repeat entire website QA; optional smoke of Home VI/EN Desktop 1440, Tablet 834, Mobile 390 and Footer only if CI fails or visual change appears.
-- PR #11 stays Draft/unmerged, PR #10 stays unmerged; Production main `cb4e92f` untouched. Last owner-PASS rollback: `bb82b0d`.
-
-## Phase 2B CI stale-assertion correction — 2026-10-16
-- Latest candidate source `55f471d` removed two completely unreferenced Home CSS constants `patchB5Css` and `patchB11Css`; production output should be unchanged. CI `38842901053` FAILED only at `tests/phase2b-footer-owner-convergence.test.mjs`, which incorrectly required a selector from the removed inactive `patchB5Css`.
-- Fixed the stale test assertion: verify the *active* `.bioa-footer-original-contact{display:none!important}` rule and `buildMobileFooterV2()` class assignment instead of requiring obsolete `.footer-top > .container > .footer-top__logo`. No site runtime code changed in this corrective commit (`ad38f17`); do not resurrect dead CSS just to pass a test.
-- **Status:** new CI pending; no owner PASS claimed for Phase 2B Home CSS cleanup until confirmed. Prior owner PASS `bb82b0d` and all frozen components remain baseline.
-- **BẠN CẦN TEST GÌ:** none for the test-only correction; CI should validate the VI/EN Footer output and browser regression. Optional Home/Fonts/Footer smoke only if CI or Preview reveals a real runtime change.
-
-## Phase 2B implementation gate / next
-1. Confirm the small candidate CI and `tests/phase2b-services-convergence.test.mjs`: VI/EN single showcase, five slides, Bio-A canonical icons; full responsive CI including shared/frozen contracts. For owner: only focused new-candidate comparison on Other Services VI/EN at 390/834/1024/1440 and slider/click/scroll; do not redo accepted Phase 2 patch-by-patch.
-2. **Do not merge PR #10 or Phase 2B candidate automatically.** Preserve `ed7324c` as accepted rollback until the appropriate release gate.
-3. Continue measured per-component cascade/JS source convergence with exact Merywood mapping, inspect verified runtime data and owner-PASS guardrails. No bulk CSS refactor, no unproven deletion. Phase 3 only after Phase 2B acceptance.
-4. Current documentation uses `START_HERE.md`, `AGENTS.md`, this single active snapshot, `docs/WORKFLOW.md`, `docs/SOURCE_MAP.md`, one stable `NEW_CHAT_CONTINUATION_PROMPT.md` and task-specific contracts; never proliferate status files.
+## Source ownership and testing
+- Global shared shell: `bioa-home-refine.mjs` shared owner, `bioa-source-components.mjs` original desktop-fluid Tablet parity; canonical Home vs inner-page stylesheet loading differs intentionally.
+- Route owners: `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-services-refine.mjs`, `bioa-blog-refine.mjs`, `bioa-contacts-refine.mjs`. Exact mappings `docs/SOURCE_MAP.md`; source parity and breakpoints `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`.
+- Existing CI tests cover source owner contracts, Tablet VI/EN, Swiper arrows, Blog TOC, Contacts/404, first-paint, computed typography, Footer EN geometry and assets.
+- New Phase 2B **read-only 36-case structural owner audit**: Home/About/Cosmetics/Other Services/Blog/Contacts × VI/EN × 390/834/1440px. Checks document locale, Header/Footer, company locale, Footer v2, Home/shared stylesheet authority, six Cosmetics cards, retired DOM. It does not interact with backend/form and does not claim owner visual PASS. Store JSON `audit-artifacts/phase2b/cross-device-owner-matrix.json` on runner; check CI/artefact results.
+- **Phase 2B closeout gate:** measured owner-map, cascade/breakpoint collisions checked with exact Merywood references, CI green and owner visual acceptance of actual affected areas; no blind site-wide CSS rewrite or transition to Phase 3 until those gates are satisfied.
+- Sanity Free is future only, NOT integrated; maintain D1/Sheets/Resend/Turnstile/host isolation.
 
 ## BẠN CẦN TEST GÌ?
-Classification: SOURCE-ONLY DEAD-DATA + TEST/CI/DOCS. No site visual change intended. On Phase 2B Preview (after confirmed deploy), VI/EN `/dich-vu-khac/` at Tablet 834/1024, smoke Desktop 1440/Mobile 390: one five-card service slider, arrows/swipe and three related sections unchanged, correct approved Bio-A icons, text and CTA, no body overflow. No form submissions; do not open Production. GitHub CI success is a technical guard, not a claim of visual regression PASS.
+**Current change is TEST/CI/DOCS only** (no website runtime edits). Owner does not need to retest the website unless CI finds a concrete regression. If new CI fails, fix its true root cause rather than weakening assertions or altering PASS UI. Last owner-PASS rollback: `bb82b0d` (Footer cleanup); last green technical baseline `052023b`. No Production modifications.
+
 
 ---
 
