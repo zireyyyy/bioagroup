@@ -59,6 +59,12 @@
 - **BẠN CẦN TEST GÌ:** SOURCE-ONLY UNUSED DECLARATIONS — no visual change expected; GitHub build and full VI/EN/browser regression are primary gate. Owner need not repeat entire website QA; optional smoke of Home VI/EN Desktop 1440, Tablet 834, Mobile 390 and Footer only if CI fails or visual change appears.
 - PR #11 stays Draft/unmerged, PR #10 stays unmerged; Production main `cb4e92f` untouched. Last owner-PASS rollback: `bb82b0d`.
 
+## Phase 2B CI stale-assertion correction — 2026-10-16
+- Latest candidate source `55f471d` removed two completely unreferenced Home CSS constants `patchB5Css` and `patchB11Css`; production output should be unchanged. CI `38842901053` FAILED only at `tests/phase2b-footer-owner-convergence.test.mjs`, which incorrectly required a selector from the removed inactive `patchB5Css`.
+- Fixed the stale test assertion: verify the *active* `.bioa-footer-original-contact{display:none!important}` rule and `buildMobileFooterV2()` class assignment instead of requiring obsolete `.footer-top > .container > .footer-top__logo`. No site runtime code changed in this corrective commit (`ad38f17`); do not resurrect dead CSS just to pass a test.
+- **Status:** new CI pending; no owner PASS claimed for Phase 2B Home CSS cleanup until confirmed. Prior owner PASS `bb82b0d` and all frozen components remain baseline.
+- **BẠN CẦN TEST GÌ:** none for the test-only correction; CI should validate the VI/EN Footer output and browser regression. Optional Home/Fonts/Footer smoke only if CI or Preview reveals a real runtime change.
+
 ## Phase 2B implementation gate / next
 1. Confirm the small candidate CI and `tests/phase2b-services-convergence.test.mjs`: VI/EN single showcase, five slides, Bio-A canonical icons; full responsive CI including shared/frozen contracts. For owner: only focused new-candidate comparison on Other Services VI/EN at 390/834/1024/1440 and slider/click/scroll; do not redo accepted Phase 2 patch-by-patch.
 2. **Do not merge PR #10 or Phase 2B candidate automatically.** Preserve `ed7324c` as accepted rollback until the appropriate release gate.
