@@ -52,6 +52,13 @@
 - **BẠN CẦN TEST GÌ:** after green CI/Cloudflare Preview, inspect Footer VI/EN Mobile 390: v2 logo, channels, Zalo original image, alignment and company info; quick Desktop EN 1440 (name wraps within first column) and Tablet 834. Do not retest unrelated PASS components.
 - PR #11 remains Draft; PR #10 and Production `main` are unchanged. Latest owner-PASS rollback `a9a66e4`.
 
+## Phase 2B Footer Mobile v2 PASS + Home CSS dead constants — 2026-10-16
+- Owner confirmed Phase 2B Footer v1→v2 cleanup at `bb82b0db8b75c555598f20ffec522729fca7b91e` PASS. CI `38841352403` SUCCESS. **Footer VI/EN Mobile v2 and Desktop EN Footer are OWNER PASS/FROZEN.**
+- New source-only candidate: `bioa-home-refine.mjs` contained exactly two unused CSS string constants `patchB5Css` (2341 characters) and `patchB11Css` (547 characters) with no references or stylesheet inclusion. Removed declarations only, leaving all active patch constants, Home/shared style output, Merywood source mechanics, Desktop/Tablet/Mobile, VI/EN and prior PASS unchanged.
+- Added `tests/phase2b-home-dead-css.test.mjs` and CI gate. Candidate `55f471d` source, subsequent test/CI/docs commits pending new CI. Do not equate the prior owner's Footer PASS with new candidate PASS.
+- **BẠN CẦN TEST GÌ:** SOURCE-ONLY UNUSED DECLARATIONS — no visual change expected; GitHub build and full VI/EN/browser regression are primary gate. Owner need not repeat entire website QA; optional smoke of Home VI/EN Desktop 1440, Tablet 834, Mobile 390 and Footer only if CI fails or visual change appears.
+- PR #11 stays Draft/unmerged, PR #10 stays unmerged; Production main `cb4e92f` untouched. Last owner-PASS rollback: `bb82b0d`.
+
 ## Phase 2B implementation gate / next
 1. Confirm the small candidate CI and `tests/phase2b-services-convergence.test.mjs`: VI/EN single showcase, five slides, Bio-A canonical icons; full responsive CI including shared/frozen contracts. For owner: only focused new-candidate comparison on Other Services VI/EN at 390/834/1024/1440 and slider/click/scroll; do not redo accepted Phase 2 patch-by-patch.
 2. **Do not merge PR #10 or Phase 2B candidate automatically.** Preserve `ed7324c` as accepted rollback until the appropriate release gate.
