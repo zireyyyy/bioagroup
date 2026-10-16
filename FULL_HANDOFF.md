@@ -6,7 +6,7 @@
 - PR #10 `candidate/full-tablet-regression-phase2-20261014`, source `ed7324c016bd3e3954702d50da1b058042d7ad72`: **OWNER FULL TABLET VI/EN PASS / FROZEN**, CI `38682716633` SUCCESS. Draft, unmerged.
 - PR #11 `candidate/phase2b-source-convergence-20261015`: **ACTIVE PHASE 2B SOURCE-CONVERGENCE CANDIDATE**, based on PR #10, Draft/unmerged. Check live GitHub HEAD, Actions and Cloudflare Preview before reporting build/visual status. Never merge automatically.
 - Last verified Phase 2B build `052023b1a4e5f9c7cb60d80c064e974277b419ff`: CI `38844267133` SUCCESS. The two dead CSS constant deletions are technically verified; owner has not separately reported visual PASS for that deletion (no change expected).
-- Latest work **technical audit-only:** `tests/phase2b-cross-device-owner-audit.mjs` and CI gate; further commits may follow. Validate new CI before asserting PASS.
+- Latest work **technical audit/docs only:** VI/EN 36-case Chromium source-owner audit at `fcc5a82`, CI run `38845249584` **SUCCESS**; `docs/SOURCE_MAP.md` now has one Phase 2B source owner and responsive QA matrix (commit `39d657e`). New docs commits need CI confirmation. No runtime website patch in this step.
 
 ## Owner PASS/FROZEN
 - Full Tablet VI/EN at PR #10 accepted baseline; previous Desktop/Mobile approved components remain frozen.
@@ -19,6 +19,7 @@
 - Route owners: `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-services-refine.mjs`, `bioa-blog-refine.mjs`, `bioa-contacts-refine.mjs`. Exact mappings `docs/SOURCE_MAP.md`; source parity and breakpoints `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`.
 - Existing CI tests cover source owner contracts, Tablet VI/EN, Swiper arrows, Blog TOC, Contacts/404, first-paint, computed typography, Footer EN geometry and assets.
 - New Phase 2B **read-only 36-case structural owner audit**: Home/About/Cosmetics/Other Services/Blog/Contacts × VI/EN × 390/834/1440px. Checks document locale, Header/Footer, company locale, Footer v2, Home/shared stylesheet authority, six Cosmetics cards, retired DOM. It does not interact with backend/form and does not claim owner visual PASS. Store JSON `audit-artifacts/phase2b/cross-device-owner-matrix.json` on runner; check CI/artefact results.
+- **Current next task:** verify the Phase 2B source map CI, inspect source CSS cascade for concrete conflicts only, then prepare an explicit Phase 2B owner signoff/merge plan. No Phase 3 or production merge without owner authorization.
 - **Phase 2B closeout gate:** measured owner-map, cascade/breakpoint collisions checked with exact Merywood references, CI green and owner visual acceptance of actual affected areas; no blind site-wide CSS rewrite or transition to Phase 3 until those gates are satisfied.
 - Sanity Free is future only, NOT integrated; maintain D1/Sheets/Resend/Turnstile/host isolation.
 
