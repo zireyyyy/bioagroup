@@ -30,6 +30,11 @@ for(const lang of ["vi","en"]){
       lang+" service step uses the canonical artwork");
     assert.ok(icon.hasClass("bioa-why-icon-bioa"),lang+" step uses canonical class");
   });
+  const processIcon=$(".block-right-choice .client").eq(2).find(".client__icon img").first();
+  assert.equal(processIcon.attr("src"),"/assets/bioa-monogram-cream.svg",lang+" workflow monogram source");
+  assert.ok(processIcon.hasClass("bioa-why-icon-bioa"),lang+" workflow shares Home canonical class");
+  const serviceCss=$("#bioa-other-services-style").html()||"";
+  assert.match(serviceCss,/min-width:42px!important/,lang+" mobile artwork box parity");
   assert.equal($("#bioa-other-services-style").length,1,
     lang+" existing route-only CSS owner is unchanged");
   console.log("BIOA_PHASE2B_SERVICE_OWNER "+lang+" PASS");
