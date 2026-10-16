@@ -1277,72 +1277,6 @@ const patchB5Css = `
     line-height:1.15!important;
   }
 
-  /* Mobile We Produce cards explicitly generated from the mobile source images */
-  .bioa-produce-mobile-card{
-    position:relative!important;
-    display:block!important;
-    height:auto!important;
-    min-height:0!important;
-    margin:0 0 18px!important;
-    border-radius:24px!important;
-    overflow:hidden!important;
-    background:rgba(255,255,255,.16)!important;
-  }
-  .bioa-produce-mobile-media{
-    position:relative!important;
-    width:100%!important;
-    aspect-ratio:1.08/1!important;
-    min-height:0!important;
-    overflow:hidden!important;
-    border-radius:24px!important;
-  }
-  .bioa-produce-mobile-media img{
-    display:block!important;
-    width:100%!important;
-    height:100%!important;
-    object-fit:cover!important;
-  }
-  .bioa-produce-mobile-card:before{
-    content:""!important;
-    position:absolute!important;
-    z-index:1!important;
-    top:18%!important;
-    left:50%!important;
-    width:60%!important;
-    height:52%!important;
-    transform:translateX(-50%)!important;
-    background:var(--bioa-primary)!important;
-    opacity:.055!important;
-    pointer-events:none!important;
-    -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
-    mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
-  }
-  .bioa-produce-mobile-title{
-    position:absolute!important;
-    z-index:3!important;
-    top:18px!important;
-    left:18px!important;
-    margin:0!important;
-    max-width:75%!important;
-    color:#111!important;
-    font-size:23px!important;
-    font-weight:400;
-    line-height:1.08!important;
-  }
-  .bioa-produce-mobile-copy{
-    position:relative!important;
-    z-index:4!important;
-    margin:-58px 12px 12px!important;
-    padding:14px 15px!important;
-    border-radius:18px!important;
-    background:rgba(255,255,255,.95)!important;
-    color:#1e1e1e!important;
-    font-size:12.5px!important;
-    font-weight:400;
-    line-height:1.42!important;
-    box-sizing:border-box!important;
-  }
-
   /* Mobile footer: logo left, contact stack right on one row */
   .footer-top > .container > .footer-top__logo,
   .footer-top > .container > .footer-top__email,
@@ -4492,51 +4426,6 @@ function syncMobileHeader($,route,lang){
 
   const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;var d=n.querySelector('.bioa-mobile-nav-drop');function isOpen(){return n.classList.contains('open');}function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');document.documentElement.classList.toggle('bioa-mobile-nav-open',o);document.body.classList.toggle('bioa-mobile-nav-open',o);if(o)document.body.classList.remove('bioa-mobile-chrome-hidden');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('pointerdown',function(e){document.body.classList.remove('bioa-mobile-chrome-hidden');b.classList.add('bioa-menu-gesture-active');setTimeout(function(){b.classList.remove('bioa-menu-gesture-active');},360);},{passive:true});b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();document.body.classList.remove('bioa-mobile-chrome-hidden');set(!isOpen());});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});document.addEventListener('pointerdown',function(e){if(!isOpen())return;if(b.contains(e.target))return;if(d&&d.contains(e.target))return;set(false);},true);window.addEventListener('scroll',function(){if(isOpen())set(false);},{passive:true});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen()){set(false);b.focus();}});})();";
   $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
-}
-
-function refineMobileProduce($,lang){
-  const vi=lang==='vi';
-  const data=[
-    {
-      alt:'produce-1_mobile',
-      title:vi?'Thực phẩm bổ sung':'Supplements',
-      text:vi
-        ?'Danh mục thực phẩm bổ sung có thể phát triển theo công thức có sẵn hoặc công thức riêng, phù hợp định hướng thương hiệu.'
-        :'Supplement formats can be developed from ready formulas or custom formulas to match your brand direction.'
-    },
-    {
-      alt:'produce-2_mobile',
-      title:vi?'Mỹ phẩm':'Cosmetics',
-      text:vi
-        ?'Phát triển các dòng mỹ phẩm từ nghiên cứu công thức, lựa chọn nguyên liệu đến bao bì và hoàn thiện sản phẩm.'
-        :'Cosmetic products can be developed from formula research and ingredient selection through packaging and finished production.'
-    }
-  ];
-
-  data.forEach(d=>{
-    const img=$('img[alt*="'+d.alt+'"]').first();
-    if(!img.length)return;
-
-    let card=null;
-    img.parents().each((_,el)=>{
-      if(card)return;
-      const cls=$(el).attr('class')||'';
-      if(/item|card|produce/i.test(cls))card=$(el);
-    });
-    if(!card||!card.length)card=img.parent().parent();
-
-    card.addClass('bioa-produce-mobile-card');
-    card.find('.bioa-produce-mobile-title,.bioa-produce-mobile-copy').remove();
-
-    let media=img.parent();
-    if(media.is('picture'))media=media.parent();
-    media.addClass('bioa-produce-mobile-media');
-
-    card.append(
-      $('<h3 class="bioa-produce-mobile-title"></h3>').text(d.title),
-      $('<div class="bioa-produce-mobile-copy"></div>').text(d.text)
-    );
-  });
 }
 
 function buildMobileFooterContact($){
