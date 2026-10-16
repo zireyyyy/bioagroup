@@ -97,6 +97,8 @@ jobs:
         run: node tests/first-paint-browser.test.mjs
       - name: Audit Phase 2B cross-device VI/EN component owners
         run: node tests/phase2b-cross-device-owner-audit.mjs
+      - name: Collect Phase 2B CSS cascade boundary evidence
+        run: node tests/phase2b-css-cascade-boundaries.mjs
       - name: Audit actual computed typography across VI/EN routes
         run: node tests/typography-computed-audit.mjs
       - name: Upload typography computed evidence
