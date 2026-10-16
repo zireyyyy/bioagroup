@@ -9,7 +9,7 @@ const server=createServer(async(req,res)=>{
  const pathname=decodeURIComponent(new URL(req.url,"http://local").pathname);
  const file=resolve(root,"."+(pathname.endsWith("/")?pathname+"index.html":pathname));
  if(!file.startsWith(root+sep)){res.writeHead(403).end();return}
- try{res.writeHead(200,{"content-type":types[extname(file)]||"application/octet-stream"}).end(await readFile(file))}catch{res.writeHead(404).end("not found")}
+ try{const body=await readFile(file);res.writeHead(200,{"content-type":types[extname(file)]||"application/octet-stream"}).end(body)}catch{if(!res.headersSent)res.writeHead(404).end("not found");else res.end()}
 });
 await new Promise(done=>server.listen(0,"127.0.0.1",done));
 const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
