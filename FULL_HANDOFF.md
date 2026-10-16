@@ -1,42 +1,31 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-10-16. This is the single ACTIVE snapshot. Below the divider is historical archive, not an overriding status authority.
+**Date:** 2026-10-16. This is the one authoritative ACTIVE snapshot; historical material below the divider is archival only.
 
-## Authority and deployment
-- Repository: `zireyyyy/bioagroup`; Production `main` = `cb4e92f73c1ef800f7507db2330347664fc323d4`, unchanged and maintenance-protected.
-- PR #10 `candidate/full-tablet-regression-phase2-20261014`, source `ed7324c016bd3e3954702d50da1b058042d7ad72`: **OWNER FULL TABLET VI/EN PASS / FROZEN**, CI `38682716633` SUCCESS. Draft, unmerged.
-- PR #11 `candidate/phase2b-source-convergence-20261015`: **ACTIVE PHASE 2B SOURCE-CONVERGENCE CANDIDATE**, based on PR #10, Draft/unmerged. Check live GitHub HEAD, Actions and Cloudflare Preview before reporting build/visual status. Never merge automatically.
-- Last verified Phase 2B build `052023b1a4e5f9c7cb60d80c064e974277b419ff`: CI `38844267133` SUCCESS. The two dead CSS constant deletions are technically verified; owner has not separately reported visual PASS for that deletion (no change expected).
-- Latest work **technical audit/docs only:** VI/EN 36-case Chromium source-owner audit at `fcc5a82`, CI run `38845249584` **SUCCESS**; `docs/SOURCE_MAP.md` now has one Phase 2B source owner and responsive QA matrix (commit `39d657e`). New docs commits need CI confirmation. No runtime website patch in this step.
+## GitHub / deployment status
+- Production `main`: `cb4e92f73c1ef800f7507db2330347664fc323d4`, unchanged, maintenance/privacy protections stay enabled.
+- PR #10: `candidate/full-tablet-regression-phase2-20261014`, `ed7324c016bd3e3954702d50da1b058042d7ad72`, owner **FULL TABLET VI/EN PASS / FROZEN**, CI `38682716633` SUCCESS; Draft/unmerged.
+- PR #11: `candidate/phase2b-source-convergence-20261015` against PR #10, **41 commits through `537c9388bcb0b5c092681c3eb567c7e4125e180e`** (later documentation-only commits follow). Candidate is Draft/unmerged. CI run `38849818878` SUCCESS and Cloudflare Pages deployment success for exact `537c938`, Preview `https://7bd62592.bioagroup.pages.dev` (branch Preview `https://candidate-phase2b-source-con.bioagroup.pages.dev`). Last verified code build `537c938`; check GitHub HEAD/checks/Preview after subsequent docs commits, do not claim their CI until confirmed.
+- Never merge PR #10 or PR #11, open Production, disable maintenance gate, or start Phase 3 without explicit authorization. Confirm last available checks/Cloudflare Preview and owner signoff separately.
 
-## Owner PASS/FROZEN
-- Full Tablet VI/EN at PR #10 accepted baseline; previous Desktop/Mobile approved components remain frozen.
-- Phase 2B owner-accepted iterations: Other Services dead grid data; Cosmetics Why Choose vs 6-card categories and icons; About unused paragraph helper; Home Mobile We Produce legacy renderer; Mobile Footer v2 legacy cleanup; Desktop EN Footer title wrap. User explicitly accepted the affected candidate visuals.
-- Shared header/nav, logos, Footer VI/EN, Cookie, Chat, Zalo canonical PNG, CTA, Hero stats/typography, Blog TOC, responsive Merywood layout/motion and forms/API/maintenance access must remain untouched unless expressly reopened.
-- Phase 2B source changes remove only proven unused JS/CSS declarations, never alter canonical render path without source parity and owner approval.
+## Owner acceptance and immutable scope
+- Owner explicitly accepted Phase 2B scoped visual changes: Other Services cleanup, Cosmetics six-category and Why Choose owner, About source-only cleanup, Home Mobile Produce legacy cleanup, Footer Mobile v2 legacy cleanup, and Desktop EN Footer title-wrap fix. Full Tablet VI/EN PASS is already canonical via PR #10.
+- Phase 2B later changes (`patchB5Css`/`patchB11Css` dead CSS, extra CI guards, 36-case cross-device browser audit, 32-case breakpoint cascade audit, source-owner map) have technical CI SUCCESS. **Owner has not explicitly given final Phase 2B overall signoff.** Technical CI and Cloudflare Preview success do not equal broad owner visual PASS.
+- FROZEN: original Merywood source layout/DOM/motion across Desktop/Tablet/Mobile; canonical shared Header, Footer, Cookie, Chat, Zalo/WhatsApp, CTAs, Hero typography, Blog TOC, Cosmetics icons and service slider; VI/EN independent. No new CSS overrides, wholesale component rewrites, or breaking approval.
 
-## Source ownership and testing
-- Global shared shell: `bioa-home-refine.mjs` shared owner, `bioa-source-components.mjs` original desktop-fluid Tablet parity; canonical Home vs inner-page stylesheet loading differs intentionally.
-- Route owners: `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-services-refine.mjs`, `bioa-blog-refine.mjs`, `bioa-contacts-refine.mjs`. Exact mappings `docs/SOURCE_MAP.md`; source parity and breakpoints `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`.
-- Existing CI tests cover source owner contracts, Tablet VI/EN, Swiper arrows, Blog TOC, Contacts/404, first-paint, computed typography, Footer EN geometry and assets.
-- New Phase 2B **read-only 36-case structural owner audit**: Home/About/Cosmetics/Other Services/Blog/Contacts × VI/EN × 390/834/1440px. Checks document locale, Header/Footer, company locale, Footer v2, Home/shared stylesheet authority, six Cosmetics cards, retired DOM. It does not interact with backend/form and does not claim owner visual PASS. Store JSON `audit-artifacts/phase2b/cross-device-owner-matrix.json` on runner; check CI/artefact results.
-- **Current next task:** verify the Phase 2B source map CI, inspect source CSS cascade for concrete conflicts only, then prepare an explicit Phase 2B owner signoff/merge plan. No Phase 3 or production merge without owner authorization.
-- **Phase 2B closeout gate:** measured owner-map, cascade/breakpoint collisions checked with exact Merywood references, CI green and owner visual acceptance of actual affected areas; no blind site-wide CSS rewrite or transition to Phase 3 until those gates are satisfied.
-- Sanity Free is future only, NOT integrated; maintain D1/Sheets/Resend/Turnstile/host isolation.
+## Verified Phase 2B audit scope and findings
+- GitHub comparison `ed7324c...537c938`: 41 commits, source edits only in `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-home-refine.mjs`, `bioa-services-refine.mjs`, `bioa-transform.mjs`, plus updated tests/CI/docs. `build.mjs`, cloud middleware, lead API and Sanity-not-integrated are unchanged.
+- QA: 36 structural Chromium probes (6 VI/EN route families × 390/834/1440) and 32 cascade probes (Home/Other Services VI/EN × 390/768/769/834/1024/1200/1201/1440); full automated workflow also checks Merywood source Tablet/desktop geometry, Blog TOC, Swiper, Contacts/404, typography, first paint, Footer EN and approved assets. All passed in CI `38849818878`.
+- Computed CSS behavior: exactly one Home/shared style owner per route; Footer title `white-space=normal` at <=1200 both locales, `nowrap` at >=1201 VI and `normal` at >=1201 EN; Tablet 769–1200 nav/Footer font-size layers have differing declarations but no verified bug. **Do not delete active CSS based on overlap alone.** Read `docs/SOURCE_MAP.md` Phase 2B owner matrix and cascade evidence. Source comparison remains Merywood-first.
+- Source snapshot owners: `bioa-home-refine.mjs` shared shell/Home; `bioa-source-components.mjs` Tablet fluid breakpoint; `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-services-refine.mjs`, `bioa-blog-refine.mjs`, `bioa-contacts-refine.mjs`, `bioa-404.mjs` for their respective routes. Permanent rule files `START_HERE.md`, `AGENTS.md`, `docs/WORKFLOW.md`, `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`, `NEW_CHAT_CONTINUATION_PROMPT.md` remain stable.
 
-## Phase 2B CSS cascade boundary audit — 2026-10-16
-- Prior owner map candidate `29456c0` has full CI SUCCESS at run `38847021847`. No site runtime changes.
-- Added read-only Chromium test `tests/phase2b-css-cascade-boundaries.mjs` on 4 routes (Home/Other Services VI/EN) × 8 widths 390/768/769/834/1024/1200/1201/1440 (32 cases). It captures actual computed values, matching CSS rules and divergent declarations at existing Merywood 768/769 and approved Footer 1200/1201 breakpoints; overlap is **diagnostic, never automatic evidence of a bug**. CI step added, artifacts kept within runner audit output. No CSS/JS site patch.
-- CI for this new test is pending. Inspect evidence and compare with original Merywood + user-approved BIO-A deviations before authorizing any cascade cleanup.
-- Scope/QA: TEST/CI/DOCS ONLY. No owner website retest needed. All PASS/FROZEN preserved; PR #10 and Production untouched, PR #11 Draft.
-
-## Phase 2B cascade outcome / frozen contracts — 2026-10-16
-- Actual CI `38847560941` at `7d7452c` **SUCCESS**; all 32 CSS cascade probes passed. Active inline style owner is `bioa-home-refine` only for Home, `bioa-shared-shell` on Other Services. The Mobile→fluid breakpoint 768/769 and Tablet→Desktop breakpoint 1200/1201 behaved per approved contract in Home and Other Services VI/EN.
-- Evidence from computed styles: Footer company `white-space` remains `normal` at <=1200 for both locales, `nowrap` for VI at >=1201, `normal` for EN at >=1201. Tablet 769–1200 reports approved competing `font-size` declarations (Nav and Footer company) but no confirmed incorrect output. Do **not** remove any active CSS without measured regression and approved exception.
-- Test-only follow-up `ed4c613`: `tests/phase2b-css-cascade-boundaries.mjs` now asserts this frozen VI/EN wrap contract and fluid nav presence at all eight probes. New CI pending. **No website runtime modification.**
-- Next action: evaluate new CI, then request explicit owner closeout of Phase 2B before a merge/Phase 3. Do not merge automatically; PR #10 and #11 remain Draft and Production main remains maintenance-gated.
+## Phase 2B closeout decision gate
+1. New documentation-only commits: verify last GitHub HEAD, Actions and Preview; no website retest needed for document changes.
+2. **Pending user decision:** explicit `PHASE 2B FULL PASS` or exact scoped regressions on PR #11 Preview; if FAIL, patch only the proven owner and rerun CI/targeted QA. Do not conflate the previously confirmed individual PASS items with blanket Phase 2B acceptance.
+3. Even after Phase 2B PASS, PR #10 and #11 merge/Production promotion require **separate owner authorization**; Phase 3 starts only on explicit instruction and from the approved checkpoint. Keep maintenance and security isolation in force.
+4. Rollback: owner-approved scoped checkpoint `bb82b0db8b75c555598f20ffec522729fca7b91e`; latest code validated candidate `537c9388bcb0b5c092681c3eb567c7e4125e180e`; PR #10 baseline `ed7324c`.
 
 ## BẠN CẦN TEST GÌ?
-**Current change is TEST/CI/DOCS only** (no website runtime edits). Owner does not need to retest the website unless CI finds a concrete regression. If new CI fails, fix its true root cause rather than weakening assertions or altering PASS UI. Last owner-PASS rollback: `bb82b0d` (Footer cleanup); last green technical baseline `052023b`. No Production modifications.
+**DOCS-ONLY** in this closeout change, no site runtime/code change: no repeat website test required. To close Phase 2B, review the deployed PR #11 Preview once using the existing owner-PASS comparisons and report `PHASE 2B FULL PASS` or specific route/viewport/locale FAIL. Keep Production untouched.
 
 
 ---
