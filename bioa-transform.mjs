@@ -12,6 +12,21 @@ const css = `
 #get-a-quote .cf-modal{background:var(--bioa)!important}
 #get-a-quote .cf-modal__button{width:100%!important;min-height:56px!important;border:0!important;border-radius:14px!important;background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;box-shadow:none!important}
 #get-a-quote .cf-modal__button:hover,#get-a-quote .cf-modal__button:focus{background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;transform:none!important}
+/* Scoped Tablet readability: preserve Merywood modal box, fields and submit
+   handler. BIO-A's longer localized placeholders/consent must not inherit tiny
+   fluid viewport text from the original desktop layout. */
+@media(min-width:769px) and (max-width:1200px){
+  #get-a-quote .cf-modal__title,
+  #get-a-quote .modal__title,
+  #get-a-quote .cf-modal__heading{font-size:clamp(18px,1.6vw,22px)!important;line-height:1.35!important}
+  #get-a-quote .wpcf7-form input:not([type="checkbox"]):not([type="hidden"]),
+  #get-a-quote #ddType .dd-label,
+  #get-a-quote .cf-modal__button{font-size:13px!important}
+  #get-a-quote .wpcf7-form input::placeholder{font-size:13px!important}
+  #get-a-quote .wpcf7-form .wpcf7-list-item-label,
+  #get-a-quote .wpcf7-form .wpcf7-acceptance,
+  #get-a-quote .wpcf7-form .wpcf7-acceptance a{font-size:12px!important;line-height:1.5!important}
+}
 /* Keep Merywood checkboxes and scroll only the extended Bio-A options list. */
 #get-a-quote #ddType .dd-menu{
   max-height:min(242px,38dvh)!important;
