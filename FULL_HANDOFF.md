@@ -45,6 +45,13 @@
 - **BẠN CẦN TEST GÌ:** after green CI + Preview, Home VI/EN Mobile 390: approved We Produce image/cards, text, watermark, transitions and Footer v2 remain the same. Quick Tablet 834 and Desktop 1440 check only for regressions if needed. Never reopen owner-PASS Footer EN.
 - Candidate branch `candidate/phase2b-source-convergence-20261015`, PR #11 Draft, do not merge to `main`. Rollback of latest owner-protected stage `c92a6fc`; revert only this narrow scope if a new defect is observed.
 
+## Phase 2B Footer v1→v2 owner convergence — 2026-10-16
+- **Owner confirmed Phase 2B Home Mobile We Produce cleanup at `a9a66e44fdd2399f7cdfbc3f4594cd4c812f002b` PASS / FROZEN.** CI `38840216027` SUCCESS. Preserve Home VI/EN Mobile Produce, Desktop, Tablet and all previously approved components.
+- New limited source cleanup: `bioa-home-refine.mjs` contained uncalled `buildMobileFooterContact()` (old mobile Footer v1) and CSS exclusively for `.bioa-footer-mobile-head/logo/contact/email/socials`. Remove old function, old selectors, and old selector arms inside Zalo/Telegram rules. Preserve Merywood mobile hiding rules, working `buildMobileFooterV2()`, `addFooterCompanyInfo()`, approved EN Desktop language-based wrap, all source Footer structure and responsive treatment unchanged. No runtime visual change intended.
+- Added `tests/phase2b-footer-owner-convergence.test.mjs` and CI step to guard VI/EN Footer v2, company title and removal of old source. Candidate is **PENDING CI / owner QA**, not yet visually PASS.
+- **BẠN CẦN TEST GÌ:** after green CI/Cloudflare Preview, inspect Footer VI/EN Mobile 390: v2 logo, channels, Zalo original image, alignment and company info; quick Desktop EN 1440 (name wraps within first column) and Tablet 834. Do not retest unrelated PASS components.
+- PR #11 remains Draft; PR #10 and Production `main` are unchanged. Latest owner-PASS rollback `a9a66e4`.
+
 ## Phase 2B implementation gate / next
 1. Confirm the small candidate CI and `tests/phase2b-services-convergence.test.mjs`: VI/EN single showcase, five slides, Bio-A canonical icons; full responsive CI including shared/frozen contracts. For owner: only focused new-candidate comparison on Other Services VI/EN at 390/834/1024/1440 and slider/click/scroll; do not redo accepted Phase 2 patch-by-patch.
 2. **Do not merge PR #10 or Phase 2B candidate automatically.** Preserve `ed7324c` as accepted rollback until the appropriate release gate.
