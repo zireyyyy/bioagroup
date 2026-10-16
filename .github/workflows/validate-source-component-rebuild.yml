@@ -53,6 +53,8 @@ jobs:
         run: node tests/phase2b-home-mobile-convergence.test.mjs
       - name: Verify Phase 2B canonical Footer owner
         run: node tests/phase2b-footer-owner-convergence.test.mjs
+      - name: Verify Phase 2B retired Home CSS constants
+        run: node tests/phase2b-home-dead-css.test.mjs
       - name: Verify Cookie i18n and font readiness guard
         run: node tests/cookie-consent-stability-source.test.mjs
       - name: Verify typography source weight ownership
