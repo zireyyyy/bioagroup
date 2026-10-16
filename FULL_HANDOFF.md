@@ -1,28 +1,48 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Snapshot date:** 2026-10-15 (post-owner continue request). **Source of truth:** verified GitHub repo `zireyyyy/bioagroup`, live branch/PR and latest explicit owner instruction. **THIS SINGLE BLOCK IS THE ONLY ACTIVE STATUS**. Historical dated entries below are references, not authority.
+**Date:** 2026-10-16. This is the one authoritative ACTIVE snapshot; historical material below the divider is archival only.
 
-## Production / candidate
-- **Production `main`:** `cb4e92f73c1ef800f7507db2330347664fc323d4` (PR #9 merged; site remains private/maintenance under existing Cloudflare policy).
-- **Candidate:** PR #10 `candidate/full-tablet-regression-phase2-20261014`. Code at `cecefe65bb881d6a5f9f0b92b41353c6a6f62308` had CI SUCCESS (`38677337859`); later docs-only CMS contract and handoff improvements added. **Verify live PR HEAD and latest CI before future code changes.** PR remains OPEN/DRAFT/UNMERGED; do NOT treat candidate as production.
-- **This update:** doc-only final Tablet exit-gate verification and refreshed exact-commit owner QA link. No website code change. No app UI, Merywood source mechanics, routes, lead/backend or deployment behavior changed.
+## GitHub / deployment status
+- Production `main`: `cb4e92f73c1ef800f7507db2330347664fc323d4`, unchanged, maintenance/privacy protections stay enabled.
+- PR #10: `candidate/full-tablet-regression-phase2-20261014`, `ed7324c016bd3e3954702d50da1b058042d7ad72`, owner **FULL TABLET VI/EN PASS / FROZEN**, CI `38682716633` SUCCESS; Draft/unmerged.
+- PR #11: `candidate/phase2b-source-convergence-20261015` against PR #10, **41 commits through `537c9388bcb0b5c092681c3eb567c7e4125e180e`** (later documentation-only commits follow). Candidate is Draft/unmerged. CI run `38849818878` SUCCESS and Cloudflare Pages deployment success for exact `537c938`, Preview `https://7bd62592.bioagroup.pages.dev` (branch Preview `https://candidate-phase2b-source-con.bioagroup.pages.dev`). Last verified code build `537c938`; check GitHub HEAD/checks/Preview after subsequent docs commits, do not claim their CI until confirmed.
+- Never merge PR #10 or PR #11, open Production, disable maintenance gate, or start Phase 3 without explicit authorization. Confirm last available checks/Cloudflare Preview and owner signoff separately.
 
-## Owner PASS/FROZEN
-- Latest owner explicitly says **PASS** for the final Home-canonical Bio-A icon reuse on Other Services and improved Blog detail TOC CTA label. Previous owner PASS: Blog detail Sticky TOC fix and preserved article layout, Cookie modal heading/3 actions Manrope 500, major page title 400 (About authority), shared Header/nav and commerce CTA 550, original Merywood WhatsApp icon and Zalo artwork, Home Hero Stats numbers/labels 300/400, approved Footer, approved 404 visual.
-- PASS is **component/surface-specific**; do not silently call the entire website “FULL TABLET PASS” without the owner's explicit overall confirmation.
-- Canonical reuse across equivalent components is mandatory: `AGENTS.md §7A`; independent VI/EN and Desktop/Tablet/Mobile QA: `AGENTS.md §5`; safe CMS content model: `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md`.
-- Keep all owner-approved Merywood DOM/CSS/JS, animations and breakpoints unless explicitly reopened.
+## Owner acceptance and immutable scope
+- Owner explicitly accepted Phase 2B scoped visual changes: Other Services cleanup, Cosmetics six-category and Why Choose owner, About source-only cleanup, Home Mobile Produce legacy cleanup, Footer Mobile v2 legacy cleanup, and Desktop EN Footer title-wrap fix. Full Tablet VI/EN PASS is already canonical via PR #10.
+- Phase 2B later changes (`patchB5Css`/`patchB11Css` dead CSS, extra CI guards, 36-case cross-device browser audit, 32-case breakpoint cascade audit, source-owner map) have technical CI SUCCESS. **Owner has not explicitly given final Phase 2B overall signoff.** Technical CI and Cloudflare Preview success do not equal broad owner visual PASS.
+- FROZEN: original Merywood source layout/DOM/motion across Desktop/Tablet/Mobile; canonical shared Header, Footer, Cookie, Chat, Zalo/WhatsApp, CTAs, Hero typography, Blog TOC, Cosmetics icons and service slider; VI/EN independent. No new CSS overrides, wholesale component rewrites, or breaking approval.
 
-## Active stage / pending / next
-1. **Awaiting explicit owner FULL TABLET PASS on PR #10**, or one route-specific unresolved defect. Owner accepted recent individual patches, but did NOT yet declare entire Tablet complete. Updated `docs/FULL_TABLET_OWNER_QA_CHECKLIST_20261014.md` for source commit `39d79b4` CI run `38681924922` SUCCESS, same-commit Cloudflare deploy Preview `https://e1dda8a2.bioagroup.pages.dev`. Docs commits after source SHA have no site UI edits. Obtain whole-Tablet approval without reopening accepted components; no Phase 2B cleanup until then.
-2. On explicit FULL TABLET PASS, enter mandatory **Phase 2B** cross-device source convergence audit, correcting only measured duplicate/dead/conflicting styles and logic within a modified component, with before/after Desktop/Tablet/Mobile + VI/EN parity. No mass refactor.
-3. Only afterward progress through approved SEO/hardening/release gates. **Sanity CMS is not integrated**; future hookup requires separate owner instruction, schemas, staging and security.
-4. Retain known-good **production main `cb4e92f`** as rollback for candidate UI. For per-component rollback use verified Git commit/diff, not historical rejected candidates or an assumed ZIP.
+## Verified Phase 2B audit scope and findings
+- GitHub comparison `ed7324c...537c938`: 41 commits, source edits only in `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-home-refine.mjs`, `bioa-services-refine.mjs`, `bioa-transform.mjs`, plus updated tests/CI/docs. `build.mjs`, cloud middleware, lead API and Sanity-not-integrated are unchanged.
+- QA: 36 structural Chromium probes (6 VI/EN route families × 390/834/1440) and 32 cascade probes (Home/Other Services VI/EN × 390/768/769/834/1024/1200/1201/1440); full automated workflow also checks Merywood source Tablet/desktop geometry, Blog TOC, Swiper, Contacts/404, typography, first paint, Footer EN and approved assets. All passed in CI `38849818878`.
+- Computed CSS behavior: exactly one Home/shared style owner per route; Footer title `white-space=normal` at <=1200 both locales, `nowrap` at >=1201 VI and `normal` at >=1201 EN; Tablet 769–1200 nav/Footer font-size layers have differing declarations but no verified bug. **Do not delete active CSS based on overlap alone.** Read `docs/SOURCE_MAP.md` Phase 2B owner matrix and cascade evidence. Source comparison remains Merywood-first.
+- Source snapshot owners: `bioa-home-refine.mjs` shared shell/Home; `bioa-source-components.mjs` Tablet fluid breakpoint; `bioa-about-refine.mjs`, `bioa-cosmetics-refine.mjs`, `bioa-services-refine.mjs`, `bioa-blog-refine.mjs`, `bioa-contacts-refine.mjs`, `bioa-404.mjs` for their respective routes. Permanent rule files `START_HERE.md`, `AGENTS.md`, `docs/WORKFLOW.md`, `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`, `NEW_CHAT_CONTINUATION_PROMPT.md` remain stable.
 
-## QA / handoff integrity
-- Technical tests and Cloudflare Preview are distinct from owner visual PASS; stale reference URLs and dates in historic notes must not override current verified CI/deploy.
-- No current Production change; GitHub CI for code SHA `39d79b4` SUCCESS, Cloudflare deploy reported SUCCESS. **No new website-runtime test required for this documentation-only patch**. Confirm updated markdown exists and current branch matches expected HEAD.
-- Historical release/incident notes remain below intact for traceability; do not append another current-state section. **Replace only this snapshot in place** after meaningful future changes.
-- Current handoff architecture stays BIO-A-specific: `START_HERE.md` (stable entry), `NEW_CHAT_CONTINUATION_PROMPT.md` (stable one prompt), `AGENTS.md` (permanent rules), `docs/WORKFLOW.md` (execution), `docs/SOURCE_MAP.md` (component owners), `FULL_HANDOFF.md` (this active snapshot + historical archive). No mandatory new seven-file folder structure or per-commit ZIP.
+## Current scoped owner feedback / PATCH 2B-R12 — 2026-10-16
+- **Do not declare Phase 2B FULL PASS.** Owner reports minor small typography on Tablet (notably consultation popup screenshot) and Home-canonical Bio-A monogram size mismatch on /dich-vu-khac/ mobile service card and process slot. All other surfaces owner PASS/FROZEN.
+- GitHub connector verified in this exact chat: `mcp__GitHub__get_repo` returned permissions `push=true`, `admin=true`; PR #11 is current write branch. **Permanent workflow:** discover deferred `mcp__GitHub__*` tools through `functions.exec`/ALL_TOOLS and check live get_repo + get_pr_info *before* claiming no GitHub permission. The plain container `git clone` fails DNS and does NOT imply connector push is unavailable. Never repeat false no-access report.
+- Implementation: keep `/assets/bioa-monogram-cream.svg` and class `bioa-why-icon-bioa` as Home authority. Services route CSS restores 42px mobile icon box for the two Bio-A card/process artwork slots, 22x27 inner icon unchanged. Shared Home canonical icon's 769–1200px text/mark rule no longer shrinks below 22x27. Tablet consultation modal typography is scoped to `#get-a-quote` in `bioa-transform.mjs`: header 18–22px, inputs/dropdown/Send 13px, consent 12px, no modal geometry or lead handler change. VI/EN test covers process and service icon canonical image/class/box. No change to Home, Footer, contacts logic, leads security or layout.
+- Status: candidate patch pushed, CI/Preview and owner targeted visual acceptance PENDING. Baseline before fix `b09d9fd`, known successful CI `38851378613`. PR #10 and Production main unchanged.
+- **BẠN CẦN TEST GÌ:** Tablet 834/1024 VI/EN open consultation modal (do not submit) and check text readable, checkbox/button fit, no clipping; Mobile 390 VI/EN `/dich-vu-khac/` five service cards and the third workflow Bio-A icon should have same mark/box proportion as Home canonical accepted 04; Desktop 1440 smoke only if new CI regression. Send screenshot+viewport+route for FAIL.
+
+## Active scoped tablet typography + Bio-A icon owner convergence (2026-10-16)
+- Owner shows VI/EN Tablet text inconsistent sitewide and Bio-A monogram on /dich-vu-khac/ mis-sized versus the Home PASS icon; other surfaces remain PASS/FROZEN. **Do not mark Phase 2B FULL PASS.**
+- GitHub connected and push=true, PR #11 candidate is the only write branch; Production main and PR #10 remain untouched.
+- Runtime measurement from `tests/phase2b-tablet-readability-inventory.mjs` CI `38863959381`: 24 VI/EN route-width cases for Home/About/Cosmetics/Other Services/Blog/Contacts at 834/1024. Source-proportional paragraph fonts computed 6.95px at 834 and 8.53px at 1024 in several content blocks. Home canonical monogram measured 13x13px inside 23.9x23.9px frame at 834, 16x16 in 29.3x29.3 at 1024. Prior forced 22x27px on Tablet overflowed this slot.
+- Fix: in `bioa-home-refine.mjs` canonical `patchWhyChooseIconCss`, Bio-A-only icon at 769–1200 uses source 1.5625vw square artwork; one mobile shared Home icon frame (42px) for service carousel/process Bio-A slots. Removed superseded route-specific icon rules from `bioa-services-refine.mjs`. Same existing asset `/assets/bioa-monogram-cream.svg`, same `bioa-why-icon-bioa` class; do not recreate/swap Home-approved artwork or affect unrelated workflow Merywood icons.
+- Tablet body typography: `bioa-source-components.mjs` canonical 769–1200 owner now applies a measured 12px floor only to named content-copy slots (service slides, process descriptions, reviews, Why Choose paragraphs, format description) without resizing Header/Footer, headings, geometry or other PASS styles. Modal source `bioa-transform.mjs` retains earlier scoped 18px title, 13px field text, 12px consent.
+- No bulk transform/scale. Current candidate after code/test commits **needs new CI, Preview and owner scoped QA**. Last older successful candidate was `baddb8e`. Preserve direct source helper contracts; do not add duplicate route CSS.
+- BẠN CẦN TEST GÌ?: at Tablet 834/1024 VI/EN Home/Cosmetics/Other Services, review service process/body text, reviews, small copy and real icon bounds (no overflow). At Mobile 390 VI/EN, inspect Services slider icon and Process step 03 vs Home icon 04. At Desktop 1440 smoke only for source regression; no other PASS blocks to reopen. No lead form submission.
+
+## Phase 2B closeout decision gate
+1. New documentation-only commits: verify last GitHub HEAD, Actions and Preview; no website retest needed for document changes.
+2. **Pending user decision:** explicit `PHASE 2B FULL PASS` or exact scoped regressions on PR #11 Preview; if FAIL, patch only the proven owner and rerun CI/targeted QA. Do not conflate the previously confirmed individual PASS items with blanket Phase 2B acceptance.
+3. Even after Phase 2B PASS, PR #10 and #11 merge/Production promotion require **separate owner authorization**; Phase 3 starts only on explicit instruction and from the approved checkpoint. Keep maintenance and security isolation in force.
+4. Rollback: owner-approved scoped checkpoint `bb82b0db8b75c555598f20ffec522729fca7b91e`; latest code validated candidate `537c9388bcb0b5c092681c3eb567c7e4125e180e`; PR #10 baseline `ed7324c`.
+
+## BẠN CẦN TEST GÌ?
+**DOCS-ONLY** in this closeout change, no site runtime/code change: no repeat website test required. To close Phase 2B, review the deployed PR #11 Preview once using the existing owner-PASS comparisons and report `PHASE 2B FULL PASS` or specific route/viewport/locale FAIL. Keep Production untouched.
+
 
 ---
 

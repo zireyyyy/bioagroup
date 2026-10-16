@@ -30,7 +30,20 @@ try{
   try{
    const res=await page.goto(origin+route,{waitUntil:'domcontentloaded',timeout:30000});
    assert.equal(res?.status(),200,'Source route loads '+route);
-   await page.waitForTimeout(900);
+   // A fixed 900ms from DOMContentLoaded raced Merywood's external Swiper
+   // initialization on some Chromium/CI runs. Do not click an inert arrow.
+   // Wait for an actually usable source slider; timeout remains a real FAIL.
+   await page.waitForFunction(()=>{
+     return [...document.querySelectorAll('.swiper')].some(el=>{
+       const sw=el.swiper;
+       if(!sw||sw.destroyed||!sw.initialized||el.querySelectorAll('.swiper-slide').length<2)return false;
+       const section=el.closest('section')||el.parentElement;
+       return [...section.querySelectorAll('.swiper-button_right,.swiper-button-next')].some(btn=>{
+         const r=btn.getBoundingClientRect(),style=getComputedStyle(btn);
+         return r.width>0&&r.height>0&&style.display!=='none'&&style.visibility!=='hidden'&&!btn.classList.contains('swiper-button-disabled');
+       });
+     });
+   },null,{timeout:12000,polling:100});
    const snap=await page.evaluate(()=>{
     const slides=[...document.querySelectorAll('.swiper')].map((el,i)=>{
       const sw=el.swiper;
@@ -52,7 +65,8 @@ try{
    const clickable=await page.evaluate(()=>{
     const swiper=[...document.querySelectorAll('.swiper')].find(el=>{
       const sec=el.closest('section')||el.parentElement;
-      return el.querySelectorAll('.swiper-slide').length>=2&&
+      return !!el.swiper&&el.swiper.initialized&&!el.swiper.destroyed&&
+        el.querySelectorAll('.swiper-slide').length>=2&&
         [...sec.querySelectorAll('.swiper-button_right,.swiper-button-next')].some(btn=>{
           const r=btn.getBoundingClientRect(),st=getComputedStyle(btn);
           return r.width>0&&r.height>0&&st.display!=='none'&&st.visibility!=='hidden'&&!btn.classList.contains('swiper-button-disabled');

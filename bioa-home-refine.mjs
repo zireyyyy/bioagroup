@@ -1205,232 +1205,7 @@ const patchB4Css = `
 `;
 
 
-const patchB5Css = `
-/* HOME Patch B5 — final visual tightening after B4 review */
 
-/* Desktop nav: one step smaller than Patch A */
-
-/* Hero statistics: smaller, lighter, more editorial like the Merywood source */
-.block-title .info.desctop{
-  width:clamp(360px,21vw,395px)!important;
-  min-width:360px!important;
-  max-width:395px!important;
-  gap:10px!important;
-}
-.block-title .info .item{
-  min-height:64px!important;
-  padding:9px 16px!important;
-  grid-template-columns:minmax(175px,1.12fr) minmax(120px,.88fr)!important;
-  column-gap:13px!important;
-  border-radius:14px!important;
-}
-.block-title .info .item__number,
-.block-title .info .item:nth-child(3) .item__number,
-.block-title .info .item:nth-child(4) .item__number,
-.block-title .info .item:nth-child(5) .item__number{
-  font-size:27px!important;
-  font-weight:300;
-  line-height:1!important;
-  letter-spacing:-.02em!important;
-}
-.block-title .info .item__text{
-  font-size:13px!important;
-  font-weight:400;
-  line-height:1.16!important;
-}
-
-/* Desktop footer social sizing: Zalo wordmark needs a wider hit area */
-.footer-top__socials a[aria-label="Zalo"]{
-  width:48px!important;
-  min-width:48px!important;
-}
-.footer-top__socials a[aria-label="Zalo"] svg{
-  width:31px!important;
-  height:22px!important;
-  max-width:31px!important;
-}
-
-/* Mobile-only cloned footer contact header */
-.bioa-footer-mobile-head{display:none!important}
-
-
-@media(max-width:768px){
-  /* keep mobile header/menu exactly as PASS */
-
-  /* mobile hero stats use the same lighter visual language */
-  .block-title-continue .info .item,
-  .block-title-mobile .info .item{
-    min-height:60px!important;
-    padding:8px 12px!important;
-    border-radius:13px!important;
-  }
-  .block-title-continue .info .item__number,
-  .block-title-mobile .info .item__number{
-    font-size:24px!important;
-    font-weight:300;
-    line-height:1!important;
-  }
-  .block-title-continue .info .item__text,
-  .block-title-mobile .info .item__text{
-    font-size:11.5px!important;
-    font-weight:400;
-    line-height:1.15!important;
-  }
-
-  /* Mobile We Produce cards explicitly generated from the mobile source images */
-  .bioa-produce-mobile-card{
-    position:relative!important;
-    display:block!important;
-    height:auto!important;
-    min-height:0!important;
-    margin:0 0 18px!important;
-    border-radius:24px!important;
-    overflow:hidden!important;
-    background:rgba(255,255,255,.16)!important;
-  }
-  .bioa-produce-mobile-media{
-    position:relative!important;
-    width:100%!important;
-    aspect-ratio:1.08/1!important;
-    min-height:0!important;
-    overflow:hidden!important;
-    border-radius:24px!important;
-  }
-  .bioa-produce-mobile-media img{
-    display:block!important;
-    width:100%!important;
-    height:100%!important;
-    object-fit:cover!important;
-  }
-  .bioa-produce-mobile-card:before{
-    content:""!important;
-    position:absolute!important;
-    z-index:1!important;
-    top:18%!important;
-    left:50%!important;
-    width:60%!important;
-    height:52%!important;
-    transform:translateX(-50%)!important;
-    background:var(--bioa-primary)!important;
-    opacity:.055!important;
-    pointer-events:none!important;
-    -webkit-mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
-    mask:url("/assets/bioa-monogram.svg") no-repeat center/contain!important;
-  }
-  .bioa-produce-mobile-title{
-    position:absolute!important;
-    z-index:3!important;
-    top:18px!important;
-    left:18px!important;
-    margin:0!important;
-    max-width:75%!important;
-    color:#111!important;
-    font-size:23px!important;
-    font-weight:400;
-    line-height:1.08!important;
-  }
-  .bioa-produce-mobile-copy{
-    position:relative!important;
-    z-index:4!important;
-    margin:-58px 12px 12px!important;
-    padding:14px 15px!important;
-    border-radius:18px!important;
-    background:rgba(255,255,255,.95)!important;
-    color:#1e1e1e!important;
-    font-size:12.5px!important;
-    font-weight:400;
-    line-height:1.42!important;
-    box-sizing:border-box!important;
-  }
-
-  /* Mobile footer: logo left, contact stack right on one row */
-  .footer-top > .container > .footer-top__logo,
-  .footer-top > .container > .footer-top__email,
-  .footer-top > .container > .footer-top__socials,
-  .footer-top__inner > .footer-top__logo,
-  .footer-top__inner > .footer-top__email,
-  .footer-top__inner > .footer-top__socials{
-    display:none!important;
-  }
-  .bioa-footer-mobile-head{
-    display:flex!important;
-    align-items:flex-start!important;
-    justify-content:space-between!important;
-    gap:16px!important;
-    width:100%!important;
-    margin:0 0 22px!important;
-    box-sizing:border-box!important;
-  }
-  .bioa-footer-mobile-logo{
-    flex:0 0 78px!important;
-    width:78px!important;
-    min-width:78px!important;
-  }
-  .bioa-footer-mobile-logo img{
-    display:block!important;
-    width:72px!important;
-    max-width:72px!important;
-    height:auto!important;
-    object-fit:contain!important;
-  }
-  .bioa-footer-mobile-contact{
-    flex:1 1 auto!important;
-    min-width:0!important;
-    max-width:250px!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:flex-end!important;
-    gap:7px!important;
-  }
-  .bioa-footer-mobile-email{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:100%!important;
-    min-height:38px!important;
-    padding:0 10px!important;
-    border-radius:12px!important;
-    background:rgba(252,254,241,.62)!important;
-    color:var(--bioa-primary)!important;
-    text-decoration:none!important;
-    font-size:12px!important;
-    white-space:nowrap!important;
-    box-sizing:border-box!important;
-  }
-  .bioa-footer-mobile-socials{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:flex-end!important;
-    gap:6px!important;
-    width:100%!important;
-  }
-  .bioa-footer-mobile-socials a{
-    width:36px!important;
-    height:36px!important;
-    min-width:36px!important;
-    border-radius:10px!important;
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    background:rgba(255,255,255,.10)!important;
-    color:#fff!important;
-    text-decoration:none!important;
-  }
-  .bioa-footer-mobile-socials svg{
-    width:18px!important;
-    height:18px!important;
-    fill:currentColor!important;
-  }
-  .bioa-footer-mobile-socials a[aria-label="Zalo"]{
-    width:44px!important;
-    min-width:44px!important;
-  }
-  .bioa-footer-mobile-socials a[aria-label="Zalo"] svg{
-    width:29px!important;
-    height:20px!important;
-  }
-}
-`;
 
 
 const patchB6Css = `
@@ -2107,25 +1882,7 @@ const patchB9Css = `
 `;
 
 
-const patchB11Css = `
-/* HOME Patch B11 — restore pre-B10 We Produce and keep Bio-A watermark beneath product artwork */
-@media(max-width:768px){
-  .bioa-produce-mobile-direct__media{
-    position:relative!important;
-    isolation:isolate!important;
-    background:transparent!important;
-  }
-  .bioa-produce-mobile-direct__media:after{
-    z-index:0!important;
-    opacity:.055!important;
-  }
-  .bioa-produce-mobile-direct__media picture,
-  .bioa-produce-mobile-direct__media img{
-    position:relative!important;
-    z-index:1!important;
-  }
-}
-`;
+
 
 
 const patchB12Css = `
@@ -3478,9 +3235,9 @@ const patchFooterInfo1Css = `
     font-size:clamp(14px,.84vw,16px)!important;
     white-space:nowrap!important;
   }
-  /* FOOTER-EN-WRAP1: only English text exceeds the preapproved identity
-     column. Preserve Vietnamese nowrap and all original grid geometry. */
-  html[lang="en"] .bioa-footer-company-info--desktop .bioa-footer-company-info__title{
+  /* FOOTER-EN-WRAP2: use the rendered company's own language, not a mutable
+     document lang flag. Only EN can wrap; preserve VI and approved grid. */
+  .bioa-footer-company-info--desktop[lang="en"] .bioa-footer-company-info__title{
     white-space:normal!important;
     overflow-wrap:break-word!important;
     max-width:100%!important;
@@ -3752,8 +3509,7 @@ const patchZaloIconCss = `
   flex-basis:30px!important;
   border-radius:50%!important;
 }
-.bioa-footer-mobile-v2__socials a[aria-label="Zalo"] .bioa-zalo-icon,
-.bioa-footer-mobile-socials a[aria-label="Zalo"] .bioa-zalo-icon{
+.bioa-footer-mobile-v2__socials a[aria-label="Zalo"] .bioa-zalo-icon{
   width:26px!important;
   height:26px!important;
   max-width:26px!important;
@@ -3801,7 +3557,6 @@ const patchZaloIconCss = `
 /* Keep the accepted Telegram optical centering correction. */
 .footer-top__socials a[aria-label="Telegram"] svg,
 .bioa-footer-mobile-v2__socials a[aria-label="Telegram"] svg,
-.bioa-footer-mobile-socials a[aria-label="Telegram"] svg,
 .bioa-chat__channel[aria-label="Telegram"] svg{
   transform:translateX(-1px)!important;
   transform-origin:center center!important;
@@ -3995,10 +3750,27 @@ const patchWhyChooseIconCss = `
   #why-choose-us img.bioa-why-icon-bioa,
   .block-how-works img.bioa-why-icon-bioa,
   .block-right-choice img.bioa-why-icon-bioa{
-    width:1.1458vw!important;
-    max-width:1.1458vw!important;
-    height:1.4063vw!important;
-    max-height:1.4063vw!important;
+    /* Home PASS uses Merywood's original 1.5625vw artwork inside the
+       2.8646vw badge on Tablet. Match that computed footprint exactly;
+       22x27 fixed art overflowed the 23.9px badge at 834px. */
+    width:1.5625vw!important;
+    max-width:1.5625vw!important;
+    height:1.5625vw!important;
+    max-height:1.5625vw!important;
+  }
+}
+/* Mobile service slots use the SAME monogram class and Home-approved
+   artwork dimensions. One shared owner; no route-local icon CSS. */
+@media(max-width:768px){
+  .block-how-works .step__icon:has(> img.bioa-why-icon-bioa),
+  .block-right-choice .client__icon:has(> img.bioa-why-icon-bioa){
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:42px!important;
+    min-width:42px!important;
+    height:42px!important;
+    min-height:42px!important;
   }
 }
 `;
@@ -4494,84 +4266,6 @@ function syncMobileHeader($,route,lang){
   $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
 }
 
-function refineMobileProduce($,lang){
-  const vi=lang==='vi';
-  const data=[
-    {
-      alt:'produce-1_mobile',
-      title:vi?'Thực phẩm bổ sung':'Supplements',
-      text:vi
-        ?'Danh mục thực phẩm bổ sung có thể phát triển theo công thức có sẵn hoặc công thức riêng, phù hợp định hướng thương hiệu.'
-        :'Supplement formats can be developed from ready formulas or custom formulas to match your brand direction.'
-    },
-    {
-      alt:'produce-2_mobile',
-      title:vi?'Mỹ phẩm':'Cosmetics',
-      text:vi
-        ?'Phát triển các dòng mỹ phẩm từ nghiên cứu công thức, lựa chọn nguyên liệu đến bao bì và hoàn thiện sản phẩm.'
-        :'Cosmetic products can be developed from formula research and ingredient selection through packaging and finished production.'
-    }
-  ];
-
-  data.forEach(d=>{
-    const img=$('img[alt*="'+d.alt+'"]').first();
-    if(!img.length)return;
-
-    let card=null;
-    img.parents().each((_,el)=>{
-      if(card)return;
-      const cls=$(el).attr('class')||'';
-      if(/item|card|produce/i.test(cls))card=$(el);
-    });
-    if(!card||!card.length)card=img.parent().parent();
-
-    card.addClass('bioa-produce-mobile-card');
-    card.find('.bioa-produce-mobile-title,.bioa-produce-mobile-copy').remove();
-
-    let media=img.parent();
-    if(media.is('picture'))media=media.parent();
-    media.addClass('bioa-produce-mobile-media');
-
-    card.append(
-      $('<h3 class="bioa-produce-mobile-title"></h3>').text(d.title),
-      $('<div class="bioa-produce-mobile-copy"></div>').text(d.text)
-    );
-  });
-}
-
-function buildMobileFooterContact($){
-  $('.bioa-footer-mobile-head').remove();
-
-  const footer=$('.footer-top').first();
-  if(!footer.length)return;
-  const host=footer.find('.footer-top__inner').first().length
-    ? footer.find('.footer-top__inner').first()
-    : footer.find('.container').first().length
-      ? footer.find('.container').first()
-      : footer;
-
-  const head=$('<div class="bioa-footer-mobile-head"></div>');
-  const logo=$('<div class="bioa-footer-mobile-logo"><img src="/assets/bioa-full-light.svg" alt="Bio-A Group"></div>');
-  const contact=$('<div class="bioa-footer-mobile-contact"></div>');
-  const email=$('<a class="bioa-footer-mobile-email"></a>').attr('href','mailto:'+company.email).text(company.email);
-  const social=$('<div class="bioa-footer-mobile-socials"></div>');
-
-  [
-    [company.whatsapp,'WhatsApp',icons.whatsapp],
-    [company.facebook,'Facebook',icons.facebook],
-    [company.telegram,'Telegram',icons.telegram],
-    [company.zalo,'Zalo',icons.zalo]
-  ].forEach(([href,label,svg])=>{
-    social.append(
-      $('<a></a>').attr('href',href).attr('target','_blank').attr('rel','noopener noreferrer').attr('aria-label',label).html(svg)
-    );
-  });
-
-  contact.append(email,social);
-  head.append(logo,contact);
-  host.prepend(head);
-}
-
 function replaceMobileProduceSection($,lang){
   $('.bioa-produce-mobile-clean').remove();
   $('.bioa-produce-mobile-source-safe').removeClass('bioa-produce-mobile-source-safe');
@@ -4789,7 +4483,7 @@ function addFooterCompanyInfo($,lang){
   const name=english?'Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory':'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group';
   const addressLabel=english?'Address:':'Địa chỉ:';
   const taxLabel=english?'Business Tax ID:':'Mã số thuế doanh nghiệp:';
-  const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}">
+  const markup=(variant)=>`<div class="bioa-footer-company-info bioa-footer-company-info--${variant}" lang="${english?'en':'vi'}">
     <div class="bioa-footer-company-info__title">${name}</div>
     <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.location}</span><strong>${addressLabel}</strong> <span class="bioa-footer-company-info__value">${company.address}</span></p>
     <p class="bioa-footer-company-info__row"><span class="bioa-footer-company-info__icon">${footerInfoIcons.phone}</span><strong>Hotline:</strong> <span class="bioa-footer-company-info__value">${company.phoneIntl}</span></p>

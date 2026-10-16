@@ -1,3 +1,36 @@
+# BIO-A SOURCE OWNERSHIP — Phase 2B convergence audit (2026-10-16)
+
+This is a component ownership map, not a version/status log. `FULL_HANDOFF.md` is the only CURRENT RUNTIME SNAPSHOT. Historical source-map entries below remain reference material only and cannot override explicitly owner-approved PASS/FROZEN behavior.
+
+## PHASE 2B — Canonical source ownership and responsive QA matrix
+
+| Surface / route family | Canonical owner and rendering entry | Merywood/BIO-A source authority | Protected cross-device behavior |
+| --- | --- | --- | --- |
+| Global Header/Footer/Cookie/Chat and shared buttons | `bioa-home-refine.mjs` / `applySharedShell()`; `bioa-source-components.mjs` / `sourceComponentCss` | Original Merywood shared shell and 769+ desktop-fluid layout; Home-approved BIO-A branding, locale, approved Footer v2 | VI/EN; desktop-fluid Tablet; unique header/footer; EN Desktop Footer title may wrap in the company owner only; mobile source + Footer v2 preserved |
+| Home `/` | `bioa-home-refine.mjs` / `applyHomeRefinement()`, including canonical `replaceMobileProduceSection()` | Merywood Home DOM/animation and owner-approved BIO-A copy, icons, artwork, roadmap timing | VI/EN; Desktop/Tablet/Mobile separate surfaces; approved Mobile We Produce; no obsolete `refineMobileProduce` renderer |
+| About `/about/` | `bioa-about-refine.mjs` / `applyAboutRefinement()` | Original `.mwa-*` section geometry, Hero/Stats and accepted 6 category assets | VI/EN; About Hero stat parity with Home only in type/number envelope; preserve route-specific Merywood layout |
+| Cosmetics `/contract-manufacturing-cosmetics/` | `bioa-cosmetics-refine.mjs` / `applyCosmeticsHubRefinement()` | Original Merywood `#why-choose-us` capability cards, separate owner-accepted `#bioa-cosmetics-categories` six-card taxonomy | VI/EN; six About-canonical icon assets; no retired icon injector on Why Choose |
+| Other Services `/dich-vu-khac/` | `bioa-services-refine.mjs` / `applyOtherServicesRefinement()` | Original Merywood Swiper structures and Bio-A-approved 5-slide service showcase | VI/EN; arrow/swipe/translate across device widths; no redundant static Why Choose grid; Home-canonical monogram icons |
+| Blog index/detail `/blog/`, `/blog/<slug>/` | `bioa-blog-refine.mjs` / `applyBlogRefinement()`, `blogRouteDefs` | Merywood listing and article structure, accepted Bio-A pagination/heading-driven Sticky TOC | VI/EN; no TOC/table/CTA regressions; source-owned motion/scroll |
+| Contacts `/contacts/` | `bioa-contacts-refine.mjs` / `applyContactsRefinement()` | Merywood contact geometry and owner-approved Bio-A contact/FAQ copy | VI/EN; protect FAQ, mobile layout, private lead flow; never submit live leads during regression |
+| 404 | `bioa-404.mjs` / `renderNotFound()` and Cloudflare middleware | Standalone source-derived branded 404 by explicit BIO-A owner design | True 404 and noindex/maintenance behavior; special page not forced into ordinary shared-shell assertions |
+
+**Build gate:** `build.mjs` calls `applyFinalFixes` on each VI/EN page, `applyHomeRefinement` exclusively on Home, and route refinement followed by `applySharedShell` elsewhere. An intentional difference in CSS style element ownership must not be mistaken for duplicate stylesheet injection.
+
+**Responsive source authority:** the original Merywood mobile boundary is `max-width:768px`; desktop-fluid begins at `769px`. The accepted `sourceComponentCss` scopes supported fixes to `769–1200px`, not a generic new Tablet theme. Retain all owner-approved variations and source breakpoints; do not compress Merywood DOM/layout mechanically.
+
+**Technical regression matrix:** `tests/phase2b-cross-device-owner-audit.mjs` probes 6 core route families × VI/EN × 390/834/1440 CSS px (36 structural checks, not screenshots or owner visual approval). Existing Tablet audit covers 768/834/1024/1180 and 404/article cases; separate browser tests cover Swiper, Blog TOC, Contacts/404, first paint, typography and Footer geometry. All PASS/FROZEN claims derive from the owner and are recorded only in the active `FULL_HANDOFF.md`. No code/style deletion is justified merely by the presence of duplicate CSS selectors; computed cascade and Merywood source parity evidence are required.
+
+### Phase 2B computed CSS cascade evidence — accepted baseline, no visual rewrite
+
+- Technical reference: `tests/phase2b-css-cascade-boundaries.mjs`, CI run `38849818878` SUCCESS on `537c938`. 4 routes (Home/Other Services × VI/EN) × 8 CSS viewport widths: 390/768/769/834/1024/1200/1201/1440 (32 cases). This is a bounded evidence sample, not a claim that all site CSS is mathematically conflict-free.
+- One owner stylesheet per route: `style#bioa-home-refine` on Home; `style#bioa-shared-shell` on non-Home. Preserves distinct Merywood-derived Home and shared-shell owners.
+- Footer company title computed `white-space`: both VI/EN use `normal` at <=1200; VI uses `nowrap` at >=1201; EN uses `normal` at >=1201 through `.bioa-footer-company-info--desktop[lang="en"]`. This protects the owner-accepted Desktop EN fix without changing the VI layout.
+- 769–1200: CSS diagnostics show differing `font-size` declarations for Header navigation and Footer company copy; existing final computed styles and CI checks pass. Treat these as intentional layered responsive rules **until a measured user-visible defect proves otherwise**. Do not blindly remove or consolidate them, and never add override-on-override CSS as a cleanup substitute.
+- Footer/other UI work must compare with Merywood source, the authoritative owner file and Desktop/Tablet/Mobile VI/EN checkpoints. Technical CI SUCCESS is not a fresh owner visual PASS.
+
+---
+
 ## 2026-10-13 — MVR-TYPE1 owner visual feedback / scoped weight parity (candidate)
 
 Owner supplied side-by-side screenshot BIO-A vs Merywood on Desktop: BIO-A Header main nav underweight, CTA labels too bold, Hero 5 number values visually inconsistent. This is **owner FAIL on typography only**, not a reason to change frozen layout/first-paint/Footer/Zalo. PR #9 source `fd8e9b2b0f449d911e44b9f3c5622c0ac3375856` latest prior successful CI.

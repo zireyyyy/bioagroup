@@ -3,14 +3,6 @@ const serviceContent={
     heroTitle:"Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm",
     heroLead:"Ngoài gia công mỹ phẩm trọn gói, Bio-A Group cung cấp các dịch vụ hỗ trợ từ sản xuất, sang chiết, chai lọ và thiết kế bao bì đến lộ trình thương hiệu & công bố sản phẩm.",
     heroCta:"Nhận Tư Vấn",
-    whyTitle:"Dịch Vụ Bio-A Group",
-    why:[
-      ["Sản Xuất & Gia Công Dược Mỹ Phẩm","Nhà máy hỗ trợ sản xuất OEM/ODM theo định hướng thương hiệu, từ mẫu đã duyệt đến triển khai thành phẩm và kiểm soát các công đoạn sản xuất."],
-      ["Đóng Gói & Sang Chiết Mỹ Phẩm","Hỗ trợ sang chiết, đóng gói và hoàn thiện sản phẩm theo dung tích, quy cách bao bì và kế hoạch triển khai của từng dự án."],
-      ["Đăng Ký Thương Hiệu & Công Bố","Tư vấn lộ trình thông tin thương hiệu, nhãn, hồ sơ công bố và các hạng mục cần chuẩn bị trước khi đưa sản phẩm ra thị trường."],
-      ["Chai Lọ Mỹ Phẩm","Hỗ trợ lựa chọn chai, lọ, hũ, tuýp và dung tích phù hợp với kết cấu sản phẩm, phân khúc và định hướng nhận diện thương hiệu."],
-      ["Thiết Kế Bao Bì Mỹ Phẩm","Hỗ trợ định hướng nhãn, bố cục thông tin và thiết kế bao bì để sản phẩm đồng bộ với nhận diện thương hiệu và quy cách sản xuất."]
-    ],
     processTitle:"Quy Trình Triển Khai Dịch Vụ",
     process:[
       ["Tư Vấn Nhu Cầu Dịch Vụ","Tiếp nhận nhu cầu, hiện trạng dự án và mục tiêu để xác định hạng mục Bio-A cần hỗ trợ."],
@@ -39,14 +31,6 @@ const serviceContent={
     heroTitle:"Integrated Support Services for Cosmetic Brands",
     heroLead:"Beyond full-service cosmetic manufacturing, Bio-A Group supports production, filling, packaging, containers, packaging design and brand/product-notification preparation.",
     heroCta:"Get a Quote",
-    whyTitle:"Bio-A Group Services",
-    why:[
-      ["Cosmetic & Cosmeceutical Manufacturing","OEM/ODM manufacturing support from approved samples through finished-product production and controlled manufacturing stages."],
-      ["Cosmetic Filling & Packing","Filling, packing and finishing support based on target volume, packaging specifications and each project's rollout plan."],
-      ["Trademark & Product Notification Support","Guidance on brand information, labels, product-notification documentation and preparation before market launch."],
-      ["Cosmetic Bottles & Containers","Support selecting bottles, jars, tubes and capacities that suit product texture, positioning and brand presentation."],
-      ["Cosmetic Packaging Design","Support label direction, information layout and packaging design aligned with brand identity and production specifications."]
-    ],
     processTitle:"Service Delivery Process",
     process:[
       ["Service Consultation","Review project status, goals and required support to define the appropriate Bio-A service scope."],
@@ -74,13 +58,6 @@ const serviceContent={
   }
 };
 
-const serviceIconMap=[
-  "/assets/service-icon-01-manufacturing.svg",
-  "/assets/service-icon-02-packing.svg",
-  "/assets/service-icon-03-documentation.svg",
-  "/assets/service-icon-04-containers.svg",
-  "/assets/service-icon-05-label-design.svg"
-];
 
 function setCopy(root,selector,value){
   const el=root.find(selector).first();
@@ -103,7 +80,7 @@ function applyHero($,lang){
   });
 }
 
-function applyWhy($,lang){
+function applyWhy($){
   /* PATCH-F6 — the image-led source slider is now the single service showcase.
      Remove the redundant static five-card grid instead of duplicating the same services twice. */
   $("#why-choose-us").remove();
@@ -228,7 +205,7 @@ export function applyOtherServicesRefinement($,route,lang="vi"){
   if(route!=="/dich-vu-khac/")return;
   const key=lang==="en"?"en":"vi";
   applyHero($,key);
-  applyWhy($,key);
+  applyWhy($);
   applyProcess($,key);
   applyScenarios($,key);
   applyRange($,key);
