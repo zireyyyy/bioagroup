@@ -91,6 +91,23 @@ try{
       assert.ok(rec.selectors.footerIdentity,"approved Footer identity "+route);
       assert.ok(rec.selectors.footerGrid,"canonical Footer wrapper "+route);
       assert.ok(rec.selectors.footerMobile,"canonical Footer v2 markup "+route);
+      // OWNER-PASS RESPONSIVE CONTRACT: the approved Footer EN exception is
+      // scoped to the company's own lang, not the mutable document locale.
+      // Tablet/mobile fall back to normal text wrapping; Desktop VI remains
+      // nowrap. A future cascade edit that reverses these is a real regression.
+      const companyWrap=rec.selectors.footerIdentity.computed["white-space"];
+      const english=route.startsWith("/en/");
+      const expectedWrap=width>=1201&&!english?"nowrap":"normal";
+      assert.equal(companyWrap,expectedWrap,
+        "Frozen Footer company wrap "+route+" @"+width);
+      if(width>=769&&width<=1200){
+        // Nav fluid CSS is a known, accepted responsive cascade override.
+        // Conflicting declarations are intentionally collected as evidence,
+        // NOT removed or treated as an automatic FAIL.
+        assert.ok(rec.selectors.nav,"Original Merywood navigation "+route+" @"+width);
+        assert.ok(rec.selectors.nav.computed["font-size"],
+          "Fluid nav has a computed size "+route+" @"+width);
+      }
       records.push(rec);
       console.log("BIOA_PHASE2B_CASCADE "+JSON.stringify({route,width,activeOwner:rec.activeOwnerIds[0],
         footerTitleWrap:rec.selectors.footerIdentity.computed["white-space"],
