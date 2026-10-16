@@ -23,6 +23,12 @@
 - **Phase 2B closeout gate:** measured owner-map, cascade/breakpoint collisions checked with exact Merywood references, CI green and owner visual acceptance of actual affected areas; no blind site-wide CSS rewrite or transition to Phase 3 until those gates are satisfied.
 - Sanity Free is future only, NOT integrated; maintain D1/Sheets/Resend/Turnstile/host isolation.
 
+## Phase 2B CSS cascade boundary audit — 2026-10-16
+- Prior owner map candidate `29456c0` has full CI SUCCESS at run `38847021847`. No site runtime changes.
+- Added read-only Chromium test `tests/phase2b-css-cascade-boundaries.mjs` on 4 routes (Home/Other Services VI/EN) × 8 widths 390/768/769/834/1024/1200/1201/1440 (32 cases). It captures actual computed values, matching CSS rules and divergent declarations at existing Merywood 768/769 and approved Footer 1200/1201 breakpoints; overlap is **diagnostic, never automatic evidence of a bug**. CI step added, artifacts kept within runner audit output. No CSS/JS site patch.
+- CI for this new test is pending. Inspect evidence and compare with original Merywood + user-approved BIO-A deviations before authorizing any cascade cleanup.
+- Scope/QA: TEST/CI/DOCS ONLY. No owner website retest needed. All PASS/FROZEN preserved; PR #10 and Production untouched, PR #11 Draft.
+
 ## BẠN CẦN TEST GÌ?
 **Current change is TEST/CI/DOCS only** (no website runtime edits). Owner does not need to retest the website unless CI finds a concrete regression. If new CI fails, fix its true root cause rather than weakening assertions or altering PASS UI. Last owner-PASS rollback: `bb82b0d` (Footer cleanup); last green technical baseline `052023b`. No Production modifications.
 
