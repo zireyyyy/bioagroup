@@ -77,10 +77,6 @@ function replaceBrandText(s){
     .replace(/info@merywood\.com/gi,company.email)
     .replace(/\[email protected\]/gi,company.email);
 }
-function setText($,sel,text){const e=$(sel).first();if(e.length)e.text(text)}
-function sharedUiLanguageContract(lang){
-  return lang==='en'?'en':'vi';
-}
 
 /* I18N authority:
    - shared UI (header/footer/cookie/common controls) must always branch on lang here;
