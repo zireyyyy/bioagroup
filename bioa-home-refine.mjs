@@ -1250,10 +1250,6 @@ const patchB5Css = `
   max-width:31px!important;
 }
 
-/* Mobile-only cloned footer contact header */
-.bioa-footer-mobile-head{display:none!important}
-
-
 @media(max-width:768px){
   /* keep mobile header/menu exactly as PASS */
 
@@ -1286,83 +1282,7 @@ const patchB5Css = `
   .footer-top__inner > .footer-top__socials{
     display:none!important;
   }
-  .bioa-footer-mobile-head{
-    display:flex!important;
-    align-items:flex-start!important;
-    justify-content:space-between!important;
-    gap:16px!important;
-    width:100%!important;
-    margin:0 0 22px!important;
-    box-sizing:border-box!important;
-  }
-  .bioa-footer-mobile-logo{
-    flex:0 0 78px!important;
-    width:78px!important;
-    min-width:78px!important;
-  }
-  .bioa-footer-mobile-logo img{
-    display:block!important;
-    width:72px!important;
-    max-width:72px!important;
-    height:auto!important;
-    object-fit:contain!important;
-  }
-  .bioa-footer-mobile-contact{
-    flex:1 1 auto!important;
-    min-width:0!important;
-    max-width:250px!important;
-    display:flex!important;
-    flex-direction:column!important;
-    align-items:flex-end!important;
-    gap:7px!important;
-  }
-  .bioa-footer-mobile-email{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    width:100%!important;
-    min-height:38px!important;
-    padding:0 10px!important;
-    border-radius:12px!important;
-    background:rgba(252,254,241,.62)!important;
-    color:var(--bioa-primary)!important;
-    text-decoration:none!important;
-    font-size:12px!important;
-    white-space:nowrap!important;
-    box-sizing:border-box!important;
-  }
-  .bioa-footer-mobile-socials{
-    display:flex!important;
-    align-items:center!important;
-    justify-content:flex-end!important;
-    gap:6px!important;
-    width:100%!important;
-  }
-  .bioa-footer-mobile-socials a{
-    width:36px!important;
-    height:36px!important;
-    min-width:36px!important;
-    border-radius:10px!important;
-    display:inline-flex!important;
-    align-items:center!important;
-    justify-content:center!important;
-    background:rgba(255,255,255,.10)!important;
-    color:#fff!important;
-    text-decoration:none!important;
-  }
-  .bioa-footer-mobile-socials svg{
-    width:18px!important;
-    height:18px!important;
-    fill:currentColor!important;
-  }
-  .bioa-footer-mobile-socials a[aria-label="Zalo"]{
-    width:44px!important;
-    min-width:44px!important;
-  }
-  .bioa-footer-mobile-socials a[aria-label="Zalo"] svg{
-    width:29px!important;
-    height:20px!important;
-  }
+
 }
 `;
 
@@ -3686,8 +3606,7 @@ const patchZaloIconCss = `
   flex-basis:30px!important;
   border-radius:50%!important;
 }
-.bioa-footer-mobile-v2__socials a[aria-label="Zalo"] .bioa-zalo-icon,
-.bioa-footer-mobile-socials a[aria-label="Zalo"] .bioa-zalo-icon{
+.bioa-footer-mobile-v2__socials a[aria-label="Zalo"] .bioa-zalo-icon{
   width:26px!important;
   height:26px!important;
   max-width:26px!important;
@@ -3735,7 +3654,6 @@ const patchZaloIconCss = `
 /* Keep the accepted Telegram optical centering correction. */
 .footer-top__socials a[aria-label="Telegram"] svg,
 .bioa-footer-mobile-v2__socials a[aria-label="Telegram"] svg,
-.bioa-footer-mobile-socials a[aria-label="Telegram"] svg,
 .bioa-chat__channel[aria-label="Telegram"] svg{
   transform:translateX(-1px)!important;
   transform-origin:center center!important;
@@ -4426,39 +4344,6 @@ function syncMobileHeader($,route,lang){
 
   const js="(function(){var b=document.getElementById('bioaMobileMenuButton'),n=document.getElementById('bioaMobileNav');if(!b||!n)return;var d=n.querySelector('.bioa-mobile-nav-drop');function isOpen(){return n.classList.contains('open');}function set(o){n.classList.toggle('open',o);n.setAttribute('aria-hidden',o?'false':'true');b.setAttribute('aria-expanded',o?'true':'false');document.documentElement.classList.toggle('bioa-mobile-nav-open',o);document.body.classList.toggle('bioa-mobile-nav-open',o);if(o)document.body.classList.remove('bioa-mobile-chrome-hidden');b.setAttribute('aria-label',o?((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Đóng trình đơn':'Close menu'):((document.documentElement.lang||'').toLowerCase().startsWith('vi')?'Mở trình đơn':'Open menu'));}b.addEventListener('pointerdown',function(e){document.body.classList.remove('bioa-mobile-chrome-hidden');b.classList.add('bioa-menu-gesture-active');setTimeout(function(){b.classList.remove('bioa-menu-gesture-active');},360);},{passive:true});b.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();document.body.classList.remove('bioa-mobile-chrome-hidden');set(!isOpen());});n.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){set(false);});});document.addEventListener('pointerdown',function(e){if(!isOpen())return;if(b.contains(e.target))return;if(d&&d.contains(e.target))return;set(false);},true);window.addEventListener('scroll',function(){if(isOpen())set(false);},{passive:true});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&isOpen()){set(false);b.focus();}});})();";
   $('body').append($('<script id="bioa-mobile-nav-js"></script>').html(js));
-}
-
-function buildMobileFooterContact($){
-  $('.bioa-footer-mobile-head').remove();
-
-  const footer=$('.footer-top').first();
-  if(!footer.length)return;
-  const host=footer.find('.footer-top__inner').first().length
-    ? footer.find('.footer-top__inner').first()
-    : footer.find('.container').first().length
-      ? footer.find('.container').first()
-      : footer;
-
-  const head=$('<div class="bioa-footer-mobile-head"></div>');
-  const logo=$('<div class="bioa-footer-mobile-logo"><img src="/assets/bioa-full-light.svg" alt="Bio-A Group"></div>');
-  const contact=$('<div class="bioa-footer-mobile-contact"></div>');
-  const email=$('<a class="bioa-footer-mobile-email"></a>').attr('href','mailto:'+company.email).text(company.email);
-  const social=$('<div class="bioa-footer-mobile-socials"></div>');
-
-  [
-    [company.whatsapp,'WhatsApp',icons.whatsapp],
-    [company.facebook,'Facebook',icons.facebook],
-    [company.telegram,'Telegram',icons.telegram],
-    [company.zalo,'Zalo',icons.zalo]
-  ].forEach(([href,label,svg])=>{
-    social.append(
-      $('<a></a>').attr('href',href).attr('target','_blank').attr('rel','noopener noreferrer').attr('aria-label',label).html(svg)
-    );
-  });
-
-  contact.append(email,social);
-  head.append(logo,contact);
-  host.prepend(head);
 }
 
 function replaceMobileProduceSection($,lang){
