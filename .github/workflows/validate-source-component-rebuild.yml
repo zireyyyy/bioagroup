@@ -49,6 +49,8 @@ jobs:
         run: node tests/phase2b-services-convergence.test.mjs
       - name: Verify Phase 2B Cosmetics owner cleanup
         run: node tests/phase2b-cosmetics-convergence.test.mjs
+      - name: Verify Phase 2B canonical Home mobile owner
+        run: node tests/phase2b-home-mobile-convergence.test.mjs
       - name: Verify Cookie i18n and font readiness guard
         run: node tests/cookie-consent-stability-source.test.mjs
       - name: Verify typography source weight ownership
