@@ -3759,6 +3759,20 @@ const patchWhyChooseIconCss = `
     max-height:1.5625vw!important;
   }
 }
+/* Mobile service slots use the SAME monogram class and Home-approved
+   artwork dimensions. One shared owner; no route-local icon CSS. */
+@media(max-width:768px){
+  .block-how-works .step__icon:has(> img.bioa-why-icon-bioa),
+  .block-right-choice .client__icon:has(> img.bioa-why-icon-bioa){
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    width:42px!important;
+    min-width:42px!important;
+    height:42px!important;
+    min-height:42px!important;
+  }
+}
 `;
 
 
