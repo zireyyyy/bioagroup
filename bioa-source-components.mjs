@@ -246,8 +246,14 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   .page-main .block-reviews .review__text,
   .page-main .block-reviews .review__text p,
   .page-main #why-choose-us .item p,
-  .page-main .block-product-formats .formats__description {
+  .page-main .block-product-formats .formats__lede {
     font-size:12px !important;
     line-height:1.5 !important;
+  }
+  /* P2: at the readable size the source 8-line clamp cut Home VI steps
+     mid-sentence (scrollHeight 162-234px in a 144px box). Show the full
+     copy on Tablet only; Desktop/Mobile keep the source clamp. */
+  .page-main .block-how-works .step__text {
+    -webkit-line-clamp:none !important;
   }
 }`;

@@ -77,7 +77,11 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
   #get-a-quote .wpcf7-form input::placeholder{font-size:13px!important}
   #get-a-quote .wpcf7-form .wpcf7-list-item-label,
   #get-a-quote .wpcf7-form .wpcf7-acceptance,
-  #get-a-quote .wpcf7-form .wpcf7-acceptance a{font-size:12px!important;line-height:1.5!important}
+  #get-a-quote .wpcf7-form .wpcf7-acceptance a,
+  #get-a-quote .wpcf7-form .label-check,
+  #get-a-quote .wpcf7-form .label-check a{font-size:12px!important;line-height:1.5!important}
+  #get-a-quote .iti__selected-dial-code,
+  #get-a-quote #ddType .dd-trigger{font-size:13px!important}
 }
 
 .block-reviews{overflow:hidden!important}.block-reviews .review{min-width:0!important;overflow:hidden!important}.block-reviews .review__text{overflow:hidden!important;overflow-wrap:break-word!important}
