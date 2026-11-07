@@ -1,0 +1,5 @@
+node_modules/
+dist/
+# Merywood source bundles must never enter this public repository.
+.source-bundle/
+*.zip

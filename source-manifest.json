@@ -1,0 +1,291 @@
+{
+  "$comment": "P0A pinned build input. Merywood HTML is NOT stored in this repository; only hashes and public original URLs. See docs/P0A_SOURCE_PIN.md.",
+  "version": "p0a-v1",
+  "archive": {
+    "name": "merywood-export 210-3.zip",
+    "bytes": 184107032,
+    "sha256": "9904a5d6fa59afb551957809e82b100fc5c3923f8c434fe6aa4de2ed43967c41",
+    "prefix": "merywood/pages/",
+    "crawledAt": "2026-10-02T04:49:02.058Z"
+  },
+  "files": {
+    "/": {
+      "path": "index/index.html",
+      "bytes": 226906,
+      "sha256": "237fbf9c8158b32c980c515aab0040e08502677030c2612d0322c01b59377b7d"
+    },
+    "/about/": {
+      "path": "about/index.html",
+      "bytes": 140066,
+      "sha256": "bcd087fd7837a99eeb6a267eadf7619e66f03a3998f76fc6c05b7256c99e0963"
+    },
+    "/blog/": {
+      "path": "blog/index.html",
+      "bytes": 123784,
+      "sha256": "cfc0421f414256e6ccf9697714a3bf0cdd513e5017a4afd4a083118f2efb4259"
+    },
+    "/blog/what-affects-moq-in-supplement-manufacturing/": {
+      "path": "blog/what-affects-moq-in-supplement-manufacturing/index.html",
+      "bytes": 272484,
+      "sha256": "4eb3e1cfbe0a8143e3d402f294619b542de851485f4ae7d9139f600c9caf9f12"
+    },
+    "/careers/": {
+      "path": "careers/index.html",
+      "bytes": 127396,
+      "sha256": "e55e5bd9f7fc6309f13819f7a9ea9f07f6467efb51e20b388ca0c9b13644acbe"
+    },
+    "/contacts/": {
+      "path": "contacts/index.html",
+      "bytes": 124732,
+      "sha256": "b96103dad5d8afcbe3cc4a7c0a9d76b6eb5d0e10fcdfd045ed07fde5c74a95b3"
+    },
+    "/contract-manufacturing-cosmetics/": {
+      "path": "contract-manufacturing-cosmetics/index.html",
+      "bytes": 216750,
+      "sha256": "39496a896441c471c67cc5c8b345341f463a694759e4383b88e216489136c984"
+    },
+    "/cookie-policy/": {
+      "path": "cookie-policy/index.html",
+      "bytes": 124427,
+      "sha256": "cadafcafa208358bebbdfc44d2a4c75150d9b8db06b0e655a295ec6c2a0405e9"
+    },
+    "/hotel-spa-cosmetics/": {
+      "path": "hotel-spa-cosmetics/index.html",
+      "bytes": 170056,
+      "sha256": "e0ee760a5933d7d6aebe02cf3a0c66a0c2aa24b3940531dc5498c69cccc6aad9"
+    },
+    "/privacy-policy/": {
+      "path": "privacy-policy/index.html",
+      "bytes": 137158,
+      "sha256": "a39aca0df81ca442705436e3ef356ea34f1dd80916339dc412ec31359732413a"
+    }
+  },
+  "scriptIdMap": {
+    "swv-js": "https://merywood.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7",
+    "contact-form-7-js": "https://merywood.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7"
+  },
+  "occurrenceMap": {
+    "email.svg": [
+      "https://merywood.com/wp-content/themes/mery-wood/assets/icons/desktop/email.svg",
+      "https://merywood.com/wp-content/themes/mery-wood/assets/icons/mobile/email.svg"
+    ],
+    "whatsapp.svg": [
+      "https://merywood.com/wp-content/themes/mery-wood/assets/icons/desktop/whatsapp.svg",
+      "https://merywood.com/wp-content/themes/mery-wood/assets/icons/mobile/whatsapp.svg"
+    ],
+    "facebook.svg": [
+      "https://merywood.com/wp-content/themes/mery-wood/assets/icons/desktop/facebook.svg",
+      "https://merywood.com/wp-content/themes/mery-wood/assets/icons/mobile/facebook.svg"
+    ]
+  },
+  "urlMap": {
+    "89638390_1425.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_1478.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_1511.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_1548.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_1588.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_1621.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_1654.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_168.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_23.gif": "https://mc.yandex.ru/watch/89638390",
+    "89638390_734.gif": "https://mc.yandex.ru/watch/89638390",
+    "Airless-Containers.webp": "https://merywood.com/wp-content/uploads/2025/07/Airless-Containers.webp",
+    "Body-Cream.webp": "https://merywood.com/wp-content/uploads/2025/07/Body-Cream.webp",
+    "Bottles.webp": "https://merywood.com/wp-content/uploads/2025/07/Bottles.webp",
+    "Conditioner.webp": "https://merywood.com/wp-content/uploads/2025/07/Conditioner.webp",
+    "Depth-8-Frame-0.svg": "https://merywood.com/wp-content/uploads/2025/07/Depth-8-Frame-0.svg",
+    "Group-1-1.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-1-1.svg",
+    "Group-1-2.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-1-2.svg",
+    "Group-1.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-1.svg",
+    "Group-2.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2.svg",
+    "Group-2087325508-1.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325508-1.svg",
+    "Group-2087325508-2.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325508-2.svg",
+    "Group-2087325508.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325508.svg",
+    "Group-2087325509.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325509.svg",
+    "Group-2087325510.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325510.svg",
+    "Group-2087325513.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325513.svg",
+    "Group-2087325514.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325514.svg",
+    "Group-2087325516.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325516.svg",
+    "Group-2087325574.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-2087325574.svg",
+    "Group-3.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-3.svg",
+    "Group-4.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-4.svg",
+    "Group-5.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-5.svg",
+    "Group-7.svg": "https://merywood.com/wp-content/uploads/2025/07/Group-7.svg",
+    "IMG_6258-1.png": "https://merywood.com/wp-content/uploads/2026/07/IMG_6258-1.png",
+    "Icon-1.svg": "https://merywood.com/wp-content/uploads/2025/07/Icon-1.svg",
+    "Icon-2.svg": "https://merywood.com/wp-content/uploads/2025/07/Icon-2.svg",
+    "Icon-3.svg": "https://merywood.com/wp-content/uploads/2025/07/Icon-3.svg",
+    "Icon-4.svg": "https://merywood.com/wp-content/uploads/2025/07/Icon-4.svg",
+    "Jars-and-bottles.webp": "https://merywood.com/wp-content/uploads/2025/07/Jars-and-bottles.webp",
+    "Shampoo.webp": "https://merywood.com/wp-content/uploads/2025/07/Shampoo.webp",
+    "Shower-Gel.webp": "https://merywood.com/wp-content/uploads/2025/07/Shower-Gel.webp",
+    "Soap.webp": "https://merywood.com/wp-content/uploads/2025/07/Soap.webp",
+    "Tubes.webp": "https://merywood.com/wp-content/uploads/2025/07/Tubes.webp",
+    "Vector-1.svg": "https://merywood.com/wp-content/uploads/2025/07/Vector-1.svg",
+    "Vector.svg": "https://merywood.com/wp-content/uploads/2025/07/Vector.svg",
+    "a82f48d216f6a7d6388e0abf855e90795aeace16.png": "https://merywood.com/wp-content/uploads/2025/07/a82f48d216f6a7d6388e0abf855e90795aeace16.png",
+    "api.js": "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback",
+    "contract_cosmetics.webp": "https://merywood.com/wp-content/uploads/2026/04/contract_cosmetics.webp",
+    "cookie.svg": "https://merywood.com/wp-content/uploads/2025/09/cookie.svg",
+    "cropped-favicon-180x180.png": "https://merywood.com/wp-content/uploads/2025/06/cropped-favicon-180x180.png",
+    "css2_1454.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_1487.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_1524.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_1564.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_1597.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_1630.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_1680.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_206.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_69.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "css2_776.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "d405a67134a7f63465941fb9658f009da81d9dc7.png": "https://merywood.com/wp-content/uploads/2025/07/d405a67134a7f63465941fb9658f009da81d9dc7.png",
+    "hero2.webp": "https://merywood.com/wp-content/uploads/2026/07/hero2.webp",
+    "hooks.js": "https://merywood.com/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255",
+    "i18n.js": "https://merywood.com/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216",
+    "icon-1-1.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-1-1.svg",
+    "icon-1-2.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-1-2.svg",
+    "icon-1.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-1.svg",
+    "icon-2-1.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-2-1.svg",
+    "icon-2-2.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-2-2.svg",
+    "icon-2.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-2.svg",
+    "icon-3-1.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-3-1.svg",
+    "icon-3-2.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-3-2.svg",
+    "icon-3.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-3.svg",
+    "icon-4-1.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-4-1.svg",
+    "icon-4-4.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-4-4.svg",
+    "icon-5.svg": "https://merywood.com/wp-content/uploads/2025/06/icon-5.svg",
+    "image-1-1.webp": "https://merywood.com/wp-content/uploads/2026/04/image-1-1.webp",
+    "image-1-9.webp": "https://merywood.com/wp-content/uploads/2025/06/image-1-9.webp",
+    "image-1.webp": "https://merywood.com/wp-content/uploads/2026/04/image-1.webp",
+    "image-1_mobile.webp": "https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp",
+    "image-2-8.webp": "https://merywood.com/wp-content/uploads/2026/04/image-2-8.webp",
+    "image-2-9.webp": "https://merywood.com/wp-content/uploads/2025/06/image-2-9.webp",
+    "image-2.webp": "https://merywood.com/wp-content/uploads/2026/04/image-2.webp",
+    "image-2_mobile.webp": "https://merywood.com/wp-content/uploads/2026/04/image-2_mobile.webp",
+    "image-3-10.webp": "https://merywood.com/wp-content/uploads/2025/06/image-3-10.webp",
+    "image-3-9.webp": "https://merywood.com/wp-content/uploads/2026/04/image-3-9.webp",
+    "image-3.webp": "https://merywood.com/wp-content/uploads/2026/04/image-3.webp",
+    "image-3_mobile.webp": "https://merywood.com/wp-content/uploads/2026/04/image-3_mobile.webp",
+    "image-4-7.webp": "https://merywood.com/wp-content/uploads/2025/06/image-4-7.webp",
+    "image-4.webp": "https://merywood.com/wp-content/uploads/2026/04/image-4.webp",
+    "image-4_mobile.webp": "https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp",
+    "image-5-5.webp": "https://merywood.com/wp-content/uploads/2025/06/image-5-5.webp",
+    "image-5.webp": "https://merywood.com/wp-content/uploads/2026/04/image-5.webp",
+    "image-5_mobile.webp": "https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp",
+    "input.js": "https://merywood.com/wp-content/themes/mery-wood/assets/js/input.js?ver=1791930728",
+    "intlTelInput.js": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js?ver=18.2.1",
+    "jquery.js": "https://merywood.com/wp-content/themes/mery-wood/assets/js/jquery.js",
+    "main.js": "https://merywood.com/wp-content/themes/mery-wood/assets/js/main.js?ver=1791930728",
+    "modal.js": "https://merywood.com/wp-content/themes/mery-wood/assets/js/modal.js?ver=1791930728",
+    "produce-1.webp": "https://merywood.com/wp-content/uploads/2026/04/produce-1.webp",
+    "produce-2.webp": "https://merywood.com/wp-content/uploads/2026/04/produce-2.webp",
+    "smooth-scrollbar.js": "https://merywood.com/wp-content/themes/mery-wood/assets/smooth-scrollbar/smooth-scrollbar.js",
+    "swiper-bundle.js": "https://merywood.com/wp-content/themes/mery-wood/assets/swiper/swiper-bundle.min.js",
+    "title-1.webp": "https://merywood.com/wp-content/uploads/2026/04/title-1.webp",
+    "utils.js": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js?ver=18.2.1"
+  },
+  "urlMapNotes": {
+    "source": "original URLs observed in Preview abdd7602 (commit d59f50d)",
+    "ambiguousFirstMatch": [
+      "input.js",
+      "main.js",
+      "modal.js",
+      "utils.js"
+    ],
+    "unmappedRemovedByBioaTransforms": [
+      "1-2.webp",
+      "1.png",
+      "9956199f0d6d5e03c6c0ae268bf921f89a366ca4-1024x784.webp",
+      "Bones_and_joints_Cover-1024x1024.webp",
+      "Card-Header.png",
+      "Frame-85.svg",
+      "Group-2087325511.svg",
+      "Group-6.svg",
+      "Lotion.webp",
+      "Peptide-chain-model-and-clean-lab-still-life-1-1024x1024.webp",
+      "Scrub.webp",
+      "Supplement-trends-2026-cover-1024x1024.webp",
+      "Vector-5.svg",
+      "Web_BlogPost-1.webp",
+      "Web_BlogPost.png",
+      "contract_supp-1.webp",
+      "cropped-favicon-192x192.png",
+      "cropped-favicon-32x32.png",
+      "diabet.webp",
+      "icon-4.svg",
+      "logo.svg",
+      "logo_white.svg",
+      "male-enhancement.webp",
+      "merrywood_546B51.svg",
+      "merywood-fulfillment-receiving-labels-1024x576.webp",
+      "private_cosmetics.png",
+      "private_label.webp",
+      "sports-nutrition.webp",
+      "weight-loss.webp",
+      "white_kabel.webp"
+    ]
+  },
+  "requiredDom": {
+    "/": [
+      {
+        "selector": "#why-choose-us .grid.desctop > .item",
+        "min": 4
+      },
+      {
+        "selector": "#why-choose-us .mobile .item",
+        "min": 4
+      },
+      {
+        "contains": "produce-1_mobile"
+      },
+      {
+        "selector": ".block-products-desctop",
+        "min": 1
+      },
+      {
+        "selector": ".block-products-mobile",
+        "min": 1
+      },
+      {
+        "selector": ".block-how-works .swiper-slide",
+        "min": 5
+      },
+      {
+        "selector": ".block-reviews",
+        "min": 1
+      }
+    ],
+    "/contract-manufacturing-cosmetics/": [
+      {
+        "selector": "#why-choose-us .grid.desctop > .item",
+        "min": 1
+      },
+      {
+        "selector": ".block-products-desctop",
+        "min": 1
+      },
+      {
+        "selector": ".block-products-mobile",
+        "min": 1
+      },
+      {
+        "selector": ".block-reviews",
+        "min": 1
+      }
+    ],
+    "/hotel-spa-cosmetics/": [
+      {
+        "selector": ".block-how-works .swiper-slide",
+        "min": 5
+      },
+      {
+        "selector": ".block-right-choice .client",
+        "min": 3
+      },
+      {
+        "selector": ".block-reviews",
+        "min": 1
+      }
+    ]
+  }
+}

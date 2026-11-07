@@ -1,0 +1,6 @@
+# Source tests match exact text; keep LF on every OS (Windows checkouts broke 2 responsive tests).
+* text=auto eol=lf
+*.png binary
+*.webp binary
+*.jpg binary
+*.gif binary

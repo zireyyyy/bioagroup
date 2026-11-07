@@ -9,8 +9,10 @@ import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
 import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
+import { loadSource, verifyBundle, assertNoCrawlerRefs } from "./tools/source-bundle.mjs";
 
-const BASE = "https://merywood.com";
+// P0A: source HTML comes from the verified, pinned bundle (source-manifest.json),
+// never from the live Merywood site.
 const OUT = "dist";
 
 const routes = [
@@ -364,16 +366,7 @@ function localize($, route){
 }
 
 async function buildOne(route,sourceRoute){
-  const controller=new AbortController();
-  const timer=setTimeout(()=>controller.abort(),20000);
-  let raw;
-  try{
-    const res=await fetch(BASE+sourceRoute,{headers:{"user-agent":"BioAGroupPreviewBuilder/3.2"},signal:controller.signal});
-    if(!res.ok)throw new Error(`${sourceRoute} -> HTTP ${res.status}`);
-    raw=await res.text();
-  }finally{
-    clearTimeout(timer);
-  }
+  const raw=loadSource(sourceRoute);
 
   for(const lang of ["vi","en"]){
     const $=load(raw,{decodeEntities:false});
@@ -392,13 +385,16 @@ async function buildOne(route,sourceRoute){
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
     await fs.mkdir(path.dirname(target),{recursive:true});
-    await fs.writeFile(target,$.html());
+    const html=$.html();
+    assertNoCrawlerRefs(html,targetRoute);
+    await fs.writeFile(target,html);
     console.log("built",lang,targetRoute);
   }
 }
 
 async function build(){
   const started=Date.now();
+  verifyBundle();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
