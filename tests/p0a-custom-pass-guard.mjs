@@ -69,15 +69,24 @@ const FREEZE = "*,*::before,*::after{animation-duration:0s!important;animation-d
   ".cf-turnstile,iframe,[class*=proactive],[class*=chat-bubble]{visibility:hidden!important}" +
   ".bioa-chat__teaser{display:none!important}";
 
+// BIOA_REF_PIN_DIR: serve pinned runtime main.css/main.js to the REFERENCE page, so a pinned
+// local build is compared with the owner-reviewed HTML under the identical runtime (P0B1).
+const PIN = process.env.BIOA_REF_PIN_DIR;
+const pinned = PIN ? [
+  [/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/css\/main\.css/, await readFile(join(PIN, "runtime", "main.txt")), "text/css"],
+  [/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/js\/main\.js/, await readFile(join(PIN, "runtime", "main.js")), "text/javascript"]
+] : [];
+
 async function open(base, route, width){
   const page = await browser.newPage({ viewport: { width, height: 900 }, deviceScaleFactor: 1 });
   const posts = [];
+  if (base === REF) for (const [re, body, type] of pinned) await page.route(re, r => r.fulfill({ status: 200, contentType: type, body }));
   await page.route("**/*", r => {
     const q = r.request();
     if (q.method() !== "GET"){ const act = ((q.postData() || "").match(/(?:^|&)action=([\w-]+)|name="action"\s+([\w-]+)/) || []).slice(1).find(Boolean) || ""; posts.push(q.url() + (act ? " action=" + act : "") + (process.env.GUARD_TRACE ? " @" + (page.__step || "load") : "")); return r.abort(); }   // never submit anything
     // never follow an external link (WhatsApp, Zalo, Maps, social): abort the navigation before network
     if (q.isNavigationRequest() && !q.url().startsWith(base)){ posts.push("NAV " + q.url()); return r.abort(); }
-    return NOISE.test(q.url()) ? r.abort() : r.continue();
+    return NOISE.test(q.url()) ? r.abort() : r.fallback();
   });
   await page.goto(base + route, { waitUntil: "load", timeout: 60000 });
   await page.evaluate(() => document.fonts.ready);

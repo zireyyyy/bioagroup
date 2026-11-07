@@ -9,7 +9,7 @@ import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
 import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
-import { loadSource, verifyBundle, assertNoCrawlerRefs } from "./tools/source-bundle.mjs";
+import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
 
 // P0A: source HTML comes from the verified, pinned bundle (source-manifest.json),
 // never from the live Merywood site.
@@ -365,6 +365,8 @@ function localize($, route){
   $("body").append(`<script id="bioa-preview-form">document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();alert('Form đang ở chế độ xem thử. Vui lòng liên hệ Bio-A Group qua email ${company.email}.')})});</script>`);
 }
 
+let runtime;
+
 async function buildOne(route,sourceRoute){
   const raw=loadSource(sourceRoute);
 
@@ -385,7 +387,7 @@ async function buildOne(route,sourceRoute){
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
     await fs.mkdir(path.dirname(target),{recursive:true});
-    const html=$.html();
+    const html=pinRuntime($.html(),runtime,targetRoute);
     assertNoCrawlerRefs(html,targetRoute);
     await fs.writeFile(target,html);
     console.log("built",lang,targetRoute);
@@ -395,6 +397,7 @@ async function buildOne(route,sourceRoute){
 async function build(){
   const started=Date.now();
   verifyBundle();
+  runtime=runtimeFiles();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
@@ -410,6 +413,10 @@ async function build(){
   await fs.writeFile(path.join(OUT,"en","404.html"),renderNotFound("en"));
 
   await fs.cp("assets",path.join(OUT,"assets"),{recursive:true});
+  for(const f of runtime){
+    await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
+    await fs.writeFile(path.join(OUT,f.out),f.body);
+  }
   await fs.writeFile(path.join(OUT,"_headers"),"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   // Auth middleware must intercept assets and APIs, not only HTML.

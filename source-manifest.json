@@ -287,5 +287,26 @@
         "min": 1
       }
     ]
+  },
+  "runtime": {
+    "$comment": "P0B1: historical runtime candidates (NOT proven identical to the 2026-10-16 live files). Served from /assets/runtime/ with original tag ids/order. Bytes live only in the private bundle.",
+    "css": {
+      "tagId": "main-css",
+      "path": "runtime/main.txt",
+      "bytes": 177766,
+      "sha256": "290a3199ee9f1d74419e5effd0b4617342e3c15f3f721b01e510e9759b67a46c",
+      "origin": "owner-supplied main.txt",
+      "servedAs": "assets/runtime/merywood-main.css",
+      "relativeBase": "https://merywood.com/wp-content/themes/mery-wood/assets/"
+    },
+    "js": {
+      "tagId": "main-js",
+      "path": "runtime/main.js",
+      "bytes": 11600,
+      "sha256": "c362c4161d99c44543ba1bc29def36ac8494102ee997aa0ea4cdbffff3817194",
+      "origin": "merywood/pages/index/assets/js/main.js (identical on all 54 crawled pages)",
+      "zipEntry": "merywood/pages/index/assets/js/main.js",
+      "servedAs": "assets/runtime/merywood-main.js"
+    }
   }
 }

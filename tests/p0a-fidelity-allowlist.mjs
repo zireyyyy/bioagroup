@@ -19,6 +19,10 @@ const routes = [];
 
 // ALLOWLIST — each entry is evidence-backed in docs/P0A_SOURCE_PIN.md.
 const ALLOW = [
+  // P0B1: the two runtime tags keep id/position/attributes; only their URL points to the pinned copy.
+  ["P0B1 pinned runtime main.css/main.js URL", s => s
+    .replace(/(<link\b[^>]*\bid="main-css"[^>]*\bhref=")[^"]*"/g, '$1MAIN_CSS"')
+    .replace(/(<script\b[^>]*\bid="main-js"[^>]*\bsrc=")[^"]*"/g, '$1MAIN_JS"')],
   ["cache-buster ?ver=", s => s.replace(/([?&](?:#038;|amp;)?ver=)[0-9a-z.]+/gi, "$1V")],
   ["WordPress generator 7.1.2/7.1.3", s => s.replace(/content="WordPress [0-9.]+"/g, 'content="WordPress V"')],
   ["emoji release ver", s => s.replace(/wp-emoji-release\.min\.js\?ver=[0-9.]+/g, "wp-emoji-release.min.js?ver=V")],

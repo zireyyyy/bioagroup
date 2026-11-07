@@ -38,7 +38,36 @@ function readVerified(dir, entry){
 
 export function verifyBundle(dir = bundleDir()){
   for (const entry of Object.values(manifest.files)) readVerified(dir, entry);
-  return Object.keys(manifest.files).length;
+  for (const k of ["css", "js"]) readVerified(dir, manifest.runtime[k]);
+  return Object.keys(manifest.files).length + 2;
+}
+
+// P0B1 — pinned runtime main.css / main.js, served from this site instead of Merywood live.
+// Relative url(../img|../fonts) in the stylesheet are resolved to the same absolute URLs the
+// browser resolved when main.css was loaded from Merywood, so images/fonts behave as before.
+export function runtimeFiles(dir = bundleDir()){
+  const { css, js } = manifest.runtime;
+  const cssText = readVerified(dir, css).toString("utf8")
+    .replace(/url\((['"]?)\.\.\//g, (m, q) => "url(" + q + css.relativeBase);
+  if (/url\((['"]?)\.\.?\//.test(cssText)) throw new Error("RUNTIME PIN: unresolved relative url() left in main.css");
+  const jsBuf = readVerified(dir, js);
+  const v = s => sha256(s).slice(0, 12);
+  return [
+    { id: css.tagId, attr: "href", out: css.servedAs, body: cssText, url: "/" + css.servedAs + "?v=" + v(cssText) },
+    { id: js.tagId, attr: "src", out: js.servedAs, body: jsBuf, url: "/" + js.servedAs + "?v=" + v(jsBuf) }
+  ];
+}
+
+export function pinRuntime(html, files, label){
+  let out = html;
+  for (const f of files){
+    const re = new RegExp('(<(?:link|script)\\b[^>]*\\bid="' + f.id + '"[^>]*\\b' + f.attr + '=")[^"]*(")');
+    if (!re.test(out)) throw new Error("RUNTIME PIN: #" + f.id + " tag not found in " + label);
+    out = out.replace(re, "$1" + f.url + "$2");
+  }
+  if (/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/(css\/main\.css|js\/main\.js)/.test(out))
+    throw new Error("RUNTIME PIN: live Merywood main.css/main.js still referenced in " + label);
+  return out;
 }
 
 // The crawler rewrote original URLs to page-relative "assets/<kind>/<name>".
