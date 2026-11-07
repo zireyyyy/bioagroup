@@ -112,7 +112,9 @@ function titleFor(route,lang){
       '/dich-vu-khac/':'Other Services',
       '/contract-manufacturing-cosmetics/':'Cosmetic Manufacturing',
       '/blog/':'Bio-A Group Blog',
-      '/careers/':'Careers at Bio-A Group'
+      '/careers/':'Careers at Bio-A Group',
+      '/cookie-policy/':'Cookie Policy',
+      '/privacy-policy/':'Privacy Policy'
     };
     return map[route]||(route.startsWith('/blog/')?'Bio-A Group Blog':'Bio-A Group Solutions');
   }
@@ -126,7 +128,9 @@ function titleFor(route,lang){
     '/private-label-cosmetics/':'Gia Công Mỹ Phẩm Công Thức Độc Quyền',
     '/hotel-spa-cosmetics/':'Gia Công Mỹ Phẩm Spa & Khách Sạn',
     '/blog/':'Blog Bio-A Group',
-    '/careers/':'Tuyển Dụng Bio-A Group'
+    '/careers/':'Tuyển Dụng Bio-A Group',
+    '/cookie-policy/':'Chính Sách Cookie',
+    '/privacy-policy/':'Chính Sách Bảo Mật'
   };
   return map[route]||(route.startsWith('/blog/')?'Blog Bio-A Group':'Giải Pháp Bio-A Group');
 }
@@ -158,6 +162,8 @@ function applyBrandHead($,route,lang){
     ?'Bio-A Group cung cấp giải pháp R&D, gia công mỹ phẩm OEM/ODM, bao bì và hoàn thiện sản phẩm theo định hướng thương hiệu.'
     :'Bio-A Group provides cosmetic R&D, OEM/ODM manufacturing, packaging and finished-product development for brands.';
   $('title').text(fullTitle);
+  // P4: every page needs a description and a canonical (some source pages had neither tag).
+  if(!$('meta[name="description"]').length)$('title').first().after('<meta name="description" content="">');
   $('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr('content',description);
   $('meta[property="og:site_name"]').attr('content',company.name);
   $('meta[property="og:title"],meta[name="twitter:title"]').attr('content',fullTitle);
@@ -165,6 +171,7 @@ function applyBrandHead($,route,lang){
   $('meta[name="copyright"]').attr('content',company.name+' - ['+company.email+']');
   $('link[rel="icon"],link[rel="shortcut icon"]').remove();
   $('head').append('<link rel="icon" type="image/svg+xml" href="/assets/bioa-monogram.svg">');
+  if(!$('link[rel="canonical"]').length)$('head').append('<link rel="canonical" href="">');
   $('link[rel="canonical"]').attr('href',company.domain+localPath(route,lang));
 }
 

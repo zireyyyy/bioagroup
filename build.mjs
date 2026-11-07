@@ -366,6 +366,7 @@ function localize($, route){
 }
 
 let runtime;
+const builtRoutes=[];
 
 async function buildOne(route,sourceRoute){
   const raw=loadSource(sourceRoute);
@@ -390,6 +391,7 @@ async function buildOne(route,sourceRoute){
     const html=pinRuntime($.html(),runtime,targetRoute);
     assertNoCrawlerRefs(html,targetRoute);
     await fs.writeFile(target,html);
+    builtRoutes.push(targetRoute);
     console.log("built",lang,targetRoute);
   }
 }
@@ -418,6 +420,10 @@ async function build(){
     await fs.writeFile(path.join(OUT,f.out),f.body);
   }
   await fs.writeFile(path.join(OUT,"_headers"),"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
+  // P4: robots.txt (public mode) points to this sitemap; the maintenance/preview middleware
+  // still answers robots.txt with Disallow and noindex.
+  const urls=[...builtRoutes].sort().map(r=>"  <url><loc>https://bioagroup.vn"+r+"</loc></url>").join("\n");
+  await fs.writeFile(path.join(OUT,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+"\n</urlset>\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   // Auth middleware must intercept assets and APIs, not only HTML.
   await fs.writeFile(path.join(OUT,"_routes.json"),JSON.stringify({version:1,include:["/*"],exclude:[]},null,2)+"\n");
