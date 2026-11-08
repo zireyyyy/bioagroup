@@ -9,6 +9,7 @@ import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
 import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
+import { legacyRedirectFiles } from "./bioa-legacy-redirects.mjs";
 import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
 
 // P0A: source HTML comes from the verified, pinned bundle (source-manifest.json),
@@ -425,6 +426,11 @@ async function build(){
   const urls=[...builtRoutes].sort().map(r=>"  <url><loc>https://bioagroup.vn"+r+"</loc></url>").join("\n");
   await fs.writeFile(path.join(OUT,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+"\n</urlset>\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
+  // D11: redirect pages for legacy Footer/About slugs (not in sitemap; see bioa-legacy-redirects.mjs).
+  for(const f of legacyRedirectFiles(builtRoutes)){
+    await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
+    await fs.writeFile(path.join(OUT,f.out),f.body);
+  }
   // Auth middleware must intercept assets and APIs, not only HTML.
   await fs.writeFile(path.join(OUT,"_routes.json"),JSON.stringify({version:1,include:["/*"],exclude:[]},null,2)+"\n");
   console.log("build complete in",Date.now()-started,"ms");

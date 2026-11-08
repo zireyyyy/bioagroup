@@ -23,6 +23,12 @@ for (const file of pages){
   const route = routeOf(file);
   const html = readFileSync(file, "utf8");
   const $ = load(html);
+  const redirect = $('meta[name="bioa-legacy-redirect"]').attr("content");
+  if (redirect){ // D11 legacy-slug redirect page: its target must be a real built page.
+    if (!exists(redirect)) hard.push([route, "legacy redirect to missing page " + redirect]);
+    if (!/noindex/.test($('meta[name="robots"]').attr("content") || "")) hard.push([route, "legacy redirect without noindex"]);
+    continue;
+  }
   const isEn = route.startsWith("/en/") || route === "/en/404.html";
   const special = /404\.html$/.test(file);
   const lang = ($("html").attr("lang") || "").toLowerCase();
