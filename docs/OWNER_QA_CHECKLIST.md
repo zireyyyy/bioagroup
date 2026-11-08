@@ -15,6 +15,8 @@ Mở `http://127.0.0.1:4173/` bằng Chrome. Cửa sổ PowerShell phải để 
 
 **Không nhập thông tin thật và không bấm Gửi trong form.** Server local không có backend.
 
+Ảnh chụp tham chiếu của bản cuối (264 ảnh, 12 nhóm route × VI/EN × 11 độ rộng): `D:BIOA_WORKSPACE_reportsinalsmoke-s1..4shots` (tên file = route + độ rộng, ví dụ `_-1440.png` là Trang chủ 1440).
+
 ## Ghi kết quả
 Mỗi dòng đánh **PASS** / **FAIL** / để trống. Khi FAIL gửi: ảnh/video, route, VI/EN, viewport, một câu mô tả (mẫu cuối file).
 

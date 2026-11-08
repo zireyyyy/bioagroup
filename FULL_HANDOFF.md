@@ -23,8 +23,9 @@ Tests: `npm run test:candidate`, `test:responsive`, `test:p0b1`, `test:404`, `te
 | P0A/P0B1 source + runtime pin | PASS | VISUAL PENDING (sliders) |
 | P1 icon 04, P2 Tablet readability | PASS | VISUAL PENDING + decisions A4/T6 |
 | P4 + D12 + SEO-1 metadata | PASS | — |
-| D11 dead links | 30 fixed; 22 remain | decision |
-| Full browser QA | smoke 264/264; deep guard 148 cases, 0 unexplained differences; route smoke 196/208 + rerun 28/28 (failures = merywood.com timeouts, P0B2) | — |
+| D11 dead links | 52 audited: 30 redirect to 200 pages; 22 still 404 (6 user-facing: Shipping Policy VI/EN, 4 Careers job cards; 8 JS toggles; 8 hidden) | decision |
+| Full browser QA (final single pass, HEAD e7a5352) | smoke 264/264; route smoke 208/208; deep guard 160 cases: 1 first-pass screenshot flake (Cosmetics VI @375, 0.25% in a product photo, DOM/CSS/geometry identical, 3 reruns clean), all else in declared scopes; interactions 160/160; Header/asset lock 4/4 | VISUAL PENDING |
+| Runtime deps / legal | `docs/RUNTIME_DEPENDENCIES.md`, `docs/LEGAL_CONTENT_BLOCKERS.md` | decisions |
 
 ## Release blockers (owner)
 LEGAL-1 (Privacy/Cookie name Merywood's Estonian company "Bio-A Group OÜ, Reg no. 16386898"), CAREERS-1 (`/careers/` says "European manufacturer of dietary supplements"), D1/D2/D4/D6/D7/D9/D10, P0B2 live Merywood assets, Pages Functions Fail open. Ledger: `docs/OWNER_ISSUE_LEDGER.md`. Checklist: `docs/OWNER_QA_CHECKLIST.md`.
