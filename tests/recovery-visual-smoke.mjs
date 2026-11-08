@@ -73,9 +73,11 @@ for (const route of routes) for (const width of widths){
   const f = [];
   const want404 = /khong-co-trang-nay/.test(route);
   if (a.status !== (want404 ? 404 : 200)) f.push("status " + a.status);
-  if (!a.main?.length || a.main.some(n => n === 0)) f.push("main stylesheet missing/empty " + JSON.stringify(a.main));
+  // The BIO-A 404 (bioa-404.mjs) is a standalone page without the Merywood shell: no header/main.css by design.
+  if (!want404 && (!a.main?.length || a.main.some(n => n === 0))) f.push("main stylesheet missing/empty " + JSON.stringify(a.main));
   if (a.bullets > 0) f.push("header shows " + a.bullets + " bullet list items");
-  if (a.bullets < 0) f.push("no header");
+  if (a.bullets < 0 && !want404) f.push("no header");
+  if (want404 && a.title !== b.title) f.push("404 title differs: " + a.title);
   const brokenNew = (a.broken || []).filter(x => !(b.broken || []).some(y => norm(y) === norm(x)));
   if (brokenNew.length) f.push("broken images: " + brokenNew.join(", "));
   // /cdn-cgi/ is served only by the Cloudflare edge (email obfuscation); it cannot exist in a local dist.

@@ -1,5 +1,39 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-10-16. This is the one authoritative ACTIVE snapshot; historical material below the divider is archival only.
+**Date:** 2026-11-08 (baseline recovery). This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+
+## GitHub / deployment status (verify live before acting)
+- Production `main` `cb4e92f` FROZEN (maintenance on). PR #10 `ed7324c` (owner FULL TABLET VI/EN PASS). PR #11 `d59f50d` (Phase 2B; baseline of this recovery). **Nothing from the recovery has been pushed.**
+- Owner FAIL 2026-11-08 on the earlier local P0–P7 branch (`candidate/p0a-source-pin` `54d78bf`, `D:\BIOA_WORKSPACE\bioagroup-p0a`, kept unchanged as evidence, not a candidate). Owner directive: recover from `d59f50d`, reuse only proven patches.
+- Recovery workspace `D:\BIOA_WORKSPACE\bioagroup-recovery`, branch `recovery/baseline-d59f50d-20261108` (no upstream). Resume file: `D:\BIOA_WORKSPACE\RUNTIME_HANDOFF.md`.
+
+## Root cause of the owner FAIL (OI-1)
+Not the build. The local QA server `tools/serve-dist.mjs` on the P0–P7 branch crashed on its first 404 (`/cdn-cgi/scripts/.../email-decode.min.js`, served only by the Cloudflare edge), so `main.css` and images requested afterwards were refused → Header as bullet list, desktop + mobile nav both visible, broken logo/avatar. Reproduced (`_reports\recovery\repro-buggy.log`); the same dist served by a correct server passes the browser smoke vs the approved Preview. Fixed in BIOA-R0.
+
+## Recovery chain (each step verified before the next)
+R0 `4ceb6cf` server + smoke · P0A `2c71f52` (fidelity 104/104) · P0B1 `510ab9e` · P1 `e2c78c6` · P2 `22ccdf4` · P4 `0d1fc5e` (each dist byte-identical to that phase's verified snapshot) · R1 `a0636b3` D11 redirects · R2 `bbc11df` D12 Blog h1 · R3 `929039c` JSON-LD/beacon · R4 `1f1c8ee` tests · then docs/evidence. Details: `docs/RELEASE_ROLLBACK_PLAN.md`.
+
+## Build / test
+`. D:\BIOA_WORKSPACE\bioa-env.ps1; npm run build; npm run serve` (owner view at `http://127.0.0.1:4173/`). Build needs `BIOA_SOURCE_DIR` (private bundle, see `docs/P0A_SOURCE_PIN.md`); CI/Cloudflare do not have it yet → a push fails closed by design.
+Tests: `npm run test:candidate`, `test:responsive`, `test:p0b1`, `test:404`, `test:turnstile`, `test:smoke` (browser, vs Preview `abdd7602`), `tests/p0a-custom-pass-guard.mjs` (DOM/CSS/geometry/screenshot/interaction guard), `tests/phase-diff-scope.mjs <dist-P0B1> P1+P2+P4+R1+R2+R3`.
+
+## Status
+| Item | TECH | OWNER |
+|---|---|---|
+| OI-1 Header/CSS/assets on local view | FIXED (R0) | VISUAL PENDING (checklist A0) |
+| P0A/P0B1 source + runtime pin | PASS | VISUAL PENDING (sliders) |
+| P1 icon 04, P2 Tablet readability | PASS | VISUAL PENDING + decisions A4/T6 |
+| P4 + D12 + SEO-1 metadata | PASS | — |
+| D11 dead links | 30 fixed; 22 remain | decision |
+| Full browser QA | see RUNTIME_HANDOFF evidence table | — |
+
+## Release blockers (owner)
+LEGAL-1 (Privacy/Cookie name Merywood's Estonian company "Bio-A Group OÜ, Reg no. 16386898"), CAREERS-1 (`/careers/` says "European manufacturer of dietary supplements"), D1/D2/D4/D6/D7/D9/D10, P0B2 live Merywood assets, Pages Functions Fail open. Ledger: `docs/OWNER_ISSUE_LEDGER.md`. Checklist: `docs/OWNER_QA_CHECKLIST.md`.
+
+## Frozen / protected
+All owner Desktop/Mobile PASS customizations, PR #10 Tablet PASS and Phase 2B individual PASS. Protected modules changed only by the commits listed in `tests/p0a-module-isolation.test.mjs`. `functions/`, `migrations/`, `assets/`, Cloudflare settings and secrets untouched.
+
+---
+## 2026-10-16 — ARCHIVED SNAPSHOT (superseded 2026-11-08)
 
 ## GitHub / deployment status
 - Production `main`: `cb4e92f73c1ef800f7507db2330347664fc323d4`, unchanged, maintenance/privacy protections stay enabled.
