@@ -30,6 +30,9 @@ Tests: `npm run test:candidate`, `test:responsive`, `test:p0b1`, `test:404`, `te
 ## Release blockers (owner)
 LEGAL-1 (Privacy/Cookie name Merywood's Estonian company "Bio-A Group OÜ, Reg no. 16386898"), CAREERS-1 (`/careers/` says "European manufacturer of dietary supplements"), D1/D2/D4/D6/D7/D9/D10, P0B2 live Merywood assets, Pages Functions Fail open. Ledger: `docs/OWNER_ISSUE_LEDGER.md`. Checklist: `docs/OWNER_QA_CHECKLIST.md`.
 
+## Review handoff (permanent, AGENTS.md §17)
+After every phase/fix batch (also BLOCKED/FAIL): commit, then `npm run handoff:zip -- --phase <PHASE> --status "<status>" --evidence <dir>` → exactly one `D:BIOA_WORKSPACE_handoffsBIOA_<PHASE>_<HEAD>_REVIEW.zip` (scanned, checksummed, read-back verified). Report its full path + SHA-256. Latest ZIP: see RUNTIME_HANDOFF.
+
 ## Frozen / protected
 All owner Desktop/Mobile PASS customizations, PR #10 Tablet PASS and Phase 2B individual PASS. Protected modules changed only by the commits listed in `tests/p0a-module-isolation.test.mjs`. `functions/`, `migrations/`, `assets/`, Cloudflare settings and secrets untouched.
 

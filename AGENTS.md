@@ -515,6 +515,18 @@ Each checklist must include:
 
 If no owner action is required, write **"KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY"** and give the precise reason. Never say PASS from code inspection alone. Update the handoff with this exact test scope/status so another chat uses the same gate.
 
+## 17. Single-ZIP review handoff — permanent, owner mandate 2026-11-08
+
+After EVERY completed phase or fix batch — including a phase that ends BLOCKED or FAIL — automatically produce exactly ONE review ZIP for the owner's ChatGPT Technical Reviewer. Never ask the owner to collect or send separate files.
+
+1. Commit first (the tool refuses a dirty tree), then run from the repo root:
+   `node tools/make-handoff-zip.mjs --phase <PHASE> --status "<OWNER QA READY | BLOCKED: reason | FAIL: reason>" --evidence <this phase's evidence dir> [--evidence <dir> ...]`
+   Output: `D:\BIOA_WORKSPACE\_handoffs\BIOA_<PHASE>_<HEAD>_REVIEW.zip` (`--out` only if that drive is unavailable).
+2. The ZIP contains: README with phase/status/HEAD/base, commit log, diffstat, full diff and per-commit patches, test and browser evidence (logs/JSON), representative screenshots, OWNER_ISSUE_LEDGER, FULL_HANDOFF, RUNTIME_HANDOFF, RELEASE_ROLLBACK_PLAN, OWNER_QA_CHECKLIST, SCAN.txt and SHA256SUMS.txt.
+3. The tool fails closed on secrets/tokens/signed URLs, on Merywood source content (HTML/CSS/JS/fonts/images, source bundle, `dist/`, preview dumps) and on disallowed file types. Customer data must never be placed in evidence. Do not weaken the scan to make a ZIP pass; fix the evidence instead.
+4. The tool verifies the ZIP by reading every entry back against SHA256SUMS. Also confirm with an independent extractor, then report the full ZIP path and its SHA-256 in the completion message and in RUNTIME_HANDOFF.
+5. The status must be truthful: a BLOCKED/FAIL phase still gets a ZIP whose status names the exact cause. Never declare OWNER PASS, never push/deploy/merge, never touch Production as part of this step.
+
 
 # BIO-A VARIABLE FONT POLICY — permanent, owner-approved 2026-10-13
 - Google Fonts Manrope Variable normal 200..800: `https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap`
