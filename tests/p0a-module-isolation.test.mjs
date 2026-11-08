@@ -1,4 +1,6 @@
-// P0A — BIO-A custom modules and other protected paths must be byte-identical to the baseline.
+// P0A — BIO-A custom modules and other protected paths stay byte-identical to the baseline, except for
+// changes made by an approved roadmap phase commit that touched only its declared files.
+// Adding a phase: append { sha, phase, files } below and record the phase in FULL_HANDOFF.
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -9,16 +11,32 @@ const PROTECTED = [
   "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs",
   "bioa-source-components.mjs", "bioa-transform.mjs", "assets", "functions", "migrations"
 ];
+// Approved phase commits allowed to modify protected paths (scope proven by tests/phase-diff-scope.mjs).
+const APPROVED = [
+  // Recovery branch (baseline d59f50d): P1/P2/P4 ported with cherry-pick -x, then R2/R3.
+  { sha: "e2c78c67828fd2a3571a8a24e1af4107b5f6e445", phase: "P1", files: ["bioa-home-refine.mjs"] },
+  { sha: "22ccdf4e2cbf1f38b80cff491844fe2554456672", phase: "P2", files: ["bioa-source-components.mjs", "bioa-transform.mjs"] },
+  { sha: "0d1fc5e06223464b1bc950019770a4e6d41b4d41", phase: "P4", files: ["bioa-transform.mjs"] },
+  { sha: "bbc11df238c0349bad7dad6d90c8af8a81c2679e", phase: "R2", files: ["bioa-blog-refine.mjs"] },
+  { sha: "929039c255ea22be8f3a834bb7e09c4e53f84647", phase: "R3", files: ["bioa-transform.mjs"] }
+];
+const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
-test("protected BIO-A modules unchanged since " + BASELINE.slice(0, 7), () => {
-  const known = spawnSync("git", ["cat-file", "-e", BASELINE + "^{commit}"]);
-  assert.equal(known.status, 0, "baseline commit must be available (fetch-depth 0)");
-  const r = spawnSync("git", ["diff", "--name-only", BASELINE, "--", ...PROTECTED], { encoding: "utf8" });
-  assert.equal(r.status, 0, r.stderr);
-  assert.equal(r.stdout.trim(), "", "changed protected files:\n" + r.stdout);
+test("protected BIO-A modules change only through approved phase commits", () => {
+  assert.equal(git("cat-file", "-e", BASELINE + "^{commit}").status, 0, "baseline commit must be available (fetch-depth 0)");
+  const dirty = git("diff", "--name-only", "HEAD", "--", ...PROTECTED);
+  assert.equal(dirty.stdout.trim(), "", "uncommitted changes to protected files:\n" + dirty.stdout);
+  const log = git("log", "--format=%H", BASELINE + "..HEAD", "--", ...PROTECTED);
+  assert.equal(log.status, 0, log.stderr);
+  for (const sha of log.stdout.split("\n").filter(Boolean)){
+    const ok = APPROVED.find(a => a.sha === sha);
+    assert.ok(ok, "unapproved commit touches protected paths: " + sha);
+    const touched = git("show", "--name-only", "--format=", sha, "--", ...PROTECTED).stdout.split("\n").filter(Boolean);
+    assert.deepEqual(touched.filter(f => !ok.files.includes(f)), [], ok.phase + " touched undeclared protected files");
+  }
 });
 
 test("pre-existing tests unchanged", () => {
-  const r = spawnSync("git", ["diff", "--name-only", "--diff-filter=MD", BASELINE, "--", "tests"], { encoding: "utf8" });
+  const r = git("diff", "--name-only", "--diff-filter=MD", BASELINE, "--", "tests");
   assert.equal(r.stdout.trim(), "", "modified/deleted existing tests:\n" + r.stdout);
 });

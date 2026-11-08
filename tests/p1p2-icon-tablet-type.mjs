@@ -48,7 +48,7 @@ async function measure(route, width){
   return d;
 }
 
-for (const lang of ["", "/en"]) for (const width of [390, 768, 769, 834, 1024, 1200, 1201, 1440]){
+for (const lang of ["", "/en"]) for (const width of [375, 390, 768, 769, 834, 1024, 1152, 1200, 1201, 1440, 1920]){
   const home = await measure(lang + "/", width), svc = await measure(lang + "/dich-vu-khac/", width);
   const tablet = width >= 769 && width <= 1200;
   const exp = tablet ? [width * 0.015625, width * 0.015625] : [22, 27];
@@ -64,7 +64,7 @@ for (const lang of ["", "/en"]) for (const width of [390, 768, 769, 834, 1024, 1
   if (p2 && home.clipped) fails.push(id + " Home steps clipped: " + home.clipped);
   if (p2 && tablet){
     for (const [k, v] of [["step", home.stepFs], ["lede", home.lede], ["consent", home.consent]]) if (v !== null && v < 12) fails.push(id + " " + k + " " + v + "px < 12px");
-  } else if (width === 390 || width === 768){
+  } else if (width <= 768){
     if (home.stepFs !== 14) fails.push(id + " Mobile step font changed: " + home.stepFs);
   }
   console.log(id, "mono", mono.map(i => i.w.toFixed(2) + "x" + i.h.toFixed(2)).join(","), "clip", home.clipped, "step", home.stepFs, "lede", home.lede, "consent", home.consent);
