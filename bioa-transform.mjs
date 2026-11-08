@@ -173,6 +173,12 @@ function applyBrandHead($,route,lang){
   $('head').append('<link rel="icon" type="image/svg+xml" href="/assets/bioa-monogram.svg">');
   if(!$('link[rel="canonical"]').length)$('head').append('<link rel="canonical" href="">');
   $('link[rel="canonical"]').attr('href',company.domain+localPath(route,lang));
+  // R3: Merywood's WordPress/Yoast JSON-LD was brand-replaced verbatim (legal name "OÜ ...", EU
+  // supplement claims, Merywood articles, invalid host "https://Bio-A Group.com/"). Keep only the
+  // BIO-A generated JSON-LD (ids bioa-*). Also drop the Merywood WP reader-time beacon
+  // (hs-reader-timer: POST every 15 s to that WP admin-ajax). Non-visual; no other script touched.
+  $('script[type="application/ld+json"]').filter((_,el)=>!/^bioa-/.test($(el).attr('id')||'')).remove();
+  $('script[id^="hs-reader-timer-js"]').remove();
 }
 
 
