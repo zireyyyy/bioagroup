@@ -84,6 +84,11 @@ function applyBlogIndex($,lang,route='/blog/'){
     const retained=original.split(';').filter(x=>x.trim()&&!/^\s*font-weight\s*:/i.test(x)).join(';');
     if(retained)title.attr('style',retained); else title.removeAttr('style');
   });
+  /* D12: the Blog index/pagination title is the page's only main heading but was an <h2>
+     (no <h1> on the page). Promote ONLY the tag; class/style/children unchanged. Chromium
+     confirmed every computed property and geometry identical at 375-1920 VI/EN (no tag-based
+     CSS or JS targets it). */
+  hero.find('h2.title').each((_,el)=>{ el.name='h1'; });
   setText(hero,'.text-large',isEn?'Practical articles on cosmetic manufacturing, formulation, skincare, packaging and responsible brand development.':'Kiến thức thực tế về gia công mỹ phẩm, công thức, chăm sóc da, bao bì và phát triển thương hiệu có trách nhiệm.');
   hero.find('.blog-hero__bg').attr('src','/assets/bioa-monogram.svg').attr('alt','').attr('aria-hidden','true').removeAttr('srcset sizes');
 
