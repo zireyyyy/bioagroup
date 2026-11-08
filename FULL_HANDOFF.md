@@ -24,7 +24,7 @@ Tests: `npm run test:candidate`, `test:responsive`, `test:p0b1`, `test:404`, `te
 | P1 icon 04, P2 Tablet readability | PASS | VISUAL PENDING + decisions A4/T6 |
 | P4 + D12 + SEO-1 metadata | PASS | — |
 | D11 dead links | 30 fixed; 22 remain | decision |
-| Full browser QA | see RUNTIME_HANDOFF evidence table | — |
+| Full browser QA | smoke 264/264; deep guard 148 cases, 0 unexplained differences; route smoke 196/208 + rerun 28/28 (failures = merywood.com timeouts, P0B2) | — |
 
 ## Release blockers (owner)
 LEGAL-1 (Privacy/Cookie name Merywood's Estonian company "Bio-A Group OÜ, Reg no. 16386898"), CAREERS-1 (`/careers/` says "European manufacturer of dietary supplements"), D1/D2/D4/D6/D7/D9/D10, P0B2 live Merywood assets, Pages Functions Fail open. Ledger: `docs/OWNER_ISSUE_LEDGER.md`. Checklist: `docs/OWNER_QA_CHECKLIST.md`.

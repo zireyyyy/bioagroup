@@ -36,5 +36,5 @@ One row per issue, deduplicated. The developer never marks OWNER PASS. Fixes are
 | T2 | All pages | Other WP leftovers with host `https://Bio-A Group.com/` (wp-emoji loader, `MW_WAC` config) fail silently; same on approved Preview | Accept, or clean in a separate patch | No |
 | A4 | Home Tablet 834/1024 | Icons 01/02 cream (Production) vs white (PR #10) | Choose | No |
 | T6 | Home Tablet "Quy Trình Hợp Tác" | P2 makes the block taller (no clipping) | Accept | No |
-| P0B2 | Runtime | Swiper/jQuery/Smooth Scrollbar/modal JS, theme + wp-content images, CF7 CSS still load from merywood.com | D2 rights, D4 self-host, D9 CF7 CSS | **YES** for Production |
+| P0B2 | Runtime | Swiper/jQuery/Smooth Scrollbar/modal JS, theme + wp-content images, CF7 CSS still load from merywood.com. Observed 2026-11-08: during the route smoke, 12 Blog page loads in one time window hit 60 s timeouts or `Swiper/wp is not defined` (merywood.com slow); rerun 28/28 PASS. The site breaks whenever that third-party host is slow or changes | D2 rights, D4 self-host, D9 CF7 CSS | **YES** for Production |
 | FAIL-OPEN | Cloudflare Pages Functions | Set to Fail open (docs require fail closed) | Decide in Cloudflare (not changed here) | **YES** for Production |
