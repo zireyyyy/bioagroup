@@ -90,7 +90,8 @@ const SECRET = [
   [/\bsk-[A-Za-z0-9_-]{20,}/, "API secret key"],
   [/AKIA[0-9A-Z]{16}/, "AWS key"],
   [/-----BEGIN [A-Z ]*PRIVATE KEY-----/, "private key"],
-  [/X-Amz-Signature=|[?&](sig|signature|token)=[A-Za-z0-9%._-]{24,}/i, "signed URL"],
+  // Written so that this source line (shipped inside the diff) does not match itself.
+  [/X-Amz-Signatur[e]=[0-9a-f]{16,}|[?&](sig|signature|token)=[A-Za-z0-9%._-]{24,}/i, "signed URL"],
   [/\b(api[_-]?key|secret|client[_-]?secret|password|passwd|auth[_-]?token|access[_-]?token|bearer)\b\s*["']?\s*[:=]\s*["'][^"'\s]{12,}["']/i, "credential assignment"],
   [/\bBearer\s+[A-Za-z0-9._-]{24,}/, "bearer token"],
   [/(CLOUDFLARE_API_TOKEN|RESEND_API_KEY|TURNSTILE_SECRET(_KEY)?|SHEETS?_[A-Z_]*KEY)\s*[=:]\s*["']?[A-Za-z0-9._-]{16,}/, "deployment secret value"]
