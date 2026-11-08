@@ -15,13 +15,18 @@
 | `bbc11df` R2 | D12 Blog h1 (tag only) | none | computed style identical |
 | `929039c` R3 | Drop Merywood JSON-LD + WP beacon | none | scope gate |
 | `1f1c8ee` R4 | Test entry points / guards | none | — |
-| later | docs, QA evidence | none | see FULL_HANDOFF |
+| `e66bedd`…`c0443e2` R5–R7 | owner QA pack, ledger, guard classifier, QA evidence | none | — |
+| `e7a5352` R8 | Header/asset lock, D11 full audit, runtime inventory tests | none | header lock 4/4, D11 30+22 |
+| later | final docs + final QA evidence | none | see FULL_HANDOFF |
+
+## Recommended technical step after owner approval (not implemented)
+P0B2-A: self-host the byte-identical OSS libraries (jQuery 3.7.1, Swiper 11.1.4, smooth-scrollbar 8.8.4, WordPress 7.1 hooks/i18n) from upstream packages, removing the merywood.com single point of failure for sliders/scroll/forms. See `docs/RUNTIME_DEPENDENCIES.md`.
 
 Ancestry: `cb4e92f (main) ← … ← ed7324c (PR #10) ← … ← d59f50d (PR #11) ← recovery`. Never merge PR #10/#11 separately in another order.
 
 ## Release blockers (all OWNER / hard gates)
-1. **LEGAL-1** BIO-A legal entity data for Privacy/Cookie policies (currently Merywood's Estonian company).
-2. **CAREERS-1** BIO-A careers content or hide `/careers/`.
+1. **LEGAL-1** BIO-A legal entity data and approved VI/EN policy text for Privacy/Cookie (currently Merywood's Estonian policy incl. info@Merywood.ee) — `docs/LEGAL_CONTENT_BLOCKERS.md`.
+2. **CAREERS-1** BIO-A careers content or hide `/careers/` (options in the same file).
 3. D1 private storage for the source bundle; D2 written right to use/host Merywood HTML/CSS/JS; D6 read-only token as GitHub secret + Cloudflare **Preview-only** variable, CI fetch+verify step (without it a pushed build fails closed by design).
 4. D7 Cloudflare Preview branch control (today every non-main branch auto-deploys) and a Preview env without Production bindings/secrets.
 5. D10 one Node version (Production 20, CI 22, local 26).
