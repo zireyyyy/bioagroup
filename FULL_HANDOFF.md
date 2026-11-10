@@ -1,5 +1,24 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-11-10 (FINAL COMPLETION batch on the recovery branch). This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+**Date:** 2026-11-10 (FINAL COMPLETION + REVIEW CORRECTION on the recovery branch). This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+
+## REVIEW CORRECTION — 2026-11-10 (one pass, after Technical Review of ZIP 521dd7e)
+The reviewer's report file was not found on this machine; the 8 items of the owner's correction prompt were handled.
+
+| # | Item | Result |
+|---|---|---|
+| 1 | `test:responsive` | Rerun on the actual HEAD: **15/15, exit 0** (`_reports\correction\suite-responsive.log`). |
+| 2 | Old P0A fidelity | Historical and final gates are now separate (R20). `test:p0a:historical` compares with the d59f50d Preview and is valid only on the P0A/P0B1 build: on the final dist it **exits 1 (0/134) by design**, logged and **not** reported as PASS. `test:p0a` = isolation + `p0a-final-gate` + determinism, **exit 0**. `p0a-final-gate` = historical fidelity on the frozen P0B1 snapshot (104/104) + cumulative scope P1…R15+R21 (PASS). |
+| 3 | Route smoke `Object` | Root cause (R21): CF7 fetches its feedback schema from the invalid host `Bio-A Group.com` (T2 leftover) and rejects with `{code:"fetch_error"}`. Deterministic on **every** page, locally and on the approved Preview (9/9). Page-error probe: 60/60 + 40/40 loads on a fixed dist. Route smoke now identifies it by the exact rejection reason. Final route smoke on the frozen dist `dist-final-r21`, with no rebuild during the run: **208/208**, T2 present in 208/208 loads. The CF7 runtime itself is not changed (D9/OD-5). |
+| 4 | Chat | Design unchanged. The preview reply no longer says «đã ghi nhận nhu cầu / has noted your request»; it says the message was not sent and points to Zalo/hotline (R21). Chat probe 60/60 (asserts no claim of receipt). API stays OFF; no provider. |
+| 5 | Preview forms / lead plan | `lead-form-probe`: 36 cases (3 routes × 3 widths × 4 server answers, in-browser mocks, nothing sent). First pass 35/36: one Contacts case had the Google Maps iframe telemetry POST, which was aborted (not form-related). Contacts rerun 24/24. "đã nhận" appears only when the server answers `ok:true`. `maintenance-host-gate` 6/6 (Preview `/api` private). Activation plan: `docs/OWNER_DECISIONS.md`. |
+| 6 | Owner decisions | Single final table `docs/OWNER_DECISIONS.md` (OD-1…OD-12) incl. exact Cloudflare Preview steps. |
+| 7 | Remote | Not pushed / deployed / merged: the remote build gate is not met. |
+
+Suites on HEAD after R21 (logs in `D:\BIOA_WORKSPACE\_reports\correction\`):
+- `test:candidate`, `test:responsive`, `test:p0a`, `test:404`, `test:turnstile`, `test:chat`: exit 0.
+- `maintenance-host-gate` 6/6.
+- Frozen dist SHA `76dac2ba…`, identical to the HEAD build.
+- R21 scope vs the previous final dist: only `script#bioa-contact-fab-js` changed.
 
 ## GitHub / deployment status (verify live before acting)
 - Remote verified read-only 2026-11-10 (`git ls-remote`):

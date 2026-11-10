@@ -2,7 +2,7 @@
 
 | Item | Status |
 |---|---|
-| CHAT UI (bubble, teaser, panel, channels, composer) | Unchanged, OWNER PASS design. **Still a local mock**: a sent message gets a fixed preview reply after 320 ms in the browser; nothing is sent to a server. |
+| CHAT UI (bubble, teaser, panel, channels, composer) | Unchanged, OWNER PASS design. **Still a local mock**: a sent message gets a fixed preview reply after 320 ms in the browser; nothing is sent to a server. Since BIOA-R21 the reply says honestly that the chat is not connected and the message was not sent, and points to Zalo/hotline (it previously claimed «đã ghi nhận nhu cầu / has noted your request»). |
 | CHAT API GATEWAY `/api/chat` | **READY, flag OFF.** `functions/api/chat.js` → `lib/chat/gateway.js` + `lib/chat/adapters.js`. Tests `tests/chat-gateway.test.mjs` (8/8, no network). |
 | TRAINED BOT CONNECTION | **NOT CONNECTED.** No provider chosen, no credentials, no request to any AI service. |
 | UI ↔ gateway wiring | **Not done on purpose** (future patch, below). Wiring changes the OWNER PASS chat script and needs its own Desktop/Tablet/Mobile QA. |

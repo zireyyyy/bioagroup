@@ -33,6 +33,9 @@ One row per issue, deduplicated. The developer never marks OWNER PASS. Fixes are
 | ID-2 | careers@merywood.com, info@Merywood.ee (obfuscated) public | BIOA-R15 → contact@bioagroup.vn | FIXED (text of those pages still LEGAL-1/CAREERS-1) |
 | SEO-2 | og:url = merywood.com on all 104 pages; Blog share links shared a Merywood article; Merywood favicon/oEmbed/og:image | BIOA-R15 | FIXED |
 | CHAT-1 | Chat is a local mock with no server path | BIOA-R16 `/api/chat` gateway, flag OFF (AI-READY) | READY · NOT CONNECTED |
+| CHAT-2 | Chat preview reply claimed «đã ghi nhận nhu cầu» without any backend | BIOA-R21 honest reply (design unchanged) | FIXED · OWNER VISUAL PENDING |
+| T2-ROOT | Route smoke "Object" page error | CF7 schema fetch to invalid host `Bio-A Group.com`, uncaught `{code:fetch_error}` on every page (also approved Preview); smoke identifies it exactly | ROOT CAUSE KNOWN · runtime unchanged (OD-5/D9) |
+| QA-P0A | `test:p0a` exit 1 on final dist | historical fidelity separated (`test:p0a:historical`), final gate `p0a-final-gate` | FIXED (gate) |
 
 ## Open — owner decision / hard gate
 | ID | Where | Finding | Needed from owner | Blocking release? |
