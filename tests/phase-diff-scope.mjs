@@ -19,7 +19,16 @@ const SCOPES = {
   // R2: Blog index/pagination title tag h2 -> h1.
   R2: [[/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, ".blog-hero .title"]],
   // R3: Merywood JSON-LD and WP reader-time beacon removed.
-  R3: [[/\.html$/, 'script[type="application/ld+json"]'], [/\.html$/, 'script[id^="hs-reader-timer-js"]']]
+  R3: [[/\.html$/, 'script[type="application/ld+json"]'], [/\.html$/, 'script[id^="hs-reader-timer-js"]']],
+  // R12: the six live OSS library tags point to /assets/vendor (files under assets/vendor/ added, see below).
+  R12: ["swiper-style-css", "swiper-script-js", "smooth-scrollbar-script-js", "jquery-js", "wp-hooks-js", "wp-i18n-js"].map(id => [/\.html$/, "#" + id]),
+  // R13: format toggles (label + href), their inline script (VI label), VI packaging card text, VI dropdown placeholder.
+  R13: [[/\.html$/, "[data-formats-toggle]"], [/\.html$/, 'script:contains("data-formats-toggle")'], [/^(contract-manufacturing-cosmetics\/)?index\.html$/, ".product"], [/\.html$/, "#ddType .dd-label"]],
+  // R15: Merywood identity: obfuscated Merywood mailboxes (Careers/Privacy/Cookie), Blog share links, head identity tags.
+  R15: [[/^(en\/)?(careers|privacy-policy|cookie-policy)\/index\.html$/, "a[href^='/cdn-cgi/l/email-protection'], a[href='mailto:contact@bioagroup.vn'], .mwc-copy, .mwc-hrcard__email"],
+    [/^(en\/)?blog\/[^/]+\/index\.html$/, ".btp-share__link"], [/\.html$/, 'meta[property="og:url"]'], [/\.html$/, 'meta[property="url"]'],
+    [/\.html$/, 'link[href*="merywood.com/wp-json"], link[rel="shortlink"], link[rel="apple-touch-icon"], meta[name="msapplication-TileImage"]'],
+    [/^(en\/)?contract-manufacturing-cosmetics\/index\.html$/, 'meta[property^="og:image"]']]
 };
 const [, , base, phase] = process.argv;
 const phases = (phase || "").split("+"), scope = phases.flatMap(p => SCOPES[p] || []);
@@ -30,7 +39,8 @@ const a = list(base), b = list("dist");
 const fails = [], changed = [];
 for (const f of new Set([...a, ...b])){
   if (!a.includes(f) || !b.includes(f)){ const legacyStub = phases.includes("R1") && !a.includes(f) && /bioa-legacy-redirect/.test(readFileSync(path.join("dist", f), "utf8"));
-    if (!legacyStub && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
+    const vendorFile = phases.includes("R12") && !a.includes(f) && f.startsWith("assets/vendor/");
+    if (!legacyStub && !vendorFile && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
   const x = readFileSync(path.join(base, f)), y = readFileSync(path.join("dist", f));
   if (x.equals(y)) continue;
   if (!f.endsWith(".html")){ fails.push(f + ": non-HTML file changed"); continue; }
