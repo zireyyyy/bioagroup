@@ -22,7 +22,9 @@ const APPROVED = [
   // FINAL COMPLETION (2026-11-10): R13 VI dropdown label, R14 canonical business config (byte-identical dist), R15 identity/share fixes.
   { sha: "40268200a58cf6e31d7d04f9c8fc6d834da72c1f", phase: "R13", files: ["bioa-transform.mjs"] },
   { sha: "e1f84a593e8efc406342ecf3a5cc9c5de21be2af", phase: "R14", files: ["bioa-blog-refine.mjs", "bioa-contacts-refine.mjs", "bioa-home-refine.mjs", "bioa-transform.mjs"] },
-  { sha: "15d2960318b040804a82e582f60176c7e8912e30", phase: "R15", files: ["bioa-blog-refine.mjs"] }
+  { sha: "15d2960318b040804a82e582f60176c7e8912e30", phase: "R15", files: ["bioa-blog-refine.mjs"] },
+  // R16: new isolated Pages Function (chat gateway); functions/api/lead.js untouched.
+  { sha: "7960b6dd2739a9664280df3faf77c135e715a776", phase: "R16", files: ["functions/api/chat.js"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
