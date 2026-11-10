@@ -142,3 +142,36 @@ The scope gate R24 vs `dist-final-r21` passes: 109 files changed, all only insid
    - "Chính Sách" column = Bảo Mật, Cookie.
    - Layout is otherwise as approved.
 4. **About:** the team button reads "Liên Hệ Bio-A Group" and opens Contacts. `/careers/` opens Contacts.
+
+## Final QA — one round on the frozen candidate `dist-final-r24b` (HEAD content `f265a29`; later commits change docs/tests only)
+Logs and screenshots: `D:\BIOA_WORKSPACE\_reports\home-regression\qa-final\` (`summary.txt`).
+
+| Check | Result |
+|---|---|
+| `test:candidate`, `test:responsive` 15/15, `test:p0a` (fidelity 104/104 + cumulative scope incl. R24 + determinism), `test:404`, `test:turnstile`, `test:chat`, maintenance-host 6/6 | all exit 0 |
+| Scope gate R24 vs `dist-final-r21` | PASS (109 files, only declared selectors) |
+| D11 audit | 54 targets: 32 redirect to 200, 0 dead, 22/22 stay unlinked |
+| Roadmap Home, static + resized, VI/EN × 9 widths, settled / Next / Next / Prev | **36/36** |
+| Roadmap Cosmetics, same matrix | **36/36** |
+| How It Works VI/EN × 7 widths, static + resized | **28/28** |
+| Home sections VI/EN × 390/768/769/834/1024/1200/1201/1440/1920 + zoom 125% (header, footer, h1, no empty section, no overflow, slider = card, chat, no page error except T2) | **20/20**, 205 section screenshots |
+| Headed Chrome window resize 1000→1680 + Next (owner scenario) | CTA 45px below the card (was overlapping by 155px), slider 636.5 vs card 637 |
+| Route smoke 102 routes × 1440/390 | **204/204** (T2 only) |
+| Chat UI 6 routes × 10 widths | 60/60 |
+| Lead form 3 routes × 3 widths × 4 server answers | 36/36, nothing sent |
+| Deep guard vs approved Preview, reference runtime pinned (8 families × VI/EN × 1440/1024/834/390) | 64 cases; classifier: **all differences inside declared scopes**; R24 text proven by `tests/r24-text-proof.mjs` 64/64 |
+| Comparison sheets Merywood / d59f50d / R24 | `qa-final\compare\SHEET-*.png` (Roadmap 1920/1440/834/390, How It Works 834/1024, VI/EN, slide 1 + after Next) |
+
+**Honest log of this round:**
+- (1) The first final round was stopped: Home resized EN @834 gave 35/36 (slider 373 vs card 369). The cause was measured: the card transition ends about 510 ms after Swiper's resize, so the timer had no margin. It was fixed at the cause (`f265a29`, re-sync on `transitionend`). Targeted check: 54/54 over 3 runs. Then one new final round ran.
+- (2) In that round, the guard first ran **without** `BIOA_REF_PIN_DIR`. That is a runner configuration error: the reference loaded the changed live Merywood `main.js`, and 0/64 cases were attributable. It was rerun with the pinned reference.
+- (3) The new probes `home-section-screens` and `r24-text-proof` each had a measurement defect:
+  - fixed-position Header visibility and an unblocked Turnstile;
+  - reading the text while the Hero counters were still running.
+  The probes were fixed and rerun. No site code was changed for (2) and (3).
+
+**Visible side effect, by design (CONTENT-C1):**
+- On Mobile (≤768) the Footer is **87px shorter** (845.7 → 758.5) because its link lists stack and hold 3 links fewer. The Footer top and every element above it are unchanged.
+- Desktop and Tablet Footer height are unchanged.
+
+**Backlog (outside R24, not changed):** ROADMAP-M1. On Mobile the Merywood source hides the Roadmap `<br>` line breaks, so words join («tưởng,nhóm», «sáchvà», «trìnhphù»). This is identical on the approved d59f50d (`compare\SHEET-roadmap-390-vi.png`). The fix is content-only (a space before each `<br>` in the ROADMAP-R3 copy) and needs Mobile owner QA.

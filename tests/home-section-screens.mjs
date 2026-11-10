@@ -23,14 +23,15 @@ for (const loc of ["vi", "en"]) for (const c of CASES){
   await page.addInitScript(() => { window.__rej = []; addEventListener("unhandledrejection", e => { try { window.__rej.push(JSON.stringify(e.reason)); } catch { window.__rej.push(String(e.reason)); } }); });
   const errors = [];
   page.on("pageerror", e => errors.push(String(e.message).slice(0, 160)));
-  await page.route("**/*", r => r.request().method() !== "GET" || /googletagmanager|yandex|dashly|geojs/.test(r.request().url()) ? r.abort() : r.fallback());
+  await page.route("**/*", r => r.request().method() !== "GET" || /googletagmanager|yandex|dashly|geojs|challenges\.cloudflare/.test(r.request().url()) ? r.abort() : r.fallback());
   const fail = [];
   try {
     await page.goto(base + (loc === "en" ? "/en/" : "/"), { waitUntil: "load", timeout: 70000 }); await page.waitForTimeout(1500);
     if (c.from){ await page.setViewportSize({ width: c.w, height: 720 }); await page.waitForTimeout(1500); }
     const deny = page.locator("#mw-consent .mw-deny").first(); if (await deny.isVisible().catch(() => false)) await deny.click();
     const info = await page.evaluate(() => {
-      const vis = e => e && e.offsetParent !== null && e.getBoundingClientRect().height > 0;
+      // position:fixed elements (Header) have offsetParent === null: use size + computed style instead
+      const vis = e => { if (!e) return false; const r = e.getBoundingClientRect(), c = getComputedStyle(e); return r.width > 0 && r.height > 0 && c.display !== "none" && c.visibility !== "hidden"; };
       const secs = [...document.querySelectorAll(".page-main section, .page-main > .block")].filter(vis);
       const content = document.querySelector(".scroll-content") || document.body;
       const h = (sel, card) => { const s = [...document.querySelectorAll(sel)].find(vis); if (!s) return null; const wr = s.querySelector(".swiper-wrapper"); const st = s.querySelector(".swiper-slide-active .step") || s.querySelector(".step"); return [parseFloat(wr.style.height || "0"), st.getBoundingClientRect().height]; };

@@ -1,5 +1,37 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-11-10 (FINAL COMPLETION + REVIEW CORRECTION on the recovery branch). This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+**Date:** 2026-11-10. Covers the FINAL COMPLETION, the REVIEW CORRECTION and **R24 HOME REGRESSION RECOVERY** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+
+## R24 — OWNER HOME FAIL 2026-11-10 → R24 LOCAL CANDIDATE (owner QA pending)
+- Commits on top of `8ed22d5`:
+  - `497467a` fix;
+  - `56ea8ee` approval + scope;
+  - `513d7ec` tests;
+  - `f265a29` transitionend fix after the final-QA timing FAIL;
+  - `3387452` docs/approval;
+  - plus the handoff commit.
+- Nothing pushed. Details: `docs/HOME_REGRESSION_R24.md`.
+- **Roadmap Desktop (OI-2):**
+  - Root cause: Merywood `swiperAutoHeight` measures on window resize before Swiper re-lays the slides, and `.step{transition:.5s}` animates vw padding/gap/font-size afterwards. Any width change after load (resize, maximize, zoom, DevTools) left a stale slider height, so the CTA and Footer overlapped the card. A clean load was always correct, which is why the earlier smoke passed. This is not MOTION-U1 this time. The approved d59f50d and Cosmetics behave the same.
+  - Fix ROADMAP-R5: the Home-owned `addHomeRoadmapColdLoadSync` re-runs the source path after Swiper resize and on the card's `transitionend`. Cosmetics imports it.
+- **How It Works Tablet (OI-3):** HOWWORKS-T1 (Tablet block of `bioa-source-components.mjs`). Cards fill the slide height and the photo equals the text column; 12px full copy is kept. VI is about 49% taller than Merywood at 834 (trade-off, OD-11). EN equals Merywood.
+- **CONTENT-C1 (owner-authorized):**
+  - Careers hidden (noindex redirect to Contacts, off the sitemap; Footer/About/legacy links → Contacts).
+  - Shipping link removed.
+  - Hidden Footer surplus items unlinked.
+  - D11: 0 dead targets.
+- **Final regression:** one round on the frozen `dist-final-r24b`. Logs: `D:\BIOA_WORKSPACE\_reports\home-regression\qa-final\`. Full table and honest run log: `docs/HOME_REGRESSION_R24.md` §Final QA.
+  - All gates exit 0.
+  - Roadmap Home 36/36 and Cosmetics 36/36 (static + resized).
+  - How It Works 28/28.
+  - Home sections 20/20, incl. 768/769, 1200/1201 and zoom 125%.
+  - Route smoke 204/204, chat 60/60, lead 36/36.
+  - Deep guard (reference runtime pinned): all differences inside declared scopes.
+  - Mobile Footer is 87px shorter by design (3 links fewer).
+- **Backlog (outside R24, evidence `qa-final\compare\SHEET-roadmap-390-vi.png`):** ROADMAP-M1. On Mobile the source hides the ROADMAP-R3 `<br>` line breaks, so words join («tưởng,nhóm», «sáchvà», «trìnhphù»). This is identical on the approved d59f50d. Content-only fix (a space before each `<br>`), needs Mobile owner QA.
+- Protected and unchanged:
+  - Desktop/Mobile PASS geometry (Roadmap static identical to d59f50d; Mobile identical);
+  - Header, Hero, Chat, Footer grid;
+  - `/api/lead`, D1, Cloudflare.
 
 ## REVIEW CORRECTION — 2026-11-10 (one pass, after Technical Review of ZIP 521dd7e)
 The reviewer's report file was not found on this machine; the 8 items of the owner's correction prompt were handled.
