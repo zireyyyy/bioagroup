@@ -1,7 +1,8 @@
+import { BUSINESS } from './bioa-business.mjs';
 export const company = {
-  name: 'Bio-A Group', domain: 'https://bioagroup.vn', email: 'contact@bioagroup.vn',
-  phone: '0779 399 379', phoneRaw: '0779399379', whatsapp: 'https://wa.me/84779399379',
-  zalo: 'https://zalo.me/84779399379', facebook: 'https://www.facebook.com/nhamaysanxuatduocmypham.BioA'
+  name: BUSINESS.brand, domain: BUSINESS.domain, email: BUSINESS.email,
+  phone: BUSINESS.phone, phoneRaw: BUSINESS.phoneRaw, whatsapp: BUSINESS.whatsapp,
+  zalo: BUSINESS.zalo, facebook: BUSINESS.facebook
 };
 
 export const withExtraRoutes = routes => [...routes.map(r => [r,r]), ['/dich-vu-khac/','/hotel-spa-cosmetics/']];

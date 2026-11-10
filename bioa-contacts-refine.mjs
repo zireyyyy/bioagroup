@@ -1,13 +1,14 @@
+import { BUSINESS } from './bioa-business.mjs';
 const CONTACTS = {
-  companyVi: 'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group',
-  companyEn: 'Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory',
-  email: 'contact@bioagroup.vn',
-  phoneDisplay: '0779 399 379',
-  phoneHref: 'tel:+84779399379',
-  zalo: 'https://zalo.me/84779399379',
-  taxId: '0318126597',
-  addressVi: '496/63/10H Dương Quảng Hàm, An Nhơn, Hồ Chí Minh, Việt Nam',
-  addressEn: '496/63/10H Duong Quang Ham, An Nhon, Ho Chi Minh City, Vietnam',
+  companyVi: BUSINESS.tradeNameVi,
+  companyEn: BUSINESS.tradeNameEn,
+  email: BUSINESS.email,
+  phoneDisplay: BUSINESS.phone,
+  phoneHref: BUSINESS.phoneHref,
+  zalo: BUSINESS.zalo,
+  taxId: BUSINESS.taxId,
+  addressVi: BUSINESS.addressVi,
+  addressEn: BUSINESS.addressEn,
   mapLink: 'https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam',
   mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s'
 };
@@ -114,12 +115,12 @@ function setCompanyMeta($,lang,c){
     '@context':'https://schema.org',
     '@type':'Organization',
     name:CONTACTS.companyVi,
-    url:'https://bioagroup.vn/',
+    url:BUSINESS.domain+'/',
     email:CONTACTS.email,
-    telephone:'+84 779 399 379',
+    telephone:BUSINESS.phoneIntl,
     taxID:CONTACTS.taxId,
-    address:{'@type':'PostalAddress',streetAddress:'496/63/10H Dương Quảng Hàm',addressLocality:'Hồ Chí Minh',addressCountry:'VN'},
-    contactPoint:{'@type':'ContactPoint',telephone:'+84 779 399 379',contactType:'customer service',availableLanguage:['vi','en']}
+    address:{'@type':'PostalAddress',streetAddress:BUSINESS.streetAddress,addressLocality:BUSINESS.locality,addressCountry:BUSINESS.country},
+    contactPoint:{'@type':'ContactPoint',telephone:BUSINESS.phoneIntl,contactType:'customer service',availableLanguage:['vi','en']}
   };
   $('head').append('<script id="bioa-contacts-jsonld" type="application/ld+json">'+JSON.stringify(schema).replace(/<\//g,'<\\/')+'</script>');
   return address;

@@ -1,14 +1,15 @@
 import { sourceComponentCss } from './bioa-source-components.mjs';
+import { BUSINESS } from './bioa-business.mjs';
 const company = {
-  email:'contact@bioagroup.vn',
-  phone:'0779 399 379',
-  phoneIntl:'+84 779 399 379',
-  address:'496/63/10H Dương Quảng Hàm, An Nhơn, Hồ Chí Minh, Việt Nam',
-  taxId:'0318126597',
-  whatsapp:'https://wa.me/84779399379',
-  zalo:'https://zalo.me/84779399379',
-  facebook:'https://www.facebook.com/nhamaysanxuatduocmypham.BioA',
-  telegram:'https://t.me/bioagroup'
+  email:BUSINESS.email,
+  phone:BUSINESS.phone,
+  phoneIntl:BUSINESS.phoneIntl,
+  address:BUSINESS.addressVi,
+  taxId:BUSINESS.taxId,
+  whatsapp:BUSINESS.whatsapp,
+  zalo:BUSINESS.zalo,
+  facebook:BUSINESS.facebook,
+  telegram:BUSINESS.telegram
 };
 
 const icons = {
@@ -4012,7 +4013,7 @@ function refineMobileContactCta($,lang){
   });
   if(lang==='vi'){
     $('.whatsapp__title').text('Trao Đổi Về Dự Án Của Bạn');
-    $('.whatsapp__description').text('Liên hệ Zalo 0779 399 379 để được tư vấn về công thức, số lượng và tiến độ sản xuất.');
+    $('.whatsapp__description').text('Liên hệ Zalo '+company.phone+' để được tư vấn về công thức, số lượng và tiến độ sản xuất.');
   }else{
     $('.whatsapp__title').text('Let’s Discuss Your Project');
     $('.whatsapp__description').text('Contact Bio-A Group on Zalo for formula, MOQ and production timeline consultation.');
