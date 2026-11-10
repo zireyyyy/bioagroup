@@ -21,6 +21,9 @@
     "node": ">=20"
   },
   "dependencies": {
-    "cheerio": "1.0.0"
+    "cheerio": "1.0.0",
+    "jquery": "3.7.1",
+    "smooth-scrollbar": "8.8.4",
+    "swiper": "11.1.4"
   }
 }

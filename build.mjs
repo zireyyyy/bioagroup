@@ -11,6 +11,7 @@ import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
 import { legacyRedirectFiles } from "./bioa-legacy-redirects.mjs";
 import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
+import { vendorFiles, pinVendor } from "./tools/vendor-runtime.mjs";
 
 // P0A: source HTML comes from the verified, pinned bundle (source-manifest.json),
 // never from the live Merywood site.
@@ -366,7 +367,7 @@ function localize($, route){
   $("body").append(`<script id="bioa-preview-form">document.querySelectorAll('form').forEach(function(f){f.addEventListener('submit',function(e){e.preventDefault();alert('Form đang ở chế độ xem thử. Vui lòng liên hệ Bio-A Group qua email ${company.email}.')})});</script>`);
 }
 
-let runtime;
+let runtime, vendor;
 const builtRoutes=[];
 
 async function buildOne(route,sourceRoute){
@@ -389,7 +390,7 @@ async function buildOne(route,sourceRoute){
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
     await fs.mkdir(path.dirname(target),{recursive:true});
-    const html=pinRuntime($.html(),runtime,targetRoute);
+    const html=pinVendor(pinRuntime($.html(),runtime,targetRoute),vendor,targetRoute);
     assertNoCrawlerRefs(html,targetRoute);
     await fs.writeFile(target,html);
     builtRoutes.push(targetRoute);
@@ -401,6 +402,7 @@ async function build(){
   const started=Date.now();
   verifyBundle();
   runtime=runtimeFiles();
+  vendor=vendorFiles();
   await fs.rm(OUT,{recursive:true,force:true});
   await fs.mkdir(OUT,{recursive:true});
 
@@ -416,7 +418,7 @@ async function build(){
   await fs.writeFile(path.join(OUT,"en","404.html"),renderNotFound("en"));
 
   await fs.cp("assets",path.join(OUT,"assets"),{recursive:true});
-  for(const f of runtime){
+  for(const f of [...runtime,...vendor]){
     await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
     await fs.writeFile(path.join(OUT,f.out),f.body);
   }
