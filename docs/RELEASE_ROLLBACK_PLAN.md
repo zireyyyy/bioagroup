@@ -44,3 +44,14 @@ Ancestry: `cb4e92f (main) ← … ← ed7324c (PR #10) ← … ← d59f50d (PR #
 - Local: each commit is one purpose → `git revert <sha>`; or check out `d59f50d`. Nothing remote affected.
 - Preview: delete/ignore the branch; immutable Previews `abdd7602` (d59f50d), `618a8930` (ed7324c), `3d66a846` (cb4e92f) remain.
 - Production: Cloudflare Pages "Rollback to this deployment" to the last good deployment, or revert the merge on `main`; revoke the bundle token at the storage provider.
+
+## FINAL COMPLETION commits (2026-11-10) — individual rollback
+| Commit | Purpose | Revert effect |
+|---|---|---|
+| `79728cf` R12 | self-hosted OSS runtime libs | libraries load live from merywood.com again (old risk returns); also drop `jquery`/`swiper`/`smooth-scrollbar` from package.json via the revert |
+| `4026820` R13 | VI strings, toggles, dropdown label | English leftovers and 8 dead toggle hrefs return |
+| `e1f84a5` R14 / `226fcc0` R14c | canonical business config | none visible (dist identical) |
+| `15d2960` R15 | Merywood mailboxes, share links, head identity | Merywood identity returns |
+| `7960b6d` R16 (+`7459c14` R16b) | `/api/chat` gateway | endpoint disappears; UI unaffected (still mock) |
+Gate tests (R15b/R16b/R17/R17b/R18) must be reverted together with the commit they approve.
+Additional gate for remote: Cloudflare/CI also need `npm ci` to install the three new npm packages (lockfile pinned); no new secret is required for the site build.

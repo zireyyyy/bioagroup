@@ -1,5 +1,63 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-11-08 (baseline recovery). This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+**Date:** 2026-11-10 (FINAL COMPLETION batch on the recovery branch). This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+
+## GitHub / deployment status (verify live before acting)
+- Remote verified read-only 2026-11-10 (`git ls-remote`):
+  - Production `main` `cb4e92f` FROZEN (maintenance on);
+  - PR #10 `ed7324c` (owner FULL TABLET VI/EN PASS);
+  - PR #11 `d59f50d` (baseline of this recovery).
+  - The repository is **public**; account `zireyyyy` has push/admin.
+- **Nothing pushed, no PR, no deploy.** Reason: Cloudflare Pages runs `npm run build`, which needs the private Merywood source bundle (`BIOA_SOURCE_DIR`). Neither Cloudflare nor CI has it: no storage (D1), no token (D6), no Preview control (D7), rights not confirmed (D2). A push would auto-create a Preview that fails closed. The owner directive says not to push in that case.
+- Workspace `D:\BIOA_WORKSPACE\bioagroup-recovery`, branch `recovery/baseline-d59f50d-20261108` (no upstream). Resume file: `D:\BIOA_WORKSPACE\RUNTIME_HANDOFF.md`.
+- `node_modules` is now a real install: `npm ci` plus `playwright@1.56.1 --no-save`. It is no longer a junction to p0a.
+
+## Chain
+- **Recovery (2026-11-08):** R0 `4ceb6cf` · P0A `2c71f52` · P0B1 `510ab9e` · P1 `e2c78c6` · P2 `22ccdf4` · P4 `0d1fc5e` · R1 `a0636b3` · R2 `bbc11df` · R3 `929039c` · R4–R11b (tests, docs, ZIP tool) → `431cb7b`.
+- **FINAL COMPLETION (2026-11-10):**
+
+| Commit | Change |
+|---|---|
+| R12 `79728cf` | Self-host jQuery 3.7.1, Swiper 11.1.4, smooth-scrollbar 8.8.4 (npm) and WP 7.1.2 hooks/i18n (vendored, GPL). Byte-identical, SHA-256 fail-closed |
+| R13 `4026820` | VI «+N mục khác/Thu gọn», toggle href `#` (8 dead links closed), 16 VI packaging strings, VI dropdown label |
+| R14 `e1f84a5` + R14c `226fcc0` | Canonical `bioa-business.mjs`; dist byte-identical |
+| R15 `15d2960` | Merywood mailboxes → contact@bioagroup.vn; Blog share links; `og:url`/meta url; Merywood favicon/oEmbed/og:image removed |
+| R16 `7960b6d` | `/api/chat` gateway, flag OFF |
+| R15b/R16b/R17/R17b/R18 | Gates, probes, docs |
+
+  Docs and evidence commits follow. Rollback: `docs/RELEASE_ROLLBACK_PLAN.md`. Each R commit reverts independently (`git revert <sha>`).
+
+## Status
+| Item | TECH | OWNER |
+|---|---|---|
+| Website local build | **TECH PASS** (gates below) | VISUAL PENDING — `docs/OWNER_QA_CHECKLIST.md` N1–N7, A0–A9, B1–B10 |
+| Runtime (P0B2-A) | OSS libs self-hosted. With merywood.com **blocked** every slider initializes (Home 8/8, Cosmetics 6/6, Dịch Vụ Khác 4/4; was 0) | **Not absolute.** Merywood `modal.js`/`input.js` (synchronous, before `main.js`), CF7 and images still load live. If merywood.com is **slow**, the page still hangs (inventory "slow" mode). Gate D2/D4/D9 |
+| Business identity | Canonical config + gate `tests/business-identity.mjs` (136 pages, 0 failures) | BI-1…BI-6 decisions (`docs/BUSINESS_IDENTITY.md`) |
+| CHAT UI | PASS (probe 60/60, unchanged local mock) | VISUAL PENDING (N7) |
+| CHAT API GATEWAY | READY, feature flag OFF (8/8 tests, no network) | Provider, credentials, retention policy (`docs/CHAT_AI_INTEGRATION.md`) |
+| TRAINED BOT CONNECTION | NOT CONNECTED | — |
+| D11 | 52 targets: 30 redirect to 200; 8 toggle targets unlinked; **14 still 404**. Of those, 6 are user-visible: Shipping Policy VI/EN and 4 Careers job cards. The other 8 are hidden Merywood footer items | L3/L4 decision |
+| Legal / Careers | Merywood mailboxes replaced; text untouched | **RELEASE BLOCKED** L1–L3 (`docs/LEGAL_CONTENT_BLOCKERS.md`) |
+
+## Final QA — one pass on dist SHA `17b21be2…` (HEAD `7459c14` content; later commits do not change dist). Evidence: `D:\BIOA_WORKSPACE\_reports\completion\`
+- **Suites:** `test:candidate` PASS (unit 18, determinism, icon/Tablet 22, static audit 0 hard, D11 32/32, business identity 0); `test:responsive` 15/15 after R14c (the first run failed the baseline literal contract → fixed by R14c, not by editing the test); 404 6/6; Turnstile 7/7; chat gateway 8/8; Swiper P0B1 24/24; Header/asset lock 4/4.
+- **Cumulative scope gate** `phase-diff-scope` vs P0B1 snapshot, P1+P2+P4+R1+R2+R3+R12+R13+R15: PASS. Every byte outside the declared selectors is identical.
+- **Smoke** 12 families × VI/EN × 11 widths (1152 = zoom 125%): **264/264 first pass**, 264 screenshots `smoke-s*\shots\`.
+- **Deep guard** 8 families × VI/EN × 10 widths = 160 cases. Classifier: all differences inside P1/P2/R2/R3/R13 scopes, except 4 cases (/ @1920, /blog/ @390, Blog detail VI @390 / EN @375) whose JS failed to load. Cause: I rebuilt `dist` (R14c) while the guard was running, so assets returned 404 for ~14 s. Those 4 cases were rerun: clean (`guard-rerun-*`). Swiper moved 176, no-next 12 (= reference), 0 non-GET sent.
+- **Route smoke** 104 routes × 1440/390: **207/208 first pass**. `/en/blog/top-20-cong-ty-gia-cong-my-pham-uy-tin-tai-tphcm/` @1440 had one uncaught non-Error `Object` page error; 3 reruns clean (`route-smoke-rerun.log`). Recorded as an intermittent third-party/runtime flake, not hidden.
+- **Chat UI probe** 6 routes × 10 widths: 60/60. No `/api/chat` request, no non-GET.
+- **Tablet readability probe** (769/834/1024/1200, 8 families VI/EN, local vs Preview): no new clipping, no new overflow. Small-type counts equal or lower than the reference. The only "new" keys are the R13 translated strings at the same size as the English text they replace. Merywood desktop-fluid type below 11px at 769–1024 exists on the approved reference too; no global font floor per owner rule.
+- **Earlier evidence kept:** Cosmetics VI @375 0.25% screenshot flake of 2026-11-08 (`_reports\final\guard-cos375-*`). In this pass that case is clean.
+- **Isolation:** no secrets in the diff; no Merywood page content committed (`isolation-scan.log`).
+
+## Review handoff (permanent, AGENTS.md §17)
+After every phase/fix batch (also BLOCKED/FAIL): commit, then `npm run handoff:zip -- --phase <PHASE> --status "<status>" --evidence <dir>`. This writes exactly one `D:\BIOA_WORKSPACE\_handoffs\BIOA_<PHASE>_<HEAD>_REVIEW.zip`. Latest ZIP: RUNTIME_HANDOFF.
+
+## Frozen / protected
+- All owner Desktop/Mobile PASS customizations, PR #10 Tablet PASS and Phase 2B individual PASS.
+- Protected modules change only through the commits listed in `tests/p0a-module-isolation.test.mjs`.
+- `functions/api/lead.js`, D1/migrations, Cloudflare settings and secrets are untouched. New `functions/api/chat.js` is isolated.
+---
+## 2026-11-08 — ARCHIVED SNAPSHOT (superseded 2026-11-10)
 
 ## GitHub / deployment status (verify live before acting)
 - Production `main` `cb4e92f` FROZEN (maintenance on). PR #10 `ed7324c` (owner FULL TABLET VI/EN PASS). PR #11 `d59f50d` (Phase 2B; baseline of this recovery). **Nothing from the recovery has been pushed.**
