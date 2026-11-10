@@ -8,7 +8,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { createDistServer } from "../tools/serve-dist.mjs";
 
-const dist = process.argv[2] || "dist", label = (process.argv[3] || "current") + (process.env.RM_RESIZE ? "-resized" : "");
+const dist = process.argv[2] || "dist", label = process.argv[3] || "current";
 const OUT = join(process.env.BIOA_REPORTS || "probe-reports", "roadmap-" + label); mkdirSync(OUT, { recursive: true });
 const WIDTHS = (process.env.RM_WIDTHS || "1920,1440,1201,1200,1024,834,769,768,390").split(",").map(Number);
 const LOCALES = (process.env.RM_LOCALES || "vi,en").split(",");
@@ -85,9 +85,11 @@ function check(m, w){
 }
 
 const rows = [];
-for (const loc of LOCALES) for (const w of WIDTHS){
-  // RESIZE=1: load at another width first, then resize to w (window resize / maximize / zoom / DevTools)
-  const w0 = process.env.RM_RESIZE ? (w > 1000 ? 834 : 1440) : w;
+// Modes: "static" loads at w; "resized" loads at another width, then resizes to w (window resize / maximize /
+// zoom / DevTools — the ROADMAP-R5 owner FAIL). Default both; RM_RESIZE=1 runs only "resized".
+const MODES = process.env.RM_RESIZE ? ["resized"] : ["static", "resized"];
+for (const mode of MODES) for (const loc of LOCALES) for (const w of WIDTHS){
+  const w0 = mode === "resized" ? (w > 1000 ? 834 : 1440) : w;
   const page = await browser.newPage({ viewport: { width: w0, height: 1000 } });
   await page.route("**/*", r => r.request().method() !== "GET" ? r.abort() : (/googletagmanager|yandex|dashly|geojs|challenges\.cloudflare/.test(r.request().url()) ? r.abort() : r.fallback()));
   const fail = [], states = {};
@@ -98,19 +100,19 @@ for (const loc of LOCALES) for (const w of WIDTHS){
     const deny = page.locator("#mw-consent .mw-deny").first(); if (await deny.isVisible().catch(() => false)) await deny.click();
     await scrollTo(page);
     states.settled = await measure(page);
-    await shot(page, join(OUT, `${loc}-${w}-settled.png`));
+    await shot(page, join(OUT, `${mode}-${loc}-${w}-settled.png`));
     for (const [n, sel] of [["next1", ".swiper-button_right"], ["next2", ".swiper-button_right"], ["prev1", ".swiper-button_left"]]){
       await page.evaluate(sel => { const b = [...document.querySelectorAll(".block-roadmap " + sel)].find(x => x.offsetParent); b && b.click(); }, sel);
       await page.waitForTimeout(900);
       states[n] = await measure(page);
-      if (n !== "next1") await shot(page, join(OUT, `${loc}-${w}-${n}.png`));
+      if (n !== "next1") await shot(page, join(OUT, `${mode}-${loc}-${w}-${n}.png`));
     }
     for (const [n, m] of Object.entries(states)) for (const x of check(m, w)) fail.push(n + ": " + x);
     if (states.next1.activeIndex !== 1 || states.next2.activeIndex !== 2 || states.prev1.activeIndex !== 1) fail.push("navigation index " + [states.next1.activeIndex, states.next2.activeIndex, states.prev1.activeIndex].join(">"));
     const hs = Object.values(states).map(m => m.step.h); if (Math.max(...hs) - Math.min(...hs) > 400) fail.push("step height jumps " + hs.join("/"));
   } catch (e){ fail.push("error " + e.message.split("\n")[0]); }
-  rows.push({ loc, w, ok: !fail.length, fail, states });
-  console.log((fail.length ? "FAIL " : "ok   ") + loc + " @" + w + (states.settled ? `  step ${states.settled.step?.w}x${states.settled.step?.h} img ${states.settled.image?.w}x${states.settled.image?.h} info ${states.settled.info?.w}x${states.settled.info?.h} swiper ${states.settled.swiper?.w}` : "") + (fail.length ? "\n     " + fail.join("\n     ") : ""));
+  rows.push({ mode, loc, w, ok: !fail.length, fail, states });
+  console.log((fail.length ? "FAIL " : "ok   ") + mode + " " + loc + " @" + w + (states.settled ? `  step ${states.settled.step?.w}x${states.settled.step?.h} img ${states.settled.image?.w}x${states.settled.image?.h} info ${states.settled.info?.w}x${states.settled.info?.h} swiper ${states.settled.swiper?.w}` : "") + (fail.length ? "\n     " + fail.join("\n     ") : ""));
   await page.close();
 }
 await browser.close(); server.close();

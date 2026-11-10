@@ -9,7 +9,7 @@
     "source:verify": "node tools/verify-source-bundle.mjs",
     "test:p0a": "node --test tests/p0a-source-pin.test.mjs tests/p0a-module-isolation.test.mjs && node tests/p0a-final-gate.mjs && node tests/p0a-determinism.mjs",
     "test:p0a:historical": "node tests/p0a-fidelity-allowlist.mjs",
-    "test:candidate": "node --test tests/p0a-source-pin.test.mjs tests/p0a-module-isolation.test.mjs tests/serve-dist.test.mjs tests/chat-gateway.test.mjs && node tests/p0a-determinism.mjs && node tests/p1p2-icon-tablet-type.mjs && node tests/p3-static-site-audit.mjs && node tests/d11-legacy-redirects.mjs && node tests/business-identity.mjs",
+    "test:candidate": "node --test tests/p0a-source-pin.test.mjs tests/p0a-module-isolation.test.mjs tests/serve-dist.test.mjs tests/chat-gateway.test.mjs tests/home-roadmap-coldload.test.mjs tests/home-roadmap-resync.test.mjs && node tests/p0a-determinism.mjs && node tests/p1p2-icon-tablet-type.mjs && node tests/p3-static-site-audit.mjs && node tests/d11-legacy-redirects.mjs && node tests/business-identity.mjs",
     "test:smoke": "node tests/recovery-visual-smoke.mjs",
     "serve": "node tools/serve-dist.mjs 4173",
     "test:p0b1": "node tests/p0b1-runtime-pin.mjs",
@@ -17,6 +17,7 @@
     "test:404": "node --test tests/not-found.test.mjs",
     "test:responsive": "node --test tests/tablet-header-compact.test.mjs tests/tablet-desktop-fluid.test.mjs tests/tablet-source-regression.test.mjs tests/tablet-type-email-regression.test.mjs tests/tablet-cross-route-regression.test.mjs tests/tablet-footer-merywood-flex.test.mjs tests/tablet-cta-reveal-and-layout.test.mjs tests/source-component-rebuild-contract.test.mjs tests/tablet-desktop-scale-contract.test.mjs tests/tablet-owned-shell-visual.test.mjs",
     "test:chat": "node --test tests/chat-gateway.test.mjs",
+    "test:home-visual": "node tests/home-roadmap-visual.mjs && node tests/home-howworks-tablet.mjs",
     "handoff:zip": "node tools/make-handoff-zip.mjs"
   },
   "engines": {
