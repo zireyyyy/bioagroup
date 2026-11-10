@@ -4,7 +4,8 @@
 import { readFileSync, readdirSync, statSync, existsSync, writeFileSync } from "node:fs";
 import path from "node:path";
 
-const dist = "dist";
+// FIDELITY_DIST: historical mode runs against the frozen P0B1 snapshot (see package.json test:p0a:historical).
+const dist = process.env.FIDELITY_DIST || "dist";
 const ref = process.env.BIOA_REFERENCE_DIR;
 if (!ref || !existsSync(ref)){ console.error("BIOA_REFERENCE_DIR missing: reference capture required"); process.exit(1); }
 
