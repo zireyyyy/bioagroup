@@ -5,12 +5,15 @@ import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { load } from "cheerio";
 import { BUSINESS } from "../bioa-business.mjs";
+import { company } from "../bioa-transform.mjs";
 
 const ALLOWED_MAIL = new Set([BUSINESS.email, "lead@bioagroup.vn" /* hidden CF7 compat field, never shown */,
   "info@aki.ee" /* Estonian DPA inside the Merywood policy text = owner gate LEGAL-1 */]);
 const cf = h => { const k = parseInt(h.slice(0, 2), 16); let s = ""; for (let i = 2; i < h.length; i += 2) s += String.fromCharCode(parseInt(h.slice(i, i + 2), 16) ^ k); return s; };
 const pages = []; (function w(d){ for (const f of readdirSync(d)){ const p = join(d, f); if (statSync(p).isDirectory()){ if (f !== "assets") w(p); } else if (f.endsWith(".html")) pages.push(p); } })("dist");
 const fails = [];
+for (const [k, b] of [["name", "brand"], ["domain", "domain"], ["email", "email"], ["phone", "phone"], ["phoneRaw", "phoneRaw"], ["whatsapp", "whatsapp"], ["zalo", "zalo"], ["facebook", "facebook"]])
+  if (company[k] !== BUSINESS[b]) fails.push("bioa-transform.mjs company." + k + " != BUSINESS." + b);
 for (const p of pages){
   const html = readFileSync(p, "utf8"), $ = load(html);
   const mails = [...html.matchAll(/[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g)].map(m => m[0]).filter(m => !/\.(webp|png|svg|jpe?g|gif|css|js)$/i.test(m));
