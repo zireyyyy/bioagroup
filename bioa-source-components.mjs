@@ -234,21 +234,26 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
     top:-21.875vw !important; right:-9.375vw !important; width:58.3333vw !important; height:58.3333vw !important;
   }
 
-  /* TABLET-TYPE-SOURCE1: real computed audit found 6.95px at 834px and
-     8.53px at 1024px in source body-copy slots. Keep original Desktop
-     layout, wrapper sizes, Tablet breakpoint and Home-approved title scale;
-     normalize only the named source owners that contain paragraphs.
-     Do not change Header, Footer, icons, hero titles or any other PASS area. */
+  /* TABLET-TYPE-SOURCE2 (replaces SOURCE1, owner Tablet FAIL 2026-11-10):
+     body copy keeps the Merywood desktop-fluid size (.8333vw / .9896vw) and
+     the source unitless line-height, with a 9px readability minimum that only
+     applies below ~1080px (source = 6.95px at 834). SOURCE1 forced 12px +
+     line-height 1.5, which made copy ~1.7x larger than every scaled element
+     around it (cards 30-80% taller than Merywood) and, through
+     "#why-choose-us .item p", also shrank the card TITLES (source 1.5625vw).
+     Only body-copy slots are listed; titles, Header, Footer, icons untouched. */
   .page-main .block-how-works .step__text,
   .page-main .block-how-works .step__text p,
+  .page-main #why-choose-us .item__body p {
+    font-size:max(9px, .8333vw) !important;
+  }
   .page-main .block-right-choice .client__description,
   .page-main .block-right-choice .client__description p,
+  .page-main .block-right-choice .client__description li,
   .page-main .block-reviews .review__text,
   .page-main .block-reviews .review__text p,
-  .page-main #why-choose-us .item p,
   .page-main .block-product-formats .formats__lede {
-    font-size:12px !important;
-    line-height:1.5 !important;
+    font-size:max(9px, .9896vw) !important;
   }
   /* P2: at the readable size the source 8-line clamp cut Home VI steps
      mid-sentence (scrollHeight 162-234px in a 144px box). Show the full
@@ -256,18 +261,22 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   .page-main .block-how-works .step__text {
     -webkit-line-clamp:none !important;
   }
-  /* HOWWORKS-T1: with the full VI copy the info column grows taller than the
-     source fixed-height image (26.0417vw), leaving a blank band under the photo
-     and two visible cards of different heights. Keep the Merywood 2-card grid,
-     column order and 12px copy; let each card fill the slide height that the
-     source swiperAutoHeight already sets, and let the photo stretch to the same
-     row height (object-fit:cover stays source-owned). EN/short copy is
-     unchanged because its row height already equals the source image height. */
-  .page-main .block-how-works .swiper-slide .step {
-    height:100% !important;
-  }
+  /* HOWWORKS-T2 (replaces T1, owner Tablet FAIL 2026-11-10): the photo box
+     keeps the source 26.0417vw as its only size contribution and stretches to
+     the grid row only when the copy column is taller, so there is never a blank
+     band under the photo. The <img> fills the box absolutely: with T1's
+     height:auto the image's own portrait ratio (~1.6) set the row and made
+     every card taller than Merywood even with short copy (/dich-vu-khac/ 374 vs
+     299 at 1024), and T1's step height:100% copied the tallest hidden slide
+     into every card. Cards now follow the source mechanics: short copy = the
+     exact Merywood card. object-fit:cover and the hover scale stay source-owned. */
   .page-main .block-how-works .step__image {
+    position:relative !important;
     height:auto !important;
     min-height:26.0417vw !important;
+  }
+  .page-main .block-how-works .step__image img {
+    position:absolute !important; inset:0 !important;
+    width:100% !important; height:100% !important;
   }
 }`;
