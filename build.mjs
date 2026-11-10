@@ -24,7 +24,7 @@ const routes = [
   "/",
   "/about/",
   "/contacts/",
-  "/careers/",
+  // "/careers/" — CONTENT-C1: hidden (owner 2026-11-10); served as a noindex redirect to /contacts/.
   "/cookie-policy/",
   "/privacy-policy/",
   "/contract-manufacturing-cosmetics/",

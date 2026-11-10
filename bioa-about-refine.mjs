@@ -132,8 +132,9 @@ function setAboutTeam($,lang){
   sec.find(".mwa-team__card > p").each((i,el)=>{if(paragraphs[i]!=null)$(el).text(paragraphs[i]);});
   const btn=sec.find(".mwa-team__btn").first();
   if(btn.length){
-    btn.attr("href",localPath("/careers/",lang));
-    btn.find(".btn__text").text(vi?"Xem Cơ Hội Tuyển Dụng":"See Open Roles");
+    // CONTENT-C1: Careers is hidden (no valid BIO-A openings); the team CTA leads to Contacts.
+    btn.attr("href",localPath("/contacts/",lang));
+    btn.find(".btn__text").text(vi?"Liên Hệ Bio-A Group":"Contact Bio-A Group");
   }
   sec.find(".mwa-team__media img").attr("alt",vi?"Đội ngũ Bio-A Group":"Bio-A Group team");
 }

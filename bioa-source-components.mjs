@@ -256,4 +256,18 @@ export const sourceComponentCss = `/* BIOA Source Component Rebuild (Tablet cand
   .page-main .block-how-works .step__text {
     -webkit-line-clamp:none !important;
   }
+  /* HOWWORKS-T1: with the full VI copy the info column grows taller than the
+     source fixed-height image (26.0417vw), leaving a blank band under the photo
+     and two visible cards of different heights. Keep the Merywood 2-card grid,
+     column order and 12px copy; let each card fill the slide height that the
+     source swiperAutoHeight already sets, and let the photo stretch to the same
+     row height (object-fit:cover stays source-owned). EN/short copy is
+     unchanged because its row height already equals the source image height. */
+  .page-main .block-how-works .swiper-slide .step {
+    height:100% !important;
+  }
+  .page-main .block-how-works .step__image {
+    height:auto !important;
+    min-height:26.0417vw !important;
+  }
 }`;

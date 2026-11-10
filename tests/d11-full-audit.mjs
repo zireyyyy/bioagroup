@@ -10,11 +10,17 @@ import { createDistServer } from "../tools/serve-dist.mjs";
 import { legacyRedirectFiles } from "../bioa-legacy-redirects.mjs";
 
 const redirects = legacyRedirectFiles([]);
-const remaining = JSON.parse(readFileSync(new URL("./p3-known-dead-links.json", import.meta.url), "utf8")).targets;
+const deadList = JSON.parse(readFileSync(new URL("./p3-known-dead-links.json", import.meta.url), "utf8"));
+const remaining = deadList.targets;
+// BIOA-R24 CONTENT-C1: the 14 former dead targets (Shipping, Careers job cards, hidden Footer items) must stay unlinked.
+const unlinkedByC1 = deadList.resolvedByContentC1 || [];
 // BIOA-R13: the 8 «+N more» format-toggle targets are no longer linked (href "#"); they must stay unlinked.
 const unlinkedByR13 = ["/pet-supplement-manufacturer/", "/private-label-cosmetics/", "/sports-nutrition/", "/white-label-supplements/",
   "/en/pet-supplement-manufacturer/", "/en/private-label-cosmetics/", "/en/sports-nutrition/", "/en/white-label-supplements/"];
-const all = [...redirects.map(r => r.route), ...remaining, ...unlinkedByR13];
+const all = [...redirects.map(r => r.route), ...remaining, ...unlinkedByC1, ...unlinkedByR13];
+const mustStayUnlinked = [...unlinkedByR13, ...unlinkedByC1];
+// 52 historical 404 targets + /careers/ and /en/careers/ (now noindex redirects to Contacts, CONTENT-C1).
+const EXPECTED = 54;
 
 // Where each target is linked from in the built pages (static scan; visibility decided in the browser).
 const sources = {};
@@ -34,7 +40,7 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 await page.route("**/*", r => r.request().method() !== "GET" || !r.request().url().startsWith(base) ? r.abort() : r.fallback());
 
 const rows = [], fails = [];
-for (const target of all.filter(t => !unlinkedByR13.includes(t))){
+for (const target of all.filter(t => !mustStayUnlinked.includes(t))){
   const red = redirects.find(r => r.route === target);
   const res = await page.goto(base + target + "#x", { waitUntil: "load" }).catch(() => null);
   if (red) await page.waitForURL(u => new URL(u).pathname === red.target, { timeout: 10000 }).catch(() => {});
@@ -46,7 +52,7 @@ for (const target of all.filter(t => !unlinkedByR13.includes(t))){
 }
 // Visibility of the remaining targets on representative pages (VI/EN, 1440/834/390).
 const visible = {};
-for (const route of ["/", "/en/", "/careers/", "/en/careers/", "/about/", "/contract-manufacturing-cosmetics/"]) for (const width of [1440, 834, 390]){
+for (const route of ["/", "/en/", "/contacts/", "/en/contacts/", "/about/", "/contract-manufacturing-cosmetics/"]) for (const width of [1440, 834, 390]){
   await page.setViewportSize({ width, height: 900 });
   await page.goto(base + route, { waitUntil: "load" });
   await page.waitForTimeout(300);
@@ -66,7 +72,8 @@ console.log(`Remaining targets: ${rem.length}; HTTP 404: ${rem.filter(r => r.fir
 for (const [k, v] of Object.entries(visible)) console.log("  VISIBLE", k, "::", [...v].join(" "));
 for (const r of rem) console.log("  REMAINING", r.target, r.firstStatus, "linked from", r.linkedFrom, "page(s)");
 for (const f of fails) console.log("FAIL", f);
-console.log(`D11 full audit: 52 targets -> ${red.length} redirected OK, ${rem.length} still dead`);
-for (const t of unlinkedByR13) if (sources[t]) fails.push(t + " is linked again from " + [...sources[t]].join(","));
+console.log(`D11 full audit: ${all.length} targets -> ${red.length} redirected OK, ${rem.length} still dead`);
+for (const t of mustStayUnlinked) if (sources[t]) fails.push(t + " is linked again from " + [...sources[t]].join(","));
 console.log(`R13 unlinked toggle targets: ${unlinkedByR13.filter(t => !sources[t]).length}/${unlinkedByR13.length} not linked anywhere`);
-if (fails.length || all.length !== 52) process.exit(1);
+console.log(`C1 resolved targets (Shipping/Careers/hidden Footer): ${unlinkedByC1.filter(t => !sources[t]).length}/${unlinkedByC1.length} not linked anywhere`);
+if (fails.length || all.length !== EXPECTED) process.exit(1);

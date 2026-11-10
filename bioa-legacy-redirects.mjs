@@ -10,8 +10,11 @@ const MAP = {
   // Footer "Bio-A Group" column
   "lien-he": "contacts",                                  // Liên Hệ / Contact
   "nang-luc": "contract-manufacturing-cosmetics",         // section "Năng Lực Sản Xuất & Kiểm Soát Chất Lượng"
-  "tuyen-dung-rd": "careers",                             // Tuyển Dụng R&D
-  "tuyen-dung-nv-sales": "careers",                       // Tuyển Dụng NV Sales
+  // CONTENT-C1 (owner 2026-11-10): Careers hidden until real BIO-A openings exist. The Merywood
+  // careers page is no longer built; old careers/recruitment URLs land on Contacts.
+  "careers": "contacts",
+  "tuyen-dung-rd": "contacts",                            // Tuyển Dụng R&D
+  "tuyen-dung-nv-sales": "contacts",                      // Tuyển Dụng NV Sales
   // Footer "Dịch Vụ" column: the five service cards of Dịch Vụ Khác carry these exact titles
   "san-xuat-gia-cong-duoc-my-pham": "dich-vu-khac",
   "dich-vu-dong-goi-sang-chiet-my-pham": "dich-vu-khac",

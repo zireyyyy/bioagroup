@@ -1,3 +1,7 @@
+// ROADMAP-R5: the Cosmetics hub renders the same Merywood Roadmap slider; it reuses the single
+// Home-owned source measurement sync (cold load + width change), never a copy.
+import { addHomeRoadmapColdLoadSync } from "./bioa-home-refine.mjs";
+
 function norm(value){
   return String(value||"").replace(/\s+/g," ").trim();
 }
@@ -507,6 +511,7 @@ export function applyCosmeticsHubRefinement($,route,lang){
   applyCertification($,key);
   applyQuality($,key);
   applyRoadmap($,key);
+  addHomeRoadmapColdLoadSync($);
 
   $(".whatsapp__title").text(data.cta);
 }

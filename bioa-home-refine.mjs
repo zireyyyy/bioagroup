@@ -4393,15 +4393,14 @@ function refineFooterNavigation($,lang){
       ['Thiết Kế Bao Bì Mỹ Phẩm','/thiet-ke-bao-bi-my-pham/']
     ]},
     {title:'Bio-A Group',items:[
+      // CONTENT-C1 (owner 2026-11-10): recruitment links hidden until real BIO-A openings exist.
       ['Năng Lực Sản Xuất','/nang-luc/'],
-      ['Tuyển Dụng R&D','/tuyen-dung-rd/'],
-      ['Tuyển Dụng NV Sales','/tuyen-dung-nv-sales/'],
       ['Liên Hệ','/lien-he/']
     ]},
     {title:'Chính Sách',items:[
       ['Chính Sách Bảo Mật','/privacy-policy/'],
-      ['Chính Sách Cookie','/cookie-policy/'],
-      ['Chính Sách Vận Chuyển','/chinh-sach-van-chuyen/']
+      // CONTENT-C1: no confirmed retail shipping policy -> link removed.
+      ['Chính Sách Cookie','/cookie-policy/']
     ]}
   ] : [
     {title:'Cosmetic Manufacturing',items:[
@@ -4421,14 +4420,11 @@ function refineFooterNavigation($,lang){
     ]},
     {title:'Bio-A Group',items:[
       ['Manufacturing Capabilities','/en/nang-luc/'],
-      ['R&D Recruitment','/en/tuyen-dung-rd/'],
-      ['Sales Recruitment','/en/tuyen-dung-nv-sales/'],
       ['Contact','/en/lien-he/']
     ]},
     {title:'Policies',items:[
       ['Privacy Policy','/en/privacy-policy/'],
-      ['Cookie Policy','/en/cookie-policy/'],
-      ['Shipping Policy','/en/chinh-sach-van-chuyen/']
+      ['Cookie Policy','/en/cookie-policy/']
     ]}
   ];
 
@@ -4463,7 +4459,8 @@ function refineFooterNavigation($,lang){
 
     lis.each((j,li)=>{
       if(j>col.items.length){
-        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused');
+        // CONTENT-C1: a hidden surplus source item must not keep a Merywood link target.
+        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused').find('a').removeAttr('href');
       }
     });
   });
@@ -4719,7 +4716,7 @@ function addHomeReveal($){
    only measurement owners. On a cold load, images and the actual Manrope font
    can settle after their initial measurements. Reuse the source resize path
    once after those resources finish instead of adding layout overrides. */
-function addHomeRoadmapColdLoadSync($){
+export function addHomeRoadmapColdLoadSync($){
   $('#bioa-roadmap-coldload-sync').remove();
   const script=`(function(){
     var section=document.querySelector('.block-roadmap');
@@ -4753,8 +4750,50 @@ function addHomeRoadmapColdLoadSync($){
       var fonts=document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve();
       Promise.all([fonts].concat(pendingImages)).then(syncSourceMeasurements,syncSourceMeasurements);
     }
-    if(document.readyState==='complete')waitForSourceAssets();
-    else window.addEventListener('load',waitForSourceAssets,{once:true});
+    /* ROADMAP-R5 — Merywood swiperAutoHeight measures on window resize,
+       before Swiper's ResizeObserver has re-laid the slides at the new width,
+       so after any later width change (window resize/maximize, zoom, DevTools)
+       the wrapper kept the old height: CTA/footer overlapped the card or a gap
+       appeared. Re-run the same source path once Swiper has finished its own
+       resize, and again when the card's own source transition (.step
+       {transition:.5s} also animates its vw padding/gap) has finished, so the
+       measured height is the settled one. Runs only when the width changed. */
+    function resyncSource(){
+      if(window.jQuery)window.jQuery(window).triggerHandler('resize');
+      var page=document.querySelector('.smooth-scrollbar');
+      var sourceScrollbar=page&&window.Scrollbar&&typeof window.Scrollbar.get==='function'
+        ?window.Scrollbar.get(page):null;
+      if(sourceScrollbar&&typeof sourceScrollbar.update==='function')
+        sourceScrollbar.update();
+    }
+    function cardTransitionMs(){
+      var step=section.querySelector('.step');
+      if(!step)return 0;
+      var cs=getComputedStyle(step);
+      var d=(cs.transitionDuration||'0s').split(','),l=(cs.transitionDelay||'0s').split(',');
+      var max=0;
+      for(var i=0;i<d.length;i++){
+        var ms=function(v){v=String(v).trim();return v.slice(-2)==='ms'?parseFloat(v):parseFloat(v)*1000;};
+        max=Math.max(max,(ms(d[i])||0)+(ms(l[i%l.length])||0));
+      }
+      return Math.min(max,2000);
+    }
+    function attachResizeResync(){
+      var el=section.querySelector('.swiper');
+      var slider=el&&el.swiper;
+      if(!slider||typeof slider.on!=='function')return;
+      var lastWidth=slider.width,settleTimer=0;
+      slider.on('resize',function(){
+        if(slider.width===lastWidth)return;
+        lastWidth=slider.width;
+        requestAnimationFrame(function(){requestAnimationFrame(resyncSource);});
+        clearTimeout(settleTimer);
+        settleTimer=setTimeout(resyncSource,cardTransitionMs()+80);
+      });
+    }
+    function start(){waitForSourceAssets();attachResizeResync();}
+    if(document.readyState==='complete')start();
+    else window.addEventListener('load',start,{once:true});
   })();`;
   $('body').append($('<script id="bioa-roadmap-coldload-sync"></script>').html(script));
 }

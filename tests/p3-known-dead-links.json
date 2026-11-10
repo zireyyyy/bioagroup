@@ -1,6 +1,7 @@
 {
-  "$comment": "Remaining dead internal links (HTTP 404 also on Preview abdd7602 / Production cb4e92f) that have no same-meaning BIO-A page: shipping policy, Merywood job detail cards on Careers, hidden Merywood footer items. Owner decision D11. 30 legacy Footer/About slugs were resolved by bioa-legacy-redirects.mjs (BIOA-R1). New broken links remain hard failures. BIOA-R12: the 8 «+N more» format toggles now use href=\"#\" (they only expand the list).",
-  "targets": [
+  "$comment": "Remaining dead internal links (HTTP 404 also on Preview abdd7602 / Production cb4e92f) that have no same-meaning BIO-A page: shipping policy, Merywood job detail cards on Careers, hidden Merywood footer items. Owner decision D11. 30 legacy Footer/About slugs were resolved by bioa-legacy-redirects.mjs (BIOA-R1). New broken links remain hard failures. BIOA-R12: the 8 «+N more» format toggles now use href=\"#\" (they only expand the list). BIOA-R24 CONTENT-C1 (owner 2026-11-10): Shipping link removed, Careers hidden (route = noindex redirect to Contacts, job cards gone), hidden Footer surplus items carry no href -> all 14 former targets are no longer linked anywhere; they stay listed in resolvedByContentC1 and must remain unlinked (tests/d11-full-audit.mjs).",
+  "targets": [],
+  "resolvedByContentC1": [
     "/careers/b2b-sales-manager/",
     "/careers/regulatory-affairs-specialist-eu/",
     "/chinh-sach-van-chuyen/",
