@@ -27,7 +27,10 @@ const APPROVED = [
   // R16: new isolated Pages Function (chat gateway); functions/api/lead.js untouched.
   { sha: "7960b6dd2739a9664280df3faf77c135e715a776", phase: "R16", files: ["functions/api/chat.js"] },
   // R21: chat preview reply copy only (no false "request recorded" claim).
-  { sha: "223200c8bfa53f478e6d0e3a166cb38188287025", phase: "R21", files: ["bioa-home-refine.mjs"] }
+  { sha: "223200c8bfa53f478e6d0e3a166cb38188287025", phase: "R21", files: ["bioa-home-refine.mjs"] },
+  // R24 (owner Home FAIL 2026-11-10): ROADMAP-R5 resize re-sync (Home owner, reused by Cosmetics), HOWWORKS-T1 Tablet CSS,
+  // CONTENT-C1 Footer/About Careers+Shipping decision.
+  { sha: "497467ab1efa3b802e7baf99f8bc48bae7bedf2b", phase: "R24", files: ["bioa-about-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-source-components.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 

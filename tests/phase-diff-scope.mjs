@@ -30,7 +30,13 @@ const SCOPES = {
     [/\.html$/, 'link[href*="merywood.com/wp-json"], link[rel="shortlink"], link[rel="apple-touch-icon"], meta[name="msapplication-TileImage"]'],
     [/^(en\/)?contract-manufacturing-cosmetics\/index\.html$/, 'meta[property^="og:image"]']],
   // R21: chat preview reply copy inside the chat script (design/markup unchanged).
-  R21: [[/\.html$/, "script#bioa-contact-fab-js"]]
+  R21: [[/\.html$/, "script#bioa-contact-fab-js"]],
+  // R24: ROADMAP-R5 sync script (Home, and now Cosmetics), HOWWORKS-T1 Tablet CSS in both shells,
+  // CONTENT-C1 Footer columns (recruitment + Shipping links removed, hidden surplus items unlinked) and About team CTA.
+  // Careers + legacy recruitment slugs become redirect stubs, sitemap drops Careers (file-level rules below).
+  R24: [[/^(en\/)?(contract-manufacturing-cosmetics\/)?index\.html$/, "script#bioa-roadmap-coldload-sync"],
+    [/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"],
+    [/\.html$/, ".footer-top__menu"], [/^(en\/)?about\/index\.html$/, ".mwa-team__btn"]]
 };
 const [, , base, phase] = process.argv;
 const phases = (phase || "").split("+"), scope = phases.flatMap(p => SCOPES[p] || []);
@@ -45,6 +51,13 @@ for (const f of new Set([...a, ...b])){
     if (!legacyStub && !vendorFile && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
   const x = readFileSync(path.join(base, f)), y = readFileSync(path.join("dist", f));
   if (x.equals(y)) continue;
+  if (phases.includes("R24") && f === "sitemap.xml"){ // only the two Careers URLs may disappear
+    const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+    const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
+    if (added.length || gone.some(u => !/\/careers\/$/.test(u))) fails.push(f + ": sitemap changed beyond Careers removal"); else changed.push(f + " [-" + gone.length + " careers]");
+    continue; }
+  if (phases.includes("R24") && f.endsWith(".html") && /bioa-legacy-redirect" content="(\/en)?\/contacts\/"/.test(y.toString("utf8"))
+      && /^(en\/)?(careers|tuyen-dung-rd|tuyen-dung-nv-sales)\/index\.html$/.test(f)){ changed.push(f + " [redirect stub -> contacts]"); continue; }
   if (!f.endsWith(".html")){ fails.push(f + ": non-HTML file changed"); continue; }
   const sels = scope.filter(([re]) => re.test(f)).map(([, s]) => s);
   if (!sels.length){ fails.push(f + ": changed outside scope"); continue; }
