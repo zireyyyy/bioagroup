@@ -1,6 +1,6 @@
-# BIO-A — CHECKLIST KIỂM TRA CỦA OWNER (bản recovery từ `d59f50d`)
+# BIO-A — CHECKLIST KIỂM TRA CỦA OWNER (FINAL COMPLETION, 2026-11-10)
 
-**Bản cần kiểm:** nhánh local `recovery/baseline-d59f50d-20261108` tại `D:\BIOA_WORKSPACE\bioagroup-recovery` (HEAD ghi trong `FULL_HANDOFF.md`). Chưa có Preview trên mạng, chưa push.
+**Bản cần kiểm:** nhánh local `recovery/baseline-d59f50d-20261108` tại `D:\BIOA_WORKSPACE\bioagroup-recovery` (HEAD xem `FULL_HANDOFF.md`). Chưa push, chưa có Preview trên mạng (lý do: mục D bên dưới).
 
 ## Mở website trên máy (PowerShell)
 ```
@@ -9,54 +9,58 @@ cd D:\BIOA_WORKSPACE\bioagroup-recovery
 npm run build
 npm run serve
 ```
-Mở `http://127.0.0.1:4173/` bằng Chrome. Cửa sổ PowerShell phải để mở trong lúc xem (đóng = tắt server). Server mới không còn bị sập khi gặp file chỉ có trên Cloudflare (`/cdn-cgi/...`), nên không thể tái diễn lỗi menu dạng bullet do server chết.
+Mở `http://127.0.0.1:4173/` bằng Chrome và để cửa sổ PowerShell mở trong suốt lúc xem.
 
-Đổi kích thước bằng DevTools (F12 → Ctrl+Shift+M): **390** (Mobile), **834** và **1024** (Tablet), **1440** (Desktop). Kiểm thêm có chọn lọc: 375, 768/769, 1200/1201, 1920, zoom 125% (Ctrl + `+` ở cửa sổ 1440).
+Đổi kích thước: F12 → Ctrl+Shift+M.
+- Viewport chính: **390** (Mobile), **834** và **1024** (Tablet), **1440** (Desktop).
+- Kiểm thêm nếu có thời gian: 375, 768/769, 1200/1201, 1920 và zoom 125%.
 
-**Không nhập thông tin thật và không bấm Gửi trong form.** Server local không có backend.
+**Không nhập thông tin thật và không bấm Gửi trong form.**
 
-Ảnh chụp tham chiếu của bản cuối (264 ảnh, 12 nhóm route × VI/EN × 11 độ rộng): `D:BIOA_WORKSPACE_reportsinalsmoke-s1..4shots` (tên file = route + độ rộng, ví dụ `_-1440.png` là Trang chủ 1440).
+Ảnh chụp tham chiếu của bản cuối: `D:\BIOA_WORKSPACE\_reports\completion\smoke-s1..4\shots\`. Tên file gồm route và độ rộng, ví dụ `_-1440.png` là Trang chủ ở 1440.
 
-## Ghi kết quả
-Mỗi dòng đánh **PASS** / **FAIL** / để trống. Khi FAIL gửi: ảnh/video, route, VI/EN, viewport, một câu mô tả (mẫu cuối file).
+Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/video, route, VI/EN, viewport và một câu mô tả (dùng mẫu ở cuối file).
 
-## A. Thay đổi cần owner duyệt
+## A. Thay đổi mới trong đợt này (cần owner duyệt)
 | # | Khu vực | Route | Viewport | Kỳ vọng | Kết quả |
 |---|---|---|---|---|---|
-| A0 | **Header (lỗi OI-1)** | `/`, `/en/` và vài route khác | 1440, 390 | Header đúng như bản đã duyệt: logo, 5 mục menu ngang (Desktop), nút menu (Mobile), không có bullet, không lặp menu, avatar chat và logo hiện đủ | ☐ |
-| A1 | Slider Đánh giá | `/`, Cosmetics, Dịch Vụ Khác (VI/EN) | 390/834/1440 | Bấm mũi tên trượt được; 6 gạch phân trang; có thẻ hai bên | ☐ |
-| A2 | Slider Sản phẩm | `/`, Cosmetics | 834/1440 | Trượt được | ☐ |
-| A3 | Icon 04 "Vì Sao Chọn" | `/` VI/EN | 390, 1440 | Monogram cùng cỡ với Dịch Vụ Khác | ☐ |
-| A4 | Màu icon 01/02 Tablet | `/` | 834/1024 | **Chọn:** kem (như Production) hay trắng (như PR #10) | ☐ |
-| A5 | "Quy Trình Hợp Tác" | `/` VI | 834/1024 | Đọc đủ chữ; khối cao hơn PR #10 | ☐ |
-| A6 | Formats mô tả | `/`, Cosmetics | 834/1024 | Chữ 12px đọc được | ☐ |
-| A7 | Popup "Nhận tư vấn" | mọi trang | 834/1024 | Dòng đồng ý, +84, dropdown đọc được (không gửi) | ☐ |
-| A8 | Link Footer (D11) | Footer mọi trang | 1440/390 | "Liên Hệ" → Liên hệ; 5 mục Dịch Vụ → Dịch Vụ Khác; 6 mục Gia Công + "Năng Lực Sản Xuất" → Gia Công Mỹ Phẩm; 2 mục Tuyển Dụng → Careers. Footer trông y như cũ | ☐ |
-| A9 | Tiêu đề Blog (D12) | `/blog/`, `/blog/page/2/`, `/en/blog/` | 390/834/1440 | Trông y như cũ (chỉ đổi thẻ HTML sang h1) | ☐ |
+| N1 | Slider Đánh giá + Sản phẩm (thư viện nay tự host, không phụ thuộc merywood.com) | `/`, Cosmetics, Dịch Vụ Khác, VI/EN | 390/834/1440 | Bấm mũi tên trượt được; Đánh giá có 6 gạch; giao diện y như cũ | ☐ |
+| N2 | Nút "+N mục khác" trong "Kết cấu sản phẩm" | `/`, Cosmetics, **VI** | 390/834/1440 | VI hiện "+11 mục khác"; bấm thì danh sách mở ra và nút đổi thành "Thu gọn"; bấm lại thì thu gọn; trang không nhảy sang trang khác. EN vẫn là "+11 more / Show fewer" | ☐ |
+| N3 | Thẻ bao bì (Vỉ định hình, Hũ, Túi doypack…) | `/` VI, Cosmetics VI | 390/834/1440 + bấm "Xem thêm" | Không còn câu tiếng Anh (ví dụ "Travel-size products", "Easy to distribute and ship.") | ☐ |
+| N4 | Popup "Nhận tư vấn" | mọi trang VI | 375/390/769 | Ô chọn ghi "Sản phẩm / dịch vụ (tùy chọn)" và không bị cắt chữ (không gửi form) | ☐ |
+| N5 | Nút chia sẻ ở bài Blog | 1 bài Blog VI + EN | 390/1440 | Facebook / e-mail chia sẻ đúng link của chính bài đó trên bioagroup.vn, không còn bài Merywood | ☐ |
+| N6 | E-mail trên Careers / Chính sách | `/careers/`, `/privacy-policy/`, `/cookie-policy/` | 1440 | E-mail hiển thị là contact@bioagroup.vn, không còn @merywood. Phần nội dung pháp lý khác **vẫn chưa đúng** (mục C) | ☐ |
+| N7 | Chat | mọi trang VI/EN | 390/834/1440 | Mở, gõ, gửi và đóng như trước. Câu trả lời vẫn là câu mẫu (chưa có AI thật) | ☐ |
+
+## A'. Hạng mục từ đợt recovery vẫn chờ owner
+| # | Khu vực | Viewport | Kỳ vọng | Kết quả |
+|---|---|---|---|---|
+| A0 | Header (lỗi OI-1) trên `/`, `/en/` | 1440/390 | Logo, menu ngang (Desktop) hoặc nút menu (Mobile), không có dấu chấm đầu dòng, không lặp, avatar hiện đủ | ☐ |
+| A3 | Icon 04 "Vì Sao Chọn" `/` | 390/1440 | Cùng cỡ với icon ở Dịch Vụ Khác | ☐ |
+| A4 | **Chọn:** màu icon 01/02 Tablet `/` | 834/1024 | Kem (như Production) hay trắng (như PR #10). Hiện giữ nguyên bản đang có | ☐ |
+| A5/T6 | **Chấp nhận/không:** chiều cao khối "Quy Trình Hợp Tác" `/` VI | 834/1024 | Đọc đủ chữ; khối cao hơn bản PR #10 | ☐ |
+| A6/A7 | Chữ mô tả "Kết cấu" 12px; popup đọc được | 834/1024 | Đọc dễ | ☐ |
+| A8 | Link Footer (30 link cũ) | 1440/390 | Liên Hệ, Dịch Vụ, Gia Công, Tuyển Dụng mở đúng trang; Footer trông như cũ | ☐ |
+| A9 | Tiêu đề Blog (h1) | 390/834/1440 | Trông như cũ | ☐ |
 
 ## B. Hồi quy vùng OWNER PASS (kỳ vọng KHÔNG ĐỔI)
-| # | Khu vực | Route | Viewport | Kết quả |
-|---|---|---|---|---|
-| B1 | Header, menu Mobile mở/đóng, nút VI/EN đúng trang | các route chính | 390/834/1440 | ☐ |
-| B2 | Footer v2 (gồm EN xuống dòng Desktop) | mọi route | 390/834/1440 | ☐ |
-| B3 | Cookie: Từ chối / Đồng ý / Tùy chỉnh | lần đầu vào (cửa sổ ẩn danh) | mọi viewport | ☐ |
-| B4 | Chat, Zalo, WhatsApp hiện đúng (không cần bấm link ngoài) | mọi route | 390/1440 | ☐ |
-| B5 | Hero + số liệu; Home Mobile "Danh mục gia công" | `/` | 390/1440 | ☐ |
-| B6 | About, Cosmetics, Dịch Vụ Khác | VI/EN | 390/834/1440 | ☐ |
-| B7 | Blog listing, phân trang, Blog detail + TOC | `/blog/`, `/blog/page/2/`, 1 bài | 390/834/1440 | ☐ |
-| B8 | Liên hệ + FAQ mở/đóng | `/contacts/` | 390/834/1440 | ☐ |
-| B9 | 404 Bio-A | `/khong-co-trang-nay/`, `/en/khong-co/` | 390/1440 | ☐ |
-| B10 | Biên breakpoint | `/` | 768/769, 1200/1201 | ☐ |
+B1 Header, menu Mobile, VI/EN · B2 Footer v2 · B3 Cookie (Từ chối / Đồng ý / Tùy chỉnh, thử trong cửa sổ ẩn danh) · B4 Chat, Zalo, WhatsApp · B5 Hero, số liệu, Home Mobile "Danh mục gia công" · B6 About, Cosmetics, Dịch Vụ Khác · B7 Blog listing, phân trang, Blog detail + TOC · B8 Liên hệ + FAQ · B9 404 (`/khong-co-trang-nay/`, `/en/khong-co/`) · B10 biên 768/769 và 1200/1201. Mỗi mục ☐.
 
-## C. Nội dung cần owner cung cấp hoặc quyết định (chặn release)
-- **LEGAL-1:** Chính sách Bảo mật và Cookie đang ghi "Bio-A Group OÜ, Reg no. 16386898, Narva mnt 7-557…" (thông tin công ty Estonia của Merywood). Cần thông tin pháp nhân BIO-A thật.
-- **CAREERS-1:** `/careers/` hiển thị "We are a European manufacturer of dietary supplements…" và 2 vị trí của Merywood. Cần nội dung tuyển dụng BIO-A, hoặc ẩn trang.
-- **D11 còn lại:** "Chính Sách Vận Chuyển" ở Footer chưa có trang; 2 thẻ việc làm ở Careers. Chọn: tạo trang, đổi link hay bỏ mục.
+## C. Quyết định owner (chặn phát hành) — chi tiết `docs/LEGAL_CONTENT_BLOCKERS.md`, `docs/BUSINESS_IDENTITY.md`
+- **L1/L2** Chính sách Bảo mật / Cookie: vẫn là văn bản Estonia của Merywood ("Bio-A Group OÜ, Reg no. 16386898…"). Cần pháp nhân BIO-A và văn bản đã duyệt.
+- **L3** Careers: vẫn ghi "European manufacturer of dietary supplements". Chọn: nội dung thật / ẩn trang (đề xuất) / xóa.
+- **L4** Link "Chính Sách Vận Chuyển": tạo trang / đổi link / bỏ link (đề xuất bỏ).
+- **L5** Tài nguyên Merywood còn tải trực tiếp (modal.js, input.js, CF7, ảnh): xác nhận quyền dùng hay thay bằng tài nguyên BIO-A.
+- **BI-4** Biểu tượng app BIO-A PNG 180×180 và ảnh chia sẻ mặc định (hiện để trống, không dùng logo Merywood).
+- **AI Chat:** nhà cung cấp, credentials, chính sách lưu hội thoại (`docs/CHAT_AI_INTEGRATION.md`).
+
+## D. GitHub / Cloudflare (owner action để mở Preview)
+Build trên Cloudflare cần bộ nguồn Merywood riêng (`BIOA_SOURCE_DIR`), nhưng hiện chưa có nơi lưu, chưa có token và chưa có quyết định quyền dùng (D1/D2/D6/D7). Vì vậy nếu push lúc này, Preview sẽ build lỗi (fail-closed) và đó là chủ đích. Quyết định xong các mục này thì mới push nhánh candidate và tạo Draft PR.
 
 ## Mẫu báo lỗi
 ```
 Route: /dich-vu-khac/      Ngôn ngữ: VI      Viewport: 834 (zoom 100%)
-Cách mở: npm run serve  (hoặc link Preview)
+Cách mở: npm run serve
 Thấy gì: ...
 Mong muốn: ...
 Kèm: ảnh / video

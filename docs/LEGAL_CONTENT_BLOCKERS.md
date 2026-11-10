@@ -1,6 +1,17 @@
-# BIO-A — LEGAL / CONTENT RELEASE BLOCKERS — 2026-11-08
+# BIO-A — LEGAL / CONTENT RELEASE BLOCKERS — updated 2026-11-10
 
-Nothing below has been edited: no legal entity, registration number, address or legal term may be invented. Extract: `D:\BIOA_WORKSPACE\_reports\recovery\final-legal-extract.txt`.
+No legal entity, registration number, address, legal term or job opening has been invented. The only edit to these pages (BIOA-R15, 2026-11-10) replaced the **Merywood mailboxes** with the canonical BIO-A mailbox, because a valid replacement exists and applicants/data subjects must not be sent to a third party: `careers@merywood.com` (Careers) and `info@Merywood.ee` (Privacy/Cookie) → `contact@bioagroup.vn`. Everything else below is unchanged and **still blocks release**. Hiding a page does not fulfil the legal obligation.
+
+## FINAL OWNER DECISION TABLE (one approval round)
+| # | Item | Current state | Safe options (owner picks) | Recommended |
+|---|---|---|---|---|
+| L1 | Privacy Policy VI/EN | Merywood Estonian policy, English on VI, entity "Bio-A Group OÜ, Reg no. 16386898, Tallinn" | (a) owner supplies approved VI+EN text + entity data → content-only swap in the existing layout; (b) temporary short notice page written from confirmed data only (BIO-A name, MST 0318126597, address, contact@bioagroup.vn) **after owner/counsel approves its wording** | (a); release blocked until then |
+| L2 | Cookie Policy VI/EN | Same Merywood text; cookie list does not match the site's actual third parties | (a) as L1 plus an actual cookie inventory (BI-3 in `docs/BUSINESS_IDENTITY.md`) | (a) |
+| L3 | Careers VI/EN | Merywood "European manufacturer of dietary supplements", EU remote roles, 2 job-card 404s; mailbox now BIO-A | (1) BIO-A openings; (2) hide: noindex + drop from sitemap + point the 2 recruitment slugs to `/contacts/`; (3) remove route | (2) until real openings exist |
+| L4 | Shipping Policy link (Footer, every page) | 404 | create page (owner text) / point elsewhere / remove link | remove link until a policy exists |
+| L5 | Merywood-owned runtime: `modal.js`, `input.js`, CF7 assets, theme/upload images (incl. the cookie icon) | still loaded live from merywood.com | written right to use + self-host (D2/D4), or replacement by BIO-A-owned code/images | owner decision; **not self-hosted** |
+
+Nothing in this table is implemented without the owner's explicit choice. Extract: `D:\BIOA_WORKSPACE\_reports\recovery\final-legal-extract.txt`.
 
 ## LEGAL-1 — Privacy Policy (`/privacy-policy/`, `/en/privacy-policy/`) and Cookie Policy (`/cookie-policy/`, `/en/cookie-policy/`)
 The whole text is Merywood's Estonian/EU policy with the brand name replaced. **The VI pages show the same English text.**
@@ -28,5 +39,5 @@ Options (owner chooses):
 
 ## Smaller content items (not release-blocking)
 - Footer "Chính Sách Vận Chuyển / Shipping Policy" → 404 on every page (D11): create the page, change the link, or remove the item.
-- Formats toggle labels "+11 more / Show fewer" are English on the VI Home/Cosmetics pages (behaviour correct; the href is a dead Merywood URL seen only by crawlers).
-- Quote modal VI label "Loại sản phẩm / dịch vụ (không bắt buộc)" truncated at ≤390 and 769 (same as the approved Preview).
+- ~~Formats toggle labels "+11 more / Show fewer" English on VI~~ → FIXED BIOA-R13 («+N mục khác» / «Thu gọn», href "#").
+- ~~Quote modal VI label truncated at ≤390 and 769~~ → FIXED BIOA-R13 («Sản phẩm / dịch vụ (tùy chọn)»).

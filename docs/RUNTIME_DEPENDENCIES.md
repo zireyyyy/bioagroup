@@ -1,4 +1,12 @@
-# BIO-A — RUNTIME DEPENDENCY INVENTORY (P0B2) — 2026-11-08
+# BIO-A — RUNTIME DEPENDENCY INVENTORY (P0B2) — 2026-11-08, updated 2026-11-10
+
+> **2026-11-10 — P0B2-A implemented (BIOA-R12, owner directive FINAL COMPLETION §III.B).**
+> - jQuery 3.7.1, Swiper 11.1.4 (js+css) and smooth-scrollbar 8.8.4 now come from the official npm packages: exact versions, `package-lock.json` integrity. WordPress 7.1.2 `hooks.min.js`/`i18n.min.js` are vendored in `vendor/wordpress-7.1.2/` with the GPL licence. All of them are served from `/assets/vendor/`.
+> - SHA-256 is checked fail-closed at build (`tools/vendor-runtime.mjs`).
+> - The bytes are identical to what merywood.com served. All four npm files were re-verified against the tarballs on 2026-11-10. The WP files equal core.svn.wordpress.org tags 7.1 and 7.1.2.
+> - Only the URL changes; tag id, position and attributes are unchanged. Licence notices: `/assets/vendor/THIRD_PARTY_LICENSES.txt`.
+> - Correction: the earlier comparison file `ss.js` was a different smooth-scrollbar build. The live file equals `smooth-scrollbar@8.8.4/dist/smooth-scrollbar.js` exactly.
+> - **Still live from merywood.com (owner gate D2/D4/D9, not self-hosted):** `modal.js`, `input.js`, CF7 js/css, theme/upload images. The final inventory run with merywood.com blocked is in `D:\BIOA_WORKSPACE\_reports\completionuntime\`.
 
 Source: `tests/runtime-dependency-inventory.mjs` (real Chrome, 10 route families × VI/EN × 1440/390, normal / merywood.com blocked / merywood.com slow). Report: `D:\BIOA_WORKSPACE\_reports\recovery\final-runtime\runtime-dependency-inventory.json`, log `final-runtime.log`. Library comparisons: `_reports\recovery\runtime-libs\`.
 
