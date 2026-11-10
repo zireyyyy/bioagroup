@@ -1,5 +1,5 @@
 {
-  "$comment": "Remaining dead internal links (HTTP 404 also on Preview abdd7602 / Production cb4e92f) that have no same-meaning BIO-A page: shipping policy, Merywood job detail cards on Careers, hidden Merywood footer/format items. Owner decision D11. 30 legacy Footer/About slugs were resolved by bioa-legacy-redirects.mjs (BIOA-R1). New broken links remain hard failures.",
+  "$comment": "Remaining dead internal links (HTTP 404 also on Preview abdd7602 / Production cb4e92f) that have no same-meaning BIO-A page: shipping policy, Merywood job detail cards on Careers, hidden Merywood footer items. Owner decision D11. 30 legacy Footer/About slugs were resolved by bioa-legacy-redirects.mjs (BIOA-R1). New broken links remain hard failures. BIOA-R12: the 8 «+N more» format toggles now use href=\"#\" (they only expand the list).",
   "targets": [
     "/careers/b2b-sales-manager/",
     "/careers/regulatory-affairs-specialist-eu/",
@@ -8,20 +8,12 @@
     "/en/careers/regulatory-affairs-specialist-eu/",
     "/en/chinh-sach-van-chuyen/",
     "/en/omega-3-private-label/",
-    "/en/pet-supplement-manufacturer/",
-    "/en/private-label-cosmetics/",
     "/en/probiotics-private-label/",
-    "/en/sports-nutrition/",
     "/en/vitamin-e-manufacturer/",
     "/en/vitamin-k-manufacturer/",
-    "/en/white-label-supplements/",
     "/omega-3-private-label/",
-    "/pet-supplement-manufacturer/",
-    "/private-label-cosmetics/",
     "/probiotics-private-label/",
-    "/sports-nutrition/",
     "/vitamin-e-manufacturer/",
-    "/vitamin-k-manufacturer/",
-    "/white-label-supplements/"
+    "/vitamin-k-manufacturer/"
   ]
 }

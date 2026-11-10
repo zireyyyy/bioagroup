@@ -1,6 +1,6 @@
 // D11 full audit — every one of the 52 link targets that returned 404 on the approved Preview/Production:
 // 30 legacy slugs (bioa-legacy-redirects.mjs) must land on their same-meaning page with HTTP 200;
-// the other 22 (tests/p3-known-dead-links.json) are reported with their real status and where they
+// the other remaining targets (tests/p3-known-dead-links.json) are reported with their real status and where they
 // are linked from (visible or hidden). Read-only. Writes BIOA_REPORTS/d11-full-audit.json.
 import { chromium } from "playwright";
 import { readFileSync, mkdirSync, writeFileSync, readdirSync, statSync } from "node:fs";

@@ -601,7 +601,7 @@ function simplifyConsultationModal($,lang){
   form.find('[name="your-phone"]').first().attr('placeholder',vi?'Số điện thoại / Zalo / Telegram *':'Phone / Zalo / Telegram *');
 
   const dd=form.find('#ddType').first();
-  const placeholder=vi?'Loại sản phẩm / dịch vụ (không bắt buộc)':'Product / service (optional)';
+  const placeholder=vi?'Sản phẩm / dịch vụ (tùy chọn)':'Product / service (optional)';
   dd.find('.dd-label').first().attr('data-placeholder',placeholder).text(placeholder);
 
   const topics=vi?[

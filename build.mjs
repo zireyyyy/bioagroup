@@ -10,6 +10,8 @@ import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
 import { legacyRedirectFiles } from "./bioa-legacy-redirects.mjs";
+import { applyFormatsToggle } from "./bioa-formats-toggle.mjs";
+import { applyViLeftoverTranslations } from "./bioa-i18n-fixes.mjs";
 import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
 import { vendorFiles, pinVendor } from "./tools/vendor-runtime.mjs";
 
@@ -386,6 +388,8 @@ async function buildOne(route,sourceRoute){
       if(route==="/blog/"||route.startsWith("/blog/"))applyBlogRefinement($,route,lang);
       applySharedShell($,route,lang);
     }
+    applyFormatsToggle($,lang);
+    applyViLeftoverTranslations($,lang);
 
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
