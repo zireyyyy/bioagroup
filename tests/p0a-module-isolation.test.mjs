@@ -25,7 +25,9 @@ const APPROVED = [
   { sha: "15d2960318b040804a82e582f60176c7e8912e30", phase: "R15", files: ["bioa-blog-refine.mjs"] },
   { sha: "226fcc034c4106752f381ccea203b0cc91bf6495", phase: "R14c", files: ["bioa-transform.mjs"] },
   // R16: new isolated Pages Function (chat gateway); functions/api/lead.js untouched.
-  { sha: "7960b6dd2739a9664280df3faf77c135e715a776", phase: "R16", files: ["functions/api/chat.js"] }
+  { sha: "7960b6dd2739a9664280df3faf77c135e715a776", phase: "R16", files: ["functions/api/chat.js"] },
+  // R21: chat preview reply copy only (no false "request recorded" claim).
+  { sha: "223200c8bfa53f478e6d0e3a166cb38188287025", phase: "R21", files: ["bioa-home-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 

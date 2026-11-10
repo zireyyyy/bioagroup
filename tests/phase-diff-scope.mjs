@@ -28,7 +28,9 @@ const SCOPES = {
   R15: [[/^(en\/)?(careers|privacy-policy|cookie-policy)\/index\.html$/, "a[href^='/cdn-cgi/l/email-protection'], a[href='mailto:contact@bioagroup.vn'], .mwc-copy, .mwc-hrcard__email"],
     [/^(en\/)?blog\/[^/]+\/index\.html$/, ".btp-share__link"], [/\.html$/, 'meta[property="og:url"]'], [/\.html$/, 'meta[property="url"]'],
     [/\.html$/, 'link[href*="merywood.com/wp-json"], link[rel="shortlink"], link[rel="apple-touch-icon"], meta[name="msapplication-TileImage"]'],
-    [/^(en\/)?contract-manufacturing-cosmetics\/index\.html$/, 'meta[property^="og:image"]']]
+    [/^(en\/)?contract-manufacturing-cosmetics\/index\.html$/, 'meta[property^="og:image"]']],
+  // R21: chat preview reply copy inside the chat script (design/markup unchanged).
+  R21: [[/\.html$/, "script#bioa-contact-fab-js"]]
 };
 const [, , base, phase] = process.argv;
 const phases = (phase || "").split("+"), scope = phases.flatMap(p => SCOPES[p] || []);

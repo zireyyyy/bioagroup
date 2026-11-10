@@ -12,7 +12,7 @@ const OUT = process.env.BIOA_REPORTS || "p0a-reports";
 mkdirSync(join(OUT, "chat-shots"), { recursive: true });
 const ROUTES = ["/", "/en/", "/about/", "/en/contacts/", "/blog/an-gi-de-chong-lao-hoa-da/", "/en/contract-manufacturing-cosmetics/"];
 const WIDTHS = [375, 390, 768, 769, 834, 1024, 1200, 1201, 1440, 1920];
-const server = createDistServer("dist"); await new Promise(r => server.listen(0, "127.0.0.1", r));
+const server = createDistServer(process.argv[2] || "dist"); await new Promise(r => server.listen(0, "127.0.0.1", r));
 const base = "http://127.0.0.1:" + server.address().port;
 const browser = await chromium.launch({ headless: true, ...(process.env.BIOA_CHROME_PATH ? { executablePath: process.env.BIOA_CHROME_PATH } : {}) });
 const results = [];
@@ -40,6 +40,8 @@ for (const route of ROUTES) for (const width of WIDTHS){
     await page.click("#bioa-contact-fab .bioa-chat__send"); await page.waitForTimeout(900);
     const msgs = await page.evaluate(() => [...document.querySelectorAll("#bioa-contact-fab .bioa-chat__messages .bioa-chat__msg")].map(m => m.className.includes("--user") ? "user" : "reply"));
     if (msgs.join(",") !== "user,reply") fail.push("messages " + msgs.join(","));
+    const reply = await page.evaluate(() => { const r = [...document.querySelectorAll("#bioa-contact-fab .bioa-chat__messages .bioa-chat__msg:not(.bioa-chat__msg--user) .bioa-chat__bubble")].pop(); return r ? r.textContent : ""; });
+    if (/ghi nhận|đã nhận|noted|received/i.test(reply) || !/Zalo/.test(reply)) fail.push("preview reply must not claim the request was recorded: " + reply.slice(0, 80));
     if (process.env.CHAT_SHOTS) await page.screenshot({ path: join(OUT, "chat-shots", (route.replace(/\W+/g, "_") || "_") + "-" + width + ".png") });
     await page.locator("#bioa-contact-fab .bioa-chat__collapse").click(); await page.waitForTimeout(300);
     if (await page.evaluate(() => document.getElementById("bioa-contact-fab").classList.contains("is-open"))) fail.push("panel did not close");
