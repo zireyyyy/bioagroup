@@ -5071,9 +5071,11 @@ function addContactLauncher($,lang){
   const intro=vi
     ?'Chào bạn 👋 Tôi là Khánh Như từ Bio-A Group. Bạn đang muốn phát triển dòng mỹ phẩm nào? Tôi có thể hỗ trợ về công thức, MOQ, bao bì và tiến độ sản xuất.'
     :'Hi 👋 I’m Khánh Như from Bio-A Group. What product line are you planning? I can help with formula, MOQ, packaging and production timeline.';
+  // Local preview reply: no backend receives chat messages yet (docs/CHAT_AI_INTEGRATION.md), so it
+  // must not claim the request was recorded; it points to the real channels instead.
   const previewReply=vi
-    ?'Cảm ơn bạn. Đội ngũ Bio-A Group đã ghi nhận nhu cầu. Bạn có thể tiếp tục trao đổi nhanh qua Zalo hoặc các kênh liên hệ phía trên.'
-    :'Thank you. Bio-A Group has noted your request. You can continue quickly via Zalo or the contact channels above.';
+    ?'Cảm ơn bạn. Khung chat này chưa kết nối tư vấn viên trực tuyến nên tin nhắn chưa được gửi tới Bio-A Group. Vui lòng nhắn Zalo hoặc gọi '+company.phone+' để được hỗ trợ ngay.'
+    :'Thank you. This chat is not yet connected to a live advisor, so your message has not been sent to Bio-A Group. Please message us on Zalo or call '+company.phoneIntl+' for immediate help.';
 
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
     <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">

@@ -33,6 +33,11 @@ const NOISE = /challenges\.cloudflare\.com|googletagmanager|google-analytics|mc\
 async function probe(base, route, width){
   const page = await browser.newPage({ viewport: { width, height: 900 } });
   const errors = [];
+  // T2 (pre-existing on the approved Preview too, root cause in docs/OWNER_ISSUE_LEDGER.md): CF7 fetches its
+  // feedback schema from the invalid host "Bio-A Group.com" and rejects with exactly this object. Its uncaught
+  // rejection surfaces as pageerror "Object"; identify it by the rejection reason, never by the message alone.
+  const T2 = '{"code":"fetch_error","message":"You are probably offline."}';
+  await page.addInitScript(() => { window.__bioaRej = []; addEventListener("unhandledrejection", e => { try { window.__bioaRej.push(JSON.stringify(e.reason)); } catch { window.__bioaRej.push(String(e.reason)); } }); });
   page.on("pageerror", e => errors.push(String(e.message || e).slice(0, 120)));
   await page.route("**/*", r => {
     const q = r.request();
@@ -47,8 +52,12 @@ async function probe(base, route, width){
     return { header: vis(document.querySelector("header,.header")), footer: !!document.querySelector("footer,#footer,.footer"),
       h1: [...document.querySelectorAll("h1")].filter(vis).length, overflow: document.documentElement.scrollWidth - innerWidth };
   }).catch(() => ({}));
+  const rej = await page.evaluate(() => window.__bioaRej || []).catch(() => []);
   await page.close();
-  return { status, errors: [...new Set(errors)], ...d };
+  const t2 = rej.filter(r => r === T2).length;
+  // Drop one "Object" pageerror per matching T2 rejection; anything else stays an error.
+  let drop = t2; const rest = errors.filter(e => !(e === "Object" && drop > 0 && drop--));
+  return { status, errors: [...new Set(rest)], knownT2: t2, ...d };
 }
 
 const fails = [], rows = [];
@@ -78,4 +87,5 @@ await writeFile(join(out, "p3-route-smoke.json"), JSON.stringify(rows, null, 2))
 await browser.close(); server.close();
 for (const f of fails) console.log("FAIL", f);
 console.log(`P3 route smoke: ${rows.length - fails.length}/${rows.length} PASS (${routes.length} routes × 2 widths)`);
+console.log(`known pre-existing T2 CF7 schema rejection (invalid host, same on approved Preview): ${rows.filter(r => r.knownT2).length}/${rows.length} loads`);
 if (fails.length) process.exit(1);
