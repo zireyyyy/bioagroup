@@ -4782,13 +4782,22 @@ export function addHomeRoadmapColdLoadSync($){
       var el=section.querySelector('.swiper');
       var slider=el&&el.swiper;
       if(!slider||typeof slider.on!=='function')return;
-      var lastWidth=slider.width,settleTimer=0;
+      var lastWidth=slider.width,settleTimer=0,armedUntil=0,endFrame=0;
       slider.on('resize',function(){
         if(slider.width===lastWidth)return;
         lastWidth=slider.width;
         requestAnimationFrame(function(){requestAnimationFrame(resyncSource);});
+        // The card transition (padding/gap/font-size in vw) really ends with
+        // transitionend; the timer is only a fallback when that event is missed.
+        armedUntil=Date.now()+cardTransitionMs()+1500;
         clearTimeout(settleTimer);
-        settleTimer=setTimeout(resyncSource,cardTransitionMs()+80);
+        settleTimer=setTimeout(resyncSource,cardTransitionMs()+250);
+      });
+      section.addEventListener('transitionend',function(e){
+        if(Date.now()>armedUntil||!e.target.classList||!e.target.classList.contains('step'))return;
+        if(!/^(padding|row-gap|column-gap|gap|font-size)/.test(e.propertyName))return;
+        cancelAnimationFrame(endFrame);
+        endFrame=requestAnimationFrame(resyncSource);
       });
     }
     function start(){waitForSourceAssets();attachResizeResync();}
