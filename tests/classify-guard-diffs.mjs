@@ -15,7 +15,10 @@ const RULES = [
   ["P1 Home icon 04 area screenshot", (p, r, w) => home(r) && !tablet(w) && /^screenshot y=\d+ diff /.test(p)],
   ["P2 Tablet formats lede 12px", (p, r, w) => tablet(w) && tabletP2Route(r) && /^computed: .*formats__lede/.test(p) && !/; [+-]local (?!P\|text-large description formats__lede)/.test(p.replace(/^computed: /, "; "))],
   ["P2 Tablet steps/formats height + downstream offsets", (p, r, w) => tablet(w) && tabletP2Route(r) && /^geometry: /.test(p)],
-  ["P2 Tablet screenshot", (p, r, w) => tablet(w) && tabletP2Route(r) && /^screenshot y=\d+ diff /.test(p)]
+  ["P2 Tablet screenshot", (p, r, w) => tablet(w) && tabletP2Route(r) && /^screenshot y=\d+ diff /.test(p)],
+  // R13: VI-only visible text of the product cards / format toggles. tests/phase-diff-scope.mjs (R13 scope) proves the
+  // HTML of these two VI pages is byte-identical outside .product, [data-formats-toggle] and #ddType .dd-label.
+  ["R13 VI translated product/toggle text (scope-proven)", (p, r) => (r === "/" || r === "/contract-manufacturing-cosmetics/") && p === "text differs"]
 ];
 function sameExceptTag(p){
   const items = p.replace(/^computed: /, "").split(" ; ");
