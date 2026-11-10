@@ -11,6 +11,8 @@ test("ROADMAP-R5: source height re-syncs after a width change, owned once and re
   // and again after the source card transition (.step{transition:.5s}) settles, read from computed style
   assert.ok(guard.includes("cardTransitionMs()"));
   assert.ok(guard.includes("getComputedStyle(step)"));
+  // R24d: the settled pass follows the card's own transitionend (timer only as fallback)
+  assert.ok(guard.includes("section.addEventListener('transitionend'"));
   assert.ok(!guard.includes("style.height="));
   assert.ok(!guard.includes("min-height:"));
   assert.ok(!guard.includes("innerHeight("));

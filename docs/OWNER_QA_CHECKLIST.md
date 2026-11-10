@@ -21,6 +21,15 @@ Mở `http://127.0.0.1:4173/` bằng Chrome và để cửa sổ PowerShell mở
 
 Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/video, route, VI/EN, viewport và một câu mô tả (dùng mẫu ở cuối file).
 
+## A0. R24 — sửa lỗi Home OWNER FAIL 2026-11-10 (kiểm tra trước tiên)
+| # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
+|---|---|---|---|---|---|
+| R24-1 | Roadmap "Từ Ý Tưởng Đến Thành Phẩm" sau khi đổi kích thước cửa sổ | `/`, `/en/`, `/contract-manufacturing-cosmetics/` | Desktop 1440/1920 | Mở Chrome cửa sổ thường, cuộn tới Roadmap, rồi phóng to/thu nhỏ cửa sổ, Ctrl +/Ctrl −/Ctrl 0, F12 mở/đóng. Sau ~1 giây: nút "Nhận tư vấn" nằm dưới thẻ với khoảng cách bình thường; Footer không chạm thẻ; bấm → ← qua 5 bước, ảnh và chữ luôn cạnh nhau | ☐ |
+| R24-2 | Roadmap Tablet/Mobile (không đổi) | `/`, `/en/` | 834, 390 | Như bản đã PASS: Tablet 2 cột ảnh-chữ; Mobile ảnh trên, chữ dưới, nút ← → bên dưới | ☐ |
+| R24-3 | "Quy Trình Hợp Tác" Tablet | `/` VI, `/en/` | 834, 1024 | 2 thẻ cạnh nhau, cao bằng nhau; ảnh cao bằng cột chữ, không còn khoảng trắng dưới ảnh; chữ đọc được, đủ câu. Bản VI cao hơn Merywood (đủ nội dung) | ☐ |
+| R24-4 | Footer | mọi trang VI/EN | 1440/834/390 | Cột "Bio-A Group": Năng Lực Sản Xuất, Liên Hệ. Cột "Chính Sách": Bảo Mật, Cookie. Không còn Tuyển dụng, Vận chuyển. Bố cục như cũ | ☐ |
+| R24-5 | About / Careers | `/about/`, `/careers/` | 1440/390 | Nút ở khối đội ngũ ghi "Liên Hệ Bio-A Group" và mở trang Liên Hệ; gõ `/careers/` thì chuyển sang Liên Hệ | ☐ |
+
 ## A. Thay đổi mới trong đợt này (cần owner duyệt)
 | # | Khu vực | Route | Viewport | Kỳ vọng | Kết quả |
 |---|---|---|---|---|---|
@@ -29,7 +38,7 @@ Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/v
 | N3 | Thẻ bao bì (Vỉ định hình, Hũ, Túi doypack…) | `/` VI, Cosmetics VI | 390/834/1440 + bấm "Xem thêm" | Không còn câu tiếng Anh (ví dụ "Travel-size products", "Easy to distribute and ship.") | ☐ |
 | N4 | Popup "Nhận tư vấn" | mọi trang VI | 375/390/769 | Ô chọn ghi "Sản phẩm / dịch vụ (tùy chọn)" và không bị cắt chữ (không gửi form) | ☐ |
 | N5 | Nút chia sẻ ở bài Blog | 1 bài Blog VI + EN | 390/1440 | Facebook / e-mail chia sẻ đúng link của chính bài đó trên bioagroup.vn, không còn bài Merywood | ☐ |
-| N6 | E-mail trên Careers / Chính sách | `/careers/`, `/privacy-policy/`, `/cookie-policy/` | 1440 | E-mail hiển thị là contact@bioagroup.vn, không còn @merywood. Phần nội dung pháp lý khác **vẫn chưa đúng** (mục C) | ☐ |
+| N6 | E-mail trên Chính sách | `/privacy-policy/`, `/cookie-policy/` (Careers đã ẩn, R24-5) | 1440 | E-mail hiển thị là contact@bioagroup.vn, không còn @merywood. Phần nội dung pháp lý khác **vẫn chưa đúng** (mục C) | ☐ |
 | N7 | Chat | mọi trang VI/EN | 390/834/1440 | Mở, gõ, gửi và đóng như trước. Câu trả lời vẫn là câu mẫu (chưa có AI thật) | ☐ |
 
 ## A'. Hạng mục từ đợt recovery vẫn chờ owner
@@ -38,9 +47,9 @@ Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/v
 | A0 | Header (lỗi OI-1) trên `/`, `/en/` | 1440/390 | Logo, menu ngang (Desktop) hoặc nút menu (Mobile), không có dấu chấm đầu dòng, không lặp, avatar hiện đủ | ☐ |
 | A3 | Icon 04 "Vì Sao Chọn" `/` | 390/1440 | Cùng cỡ với icon ở Dịch Vụ Khác | ☐ |
 | A4 | **Chọn:** màu icon 01/02 Tablet `/` | 834/1024 | Kem (như Production) hay trắng (như PR #10). Hiện giữ nguyên bản đang có | ☐ |
-| A5/T6 | **Chấp nhận/không:** chiều cao khối "Quy Trình Hợp Tác" `/` VI | 834/1024 | Đọc đủ chữ; khối cao hơn bản PR #10 | ☐ |
+| A5/T6 | → thay bằng R24-3 (HOWWORKS-T1) | — | — | — |
 | A6/A7 | Chữ mô tả "Kết cấu" 12px; popup đọc được | 834/1024 | Đọc dễ | ☐ |
-| A8 | Link Footer (30 link cũ) | 1440/390 | Liên Hệ, Dịch Vụ, Gia Công, Tuyển Dụng mở đúng trang; Footer trông như cũ | ☐ |
+| A8 | Link Footer (link cũ) | 1440/390 | Liên Hệ, Dịch Vụ, Gia Công mở đúng trang; Footer trông như cũ (Tuyển Dụng/Vận chuyển đã bỏ, R24-4) | ☐ |
 | A9 | Tiêu đề Blog (h1) | 390/834/1440 | Trông như cũ | ☐ |
 
 ## B. Hồi quy vùng OWNER PASS (kỳ vọng KHÔNG ĐỔI)

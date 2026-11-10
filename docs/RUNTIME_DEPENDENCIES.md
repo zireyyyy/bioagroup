@@ -44,3 +44,15 @@ The pinned BIO-A files were not involved. **Any slowness, block or change at mer
 - **P0B2-B (Merywood-owned):** `modal.js`, `input.js`, theme/upload images → only after **D2** (written right to host) and **D4** (self-host decision), or replacement by BIO-A-owned images/code.
 - **P0B2-C (CF7):** decide **D9**: keep live CF7 assets, pin the exact current Merywood files (needs D2), or replace with upstream CF7 6.1.7 (behaviour change, needs QA).
 - Remove the unused Manrope `.ttf` references and broken `Bio-A Group.com` leftovers only in a separate, scope-gated cleanup patch (not done: changes source CSS/scripts of PASS surfaces).
+
+## 5. Merywood resources without proven rights — classification and lawful-replacement priority (owner 2026-11-10, BIOA-R24)
+Counted on the final dist `dist-final-r24`: **88 distinct merywood.com URLs**. The split is 77 uploads (40 photos, 37 svg), 8 theme files and 3 CF7 files. On top of those, `main.css` references the unused Manrope `.ttf` files. Nothing is self-hosted or pushed without D2. The table orders **lawful replacements first**; none of them is implemented without the owner's go-ahead per row.
+
+| Priority | Resource | Class | Lawful replacement (preferred) | Fallback |
+|---|---|---|---|---|
+| 1 | `modal.js`, `input.js` (theme JS, synchronous before `main.js`: the page hangs if merywood.com is slow) | Merywood proprietary code, **REQUIRED** | BIO-A-owned re-implementation of the same quote-modal open/close and input behaviour, inside the existing modal markup, with full modal QA on Desktop/Tablet/Mobile × VI/EN | written permission + self-host (D2/D4) |
+| 2 | CF7 `index.js`, `swv/index.js`, `styles.css` (`?ver=6.1.7`, differ from upstream) | third-party plugin as modified by Merywood | upstream Contact Form 7 6.1.7 from wordpress.org (GPL-2.0-or-later), self-hosted like R12. The form submit already goes to BIO-A `/api/lead`, so a behaviour-diff QA is needed. This also removes the T2 `Bio-A Group.com` schema fetch | keep live (risk documented, D9) |
+| 3 | 40 photos (`wp-content/uploads/…webp/jpg`: Roadmap, How It Works, products, formats, We Produce, Blog) | Merywood media, visible content | BIO-A-owned photos in the same aspect ratios (owner supplies or commissions). These are content-only swaps inside the existing components and need no CSS change | written permission + self-host |
+| 4 | 37 svg icons + 6 theme social icons (`assets/icons/{desktop,mobile}`) + the cookie icon `2025/09/cookie.svg` | Merywood artwork | BIO-A-owned or openly licensed icons (e.g. MIT/ISC icon sets) at the same size and colour slot. Neutral UI icons are kept until the owner decides, per AGENTS.md §3 | written permission |
+| 5 | Build input bundle (Merywood HTML/`main.css`/`main.js`, `source-manifest.json`) | Merywood source, core of the layout | long term: BIO-A-owned rewrite of each component. Not in this closure (no redesign) | written permission (D2), **required before any public Preview build** |
+| — | Old Manrope `.ttf` `@font-face` in `main.css` | unused, failing CORS | remove in a scope-gated cleanup (Google Manrope variable is the font authority) | — |
