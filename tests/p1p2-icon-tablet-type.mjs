@@ -63,7 +63,11 @@ for (const lang of ["", "/en"]) for (const width of [375, 390, 768, 769, 834, 10
   const p2 = process.env.ONLY !== "P1";
   if (p2 && home.clipped) fails.push(id + " Home steps clipped: " + home.clipped);
   if (p2 && tablet){
-    for (const [k, v] of [["step", home.stepFs], ["lede", home.lede], ["consent", home.consent]]) if (v !== null && v < 12) fails.push(id + " " + k + " " + v + "px < 12px");
+    // TABLET-TYPE-SOURCE2 (owner Tablet FAIL 2026-11-10 replaced the 12px floor): body copy is exactly the
+    // Merywood desktop-fluid size with a 9px minimum; the consultation modal keeps its >=12px (473eeaf, unchanged).
+    const want = vw => Math.max(9, vw * width / 100);
+    for (const [k, v, vw] of [["step", home.stepFs, .8333], ["lede", home.lede, .9896]]) if (v !== null && Math.abs(v - want(vw)) > .05) fails.push(id + " " + k + " " + v + "px != max(9px," + vw + "vw) " + want(vw).toFixed(2));
+    if (home.consent !== null && home.consent < 12) fails.push(id + " consent " + home.consent + "px < 12px");
   } else if (width <= 768){
     if (home.stepFs !== 14) fails.push(id + " Mobile step font changed: " + home.stepFs);
   }

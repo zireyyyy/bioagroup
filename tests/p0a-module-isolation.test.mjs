@@ -32,7 +32,9 @@ const APPROVED = [
   // CONTENT-C1 Footer/About Careers+Shipping decision.
   { sha: "497467ab1efa3b802e7baf99f8bc48bae7bedf2b", phase: "R24", files: ["bioa-about-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-source-components.mjs"] },
   // R24d: same ROADMAP-R5 owner script, re-sync on the card transitionend (final-QA timing FAIL fixed at the cause).
-  { sha: "f265a293329e619a4544288007cb2d736b3a60f6", phase: "R24", files: ["bioa-home-refine.mjs"] }
+  { sha: "f265a293329e619a4544288007cb2d736b3a60f6", phase: "R24", files: ["bioa-home-refine.mjs"] },
+  // R24g (owner Tablet FAIL on eabcd48): TABLET-TYPE-SOURCE2 + HOWWORKS-T2 inside the canonical 769-1200 owner only.
+  { sha: "cbda5263b35ee389d46e982bb05ce8cc93867072", phase: "R24", files: ["bioa-source-components.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 

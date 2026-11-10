@@ -1,6 +1,6 @@
 // Home "Quy Trình Hợp Tác" / How It Works (.block-how-works.desctop) browser regression, real Chrome.
 // Tablet 769–1200 (HOWWORKS-T1): Merywood 2-card desktop-fluid grid kept; both visible cards equal height;
-// photo column = info column height (no blank band); full copy visible (no clamp cut); copy >= 12px.
+// photo column = info column height (no blank band); full copy visible (no clamp cut); copy = max(9px,.8333vw).
 // Desktop >=1201: source geometry unchanged (photo = info = 26.0417vw-driven row, source clamp 8).
 // Also run after a width change (RESIZE=1). Usage: node tests/home-howworks-tablet.mjs [distDir]
 import { chromium } from "playwright";
@@ -40,7 +40,8 @@ for (const resize of [false, true]) for (const route of ["/", "/en/"]) for (cons
         if (Math.abs(c.imgH - c.infoH) > 1.5) fail.push(`photo ${c.imgH.toFixed(0)} != info ${c.infoH.toFixed(0)}`);
         if (!(c.infoX < c.imgX)) fail.push("text/image order changed");
         if (c.cut > 1) fail.push("copy cut by " + c.cut + "px");
-        if (w <= 1200 && c.fs < 12) fail.push("tablet copy " + c.fs + "px < 12px");
+        // TABLET-TYPE-SOURCE2: Tablet copy = max(9px, .8333vw) (desktop-fluid with a readability minimum)
+        if (w <= 1200 && Math.abs(c.fs - Math.max(9, .8333 * w / 100)) > .05) fail.push("tablet copy " + c.fs + "px != max(9px,.8333vw)");
       }
       if (m.cards.length === 2 && Math.abs(m.cards[0].stepH - m.cards[1].stepH) > 1.5) fail.push("card heights differ " + m.cards.map(c => c.stepH.toFixed(0)).join("/"));
       if (m.cards[0] && Math.abs(m.wrapperH - m.cards[0].stepH) > 1.5) fail.push("slider height " + m.wrapperH.toFixed(1) + " != card " + m.cards[0].stepH.toFixed(1));
