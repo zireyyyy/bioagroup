@@ -8,7 +8,7 @@
     "source:prepare": "node tools/prepare-source-bundle.mjs",
     "source:verify": "node tools/verify-source-bundle.mjs",
     "test:p0a": "node --test tests/p0a-source-pin.test.mjs tests/p0a-module-isolation.test.mjs && node tests/p0a-fidelity-allowlist.mjs && node tests/p0a-determinism.mjs",
-    "test:candidate": "node --test tests/p0a-source-pin.test.mjs tests/p0a-module-isolation.test.mjs tests/serve-dist.test.mjs && node tests/p0a-determinism.mjs && node tests/p1p2-icon-tablet-type.mjs && node tests/p3-static-site-audit.mjs && node tests/d11-legacy-redirects.mjs",
+    "test:candidate": "node --test tests/p0a-source-pin.test.mjs tests/p0a-module-isolation.test.mjs tests/serve-dist.test.mjs && node tests/p0a-determinism.mjs && node tests/p1p2-icon-tablet-type.mjs && node tests/p3-static-site-audit.mjs && node tests/d11-legacy-redirects.mjs && node tests/business-identity.mjs",
     "test:smoke": "node tests/recovery-visual-smoke.mjs",
     "serve": "node tools/serve-dist.mjs 4173",
     "test:p0b1": "node tests/p0b1-runtime-pin.mjs",

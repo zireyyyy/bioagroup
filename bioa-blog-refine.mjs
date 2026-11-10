@@ -377,6 +377,10 @@ function applyBlogArticle($,route,lang){
   tocCta.find('.btn__icon').html('<img class="bioa-zalo-icon" src="/assets/zalo-bioa-owner.png" alt="" aria-hidden="true">');
   tocCta.find('.btn__text').text(isEn?'Contact us':'Liên Hệ Với Chúng Tôi');
   $('.btp-share > span,.btpm-share > span').text(isEn?'Share':'Chia sẻ');
+  // Share links: the source shared one Merywood article (Facebook + obfuscated e-mail) on every post.
+  const shareUrl=BUSINESS.domain+(isEn?'/en':'')+route;
+  $('.btp-share__link[href*="facebook.com/sharer"]').attr('href','https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl));
+  $('.btp-share__link[href^="/cdn-cgi/l/email-protection#"]').attr('href','mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(shareUrl));
 
   const idx=blogPosts.findIndex(p=>p.slug===slug);
   const prev=idx>0?blogPosts[idx-1]:null; const next=idx<blogPosts.length-1?blogPosts[idx+1]:null;
