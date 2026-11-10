@@ -26,7 +26,7 @@ Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/v
 |---|---|---|---|---|---|
 | R24-1 | Roadmap "Từ Ý Tưởng Đến Thành Phẩm" sau khi đổi kích thước cửa sổ | `/`, `/en/`, `/contract-manufacturing-cosmetics/` | Desktop 1440/1920 | Mở Chrome cửa sổ thường, cuộn tới Roadmap, rồi phóng to/thu nhỏ cửa sổ, Ctrl +/Ctrl −/Ctrl 0, F12 mở/đóng. Sau ~1 giây: nút "Nhận tư vấn" nằm dưới thẻ với khoảng cách bình thường; Footer không chạm thẻ; bấm → ← qua 5 bước, ảnh và chữ luôn cạnh nhau | ☐ |
 | R24-2 | Roadmap Tablet/Mobile (không đổi) | `/`, `/en/` | 834, 390 | Như bản đã PASS: Tablet 2 cột ảnh-chữ; Mobile ảnh trên, chữ dưới, nút ← → bên dưới | ☐ |
-| R24-3 | "Quy Trình Hợp Tác" Tablet | `/` VI, `/en/` | 834, 1024 | 2 thẻ cạnh nhau, cao bằng nhau; ảnh cao bằng cột chữ, không còn khoảng trắng dưới ảnh; chữ đọc được, đủ câu. Bản VI cao hơn Merywood (đủ nội dung) | ☐ |
+| R24-3 | **Tablet toàn site (R24g)** — Home, About, Gia Công Mỹ Phẩm, Dịch Vụ Khác, Blog, bài Blog, Liên Hệ | VI/EN | 769, 834, 1024, 1200 | So với merywood.com cùng độ rộng: cùng bố cục desktop-fluid (thẻ, ảnh, khoảng cách). Chữ thân đọc được (≥9px) và đủ câu; tiêu đề thẻ "Vì Sao Chọn" không còn nhỏ hơn chữ; "Quy Trình Hợp Tác" ảnh cao bằng cột chữ, Dịch Vụ Khác thẻ bằng Merywood. Bấm → ← các slider. Bản VI ở 769/834 cao hơn Merywood vì nội dung dài hơn (OD-11b) | ☐ |
 | R24-4 | Footer | mọi trang VI/EN | 1440/834/390 | Cột "Bio-A Group": Năng Lực Sản Xuất, Liên Hệ. Cột "Chính Sách": Bảo Mật, Cookie. Không còn Tuyển dụng, Vận chuyển. Bố cục như cũ | ☐ |
 | R24-5 | About / Careers | `/about/`, `/careers/` | 1440/390 | Nút ở khối đội ngũ ghi "Liên Hệ Bio-A Group" và mở trang Liên Hệ; gõ `/careers/` thì chuyển sang Liên Hệ | ☐ |
 

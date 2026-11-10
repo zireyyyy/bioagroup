@@ -1,0 +1,2045 @@
+{
+  "ownerVisualPass": false,
+  "results": [
+    {
+      "route": "/contract-manufacturing-cosmetics/",
+      "width": 390,
+      "docWidth": 390,
+      "viewport": 390,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -355,
+        "afterTransform": "matrix(1, 0, 0, 1, -355, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/contract-manufacturing-cosmetics/",
+      "width": 834,
+      "docWidth": 834,
+      "viewport": 834,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -278,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -771,
+        "afterTransform": "matrix(1, 0, 0, 1, -771, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/contract-manufacturing-cosmetics/",
+      "width": 1024,
+      "docWidth": 1024,
+      "viewport": 1024,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -341.3333333333333,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -945,
+        "afterTransform": "matrix(1, 0, 0, 1, -945, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/contract-manufacturing-cosmetics/",
+      "width": 1440,
+      "docWidth": 1440,
+      "viewport": 1440,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -480,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -1329,
+        "afterTransform": "matrix(1, 0, 0, 1, -1329, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/contract-manufacturing-cosmetics/",
+      "width": 390,
+      "docWidth": 390,
+      "viewport": 390,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -355,
+        "afterTransform": "matrix(1, 0, 0, 1, -355, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/contract-manufacturing-cosmetics/",
+      "width": 834,
+      "docWidth": 834,
+      "viewport": 834,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -278,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -771,
+        "afterTransform": "matrix(1, 0, 0, 1, -771, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/contract-manufacturing-cosmetics/",
+      "width": 1024,
+      "docWidth": 1024,
+      "viewport": 1024,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -341.3333333333333,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -945,
+        "afterTransform": "matrix(1, 0, 0, 1, -945, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/contract-manufacturing-cosmetics/",
+      "width": 1440,
+      "docWidth": 1440,
+      "viewport": 1440,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 7,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper is-in swiper-initialized swiper-horizontal",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": []
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -480,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 4,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 5,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 4,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-reviews desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -1329,
+        "afterTransform": "matrix(1, 0, 0, 1, -1329, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/dich-vu-khac/",
+      "width": 390,
+      "docWidth": 390,
+      "viewport": 390,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -355,
+        "afterTransform": "matrix(1, 0, 0, 1, -355, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/dich-vu-khac/",
+      "width": 834,
+      "docWidth": 834,
+      "viewport": 834,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -278,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -391.5,
+        "afterTransform": "matrix(1, 0, 0, 1, -391.5, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/dich-vu-khac/",
+      "width": 1024,
+      "docWidth": 1024,
+      "viewport": 1024,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -341.3333333333333,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -480.5,
+        "afterTransform": "matrix(1, 0, 0, 1, -480.5, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/dich-vu-khac/",
+      "width": 1440,
+      "docWidth": 1440,
+      "viewport": 1440,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -480,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -675.5,
+        "afterTransform": "matrix(1, 0, 0, 1, -675.5, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/dich-vu-khac/",
+      "width": 390,
+      "docWidth": 390,
+      "viewport": 390,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -355,
+        "afterTransform": "matrix(1, 0, 0, 1, -355, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/dich-vu-khac/",
+      "width": 834,
+      "docWidth": 834,
+      "viewport": 834,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -278,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -391.5,
+        "afterTransform": "matrix(1, 0, 0, 1, -391.5, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/dich-vu-khac/",
+      "width": 1024,
+      "docWidth": 1024,
+      "viewport": 1024,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -341.3333333333333,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -480.5,
+        "afterTransform": "matrix(1, 0, 0, 1, -480.5, 0)",
+        "changed": true
+      },
+      "issues": []
+    },
+    {
+      "route": "/en/dich-vu-khac/",
+      "width": 1440,
+      "docWidth": 1440,
+      "viewport": 1440,
+      "swipers": [
+        {
+          "i": 0,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        },
+        {
+          "i": 1,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 5,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": 0,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left swiper-button-disabled",
+              "disabled": true,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 2,
+          "className": "swiper swiper-initialized swiper-horizontal swiper-backface-hidden",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 2,
+          "translate": -480,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": true
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": true
+            }
+          ]
+        },
+        {
+          "i": 3,
+          "className": "swiper swiper-initialized swiper-horizontal",
+          "slideCount": 6,
+          "initialized": true,
+          "activeIndex": 0,
+          "translate": null,
+          "controls": [
+            {
+              "className": "swiper-button swiper-button_left",
+              "disabled": false,
+              "visible": false
+            },
+            {
+              "className": "swiper-button swiper-button_right",
+              "disabled": false,
+              "visible": false
+            }
+          ]
+        }
+      ],
+      "carouselSections": [
+        {
+          "cls": "block block-how-works mobile",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-how-works desctop",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews desctop bioa-service-scenarios",
+          "swipers": 1
+        },
+        {
+          "cls": "block block-reviews mobile bioa-service-scenarios",
+          "swipers": 1
+        }
+      ],
+      "interaction": {
+        "status": "clicked",
+        "beforeIndex": 0,
+        "beforeTranslate": 0,
+        "beforeTransform": "matrix(1, 0, 0, 1, 0, 0)",
+        "afterIndex": 1,
+        "afterTranslate": -675.5,
+        "afterTransform": "matrix(1, 0, 0, 1, -675.5, 0)",
+        "changed": true
+      },
+      "issues": []
+    }
+  ]
+}

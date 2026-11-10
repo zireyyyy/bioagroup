@@ -14,10 +14,16 @@ const browser = await chromium.launch({ headless: true, ...(process.env.BIOA_CHR
 const snap = async (base, route, w) => {
   const page = await browser.newPage({ viewport: { width: w, height: 1000 } });
   await page.route("**/*", r => r.request().method() !== "GET" || /googletagmanager|yandex|dashly|geojs|challenges\.cloudflare/.test(r.request().url()) ? r.abort() : r.fallback());
-  await page.goto(base + route, { waitUntil: "load", timeout: 70000 }); await page.waitForTimeout(3500);
+  // Every page waits for live merywood.com modal.js/input.js (D2/D4); retry a load that timed out on that host
+  // (2026-11-10: single requests took 18 s) - a page that never loads still fails the case.
+  for (let i = 1; ; i++){ try { await page.goto(base + route, { waitUntil: "load", timeout: 90000 }); break; } catch (e){ if (i >= 3) throw e; } }
+  await page.waitForTimeout(3500);
   const s = await page.evaluate(() => {
     const out = [];
+    // The chat launcher teaser opens/closes on its own timer (class is-teaser + slide-in animation), so two loads are
+    // never at the same instant: its subtree is excluded here (its CSS is covered by tests/tablet-only-diff-proof.mjs).
     for (const e of document.querySelectorAll("body *")){
+      if (e.closest(".bioa-contact-fab")) continue;
       const c = getComputedStyle(e); if (c.display === "none" || c.visibility === "hidden") continue;
       const r = e.getBoundingClientRect(); if (!r.width || !r.height) continue;
       // positions are taken relative to the document (smooth-scrollbar keeps scroll 0 here)
@@ -30,7 +36,9 @@ const snap = async (base, route, w) => {
 let bad = 0, n = 0;
 for (const route of ROUTES) for (const lang of ["vi", "en"]) for (const w of WIDTHS){
   const r = (lang === "en" ? "/en" : "") + route; n++;
-  const [x, y] = [await snap("http://127.0.0.1:" + sa.address().port, r, w), await snap("http://127.0.0.1:" + sb.address().port, r, w)];
+  let x, y;
+  try { [x, y] = [await snap("http://127.0.0.1:" + sa.address().port, r, w), await snap("http://127.0.0.1:" + sb.address().port, r, w)]; }
+  catch (e){ bad++; console.log("LOAD-FAIL", r, "@" + w, e.message.split("\n")[0]); continue; }
   const ok = x.length === y.length && x.every((v, i) => v === y[i]);
   if (!ok){ bad++; const i = x.findIndex((v, k) => v !== y[k]); console.log("DIFF", r, "@" + w, "elements", x.length, "/", y.length, "first:", x[i], "vs", y[i]); }
 }

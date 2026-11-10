@@ -175,3 +175,74 @@ Logs and screenshots: `D:\BIOA_WORKSPACE\_reports\home-regression\qa-final\` (`s
 - Desktop and Tablet Footer height are unchanged.
 
 **Backlog (outside R24, not changed):** ROADMAP-M1. On Mobile the Merywood source hides the Roadmap `<br>` line breaks, so words join («tưởng,nhóm», «sáchvà», «trìnhphù»). This is identical on the approved d59f50d (`compare\SHEET-roadmap-390-vi.png`). The fix is content-only (a space before each `<br>` in the ROADMAP-R3 copy) and needs Mobile owner QA.
+
+## OWNER TABLET FAIL on `eabcd48` → R24g (Tablet back to Merywood desktop-fluid)
+- **Owner verdict:**
+  - Desktop "Nhận tư vấn" PASS/FREEZE.
+  - Desktop/Mobile PASS FREEZE.
+  - **Tablet FAIL.** It must use the Merywood desktop-fluid mechanism with every owner-PASS BIO-A customization, and be judged on screenshots, not on test counts.
+- Commits: `cbda526` (code) and `35d365c` (approval and tools).
+
+### What made Tablet differ from Merywood (verified)
+The owner Tablet authority is PR #10 `ed7324c` (FULL TABLET PASS). The Tablet-relevant changes made after it (`git log ed7324c..HEAD`) were checked:
+
+| Override | Status | Effect on Tablet | Action |
+|---|---|---|---|
+| TABLET-TYPE-SOURCE1 (`7a668fe`, Phase 2B candidate, never owner PASS): `font-size:12px; line-height:1.5` on 8 copy selectors | not PASS | Copy ~1.7x the vw-scaled layout. Home VI at 834 vs Merywood: Why Choose 406 vs 296, How It Works 540 vs 395, Right Choice 438 vs 246, Reviews 317 vs 279. Its selector `#why-choose-us .item p` also matched the **card title** `<p>` (source 1.5625vw) and shrank it to 12px at 1024/1200 | **replaced** by TABLET-TYPE-SOURCE2 |
+| P2 `-webkit-line-clamp:none` on How It Works | recovery fix | keeps VI steps uncut | **kept** (owner: do not cut content) |
+| HOWWORKS-T1 (R24): `.step{height:100%}` + `.step__image{height:auto}` | owner FAIL | `height:auto` let the photo's own portrait ratio set the row. `/dich-vu-khac/` cards were 374 vs Merywood 299 at 1024 even with 4-line copy. `.step{height:100%}` copied the tallest hidden slide into every card | **replaced** by HOWWORKS-T2 |
+| Header, Footer, chat, CTA, icons, modal, formats tabs (baseline-tested `clamp(12px,…)`), Hero stats | owner PASS / baseline contracts | desktop-fluid already (vw from the 1440 Desktop) | unchanged |
+
+### Fix (only inside `@media (min-width:769px) and (max-width:1200px)` of `bioa-source-components.mjs`)
+- **TABLET-TYPE-SOURCE2:**
+  - body-copy slots only (How It Works text, Why Choose `.item__body p`, Right Choice description/li, Reviews text, formats lede);
+  - size = `max(9px, <source vw>)` (`.8333vw` / `.9896vw`);
+  - line-height is the source's unitless value.
+  - The 9px minimum is active only below ~1080px. At 834 copy is 9px instead of the source 6.95px. At 1200 it is exactly the source.
+  - Titles go back to the source size.
+- **HOWWORKS-T2:**
+  - the photo box contributes only the source `26.0417vw` and stretches to the row when the copy column is taller (no blank band);
+  - the `<img>` fills it absolutely (`object-fit:cover` source-owned).
+  - Short copy gives exactly the Merywood card.
+
+### Result vs Merywood (live merywood.com, same width, section by section; `tests/tablet-merywood-compare.mjs`, 7 page groups × 769/834/1024/1200 × VI/EN, 28 sheets)
+- No horizontal overflow on any page or width (28/28).
+- Home EN, About, Contacts, Blog index/post, Cosmetics (except formats), `/dich-vu-khac/` How It Works: within ±12% of the Merywood section, or shorter where BIO-A has less content.
+- `/dich-vu-khac/` How It Works at 834: 243/217/217, **identical** to Merywood (was 305/279/279).
+
+**Differences BIO-A keeps (owner decision, not hidden):**
+
+| Section | Width | Merywood | BIO-A VI | Cause |
+|---|---|---|---|---|
+| Home Why Choose | 769 | 273 | 328 | VI body copy is about 5x the EN/Merywood copy; 9px minimum |
+| Home How It Works | 769 / 834 | 364 / 395 | 450 / 459 | VI step copy about 2x Merywood at 9px; no clamp (no cut) |
+| Home Right Choice | 769 / 834 | 227 / 246 | 337 / 301 | long VI bullet lists at 9px |
+| Product formats (Home, Cosmetics) | all widths | — | +13…55% | BIO-A formats component is already +14% (Home) / +27% (Cosmetics) taller than Merywood on **Desktop 1440** (owner PASS). Tablet keeps that ratio plus the baseline-tested `clamp(12px,…)` tab type |
+
+To match Merywood heights exactly at 769–834, either the 6.4–7px source copy size (rejected: readability) or **shorter VI copy** is needed. The owner content decision is OD-11b:
+- Home Why Choose 4 card bodies;
+- Home How It Works 5 steps;
+- Home Right Choice bullets.
+
+### Desktop / Mobile proof
+- `tests/tablet-only-diff-proof.mjs` (R24b → R25b): 102 files changed, **every changed byte inside the 769–1200 block**.
+- `tests/desktop-mobile-identity.mjs`: see the final regression below.
+- **Final regression on the frozen `dist-tablet-r25b`** (logs `D:\BIOA_WORKSPACE\_reports\tablet-r25\qa\summary.txt`):
+
+| Check | Result |
+|---|---|
+| `test:candidate`, `test:responsive` 15/15 (baseline "no clamp() floors" contract kept), `test:p0a` (fidelity 104/104, cumulative scope incl. R24, determinism), `test:404`, `test:turnstile`, `test:chat` | exit 0 |
+| Tablet-only diff proof R24b → R25b | 102 files, all changes inside the 769–1200 block |
+| **Desktop/Mobile identity** (typography + geometry of every visible element, 7 page groups × VI/EN × 390/768/1201/1440/1920) | **70/70 identical**. The chat teaser is excluded because it toggles on its own timer; its CSS is covered by the diff proof |
+| P1/P2 (icons, Tablet copy = `max(9px, source vw)`, modal consent ≥12px) | PASS |
+| Baseline Tablet suites: browser smoke, services Swiper interactions, Blog TOC, Contacts/404, full route audit | PASS (run with `node --import ./tools/pw-system-chrome.mjs`; the test files are unchanged) |
+| Roadmap Home + Cosmetics, static + resized | 36/36 + 36/36 |
+| How It Works VI/EN × 7 widths, static + resized | 28/28 |
+| Home sections incl. 768/769, 1200/1201, zoom 125% | 20/20 |
+| Merywood vs BIO-A section sheets (7 groups × 769/834/1024/1200) | 28 sheets, 0 horizontal overflow |
+
+**Honest run log:**
+- Several cases first failed with `page.goto` timeouts while merywood.com was slow. Single requests for `input.js`/`modal.js` took 18 s; every page waits for them synchronously (D2/D4).
+- The legacy Tablet suites first failed because the Playwright-bundled Chromium is not installed on this PC. They were rerun through the system-Chrome shim, without modifying the tests.
+- The first identity probe compared the timer-driven chat teaser state. That is a probe defect, which I fixed.
+- No geometry or typography failure was found in any rerun.

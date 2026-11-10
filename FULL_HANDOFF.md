@@ -1,6 +1,29 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-10. Covers the FINAL COMPLETION, the REVIEW CORRECTION and **R24 HOME REGRESSION RECOVERY** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
+## R24g — OWNER TABLET FAIL on `eabcd48` → Tablet back to Merywood desktop-fluid (owner QA pending)
+- **Owner verdict on `eabcd48`:**
+  - Desktop "Nhận tư vấn" PASS/FREEZE.
+  - Desktop/Mobile PASS FREEZE.
+  - Tablet FAIL.
+- **Commits:** `cbda526` (code: `bioa-source-components.mjs` 769–1200 block only) and `35d365c` (approval and tools), then the docs commit. Nothing pushed.
+- **Root cause:**
+  - TABLET-TYPE-SOURCE1, a 12px copy floor with line-height 1.5 (Phase 2B candidate, never owner PASS), made copy about 1.7× the vw-scaled layout. Its `.item p` selector also shrank the Why Choose titles.
+  - HOWWORKS-T1 let the photo's portrait ratio and the tallest hidden slide set the card height.
+- **Fix:**
+  - TABLET-TYPE-SOURCE2: `max(9px, source vw)` on copy slots only, with the source line-height.
+  - HOWWORKS-T2: the photo box contributes only the source 26.0417vw; the image is absolute-fill.
+- **Evidence (frozen `dist-tablet-r25b`):**
+  - Tablet-only diff proof: 102 files, all changes inside the Tablet block.
+  - Desktop/Mobile identity 70/70.
+  - 28 Merywood-vs-BIO-A section sheets (`D:\BIOA_WORKSPACE\_reports\tablet-r25\final\`).
+  - All gates and baseline Tablet suites PASS.
+  - Table: `docs/HOME_REGRESSION_R24.md` §OWNER TABLET FAIL.
+- **Kept BIO-A differences:**
+  - Home VI 769/834 cards taller (VI copy 2–5× longer, 9px minimum) → OD-11b;
+  - formats component taller (same ratio as Desktop PASS).
+- **Test runner note:** the legacy Tablet suites need the system Chrome: `node --import ./tools/pw-system-chrome.mjs tests/<file>`.
+
 ## R24 — OWNER HOME FAIL 2026-11-10 → R24 LOCAL CANDIDATE (owner QA pending)
 - Commits on top of `8ed22d5`:
   - `497467a` fix;

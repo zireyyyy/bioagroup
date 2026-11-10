@@ -1,0 +1,680 @@
+{
+  "visualOwnerPass": false,
+  "contactFormSubmitted": false,
+  "live404NotVerified": true,
+  "results": [
+    {
+      "route": "/contacts/",
+      "width": 390,
+      "before": {
+        "faqCount": 5,
+        "question": "MOQ Tối Thiểu Là Bao Nhiêu?",
+        "answer": "MOQ phụ thuộc vào dạng sản phẩm, công thức, nguyên liệu, bao bì và quy mô dự án. Hãy gửi brief hoặc nhu cầu dự kiến để Bio-A Group xác nhận mức MOQ ph",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Vị trí Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group"
+        },
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 214,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 119,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 390
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/contacts/",
+      "width": 834,
+      "before": {
+        "faqCount": 5,
+        "question": "MOQ Tối Thiểu Là Bao Nhiêu?",
+        "answer": "MOQ phụ thuộc vào dạng sản phẩm, công thức, nguyên liệu, bao bì và quy mô dự án. Hãy gửi brief hoặc nhu cầu dự kiến để Bio-A Group xác nhận mức MOQ ph",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Vị trí Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group"
+        },
+        "pageWidth": 834,
+        "viewport": 834
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 149,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 54,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 834
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/contacts/",
+      "width": 1024,
+      "before": {
+        "faqCount": 5,
+        "question": "MOQ Tối Thiểu Là Bao Nhiêu?",
+        "answer": "MOQ phụ thuộc vào dạng sản phẩm, công thức, nguyên liệu, bao bì và quy mô dự án. Hãy gửi brief hoặc nhu cầu dự kiến để Bio-A Group xác nhận mức MOQ ph",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Vị trí Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group"
+        },
+        "pageWidth": 1024,
+        "viewport": 1024
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 149,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 54,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 1024
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/contacts/",
+      "width": 1440,
+      "before": {
+        "faqCount": 5,
+        "question": "MOQ Tối Thiểu Là Bao Nhiêu?",
+        "answer": "MOQ phụ thuộc vào dạng sản phẩm, công thức, nguyên liệu, bao bì và quy mô dự án. Hãy gửi brief hoặc nhu cầu dự kiến để Bio-A Group xác nhận mức MOQ ph",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Vị trí Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group"
+        },
+        "pageWidth": 1440,
+        "viewport": 1440
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 149,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 54,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 1440
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/en/contacts/",
+      "width": 390,
+      "before": {
+        "faqCount": 5,
+        "question": "What is the minimum order quantity?",
+        "answer": "MOQ depends on product format, formula, materials, packaging and project scale. Share your brief or expected volume and Bio-A Group will confirm the a",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory location"
+        },
+        "pageWidth": 390,
+        "viewport": 390
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 214,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 119,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 390
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/en/contacts/",
+      "width": 834,
+      "before": {
+        "faqCount": 5,
+        "question": "What is the minimum order quantity?",
+        "answer": "MOQ depends on product format, formula, materials, packaging and project scale. Share your brief or expected volume and Bio-A Group will confirm the a",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory location"
+        },
+        "pageWidth": 834,
+        "viewport": 834
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 149,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 54,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 834
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/en/contacts/",
+      "width": 1024,
+      "before": {
+        "faqCount": 5,
+        "question": "What is the minimum order quantity?",
+        "answer": "MOQ depends on product format, formula, materials, packaging and project scale. Share your brief or expected volume and Bio-A Group will confirm the a",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory location"
+        },
+        "pageWidth": 1024,
+        "viewport": 1024
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 149,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 54,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 1024
+      },
+      "faqChanged": true
+    },
+    {
+      "route": "/en/contacts/",
+      "width": 1440,
+      "before": {
+        "faqCount": 5,
+        "question": "What is the minimum order quantity?",
+        "answer": "MOQ depends on product format, formula, materials, packaging and project scale. Share your brief or expected volume and Bio-A Group will confirm the a",
+        "row": {
+          "cls": "contacts-faq-item",
+          "aria": null,
+          "height": 81,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 0,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "addresses": [
+          {
+            "href": "mailto:contact@bioagroup.vn",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "tel:+84779399379",
+            "target": null,
+            "rel": null
+          },
+          {
+            "href": "https://zalo.me/84779399379",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          },
+          {
+            "href": "https://www.google.com/maps/search/?api=1&query=496%2F63%2F10H%20D%C6%B0%C6%A1ng%20Qu%E1%BA%A3ng%20H%C3%A0m%2C%20An%20Nh%C6%A1n%2C%20H%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Vi%E1%BB%87t%20Nam",
+            "target": "_blank",
+            "rel": "noopener noreferrer"
+          }
+        ],
+        "map": {
+          "src": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4143.138498855276!2d106.68401897528798!3d10.839337289313265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529001e102e1d%3A0x622b81426ff7dfbc!2zQ1QgVE5ISCBTWCBExq_hu6JDIE3hu7ggUEjhuqhNIEJpby0gQSBHUk9VUA!5e1!3m2!1svi!2s!4v1791370826287!5m2!1svi!2s",
+          "loading": "lazy",
+          "title": "Bio-A Group Pharmaceutical & Cosmetic Manufacturing Factory location"
+        },
+        "pageWidth": 1440,
+        "viewport": 1440
+      },
+      "after": {
+        "row": {
+          "cls": "contacts-faq-item active",
+          "aria": null,
+          "height": 149,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "questionState": {
+          "cls": "contacts-faq-q",
+          "aria": null,
+          "height": 36,
+          "display": "flex",
+          "visibility": "visible"
+        },
+        "answerState": {
+          "cls": "contacts-faq-a",
+          "aria": null,
+          "height": 54,
+          "display": "block",
+          "visibility": "visible"
+        },
+        "pageWidth": 1440
+      },
+      "faqChanged": true
+    }
+  ],
+  "failures": []
+}

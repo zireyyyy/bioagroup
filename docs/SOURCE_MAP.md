@@ -2552,6 +2552,23 @@ OWNER QA (after production Cloudflare deploy): Home VI/EN at 834/1024/1180px com
 ## ROADMAP-R5 / HOWWORKS-T1 — slider height ownership (BIOA-R24, 2026-11-10)
 - **Merywood source:** `runtime/main.js` `swiperAutoHeight(swiper)` (wrapper height = tallest slide, on `load resize`), Swiper 11.1.4, `main.css` `.block-roadmap .step {transition:.5s; aspect-ratio 863/808 image/info}` and `.block-how-works .step__image {height:26.0417vw}` (769–1920).
 - **BIO-A owner, Roadmap height after width change:** COMPONENT script `#bioa-roadmap-coldload-sync` = `addHomeRoadmapColdLoadSync($)` in `bioa-home-refine.mjs`. It is exported once and imported by `bioa-cosmetics-refine.mjs` (Cosmetics hub Roadmap). It only re-runs the source path (`jQuery(window).triggerHandler('resize')` + `Scrollbar.update()`) after Swiper's own `resize` when the width changed, and again after the `.step` transition. It never writes a height itself.
-- **BIO-A owner, How It Works Tablet:** `bioa-source-components.mjs` Tablet block (769–1200), next to TABLET-TYPE-SOURCE1/P2. `.swiper-slide .step {height:100%}` and `.step__image {height:auto; min-height:26.0417vw}`. Home and `/dich-vu-khac/` share it.
+- **BIO-A owner, How It Works Tablet:** `bioa-source-components.mjs` Tablet block (769–1200). HOWWORKS-T2 (R24g) replaced T1.
+  - `.step__image {position:relative; height:auto; min-height:26.0417vw}`.
+  - `.step__image img {position:absolute; inset:0; 100%×100%}`.
+  - The photo contributes only the source height and stretches with taller copy.
+  - Home and `/dich-vu-khac/` share it.
+  - **Never** `.step{height:100%}` and never let the `<img>` contribute its intrinsic ratio.
 - **Tests:** `tests/home-roadmap-visual.mjs` (static + resized, `RM_ROUTE` for Cosmetics), `tests/home-howworks-tablet.mjs`, `tests/home-roadmap-resync.test.mjs`. Baseline `tests/home-roadmap-coldload.test.mjs` is unchanged.
 - **Do not:** add CSS heights/min-heights to the Roadmap, copy the sync into another route, or re-enable the source How It Works clamp on Tablet.
+
+## TABLET-TYPE-SOURCE2 — Tablet body copy (BIOA-R24g, owner Tablet FAIL 2026-11-10)
+- **Owner:** `bioa-source-components.mjs` 769–1200 block (single owner). It replaces TABLET-TYPE-SOURCE1, a Phase 2B candidate that was never owner PASS.
+- **Slots:**
+  - `.block-how-works .step__text(+p)` and `#why-choose-us .item__body p`: `font-size:max(9px,.8333vw)`;
+  - `.block-right-choice .client__description(+p, li)`, `.block-reviews .review__text(+p)` and `.block-product-formats .formats__lede`: `font-size:max(9px,.9896vw)`.
+  - Source line-heights (unitless) are kept.
+- **Rules:**
+  - Card titles (`.item__title p`, 1.5625vw) are **not** a copy slot. Never use `.item p`.
+  - No fixed px sizes and no line-height overrides.
+  - Desktop/Mobile are not touched (`tests/tablet-only-diff-proof.mjs`).
+  - Evidence: `tests/tablet-merywood-compare.mjs` (Merywood | BIO-A VI | BIO-A EN per section).

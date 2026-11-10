@@ -1,0 +1,468 @@
+{
+  "ownerVisualPass": false,
+  "scope": "Blog detail source component only",
+  "results": [
+    {
+      "route": "/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 390,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Bắt Đầu Từ Brief Sản Phẩm",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Bắt Đầu Từ Brief Sản Phẩm"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Thiết Kế Công Thức Theo Hệ Thống",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Thiết Kế Công Thức Theo Hệ Thống"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Bao Bì, Artwork Và Claim",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Bao Bì, Artwork Và Claim"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up Và Bàn Giao Sản Xuất",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-up Và Bàn Giao Sản Xuất"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 390,
+        "viewport": 390
+      },
+      "interaction": {
+        "status": "not-visible-or-mobile-source-mode"
+      }
+    },
+    {
+      "route": "/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 834,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Bắt Đầu Từ Brief Sản Phẩm",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Bắt Đầu Từ Brief Sản Phẩm"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Thiết Kế Công Thức Theo Hệ Thống",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Thiết Kế Công Thức Theo Hệ Thống"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Bao Bì, Artwork Và Claim",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Bao Bì, Artwork Và Claim"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up Và Bàn Giao Sản Xuất",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-up Và Bàn Giao Sản Xuất"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 834,
+        "viewport": 834
+      },
+      "interaction": {
+        "status": "clicked",
+        "before": 3057.890625,
+        "after": 3057.890625,
+        "hash": "",
+        "moved": false,
+        "target": "#scale-up-va-ban-giao-san-xuat"
+      }
+    },
+    {
+      "route": "/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 1024,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Bắt Đầu Từ Brief Sản Phẩm",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Bắt Đầu Từ Brief Sản Phẩm"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Thiết Kế Công Thức Theo Hệ Thống",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Thiết Kế Công Thức Theo Hệ Thống"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Bao Bì, Artwork Và Claim",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Bao Bì, Artwork Và Claim"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up Và Bàn Giao Sản Xuất",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-up Và Bàn Giao Sản Xuất"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 1024,
+        "viewport": 1024
+      },
+      "interaction": {
+        "status": "clicked",
+        "before": 4864.046875,
+        "after": 278.3310546875,
+        "hash": "",
+        "moved": true,
+        "target": "#scale-up-va-ban-giao-san-xuat"
+      }
+    },
+    {
+      "route": "/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 1440,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Bắt Đầu Từ Brief Sản Phẩm",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Bắt Đầu Từ Brief Sản Phẩm"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Thiết Kế Công Thức Theo Hệ Thống",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Thiết Kế Công Thức Theo Hệ Thống"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Mẫu Thử, Độ Ổn Định Và Tiêu Chí Duyệt"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Bao Bì, Artwork Và Claim",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Bao Bì, Artwork Và Claim"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up Và Bàn Giao Sản Xuất",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-up Và Bàn Giao Sản Xuất"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 1440,
+        "viewport": 1440
+      },
+      "interaction": {
+        "status": "clicked",
+        "before": 2569.125,
+        "after": 3112.125,
+        "hash": "",
+        "moved": true,
+        "target": "#scale-up-va-ban-giao-san-xuat"
+      }
+    },
+    {
+      "route": "/en/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 390,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Start With the Product Brief",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Start With the Product Brief"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Design the Formula as a System",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Design the Formula as a System"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Prototype, Stability and Approval Criteria",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Prototype, Stability and Approval Criteria"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Packaging, Artwork and Claims",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Packaging, Artwork and Claims"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up and Production Handover",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-Up and Production Handover"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 390,
+        "viewport": 390
+      },
+      "interaction": {
+        "status": "not-visible-or-mobile-source-mode"
+      }
+    },
+    {
+      "route": "/en/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 834,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Start With the Product Brief",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Start With the Product Brief"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Design the Formula as a System",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Design the Formula as a System"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Prototype, Stability and Approval Criteria",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Prototype, Stability and Approval Criteria"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Packaging, Artwork and Claims",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Packaging, Artwork and Claims"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up and Production Handover",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-Up and Production Handover"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 834,
+        "viewport": 834
+      },
+      "interaction": {
+        "status": "clicked",
+        "before": 2989.018310546875,
+        "after": 3042.65625,
+        "hash": "",
+        "moved": false,
+        "target": "#scale-up-va-ban-giao-san-xuat"
+      }
+    },
+    {
+      "route": "/en/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 1024,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Start With the Product Brief",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Start With the Product Brief"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Design the Formula as a System",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Design the Formula as a System"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Prototype, Stability and Approval Criteria",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Prototype, Stability and Approval Criteria"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Packaging, Artwork and Claims",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Packaging, Artwork and Claims"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up and Production Handover",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-Up and Production Handover"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 1024,
+        "viewport": 1024
+      },
+      "interaction": {
+        "status": "clicked",
+        "before": 4410.828125,
+        "after": 4528.328125,
+        "hash": "",
+        "moved": true,
+        "target": "#scale-up-va-ban-giao-san-xuat"
+      }
+    },
+    {
+      "route": "/en/blog/gia-cong-kem-tri-tham-nhu-hoa-giai-phap-lam-hong-vung-nhay-cam-chuyen-sau/",
+      "width": 1440,
+      "struct": {
+        "tocCount": 5,
+        "targets": [
+          {
+            "id": "bat-dau-tu-brief-san-pham",
+            "linkText": "1. Start With the Product Brief",
+            "found": true,
+            "withinArticle": true,
+            "text": "1. Start With the Product Brief"
+          },
+          {
+            "id": "thiet-ke-cong-thuc-theo-he-thong",
+            "linkText": "2. Design the Formula as a System",
+            "found": true,
+            "withinArticle": true,
+            "text": "2. Design the Formula as a System"
+          },
+          {
+            "id": "mau-thu-do-on-dinh-va-tieu-chi-duyet",
+            "linkText": "3. Prototype, Stability and Approval Criteria",
+            "found": true,
+            "withinArticle": true,
+            "text": "3. Prototype, Stability and Approval Criteria"
+          },
+          {
+            "id": "bao-bi-artwork-va-claim",
+            "linkText": "4. Packaging, Artwork and Claims",
+            "found": true,
+            "withinArticle": true,
+            "text": "4. Packaging, Artwork and Claims"
+          },
+          {
+            "id": "scale-up-va-ban-giao-san-xuat",
+            "linkText": "5. Scale-Up and Production Handover",
+            "found": true,
+            "withinArticle": true,
+            "text": "5. Scale-Up and Production Handover"
+          }
+        ],
+        "sticky": {
+          "selector": "bb-toc",
+          "position": "static",
+          "top": "auto"
+        },
+        "docWidth": 1440,
+        "viewport": 1440
+      },
+      "interaction": {
+        "status": "clicked",
+        "before": 2513.84375,
+        "after": 94.807373046875,
+        "hash": "",
+        "moved": true,
+        "target": "#scale-up-va-ban-giao-san-xuat"
+      }
+    }
+  ]
+}
