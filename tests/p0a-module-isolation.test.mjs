@@ -18,7 +18,11 @@ const APPROVED = [
   { sha: "22ccdf4e2cbf1f38b80cff491844fe2554456672", phase: "P2", files: ["bioa-source-components.mjs", "bioa-transform.mjs"] },
   { sha: "0d1fc5e06223464b1bc950019770a4e6d41b4d41", phase: "P4", files: ["bioa-transform.mjs"] },
   { sha: "bbc11df238c0349bad7dad6d90c8af8a81c2679e", phase: "R2", files: ["bioa-blog-refine.mjs"] },
-  { sha: "929039c255ea22be8f3a834bb7e09c4e53f84647", phase: "R3", files: ["bioa-transform.mjs"] }
+  { sha: "929039c255ea22be8f3a834bb7e09c4e53f84647", phase: "R3", files: ["bioa-transform.mjs"] },
+  // FINAL COMPLETION (2026-11-10): R13 VI dropdown label, R14 canonical business config (byte-identical dist), R15 identity/share fixes.
+  { sha: "40268200a58cf6e31d7d04f9c8fc6d834da72c1f", phase: "R13", files: ["bioa-transform.mjs"] },
+  { sha: "e1f84a593e8efc406342ecf3a5cc9c5de21be2af", phase: "R14", files: ["bioa-blog-refine.mjs", "bioa-contacts-refine.mjs", "bioa-home-refine.mjs", "bioa-transform.mjs"] },
+  { sha: "15d2960318b040804a82e582f60176c7e8912e30", phase: "R15", files: ["bioa-blog-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
