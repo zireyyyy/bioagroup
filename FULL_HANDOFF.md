@@ -1,5 +1,13 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-11-10. Covers the FINAL COMPLETION, the REVIEW CORRECTION and **R24 HOME REGRESSION RECOVERY** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+**Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
+
+## R24FD — FINAL DELIVERY + CONTENT COMPLETION 2026-11-11 (owner QA pending; NOT pushed)
+- **Commits:** `84c5cde` (code), `8f2675b` (approval/tests), docs commit. Details `docs/DELIVERY_FINAL_R24FD.md`, approval pack `docs/LEGAL_POLICY_APPROVAL.md`.
+- **Changes:** RUNTIME-SELFHOST-1 (`modal.js`/`input.js`/CF7 CSS from `/assets/runtime/`, bundle `p0b1-v2`); CAREERS-1 (VI `/tuyen-dung/`, EN `/en/careers/`, 3 sample roles, Footer recruitment items + About CTA restored, redirects); TRACKER-1 (dead WP beacon/token/emoji scripts removed); LEGAL-B2 (Privacy/Cookie from Luật 91/2025/QH15 + NĐ 356/2025/NĐ-CP, Merywood article pattern, no CSS change).
+- **Frozen QA build:** `D:\BIOA_WORKSPACE\QA_EVIDENCE\dist-final-fd`; logs `D:\BIOA_WORKSPACE\_reports\final-fd\qa\summary.txt`.
+- **Environment:** `bioa-env.sh/.ps1` now point `BIOA_SOURCE_DIR` at `D:\BIOA_WORKSPACE\_source_bundle\p0b1-v2` (v1 kept).
+- **Push to `main`: BLOCKED (owner-authorized, but unsafe).** Fast-forward possible (main ⊂ PR #10 ⊂ PR #11 ⊂ HEAD). Cloudflare Pages + CI build every push and need the private bundle (no storage/token/variables yet) → a push now = failed Production build. Owner action: OD-7 steps. Live site: 503 maintenance (checked 2026-11-11).
+- **Owner gates before Production:** OD-1/OD-2 + L-1…L-8, OD-3 Careers gated fields, OD-7, OD-9, owner visual QA (checklist A000), separate decision to end maintenance.
 
 ## R24CL — FINAL DELIVERY CLEANUP 2026-11-11 (owner QA pending; Tablet `ed50f1e` quick-check OK and frozen)
 - **Commits:** `36668a8`, `abfb606`, `8a1c42d`, `ff0f915` and the docs commit. Nothing pushed.

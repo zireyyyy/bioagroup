@@ -49,7 +49,8 @@ shas.forEach((sha, i) => add(`git/patches/${String(i + 1).padStart(4, "0")}-${sh
 // ---------- docs ----------
 const DOCS = ["AGENTS.md", "FULL_HANDOFF.md", "START_HERE.md", "NEW_CHAT_CONTINUATION_PROMPT.md", "docs/OWNER_ISSUE_LEDGER.md", "docs/OWNER_QA_CHECKLIST.md",
   "docs/RELEASE_ROLLBACK_PLAN.md", "docs/LEGAL_CONTENT_BLOCKERS.md", "docs/RUNTIME_DEPENDENCIES.md", "docs/P0A_SOURCE_PIN.md", "docs/P0B1_RUNTIME_PIN.md",
-  "docs/BUSINESS_IDENTITY.md", "docs/CHAT_AI_INTEGRATION.md", "docs/OWNER_DECISIONS.md", "docs/LEAD_BACKEND_SETUP.md", "docs/HOME_REGRESSION_R24.md", "docs/SOURCE_MAP.md", "docs/DELIVERY_CLEANUP_R24CL.md"];
+  "docs/BUSINESS_IDENTITY.md", "docs/CHAT_AI_INTEGRATION.md", "docs/OWNER_DECISIONS.md", "docs/LEAD_BACKEND_SETUP.md", "docs/HOME_REGRESSION_R24.md", "docs/SOURCE_MAP.md", "docs/DELIVERY_CLEANUP_R24CL.md",
+  "docs/DELIVERY_FINAL_R24FD.md", "docs/LEGAL_POLICY_APPROVAL.md"];
 for (const d of DOCS) if (existsSync(d)) add("docs/" + basename(d), readFileSync(d));
 if (existsSync(RUNTIME)) add("docs/RUNTIME_HANDOFF.md", readFileSync(RUNTIME)); else console.warn("WARN: runtime handoff not found:", RUNTIME);
 
@@ -57,7 +58,7 @@ if (existsSync(RUNTIME)) add("docs/RUNTIME_HANDOFF.md", readFileSync(RUNTIME)); 
 const EXCLUDE_DIR = /(^|[\\/])(dist[^\\/]*|_source_bundle|source_bundle|runtime-libs|preview-[^\\/]*-html|node_modules|negctl-dist|BIOA_SOURCE_ORIGINAL)([\\/]|$)/i;
 // Representative screenshots: key route families at Mobile / Tablet / Desktop (VI + EN Home), and every
 // screenshot pair the deep guard kept because it differed (so a reviewer sees each flagged diff).
-const REP = /^(_|_en_|_about_|_contract-manufacturing-cosmetics_|_dich-vu-khac_|_blog_|_contacts_|_khong-co-trang-nay_|_careers_|_privacy-policy_)-(390|834|1440)\.png$/;
+const REP = /^(_|_en_|_about_|_contract-manufacturing-cosmetics_|_dich-vu-khac_|_blog_|_contacts_|_khong-co-trang-nay_|_careers_|_privacy-policy_)-(390|834|1440)\.png$|^fd-[a-z0-9_-]+-(390|834|1024|1440)\.png$/;
 const MAX_TEXT = 4 * 1024 * 1024, MAX_PNG = 1.5 * 1024 * 1024;
 const evidenceLog = [];
 for (const dir of args.evidence){

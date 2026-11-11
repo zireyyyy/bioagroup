@@ -2583,3 +2583,13 @@ OWNER QA (after production Cloudflare deploy): Home VI/EN at 834/1024/1180px com
   - Proof: `tests/cleanup-comment-only-proof.mjs`.
 - **CF7-JS-1:** `removeUnusedCf7Scripts()` (same module). CF7 CSS must stay.
 - **LEGAL-B1:** `bioa-legal-pages.mjs`. It replaces the body of `section.policy-wrapper` on `/privacy-policy/` and `/cookie-policy/` (VI/EN), keeping the source classes. It fails closed if Estonian entity data reappears.
+
+## R24FD final delivery owners (2026-11-11)
+| Item | Merywood source | BIO-A owner | Notes |
+|---|---|---|---|
+| CAREERS-1 list | `/careers/` (`.mwc-hero3`, `.mwc-roles`, `.mwc-filter`, `.mwc-grid .mwc-card`, `.mwc-cta`, inline `#mwc-style-inline-css`) | `bioa-careers.mjs` `applyCareersList` | DOM/CSS/responsive unchanged; AJAX filter (WP admin-ajax) → local filter of the cards, copy-email code verbatim; CTA "M" artwork → BIO-A monogram |
+| CAREERS-1 detail | `/careers/b2b-sales-manager/` (`manifest.layoutSources`) | `bioa-careers.mjs` `applyCareersDetail` | `.mwc-single` structure kept; `.mwc-talk` (Merywood staff, LinkedIn, "what to send") removed; owner-gated sections `data-owner-approval="required"` |
+| Careers paths | — | `CAREER_VI_PATHS` in `bioa-careers.mjs` → `localPath` (`bioa-transform.mjs`), `fixLang`/`mobileLocalPath` (`bioa-home-refine.mjs`), `bioa-legacy-redirects.mjs` | one path authority: VI `/tuyen-dung/…`, EN `/en/careers/…` |
+| RUNTIME-SELFHOST-1 | theme `modal.js`, `input.js`, CF7 `styles.css` | `tools/source-bundle.mjs` `runtimeFiles` / `pinRuntime` | tag ids unchanged |
+| TRACKER-1 | WP plugins mw-wac-tracker, mw-guard, wp-emoji | `bioa-transform.mjs` (next to the R3 beacon removal) | non-visual |
+| LEGAL-B2 | `/privacy-policy/`, `/cookie-policy/` `.policy-wrapper` (h1.policy-title, h2.policy-subtitle, p.policy-text) | `bioa-legal-pages.mjs` | source CSS unchanged (computed typography identical to Merywood at 1440/834/390); numbered-clause article pattern |

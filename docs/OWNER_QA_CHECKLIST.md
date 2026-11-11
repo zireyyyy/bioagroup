@@ -21,6 +21,15 @@ Mở `http://127.0.0.1:4173/` bằng Chrome và để cửa sổ PowerShell mở
 
 Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/video, route, VI/EN, viewport và một câu mô tả (dùng mẫu ở cuối file).
 
+## A000. Bàn giao cuối R24FD 2026-11-11 (Careers, Privacy/Cookie, runtime) — kiểm tra trước tiên
+| # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
+|---|---|---|---|---|---|
+| FD-1 | Trang Tuyển dụng | `/tuyen-dung/`, `/en/careers/` | 1440 · 1024 · 834 · 390 | Bố cục giống trang Careers của Merywood (hero, bộ lọc, 3 thẻ, khối CTA); không còn chữ/logo Merywood; bộ lọc Kinh doanh/R&D/Sản xuất lọc đúng thẻ | |
+| FD-2 | 3 bài tuyển dụng | 3 trang chi tiết VI + EN | 1440 · 834 · 390 | Tiêu đề, giới thiệu, Mô tả công việc, Yêu cầu, Quyền lợi, Địa điểm & hình thức, Cách ứng tuyển, nút Liên hệ, nút «‹ Quay lại» về đúng trang danh sách; nội dung là bản MẪU (xem `docs/LEGAL_POLICY_APPROVAL.md` §4) | |
+| FD-3 | Footer + About | mọi trang; `/about/` | 1440 · 390 | Footer có lại «Tuyển Dụng R&D», «Tuyển Dụng NV Sales» (mở đúng bài); nút đội ngũ ở About «Xem Cơ Hội Nghề Nghiệp» mở trang Tuyển dụng | |
+| FD-4 | Chính sách bảo mật / cookie | `/privacy-policy/`, `/cookie-policy/` (+ `/en/`) | 1440 · 834 · 390 | Bài viết dạng điều khoản đánh số như trang Merywood, cỡ chữ cân đối; nội dung cần OWNER/luật sư duyệt (L-1…L-8) | |
+| FD-5 | Form «Nhận tư vấn» | Home, Contacts | 1440 · 390 | Mở/đóng modal, chọn sản phẩm, ô số điện thoại như trước (modal.js/input.js nay chạy từ chính website). **Không bấm Gửi.** | |
+
 ## A00. Bàn giao cuối 2026-11-11 (R24CL) — kiểm tra trước tiên
 | # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
 |---|---|---|---|---|---|

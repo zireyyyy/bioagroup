@@ -64,3 +64,15 @@ Counted on the final dist `dist-final-r24`: **88 distinct merywood.com URLs**. T
 - **Served runtime `main.js`**: comments containing Cyrillic removed after the bundle hash check (code identical).
 - **Still live from merywood.com:** `modal.js`, `input.js`, CF7 CSS, theme/upload images.
   - merywood.com was measured slow on 2026-11-10 (single requests 18 s). Every page waits for `modal.js`/`input.js`, so release still needs OD-5 (self-host with written right, or BIO-A replacement).
+
+## 7. Final delivery R24FD (owner 2026-11-11: Merywood resource rights confirmed)
+- **RUNTIME-SELFHOST-1 — self-hosted now** (pinned in the private bundle `p0b1-v2`, never committed; SHA-256 in `source-manifest.json` → `runtime`):
+  | File | Served as | Bytes / SHA-256 (input) | Proof |
+  |---|---|---|---|
+  | `modal.js` | `/assets/runtime/merywood-modal.js?v=…` | 1,452 / `7010d760…` | byte-identical to the owner archive copy and to the live file fetched 2026-11-11 |
+  | `input.js` | `/assets/runtime/merywood-input.js?v=…` | 5,956 / `a08b351c…` | same; served copy has only its Cyrillic comments removed (CLEANUP-1 rule, compile-checked) |
+  | CF7 6.1.7 `styles.css` | `/assets/runtime/cf7-styles.css?v=…` | 3,077 / `765b4163…` | live file fetched 2026-11-11 (GPL-2.0-or-later plugin); no `url()` inside |
+  Same tag ids (`modal-js`, `input-js`, `contact-form-7-css`), positions and attributes; the build fails if a live copy of main.css/main.js/modal.js/input.js/CF7 CSS is still referenced. No page waits on merywood.com for scripts or styles any more.
+- **TRACKER-1 — removed** (all called the brand-replaced invalid host `https://Bio-A Group.com`, so no request could succeed): `mw-wac-tracker` (WhatsApp click beacon with page URL / landing page / referrer), the `mw-guard` token fetch (on load + every 20 min), the WordPress emoji loader.
+- **Still live from merywood.com (non-blocking):** theme/upload images and icons (incl. the cookie icon) — to be replaced by BIO-A images (owner plan); the Manrope `@font-face` files in main.css are CORS-blocked and unused (Google Fonts Manrope is the font authority).
+- **Third parties contacted by a page (browser inventory 2026-11-11 on the built site):** fonts.googleapis.com, fonts.gstatic.com, cdnjs.cloudflare.com, challenges.cloudflare.com (Turnstile), get.geojs.io, Google Maps (Contacts), merywood.com (images). No cookie is set by the site; no analytics/ads script.
