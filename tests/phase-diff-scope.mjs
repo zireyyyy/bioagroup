@@ -43,8 +43,19 @@ const SCOPES = {
   // CF7 scripts removed (CF7-JS-1), the Privacy/Cookie policy body (LEGAL-B1). File-level rules below cover the
   // CF7 form aria-label, Cyrillic HTML comments and the served main.js.
   R24CL: [[/\.html$/, "style"], [/\.html$/, "script:not([src])"], [/\.html$/, "script#contact-form-7-js, script#swv-js"], [/\.html$/, "script#main-js"],
+    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]],
+  // R24FD (owner 2026-11-11, final delivery): RUNTIME-SELFHOST-1 tag URLs (runtime files added below),
+  // TRACKER-1 dead WordPress tracker/emoji scripts removed, CAREERS-1 Footer recruitment items restored and
+  // About team CTA -> Careers (new Careers pages + stubs: file-level rules below), LEGAL-B2 policy body.
+  R24FD: [[/\.html$/, "link#contact-form-7-css, script#modal-js, script#input-js"],
+    [/\.html$/, 'script[id^="mw-wac-tracker-js"], script#wp-emoji-settings, script:contains("mw-guard"), script:contains("script#wp-emoji-settings")'],
+    [/\.html$/, ".footer-top__menu"], [/^(en\/)?about\/index\.html$/, ".mwa-team__btn"],
     [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]]
 };
+// R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
+const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
+const CAREER_STUB = /^(en\/)?(careers\/([a-z0-9-]+\/)?|tuyen-dung\/([a-z0-9-]+\/)?|tuyen-dung-rd\/|tuyen-dung-nv-sales\/)index\.html$/;
+const careerTarget = y => /bioa-legacy-redirect" content="(\/tuyen-dung\/|\/en\/careers\/)/.test(y);
 const [, , base, phase] = process.argv;
 const phases = (phase || "").split("+"), scope = phases.flatMap(p => SCOPES[p] || []);
 if (!base || !phases.every(p => SCOPES[p]) || !existsSync(base)){ console.error("usage: phase-diff-scope.mjs <baselineDir> <" + Object.keys(SCOPES).join("|") + ">"); process.exit(2); }
@@ -55,9 +66,18 @@ const fails = [], changed = [];
 for (const f of new Set([...a, ...b])){
   if (!a.includes(f) || !b.includes(f)){ const legacyStub = phases.includes("R1") && !a.includes(f) && /bioa-legacy-redirect/.test(readFileSync(path.join("dist", f), "utf8"));
     const vendorFile = phases.includes("R12") && !a.includes(f) && f.startsWith("assets/vendor/");
-    if (!legacyStub && !vendorFile && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
+    const fd = phases.includes("R24FD") && !a.includes(f) && (/^assets\/runtime\/(merywood-modal\.js|merywood-input\.js|cf7-styles\.css)$/.test(f)
+      || CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(readFileSync(path.join("dist", f), "utf8"))));
+    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
   const x = readFileSync(path.join(base, f)), y = readFileSync(path.join("dist", f));
   if (x.equals(y)) continue;
+  if (phases.includes("R24FD") && f === "sitemap.xml"){ // only Careers URLs may be added
+    const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+    const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
+    if (gone.length || added.some(u => !/bioagroup\.vn\/(tuyen-dung|en\/careers)\//.test(u))) fails.push(f + ": sitemap changed beyond Careers addition"); else changed.push(f + " [+" + added.length + " careers]");
+    continue; }
+  if (phases.includes("R24FD") && f.endsWith(".html") && (CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(y.toString("utf8"))))){
+    changed.push(f + " [Careers page/stub]"); continue; }
   if (phases.includes("R24") && f === "sitemap.xml"){ // only the two Careers URLs may disappear
     const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
     const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));

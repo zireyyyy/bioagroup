@@ -19,8 +19,9 @@ const unlinkedByR13 = ["/pet-supplement-manufacturer/", "/private-label-cosmetic
   "/en/pet-supplement-manufacturer/", "/en/private-label-cosmetics/", "/en/sports-nutrition/", "/en/white-label-supplements/"];
 const all = [...redirects.map(r => r.route), ...remaining, ...unlinkedByC1, ...unlinkedByR13];
 const mustStayUnlinked = [...unlinkedByR13, ...unlinkedByC1];
-// 52 historical 404 targets + /careers/ and /en/careers/ (now noindex redirects to Contacts, CONTENT-C1).
-const EXPECTED = 54;
+// 52 historical 404 targets + 8 R24FD CAREERS-1 cross-language Careers stubs (/careers/ VI, /en/tuyen-dung/ EN and
+// the three roles in the other language's slug). The Footer recruitment slugs now land on their Careers role.
+const EXPECTED = 60;
 
 // Where each target is linked from in the built pages (static scan; visibility decided in the browser).
 const sources = {};

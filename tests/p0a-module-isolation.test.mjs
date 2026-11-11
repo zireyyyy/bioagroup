@@ -36,7 +36,10 @@ const APPROVED = [
   // R24g (owner Tablet FAIL on eabcd48): TABLET-TYPE-SOURCE2 + HOWWORKS-T2 inside the canonical 769-1200 owner only.
   { sha: "cbda5263b35ee389d46e982bb05ce8cc93867072", phase: "R24", files: ["bioa-source-components.mjs"] },
   // R24j (owner delivery 2026-11-11): EMAIL-PILL-1 in Patch A8 (Header email pill backdrop) only.
-  { sha: "36668a8c0e2d1612a24649488434ad7fa95f843a", phase: "R24CL", files: ["bioa-home-refine.mjs"] }
+  { sha: "36668a8c0e2d1612a24649488434ad7fa95f843a", phase: "R24CL", files: ["bioa-home-refine.mjs"] },
+  // R24FD (owner final delivery 2026-11-11): CAREERS-1 VI slugs in localPath/lang links + restored Footer recruitment
+  // items and About team CTA, B2B title-case key; TRACKER-1 dead WordPress scripts removed in transform.
+  { sha: "84c5cde4cfad7b27aec61dfa1a92329e45386fab", phase: "R24FD", files: ["bioa-about-refine.mjs", "bioa-home-refine.mjs", "bioa-transform.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
