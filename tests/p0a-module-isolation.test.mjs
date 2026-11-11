@@ -34,7 +34,9 @@ const APPROVED = [
   // R24d: same ROADMAP-R5 owner script, re-sync on the card transitionend (final-QA timing FAIL fixed at the cause).
   { sha: "f265a293329e619a4544288007cb2d736b3a60f6", phase: "R24", files: ["bioa-home-refine.mjs"] },
   // R24g (owner Tablet FAIL on eabcd48): TABLET-TYPE-SOURCE2 + HOWWORKS-T2 inside the canonical 769-1200 owner only.
-  { sha: "cbda5263b35ee389d46e982bb05ce8cc93867072", phase: "R24", files: ["bioa-source-components.mjs"] }
+  { sha: "cbda5263b35ee389d46e982bb05ce8cc93867072", phase: "R24", files: ["bioa-source-components.mjs"] },
+  // R24j (owner delivery 2026-11-11): EMAIL-PILL-1 in Patch A8 (Header email pill backdrop) only.
+  { sha: "36668a8c0e2d1612a24649488434ad7fa95f843a", phase: "R24CL", files: ["bioa-home-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
