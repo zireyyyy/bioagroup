@@ -132,9 +132,9 @@ function setAboutTeam($,lang){
   sec.find(".mwa-team__card > p").each((i,el)=>{if(paragraphs[i]!=null)$(el).text(paragraphs[i]);});
   const btn=sec.find(".mwa-team__btn").first();
   if(btn.length){
-    // CONTENT-C1: Careers is hidden (no valid BIO-A openings); the team CTA leads to Contacts.
-    btn.attr("href",localPath("/contacts/",lang));
-    btn.find(".btn__text").text(vi?"Liên Hệ Bio-A Group":"Contact Bio-A Group");
+    // R24FD CAREERS-1 (owner 2026-11-11): Careers restored; neutral label (the sample roles are not confirmed openings).
+    btn.attr("href",localPath("/careers/",lang));
+    btn.find(".btn__text").text(vi?"Xem Cơ Hội Nghề Nghiệp":"Explore Careers");
   }
   sec.find(".mwa-team__media img").attr("alt",vi?"Đội ngũ Bio-A Group":"Bio-A Group team");
 }

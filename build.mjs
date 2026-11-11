@@ -14,6 +14,7 @@ import { applyFormatsToggle } from "./bioa-formats-toggle.mjs";
 import { applyViLeftoverTranslations } from "./bioa-i18n-fixes.mjs";
 import { applyIdentityFixes } from "./bioa-identity-fixes.mjs";
 import { applyLegalPages } from "./bioa-legal-pages.mjs";
+import { applyCareersList, applyCareersDetail, careerRouteDefs, isCareerDetail } from "./bioa-careers.mjs";
 import { applySourceHygiene, removeUnusedCf7Scripts } from "./bioa-source-hygiene.mjs";
 import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
 import { vendorFiles, pinVendor } from "./tools/vendor-runtime.mjs";
@@ -26,14 +27,14 @@ const routes = [
   "/",
   "/about/",
   "/contacts/",
-  // "/careers/" — CONTENT-C1: hidden (owner 2026-11-10); served as a noindex redirect to /contacts/.
+  "/careers/", // R24FD CAREERS-1 (owner 2026-11-11): VI /tuyen-dung/, EN /en/careers/ (+ 3 sample roles)
   "/cookie-policy/",
   "/privacy-policy/",
   "/contract-manufacturing-cosmetics/",
   "/blog/"
 ];
 
-const routeDefs = [...withExtraRoutes(routes), ...blogRouteDefs];
+const routeDefs = [...withExtraRoutes(routes), ...careerRouteDefs, ...blogRouteDefs];
 
 const pageTitles = {
   "/": "Gia công mỹ phẩm & phát triển thương hiệu",
@@ -389,6 +390,8 @@ async function buildOne(route,sourceRoute){
       if(route==="/dich-vu-khac/")applyOtherServicesRefinement($,route,lang);
       if(route==="/contacts/")applyContactsRefinement($,route,lang);
       if(route==="/privacy-policy/"||route==="/cookie-policy/")applyLegalPages($,route,lang);
+      if(route==="/careers/")applyCareersList($,lang);
+      if(isCareerDetail(route))applyCareersDetail($,route,lang);
       if(route==="/blog/"||route.startsWith("/blog/"))applyBlogRefinement($,route,lang);
       applySharedShell($,route,lang);
     }

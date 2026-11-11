@@ -60,6 +60,15 @@
       "sha256": "a39aca0df81ca442705436e3ef356ea34f1dd80916339dc412ec31359732413a"
     }
   },
+  "layoutSources": {
+    "$comment": "R24FD CAREERS-1: extra pinned source pages used only as layout source for BIO-A pages (same verification as files; kept apart from files, whose route list is the P0A contract).",
+    "/careers/b2b-sales-manager/": {
+      "path": "careers/b2b-sales-manager/index.html",
+      "bytes": 126376,
+      "sha256": "cf47065e9414f298719c3ddd10cad4b63ea42bdb2c3f02fd8dd165b48ea194b5",
+      "origin": "merywood-export 210-3.zip: merywood/pages/careers/b2b-sales-manager/index.html (R24FD CAREERS-1: layout source of the BIO-A job detail pages; all text, people and e-mail replaced)"
+    }
+  },
   "scriptIdMap": {
     "swv-js": "https://merywood.com/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=6.1.7",
     "contact-form-7-js": "https://merywood.com/wp-content/plugins/contact-form-7/includes/js/index.js?ver=6.1.7"
@@ -182,7 +191,9 @@
     "smooth-scrollbar.js": "https://merywood.com/wp-content/themes/mery-wood/assets/smooth-scrollbar/smooth-scrollbar.js",
     "swiper-bundle.js": "https://merywood.com/wp-content/themes/mery-wood/assets/swiper/swiper-bundle.min.js",
     "title-1.webp": "https://merywood.com/wp-content/uploads/2026/04/title-1.webp",
-    "utils.js": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js?ver=18.2.1"
+    "utils.js": "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js?ver=18.2.1",
+    "css2_2274.css": "https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&display=swap",
+    "89638390_2263.gif": "https://mc.yandex.ru/watch/89638390"
   },
   "urlMapNotes": {
     "source": "original URLs observed in Preview abdd7602 (commit d59f50d)",
@@ -289,7 +300,7 @@
     ]
   },
   "runtime": {
-    "$comment": "P0B1: historical runtime candidates (NOT proven identical to the 2026-10-16 live files). Served from /assets/runtime/ with original tag ids/order. Bytes live only in the private bundle.",
+    "$comment": "P0B1: historical runtime candidates (NOT proven identical to the 2026-10-16 live files). Served from /assets/runtime/ with original tag ids/order. Bytes live only in the private bundle. R24FD RUNTIME-SELFHOST-1 (owner 2026-11-11 confirmed Merywood resource rights): modal.js/input.js (byte-identical to the archive copy AND to the live files fetched 2026-11-11) and the Contact Form 7 6.1.7 stylesheet (live file fetched 2026-11-11) are served from /assets/runtime/ with the original tag ids and positions.",
     "css": {
       "tagId": "main-css",
       "path": "runtime/main.txt",
@@ -307,6 +318,30 @@
       "origin": "merywood/pages/index/assets/js/main.js (identical on all 54 crawled pages)",
       "zipEntry": "merywood/pages/index/assets/js/main.js",
       "servedAs": "assets/runtime/merywood-main.js"
+    },
+    "modal": {
+      "tagId": "modal-js",
+      "path": "runtime/modal.js",
+      "bytes": 1452,
+      "sha256": "7010d7602cf1fd9bcc3771831daf001360bf1c350ec2157f465b649e36903a4d",
+      "origin": "merywood/pages/index/assets/js/modal.js (= https://merywood.com/wp-content/themes/mery-wood/assets/js/modal.js?ver=1791930728, 2026-11-11)",
+      "servedAs": "assets/runtime/merywood-modal.js"
+    },
+    "input": {
+      "tagId": "input-js",
+      "path": "runtime/input.js",
+      "bytes": 5956,
+      "sha256": "a08b351c1364c20f1359a13cd39f0dbc70f3b0c0e32912554b814602a5469892",
+      "origin": "merywood/pages/index/assets/js/input.js (= https://merywood.com/wp-content/themes/mery-wood/assets/js/input.js?ver=1791930728, 2026-11-11)",
+      "servedAs": "assets/runtime/merywood-input.js"
+    },
+    "cf7css": {
+      "tagId": "contact-form-7-css",
+      "path": "runtime/cf7-styles.css",
+      "bytes": 3077,
+      "sha256": "765b4163a5a1a4a94f21c27912c10df2f9976a6707c80621fb2112d15b1d47ac",
+      "origin": "https://merywood.com/wp-content/plugins/contact-form-7/includes/css/styles.css?ver=6.1.7 (Contact Form 7 6.1.7, GPL-2.0-or-later, fetched 2026-11-11)",
+      "servedAs": "assets/runtime/cf7-styles.css"
     }
   }
 }

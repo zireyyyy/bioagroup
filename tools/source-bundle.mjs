@@ -25,8 +25,11 @@ export function bundleDir(){
   return dir;
 }
 
+// R24FD CAREERS-1: manifest.layoutSources holds extra pinned pages (layout source only), verified like files.
+const layoutSources = () => Object.fromEntries(Object.entries(manifest.layoutSources || {}).filter(([k]) => k !== "$comment"));
+
 export function fileForRoute(sourceRoute){
-  const entry = manifest.files[sourceRoute];
+  const entry = manifest.files[sourceRoute] || layoutSources()[sourceRoute];
   if (!entry) throw new Error("SOURCE BUNDLE: route not pinned in manifest: " + sourceRoute);
   return entry;
 }
@@ -41,14 +44,20 @@ function readVerified(dir, entry){
 }
 
 export function verifyBundle(dir = bundleDir()){
-  for (const entry of Object.values(manifest.files)) readVerified(dir, entry);
-  for (const k of ["css", "js"]) readVerified(dir, manifest.runtime[k]);
-  return Object.keys(manifest.files).length + 2;
+  const pages = [...Object.values(manifest.files), ...Object.values(layoutSources())];
+  for (const entry of pages) readVerified(dir, entry);
+  const rt = runtimeKeys();
+  for (const k of rt) readVerified(dir, manifest.runtime[k]);
+  return pages.length + rt.length;
 }
 
 // P0B1 — pinned runtime main.css / main.js, served from this site instead of Merywood live.
 // Relative url(../img|../fonts) in the stylesheet are resolved to the same absolute URLs the
 // browser resolved when main.css was loaded from Merywood, so images/fonts behave as before.
+// R24FD RUNTIME-SELFHOST-1: also modal.js, input.js and the Contact Form 7 stylesheet (same tag ids/positions).
+const runtimeKeys = () => Object.keys(manifest.runtime).filter(k => k !== "$comment");
+const EXTRA_RUNTIME = { modal: "src", input: "src", cf7css: "href" };
+
 export function runtimeFiles(dir = bundleDir()){
   const { css, js } = manifest.runtime;
   const cssText = readVerified(dir, css).toString("utf8")
@@ -57,10 +66,19 @@ export function runtimeFiles(dir = bundleDir()){
   // CLEANUP-1: the verified bytes are checked above; only comments containing Cyrillic are removed from the served copy.
   const jsBuf = Buffer.from(stripCyrillicJsComments(readVerified(dir, js).toString("utf8"), "runtime main.js"), "utf8");
   const v = s => sha256(s).slice(0, 12);
-  return [
+  const files = [
     { id: css.tagId, attr: "href", out: css.servedAs, body: cssText, url: "/" + css.servedAs + "?v=" + v(cssText) },
     { id: js.tagId, attr: "src", out: js.servedAs, body: jsBuf, url: "/" + js.servedAs + "?v=" + v(jsBuf) }
   ];
+  for (const [k, attr] of Object.entries(EXTRA_RUNTIME)){
+    const e = manifest.runtime[k];
+    if (!e) throw new Error("RUNTIME PIN: manifest.runtime." + k + " missing");
+    let body = readVerified(dir, e);
+    if (/\.js$/.test(e.path)) body = Buffer.from(stripCyrillicJsComments(body.toString("utf8"), "runtime " + e.path), "utf8");
+    if (/url\(/.test(body.toString("utf8"))) throw new Error("RUNTIME PIN: unexpected url() in " + e.path);
+    files.push({ id: e.tagId, attr, out: e.servedAs, body, url: "/" + e.servedAs + "?v=" + v(body) });
+  }
+  return files;
 }
 
 export function pinRuntime(html, files, label){
@@ -70,8 +88,8 @@ export function pinRuntime(html, files, label){
     if (!re.test(out)) throw new Error("RUNTIME PIN: #" + f.id + " tag not found in " + label);
     out = out.replace(re, "$1" + f.url + "$2");
   }
-  if (/merywood\.com\/wp-content\/themes\/mery-wood\/assets\/(css\/main\.css|js\/main\.js)/.test(out))
-    throw new Error("RUNTIME PIN: live Merywood main.css/main.js still referenced in " + label);
+  if (/merywood\.com\/wp-content\/(themes\/mery-wood\/assets\/(css\/main\.css|js\/(main|modal|input)\.js)|plugins\/contact-form-7\/includes\/css\/styles\.css)/.test(out))
+    throw new Error("RUNTIME PIN: live Merywood main.css/main.js/modal.js/input.js/CF7 CSS still referenced in " + label);
   return out;
 }
 

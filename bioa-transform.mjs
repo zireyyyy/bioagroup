@@ -1,3 +1,5 @@
+import { CAREER_VI_PATHS } from "./bioa-careers.mjs";
+
 // Baseline literal kept (source contract test); must equal bioa-business.mjs field by field
 // (enforced by tests/business-identity.mjs).
 export const company = {
@@ -7,7 +9,8 @@ export const company = {
 };
 
 export const withExtraRoutes = routes => [...routes.map(r => [r,r]), ['/dich-vu-khac/','/hotel-spa-cosmetics/']];
-export const localPath = (route, lang) => lang === 'en' ? (route === '/' ? '/en/' : '/en' + route) : route;
+// R24FD CAREERS-1: VI Careers uses Vietnamese slugs (/tuyen-dung/...); every other route is unchanged.
+export const localPath = (route, lang) => lang === 'en' ? (route === '/' ? '/en/' : '/en' + route) : (CAREER_VI_PATHS[route] || route);
 
 const css = `
 :root{--bioa:#106E45;--bioa-dark:#0B4E31;--bioa-deep:#093D26;--bioa-soft:#99D29F;--bioa-cream:#F3F0E4;--bioa-ivory:#FCFEF1}
@@ -181,6 +184,17 @@ function applyBrandHead($,route,lang){
   // (hs-reader-timer: POST every 15 s to that WP admin-ajax). Non-visual; no other script touched.
   $('script[type="application/ld+json"]').filter((_,el)=>!/^bioa-/.test($(el).attr('id')||'')).remove();
   $('script[id^="hs-reader-timer-js"]').remove();
+  // R24FD TRACKER-1: two more Merywood WordPress plugin scripts call the brand-replaced invalid host
+  // "https://Bio-A Group.com": mw-wac-tracker (beacon with page URL/landing page/referrer on every WhatsApp
+  // click) and the mw-guard token fetch (on load + every 20 min; only adds a header to CF7 feedback requests,
+  // and the CF7 JS is already removed). No request can succeed; both are removed. Non-visual.
+  $('script[id^="mw-wac-tracker-js"]').remove();
+  $('script:not([src])').filter((_,el)=>/mw-guard\\?\/v1\\?\/token/.test($(el).html()||'')).remove();
+  // Same host: the WordPress emoji loader (settings JSON + module) requests wp-emoji-release.min.js from
+  // "https://Bio-A Group.com" (ERR_NAME_NOT_RESOLVED) when the browser lacks an emoji test; emoji then
+  // render with the system font, which is also what happens after removal.
+  $('script#wp-emoji-settings').remove();
+  $('script:not([src])').filter((_,el)=>/script#wp-emoji-settings/.test($(el).html()||'')).remove();
 }
 
 

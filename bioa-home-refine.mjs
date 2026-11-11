@@ -1,5 +1,6 @@
 import { sourceComponentCss } from './bioa-source-components.mjs';
 import { BUSINESS } from './bioa-business.mjs';
+import { CAREER_VI_PATHS } from './bioa-careers.mjs';
 const company = {
   email:BUSINESS.email,
   phone:BUSINESS.phone,
@@ -4104,7 +4105,7 @@ function replaceBrandWatermarks($){
 }
 
 function fixLang($,route,lang){
-  const vi=route==='/'?'/':route;
+  const vi=route==='/'?'/':(CAREER_VI_PATHS[route]||route); // R24FD CAREERS-1: VI Careers slugs
   const en=route==='/'?'/en/':'/en'+route;
   const links=$('.bioa-lang a');
   links.eq(0).attr('href',vi).attr('hreflang','vi').toggleClass('is-active',lang==='vi');
@@ -4116,6 +4117,7 @@ function viTitleCaseText(value){
   const keep={
     'bio-a':'Bio-A',
     'r&d':'R&D',
+    'b2b':'B2B', // R24FD CAREERS-1 (no existing VI heading contains B2B)
     'oem/odm':'OEM/ODM',
     'moq':'MOQ',
     'sku':'SKU',
@@ -4192,7 +4194,7 @@ function normalizeHeaderActions($){
 
 function mobileLocalPath(route,lang){
   if(lang==='en') return route==='/'?'/en/':'/en'+route;
-  return route;
+  return CAREER_VI_PATHS[route]||route; // R24FD CAREERS-1: VI Careers slugs
 }
 
 function syncMobileHeader($,route,lang){
@@ -4399,8 +4401,11 @@ function refineFooterNavigation($,lang){
       ['Thiết Kế Bao Bì Mỹ Phẩm','/thiet-ke-bao-bi-my-pham/']
     ]},
     {title:'Bio-A Group',items:[
-      // CONTENT-C1 (owner 2026-11-10): recruitment links hidden until real BIO-A openings exist.
+      // R24FD CAREERS-1 (owner 2026-11-11): recruitment items of the owner-PASS Footer restored
+      // (legacy slugs redirect to the matching Careers role, see bioa-legacy-redirects.mjs).
       ['Năng Lực Sản Xuất','/nang-luc/'],
+      ['Tuyển Dụng R&D','/tuyen-dung-rd/'],
+      ['Tuyển Dụng NV Sales','/tuyen-dung-nv-sales/'],
       ['Liên Hệ','/lien-he/']
     ]},
     {title:'Chính Sách',items:[
@@ -4426,6 +4431,8 @@ function refineFooterNavigation($,lang){
     ]},
     {title:'Bio-A Group',items:[
       ['Manufacturing Capabilities','/en/nang-luc/'],
+      ['R&D Recruitment','/en/tuyen-dung-rd/'],
+      ['Sales Recruitment','/en/tuyen-dung-nv-sales/'],
       ['Contact','/en/lien-he/']
     ]},
     {title:'Policies',items:[

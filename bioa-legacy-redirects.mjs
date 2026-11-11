@@ -4,17 +4,16 @@
 // to the existing BIO-A page with the same meaning. Only slugs with an unambiguous same-meaning target
 // are mapped; everything else stays an owner decision (see docs/OWNER_ISSUE_LEDGER.md).
 // Stubs are noindex, carry a canonical to the target and are never listed in sitemap.xml.
+import { CAREER_VI_PATHS, careerPath } from "./bioa-careers.mjs";
+
 const SITE = "https://bioagroup.vn";
 
 const MAP = {
   // Footer "Bio-A Group" column
   "lien-he": "contacts",                                  // Liên Hệ / Contact
   "nang-luc": "contract-manufacturing-cosmetics",         // section "Năng Lực Sản Xuất & Kiểm Soát Chất Lượng"
-  // CONTENT-C1 (owner 2026-11-10): Careers hidden until real BIO-A openings exist. The Merywood
-  // careers page is no longer built; old careers/recruitment URLs land on Contacts.
-  "careers": "contacts",
-  "tuyen-dung-rd": "contacts",                            // Tuyển Dụng R&D
-  "tuyen-dung-nv-sales": "contacts",                      // Tuyển Dụng NV Sales
+  // R24FD CAREERS-1 (owner 2026-11-11): Careers is built again (VI /tuyen-dung/, EN /en/careers/);
+  // old recruitment slugs land on the matching role, see CAREER_REDIRECTS below.
   // Footer "Dịch Vụ" column: the five service cards of Dịch Vụ Khác carry these exact titles
   "san-xuat-gia-cong-duoc-my-pham": "dich-vu-khac",
   "dich-vu-dong-goi-sang-chiet-my-pham": "dich-vu-khac",
@@ -30,11 +29,19 @@ const MAP = {
   "gia-cong-san-pham-me-be": "contract-manufacturing-cosmetics"
 };
 
+// Per-language Careers redirects: Footer recruitment slugs -> matching role; the other language's
+// Careers slug -> this language's page (e.g. /careers/ on VI, /en/tuyen-dung/ on EN).
+const CAREER_REDIRECTS = [
+  ...[["tuyen-dung-rd", "/careers/cosmetic-rd-specialist/"], ["tuyen-dung-nv-sales", "/careers/b2b-sales-executive/"]]
+    .flatMap(([slug, route]) => ["vi", "en"].map(lang => [(lang === "vi" ? "/" : "/en/") + slug + "/", careerPath(route, lang)])),
+  ...Object.entries(CAREER_VI_PATHS).flatMap(([enRoute, viRoute]) => [[enRoute, viRoute], ["/en" + viRoute, "/en" + enRoute]])
+];
+
 const esc = s => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-function stub(lang, target){
+function stub(lang, target, fullHref){
   const vi = lang === "vi";
-  const href = (vi ? "/" : "/en/") + target + "/";
+  const href = fullHref || (vi ? "/" : "/en/") + target + "/";
   return `<!doctype html>
 <html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, follow"><meta name="bioa-legacy-redirect" content="${esc(href)}">
@@ -53,6 +60,11 @@ export function legacyRedirectFiles(builtRoutes){
     const route = (lang === "vi" ? "/" : "/en/") + slug + "/";
     if (real.has(route)) continue;
     files.push({ route, out: route.slice(1) + "index.html", body: stub(lang, target), target: (lang === "vi" ? "/" : "/en/") + target + "/" });
+  }
+  for (const [route, href] of CAREER_REDIRECTS){
+    if (real.has(route)) continue;
+    const lang = route.startsWith("/en/") ? "en" : "vi";
+    files.push({ route, out: route.slice(1) + "index.html", body: stub(lang, null, href), target: href });
   }
   return files;
 }
