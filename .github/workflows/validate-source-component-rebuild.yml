@@ -16,7 +16,7 @@ permissions:
   contents: read
 jobs:
   candidate-validation:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04 # Playwright 1.56.1 has no Chromium for ubuntu-latest (26.04) — pinned, no test skipped
     timeout-minutes: 30
     steps:
       - name: Checkout exact commit
