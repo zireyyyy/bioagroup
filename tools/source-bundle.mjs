@@ -16,8 +16,11 @@ export const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
 export const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 
 export function bundleDir(){
-  const dir = process.env.BIOA_SOURCE_DIR;
-  if (!dir) throw new Error("SOURCE BUNDLE: BIOA_SOURCE_DIR is not set (no live fallback by design)");
+  // Cloudflare/CI: tools/fetch-source-bundle.mjs downloads + verifies the private bundle into .source-bundle/
+  // (git-ignored); it is used only when BIOA_SOURCE_DIR is not set. Still no live fallback.
+  const fetched = path.join(here, "..", ".source-bundle");
+  const dir = process.env.BIOA_SOURCE_DIR || (existsSync(fetched) ? fetched : "");
+  if (!dir) throw new Error("SOURCE BUNDLE: BIOA_SOURCE_DIR is not set and no fetched .source-bundle/ (no live fallback by design)");
   if (!existsSync(dir)) throw new Error("SOURCE BUNDLE: directory missing: " + dir);
   return dir;
 }

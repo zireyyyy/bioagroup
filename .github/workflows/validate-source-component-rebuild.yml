@@ -8,6 +8,7 @@ on:
       - candidate/merywood-desktop-scale-restore
       - candidate/bioa-desktop-shell-scale9
       - candidate/phase2b-source-convergence-20261015
+      - recovery/baseline-d59f50d-20261108
   pull_request:
     branches:
       - main
@@ -43,6 +44,13 @@ jobs:
         run: node --test tests/maintenance-host-gate.test.mjs
       - name: Responsive source regression
         run: npm run test:responsive
+      - name: Fetch private source bundle (fail closed)
+        # Secrets set by the owner: BIOA_SOURCE_URL (https, private storage) and BIOA_SOURCE_TOKEN (read-only).
+        # The archive is written by tools/pack-source-bundle.mjs; every file is SHA-256 checked against source-manifest.json.
+        env:
+          BIOA_SOURCE_URL: ${{ secrets.BIOA_SOURCE_URL }}
+          BIOA_SOURCE_TOKEN: ${{ secrets.BIOA_SOURCE_TOKEN }}
+        run: node tools/fetch-source-bundle.mjs
       - name: Build static website
         run: npm run build
       - name: Verify Phase 2B Other Services dead-data and owner-PASS output
