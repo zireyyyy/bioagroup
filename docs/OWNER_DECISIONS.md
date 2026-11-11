@@ -8,13 +8,13 @@ This is the single list of decisions only the owner can make. Nothing here is im
 
 | # | Area | Current state (verified) | Options | Recommended | Blocks |
 |---|---|---|---|---|---|
-| OD-1 | **Privacy Policy** VI/EN | Merywood Estonian text ("Bio-A Group OÜ, Reg no. 16386898, Tallinn", Estonian acts/DPA), English on VI. Only the mailbox was changed to contact@bioagroup.vn | (a) supply approved VI+EN text + legal entity (content-only swap); (b) temporary short notice from confirmed data, wording approved by owner/counsel | (a) | Release |
-| OD-2 | **Cookie Policy** VI/EN | Same Merywood text; its cookie list does not match the third parties actually used | (a) approved text + real cookie/third-party inventory (BI-3) | (a) | Release |
+| OD-1 | **Privacy Policy** VI/EN | **LEGAL-B1 (2026-11-11):** Estonian entity text removed. New VI/EN body describes only what the BIO-A site does (verified in code) with `bioa-business.mjs` identity; no entity type/registration/law/authority/retention invented | approve the wording (or supply counsel text) + legal entity name (BI-1) and privacy contact if different | approve after counsel review | **Production** |
+| OD-2 | **Cookie Policy** VI/EN | **LEGAL-B1:** real inventory published (localStorage `mw_consent_v2`/`bioa_cookie_decided_v1`, sessionStorage visit keys, third parties Google Fonts, Turnstile, cdnjs, geojs, Google Maps, external theme/image host) | approve wording | approve | **Production** |
 | OD-3 | **Careers** VI/EN | **DECIDED 2026-11-10 (owner), done in BIOA-R24 CONTENT-C1:** Merywood Careers page no longer built; `/careers/` VI/EN = noindex redirect to Contacts, out of sitemap; Footer recruitment items removed; legacy recruitment slugs → Contacts; About team CTA → Contacts | reopen only with real BIO-A openings (content-only) | — | — |
 | OD-4 | **Shipping Policy** link | **DECIDED 2026-11-10 (owner), done in BIOA-R24:** link removed from the Footer VI/EN (no confirmed retail shipping policy) | add back only with an owner-approved policy page | — | — |
-| OD-5 | **Merywood rights** | Build input = owner-supplied Merywood HTML/CSS/JS bundle. Still loaded live from merywood.com: `modal.js`, `input.js` (synchronous: page hangs when merywood.com is slow), CF7 js/css (differs from upstream 6.1.7), theme/upload images incl. cookie icon | (a) written right to use + self-host (D2/D4); (b) replace with BIO-A-owned code/images; (c) accept live dependency (risk documented) | (a) or (b) | Release + Preview build (D2) |
+| OD-5 | **Merywood rights** | **CF7 JS removed (CF7-JS-1, T2 error gone).** Still live from merywood.com: `modal.js`, `input.js` (synchronous: page hangs when merywood.com is slow — measured 18 s requests on 2026-11-10), CF7 CSS (shapes the PASS modal), theme/upload images incl. cookie icon; build input = owner-supplied bundle | (a) written right to use + self-host; (b) replace with BIO-A-owned code/images; (c) accept live dependency | (a) or (b) | Release + Preview build |
 | OD-6 | **Legal entity / business data** | Brand, domain, e-mail, hotline, MST 0318126597, factory address confirmed in source. Not supplied: registered legal name, registered office, privacy contact | supply BI-1, BI-2; BI-4 BIO-A app icon PNG 180×180 + default share image | — | OD-1/OD-2 |
-| OD-7 | **Cloudflare Preview build** | Build needs the private bundle (`BIOA_SOURCE_DIR`, 1.8 MB, SHA-256 pinned in `source-manifest.json`). Cloudflare/CI have no storage, no token, no fetch step | see "Steps to a Cloudflare Preview" below | private storage + Preview-only token | Preview |
+| OD-7 | **Cloudflare Preview build** | **Engineering ready (R24l):** `tools/pack-source-bundle.mjs`, `tools/fetch-source-bundle.mjs` (https + read-only token, per-file SHA-256, fail closed), CI fetch step. Missing: private storage, token, Cloudflare variables, OD-5 right | see "Steps to a Cloudflare Preview" | private storage + Preview-only token | Preview |
 | OD-8 | **Cloudflare settings** | Pages Functions **Fail open** (docs require fail closed); every non-main branch auto-deploys a Preview; Production `NODE_VERSION=20`, CI Node 22, local 26 | Fail closed; Preview branch control (custom branches); one Node version | Fail closed; deploy only the candidate branch; Node 20 everywhere | Production |
 | OD-9 | **Lead capture activation** | Code ready (D1-first, success only after D1 write). Not configured: D1 `BIOA_LEADS_DB` + migration, `LEAD_RATE_SECRET`, Turnstile keys, Sheets/Resend. Preview hosts keep `/api` locked → the form shows an honest error there | follow "Safe lead activation" below; requires OD-1 (privacy text must name processors) | after OD-1 | Live leads |
 | OD-10 | **AI chat** | UI = local preview (honest reply, no claim of receipt); gateway `/api/chat` READY, flag OFF; no provider | provider, endpoint/API key (Pages secrets), retention policy, approval to wire UI (FUT-CHAT-1) | after OD-1 | AI LIVE |
@@ -31,12 +31,11 @@ This is the single list of decisions only the owner can make. Nothing here is im
    - Store it as a Cloudflare Pages **Preview-only** encrypted variable (e.g. `BIOA_SOURCE_URL`, `BIOA_SOURCE_TOKEN`).
    - Store it as a GitHub Actions secret if CI must build.
    - Never put it in Git.
-4. **Engineering step (after 1–3):** add `tools/fetch-source-bundle.mjs` and make the build fetch the archive before `verify-source-bundle`.
-   - The script downloads the archive with the token and unpacks it to a temp dir.
-   - It sets `BIOA_SOURCE_DIR` to that dir.
-   - The existing SHA-256 manifest check stays fail-closed.
-   - Build command: `node tools/fetch-source-bundle.mjs && npm run build`.
-   - Add the same step to the CI workflow and add the candidate branch to its trigger list.
+4. **Engineering step — DONE locally (R24l `ff0f915`, not pushed).**
+   - Owner runs once: `node tools/pack-source-bundle.mjs --out D:\BIOA_WORKSPACE\_private\bioa-source-bundle.json.gz`, then uploads that file to the private storage.
+   - Cloudflare Pages Preview variables (encrypted): `BIOA_SOURCE_URL`, `BIOA_SOURCE_TOKEN`.
+   - Preview build command: `node tools/fetch-source-bundle.mjs && npm run build`.
+   - GitHub Actions secrets with the same names, for the CI fetch step.
 5. **OD-8 (D7):** in Cloudflare Pages → Settings → Builds → Branch control, allow Preview only for the candidate branch.
    - Confirm the Preview environment has **no** Production D1/Sheets/Resend secrets.
 6. **D10:** run `npm ci && npm run build` once under Node 20, the Production version, before pushing.

@@ -5,8 +5,8 @@ No legal entity, registration number, address, legal term or job opening has bee
 ## FINAL OWNER DECISION TABLE (one approval round)
 | # | Item | Current state | Safe options (owner picks) | Recommended |
 |---|---|---|---|---|
-| L1 | Privacy Policy VI/EN | Merywood Estonian policy, English on VI, entity "Bio-A Group OÜ, Reg no. 16386898, Tallinn" | (a) owner supplies approved VI+EN text + entity data → content-only swap in the existing layout; (b) temporary short notice page written from confirmed data only (BIO-A name, MST 0318126597, address, contact@bioagroup.vn) **after owner/counsel approves its wording** | (a); release blocked until then |
-| L2 | Cookie Policy VI/EN | Same Merywood text; cookie list does not match the site's actual third parties | (a) as L1 plus an actual cookie inventory (BI-3 in `docs/BUSINESS_IDENTITY.md`) | (a) |
+| L1 | Privacy Policy VI/EN | **LEGAL-B1 2026-11-11:** Estonian entity text removed; BIO-A body built only from verified facts (`docs/DELIVERY_CLEANUP_R24CL.md` §3) | owner/counsel approves wording; supply legal entity name if it must appear | approve before Production |
+| L2 | Cookie Policy VI/EN | **LEGAL-B1:** real browser-storage and third-party inventory published | owner/counsel approves wording | approve before Production |
 | L3 | Careers VI/EN | **DONE 2026-11-10 (owner decision, BIOA-R24):** page no longer built; `/careers/` = noindex redirect to Contacts, out of sitemap; Footer/legacy/About links → Contacts | real BIO-A openings later (content-only) | — |
 | L4 | Shipping Policy link | **DONE 2026-11-10 (owner decision, BIOA-R24):** removed from the Footer | — | — |
 | L5 | Merywood-owned runtime: `modal.js`, `input.js`, CF7 assets, theme/upload images (incl. the cookie icon) | still loaded live from merywood.com | written right to use + self-host (D2/D4), or replacement by BIO-A-owned code/images | owner decision; **not self-hosted** |

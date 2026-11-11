@@ -1,6 +1,20 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-10. Covers the FINAL COMPLETION, the REVIEW CORRECTION and **R24 HOME REGRESSION RECOVERY** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
+## R24CL — FINAL DELIVERY CLEANUP 2026-11-11 (owner QA pending; Tablet `ed50f1e` quick-check OK and frozen)
+- **Commits:** `36668a8`, `abfb606`, `8a1c42d`, `ff0f915` and the docs commit. Nothing pushed.
+- **Changes** (details `docs/DELIVERY_CLEANUP_R24CL.md`):
+  - EMAIL-PILL-1: the Patch A8 shell kept the Merywood `backdrop-filter`, giving the square glow; the blur moved to the pill.
+  - CLEANUP-1: Cyrillic comments, tracker/plugin marker comments and the WP generator meta removed; CF7 aria-label localized.
+  - LEGAL-B1: BIO-A Privacy/Cookie with no Estonian entity data; wording pending owner/counsel.
+  - CF7-JS-1: CF7 JS removed, CSS kept; T2 error gone.
+  - R24l: private source-bundle fetch path prepared.
+- **Frozen QA candidate:** `D:\BIOA_WORKSPACE\QA_EVIDENCE\dist-delivery-r24cl`. Logs: `D:\BIOA_WORKSPACE\_reports\final-delivery\qa\summary.txt`.
+- **Remote:**
+  - `main` `cb4e92f`, PR #10 `ed7324c`, PR #11 `d59f50d` unchanged.
+  - The repo is PUBLIC; `gh` is authenticated with repo/workflow scopes.
+  - **Not pushed:** the Preview build needs the private bundle (storage, token, Cloudflare variables) and the OD-5 right. Pushing now would create a failing Preview (owner rule).
+
 ## R24g — OWNER TABLET FAIL on `eabcd48` → Tablet back to Merywood desktop-fluid (owner QA pending)
 - **Owner verdict on `eabcd48`:**
   - Desktop "Nhận tư vấn" PASS/FREEZE.

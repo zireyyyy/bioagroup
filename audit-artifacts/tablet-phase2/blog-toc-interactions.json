@@ -109,9 +109,9 @@
       "interaction": {
         "status": "clicked",
         "before": 3057.890625,
-        "after": 3057.890625,
+        "after": 191.892578125,
         "hash": "",
-        "moved": false,
+        "moved": true,
         "target": "#scale-up-va-ban-giao-san-xuat"
       }
     },
@@ -168,9 +168,9 @@
       "interaction": {
         "status": "clicked",
         "before": 4864.046875,
-        "after": 278.3310546875,
+        "after": 4918.046875,
         "hash": "",
-        "moved": true,
+        "moved": false,
         "target": "#scale-up-va-ban-giao-san-xuat"
       }
     },
@@ -227,7 +227,7 @@
       "interaction": {
         "status": "clicked",
         "before": 2569.125,
-        "after": 3112.125,
+        "after": 3190.125,
         "hash": "",
         "moved": true,
         "target": "#scale-up-va-ban-giao-san-xuat"
@@ -339,7 +339,7 @@
       },
       "interaction": {
         "status": "clicked",
-        "before": 2989.018310546875,
+        "before": 2963.152587890625,
         "after": 3042.65625,
         "hash": "",
         "moved": false,
@@ -398,10 +398,10 @@
       },
       "interaction": {
         "status": "clicked",
-        "before": 4410.828125,
+        "before": 4474.328125,
         "after": 4528.328125,
         "hash": "",
-        "moved": true,
+        "moved": false,
         "target": "#scale-up-va-ban-giao-san-xuat"
       }
     },
@@ -458,7 +458,7 @@
       "interaction": {
         "status": "clicked",
         "before": 2513.84375,
-        "after": 94.807373046875,
+        "after": 3134.84375,
         "hash": "",
         "moved": true,
         "target": "#scale-up-va-ban-giao-san-xuat"

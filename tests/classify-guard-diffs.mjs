@@ -31,6 +31,12 @@ const RULES = [
   ["R24 Mobile screenshot of the Footer region", (p, r, w, c) => w <= 768 && c.footer && /^screenshot y=(\d+) /.test(p) && +p.match(/y=(\d+)/)[1] + 900 > c.footer.y],
   // HOWWORKS-T1 on /dich-vu-khac/ (same canonical Tablet rule as Home, which the P2 rule already covers).
   ["R24 HOWWORKS-T1 Tablet How It Works geometry (Dich Vu Khac)", (p, r, w) => tablet(w) && /^\/(en\/)?dich-vu-khac\/$/.test(r) && /^geometry: (SECTION\.block block-how-works desctop|IMG\.|HTML\.|BODY\.|FOOTER\.|SECTION\.)/.test(p)],
+  // R24CL CF7-JS-1: the two CF7 scripts are no longer loaded, so CF7 does not swap .wpcf7 "no-js" -> "js" and does not
+  // inject its hidden spinner. No CSS targets no-js/js; .wpcf7-spinner is visibility:hidden unless CF7 itself submits.
+  // Exact counts only (proof: tests/cf7-js-removal-proof.mjs, docs/DELIVERY_CLEANUP_R24CL.md section 4).
+  ["R24CL CF7 JS removed: .wpcf7 keeps no-js", p => p === "dom-classes: no-js 1/0"],
+  ["R24CL CF7 JS removed: no js class swap", p => p === "dom-classes: js 0/1"],
+  ["R24CL CF7 JS removed: no hidden CF7 spinner", p => p === "dom-classes: wpcf7-spinner 0/1"],
   ["R24 HOWWORKS-T1 Tablet screenshot (Dich Vu Khac)", (p, r, w) => tablet(w) && /^\/(en\/)?dich-vu-khac\/$/.test(r) && /^screenshot y=\d+ diff /.test(p)]
 ];
 function pageDeltaIsFooter(p, dh){

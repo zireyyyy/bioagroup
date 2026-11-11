@@ -2572,3 +2572,14 @@ OWNER QA (after production Cloudflare deploy): Home VI/EN at 834/1024/1180px com
   - No fixed px sizes and no line-height overrides.
   - Desktop/Mobile are not touched (`tests/tablet-only-diff-proof.mjs`).
   - Evidence: `tests/tablet-merywood-compare.mjs` (Merywood | BIO-A VI | BIO-A EN per section).
+
+## R24CL delivery cleanup owners (2026-11-11)
+- **EMAIL-PILL-1:** Patch A8 (`bioa-home-refine.mjs`) owns the email pill at every width.
+  - The shell `.header__email` has `backdrop-filter: none`; the pill `<a>` has `blur(25px)`.
+  - Never put a backdrop filter back on the square shell.
+- **CLEANUP-1:** `bioa-source-hygiene.mjs`.
+  - `applySourceHygiene()` runs once per page at the end of `build.mjs`.
+  - `stripCyrillicJsComments()` is also applied to the served runtime `main.js` in `tools/source-bundle.mjs`.
+  - Proof: `tests/cleanup-comment-only-proof.mjs`.
+- **CF7-JS-1:** `removeUnusedCf7Scripts()` (same module). CF7 CSS must stay.
+- **LEGAL-B1:** `bioa-legal-pages.mjs`. It replaces the body of `section.policy-wrapper` on `/privacy-policy/` and `/cookie-policy/` (VI/EN), keeping the source classes. It fails closed if Estonian entity data reappears.

@@ -21,6 +21,14 @@ Mở `http://127.0.0.1:4173/` bằng Chrome và để cửa sổ PowerShell mở
 
 Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/video, route, VI/EN, viewport và một câu mô tả (dùng mẫu ở cuối file).
 
+## A00. Bàn giao cuối 2026-11-11 (R24CL) — kiểm tra trước tiên
+| # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
+|---|---|---|---|---|---|
+| D-1 | Email pill Header `contact@bioagroup.vn` | mọi trang VI/EN, cuộn qua ảnh hero và các khối màu | 1440, 1024, 834 | Không còn khung vuông mờ quanh viên thuốc; viên thuốc vẫn cùng kích thước, màu, vị trí và có nền kính mờ bo tròn | ☐ |
+| D-2 | Chính Sách Bảo Mật / Cookie | `/privacy-policy/`, `/cookie-policy/`, `/en/...` | 1440, 390 | Không còn "OÜ", "16386898", Tallinn, Estonia; trang VI bằng tiếng Việt; thông tin Bio-A Group (MST 0318126597, địa chỉ, email, hotline). **Cần bạn/luật sư duyệt câu chữ trước Production** | ☐ |
+| D-3 | Popup «Nhận tư vấn» | `/`, `/en/`, `/contacts/` | 1440, 834, 390 | Mở/đóng, nhập, tick đồng ý như cũ; bố cục popup không đổi (đã bỏ JS CF7 từ merywood.com, giữ CSS). Không gửi form thật | ☐ |
+| D-4 | Không còn chữ Nga | Xem nguồn trang (Ctrl+U) bất kỳ trang | — | Không còn comment tiếng Nga; form có nhãn trợ năng «Biểu mẫu liên hệ» / «Contact form» | ☐ |
+
 ## A0. R24 — sửa lỗi Home OWNER FAIL 2026-11-10 (kiểm tra trước tiên)
 | # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
 |---|---|---|---|---|---|

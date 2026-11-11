@@ -6,7 +6,8 @@
 > - The bytes are identical to what merywood.com served. All four npm files were re-verified against the tarballs on 2026-11-10. The WP files equal core.svn.wordpress.org tags 7.1 and 7.1.2.
 > - Only the URL changes; tag id, position and attributes are unchanged. Licence notices: `/assets/vendor/THIRD_PARTY_LICENSES.txt`.
 > - Correction: the earlier comparison file `ss.js` was a different smooth-scrollbar build. The live file equals `smooth-scrollbar@8.8.4/dist/smooth-scrollbar.js` exactly.
-> - **Still live from merywood.com (owner gate D2/D4/D9, not self-hosted):** `modal.js`, `input.js`, CF7 js/css, theme/upload images. The final inventory run with merywood.com blocked is in `D:\BIOA_WORKSPACE\_reports\completionuntime\`.
+> - **Still live from merywood.com (owner gate D2/D4/D9, not self-hosted):** `modal.js`, `input.js`, CF7 js/css, theme/upload images. The final inventory run with merywood.com blocked is in `D:\BIOA_WORKSPACE\_reports\completion
+untime\`.
 
 Source: `tests/runtime-dependency-inventory.mjs` (real Chrome, 10 route families × VI/EN × 1440/390, normal / merywood.com blocked / merywood.com slow). Report: `D:\BIOA_WORKSPACE\_reports\recovery\final-runtime\runtime-dependency-inventory.json`, log `final-runtime.log`. Library comparisons: `_reports\recovery\runtime-libs\`.
 
@@ -56,3 +57,10 @@ Counted on the final dist `dist-final-r24`: **88 distinct merywood.com URLs**. T
 | 4 | 37 svg icons + 6 theme social icons (`assets/icons/{desktop,mobile}`) + the cookie icon `2025/09/cookie.svg` | Merywood artwork | BIO-A-owned or openly licensed icons (e.g. MIT/ISC icon sets) at the same size and colour slot. Neutral UI icons are kept until the owner decides, per AGENTS.md §3 | written permission |
 | 5 | Build input bundle (Merywood HTML/`main.css`/`main.js`, `source-manifest.json`) | Merywood source, core of the layout | long term: BIO-A-owned rewrite of each component. Not in this closure (no redesign) | written permission (D2), **required before any public Preview build** |
 | — | Old Manrope `.ttf` `@font-face` in `main.css` | unused, failing CORS | remove in a scope-gated cleanup (Google Manrope variable is the font authority) | — |
+
+## 6. Delivery cleanup (R24CL, 2026-11-11)
+- **CF7 JS** (`contact-form-7/includes/js/index.js`, `swv/js/index.js`): **removed** (CF7-JS-1). The BIO-A form path does not use them; the T2 "Bio-A Group.com" schema rejection disappears.
+- **CF7 CSS**: kept (owner-PASS modal geometry depends on it).
+- **Served runtime `main.js`**: comments containing Cyrillic removed after the bundle hash check (code identical).
+- **Still live from merywood.com:** `modal.js`, `input.js`, CF7 CSS, theme/upload images.
+  - merywood.com was measured slow on 2026-11-10 (single requests 18 s). Every page waits for `modal.js`/`input.js`, so release still needs OD-5 (self-host with written right, or BIO-A replacement).
