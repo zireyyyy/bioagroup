@@ -389,6 +389,10 @@ const patchA8Css = `
   border-radius:0!important;
   box-shadow:none!important;
   overflow:visible!important;
+  /* EMAIL-PILL-1 (owner 2026-11-11): the Merywood shell keeps backdrop-filter:blur(25px); with the shell
+     square, that blurred a RECTANGLE behind the rounded pill (visible square glow). Blur only the pill. */
+  -webkit-backdrop-filter:none!important;
+  backdrop-filter:none!important;
 }
 .bioa-header-actions .header__email a{
   height:42px!important;
@@ -400,6 +404,8 @@ const patchA8Css = `
   box-shadow:none!important;
   color:var(--bioa-primary)!important;
   line-height:1!important;
+  -webkit-backdrop-filter:blur(25px);
+  backdrop-filter:blur(25px);
 }
 /* A8 is the sole owner of BIO-A email pill geometry at desktop-fluid widths. */
 /* Tablet-specific override removed; BIO-A source component owner manages 769–1200px. */

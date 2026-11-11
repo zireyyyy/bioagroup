@@ -6,6 +6,7 @@
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import path from "node:path";
 import { load } from "cheerio";
+import { stripCyrillicJsComments, removeTraceMarkup } from "../bioa-source-hygiene.mjs";
 
 const SCOPES = {
   // P1: Home bundle gains the canonical icon CSS (style#bioa-home-refine) — Home only.
@@ -36,7 +37,13 @@ const SCOPES = {
   // Careers + legacy recruitment slugs become redirect stubs, sitemap drops Careers (file-level rules below).
   R24: [[/^(en\/)?(contract-manufacturing-cosmetics\/)?index\.html$/, "script#bioa-roadmap-coldload-sync"],
     [/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"],
-    [/\.html$/, ".footer-top__menu"], [/^(en\/)?about\/index\.html$/, ".mwa-team__btn"]]
+    [/\.html$/, ".footer-top__menu"], [/^(en\/)?about\/index\.html$/, ".mwa-team__btn"]],
+  // R24CL (owner 2026-11-11, delivery cleanup): Cyrillic comments removed from inline style/script (proven
+  // comment-only by tests/cleanup-comment-only-proof.mjs), EMAIL-PILL-1 in the shared/Home style owners, the two
+  // CF7 scripts removed (CF7-JS-1), the Privacy/Cookie policy body (LEGAL-B1). File-level rules below cover the
+  // CF7 form aria-label, Cyrillic HTML comments and the served main.js.
+  R24CL: [[/\.html$/, "style"], [/\.html$/, "script:not([src])"], [/\.html$/, "script#contact-form-7-js, script#swv-js"], [/\.html$/, "script#main-js"],
+    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]]
 };
 const [, , base, phase] = process.argv;
 const phases = (phase || "").split("+"), scope = phases.flatMap(p => SCOPES[p] || []);
@@ -58,10 +65,15 @@ for (const f of new Set([...a, ...b])){
     continue; }
   if (phases.includes("R24") && f.endsWith(".html") && /bioa-legacy-redirect" content="(\/en)?\/contacts\/"/.test(y.toString("utf8"))
       && /^(en\/)?(careers|tuyen-dung-rd|tuyen-dung-nv-sales)\/index\.html$/.test(f)){ changed.push(f + " [redirect stub -> contacts]"); continue; }
+  if (phases.includes("R24CL") && f === "assets/runtime/merywood-main.js"){ // CLEANUP-1: comment removal only
+    if (stripCyrillicJsComments(x.toString("utf8")) === y.toString("utf8")) changed.push(f + " [Cyrillic comments removed]"); else fails.push(f + ": changed beyond comment removal");
+    continue; }
   if (!f.endsWith(".html")){ fails.push(f + ": non-HTML file changed"); continue; }
   const sels = scope.filter(([re]) => re.test(f)).map(([, s]) => s);
   if (!sels.length){ fails.push(f + ": changed outside scope"); continue; }
-  const strip = buf => { const $ = load(buf.toString("utf8"), { decodeEntities: false }); const parts = sels.map(s => $(s).map((_, e) => $.html(e)).get().join("\n")); sels.forEach(s => $(s).remove()); /* remove, not placeholder: newly inserted scoped tags also pass */ return { rest: $.html(), parts }; };
+  const strip = buf => { const $ = load(buf.toString("utf8"), { decodeEntities: false });
+    if (phases.includes("R24CL")){ $("form.wpcf7-form[aria-label]").attr("aria-label", "(cf7)"); removeTraceMarkup($); }
+    const parts = sels.map(s => $(s).map((_, e) => $.html(e)).get().join("\n")); sels.forEach(s => $(s).remove()); /* remove, not placeholder: newly inserted scoped tags also pass */ return { rest: $.html(), parts }; };
   const X = strip(x), Y = strip(y);
   if (X.rest !== Y.rest){ fails.push(f + ": changed outside " + sels.join(", ")); continue; }
   changed.push(f + " [" + sels.filter((s, i) => X.parts[i] !== Y.parts[i]).join(", ") + "]");

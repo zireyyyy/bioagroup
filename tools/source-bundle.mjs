@@ -2,6 +2,7 @@
 // The bundle lives OUTSIDE this public repository; only hashes and the URL map are committed.
 // Every check fails closed: there is no fallback to the live Merywood site.
 import { createHash } from "node:crypto";
+import { stripCyrillicJsComments } from "../bioa-source-hygiene.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -50,7 +51,8 @@ export function runtimeFiles(dir = bundleDir()){
   const cssText = readVerified(dir, css).toString("utf8")
     .replace(/url\((['"]?)\.\.\//g, (m, q) => "url(" + q + css.relativeBase);
   if (/url\((['"]?)\.\.?\//.test(cssText)) throw new Error("RUNTIME PIN: unresolved relative url() left in main.css");
-  const jsBuf = readVerified(dir, js);
+  // CLEANUP-1: the verified bytes are checked above; only comments containing Cyrillic are removed from the served copy.
+  const jsBuf = Buffer.from(stripCyrillicJsComments(readVerified(dir, js).toString("utf8"), "runtime main.js"), "utf8");
   const v = s => sha256(s).slice(0, 12);
   return [
     { id: css.tagId, attr: "href", out: css.servedAs, body: cssText, url: "/" + css.servedAs + "?v=" + v(cssText) },

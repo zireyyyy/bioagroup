@@ -13,6 +13,8 @@ import { legacyRedirectFiles } from "./bioa-legacy-redirects.mjs";
 import { applyFormatsToggle } from "./bioa-formats-toggle.mjs";
 import { applyViLeftoverTranslations } from "./bioa-i18n-fixes.mjs";
 import { applyIdentityFixes } from "./bioa-identity-fixes.mjs";
+import { applyLegalPages } from "./bioa-legal-pages.mjs";
+import { applySourceHygiene, removeUnusedCf7Scripts } from "./bioa-source-hygiene.mjs";
 import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
 import { vendorFiles, pinVendor } from "./tools/vendor-runtime.mjs";
 
@@ -386,12 +388,15 @@ async function buildOne(route,sourceRoute){
       if(route==="/contract-manufacturing-cosmetics/")applyCosmeticsHubRefinement($,route,lang);
       if(route==="/dich-vu-khac/")applyOtherServicesRefinement($,route,lang);
       if(route==="/contacts/")applyContactsRefinement($,route,lang);
+      if(route==="/privacy-policy/"||route==="/cookie-policy/")applyLegalPages($,route,lang);
       if(route==="/blog/"||route.startsWith("/blog/"))applyBlogRefinement($,route,lang);
       applySharedShell($,route,lang);
     }
     applyFormatsToggle($,lang);
     applyViLeftoverTranslations($,lang);
     applyIdentityFixes($);
+    applySourceHygiene($,lang,localPath(route,lang));
+    removeUnusedCf7Scripts($,localPath(route,lang));
 
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
