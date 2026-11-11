@@ -1,7 +1,15 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
-## R24FD — FINAL DELIVERY + CONTENT COMPLETION 2026-11-11 (owner QA pending; NOT pushed)
+## R24FD-PUSH — PRIVATE BUILD SOURCE + PRODUCTION PUSH 2026-11-11 (owner-authorized)
+- **GitHub `main` = `a14aba2`** (fast-forward `cb4e92f` → `55cf516` → `a14aba2`; no force). `a14aba2` only pins the CI runner to `ubuntu-24.04` (Playwright 1.56.1 has no Chromium for `ubuntu-latest` = 26.04; no test skipped).
+- **Private build source:** Workers KV namespace `BIOA_SOURCE_BUNDLE` (private, binding-only) holds `bioa-source-bundle-p0b1-v2.json.gz` (sha256 `59a39c6f…`); Worker `bioa-source-bundle` (account `b6e49b2d…`, workers.dev) serves only `GET /bundle` with `Authorization: Bearer` = Worker secret `BUNDLE_TOKEN` (constant-time compare; else 403/404). R2 is not enabled on the account.
+- **Secrets set:** Pages Production + Preview `BIOA_SOURCE_URL`, `BIOA_SOURCE_TOKEN` (secret_text); GitHub Actions secrets with the same names. Token only in `D:\BIOA_WORKSPACE\_private\cf\token.txt` (outside the repo). Pages build command: `node tools/fetch-source-bundle.mjs && npm run build`. All 11 existing Production variables, the D1 binding and `BIOA_SITE_MODE=maintenance` unchanged (verified before/after).
+- **Deployments:** Production `cf1ecfb7` (`55cf516`) and `a6e6a5d9` (`a14aba2`) build + deploy success; build log shows `fetch-source-bundle: 16 verified files` (Node 20.20.0); token/URL absent from all logs. CI run 42997853714 green.
+- **Maintenance ON:** `bioagroup.vn` (/, /en/, /tuyen-dung/, /en/careers/, /privacy-policy/, /cookie-policy/) and `bioagroup.pages.dev` → 503. Per-deployment hash URLs (`<hash>.bioagroup.pages.dev`) stay publicly viewable by the existing middleware design (noindex, `/api` locked) — they now show the unapproved Careers/Policy content to anyone holding the URL. `www.bioagroup.vn` → 522 (pre-existing DNS/origin, untouched).
+- **Rollback:** Cloudflare Pages → Deployments → `36920483` (`cb4e92f`) → Rollback; or `git revert` (no force-push). Rotate the token: new value → Worker secret + Pages (both envs) + GitHub.
+
+## R24FD — FINAL DELIVERY + CONTENT COMPLETION 2026-11-11 (owner QA pending; pushed in R24FD-PUSH above)
 - **Commits:** `84c5cde` (code), `8f2675b` (approval/tests), docs commit. Details `docs/DELIVERY_FINAL_R24FD.md`, approval pack `docs/LEGAL_POLICY_APPROVAL.md`.
 - **Changes:** RUNTIME-SELFHOST-1 (`modal.js`/`input.js`/CF7 CSS from `/assets/runtime/`, bundle `p0b1-v2`); CAREERS-1 (VI `/tuyen-dung/`, EN `/en/careers/`, 3 sample roles, Footer recruitment items + About CTA restored, redirects); TRACKER-1 (dead WP beacon/token/emoji scripts removed); LEGAL-B2 (Privacy/Cookie from Luật 91/2025/QH15 + NĐ 356/2025/NĐ-CP, Merywood article pattern, no CSS change).
 - **Frozen QA build:** `D:\BIOA_WORKSPACE\QA_EVIDENCE\dist-final-fd`; logs `D:\BIOA_WORKSPACE\_reports\final-fd\qa\summary.txt`.
