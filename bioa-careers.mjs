@@ -341,8 +341,11 @@ export function applyCareersList($, lang){
     grid.append(card);
   }
 
-  // CTA: the Merywood "M" logo artwork is a brand trace -> BIO-A monogram (same contain/right placement).
-  $(".mwc-cta").attr("style", "background-image:url('/assets/bioa-monogram-cream.svg');");
+  // CTA: the Merywood "M" logo artwork is a brand trace. CAREERS-CTA-LOGO (owner 2026-11-11): follow the
+  // owner-approved About CTA logo (.mwa-cta__media: full BIO-A logo, contained, with breathing room) instead of
+  // the source full-height edge bleed: light full logo (dark card), ~56% of the card height, inset from the right
+  // edge. Mobile is unchanged: the source hides this background at <=768px with !important.
+  $(".mwc-cta").attr("style", "background-image:url('/assets/bioa-full-light.svg');background-size:auto 56%;background-position:right clamp(32px,6%,88px) center;");
   $(".mwc-cta__title").text(t.ctaTitle);
   $(".mwc-cta__text").text(t.ctaText);
   setEmailRows($, t);
