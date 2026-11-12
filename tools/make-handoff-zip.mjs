@@ -58,7 +58,7 @@ if (existsSync(RUNTIME)) add("docs/RUNTIME_HANDOFF.md", readFileSync(RUNTIME)); 
 const EXCLUDE_DIR = /(^|[\\/])(dist[^\\/]*|_source_bundle|source_bundle|runtime-libs|preview-[^\\/]*-html|node_modules|negctl-dist|BIOA_SOURCE_ORIGINAL)([\\/]|$)/i;
 // Representative screenshots: key route families at Mobile / Tablet / Desktop (VI + EN Home), and every
 // screenshot pair the deep guard kept because it differed (so a reviewer sees each flagged diff).
-const REP = /^(_|_en_|_about_|_contract-manufacturing-cosmetics_|_dich-vu-khac_|_blog_|_contacts_|_khong-co-trang-nay_|_careers_|_privacy-policy_)-(390|834|1440)\.png$|^fd-[a-z0-9_-]+-(390|834|1024|1440)\.png$/;
+const REP = /^(_|_en_|_about_|_contract-manufacturing-cosmetics_|_dich-vu-khac_|_blog_|_contacts_|_khong-co-trang-nay_|_careers_|_privacy-policy_)-(390|834|1440)\.png$|^(fd|before|after|mw)-[a-z0-9_-]+-(390|834|1024|1440)\.png$/;
 const MAX_TEXT = 4 * 1024 * 1024, MAX_PNG = 1.5 * 1024 * 1024;
 const evidenceLog = [];
 for (const dir of args.evidence){
