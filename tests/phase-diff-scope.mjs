@@ -60,7 +60,10 @@ const SCOPES = {
   // (button markup + the TOC icon-slot rule in the Blog style owner), LEGAL-B3 shorter policy body.
   R24OY: [[/\.html$/, ".whatsapp__btn"], [/^(en\/)?blog\/[^/]+\/index\.html$/, ".bb-toc__cta-btn"],
     [/^(en\/)?blog\/(.+\/)?index\.html$/, "style#bioa-blog-style"],
-    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]]
+    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]],
+  // R24RC (release readiness 2026-11-12): CTA-TYPE-1 desktop label/arrow scale of the contact CTA, one rule in
+  // the BIO-A transform style owner (style#bioa-v3).
+  R24RC: [[/\.html$/, "style#bioa-v3"]]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
