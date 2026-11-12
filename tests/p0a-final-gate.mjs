@@ -9,7 +9,7 @@ import { spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
 
 const SNAP = process.env.BIOA_P0B1_SNAPSHOT || "D:/BIOA_WORKSPACE/QA_EVIDENCE/dist-P0B1-71db6c5";
-const PHASES = "P1+P2+P4+R1+R2+R3+R12+R13+R15+R21+R24+R24CL+R24FD+R24OX";
+const PHASES = "P1+P2+P4+R1+R2+R3+R12+R13+R15+R21+R24+R24CL+R24FD+R24OX+R24OY";
 if (!existsSync(SNAP)){ console.error("P0A final gate: P0B1 snapshot missing at " + SNAP + " (fail closed)"); process.exit(1); }
 const run = (args, env = {}) => spawnSync(process.execPath, args, { stdio: "inherit", env: { ...process.env, ...env } }).status;
 const hist = run(["tests/p0a-fidelity-allowlist.mjs"], { FIDELITY_DIST: SNAP });

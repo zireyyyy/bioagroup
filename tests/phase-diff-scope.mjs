@@ -55,7 +55,12 @@ const SCOPES = {
   // label, CAREERS-ENDING-1 detail article, COOKIE-WORDING-1 policy body, About CTA title word joiner.
   R24OX: [[/\.html$/, "link#main-css"], [/\.html$/, "#get-a-quote .cf-modal__button"],
     [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"],
-    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, ".mwc-single"], [/^(en\/)?about\/index\.html$/, ".mwa-cta__title"]]
+    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, ".mwc-single"], [/^(en\/)?about\/index\.html$/, ".mwa-cta__title"]],
+  // R24OY (owner 2026-11-12): CTA-ARROW-1 contact CTA [text + arrow] on the Home/Services block and the Blog TOC
+  // (button markup + the TOC icon-slot rule in the Blog style owner), LEGAL-B3 shorter policy body.
+  R24OY: [[/\.html$/, ".whatsapp__btn"], [/^(en\/)?blog\/[^/]+\/index\.html$/, ".bb-toc__cta-btn"],
+    [/^(en\/)?blog\/(.+\/)?index\.html$/, "style#bioa-blog-style"],
+    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;

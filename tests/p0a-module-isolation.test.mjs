@@ -41,7 +41,9 @@ const APPROVED = [
   // items and About team CTA, B2B title-case key; TRACKER-1 dead WordPress scripts removed in transform.
   { sha: "84c5cde4cfad7b27aec61dfa1a92329e45386fab", phase: "R24FD", files: ["bioa-about-refine.mjs", "bioa-home-refine.mjs", "bioa-transform.mjs"] },
   // R24OX (owner-reported fixes 2026-11-12): FORM-LABEL-1 VI submit label (transform), About CTA title word joiner.
-  { sha: "e0618e6ec9157dda989c765d97c989f76944864c", phase: "R24OX", files: ["bioa-about-refine.mjs", "bioa-transform.mjs"] }
+  { sha: "e0618e6ec9157dda989c765d97c989f76944864c", phase: "R24OX", files: ["bioa-about-refine.mjs", "bioa-transform.mjs"] },
+  // R24OY (owner 2026-11-12): CTA-ARROW-1 contact CTA [text + arrow] in its Home and Blog owners.
+  { sha: "a076c023e6370cf54d53d63f22009b40da19ffb1", phase: "R24OY", files: ["bioa-blog-refine.mjs", "bioa-home-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
