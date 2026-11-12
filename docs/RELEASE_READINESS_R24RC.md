@@ -1,6 +1,6 @@
 # BIO-A — FINAL QA & RELEASE READINESS (R24RC) — 2026-11-12
 
-- **Base:** `main` `b79dad7` (R24OY, pushed with owner approval). **Local commits (not pushed):** `a045cf6` (code), `bb8a2bd` (approval/gate), docs commit.
+- **Base:** `main` `a091a7b` (pushed with owner approval; real lead E2E run on it). **Local commits (not pushed):** `7df2e79` (submit label 16px), `b49f049` (approval/gate + docs), this regression record.
 - **Frozen QA build:** `D:\BIOA_WORKSPACE\QA_EVIDENCE\dist-final-rc`; evidence `D:\BIOA_WORKSPACE\_reports\release-rc\`.
 
 ## 1. CTA typography (CTA-TYPE-1)
@@ -59,3 +59,13 @@ Method: in a real browser, every visible icon signature (inline SVG path, icon i
 ## 7. Form submit + sitewide control text audit (FORM-BTN-TYPE-1, owner 2026-11-12)
 - Owner: the "Gửi yêu cầu" label was smaller than the inputs. Measured: BIO-A 56px submit with 12px (1440), 13px (Tablet, forced by the input rule because the submit is an `input`), 15px (390); inputs 14.25 / 13 / 14px. Merywood label/box ratio 0.29 → **16px** at all widths; Tablet input rule now excludes `[type=submit]`. Verified 1440/1201/1200/1024/834/769/768/390 (`release-rc/modal-*.png`).
 - Sitewide audit (`release-rc/control-text-audit.txt|json`): 345 control rows (buttons, CTAs, inputs, dropdowns, pills, pagination, modal) on 10 page groups × 1440/1024/834/390 vs the Merywood source. Flagged differences after the fix are all owner-PASS BIO-A customs, left unchanged: Header "Nhận tư vấn" 42px (canonical CTA), modal inputs and Blog TOC CTA larger text on Tablet (readability patches), Blog pagination 36px on mobile, product-format tabs 47px (ratio 0.30), chat launcher/send/copy icon buttons (no text).
+
+## 8. Final regression after FORM-BTN-TYPE-1 (`dist-final-rc2`, HEAD `b49f049`, unchanged after the run)
+| Check | Result |
+|---|---|
+| test:candidate, test:p0a (incl. determinism), responsive, 404, turnstile, chat gateway, maintenance-host | exit 0 |
+| Scope gate R24RC · D11 · Careers flow · P1/P2 | PASS · PASS · 186/186 · PASS |
+| Roadmap Home / Cosmetics · How It Works · Home sections | 36/36 · 36/36 · 28/28 · 20/20 |
+| Route smoke 110 routes × 2 widths · Chat UI · Lead form (mock) | 220/220 · 60/60 · 36/36 |
+| Tablet suites (browser smoke, services Swiper, Blog TOC, Contacts/404, full route audit) | PASS |
+Evidence: `D:\BIOA_WORKSPACE\_reports\release-rc2\qa\` (tablet audit artifacts copied there; tracked `audit-artifacts/` restored).
