@@ -1,7 +1,12 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
-## R24OY — OWNER PATCH 2026-11-12 (local commits, NOT pushed — owner push order required)
+## R24RC — FINAL QA & RELEASE READINESS 2026-11-12 (local, NOT pushed)
+- `main` = `b79dad7` (R24OY pushed with owner approval; deployment `bac28b1b`). Local: `a045cf6` (contact CTA desktop label/arrow scale), `bb8a2bd` (approval/gate), docs commit.
+- Icon closure audit (12 groups × 1440/834/390): no wrong icon; all differences are owner-PASS BIO-A replacements. Lead: MOCK + STAGING PASS, REAL E2E NOT VERIFIED (owner approval needed).
+- Release blockers and owner actions: `docs/RELEASE_READINESS_R24RC.md` (maintenance, real E2E, legal L-items, Careers gated fields, `www.bioagroup.vn` 522, merywood images, public preview hashes, fail-open).
+
+## R24OY — OWNER PATCH 2026-11-12 (pushed: main b79dad7, deployment bac28b1b)
 - **Commits:** `a076c02` (code), `b37a948` (approval/gate), docs commit.
 - **CTA-ARROW-1:** contact CTA "Liên hệ với chúng tôi" (Home + Dịch Vụ Khác block, Blog TOC on every article) = text + source arrow after it, no Zalo icon (owner-PASS "Nhận tư vấn ↗" structure); links unchanged. Sitewide button audit: all other CTAs already text + arrow or source-owned (formats CTA icon-first as Merywood; Contacts "Nhắn Zalo" channel button kept).
 - **LEGAL-B3:** Privacy 8 short sections, Cookie 4; no provider list, storage names or infrastructure detail; recipient categories and servers abroad still disclosed.

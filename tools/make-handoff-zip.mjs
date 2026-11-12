@@ -50,7 +50,7 @@ shas.forEach((sha, i) => add(`git/patches/${String(i + 1).padStart(4, "0")}-${sh
 const DOCS = ["AGENTS.md", "FULL_HANDOFF.md", "START_HERE.md", "NEW_CHAT_CONTINUATION_PROMPT.md", "docs/OWNER_ISSUE_LEDGER.md", "docs/OWNER_QA_CHECKLIST.md",
   "docs/RELEASE_ROLLBACK_PLAN.md", "docs/LEGAL_CONTENT_BLOCKERS.md", "docs/RUNTIME_DEPENDENCIES.md", "docs/P0A_SOURCE_PIN.md", "docs/P0B1_RUNTIME_PIN.md",
   "docs/BUSINESS_IDENTITY.md", "docs/CHAT_AI_INTEGRATION.md", "docs/OWNER_DECISIONS.md", "docs/LEAD_BACKEND_SETUP.md", "docs/HOME_REGRESSION_R24.md", "docs/SOURCE_MAP.md", "docs/DELIVERY_CLEANUP_R24CL.md",
-  "docs/DELIVERY_FINAL_R24FD.md", "docs/LEGAL_POLICY_APPROVAL.md", "docs/OWNER_FIXES_R24OX.md"];
+  "docs/DELIVERY_FINAL_R24FD.md", "docs/LEGAL_POLICY_APPROVAL.md", "docs/OWNER_FIXES_R24OX.md", "docs/RELEASE_READINESS_R24RC.md"];
 for (const d of DOCS) if (existsSync(d)) add("docs/" + basename(d), readFileSync(d));
 if (existsSync(RUNTIME)) add("docs/RUNTIME_HANDOFF.md", readFileSync(RUNTIME)); else console.warn("WARN: runtime handoff not found:", RUNTIME);
 
