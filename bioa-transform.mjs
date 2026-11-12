@@ -15,7 +15,8 @@ export const localPath = (route, lang) => lang === 'en' ? (route === '/' ? '/en/
 const css = `
 :root{--bioa:#106E45;--bioa-dark:#0B4E31;--bioa-deep:#093D26;--bioa-soft:#99D29F;--bioa-cream:#F3F0E4;--bioa-ivory:#FCFEF1}
 #get-a-quote .cf-modal{background:var(--bioa)!important}
-#get-a-quote .cf-modal__button{width:100%!important;min-height:56px!important;border:0!important;border-radius:14px!important;background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;box-shadow:none!important}
+/* R24RC FORM-BTN-TYPE-1 (owner 2026-11-12): the BIO-A 56px submit kept the source label size (12-15px, smaller than the inputs); 16px = Merywood label/box ratio 0.29 applied to 56px, all widths. */
+#get-a-quote .cf-modal__button{font-size:16px!important;line-height:1.2!important;width:100%!important;min-height:56px!important;border:0!important;border-radius:14px!important;background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;box-shadow:none!important}
 #get-a-quote .cf-modal__button:hover,#get-a-quote .cf-modal__button:focus{background:#D6DBD7!important;border-color:#D6DBD7!important;color:#587156!important;transform:none!important}
 /* Keep Merywood checkboxes and scroll only the extended Bio-A options list. */
 #get-a-quote #ddType .dd-menu{
@@ -76,9 +77,8 @@ html,body{overflow-x:hidden}::selection{background:var(--bioa);color:#fff}
   #get-a-quote .cf-modal__title,
   #get-a-quote .modal__title,
   #get-a-quote .cf-modal__heading{font-size:clamp(18px,1.6vw,22px)!important;line-height:1.35!important}
-  #get-a-quote .wpcf7-form input:not([type="checkbox"]):not([type="hidden"]),
-  #get-a-quote #ddType .dd-label,
-  #get-a-quote .cf-modal__button{font-size:13px!important}
+  #get-a-quote .wpcf7-form input:not([type="checkbox"]):not([type="hidden"]):not([type="submit"]),
+  #get-a-quote #ddType .dd-label{font-size:13px!important}
   #get-a-quote .wpcf7-form input::placeholder{font-size:13px!important}
   #get-a-quote .wpcf7-form .wpcf7-list-item-label,
   #get-a-quote .wpcf7-form .wpcf7-acceptance,
