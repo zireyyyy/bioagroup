@@ -5,6 +5,9 @@ The full rendered text (VI + EN) for approval is generated from the built pages 
 Nothing here is legal advice. The texts are drafted from the official texts and the verified behaviour of the site;
 a lawyer should review them before Production.
 
+## 0. Update R24OY (owner 2026-11-12): shorter public text
+The pages now carry only what a visitor in Vietnam needs: who we are, data collected, purposes and consent, sharing (categories of service providers, possible servers outside Vietnam, authorities), retention, rights + how to exercise them, security, contact; cookies in plain words. Removed from the public text: provider-by-provider list (Cloudflare D1/Turnstile/cdnjs, Google Fonts/Maps/Sheets, Resend, GeoJS), the external image host line, recruitment/children/chat clauses, browser-storage names. The detailed inventory below stays as the internal record for counsel (L-1…L-8 unchanged).
+
 ## 1. Legal sources read (official Công báo PDFs, 2026-11-11)
 | Text | Source | Used for |
 |---|---|---|

@@ -374,8 +374,11 @@ function applyBlogArticle($,route,lang){
     .attr('target','_blank')
     .attr('rel','noopener noreferrer')
     .attr('aria-label',isEn?'Contact Bio-A Group via Zalo':'Liên hệ Bio-A Group qua Zalo');
-  tocCta.find('.btn__icon').html('<img class="bioa-zalo-icon" src="/assets/zalo-bioa-owner.png" alt="" aria-hidden="true">');
-  tocCta.find('.btn__text').text(isEn?'Contact us':'Liên Hệ Với Chúng Tôi');
+  // R24OY CTA-ARROW-1 (owner 2026-11-12): same rule as the Home/Services contact CTA — no social icon; the
+  // owner-PASS "Nhận tư vấn ↗" structure [text] + source arrow after the text. Link (Zalo) unchanged.
+  tocCta.find('.btn__icon').remove();
+  tocCta.find('.btn__text').text(isEn?'Contact us':'Liên Hệ Với Chúng Tôi')
+    .after('<i class="icon btn__icon arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.75 12.25H12.25V8.81055L6.53027 14.5303L5.46973 13.4697L11.1895 7.75H7.75V6.25H13.75V12.25Z"></path></svg></i>');
   $('.btp-share > span,.btpm-share > span').text(isEn?'Share':'Chia sẻ');
   // Share links: the source shared one Merywood article (Facebook + obfuscated e-mail) on every post.
   const shareUrl=BUSINESS.domain+(isEn?'/en':'')+route;
@@ -446,7 +449,7 @@ function patchBlogCss($){
     'body.bioa-blog-index .posts-grid-pagination .prev,body.bioa-blog-index .posts-grid-pagination .next{min-width:24px!important;padding:0!important;background:transparent!important;font-size:16px!important}'+
 
     /* PATCH-G8 — TOC contact CTA reuses the shared PASS Zalo artwork treatment. */
-    '.bioa-blog-detail .bb-toc__cta-btn .btn__icon{display:flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;margin:0!important;line-height:0!important}'+
+    '.bioa-blog-detail .bb-toc__cta-btn .btn__icon:not(.arrow){display:flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;min-width:20px!important;flex:0 0 20px!important;margin:0!important;line-height:0!important}'+
     '.bioa-blog-detail .bb-toc__cta-btn .bioa-zalo-icon{display:block!important;width:20px!important;height:20px!important;max-width:20px!important;max-height:20px!important;object-fit:contain!important;margin:0!important}'+
     /* TOC-CTA-READABLE1 — text only; original button/icon and TOC geometry PASS. */
     '@media(min-width:769px) and (max-width:1200px){.bioa-blog-detail .bb-toc__cta-btn .btn__text{font-size:clamp(12px,1.05vw,14px)!important}}'+

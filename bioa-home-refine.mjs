@@ -4013,10 +4013,13 @@ function refineMobileContactCta($,lang){
     .attr('target','_blank')
     .attr('rel','noopener noreferrer')
     .attr('aria-label',lang==='vi'?'Liên hệ Bio-A Group qua Zalo':'Contact Bio-A Group via Zalo');
+  // R24OY CTA-ARROW-1 (owner 2026-11-12): no social icon in this CTA; same structure as the owner-PASS
+  // "Nhận tư vấn ↗" CTA: [text] + source arrow icon after the text. Link (Zalo) unchanged.
+  const arrow='<i class="icon btn__icon arrow"><svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M13.75 12.25H12.25V8.81055L6.53027 14.5303L5.46973 13.4697L11.1895 7.75H7.75V6.25H13.75V12.25Z"></path></svg></i>';
   cta.each((_,el)=>{
     const a=$(el);
-    a.find('.btn__icon').html(icons.zalo);
-    a.find('.btn__text').text(lang==='vi'?'Liên hệ với chúng tôi':'Contact us');
+    a.find('.btn__icon').remove();
+    a.find('.btn__text').text(lang==='vi'?'Liên hệ với chúng tôi':'Contact us').after(arrow);
   });
   if(lang==='vi'){
     $('.whatsapp__title').text('Trao Đổi Về Dự Án Của Bạn');
