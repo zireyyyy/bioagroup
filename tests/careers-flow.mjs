@@ -47,13 +47,15 @@ for (const lang of ["vi", "en"]) for (const width of [1440, 834, 390]){
     const d = await page.evaluate(() => ({ h1: document.querySelector(".mwc-single__title")?.textContent.trim(),
       back: document.querySelector(".mwc-back")?.getAttribute("href"), talk: !!document.querySelector(".mwc-talk"),
       sections: document.querySelectorAll(".mwc-single .mwc-section").length, gated: document.querySelectorAll('[data-owner-approval="required"]').length,
-      cta: document.querySelector(".mwc-final__btn")?.getAttribute("href"), langs: [...document.querySelectorAll(".bioa-header-actions .bioa-lang a")].map(a => a.getAttribute("href")),
+      cta: document.querySelector(".mwc-final .mwc-hrcard__email")?.getAttribute("href"), wts: document.querySelectorAll(".mwc-talk .mwc-wts li").length,
+      hr: document.querySelectorAll(".mwc-hrgrid, .mwc-hrcard__photo, .mwc-hrcard__link").length, arrow: !!document.querySelector(".mwc-hero3__actions .btn__icon svg"), langs: [...document.querySelectorAll(".bioa-header-actions .bioa-lang a")].map(a => a.getAttribute("href")),
       canonical: document.querySelector('link[rel="canonical"]')?.getAttribute("href"), text: document.body.innerText }));
     ok(d.h1 && d.h1.toLowerCase() === job.t[lang].title.toLowerCase(), tag + " " + job.route + " title");
     ok(d.back === list, tag + " " + job.route + " back link");
-    ok(!d.talk && !/merywood|linkedin|olga|alina|€|salary from/i.test(d.text), tag + " " + job.route + " no Merywood people/pay text");
-    ok(d.sections === 3 && d.gated === 4, tag + " " + job.route + " 3 sections, 4 owner-gated fields (" + d.sections + "/" + d.gated + ")");
-    ok(d.cta === (lang === "en" ? "/en/contacts/" : "/contacts/"), tag + " " + job.route + " CTA to Contacts");
+    // R24OX CAREERS-ENDING-1: Merywood ending structure kept (final + .mwc-talk/.mwc-wts), staff cards removed.
+    ok(d.talk && d.wts === 3 && d.hr === 0 && !/merywood|linkedin|olga|alina|€|salary from|careers@/i.test(d.text), tag + " " + job.route + " source ending with BIO-A text, no Merywood people/pay text");
+    ok(d.sections === 3 && d.gated === 5, tag + " " + job.route + " 3 sections, 5 owner-gated parts (" + d.sections + "/" + d.gated + ")");
+    ok(d.cta === "mailto:contact@bioagroup.vn", tag + " " + job.route + " ending e-mail row = BIO-A contact");
     ok(d.langs[0] === careerPath(job.route, "vi") && d.langs[1] === careerPath(job.route, "en"), tag + " " + job.route + " language switch");
     ok(d.canonical === "https://bioagroup.vn" + careerPath(job.route, lang), tag + " " + job.route + " canonical");
     await page.goto(base + d.back, { waitUntil: "load" });

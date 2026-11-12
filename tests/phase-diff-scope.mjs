@@ -50,7 +50,12 @@ const SCOPES = {
   R24FD: [[/\.html$/, "link#contact-form-7-css, script#modal-js, script#input-js"],
     [/\.html$/, 'script[id^="mw-wac-tracker-js"], script#wp-emoji-settings, script:contains("mw-guard"), script:contains("script#wp-emoji-settings")'],
     [/\.html$/, ".footer-top__menu"], [/^(en\/)?about\/index\.html$/, ".mwa-team__btn"],
-    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]]
+    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]],
+  // R24OX (owner-reported fixes 2026-11-12): FONT-SOURCE-1 new main.css URL (file rule below), FORM-LABEL-1 VI submit
+  // label, CAREERS-ENDING-1 detail article, COOKIE-WORDING-1 policy body, About CTA title word joiner.
+  R24OX: [[/\.html$/, "link#main-css"], [/\.html$/, "#get-a-quote .cf-modal__button"],
+    [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"],
+    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, ".mwc-single"], [/^(en\/)?about\/index\.html$/, ".mwa-cta__title"]]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
@@ -87,6 +92,11 @@ for (const f of new Set([...a, ...b])){
       && /^(en\/)?(careers|tuyen-dung-rd|tuyen-dung-nv-sales)\/index\.html$/.test(f)){ changed.push(f + " [redirect stub -> contacts]"); continue; }
   if (phases.includes("R24CL") && f === "assets/runtime/merywood-main.js"){ // CLEANUP-1: comment removal only
     if (stripCyrillicJsComments(x.toString("utf8")) === y.toString("utf8")) changed.push(f + " [Cyrillic comments removed]"); else fails.push(f + ": changed beyond comment removal");
+    continue; }
+  if (phases.includes("R24OX") && f === "assets/runtime/merywood-main.css"){ // FONT-SOURCE-1: only the 6 static Manrope @font-face removed
+    const before = x.toString("utf8"), after = y.toString("utf8");
+    const faces = before.match(/@font-face\s*\{[^}]*\}/g) || [];
+    if (faces.length === 6 && before.replace(/@font-face\s*\{[^}]*\}/g, "") === after) changed.push(f + " [6 static Manrope @font-face removed]"); else fails.push(f + ": changed beyond the @font-face removal");
     continue; }
   if (!f.endsWith(".html")){ fails.push(f + ": non-HTML file changed"); continue; }
   const sels = scope.filter(([re]) => re.test(f)).map(([, s]) => s);
