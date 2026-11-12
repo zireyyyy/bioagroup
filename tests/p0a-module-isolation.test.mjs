@@ -45,7 +45,9 @@ const APPROVED = [
   // R24OY (owner 2026-11-12): CTA-ARROW-1 contact CTA [text + arrow] in its Home and Blog owners.
   { sha: "a076c023e6370cf54d53d63f22009b40da19ffb1", phase: "R24OY", files: ["bioa-blog-refine.mjs", "bioa-home-refine.mjs"] },
   // R24RC (release readiness 2026-11-12): CTA-TYPE-1 desktop contact CTA label/arrow scale (transform style owner).
-  { sha: "a045cf635c5010eb6e53074099160bc6e1df823b", phase: "R24RC", files: ["bioa-transform.mjs"] }
+  { sha: "a045cf635c5010eb6e53074099160bc6e1df823b", phase: "R24RC", files: ["bioa-transform.mjs"] },
+  // R24RC FORM-BTN-TYPE-1: quote form submit label 16px (transform style owner).
+  { sha: "7df2e793d05c5d60b11b0411587f985964ee4f3d", phase: "R24RC", files: ["bioa-transform.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 

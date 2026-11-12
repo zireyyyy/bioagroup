@@ -26,12 +26,12 @@ Method: in a real browser, every visible icon signature (inline SVG path, icon i
 |---|---|---|
 | MOCK PASS | lead-form probe 36/36 (3 routes × 3 widths × 4 server answers; no request leaves the browser) | `release-rc/qa/lead.log` |
 | STAGING PASS (R24OX, form and endpoint code unchanged since) | real Chrome → `/api/lead` (Pages Functions from this repo, `wrangler pages dev`) → local D1: validation, consent, honeypot, idempotency, rate limit 429, Turnstile enforcement (rejects tokens without action `bioa_lead` + matching host), rows stored with IP hash only, success text only after `ok:true`; Sheets/Resend `not_configured` there | `owner-fix-ox/results/form-api-d1-results.txt` |
-| **REAL E2E (Production D1 → Google Sheets → e-mail)** | **NOT VERIFIED** | needs owner approval (see §5) |
+| **REAL E2E PASS (Production, 2026-11-12, owner-approved)** | owner submitted "QA TEST – please delete" on bioagroup.vn (owner session, maintenance ON): success message; Production D1 row `bioa_MmD16AOJ6H3Y` 09:29:19Z, consent stored, 43-char IP hash, `sheet_status=sent`, `email_status=sent`; Google Sheet row confirmed by owner screenshot; notification e-mail confirmed by owner | read-only D1 query by name; owner screenshots |
 | Turnstile on Production | widget + secret configured in Production; preview hosts and maintenance lock `/api` (503 by design) | Pages config read 2026-11-11 |
 
 ## 4. Release blockers / open conditions (no change made without approval)
 1. **Maintenance** — ON (`BIOA_SITE_MODE=maintenance`); switching off is a separate owner decision.
-2. **Lead real E2E** — not verified (§3).
+2. **Lead real E2E** — PASS (§3). Test row still in Production D1 and in the Sheet: delete after owner approval.
 3. **Privacy/Cookie** — shortened text (R24OY) still needs owner/counsel approval; company items L-1 (registered legal name), L-2 (retention period), L-4 (cross-border transfer impact dossier, Law 91 Art. 20 — company obligation), L-5 (privacy contact).
 4. **Careers** — 3 sample roles; pay/benefits, location/work type and application channel still "to be confirmed"; owner decides publish/hide.
 5. **Domain** — `www.bioagroup.vn` returns **522**: only the apex `bioagroup.vn` is attached to the Pages project. Owner action: add `www` as a Pages custom domain or a www→apex redirect rule (DNS/Cloudflare setting, not changed here).
@@ -55,3 +55,7 @@ Method: in a real browser, every visible icon signature (inline SVG path, icon i
 | Chat UI | 59/60 in the run: `/en/contacts/ @768` failed only because the embedded Google Map sent its own telemetry POST (`maps.googleapis.com/maps_api_js_slo/log`); rerun on the same build 60/60 |
 | Lead form (mock) | 36/36 |
 | Tablet suites (browser smoke, services Swiper, Blog TOC, Contacts/404, full route audit) | PASS |
+
+## 7. Form submit + sitewide control text audit (FORM-BTN-TYPE-1, owner 2026-11-12)
+- Owner: the "Gửi yêu cầu" label was smaller than the inputs. Measured: BIO-A 56px submit with 12px (1440), 13px (Tablet, forced by the input rule because the submit is an `input`), 15px (390); inputs 14.25 / 13 / 14px. Merywood label/box ratio 0.29 → **16px** at all widths; Tablet input rule now excludes `[type=submit]`. Verified 1440/1201/1200/1024/834/769/768/390 (`release-rc/modal-*.png`).
+- Sitewide audit (`release-rc/control-text-audit.txt|json`): 345 control rows (buttons, CTAs, inputs, dropdowns, pills, pagination, modal) on 10 page groups × 1440/1024/834/390 vs the Merywood source. Flagged differences after the fix are all owner-PASS BIO-A customs, left unchanged: Header "Nhận tư vấn" 42px (canonical CTA), modal inputs and Blog TOC CTA larger text on Tablet (readability patches), Blog pagination 36px on mobile, product-format tabs 47px (ratio 0.30), chat launcher/send/copy icon buttons (no text).
