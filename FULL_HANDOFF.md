@@ -1,6 +1,13 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
+## R24OY — OWNER PATCH 2026-11-12 (local commits, NOT pushed — owner push order required)
+- **Commits:** `a076c02` (code), `b37a948` (approval/gate), docs commit.
+- **CTA-ARROW-1:** contact CTA "Liên hệ với chúng tôi" (Home + Dịch Vụ Khác block, Blog TOC on every article) = text + source arrow after it, no Zalo icon (owner-PASS "Nhận tư vấn ↗" structure); links unchanged. Sitewide button audit: all other CTAs already text + arrow or source-owned (formats CTA icon-first as Merywood; Contacts "Nhắn Zalo" channel button kept).
+- **LEGAL-B3:** Privacy 8 short sections, Cookie 4; no provider list, storage names or infrastructure detail; recipient categories and servers abroad still disclosed.
+- **Frozen QA build:** `D:\BIOA_WORKSPACE\QA_EVIDENCE\dist-final-oy`; evidence `D:\BIOA_WORKSPACE\_reports\owner-fix-oy\`.
+- `main` stays `9057e79` until the owner orders the push.
+
 ## R24OX — OWNER-REPORTED FIXES 2026-11-12 (owner visual QA pending)
 - **Commits:** `e0618e6` (code), `8dddeb0` (approval/tests), docs commit. Details `docs/OWNER_FIXES_R24OX.md`.
 - **FONT-SOURCE-1 (root cause of icon/arrow + "titles too large"):** served `main.css` no longer declares the six static Manrope faces on merywood.com (no CORS → Arial fallback for weights 400–700 on every page). Google Manrope Variable is now the only source: 100% Manrope glyphs (before: About 98% Arial). Sitewide visual change → owner visual QA.

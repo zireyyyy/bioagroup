@@ -21,6 +21,12 @@ Mở `http://127.0.0.1:4173/` bằng Chrome và để cửa sổ PowerShell mở
 
 Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/video, route, VI/EN, viewport và một câu mô tả (dùng mẫu ở cuối file).
 
+## A00000. Patch R24OY 2026-11-12 — kiểm tra trước tiên
+| # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
+|---|---|---|---|---|---|
+| OY-1 | CTA «Liên hệ với chúng tôi» | Trang chủ, Dịch Vụ Khác, mục lục mọi bài Blog (VI/EN) | 1440 · 834 · 390 | Chữ + mũi tên ↗ phía sau, không còn icon Zalo; bấm vẫn mở Zalo | |
+| OY-2 | Privacy / Cookie | 4 trang VI/EN | 1440 · 390 | Ngắn gọn, không còn tên dịch vụ kỹ thuật / khóa lưu trữ / hạ tầng | |
+
 ## A0000. Sửa lỗi OWNER báo R24OX 2026-11-12 — kiểm tra trước tiên
 | # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
 |---|---|---|---|---|---|
