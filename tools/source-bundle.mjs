@@ -60,9 +60,17 @@ const EXTRA_RUNTIME = { modal: "src", input: "src", cf7css: "href" };
 
 export function runtimeFiles(dir = bundleDir()){
   const { css, js } = manifest.runtime;
-  const cssText = readVerified(dir, css).toString("utf8")
+  let cssText = readVerified(dir, css).toString("utf8")
     .replace(/url\((['"]?)\.\.\//g, (m, q) => "url(" + q + css.relativeBase);
   if (/url\((['"]?)\.\.?\//.test(cssText)) throw new Error("RUNTIME PIN: unresolved relative url() left in main.css");
+  // R24OX FONT-SOURCE-1 (owner font policy: Google Fonts Manrope Variable 200..800 is the only Manrope source):
+  // main.css declares six static Manrope faces (300-800) on merywood.com. That server sends no CORS header, so
+  // every cross-origin page (bioagroup.vn included) fails to load them; because they match weights 400/500/600/700
+  // exactly, the browser picked them and fell back to Arial. They are removed from the served copy only.
+  const fontFaces = cssText.match(/@font-face\s*\{[^}]*\}/g) || [];
+  if (fontFaces.length !== 6 || !fontFaces.every(f => /font-family:\s*"Manrope"/.test(f) && /merywood\.com\/wp-content\/themes\/mery-wood\/assets\/fonts\/Manrope\/static\//.test(f)))
+    throw new Error("RUNTIME PIN: main.css @font-face set changed (expected the 6 static Manrope faces)");
+  cssText = cssText.replace(/@font-face\s*\{[^}]*\}/g, "");
   // CLEANUP-1: the verified bytes are checked above; only comments containing Cyrillic are removed from the served copy.
   const jsBuf = Buffer.from(stripCyrillicJsComments(readVerified(dir, js).toString("utf8"), "runtime main.js"), "utf8");
   const v = s => sha256(s).slice(0, 12);

@@ -199,8 +199,12 @@ const T = {
     placeTitle: "Địa điểm & hình thức làm việc",
     place: "Địa điểm, hình thức và thời gian làm việc sẽ được xác nhận khi vị trí mở tuyển chính thức.",
     applyTitle: "Cách ứng tuyển",
-    apply: "Bio-A Group hiện chưa mở nhận hồ sơ trực tuyến cho vị trí này. Khi vị trí mở tuyển chính thức, cách thức ứng tuyển sẽ được cập nhật tại trang này. Bạn có thể liên hệ Bio-A Group để được thông tin thêm.",
-    contact: "Liên hệ Bio-A Group",
+    apply: "Bio-A Group hiện chưa mở nhận hồ sơ trực tuyến cho vị trí này. Khi vị trí mở tuyển chính thức, cách thức ứng tuyển sẽ được cập nhật tại trang này.",
+    talkTitle: "Tìm hiểu thêm về vị trí",
+    talkText: "Bạn quan tâm đến vị trí này? Hãy liên hệ Bio-A Group để trao đổi thêm và nhận thông tin khi vị trí mở tuyển chính thức.",
+    wtsTitle: "Khi liên hệ, vui lòng cho biết",
+    wts: ["Vị trí bạn quan tâm.", "Đôi nét về kinh nghiệm và mong muốn của bạn.", "Cách Bio-A Group có thể liên hệ lại với bạn."],
+    wtsNote: "Vui lòng ghi tên vị trí trong tiêu đề email. Đây chưa phải hồ sơ ứng tuyển chính thức: Bio-A Group sẽ thông báo cách ứng tuyển khi vị trí được mở.",
     listTitle: "Tuyển dụng Bio-A Group",
     listDesc: "Các nhóm vị trí công việc tại Bio-A Group – Nhà Máy Sản Xuất Dược Mỹ Phẩm: kinh doanh B2B, R&D mỹ phẩm và sản xuất mỹ phẩm.",
     jobSuffix: "Tuyển dụng Bio-A Group"
@@ -226,8 +230,12 @@ const T = {
     placeTitle: "Location & work type",
     place: "Location, work type and working hours will be confirmed when the role officially opens.",
     applyTitle: "How to apply",
-    apply: "Bio-A Group is not accepting online applications for this role yet. When the role officially opens, the way to apply will be published on this page. You can contact Bio-A Group for more information.",
-    contact: "Contact Bio-A Group",
+    apply: "Bio-A Group is not accepting online applications for this role yet. When the role officially opens, the way to apply will be published on this page.",
+    talkTitle: "Learn more about this role",
+    talkText: "Interested in this role? Contact Bio-A Group to talk it through and hear when the role officially opens.",
+    wtsTitle: "When you get in touch, please include",
+    wts: ["The role you are interested in.", "A few words about your experience and what you are looking for.", "How Bio-A Group can contact you back."],
+    wtsNote: "Please add the role title to your email subject line. This is not yet a formal application: Bio-A Group will publish how to apply when the role opens.",
     listTitle: "Careers at Bio-A Group",
     listDesc: "Roles at Bio-A Group, a cosmetic and cosmeceutical manufacturing factory: B2B sales, cosmetic R&D and cosmetic production.",
     jobSuffix: "Careers at Bio-A Group"
@@ -235,7 +243,6 @@ const T = {
 };
 
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-const contactsPath = lang => lang === "en" ? "/en/contacts/" : "/contacts/";
 
 function setEmailRows($, t){
   $(".mwc-hrcard__email").attr("href", "mailto:" + BUSINESS.email).html(esc(BUSINESS.email));
@@ -389,17 +396,23 @@ export function applyCareersDetail($, route, lang){
   setText(sections.eq(1), t.placeTitle, t.place);
   sections.slice(2).remove();
 
+  // R24OX CAREERS-ENDING-1 (owner 2026-11-12): the ending keeps the Merywood source structure — final section
+  // (title, text, e-mail row) followed by .mwc-talk (title, text, .mwc-wts card) — with BIO-A content. Only the
+  // Merywood staff cards (.mwc-hrgrid: names, photos, LinkedIn) are removed. Nothing claims applications are open.
   const fin = single.find(".mwc-final").attr("data-owner-approval", "required");
+  if (!fin.find(".mwc-final__emailrow").length) throw new Error("CAREERS: Merywood final e-mail row missing");
   fin.find(".mwc-section__title").text(t.applyTitle);
-  fin.find("p").remove();
-  fin.find(".mwc-final__emailrow").remove(); // the contact e-mail is already in the page head
-  fin.find(".mwc-section__title").after("<p>" + esc(t.apply) + "</p>" +
-    '<a class="btn mwc-final__btn" href="' + contactsPath(lang) + '"><span class="btn__text">' + esc(t.contact) +
-    '</span><i class="icon btn__icon arrow"></i></a>');
+  fin.find("p").first().text(t.apply);
+  fin.find("p").slice(1).remove();
 
-  // Merywood people (names, photos, LinkedIn) and the "what to send" application box are removed:
-  // they are another company's staff and BIO-A has no confirmed application channel.
-  single.find(".mwc-talk").remove();
+  const talk = single.find(".mwc-talk").attr("data-owner-approval", "required");
+  if (!talk.find(".mwc-wts").length) throw new Error("CAREERS: Merywood .mwc-talk/.mwc-wts missing");
+  talk.find(".mwc-talk__title").text(t.talkTitle);
+  talk.find(".mwc-talk__text").text(t.talkText);
+  talk.find(".mwc-wts__title").text(t.wtsTitle);
+  talk.find(".mwc-wts .mwc-list").html(t.wts.map(li => "<li>" + esc(li) + "</li>").join(""));
+  talk.find(".mwc-wts__note").text(t.wtsNote);
+  talk.find(".mwc-hrgrid").remove();
   setEmailRows($, t);
   fixScripts($);
   setMeta($, j.title + " | " + t.jobSuffix, j.desc);

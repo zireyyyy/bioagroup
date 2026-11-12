@@ -6,7 +6,8 @@
 //   - the quote form sends name, phone/e-mail, selected products/services, language, page, consent time;
 //     functions/api/lead.js keeps an HMAC hash of the IP (never the raw IP), Turnstile verifies the form;
 //     deliveries: Cloudflare D1 (source of truth), optional Google Sheets copy, optional Resend e-mail;
-//   - browser storage: localStorage mw_consent_v2 / bioa_cookie_decided_v1 (after a cookie choice),
+//   - browser storage (described in plain words on the page, R24OX COOKIE-WORDING-1): localStorage
+//     mw_consent_v2 / bioa_cookie_decided_v1 (after a cookie choice),
 //     sessionStorage is_first_visit / initial_referrer / landing_page (never sent to the server); no HTTP
 //     cookies are set by the site itself; no analytics/advertising script is loaded;
 //   - third parties contacted: Google Fonts, Cloudflare (hosting, Turnstile, cdnjs), get.geojs.io, Google Maps
@@ -16,7 +17,7 @@
 // and the provider list at go-live are owner decisions (docs/LEGAL_POLICY_APPROVAL.md) before Production.
 import { BUSINESS as B } from "./bioa-business.mjs";
 
-const UPDATED = { vi: "11/11/2026", en: "11 November 2026" };
+const UPDATED = { vi: "12/11/2026", en: "12 November 2026" };
 const mail = `<a href="mailto:${B.email}">${B.email}</a>`;
 const tel = `<a href="${B.phoneHref}">${B.phone}</a>`;
 const site = B.domain.replace("https://", "");
@@ -142,12 +143,12 @@ const T = {
   cookie: {
     vi: { title: "Chính sách cookie", lead: `Cập nhật lần cuối: ${UPDATED.vi}.`, sections: [
       ["1. Cookie là gì", [
-        `1.1. Cookie và các công nghệ lưu trữ tương tự (localStorage, sessionStorage) là dữ liệu nhỏ được lưu trên trình duyệt của bạn. Chính sách này liệt kê những gì website ${site} lưu và các dịch vụ bên thứ ba được tải khi bạn xem website.`,
+        `1.1. Cookie và các công nghệ lưu trữ tương tự là dữ liệu nhỏ được lưu trên trình duyệt của bạn. Chính sách này cho biết website ${site} lưu những gì và các dịch vụ bên thứ ba nào được tải khi bạn xem website.`,
         `1.2. Cách chúng tôi xử lý dữ liệu cá nhân được trình bày tại <a href="/privacy-policy/">Chính sách bảo mật</a>.`]],
       ["2. Dữ liệu website lưu trên trình duyệt", [
-        "2.1. Website không tự đặt cookie HTTP. Chúng tôi chỉ dùng bộ nhớ trình duyệt cho các mục cần thiết sau:" + br([
-          "<strong>Lựa chọn cookie</strong> (localStorage <code>mw_consent_v2</code>, <code>bioa_cookie_decided_v1</code>): ghi nhớ lựa chọn của bạn trong hộp «Quản lý cookie»; lưu đến khi bạn xóa dữ liệu trình duyệt;",
-          "<strong>Thông tin phiên truy cập</strong> (sessionStorage <code>is_first_visit</code>, <code>initial_referrer</code>, <code>landing_page</code>): trang đầu tiên và nguồn truy cập trong phiên hiện tại; chỉ nằm trên trình duyệt, không được gửi tới máy chủ của chúng tôi và tự xóa khi bạn đóng tab."])]],
+        "2.1. Website không tự đặt cookie. Chúng tôi chỉ lưu trên trình duyệt của bạn những thông tin cần thiết để duy trì trải nghiệm:" + br([
+          "<strong>Lựa chọn cookie của bạn</strong>: để website không hỏi lại mỗi lần bạn truy cập; được lưu cho đến khi bạn xóa dữ liệu trình duyệt;",
+          "<strong>Thông tin phiên truy cập</strong>: trang đầu tiên bạn mở và nguồn đưa bạn đến website (ví dụ công cụ tìm kiếm); chỉ nằm trên trình duyệt, không được gửi tới máy chủ của chúng tôi và tự xóa khi bạn đóng tab."])]],
       ["3. Cookie thống kê và quảng cáo", [
         "3.1. Hiện website không sử dụng cookie thống kê, cookie quảng cáo hay công cụ theo dõi hành vi. Các lựa chọn «Thống kê» và «Tiếp thị» trong hộp «Quản lý cookie» chưa kích hoạt dịch vụ nào.",
         "3.2. Nếu sau này sử dụng các công cụ này, chúng tôi sẽ cập nhật chính sách trước và chỉ kích hoạt khi bạn đồng ý."]],
@@ -169,12 +170,12 @@ const T = {
     ]},
     en: { title: "Cookie Policy", lead: `Last updated: ${UPDATED.en}.`, sections: [
       ["1. WHAT COOKIES ARE", [
-        `1.1. Cookies and similar storage technologies (localStorage, sessionStorage) are small pieces of data kept in your browser. This policy lists what ${site} stores and which third-party services load while you browse.`,
+        `1.1. Cookies and similar storage technologies are small pieces of data kept in your browser. This policy explains what ${site} stores and which third-party services load while you browse.`,
         `1.2. How we handle personal data is explained in the <a href="/en/privacy-policy/">Privacy Policy</a>.`]],
       ["2. WHAT THE WEBSITE STORES IN YOUR BROWSER", [
-        "2.1. The website does not set HTTP cookies itself. It uses browser storage only for these necessary items:" + br([
-          "<strong>Cookie choice</strong> (localStorage <code>mw_consent_v2</code>, <code>bioa_cookie_decided_v1</code>): remembers your choice in «Cookie settings»; kept until you clear your browser data;",
-          "<strong>Visit information</strong> (sessionStorage <code>is_first_visit</code>, <code>initial_referrer</code>, <code>landing_page</code>): the first page and the source of the current visit; stays in your browser, is not sent to our server and is cleared when you close the tab."])]],
+        "2.1. The website does not set cookies itself. It only keeps in your browser the information needed to keep your experience consistent:" + br([
+          "<strong>Your cookie choice</strong>: so the website does not ask again on every visit; kept until you clear your browser data;",
+          "<strong>Visit information</strong>: the first page you opened and what brought you to the website (for example a search engine); stays in your browser, is not sent to our server and is cleared when you close the tab."])]],
       ["3. ANALYTICS AND ADVERTISING COOKIES", [
         "3.1. The website does not currently use analytics cookies, advertising cookies or behavioural tracking. The «Statistics» and «Marketing» options in «Cookie settings» do not switch on any service.",
         "3.2. If we start using such tools, we will update this policy first and enable them only with your consent."]],

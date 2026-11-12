@@ -637,7 +637,8 @@ function simplifyConsultationModal($,lang){
 
   // Preserve source Merywood consent checkbox, full agreement text and Privacy Policy link.
 
-  form.find('.cf-modal__button').attr('value','Send');
+  // R24OX FORM-LABEL-1 (owner 2026-11-12): VI submit label; EN keeps the source "Send".
+  form.find('.cf-modal__button').attr('value',vi?'Gửi yêu cầu':'Send');
 
   // Disable old Merywood lead-capture script; it is not Bio-A storage.
   $('script').each((_,el)=>{

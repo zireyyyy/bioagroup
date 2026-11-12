@@ -256,7 +256,9 @@ function setAboutCta($,lang){
   const sec=$(".mwa-cta-wrap").first();
   if(!sec.length)return;
 
-  text(sec,".mwa-cta__title",vi?"Sẵn Sàng Phát Triển Sản Phẩm Cùng Bio-A Group?":"Ready to Develop Your Product With Bio-A Group?");
+  // R24OX FONT-SOURCE-1 follow-up: with the real Manrope face the VI title broke after "Bio-"; U+2060 (word joiner,
+  // invisible) keeps "Bio-A" on one line. Visible text unchanged.
+  text(sec,".mwa-cta__title",vi?"Sẵn Sàng Phát Triển Sản Phẩm Cùng Bio-\u2060A Group?":"Ready to Develop Your Product With Bio-\u2060A Group?");
   text(sec,".mwa-cta__text",vi
     ?"Chia sẻ ý tưởng, nhóm sản phẩm và mục tiêu dự án để đội ngũ Bio-A Group tư vấn lộ trình phù hợp."
     :"Share your product idea and project goals so the Bio-A Group team can recommend a suitable development path.");
