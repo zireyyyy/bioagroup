@@ -1,6 +1,13 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
+## R24OX — OWNER-REPORTED FIXES 2026-11-12 (owner visual QA pending)
+- **Commits:** `e0618e6` (code), `8dddeb0` (approval/tests), docs commit. Details `docs/OWNER_FIXES_R24OX.md`.
+- **FONT-SOURCE-1 (root cause of icon/arrow + "titles too large"):** served `main.css` no longer declares the six static Manrope faces on merywood.com (no CORS → Arial fallback for weights 400–700 on every page). Google Manrope Variable is now the only source: 100% Manrope glyphs (before: About 98% Arial). Sitewide visual change → owner visual QA.
+- **CAREERS-ENDING-1**, **COOKIE-WORDING-1** (no technical names on the page), **FORM-LABEL-1** (VI "Gửi yêu cầu"), About CTA title word joiner.
+- **Form/API:** FORM UI + API CONTRACT + D1 PERSISTENCE PASS on local staging (`wrangler pages dev`, local D1, fake data). Production D1/Sheets: NOT VERIFIED (needs owner permission). Preview hosts and maintenance return 503 on `/api` by design.
+- **Frozen QA build:** `D:\BIOA_WORKSPACE\QA_EVIDENCE\dist-final-ox`; before `dist-before-ox`; evidence `D:\BIOA_WORKSPACE\_reports\owner-fix-ox\`.
+
 ## R24FD-PUSH — PRIVATE BUILD SOURCE + PRODUCTION PUSH 2026-11-11 (owner-authorized)
 - **GitHub `main` = `a14aba2`** (fast-forward `cb4e92f` → `55cf516` → `a14aba2`; no force). `a14aba2` only pins the CI runner to `ubuntu-24.04` (Playwright 1.56.1 has no Chromium for `ubuntu-latest` = 26.04; no test skipped).
 - **Private build source:** Workers KV namespace `BIOA_SOURCE_BUNDLE` (private, binding-only) holds `bioa-source-bundle-p0b1-v2.json.gz` (sha256 `59a39c6f…`); Worker `bioa-source-bundle` (account `b6e49b2d…`, workers.dev) serves only `GET /bundle` with `Authorization: Bearer` = Worker secret `BUNDLE_TOKEN` (constant-time compare; else 403/404). R2 is not enabled on the account.

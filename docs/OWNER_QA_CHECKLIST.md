@@ -21,6 +21,14 @@ Mở `http://127.0.0.1:4173/` bằng Chrome và để cửa sổ PowerShell mở
 
 Mỗi dòng ghi **PASS**, **FAIL** hoặc để trống. Khi FAIL, gửi ảnh/video, route, VI/EN, viewport và một câu mô tả (dùng mẫu ở cuối file).
 
+## A0000. Sửa lỗi OWNER báo R24OX 2026-11-12 — kiểm tra trước tiên
+| # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
+|---|---|---|---|---|---|
+| OX-1 | Font toàn site | mọi trang VI/EN | 1440 · 1024 · 834 · 390 | Chữ hiển thị Manrope như Merywood (trước đây phần lớn là Arial); mũi tên ↓ ‹ ↗ giống Merywood; bố cục không vỡ | |
+| OX-2 | Kết bài tuyển dụng | 3 bài VI/EN | 1440 · 834 · 390 | «Cách ứng tuyển» + email, rồi «Tìm hiểu thêm về vị trí» với card hướng dẫn; không có nhân sự Merywood | |
+| OX-3 | Chính sách cookie | `/cookie-policy/` (+EN) | 1440 · 390 | Không còn tên kỹ thuật (mw_consent…, localStorage…) | |
+| OX-4 | Nút form | Home/Contacts | 1440 · 390 | VI «Gửi yêu cầu», EN «Send». Trên link preview `*.pages.dev` form báo «Chưa gửi được» là đúng thiết kế (API bị khóa) | |
+
 ## A000. Bàn giao cuối R24FD 2026-11-11 (Careers, Privacy/Cookie, runtime) — kiểm tra trước tiên
 | # | Mục | Trang | Màn hình | Kỳ vọng | Kết quả |
 |---|---|---|---|---|---|
