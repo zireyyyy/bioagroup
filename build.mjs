@@ -18,6 +18,7 @@ import { applyCareersList, applyCareersDetail, careerRouteDefs, isCareerDetail }
 import { applySourceHygiene, removeUnusedCf7Scripts } from "./bioa-source-hygiene.mjs";
 import { loadSource, verifyBundle, assertNoCrawlerRefs, runtimeFiles, pinRuntime } from "./tools/source-bundle.mjs";
 import { vendorFiles, pinVendor } from "./tools/vendor-runtime.mjs";
+import { applyCms, CMS, CMS_ASSET_DIR } from "./bioa-cms.mjs";
 
 // P0A: source HTML comes from the verified, pinned bundle (source-manifest.json),
 // never from the live Merywood site.
@@ -400,6 +401,7 @@ async function buildOne(route,sourceRoute){
     applyIdentityFixes($);
     applySourceHygiene($,lang,localPath(route,lang));
     removeUnusedCf7Scripts($,localPath(route,lang));
+    applyCms($,localPath(route,lang),lang); // CMS-R25: published Sanity data only; no-op without .cms/snapshot.json
 
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
@@ -432,6 +434,7 @@ async function build(){
   await fs.writeFile(path.join(OUT,"en","404.html"),renderNotFound("en"));
 
   await fs.cp("assets",path.join(OUT,"assets"),{recursive:true});
+  if(CMS&&(await fs.readdir(CMS_ASSET_DIR).catch(()=>[])).length)await fs.cp(CMS_ASSET_DIR,path.join(OUT,"assets","cms"),{recursive:true});
   for(const f of [...runtime,...vendor]){
     await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
     await fs.writeFile(path.join(OUT,f.out),f.body);

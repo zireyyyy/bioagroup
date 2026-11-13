@@ -16,6 +16,7 @@
 // Identity comes from bioa-business.mjs. Not invented: registered legal name, retention periods, DPO. Those
 // and the provider list at go-live are owner decisions (docs/LEGAL_POLICY_APPROVAL.md) before Production.
 import { BUSINESS as B } from "./bioa-business.mjs";
+import { cmsLegal } from "./bioa-cms.mjs";
 
 const UPDATED = { vi: "12/11/2026", en: "12 November 2026" };
 const mail = `<a href="mailto:${B.email}">${B.email}</a>`;
@@ -114,12 +115,16 @@ const T = {
   }
 };
 
+// CMS-R25: exported for tools/cms-seed.mjs (initial import of the current texts into Sanity).
+export const LEGAL_TEXT = T;
+
 export function applyLegalPages($, route, lang){
   const kind = route === "/privacy-policy/" ? "privacy" : route === "/cookie-policy/" ? "cookie" : null;
   if (!kind) return;
   const wrap = $(".wysiwyg-wrapper section.policy-wrapper").first();
   if (!wrap.length) throw new Error("LEGAL-B2: policy-wrapper not found on " + route);
-  const t = T[kind][lang === "en" ? "en" : "vi"];
+  // CMS-R25: a Sanity legal text is used only when it was published with the owner approval stamp.
+  const t = cmsLegal(kind, lang === "en" ? "en" : "vi") || T[kind][lang === "en" ? "en" : "vi"];
   // Same source classes and article pattern as the Merywood policy markup (numbered p.policy-text clauses).
   let html = `<h1 class="policy-title">${t.title}</h1><p class="policy-text">${t.lead}</p>`;
   for (const [h, ps] of t.sections){

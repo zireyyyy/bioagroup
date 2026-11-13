@@ -1,0 +1,25 @@
+{
+  "name": "bioagroup-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "BIO-A Group content studio (Sanity). Separate from the website build; the site reads published content at build time.",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": { "node": ">=22.12" },
+  "dependencies": {
+    "@sanity/vision": "6.21.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sanity": "6.21.0",
+    "styled-components": "6.1.19"
+  },
+  "devDependencies": {
+    "@types/react": "19.2.7",
+    "typescript": "5.9.3"
+  }
+}

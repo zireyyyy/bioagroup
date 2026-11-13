@@ -7,8 +7,11 @@
 // location, work type and the application channel are NOT invented (data-owner-approval="required").
 // This module must not import bioa-transform.mjs (bioa-transform imports CAREER_VI_PATHS from here).
 import { BUSINESS } from "./bioa-business.mjs";
+import { mergeCmsCareers } from "./bioa-cms.mjs";
 
-export const CAREER_JOBS = [
+// Repository roles. CMS-R25: published Sanity roles replace/extend them (status draft|sample|open|closed);
+// a role without a status renders as "sample" (owner-gated details neutral), exactly as before.
+export const REPO_CAREER_JOBS = [
   {
     route: "/careers/b2b-sales-executive/", vi: "/tuyen-dung/nhan-vien-kinh-doanh-b2b/", cat: "sales",
     image: "https://merywood.com/wp-content/uploads/2026/07/vac1-1024x683.webp",
@@ -162,6 +165,7 @@ export const CAREER_JOBS = [
     }
   }
 ];
+export const CAREER_JOBS = mergeCmsCareers(REPO_CAREER_JOBS);
 
 // Single path authority for Careers (used by bioa-transform localPath, Header lang links, redirects).
 export const CAREER_VI_PATHS = Object.freeze(Object.fromEntries([
@@ -187,6 +191,7 @@ const T = {
     rolesTitle: "Cùng Bio-A Group phát triển",
     rolesSub: "Thông tin tuyển dụng chính thức (thời gian, địa điểm, chế độ) sẽ được cập nhật khi vị trí được mở.",
     pending: "Chi tiết đang cập nhật",
+    closed: "Đã ngừng tuyển",
     more: "Xem chi tiết",
     ctaTitle: "Đồng hành cùng Bio-A Group",
     ctaText: "Chưa thấy vị trí phù hợp? Hãy liên hệ Bio-A Group để được thông tin khi có đợt tuyển dụng chính thức.",
@@ -218,6 +223,7 @@ const T = {
     rolesTitle: "Grow with Bio-A Group",
     rolesSub: "Official hiring details (timing, location and terms) will be published when a role opens.",
     pending: "Details to be confirmed",
+    closed: "Position closed",
     more: "Read more",
     ctaTitle: "Work with Bio-A Group",
     ctaText: "Not seeing the right role? Contact Bio-A Group to hear about official hiring rounds.",
@@ -336,11 +342,13 @@ export function applyCareersList($, lang){
   const grid = $("#mwc-grid");
   const cardTpl = grid.find(".mwc-card").first().clone();
   grid.empty();
-  for (const job of CAREER_JOBS){
+  for (const job of CAREER_JOBS.filter(x => x.status !== "closed")){
     const j = job.t[lang];
     const card = cardTpl.clone().attr("href", careerPath(job.route, lang)).attr("data-cat", job.cat);
     card.find(".mwc-card__img").attr("style", "background-image:url('" + job.image + "');");
-    card.find(".mwc-card__loc").text(t.pending).attr("data-owner-approval", "required");
+    const loc = card.find(".mwc-card__loc");
+    if (job.status === "open") loc.text(j.badge).removeAttr("data-owner-approval");
+    else loc.text(t.pending).attr("data-owner-approval", "required");
     card.find(".mwc-card__tag").text(CATS[lang][job.cat]);
     card.find(".mwc-card__title").text(j.title);
     card.find(".mwc-card__desc").text(j.desc);
@@ -370,7 +378,10 @@ export function applyCareersDetail($, route, lang){
 
   single.find(".mwc-back").attr("href", careerPath("/careers/", lang)).text(t.back);
   single.find(".mwc-single__title").text(j.title);
-  single.find(".mwc-pill--outline").text(t.pending).attr("data-owner-approval", "required");
+  const open = job.status === "open";
+  const pill = single.find(".mwc-pill--outline");
+  if (open) pill.text(j.badge).removeAttr("data-owner-approval");
+  else pill.text(job.status === "closed" ? t.closed : t.pending).attr("data-owner-approval", "required");
   single.find(".mwc-pill--solid").text(CATS[lang][job.cat]);
 
   const intro = single.find(".mwc-intro");
@@ -388,31 +399,36 @@ export function applyCareersDetail($, route, lang){
   // Merywood: "What we offer" (list) + "Why join" (text) + final. BIO-A: benefits + place are owner-gated text.
   const sections = single.find(".mwc-section:not(.mwc-final)");
   const setText = (sec, title, text) => {
-    $(sec).attr("data-owner-approval", "required").find(".mwc-section__title").text(title);
+    if (open) $(sec).removeAttr("data-owner-approval"); else $(sec).attr("data-owner-approval", "required");
+    $(sec).find(".mwc-section__title").text(title);
     $(sec).children(":not(.mwc-section__title)").remove();
     $(sec).append("<p>" + esc(text) + "</p>");
   };
-  setText(sections.eq(0), t.benefitsTitle, t.benefits);
-  setText(sections.eq(1), t.placeTitle, t.place);
+  setText(sections.eq(0), t.benefitsTitle, open ? j.benefits : t.benefits);
+  setText(sections.eq(1), t.placeTitle, open ? j.place : t.place);
   sections.slice(2).remove();
 
   // R24OX CAREERS-ENDING-1 (owner 2026-11-12): the ending keeps the Merywood source structure — final section
   // (title, text, e-mail row) followed by .mwc-talk (title, text, .mwc-wts card) — with BIO-A content. Only the
   // Merywood staff cards (.mwc-hrgrid: names, photos, LinkedIn) are removed. Nothing claims applications are open.
-  const fin = single.find(".mwc-final").attr("data-owner-approval", "required");
+  const fin = single.find(".mwc-final");
+  if (open) fin.removeAttr("data-owner-approval"); else fin.attr("data-owner-approval", "required");
   if (!fin.find(".mwc-final__emailrow").length) throw new Error("CAREERS: Merywood final e-mail row missing");
   fin.find(".mwc-section__title").text(t.applyTitle);
-  fin.find("p").first().text(t.apply);
+  fin.find("p").first().text(open ? j.apply : t.apply);
   fin.find("p").slice(1).remove();
 
   const talk = single.find(".mwc-talk").attr("data-owner-approval", "required");
   if (!talk.find(".mwc-wts").length) throw new Error("CAREERS: Merywood .mwc-talk/.mwc-wts missing");
+  // CMS-R25: the talk block says the role is NOT open yet; an officially open role (owner-approved in the CMS)
+  // drops it and its "How to apply" section carries the owner's application text.
   talk.find(".mwc-talk__title").text(t.talkTitle);
   talk.find(".mwc-talk__text").text(t.talkText);
   talk.find(".mwc-wts__title").text(t.wtsTitle);
   talk.find(".mwc-wts .mwc-list").html(t.wts.map(li => "<li>" + esc(li) + "</li>").join(""));
   talk.find(".mwc-wts__note").text(t.wtsNote);
   talk.find(".mwc-hrgrid").remove();
+  if (open) talk.remove();
   setEmailRows($, t);
   fixScripts($);
   setMeta($, j.title + " | " + t.jobSuffix, j.desc);
