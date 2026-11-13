@@ -1,6 +1,6 @@
 # BIO-A — CMS-R25b Technical Review Corrections — 2026-11-13
 
-**Base:** `cms/sanity-r25` @ `2aefbea` (verified = `origin/cms/sanity-r25`; `main` = `a062d59`, untouched). Local commits only: no push in this round.
+**Base:** `cms/sanity-r25` @ `2aefbea` (verified = `origin/cms/sanity-r25`; `main` = `a062d59`, untouched). Commits `cc1f821`, `b36c2ee`, `b92c910` + this docs commit pushed to `cms/sanity-r25` with owner confirmation ("Yes, push branch"); `main` not pushed.
 **Protected and unchanged:** R24RC2 owner PASS (CMS disabled → dist byte-identical), Production `main`, maintenance, Form/Lead, VI/EN, responsive, icons, CTA, all approved UI.
 
 ## 1. Closed
@@ -18,8 +18,14 @@
 
 ## 2. Not verified / open
 
-1. **Cloudflare Preview with the R25b code:** not pushed in this round (requires owner confirmation). Live-mode Preview and the webhook were verified in R25 with the previous code; R25b live mode was verified locally against the same dataset. After a push, the Preview log must show `CMS mode: live (preview branch "cms/sanity-r25")`.
-2. **`CF_PAGES_BRANCH=main` on a real Production build:** simulated locally; it will be observed only on the first Production build after an approved merge. The value is set by Cloudflare Pages (documented build variable). With no pin, Production stays on repository content whatever the variable.
+1. ~~Cloudflare Preview with the R25b code~~ — **verified after the push**:
+   - **Defect found on the first R25b Preview build (`80466aa5`, b36c2ee):** on the Linux build image `tools/fetch-cms.mjs` did nothing. Its main-module check built `file:////opt/...`, so the Preview was built without CMS content and without an error.
+   - **Fixed in `b92c910`:** `pathToFileURL`, also applied to `tools/cms-registry.mjs`. In addition the build now stops when a Preview branch has Sanity configured, or a release is pinned, but no snapshot exists. A regression test was added (15/15).
+   - **Preview `497cb187` (b92c910):** log shows `CMS mode: live (preview branch "cms/sanity-r25")` and snapshot `8aae98c8` (= local), with no secret in the log.
+   - **Publish:** hero + tube + About image + H1 → webhook → builds `21641b28`/`2c38577d` showed the hero desktop cut + `<picture>` mobile cut, the tube on desktop and mobile, the Sachet image unchanged and the About image; image served 200 WebP.
+   - **Rollback:** builds `133620d7`/`85d25f80` made /, /en/, /about/, /en/about/, /blog/, /tuyen-dung/, /contract-manufacturing-cosmetics/ and /dich-vu-khac/ byte-identical to the R24RC2 PASS build.
+   - Preview `/api/lead` 503; Production 503. Evidence: `qa/preview-r25b-buildlog.txt`, `qa/preview-r25b-flow.txt`.
+2. **`CF_PAGES_BRANCH=main` on a real Production build:** simulated locally. The variable is confirmed present on Cloudflare builds (the Preview log names the branch); on `main` it will be observed at the first Production build after an approved merge. With no pin, Production stays on repository content whatever the variable.
 3. **Locked icon-size graphics** (GMP/HACCP marks shown at 60–70 px): locked by rule. Unlocking needs an owner decision; the change is one line in `tools/cms-registry.mjs` plus a registry regeneration.
 4. **404 page image** (`bioa-404-original.png`): outside CMS scope (owner-PASS 404 page).
 5. Studio legal approval was exercised on a QA document only; Privacy and Cookie were **not** approved. The website keeps the repository text until the owner approves them.
@@ -27,7 +33,7 @@
 ## 3. Owner actions
 
 1. Review `docs/CMS_RELEASE_PLAN.md` and approve (or reject) the pinned-release model.
-2. Confirm whether to push `cms/sanity-r25` again for the Preview acceptance of R25b.
+2. Preview acceptance on https://cms-sanity-r25.bioagroup.pages.dev (R25b is live there; content = current site).
 3. Test in Studio (checklist below).
 4. Later, separately: approve merging to `main` (Production stays byte-identical until the first release), then the first content release.
 
