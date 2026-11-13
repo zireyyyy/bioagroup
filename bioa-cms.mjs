@@ -70,6 +70,14 @@ export const CMS = fs.existsSync(CMS_SNAPSHOT) ? loadJson(CMS_SNAPSHOT) : null;
 if (CMS && !fs.existsSync("cms/registry.json")) throw new Error("CMS: snapshot present but cms/registry.json missing");
 if (CMS && CMS.version !== 2) throw new Error("CMS: unsupported snapshot version " + CMS.version + " (expected 2: per-target image files)");
 if (CMS) console.log("CMS snapshot", CMS.dataset, CMS.fetchedAt, "sha", CMS.sha);
+// CMS-R25b: never build silently without the content the environment expects (the prebuild step must have run).
+{
+  const branch = process.env.CF_PAGES_BRANCH || "", prod = process.env.BIOA_PRODUCTION_BRANCH || "main";
+  if (!CMS && process.env.BIOA_CMS !== "off" && fs.existsSync("cms/release/current.json"))
+    throw new Error("CMS: a pinned release exists but .cms/snapshot.json is missing (tools/fetch-cms.mjs did not run)");
+  if (!CMS && process.env.BIOA_CMS !== "off" && branch && branch !== prod && process.env.SANITY_PROJECT_ID)
+    throw new Error(`CMS: preview branch "${branch}" has Sanity configured but no snapshot (tools/fetch-cms.mjs did not run)`);
+}
 
 const routeToPage = new Map();
 for (const [key, p] of Object.entries(REGISTRY.pages)) if (key !== "shell"){ routeToPage.set(p.routes.vi, key); routeToPage.set(p.routes.en, key); }

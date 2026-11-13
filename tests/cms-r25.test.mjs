@@ -210,3 +210,19 @@ test("legal approval: valid only while the published content still matches the a
   assert.equal(await legalApprovalValid(reordered), true, "key order does not matter");
   assert.equal(await legalApprovalValid({ ...stamped, approval: { ...stamped.approval, confirmed: false } }), false, "unconfirmed");
 });
+
+// R25b regression: the prebuild step must really run when executed as a script (it silently did nothing on the
+// Linux build image when its main-module check built a "file:////..." URL), and the build must refuse to continue
+// without a snapshot where one is expected.
+test("fetch-cms runs as a script and reports its mode; build guard refuses a missing snapshot on a live preview", () => {
+  const r = spawnSync(process.execPath, [path.join(ROOT, "tools", "fetch-cms.mjs")], { cwd: ROOT, encoding: "utf8", env: { ...process.env, BIOA_CMS: "off" } });
+  assert.equal(r.status, 0, r.stderr);
+  assert.match(r.stdout, /CMS mode: off/);
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "bioa-cms-guard-"));
+  fs.mkdirSync(path.join(dir, "cms")); fs.copyFileSync("cms/registry.json", path.join(dir, "cms", "registry.json"));
+  const g = spawnSync(process.execPath, ["--input-type=module", "-e", `await import(${JSON.stringify(CMS_MOD)});`], { cwd: dir, encoding: "utf8",
+    env: { ...process.env, BIOA_CMS: "", CF_PAGES_BRANCH: "cms/sanity-r25", SANITY_PROJECT_ID: "hfmu7ifg" } });
+  fs.rmSync(dir, { recursive: true, force: true });
+  assert.notEqual(g.status, 0);
+  assert.match(g.stderr, /has Sanity configured but no snapshot/);
+});

@@ -12,6 +12,7 @@
 // Fail closed: any HTTP error, invalid document, oversized text or archive hash mismatch stops the build (exit 1).
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { liveSnapshot, extractRelease, summary, CmsError } from "./cms-snapshot.mjs";
 
 const OUT = ".cms";
@@ -47,6 +48,8 @@ async function main(){
   console.log(`CMS live snapshot ${s.sha}: ${summary(s)}`);
 }
 
-if (import.meta.url === new URL("file:///" + path.resolve(process.argv[1]).replace(/\\/g, "/")).href){
+// Run when executed directly. pathToFileURL is correct on Windows AND on the Linux build image (the previous
+// "file:///" + path concatenation produced "file:////opt/..." on Linux, so the step silently did nothing there).
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href){
   main().catch(e => { console.error("CMS FETCH FAILED: " + (e instanceof CmsError ? e.message : e.stack || e.message)); fs.rmSync(OUT, { recursive: true, force: true }); process.exit(1); });
 }

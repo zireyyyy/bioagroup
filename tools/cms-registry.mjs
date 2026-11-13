@@ -12,6 +12,7 @@
 // source text or image, the old CMS value no longer matches any slot and is NOT applied (no stale override).
 import fs from "node:fs";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 import { load } from "cheerio";
 import { BUSINESS } from "../bioa-business.mjs";
 import { hash, normText, ownText, contentRoot, TEXT_EXCLUDE, imageTargets } from "../bioa-cms.mjs";
@@ -246,7 +247,7 @@ async function measure(dist, pages){
   } finally { await browser.close(); server.close(); }
 }
 
-if (import.meta.url === new URL("file:///" + path.resolve(process.argv[1]).replace(/\\/g, "/")).href){
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href){
   const dist = process.argv[2];
   if (!dist || !process.argv.includes("--measure")){ console.error("usage: node tools/cms-registry.mjs <distDir> --measure [--targets]   (natural sizes are required to lock icons)"); process.exit(2); }
   const pages = scan(dist);
