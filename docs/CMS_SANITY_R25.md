@@ -2,7 +2,7 @@
 
 **Owner directive:** "BIO-A GROUP — SANITY CMS INTEGRATION / ONE IMPLEMENTATION, NO WEBSITE REDESIGN" (2026-11-13), after the owner confirmed R24RC2 PASS.
 **Base:** `main` `a062d59`. **Branch:** `cms/sanity-r25`.
-**Status:** CODE/BUILD/AUTOMATED PASS. OWNER CMS REVIEW PENDING. Production untouched: `main` and Production config are unchanged, and maintenance stays ON.
+**Status:** CODE/BUILD/AUTOMATED PASS · PREVIEW publish→rebuild→rollback PASS · OWNER CMS REVIEW PENDING. Branch `cms/sanity-r25` pushed with owner approval (Preview only). Production untouched: `main` and Production config are unchanged, and maintenance stays ON.
 
 Read with `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md` (permanent contract), `docs/CMS_CONTENT_MAP.md` (every slot) and `docs/CMS_OWNER_GUIDE_VI.md` (owner guide).
 
@@ -81,7 +81,8 @@ Seeding (`tools/cms-seed.mjs <dist>`) uses `createIfNotExists`: it never overwri
 | Production env vars, bindings, D1, Functions | — | **unchanged** (BIOA_SITE_MODE=maintenance) |
 | Preview env vars | BIOA_SOURCE_URL, BIOA_SOURCE_TOKEN | + `SANITY_PROJECT_ID=hfmu7ifg`, `SANITY_DATASET=production`, `SANITY_READ_TOKEN` (secret) |
 | Build command | `node tools/fetch-source-bundle.mjs && npm run build` | unchanged (`prebuild` is inside `npm run build`) |
-| Deploy hook | none | Preview branch `cms/sanity-r25` only (see §7) |
+| Deploy hook | none | `sanity-preview-rebuild` → branch `cms/sanity-r25` only (URL in `D:\BIOA_WORKSPACE\_private\cf\preview-deploy-hook.url`) |
+| Sanity webhook | none | `wedZ6kXvaMBn4RXM` "BIO-A Preview rebuild" (dataset production, create/update/delete, drafts excluded, CMS types only) |
 
 Other preview branches still build their own code. Branches without `tools/fetch-cms.mjs` ignore the Sanity variables.
 
@@ -109,6 +110,7 @@ Other preview branches still build their own code. Branches without `tools/fetch
 | Fail closed: wrong/missing token, unknown project, offline, oversized text, registry drift | fetch or build exits 1; unknown slot ignored, site unchanged (`qa/fail-closed.txt`) |
 | Repository gates (CMS disabled) | see `gates/summary.txt` |
 | Offline unit tests `npm run test:cms` | 8/8 |
+| Preview (Cloudflare) publish → webhook → deploy hook → Preview → rollback | edits visible on https://cms-sanity-r25.bioagroup.pages.dev after ~2 min (builds `b53ce717`, `2b27526f`); after rollback (`828a76b7`, `2ccb9bf3`) /, /about/, /en/, /blog/, /tuyen-dung/ byte-identical to the PASS build; Preview `/api/lead` 503, Production 503 (`qa/preview-flow.txt`) |
 
 ## 9. Rollback
 

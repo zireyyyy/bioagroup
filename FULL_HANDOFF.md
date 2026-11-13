@@ -1,6 +1,16 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
+## R25CMS — SANITY CMS INTEGRATION 2026-11-13 (branch `cms/sanity-r25` pushed for Preview; `main` untouched)
+- Owner confirmed **R24RC2 PASS** (`main` = `a062d59`). Owner directive "SANITY CMS INTEGRATION — ONE IMPLEMENTATION, NO WEBSITE REDESIGN".
+- **Commits on `cms/sanity-r25`:** `be097b4` (code), `b28a150` (approval/gate), `a9a8625`, `7dd9bc7` (docs) + this handoff commit. Pushed with owner approval ("Yes, push branch"). **Not merged; `main` and Production unchanged.**
+- **Sanity:** project `hfmu7ifg` "bioagroup_web" (owner account `bioagroupsale`), dataset `production` switched to **private**; Studio https://bioagroup.sanity.studio/ (appId `mf0v4nq5f04nykdqv6wqfph0`). Seeded with the current site: 96 image slots, 6 page-text docs (410 VI/EN slots), 38 Blog posts, 3 Careers (`sample`), 9 SEO, 2 legal (no approval stamp → repository legal text stays). No image uploaded.
+- **Build:** `npm run build` → `prebuild` `tools/fetch-cms.mjs` (published only, validated, fail closed) → `bioa-cms.mjs` applies data at the end of each page. Without `SANITY_PROJECT_ID` (Production, CI, local) dist is **byte-identical** to `dist-final-rc2`.
+- **Cloudflare:** Preview env + `SANITY_PROJECT_ID`, `SANITY_DATASET`, `SANITY_READ_TOKEN` (viewer, secret). Deploy hook `sanity-preview-rebuild` → branch `cms/sanity-r25` only; Sanity webhook `wedZ6kXvaMBn4RXM` (published changes of CMS types, no drafts). Production config unchanged, maintenance ON.
+- **QA:** identity (disabled + seeded), image/text edit (frames identical 1440/834/390), Blog draft hidden / publish shown, Careers open/closed (local only), rollback identical, fail-closed set, gates PASS, Preview publish→rebuild→rollback PASS (Preview pages byte-identical after rollback). Evidence `D:\BIOA_WORKSPACE\_reports\cms-r25\`. Details `docs/CMS_SANITY_R25.md`, owner guide `docs/CMS_OWNER_GUIDE_VI.md`, slot list `docs/CMS_CONTENT_MAP.md`.
+- **Pending owner:** Studio review + Preview test; decision to merge to `main` and enable the CMS on Production (separate release step); who may set Careers "Đang tuyển" / approve legal texts. Release blockers of R24RC unchanged.
+- **Rollback:** content = Studio History → Restore → Publish; code = branch not merged (`main` `a062d59`); disable CMS anywhere by removing `SANITY_PROJECT_ID`.
+
 ## R24RC — FINAL QA & RELEASE READINESS 2026-11-12 (local, NOT pushed)
 - `main` = `b79dad7` (R24OY pushed with owner approval; deployment `bac28b1b`). Local: `a045cf6` (contact CTA desktop label/arrow scale), `bb8a2bd` (approval/gate), docs commit.
 - Icon closure audit (12 groups × 1440/834/390): no wrong icon; all differences are owner-PASS BIO-A replacements. Lead: MOCK + STAGING PASS, REAL E2E NOT VERIFIED (owner approval needed).

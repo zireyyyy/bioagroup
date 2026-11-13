@@ -2,7 +2,9 @@
 
 **Authority:** owner instruction 2026-10-15. **Permanent contract** for all future copy, CMS, asset, page and section work. Read with `AGENTS.md §7A`, `docs/WORKFLOW.md §1B`, `docs/RESPONSIVE_SOURCE_PARITY_CONTRACT.md`, `docs/CONTENT_GUIDE.md`, and `docs/SOURCE_MAP.md`.
 
-**Current implementation status:** BIO-A currently builds page HTML from repository-controlled content and source-owner modules (`build.mjs`, `bioa-*.mjs`) on GitHub/Cloudflare Pages. `package.json` does **not** have a Sanity SDK/CMS integration. **Sanity Free is a future owner preference, not a deployed integration.** This document specifies future architecture and acceptance requirements; it does not activate a CMS, change build/deploy, or make Production public.
+**R25CMS update (2026-11-13):** a Sanity integration implementing this contract (data-only slots, build-time snapshot, fail-closed validation, approval-gated legal publishing) exists on branch `cms/sanity-r25` for Preview; it is NOT on `main`/Production until the owner approves the release. See `docs/CMS_SANITY_R25.md`.
+
+**Original status (2026-10-15):** BIO-A currently builds page HTML from repository-controlled content and source-owner modules (`build.mjs`, `bioa-*.mjs`) on GitHub/Cloudflare Pages. `package.json` does **not** have a Sanity SDK/CMS integration. **Sanity Free is a future owner preference, not a deployed integration.** This document specifies future architecture and acceptance requirements; it does not activate a CMS, change build/deploy, or make Production public.
 
 ## Mandatory principle — edit content once, inherit approved responsive behavior
 
