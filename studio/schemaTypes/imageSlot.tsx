@@ -31,9 +31,10 @@ export const imageSlot = defineType({
       name: 'image',
       title: 'Ảnh mới (BIO-A)',
       description:
-        'Tải ảnh lên, sau đó bấm biểu tượng bút để chọn vùng cắt và điểm lấy nét. Website tự cắt ảnh theo đúng khung hiện tại; bố cục không thay đổi. Để trống = giữ ảnh hiện tại.',
+        'Chỉ JPEG, PNG hoặc WebP. Tải ảnh lên, rồi bấm biểu tượng bút để chọn vùng cắt và điểm lấy nét. Website tự cắt một bản cho từng khung (máy tính, điện thoại) theo đúng tỷ lệ hiện tại; bố cục không thay đổi. Để trống = giữ ảnh hiện tại.',
       type: 'image',
-      options: {hotspot: true, accept: 'image/jpeg,image/png,image/webp,image/svg+xml'},
+      options: {hotspot: true, accept: 'image/jpeg,image/png,image/webp'},
+      validation: (Rule: any) => Rule.custom((v: any) => (v?.asset?._ref && /-svg$/.test(v.asset._ref) ? 'Không nhận ảnh SVG (chỉ JPEG, PNG, WebP)' : true)),
     }),
     defineField({name: 'altVi', title: 'Mô tả ảnh (tiếng Việt)', description: 'Đọc bởi trình đọc màn hình và Google. Ví dụ: "Dây chuyền chiết rót kem tại nhà máy Bio-A".', type: 'string', validation: altRule('VI')}),
     defineField({name: 'altEn', title: 'Mô tả ảnh (tiếng Anh)', type: 'string', validation: altRule('EN')}),

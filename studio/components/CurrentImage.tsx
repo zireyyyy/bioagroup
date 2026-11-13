@@ -13,7 +13,7 @@ export function CurrentImage(props: StringInputProps) {
         <Flex justify="center" style={{background: 'repeating-conic-gradient(#eee 0% 25%, #fff 0% 50%) 50% / 16px 16px'}}>
           <img src={url} alt="" style={{maxWidth: '100%', maxHeight: 260, objectFit: 'contain', display: 'block'}} />
         </Flex>
-        {frame ? <Text muted>{frame}</Text> : null}
+        {frame ? <Text muted style={{whiteSpace: 'pre-line'}}>{frame}</Text> : null}
       </Stack>
     </Card>
   )

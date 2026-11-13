@@ -68,33 +68,61 @@ function loadJson(file){ return JSON.parse(fs.readFileSync(file, "utf8")); }
 export const REGISTRY = fs.existsSync("cms/registry.json") ? loadJson("cms/registry.json") : { version: 1, pages: { shell: { images: [], texts: [] } } };
 export const CMS = fs.existsSync(CMS_SNAPSHOT) ? loadJson(CMS_SNAPSHOT) : null;
 if (CMS && !fs.existsSync("cms/registry.json")) throw new Error("CMS: snapshot present but cms/registry.json missing");
-if (CMS && CMS.version !== 1) throw new Error("CMS: unsupported snapshot version " + CMS.version);
+if (CMS && CMS.version !== 2) throw new Error("CMS: unsupported snapshot version " + CMS.version + " (expected 2: per-target image files)");
 if (CMS) console.log("CMS snapshot", CMS.dataset, CMS.fetchedAt, "sha", CMS.sha);
 
 const routeToPage = new Map();
 for (const [key, p] of Object.entries(REGISTRY.pages)) if (key !== "shell"){ routeToPage.set(p.routes.vi, key); routeToPage.set(p.routes.en, key); }
 
-function replaceImages($, scope, slots, lang, where){
+// ---- Image targets (CMS-R25b) ----
+// One image slot = one position on the page; it owns one or more TARGETS (desktop element, mobile element, the
+// <source> of a <picture>). A target is identified by its top-level section signature + rank, kind, original URL and
+// its rank among identical (kind, URL) references in that section, so two positions that share a file are distinct.
+export function sectionSig($, el){
+  const x = $(el);
+  return el.name + (x.attr("id") ? "#" + x.attr("id") : "") + "." + (x.attr("class") || "").split(/\s+/).filter(Boolean).sort().join(".");
+}
+const firstSrcset = v => String(v || "").trim().split(/\s*,\s*/)[0].split(/\s+/)[0];
+export function imageTargets($, root){
+  const out = [], sigSeen = new Map();
+  root.children().each((topIndex, top) => {
+    const sig = sectionSig($, top), nth = sigSeen.get(sig) || 0;
+    sigSeen.set(sig, nth + 1);
+    const ranks = new Map();
+    const add = (el, kind, url) => {
+      if (!url || url.startsWith("data:")) return;
+      const rk = kind + "|" + url, k = ranks.get(rk) || 0;
+      ranks.set(rk, k + 1);
+      out.push({ el, kind, url, topIndex, key: `${sig}#${nth}|${kind}|${url}#${k}` });
+    };
+    for (const el of [top, ...$(top).find("*").toArray()]){
+      if (el.name === "img") add(el, "img", $(el).attr("src") || "");
+      else if (el.name === "source" && el.parent?.name === "picture") add(el, "source", firstSrcset($(el).attr("srcset")));
+      const style = $(el).attr("style") || "";
+      if (style.includes("url(")) for (const m of style.matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g)) add(el, "bg", m[1]);
+    }
+  });
+  return out;
+}
+
+function replaceImages($, root, slots, lang, where){
+  let targets = null;
   for (const slot of slots){
     const rep = CMS.images?.[slot.id];
     if (!rep) continue;
-    let n = 0;
-    scope.find("img").each((_, el) => {
-      const img = $(el);
-      if (img.attr("src") !== slot.original) return;
-      img.attr("src", rep.file).removeAttr("srcset").removeAttr("sizes");
-      const alt = lang === "en" ? rep.altEn : rep.altVi;
-      if (alt) img.attr("alt", alt);
-      n++;
-    });
-    scope.find("[style*='url(']").each((_, el) => {
-      const node = $(el), style = node.attr("style") || "";
-      if (!style.includes(slot.original)) return;
-      node.attr("style", style.split(slot.original).join(rep.file));
-      n++;
-    });
-    if (!n) throw new Error(`CMS: image slot ${slot.id} (${slot.original}) not found on ${where} — registry out of date`);
-    if (($.html(scope) || "").includes(slot.original)) throw new Error(`CMS: image slot ${slot.id} still referenced on ${where} after replacement`);
+    targets ||= new Map(imageTargets($, root).map(t => [t.key, t]));
+    for (const t of slot.targets){
+      const hit = targets.get(t.key), file = rep.files?.[t.key];
+      if (!hit) throw new Error(`CMS: image target ${t.key} of slot ${slot.id} not found on ${where} — registry out of date`);
+      if (!file) throw new Error(`CMS: snapshot has no file for target ${t.key} of slot ${slot.id}`);
+      const node = $(hit.el);
+      if (t.kind === "img"){
+        node.attr("src", file).removeAttr("srcset").removeAttr("sizes");
+        const alt = lang === "en" ? rep.altEn : rep.altVi;
+        if (alt) node.attr("alt", alt);
+      } else if (t.kind === "source") node.attr("srcset", file);
+      else node.attr("style", (node.attr("style") || "").split(t.url).join(file));
+    }
   }
 }
 
@@ -135,6 +163,8 @@ function applySeo($, route, lang){
     $('meta[property="og:image:type"]').attr("content", s.ogImage.type);
   }
   if (s.canonical){
+    // CMS-R25b: a page may only carry its own approved canonical (checked again here, after the fetch step).
+    if (s.canonical !== "https://bioagroup.vn" + route) throw new Error(`CMS: canonical ${s.canonical} is not the approved canonical of ${route}`);
     $('link[rel="canonical"]').attr("href", s.canonical);
     $('meta[property="og:url"]').attr("content", s.canonical);
   }
@@ -144,10 +174,7 @@ function applySeo($, route, lang){
 export function applyCms($, route, lang){
   if (!CMS) return;
   const page = routeToPage.get(route);
-  const body = $("body");
-  // Site-wide slots (cookie icon, chat avatar) are direct <body> children outside the page wrapper.
-  const shellScope = body.children().not("main").filter((_, el) => !$(el).find("main").length);
-  replaceImages($, shellScope, REGISTRY.pages.shell.images, lang, route + " (shell)");
+  // Images outside <main> (Header/Footer/cookie banner/chat) are owner-PASS shell components: not CMS slots.
   if (page){
     const root = contentRoot($);
     replaceImages($, root, REGISTRY.pages[page].images, lang, route);

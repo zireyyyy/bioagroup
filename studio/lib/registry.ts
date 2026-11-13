@@ -3,17 +3,22 @@
 import raw from '../../cms/registry.json'
 
 export type Frame = {w: number; h: number; fit?: string | null; bgSize?: string | null}
+export type ImageTarget = {
+  key: string
+  kind: 'img' | 'source' | 'bg'
+  url: string
+  natural: {w: number; h: number} | null
+  frames: Record<string, Frame>
+}
 export type ImageSlot = {
   id: string
   page: string
-  original: string
-  kinds: string[]
+  label: string
   sections: string[]
-  occurrences: number
+  pairNote: string
   altVi: string
   altEn: string
-  natural: {w: number; h: number} | null
-  frames: Record<string, Frame>
+  targets: ImageTarget[]
 }
 export type TextSlot = {
   id: string

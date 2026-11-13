@@ -1,6 +1,7 @@
 // Publishing a legal page requires an explicit confirmation; the action stamps approver + time, then publishes.
 import {useEffect, useState} from 'react'
 import {type DocumentActionComponent, useCurrentUser, useDocumentOperation} from 'sanity'
+import {legalContentHash} from '../../cms/legal-hash.mjs'
 
 export const LegalApproveAction: DocumentActionComponent = (props) => {
   const {patch, publish} = useDocumentOperation(props.id, props.type)
@@ -24,11 +25,13 @@ export const LegalApproveAction: DocumentActionComponent = (props) => {
       message:
         'Xác nhận nội dung pháp lý này đã được OWNER (và luật sư nếu cần) duyệt và được phép xuất bản? Tên tài khoản của bạn và thời điểm duyệt sẽ được lưu cùng tài liệu.',
       onCancel: () => setDialogOpen(false),
-      onConfirm: () => {
+      onConfirm: async () => {
         setPublishing(true)
         setDialogOpen(false)
+        // The stamp covers exactly the content being published; any later change needs a new approval.
+        const contentHash = await legalContentHash(props.draft || props.published)
         patch.execute([
-          {set: {approval: {approvedBy: user?.name || user?.email || user?.id || 'unknown', approvedAt: new Date().toISOString(), confirmed: true}}},
+          {set: {approval: {approvedBy: user?.name || user?.email || user?.id || 'unknown', approvedAt: new Date().toISOString(), confirmed: true, contentHash}}},
         ])
         publish.execute()
         props.onComplete()

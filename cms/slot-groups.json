@@ -1,0 +1,148 @@
+{
+ "home": [
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Tư Vấn & Lập Kế Hoạch",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1-1.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Nghiên Cứu & Phát Triển",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Bao Bì & Nhận Diện",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Hồ Sơ Sản Phẩm",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-4.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-4.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Sản Xuất & Bàn Giao",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-5.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-5.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Tuýp & chai chân không",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3_mobile.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Hũ mỹ phẩm",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2-8.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Vỉ định hình",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3-9.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Dược mỹ phẩm",
+   "targets": [
+    "section.bioa-produce-mobile-source-safe.block.block-we-produce#0|img|https://merywood.com/wp-content/uploads/2026/04/produce-1.webp#0",
+    "section.bioa-produce-mobile-clean#0|img|https://merywood.com/wp-content/uploads/2026/04/produce-1.webp#0"
+   ]
+  }
+ ],
+ "cosmetics": [
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Gia Công Mỹ Phẩm Trọn Gói",
+   "targets": [
+    "section.block.block-info.desctop#0|bg|/assets/cosmetics-hero-bioa.webp#0",
+    "section.block.block-info.mobile#0|bg|/assets/cosmetics-hero-bioa.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Tuýp Mỹ Phẩm",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Tubes.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Tubes.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Chai Airless",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Airless-Containers.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Airless-Containers.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Hũ Mỹ Phẩm",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Jars-and-bottles.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Jars-and-bottles.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Chai / Lọ",
+   "targets": [
+    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Bottles.webp#0",
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Bottles.webp#0"
+   ]
+  }
+ ],
+ "services": [
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm",
+   "targets": [
+    "section.block.block-info.desctop#0|bg|/assets/cosmetics-hero-bioa.webp#0",
+    "section.block.block-info.mobile#0|bg|/assets/cosmetics-hero-bioa.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Sản Xuất & Gia Công Dược Mỹ Phẩm",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Shower-Gel.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Shower-Gel.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Đóng Gói & Sang Chiết Mỹ Phẩm",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Shampoo.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Shampoo.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Đăng Ký Thương Hiệu & Công Bố",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Conditioner.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Conditioner.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Chai Lọ Mỹ Phẩm",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Soap.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Soap.webp#0"
+   ]
+  },
+  {
+   "note": "cùng vị trí trên máy tính và điện thoại: Thiết Kế Bao Bì Mỹ Phẩm",
+   "targets": [
+    "section.block.block-how-works.desctop#0|img|https://merywood.com/wp-content/uploads/2025/07/Body-Cream.webp#0",
+    "section.block.block-how-works.mobile#0|img|https://merywood.com/wp-content/uploads/2025/07/Body-Cream.webp#0"
+   ]
+  }
+ ]
+}

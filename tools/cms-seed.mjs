@@ -12,6 +12,7 @@ import { load } from "cheerio";
 import { REGISTRY } from "../bioa-cms.mjs";
 import { REPO_CAREER_JOBS } from "../bioa-careers.mjs";
 import { LEGAL_TEXT } from "../bioa-legal-pages.mjs";
+import { targetLabel } from "./cms-seed-labels.mjs";
 
 const PID = "hfmu7ifg", DS = "production", API = "v2025-02-19";
 // Current production deployment (immutable hash URL) used only for Studio previews of BIO-A-hosted images.
@@ -25,21 +26,26 @@ let key = 0;
 const k = () => "k" + (key++).toString(36).padStart(5, "0");
 const docs = [];
 
-// ---- Image slots ----
+// ---- Image slots (registry v2: one document per POSITION; a position may have desktop + mobile targets) ----
+export function frameInfo(s){
+  const parts = s.targets.map(t => {
+    const f = t.frames || {};
+    const show = ["1440", "834", "390"].filter(w => f[w]).map(w => `${f[w].w}×${f[w].h}`).join(" · ");
+    return `• Bản ${targetLabel(t)}: tỷ lệ ${(t.natural.w / t.natural.h).toFixed(2)} : 1 (ảnh hiện tại ${t.natural.w}×${t.natural.h})${show ? ", khung " + show : ""}`;
+  });
+  const rec = Math.min(2400, Math.max(...s.targets.flatMap(t => [t.natural.w, ...Object.values(t.frames || {}).map(f => f.w * 2)])));
+  return [`Một ảnh tải lên được cắt thành ${s.targets.length} bản theo đúng từng khung:`, ...parts, `Nên tải ảnh rộng ít nhất ${rec}px, đặt điểm lấy nét vào phần quan trọng.`].join("\n");
+}
 for (const [pageKey, page] of Object.entries(REGISTRY.pages)){
   page.images.forEach((s, i) => {
-    const file = decodeURIComponent(s.original.split("/").pop());
-    const icon = /\.svg$/i.test(file) || (s.natural && s.natural.w <= 128);
-    const frames = s.frames || {};
-    const fr = [["1440", "Máy tính"], ["834", "Tablet"], ["390", "Điện thoại"]].filter(([w]) => frames[w]).map(([w, l]) => `${l} ${frames[w].w}×${frames[w].h}`).join(" · ");
-    const ratio = s.natural ? (s.natural.w / s.natural.h).toFixed(2) : "?";
-    const rec = s.natural ? Math.min(2400, Math.max(s.natural.w, ...Object.values(frames).map(f => f.w * 2))) : 0;
+    const lead = s.targets.find(t => t.kind === "img" && Object.keys(t.frames).length) || s.targets.find(t => Object.keys(t.frames).length) || s.targets[0];
+    const name = s.label || s.sections[0];
     docs.push({
       _id: "imageSlot-" + s.id, _type: "imageSlot", slotId: s.id, page: pageKey, pageLabel: page.labelVi, order: i + 1,
-      title: `${icon ? "Biểu tượng" : "Ảnh"} ${i + 1} — ${s.sections[0]} (${file})`,
-      section: s.sections.join(" + "),
-      currentUrl: /^https?:/.test(s.original) ? s.original : PREVIEW_ORIGIN + s.original,
-      frameInfo: `Tỷ lệ khung ${ratio} : 1 (ảnh hiện tại ${s.natural?.w}×${s.natural?.h}). Hiển thị: ${fr || "chỉ hiện khi tương tác"}.` + (rec ? ` Nên tải ảnh rộng ít nhất ${rec}px.` : "") + (s.occurrences > 1 ? ` Ảnh này xuất hiện ${s.occurrences} lần trên trang.` : ""),
+      title: `Ảnh ${i + 1} — ${name}${s.label && s.sections[0] !== s.label ? " · " + s.sections[0] : ""}`,
+      section: s.sections.join(" + ") + (s.pairNote ? " — " + s.pairNote : ""),
+      currentUrl: /^https?:/.test(lead.url) ? lead.url : PREVIEW_ORIGIN + lead.url,
+      frameInfo: frameInfo(s),
       altVi: s.altVi || "", altEn: s.altEn || ""
     });
   });

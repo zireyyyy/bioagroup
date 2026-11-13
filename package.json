@@ -21,7 +21,8 @@
     "test:home-visual": "node tests/home-roadmap-visual.mjs && node tests/home-howworks-tablet.mjs",
     "test:careers": "node tests/careers-flow.mjs",
     "test:cms": "node --test tests/cms-r25.test.mjs",
-    "handoff:zip": "node tools/make-handoff-zip.mjs"
+    "handoff:zip": "node tools/make-handoff-zip.mjs",
+    "cms:release": "node tools/cms-release.mjs"
   },
   "engines": {
     "node": ">=20"

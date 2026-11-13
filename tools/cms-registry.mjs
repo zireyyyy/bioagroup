@@ -14,7 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { load } from "cheerio";
 import { BUSINESS } from "../bioa-business.mjs";
-import { hash, normText, ownText, contentRoot, TEXT_EXCLUDE } from "../bioa-cms.mjs";
+import { hash, normText, ownText, contentRoot, TEXT_EXCLUDE, imageTargets } from "../bioa-cms.mjs";
 
 export const CMS_PAGES = [
   { key: "home", labelVi: "Trang chủ", labelEn: "Home", vi: "/", en: "/en/" },
@@ -42,35 +42,7 @@ function topSection($, root, el){
   return cur;
 }
 
-function imageRefs($, root){
-  const refs = [];
-  root.find("img").each((_, el) => {
-    const src = $(el).attr("src") || "";
-    if (src && !src.startsWith("data:")) refs.push({ el, url: src, kind: "img" });
-  });
-  root.find("[style*='url(']").each((_, el) => {
-    for (const m of ($(el).attr("style") || "").matchAll(/url\(\s*['"]?([^'")]+)['"]?\s*\)/g))
-      if (!m[1].startsWith("data:")) refs.push({ el, url: m[1], kind: "bg" });
-  });
-  return refs;
-}
-
 const read = (dist, route) => load(fs.readFileSync(path.join(dist, route, "index.html"), "utf8"), { decodeEntities: false });
-
-function pageImages($, root, pageKey){
-  const by = new Map();
-  for (const r of imageRefs($, root)){
-    if (PROTECTED_IMAGE.test(r.url)) continue;
-    if ($(r.el).closest("#mwc-grid").length) continue; // job card images belong to the Careers documents
-    const sec = topSection($, root, r.el);
-    const label = sec ? sectionLabel($, sec) : "";
-    const cur = by.get(r.url) || { id: pageKey + "_" + hash(r.url), page: pageKey, original: r.url, kinds: new Set(), sections: new Set(), occurrences: 0, altVi: "" };
-    cur.kinds.add(r.kind); cur.sections.add(label); cur.occurrences++;
-    if (r.kind === "img" && !cur.altVi) cur.altVi = $(r.el).attr("alt") || "";
-    by.set(r.url, cur);
-  }
-  return [...by.values()].map(x => ({ ...x, kinds: [...x.kinds], sections: [...x.sections] }));
-}
 
 function walkPairs($v, $e, a, b, out, sec, secLabel){
   const ca = a.children.filter(n => n.type === "tag"), cb = b.children.filter(n => n.type === "tag");
@@ -113,105 +85,187 @@ function pageTexts($v, $e, pageKey){
   }));
 }
 
-function shellImages($){
-  const by = new Map();
-  $("body").find("img, [style*='url(']").each((_, el) => {
-    if ($(el).closest("main").length) return;
-    const x = $(el);
-    const url = x.is("img") ? x.attr("src") : ((x.attr("style") || "").match(/url\(\s*['"]?([^'")]+)/) || [])[1];
-    if (!url || url.startsWith("data:") || PROTECTED_IMAGE.test(url)) return;
-    const cur = by.get(url) || { id: "shell_" + hash(url), page: "shell", original: url, kinds: new Set(), sections: new Set(), occurrences: 0, altVi: x.attr("alt") || "" };
-    cur.kinds.add(x.is("img") ? "img" : "bg");
-    cur.sections.add(x.closest(".bioa-contact-fab").length ? "Khung chat" : x.closest("button").length && /cookie/i.test(x.attr("alt") || "") ? "Biểu tượng cookie" : "Dùng chung");
-    cur.occurrences++;
-    by.set(url, cur);
+// ---- Image slots (CMS-R25b: one slot per POSITION, targets per element) ----
+// Locked (never a CMS slot, listed with the reason): BIO-A brand assets, owner-PASS icons (SVG or raster <= 128 px),
+// Careers job-card images (Careers documents), everything outside <main> (Header/Footer/cookie banner/chat).
+const ICON_MAX = 128;
+function cardTitle($, el, top){
+  for (let cur = el.parent; cur && cur !== top.parent; cur = cur.parent){
+    const t = $(cur).find('[class*="title"], h2, h3, h4').filter((_, x) => !$(x).find("img,picture").length).first();
+    const txt = normText(t.text()).replace(/⁠/g, "");
+    if (txt && txt.length <= 90) return txt;
+  }
+  return "";
+}
+
+function pageImageTargets($, root, pageKey){
+  return imageTargets($, root).map(t => {
+    const top = root.children().get(t.topIndex);
+    const pic = t.el.parent?.name === "picture" ? t.el.parent : null;
+    return { key: t.key, kind: t.kind, url: t.url, picture: pic ? ($(pic).find("img").attr("src") || null) : null,
+      section: sectionLabel($, top), card: cardTitle($, t.el, top), alt: t.kind === "img" ? ($(t.el).attr("alt") || "") : "",
+      careerCard: $(t.el).closest("#mwc-grid").length > 0, page: pageKey };
   });
-  return [...by.values()].map(x => ({ ...x, kinds: [...x.kinds], sections: [...x.sections] }));
+}
+
+export function lockReason(t){
+  if (PROTECTED_IMAGE.test(t.url)) return "Logo/biểu tượng thương hiệu BIO-A hoặc Zalo (bảo vệ, AGENTS.md §3)";
+  if (t.careerCard) return "Ảnh thẻ việc làm — quản lý trong mục Tuyển dụng (từng vị trí)";
+  if (/\.svg(\?|$)/i.test(t.url)) return "Biểu tượng SVG owner-PASS (khóa; không nhận SVG tải lên)";
+  if (t.natural && t.natural.w <= ICON_MAX && t.natural.h <= ICON_MAX) return "Biểu tượng nhỏ owner-PASS (khóa)";
+  const fr = Object.values(t.frames || {});
+  if (fr.length && fr.every(f => f.w <= 96 && f.h <= 96)) return "Đồ họa cỡ biểu tượng (≤ 96 px, ví dụ dấu chứng nhận GMP/HACCP) — owner-PASS, khóa; mở khóa cần OWNER duyệt";
+  return null;
+}
+
+// Desktop/mobile variants of ONE position are merged only through the reviewed mapping in cms/slot-groups.json.
+function buildSlots(pageKey, targets, groups){
+  const locked = [], free = [];
+  for (const t of targets){
+    const r = lockReason(t);
+    if (r) locked.push({ key: t.key, kind: t.kind, url: t.url, reason: r, natural: t.natural || null }); else free.push(t);
+  }
+  const byKey = new Map(free.map(t => [t.key, t]));
+  const owner = new Map();
+  for (const g of groups || []){
+    for (const k of g.targets) if (!byKey.has(k)) throw new Error(`slot-groups: ${pageKey} target not found or locked: ${k}`);
+    for (const k of g.targets) if (owner.has(k)) throw new Error(`slot-groups: ${pageKey} target in two groups: ${k}`);
+    const copy = { ...g, targets: [...g.targets] };
+    for (const k of copy.targets) owner.set(k, copy);
+  }
+  // A <picture> <source> always belongs to the <img> of the same <picture> (same section, img src = picture img).
+  for (const t of free) if (t.kind === "source" && !owner.has(t.key)){
+    const sec = t.key.split("|")[0];
+    const img = free.find(x => x.kind === "img" && x.key.split("|")[0] === sec && x.url === t.picture);
+    if (!img) continue;
+    const g = owner.get(img.key) || { targets: [img.key], note: "" };
+    g.targets.push(t.key);
+    g.note = (g.note ? g.note + "; " : "") + "ảnh <picture> có bản riêng cho điện thoại";
+    owner.set(img.key, g); owner.set(t.key, g);
+  }
+  const slots = [], done = new Set();
+  for (const t of free){
+    if (done.has(t.key)) continue;
+    const g = owner.get(t.key);
+    const members = (g ? g.targets : [t.key]).map(k => byKey.get(k));
+    members.forEach(m => done.add(m.key));
+    const lead = members.find(m => m.kind === "img") || members[0];
+    slots.push({
+      id: pageKey + "_" + hash(members.map(m => m.key).sort().join("\n")), page: pageKey,
+      label: lead.card || "", sections: [...new Set(members.map(m => m.section))], pairNote: g?.note || "",
+      altVi: lead.alt || "", altEn: lead.altEn || "",
+      targets: members.map(m => ({ key: m.key, kind: m.kind, url: m.url, natural: m.natural || null, frames: m.frames || {} }))
+    });
+  }
+  return { slots, locked };
 }
 
 export function scan(dist){
   const pages = {};
   for (const p of CMS_PAGES){
     const $v = read(dist, p.vi), $e = read(dist, p.en);
-    const imgsVi = pageImages($v, contentRoot($v), p.key);
-    const enAlt = new Map(pageImages($e, contentRoot($e), p.key).map(x => [x.original, x.altVi]));
-    for (const im of imgsVi) im.altEn = enAlt.get(im.original) ?? "";
-    pages[p.key] = { labelVi: p.labelVi, labelEn: p.labelEn, routes: { vi: p.vi, en: p.en }, images: imgsVi, texts: pageTexts($v, $e, p.key) };
+    const tv = pageImageTargets($v, contentRoot($v), p.key), te = pageImageTargets($e, contentRoot($e), p.key);
+    const enAlt = new Map(te.map(t => [t.key, t.alt]));
+    for (const t of tv) t.altEn = enAlt.get(t.key) ?? "";
+    pages[p.key] = { labelVi: p.labelVi, labelEn: p.labelEn, routes: { vi: p.vi, en: p.en }, targets: tv, texts: pageTexts($v, $e, p.key) };
   }
-  const $s = read(dist, "/privacy-policy/"), $se = read(dist, "/en/privacy-policy/");
-  const shell = shellImages($s);
-  const enAlt = new Map(shellImages($se).map(x => [x.original, x.altVi]));
-  for (const im of shell) im.altEn = enAlt.get(im.original) ?? "";
-  pages.shell = { labelVi: "Dùng chung toàn site", labelEn: "Site-wide", routes: { vi: "*", en: "*" }, images: shell, texts: [] };
   return pages;
 }
 
+function shellLocked(dist){
+  const $ = read(dist, "/privacy-policy/"), seen = new Map();
+  $("body").find("img, source[srcset], [style*='url(']").each((_, el) => {
+    if ($(el).closest("main").length) return;
+    const x = $(el);
+    const url = x.is("img") ? x.attr("src") : x.is("source") ? (x.attr("srcset") || "").split(/[\s,]+/)[0] : ((x.attr("style") || "").match(/url\(\s*['"]?([^'")]+)/) || [])[1];
+    if (!url || url.startsWith("data:") || seen.has(url)) return;
+    const where = x.closest(".bioa-contact-fab").length ? "Khung chat (owner-PASS, khóa)" : x.closest("header").length ? "Header (owner-PASS, khóa)"
+      : x.closest(".footer, footer, .footer-top").length ? "Footer (owner-PASS, khóa)" : x.closest(".bioa-consent, button").length ? "Banner/biểu tượng cookie (owner-PASS, khóa)" : "Khung dùng chung (owner-PASS, khóa)";
+    seen.set(url, { url, kind: x.is("img") ? "img" : x.is("source") ? "source" : "bg", reason: PROTECTED_IMAGE.test(url) ? "Logo BIO-A / Zalo (bảo vệ)" : where });
+  });
+  return [...seen.values()];
+}
+
+// Serves the dist with every content image target tagged (data-cms-t-<n>) so the browser measures exactly that
+// element, even after sliders re-order or clone slides.
 async function measure(dist, pages){
+  const http = await import("node:http");
   const { chromium } = await import("playwright");
   const { createDistServer } = await import("./serve-dist.mjs");
-  const server = createDistServer(dist);
+  const files = createDistServer(dist);
+  const tagged = new Map();
+  for (const p of Object.values(pages)){
+    const $ = read(dist, p.routes.vi), root = contentRoot($);
+    imageTargets($, root).forEach((t, i) => $(t.el).attr("data-cms-t-" + i, t.kind));
+    tagged.set(p.routes.vi, $.html());
+  }
+  const server = http.createServer((req, res) => {
+    const u = new URL(req.url, "http://x");
+    if (tagged.has(u.pathname)){ res.writeHead(200, { "content-type": "text/html; charset=utf-8" }); res.end(tagged.get(u.pathname)); return; }
+    files.emit("request", req, res);
+  });
   await new Promise(r => server.listen(0, "127.0.0.1", r));
   const base = "http://127.0.0.1:" + server.address().port;
-  const browser = await chromium.launch();
+  const browser = await chromium.launch(process.env.BIOA_CHROME_PATH ? { executablePath: process.env.BIOA_CHROME_PATH } : {});
   try{
-    for (const [key, page] of Object.entries(pages)){
-      const route = key === "shell" ? "/privacy-policy/" : page.routes.vi;
-      const urls = page.images.map(x => x.original);
-      const result = {};
+    for (const [key, p] of Object.entries(pages)){
+      const n = p.targets.length;
+      const res = p.targets.map(() => ({ natural: null, frames: {} }));
       for (const width of [1440, 834, 390]){
         const ctx = await browser.newContext({ viewport: { width, height: 900 } });
         const tab = await ctx.newPage();
-        await tab.goto(base + route, { waitUntil: "load", timeout: 60000 });
+        await tab.goto(base + p.routes.vi, { waitUntil: "load", timeout: 60000 });
         await tab.waitForTimeout(800);
-        const r = await tab.evaluate(async urls => {
-          const abs = u => new URL(u, location.href).href;
-          const out = {};
-          for (const u of urls){
-            const a = abs(u);
-            const nat = await new Promise(res => { const im = new Image(); im.onload = () => res({ w: im.naturalWidth, h: im.naturalHeight }); im.onerror = () => res(null); im.src = a; });
-            let box = null, fit = null, bgSize = null;
-            for (const el of document.querySelectorAll("img, [style*='url(']")){
-              const isImg = el.tagName === "IMG";
-              if (isImg ? el.src !== a : !(el.getAttribute("style") || "").includes(u)) continue;
-              const rc = el.getBoundingClientRect(), cs = getComputedStyle(el);
+        const r = await tab.evaluate(async ({ n, urls }) => {
+          const out = [];
+          for (let i = 0; i < n; i++){
+            const abs = new URL(urls[i], location.href).href;
+            const nat = await new Promise(res => { const im = new Image(); im.onload = () => res({ w: im.naturalWidth, h: im.naturalHeight }); im.onerror = () => res(null); im.src = abs; });
+            let frame = null;
+            for (const el of document.querySelectorAll(`[data-cms-t-${i}]`)){
+              const kind = el.getAttribute(`data-cms-t-${i}`);
+              const shown = kind === "source" ? el.parentElement.querySelector("img") : el;
+              if (!shown) continue;
+              if (kind === "source" && shown.currentSrc !== abs) continue;
+              if (kind === "img" && shown.closest("picture") && shown.currentSrc && shown.currentSrc !== abs) continue;
+              const rc = shown.getBoundingClientRect(), cs = getComputedStyle(shown);
               if (rc.width < 2 || rc.height < 2 || cs.display === "none" || cs.visibility === "hidden") continue;
-              box = { w: Math.round(rc.width), h: Math.round(rc.height) };
-              fit = isImg ? cs.objectFit : null; bgSize = isImg ? null : cs.backgroundSize;
+              frame = { w: Math.round(rc.width), h: Math.round(rc.height), fit: kind === "bg" ? null : cs.objectFit, bgSize: kind === "bg" ? cs.backgroundSize : null };
               break;
             }
-            out[u] = { nat, box, fit, bgSize };
+            out.push({ nat, frame });
           }
           return out;
-        }, urls);
-        for (const [u, v] of Object.entries(r)){
-          result[u] ||= { natural: v.nat, frames: {} };
-          if (!result[u].natural && v.nat) result[u].natural = v.nat;
-          if (v.box) result[u].frames[width] = { ...v.box, fit: v.fit, bgSize: v.bgSize };
-        }
+        }, { n, urls: p.targets.map(t => t.url) });
+        r.forEach((v, i) => { if (v.nat && !res[i].natural) res[i].natural = v.nat; if (v.frame) res[i].frames[width] = v.frame; });
         await ctx.close();
       }
-      for (const im of page.images){
-        const m = result[im.original] || {};
-        im.natural = m.natural || null;
-        im.frames = m.frames || {};
-      }
-      console.log("measured", key, page.images.length, "images");
+      p.targets.forEach((t, i) => { t.natural = res[i].natural; t.frames = res[i].frames; });
+      console.log("measured", key, n, "targets");
     }
-  } finally {
-    await browser.close();
-    server.close();
-  }
+  } finally { await browser.close(); server.close(); }
 }
 
 if (import.meta.url === new URL("file:///" + path.resolve(process.argv[1]).replace(/\\/g, "/")).href){
   const dist = process.argv[2];
-  if (!dist) { console.error("usage: node tools/cms-registry.mjs <distDir> [--measure]"); process.exit(2); }
+  if (!dist || !process.argv.includes("--measure")){ console.error("usage: node tools/cms-registry.mjs <distDir> --measure [--targets]   (natural sizes are required to lock icons)"); process.exit(2); }
   const pages = scan(dist);
-  if (process.argv.includes("--measure")) await measure(dist, pages);
-  const missing = Object.values(pages).flatMap(p => p.images).filter(x => process.argv.includes("--measure") && !x.natural);
-  if (missing.length) { console.error("CMS registry: natural size unknown for", missing.map(x => x.original)); process.exit(1); }
-  const out = { version: 1, note: "Generated by tools/cms-registry.mjs from a built site. Do not edit by hand.", pages };
+  await measure(dist, pages);
+  const unknown = Object.values(pages).flatMap(p => p.targets).filter(t => !t.natural && !PROTECTED_IMAGE.test(t.url) && !t.careerCard);
+  if (unknown.length){ console.error("CMS registry: natural size unknown for", unknown.map(t => t.key)); process.exit(1); }
+  const groups = fs.existsSync("cms/slot-groups.json") ? JSON.parse(fs.readFileSync("cms/slot-groups.json", "utf8")) : {};
+  const outPages = {};
+  for (const [key, p] of Object.entries(pages)){
+    const { slots, locked } = buildSlots(key, p.targets, groups[key]);
+    outPages[key] = { labelVi: p.labelVi, labelEn: p.labelEn, routes: p.routes, images: slots, locked, texts: p.texts };
+  }
+  outPages.shell = { labelVi: "Dùng chung toàn site", labelEn: "Site-wide", routes: { vi: "*", en: "*" }, images: [], locked: shellLocked(dist), texts: [] };
+  if (process.argv.includes("--targets")){
+    for (const [key, p] of Object.entries(pages)) for (const t of p.targets) if (!lockReason(t))
+      console.log(key, "|", t.key, "|", t.card, "|", t.natural ? t.natural.w + "x" + t.natural.h : "?", JSON.stringify(Object.fromEntries(Object.entries(t.frames).map(([w, f]) => [w, f.w + "x" + f.h]))));
+  }
+  const out = { version: 2, note: "Generated by tools/cms-registry.mjs from a built site (+ reviewed cms/slot-groups.json). Do not edit by hand.", pages: outPages };
   fs.mkdirSync("cms", { recursive: true });
   fs.writeFileSync("cms/registry.json", JSON.stringify(out, null, 1) + "\n");
-  for (const [k, p] of Object.entries(pages)) console.log(k, "images", p.images.length, "texts", p.texts.length);
+  for (const [k, p] of Object.entries(outPages)) console.log(k, "slots", p.images.length, "targets", p.images.reduce((a, s) => a + s.targets.length, 0), "locked", p.locked.length, "texts", p.texts.length);
 }

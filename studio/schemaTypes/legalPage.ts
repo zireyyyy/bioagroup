@@ -86,6 +86,7 @@ export const legalPage = defineType({
         defineField({name: 'approvedBy', title: 'Người duyệt', type: 'string'}),
         defineField({name: 'approvedAt', title: 'Thời điểm duyệt', type: 'datetime'}),
         defineField({name: 'confirmed', title: 'Đã xác nhận', type: 'boolean'}),
+        defineField({name: 'contentHash', title: 'Mã nội dung đã duyệt', description: 'Sửa nội dung sau khi duyệt thì mã không còn khớp: website giữ văn bản cũ cho đến khi duyệt lại.', type: 'string'}),
       ],
     }),
     defineField({name: 'key', type: 'string', readOnly: true, hidden: true}),
