@@ -63,7 +63,10 @@ const SCOPES = {
     [/^(en\/)?(privacy-policy|cookie-policy)\/index\.html$/, "section.policy-wrapper"]],
   // R24RC (release readiness 2026-11-12): CTA-TYPE-1 desktop label/arrow scale of the contact CTA, one rule in
   // the BIO-A transform style owner (style#bioa-v3).
-  R24RC: [[/\.html$/, "style#bioa-v3"]]
+  R24RC: [[/\.html$/, "style#bioa-v3"]],
+  // R25CMS (Sanity CMS integration 2026-11-13): with the CMS disabled (no SANITY_PROJECT_ID, Production today) the
+  // build must stay byte-identical: no element and no file may change.
+  R25CMS: []
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;

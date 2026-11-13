@@ -47,7 +47,10 @@ const APPROVED = [
   // R24RC (release readiness 2026-11-12): CTA-TYPE-1 desktop contact CTA label/arrow scale (transform style owner).
   { sha: "a045cf635c5010eb6e53074099160bc6e1df823b", phase: "R24RC", files: ["bioa-transform.mjs"] },
   // R24RC FORM-BTN-TYPE-1: quote form submit label 16px (transform style owner).
-  { sha: "7df2e793d05c5d60b11b0411587f985964ee4f3d", phase: "R24RC", files: ["bioa-transform.mjs"] }
+  { sha: "7df2e793d05c5d60b11b0411587f985964ee4f3d", phase: "R24RC", files: ["bioa-transform.mjs"] },
+  // R25CMS (owner 2026-11-13, Sanity CMS integration): Blog posts merged with published CMS posts (3 lines, no-op
+  // without a CMS snapshot: dist byte-identical to R24RC).
+  { sha: "be097b41f0ad8c3507a8f0cd189ef294f398bbe9", phase: "R25CMS", files: ["bioa-blog-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
