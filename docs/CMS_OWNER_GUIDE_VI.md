@@ -38,7 +38,7 @@ Bạn bấm "Publish" trong Studio
 2. Bấm **Continue with GitHub** và đăng nhập tài khoản GitHub của BIO-A.
 3. Menu bên trái gồm: **Ảnh website · Nội dung trang · Blog · Tuyển dụng · SEO · Pháp lý**.
 
-![Menu Studio](cms-guide/01-menu.png)
+![Menu Studio](cms-guide/01-menu.jpg)
 
 ## 2. Tìm trang và vị trí
 
@@ -46,7 +46,7 @@ Bạn bấm "Publish" trong Studio
 - **Chữ:** bấm **Nội dung trang**, chọn trang. Các đoạn được nhóm theo mục trên trang; bấm tên mục để mở.
 - Danh sách đầy đủ vị trí kèm kích thước khung nằm ở `docs/CMS_CONTENT_MAP.md`.
 
-![Danh sách ảnh theo trang](cms-guide/02-image-list.png)
+![Danh sách ảnh theo trang](cms-guide/02-image-list.jpg)
 
 ## 3. Thay ảnh
 
@@ -60,7 +60,9 @@ Bạn bấm "Publish" trong Studio
 
 Website tự cắt ảnh theo đúng tỷ lệ khung cũ nên bố cục không đổi trên mọi thiết bị. Mỗi vị trí độc lập: thay ảnh này không ảnh hưởng ảnh khác, kể cả khi cùng một ảnh gốc đang dùng ở trang khác.
 
-![Thay ảnh](cms-guide/03-image-replace.png)
+![Ảnh hiện tại và khung](cms-guide/03a-current-image.jpg)
+![Ô tải ảnh mới](cms-guide/03b-upload.jpg)
+![Mô tả ảnh](cms-guide/03c-alt.jpg)
 
 ## 4. Chỉnh nội dung chữ
 
@@ -68,6 +70,8 @@ Website tự cắt ảnh theo đúng tỷ lệ khung cũ nên bố cục không 
 2. Mỗi đoạn có ô **Tiếng Việt** và **Tiếng Anh**, đã điền sẵn nội dung hiện tại.
 3. Sửa trực tiếp trong ô. Dưới mỗi ô ghi giới hạn ký tự và nội dung gốc để bạn đối chiếu.
 4. Bấm **Publish**.
+
+![Sửa chữ VI/EN](cms-guide/04-page-text.jpg)
 
 Quy tắc:
 
@@ -108,6 +112,8 @@ Chỉ người được OWNER cho phép mới chuyển một vị trí sang **Đ
 
 1. Bấm **Duyệt & xuất bản**.
 2. Xác nhận trong hộp thoại.
+
+![Nút Duyệt & xuất bản](cms-guide/06-legal-approve.jpg)
 
 Studio lưu tên người duyệt và thời điểm duyệt. Website chỉ dùng nội dung pháp lý có dấu duyệt hợp lệ; nếu thiếu, website giữ nguyên văn bản cũ đã duyệt trong code.
 
