@@ -4,58 +4,45 @@ Tạo tự động từ `cms/registry.json` (`node tools/cms-content-map.mjs`). 
 
 **Cách tìm trong Studio (https://bioagroup.sanity.studio/):** menu **Ảnh website** → chọn trang → chọn vị trí theo tên (cột *Tên trong Studio*). Chữ: menu **Nội dung trang** → chọn trang → mở mục (cột *Mục*).
 
-| Trang | Ảnh | Đoạn chữ | Đường dẫn VI · EN |
-|---|---|---|---|
-| Trang chủ | 32 | 138 | / · /en/ |
-| Về chúng tôi | 12 | 64 | /about/ · /en/about/ |
-| Gia Công Mỹ Phẩm | 38 | 146 | /contract-manufacturing-cosmetics/ · /en/contract-manufacturing-cosmetics/ |
-| Dịch Vụ Khác | 11 | 35 | /dich-vu-khac/ · /en/dich-vu-khac/ |
-| Liên hệ | 0 | 19 | /contacts/ · /en/contacts/ |
-| Tuyển dụng (trang danh sách) | 1 | 8 | /tuyen-dung/ · /en/careers/ |
-| Dùng chung toàn site | 2 | 0 | * · * |
+| Trang | Vị trí ảnh (bản cắt) | Ảnh bị khóa | Đoạn chữ | Đường dẫn VI · EN |
+|---|---|---|---|---|
+| Trang chủ | 19 (31) | 25 | 138 | / · /en/ |
+| Về chúng tôi | 6 (6) | 7 | 64 | /about/ · /en/about/ |
+| Gia Công Mỹ Phẩm | 9 (14) | 42 | 146 | /contract-manufacturing-cosmetics/ · /en/contract-manufacturing-cosmetics/ |
+| Dịch Vụ Khác | 6 (12) | 22 | 35 | /dich-vu-khac/ · /en/dich-vu-khac/ |
+| Liên hệ | 0 (0) | 1 | 19 | /contacts/ · /en/contacts/ |
+| Tuyển dụng (trang danh sách) | 1 (1) | 4 | 8 | /tuyen-dung/ · /en/careers/ |
+| Dùng chung toàn site | 0 (0) | 6 | 0 | * · * |
 
-Tổng: **96 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN).
+Tổng: **41 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN).
 
-Ảnh: website tự cắt ảnh mới theo **tỷ lệ khung** dưới đây (theo điểm lấy nét bạn chọn), nên bố cục Desktop/Tablet/Mobile không đổi. Logo BIO-A, biểu tượng Zalo và ảnh thẻ việc làm không nằm ở đây (logo được bảo vệ; ảnh việc làm nằm trong mục **Tuyển dụng**; ảnh Blog nằm trong từng bài).
+Ảnh: mỗi **vị trí** là một ảnh trên trang. Một ảnh tải lên được cắt thành một bản cho **từng khung** (máy tính, điện thoại, ảnh `<picture>` riêng cho điện thoại) theo đúng tỷ lệ hiện tại, nên bố cục Desktop/Tablet/Mobile không đổi. Không nằm ở đây: logo BIO-A, Zalo, biểu tượng/icon owner-PASS, dấu chứng nhận nhỏ (khóa); ảnh việc làm (mục **Tuyển dụng**); ảnh Blog (từng bài). Danh sách đầy đủ mọi nguồn ảnh và lý do: `docs/CMS_IMAGE_SOURCES.md`.
 
 ## Trang chủ
 
 ### Ảnh
 
-| # | Tên trong Studio | Mục | Tỷ lệ khung (rộng:cao) | Hiển thị Desktop · Tablet · Mobile | Khuyến nghị tải lên |
-|---|---|---|---|---|---|
-| 1 | Ảnh 1 — Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group (title-1.webp) | Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group | 1.90 : 1 | 1440×759 · 834×440 · 390×928 | ≥ 2400 px ngang |
-| 2 | Biểu tượng 2 — Vì Sao Chọn Bio-A Group (icon-1.svg) | Vì Sao Chọn Bio-A Group | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 3 | Biểu tượng 3 — Vì Sao Chọn Bio-A Group (icon-2.svg) | Vì Sao Chọn Bio-A Group | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 4 | Biểu tượng 4 — Vì Sao Chọn Bio-A Group (icon-3.svg) | Vì Sao Chọn Bio-A Group | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 5 | Ảnh 5 — Danh Mục Sản Xuất (produce-1.webp) | Danh Mục Sản Xuất + Danh Mục Gia Công | 1.27 : 1 | 668×527 · 387×305 · 362×323 | ≥ 1336 px ngang |
-| 6 | Ảnh 6 — Danh Mục Sản Xuất (produce-2.webp) | Danh Mục Sản Xuất + Danh Mục Gia Công | 1.27 : 1 | 668×527 · 387×305 · 362×323 | ≥ 1336 px ngang |
-| 7 | Biểu tượng 7 — Quy Trình Hợp Tác (icon-1-1.svg) | Quy Trình Hợp Tác | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 8 | Ảnh 8 — Quy Trình Hợp Tác (image-1.webp) | Quy Trình Hợp Tác | 0.94 : 1 | 300×375 · 174×256 · — | ≥ 665 px ngang |
-| 9 | Biểu tượng 9 — Quy Trình Hợp Tác (icon-2-1.svg) | Quy Trình Hợp Tác | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 10 | Ảnh 10 — Quy Trình Hợp Tác (image-2.webp) | Quy Trình Hợp Tác | 0.94 : 1 | 300×375 · 174×257 · 295×315 | ≥ 665 px ngang |
-| 11 | Biểu tượng 11 — Quy Trình Hợp Tác (icon-3-1.svg) | Quy Trình Hợp Tác | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 12 | Ảnh 12 — Quy Trình Hợp Tác (image-3.webp) | Quy Trình Hợp Tác | 0.94 : 1 | 300×375 · 174×241 · 295×315 | ≥ 665 px ngang |
-| 13 | Biểu tượng 13 — Quy Trình Hợp Tác (icon-4-1.svg) | Quy Trình Hợp Tác | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 14 | Ảnh 14 — Quy Trình Hợp Tác (image-4.webp) | Quy Trình Hợp Tác | 0.94 : 1 | 300×375 · 174×226 · 295×315 | ≥ 665 px ngang |
-| 15 | Biểu tượng 15 — Quy Trình Hợp Tác (icon-5.svg) | Quy Trình Hợp Tác | 1.00 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 16 | Ảnh 16 — Quy Trình Hợp Tác (image-5.webp) | Quy Trình Hợp Tác | 0.94 : 1 | 300×375 · 174×241 · 295×315 | ≥ 665 px ngang |
-| 17 | Ảnh 17 — Quy Trình Hợp Tác (image-1-1.webp) | Quy Trình Hợp Tác | 0.94 : 1 | — · — · 295×315 | ≥ 665 px ngang |
-| 18 | Ảnh 18 — Vỉ Định Hình (image-1_mobile.webp) | Vỉ Định Hình + Giải Pháp Bao Bì Phù Hợp Sản Phẩm | 0.97 : 1 | 500×500 · 289×289 · 300×310 | ≥ 1000 px ngang |
-| 19 | Ảnh 19 — Vỉ Định Hình (image-2-8.webp) | Vỉ Định Hình | 1.00 : 1 | 500×500 · 289×289 · — | ≥ 1000 px ngang |
-| 20 | Ảnh 20 — Vỉ Định Hình (image-3-9.webp) | Vỉ Định Hình | 1.07 : 1 | 500×500 · 289×289 · — | ≥ 1000 px ngang |
-| 21 | Ảnh 21 — Giải Pháp Bao Bì Phù Hợp Sản Phẩm (image-2_mobile.webp) | Giải Pháp Bao Bì Phù Hợp Sản Phẩm | 0.97 : 1 | — · — · 300×310 | ≥ 600 px ngang |
-| 22 | Ảnh 22 — Giải Pháp Bao Bì Phù Hợp Sản Phẩm (image-3_mobile.webp) | Giải Pháp Bao Bì Phù Hợp Sản Phẩm | 0.97 : 1 | — · — · 300×310 | ≥ 600 px ngang |
-| 23 | Ảnh 23 — Giải Pháp Bao Bì Phù Hợp Sản Phẩm (image-4_mobile.webp) | Giải Pháp Bao Bì Phù Hợp Sản Phẩm | 0.97 : 1 | — · — · 300×310 | ≥ 600 px ngang |
-| 24 | Ảnh 24 — Giải Pháp Bao Bì Phù Hợp Sản Phẩm (image-5_mobile.webp) | Giải Pháp Bao Bì Phù Hợp Sản Phẩm | 0.97 : 1 | — · — · 300×310 | ≥ 600 px ngang |
-| 25 | Biểu tượng 25 — Phù Hợp Với (icon-1-2.svg) | Phù Hợp Với | 1.00 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 26 | Biểu tượng 26 — Phù Hợp Với (icon-2-2.svg) | Phù Hợp Với | 1.00 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 27 | Biểu tượng 27 — Phù Hợp Với (icon-3-2.svg) | Phù Hợp Với | 1.00 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 28 | Ảnh 28 — Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói (image-1-9.webp) | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 29 | Ảnh 29 — Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói (image-2-9.webp) | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 30 | Ảnh 30 — Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói (image-3-10.webp) | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 31 | Ảnh 31 — Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói (image-4-7.webp) | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 32 | Ảnh 32 — Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói (image-5-5.webp) | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
+| # | Tên trong Studio | Mục | Bản cắt: tỷ lệ (rộng:cao) · khung Desktop · Tablet · Mobile | Khuyến nghị tải lên |
+|---|---|---|---|---|
+| 1 | Ảnh 1 — Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group | Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group (ảnh <picture> có bản riêng cho điện thoại) | tablet, máy tính: 1.90 : 1 · 1440×759 · 834×440 · —<br>điện thoại: 0.83 : 1 · — · — · 390×928 | ≥ 2400 px ngang, JPEG/PNG/WebP |
+| 2 | Ảnh 2 — Dược mỹ phẩm · Danh Mục Sản Xuất | Danh Mục Sản Xuất + Danh Mục Gia Công (cùng vị trí trên máy tính và điện thoại: Dược mỹ phẩm; ảnh <picture> có bản riêng cho điện thoại) | tablet, máy tính: 1.27 : 1 · 668×527 · 387×305 · —<br>điện thoại: 1.27 : 1 · — · — · 362×323<br>ảnh dự phòng cho điện thoại (đang ẩn): 1.01 : 1 · — · — · — | ≥ 1336 px ngang, JPEG/PNG/WebP |
+| 3 | Ảnh 3 — Mỹ phẩm · Danh Mục Sản Xuất | Danh Mục Sản Xuất (ảnh <picture> có bản riêng cho điện thoại) | tablet, máy tính: 1.27 : 1 · 668×527 · 387×305 · —<br>ảnh dự phòng cho điện thoại (đang ẩn): 1.02 : 1 · — · — · — | ≥ 1336 px ngang, JPEG/PNG/WebP |
+| 4 | Ảnh 4 — Bao Bì & Hoàn Thiện · Danh Mục Gia Công | Danh Mục Gia Công | điện thoại: 1.27 : 1 · — · — · 362×323 | ≥ 1335 px ngang, JPEG/PNG/WebP |
+| 5 | Ảnh 5 — Tư Vấn & Lập Kế Hoạch · Quy Trình Hợp Tác | Quy Trình Hợp Tác (cùng vị trí trên máy tính và điện thoại: Tư Vấn & Lập Kế Hoạch) | tablet, máy tính: 0.94 : 1 · 300×375 · 174×256 · —<br>điện thoại: 0.94 : 1 · — · — · 295×315 | ≥ 665 px ngang, JPEG/PNG/WebP |
+| 6 | Ảnh 6 — Nghiên Cứu & Phát Triển · Quy Trình Hợp Tác | Quy Trình Hợp Tác (cùng vị trí trên máy tính và điện thoại: Nghiên Cứu & Phát Triển) | tablet, máy tính: 0.94 : 1 · 300×375 · 174×257 · —<br>điện thoại: 0.94 : 1 · — · — · 295×315 | ≥ 665 px ngang, JPEG/PNG/WebP |
+| 7 | Ảnh 7 — Bao Bì & Nhận Diện · Quy Trình Hợp Tác | Quy Trình Hợp Tác (cùng vị trí trên máy tính và điện thoại: Bao Bì & Nhận Diện) | tablet, máy tính: 0.94 : 1 · 300×375 · 174×241 · —<br>điện thoại: 0.94 : 1 · — · — · 295×315 | ≥ 665 px ngang, JPEG/PNG/WebP |
+| 8 | Ảnh 8 — Hồ Sơ Sản Phẩm · Quy Trình Hợp Tác | Quy Trình Hợp Tác (cùng vị trí trên máy tính và điện thoại: Hồ Sơ Sản Phẩm) | tablet, máy tính: 0.94 : 1 · 300×375 · 174×226 · —<br>điện thoại: 0.94 : 1 · — · — · 295×315 | ≥ 665 px ngang, JPEG/PNG/WebP |
+| 9 | Ảnh 9 — Sản Xuất & Bàn Giao · Quy Trình Hợp Tác | Quy Trình Hợp Tác (cùng vị trí trên máy tính và điện thoại: Sản Xuất & Bàn Giao) | tablet, máy tính: 0.94 : 1 · 300×375 · 174×241 · —<br>điện thoại: 0.94 : 1 · — · — · 295×315 | ≥ 665 px ngang, JPEG/PNG/WebP |
+| 10 | Ảnh 10 — Tuýp & chai chân không · Vỉ Định Hình | Vỉ Định Hình + Giải Pháp Bao Bì Phù Hợp Sản Phẩm (cùng vị trí trên máy tính và điện thoại: Tuýp & chai chân không) | tablet, máy tính: 0.97 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.97 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 11 | Ảnh 11 — Hũ mỹ phẩm · Vỉ Định Hình | Vỉ Định Hình + Giải Pháp Bao Bì Phù Hợp Sản Phẩm (cùng vị trí trên máy tính và điện thoại: Hũ mỹ phẩm) | tablet, máy tính: 1.00 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.97 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 12 | Ảnh 12 — Vỉ định hình · Vỉ Định Hình | Vỉ Định Hình + Giải Pháp Bao Bì Phù Hợp Sản Phẩm (cùng vị trí trên máy tính và điện thoại: Vỉ định hình) | tablet, máy tính: 1.07 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.97 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 13 | Ảnh 13 — Gói Sachet · Giải Pháp Bao Bì Phù Hợp Sản Phẩm | Giải Pháp Bao Bì Phù Hợp Sản Phẩm | điện thoại: 0.97 : 1 · — · — · 300×310 | ≥ 600 px ngang, JPEG/PNG/WebP |
+| 14 | Ảnh 14 — Túi Doypack · Giải Pháp Bao Bì Phù Hợp Sản Phẩm | Giải Pháp Bao Bì Phù Hợp Sản Phẩm | điện thoại: 0.97 : 1 · — · — · 300×310 | ≥ 600 px ngang, JPEG/PNG/WebP |
+| 15 | Ảnh 15 — Tư Vấn & Lập Kế Hoạch · Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 16 | Ảnh 16 — Nghiên Cứu & Phát Triển · Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 17 | Ảnh 17 — Bao Bì & Nhận Diện · Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 18 | Ảnh 18 — Hồ Sơ Sản Phẩm · Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 19 | Ảnh 19 — Sản Xuất & Bàn Giao · Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói | Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Tr… | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
 
 ### Nội dung chữ
 
@@ -204,20 +191,14 @@ Tổng: **96 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN
 
 ### Ảnh
 
-| # | Tên trong Studio | Mục | Tỷ lệ khung (rộng:cao) | Hiển thị Desktop · Tablet · Mobile | Khuyến nghị tải lên |
-|---|---|---|---|---|---|
-| 1 | Ảnh 1 — Về Bio-A Group (hero2.webp) | Về Bio-A Group | 1.28 : 1 | 607×474 · — · — | ≥ 1396 px ngang |
-| 2 | Ảnh 2 — Đội Ngũ Đồng Hành Cùng Sản Phẩm (IMG_6258-1.png) | Đội Ngũ Đồng Hành Cùng Sản Phẩm | 1.00 : 1 | 421×420 · 537×536 · 299×299 | ≥ 1074 px ngang |
-| 3 | Biểu tượng 3 — Danh Mục Gia Công (about-icon-01-trang-diem.png) | Danh Mục Gia Công | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 4 | Biểu tượng 4 — Danh Mục Gia Công (about-icon-02-cham-soc-toc.png) | Danh Mục Gia Công | 1.00 : 1 | 38×38 · 38×38 · 38×38 | SVG hoặc PNG nền trong |
-| 5 | Biểu tượng 5 — Danh Mục Gia Công (about-icon-03-cham-soc-body.png) | Danh Mục Gia Công | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 6 | Biểu tượng 6 — Danh Mục Gia Công (about-icon-04-cham-soc-da-mat.png) | Danh Mục Gia Công | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 7 | Biểu tượng 7 — Danh Mục Gia Công (about-icon-05-ca-nhan.png) | Danh Mục Gia Công | 1.00 : 1 | 34×34 · 34×34 · 34×34 | SVG hoặc PNG nền trong |
-| 8 | Biểu tượng 8 — Danh Mục Gia Công (about-icon-06-me-be.png) | Danh Mục Gia Công | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 9 | Ảnh 9 — Câu Chuyện Bio-A (title-1.webp) | Câu Chuyện Bio-A | 1.90 : 1 | 620×480 · 791×300 · 335×230 | ≥ 1920 px ngang |
-| 10 | Ảnh 10 — Hoạt Động & Kết Nối (Image-16-scaled.webp) | Hoạt Động & Kết Nối | 2.12 : 1 | 810×456 · 469×264 · 335×188 | ≥ 2400 px ngang |
-| 11 | Ảnh 11 — Hoạt Động & Kết Nối (armenia.webp) | Hoạt Động & Kết Nối | 1.85 : 1 | 810×456 · 469×264 · 335×188 | ≥ 1707 px ngang |
-| 12 | Ảnh 12 — Hoạt Động & Kết Nối (budapest1.webp) | Hoạt Động & Kết Nối | 1.50 : 1 | 810×456 · 469×264 · 335×188 | ≥ 1620 px ngang |
+| # | Tên trong Studio | Mục | Bản cắt: tỷ lệ (rộng:cao) · khung Desktop · Tablet · Mobile | Khuyến nghị tải lên |
+|---|---|---|---|---|
+| 1 | Ảnh 1 — Về Bio-A Group | Về Bio-A Group | máy tính: 1.28 : 1 · 607×474 · — · — | ≥ 1396 px ngang, JPEG/PNG/WebP |
+| 2 | Ảnh 2 — Câu Chuyện Bio-A | Câu Chuyện Bio-A | máy tính, tablet, điện thoại: 1.90 : 1 · 620×480 · 791×300 · 335×230 | ≥ 1920 px ngang, JPEG/PNG/WebP |
+| 3 | Ảnh 3 — Phối Hợp Từ R&D Đến Sản Xuất · Đội Ngũ Đồng Hành Cùng Sản Phẩm | Đội Ngũ Đồng Hành Cùng Sản Phẩm | máy tính, tablet, điện thoại: 1.00 : 1 · 421×420 · 537×536 · 299×299 | ≥ 1074 px ngang, JPEG/PNG/WebP |
+| 4 | Ảnh 4 — Hoạt Động & Kết Nối | Hoạt Động & Kết Nối | máy tính, tablet, điện thoại: 2.12 : 1 · 810×456 · 469×264 · 335×188 | ≥ 2400 px ngang, JPEG/PNG/WebP |
+| 5 | Ảnh 5 — Hoạt Động & Kết Nối | Hoạt Động & Kết Nối | máy tính, tablet, điện thoại: 1.85 : 1 · 810×456 · 469×264 · 335×188 | ≥ 1707 px ngang, JPEG/PNG/WebP |
+| 6 | Ảnh 6 — Hoạt Động & Kết Nối | Hoạt Động & Kết Nối | máy tính, tablet, điện thoại: 1.50 : 1 · 810×456 · 469×264 · 335×188 | ≥ 1620 px ngang, JPEG/PNG/WebP |
 
 ### Nội dung chữ
 
@@ -292,46 +273,17 @@ Tổng: **96 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN
 
 ### Ảnh
 
-| # | Tên trong Studio | Mục | Tỷ lệ khung (rộng:cao) | Hiển thị Desktop · Tablet · Mobile | Khuyến nghị tải lên |
-|---|---|---|---|---|---|
-| 1 | Biểu tượng 1 — Tại Sao Nên Chọn Bio-A Group? (Group-1-1.svg) | Tại Sao Nên Chọn Bio-A Group? | 0.96 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 2 | Biểu tượng 2 — Tại Sao Nên Chọn Bio-A Group? (Group-2087325508-1.svg) | Tại Sao Nên Chọn Bio-A Group? | 1.47 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 3 | Biểu tượng 3 — Tại Sao Nên Chọn Bio-A Group? (Group-2.svg) | Tại Sao Nên Chọn Bio-A Group? | 0.88 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 4 | Biểu tượng 4 — Tại Sao Nên Chọn Bio-A Group? (Group-3.svg) | Tại Sao Nên Chọn Bio-A Group? | 0.81 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 5 | Biểu tượng 5 — Tại Sao Nên Chọn Bio-A Group? (Group-2087325574.svg) | Tại Sao Nên Chọn Bio-A Group? | 0.88 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 6 | Biểu tượng 6 — Tại Sao Nên Chọn Bio-A Group? (Group-4.svg) | Tại Sao Nên Chọn Bio-A Group? | 1.33 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 7 | Biểu tượng 7 — Tại Sao Nên Chọn Bio-A Group? (Group-5.svg) | Tại Sao Nên Chọn Bio-A Group? | 1.14 : 1 | 23×23 · 13×13 · 20×20 | SVG hoặc PNG nền trong |
-| 8 | Biểu tượng 8 — Danh Mục Gia Công Mỹ Phẩm (about-icon-01-trang-diem.png) | Danh Mục Gia Công Mỹ Phẩm | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 9 | Biểu tượng 9 — Danh Mục Gia Công Mỹ Phẩm (about-icon-02-cham-soc-toc.png) | Danh Mục Gia Công Mỹ Phẩm | 1.00 : 1 | 38×38 · 38×38 · 38×38 | SVG hoặc PNG nền trong |
-| 10 | Biểu tượng 10 — Danh Mục Gia Công Mỹ Phẩm (about-icon-03-cham-soc-body.png) | Danh Mục Gia Công Mỹ Phẩm | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 11 | Biểu tượng 11 — Danh Mục Gia Công Mỹ Phẩm (about-icon-04-cham-soc-da-mat.png) | Danh Mục Gia Công Mỹ Phẩm | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 12 | Biểu tượng 12 — Danh Mục Gia Công Mỹ Phẩm (about-icon-05-ca-nhan.png) | Danh Mục Gia Công Mỹ Phẩm | 1.00 : 1 | 34×34 · 34×34 · 34×34 | SVG hoặc PNG nền trong |
-| 13 | Biểu tượng 13 — Danh Mục Gia Công Mỹ Phẩm (about-icon-06-me-be.png) | Danh Mục Gia Công Mỹ Phẩm | 1.00 : 1 | 36×36 · 36×36 · 36×36 | SVG hoặc PNG nền trong |
-| 14 | Ảnh 14 — Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (Tubes.webp) | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | 0.65 : 1 | 500×500 · 289×289 · 300×310 | ≥ 1000 px ngang |
-| 15 | Ảnh 15 — Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (Airless-Containers.webp) | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | 0.59 : 1 | 500×500 · 289×289 · 300×310 | ≥ 1000 px ngang |
-| 16 | Ảnh 16 — Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (Jars-and-bottles.webp) | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | 0.73 : 1 | 500×500 · 289×289 · 300×310 | ≥ 1000 px ngang |
-| 17 | Ảnh 17 — Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (Bottles.webp) | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | 0.41 : 1 | 500×500 · 289×289 · 300×310 | ≥ 1000 px ngang |
-| 18 | Biểu tượng 18 — Quy Trình Gia Công Linh Hoạt (Group-2087325510.svg) | Quy Trình Gia Công Linh Hoạt | 1.04 : 1 | 19×19 · 22×22 · 26×26 | SVG hoặc PNG nền trong |
-| 19 | Biểu tượng 19 — Quy Trình Gia Công Linh Hoạt (Group-2087325514.svg) | Quy Trình Gia Công Linh Hoạt | 0.85 : 1 | 19×19 · 22×22 · 26×26 | SVG hoặc PNG nền trong |
-| 20 | Biểu tượng 20 — Quy Trình Gia Công Linh Hoạt (Depth-8-Frame-0.svg) | Quy Trình Gia Công Linh Hoạt | 0.96 : 1 | 19×19 · 22×22 · 26×26 | SVG hoặc PNG nền trong |
-| 21 | Biểu tượng 21 — Quy Trình Gia Công Linh Hoạt (Group-1.svg) | Quy Trình Gia Công Linh Hoạt | 1.14 : 1 | 19×19 · 22×22 · 26×26 | SVG hoặc PNG nền trong |
-| 22 | Biểu tượng 22 — Quy Trình Gia Công Linh Hoạt (Group-2087325509.svg) | Quy Trình Gia Công Linh Hoạt | 1.05 : 1 | 19×19 · 22×22 · 26×26 | SVG hoặc PNG nền trong |
-| 23 | Biểu tượng 23 — Quy Trình Gia Công Linh Hoạt (Icon-4.svg) | Quy Trình Gia Công Linh Hoạt | 1.00 : 1 | — · — · 50×50 | SVG hoặc PNG nền trong |
-| 24 | Biểu tượng 24 — Quy Trình Gia Công Linh Hoạt (Group-2087325508.svg) | Quy Trình Gia Công Linh Hoạt | 1.47 : 1 | 19×19 · 22×22 · 26×26 | SVG hoặc PNG nền trong |
-| 25 | Ảnh 25 — Năng Lực Sản Xuất & Kiểm Soát Chất Lượng (a82f48d216f6a7d6388e0abf855e90795aeace16.png) | Năng Lực Sản Xuất & Kiểm Soát Chất Lượng | 1.09 : 1 | 60×60 · 70×70 · 60×60 | ≥ 512 px ngang |
-| 26 | Ảnh 26 — Năng Lực Sản Xuất & Kiểm Soát Chất Lượng (d405a67134a7f63465941fb9658f009da81d9dc7.png) | Năng Lực Sản Xuất & Kiểm Soát Chất Lượng | 0.89 : 1 | 60×60 · 70×70 · 60×60 | ≥ 414 px ngang |
-| 27 | Biểu tượng 27 — Hạng Mục Kiểm Tra (Vector.svg) | Hạng Mục Kiểm Tra | 1.00 : 1 | 29×29 · 29×29 · 25×25 | SVG hoặc PNG nền trong |
-| 28 | Biểu tượng 28 — Hạng Mục Kiểm Tra (Group-2087325516.svg) | Hạng Mục Kiểm Tra | 1.00 : 1 | 29×29 · 29×29 · 25×25 | SVG hoặc PNG nền trong |
-| 29 | Biểu tượng 29 — Hạng Mục Kiểm Tra (Vector-1.svg) | Hạng Mục Kiểm Tra | 1.29 : 1 | 29×29 · 28×29 · 25×25 | SVG hoặc PNG nền trong |
-| 30 | Biểu tượng 30 — Hạng Mục Kiểm Tra (Group-2087325513.svg) | Hạng Mục Kiểm Tra | 1.04 : 1 | 29×29 · 29×29 · 25×25 | SVG hoặc PNG nền trong |
-| 31 | Biểu tượng 31 — Hạng Mục Kiểm Tra (Icon-3.svg) | Hạng Mục Kiểm Tra | 1.11 : 1 | 55×55 · 55×55 · 30×30 | SVG hoặc PNG nền trong |
-| 32 | Biểu tượng 32 — Hạng Mục Kiểm Tra (Icon-1.svg) | Hạng Mục Kiểm Tra | 0.89 : 1 | 55×55 · 55×55 · 30×30 | SVG hoặc PNG nền trong |
-| 33 | Biểu tượng 33 — Hạng Mục Kiểm Tra (Icon-2.svg) | Hạng Mục Kiểm Tra | 1.11 : 1 | 55×55 · 55×55 · 30×30 | SVG hoặc PNG nền trong |
-| 34 | Ảnh 34 — Đồng Hành Trọn Chu Kỳ (image-1-9.webp) | Đồng Hành Trọn Chu Kỳ | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 35 | Ảnh 35 — Đồng Hành Trọn Chu Kỳ (image-2-9.webp) | Đồng Hành Trọn Chu Kỳ | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 36 | Ảnh 36 — Đồng Hành Trọn Chu Kỳ (image-3-10.webp) | Đồng Hành Trọn Chu Kỳ | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 37 | Ảnh 37 — Đồng Hành Trọn Chu Kỳ (image-4-7.webp) | Đồng Hành Trọn Chu Kỳ | 1.07 : 1 | 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang |
-| 38 | Ảnh 38 — Gia Công Mỹ Phẩm Trọn Gói (cosmetics-hero-bioa.webp) | Gia Công Mỹ Phẩm Trọn Gói | 1.05 : 1 | 720×690 · 417×400 · 335×318 | ≥ 1440 px ngang |
+| # | Tên trong Studio | Mục | Bản cắt: tỷ lệ (rộng:cao) · khung Desktop · Tablet · Mobile | Khuyến nghị tải lên |
+|---|---|---|---|---|
+| 1 | Ảnh 1 — Gia Công Mỹ Phẩm Trọn Gói | Gia Công Mỹ Phẩm Trọn Gói (cùng vị trí trên máy tính và điện thoại: Gia Công Mỹ Phẩm Trọn Gói) | tablet, máy tính: 1.05 : 1 · 720×690 · 417×400 · —<br>điện thoại: 1.05 : 1 · — · — · 335×318 | ≥ 1440 px ngang, JPEG/PNG/WebP |
+| 2 | Ảnh 2 — Tuýp Mỹ Phẩm · Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (cùng vị trí trên máy tính và điện thoại: Tuýp Mỹ Phẩm) | tablet, máy tính: 0.65 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.65 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 3 | Ảnh 3 — Chai Airless · Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (cùng vị trí trên máy tính và điện thoại: Chai Airless) | tablet, máy tính: 0.59 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.59 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 4 | Ảnh 4 — Hũ Mỹ Phẩm · Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (cùng vị trí trên máy tính và điện thoại: Hũ Mỹ Phẩm) | tablet, máy tính: 0.73 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.73 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 5 | Ảnh 5 — Chai / Lọ · Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm | Giải Pháp Bao Bì Cho Thương Hiệu Mỹ Phẩm (cùng vị trí trên máy tính và điện thoại: Chai / Lọ) | tablet, máy tính: 0.41 : 1 · 500×500 · 289×289 · —<br>điện thoại: 0.41 : 1 · — · — · 300×310 | ≥ 1000 px ngang, JPEG/PNG/WebP |
+| 6 | Ảnh 6 — Tư Vấn & Hỗ Trợ Toàn Diện · Đồng Hành Trọn Chu Kỳ | Đồng Hành Trọn Chu Kỳ | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 7 | Ảnh 7 — R&D & Hoàn Thiện Công Thức · Đồng Hành Trọn Chu Kỳ | Đồng Hành Trọn Chu Kỳ | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 8 | Ảnh 8 — Bao Bì & Hoàn Thiện Đồng Bộ · Đồng Hành Trọn Chu Kỳ | Đồng Hành Trọn Chu Kỳ | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
+| 9 | Ảnh 9 — Hồ Sơ, Sản Xuất & Bàn Giao · Đồng Hành Trọn Chu Kỳ | Đồng Hành Trọn Chu Kỳ | máy tính, tablet, điện thoại: 1.07 : 1 · 631×591 · 366×343 · 295×295 | ≥ 1262 px ngang, JPEG/PNG/WebP |
 
 ### Nội dung chữ
 
@@ -488,19 +440,14 @@ Tổng: **96 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN
 
 ### Ảnh
 
-| # | Tên trong Studio | Mục | Tỷ lệ khung (rộng:cao) | Hiển thị Desktop · Tablet · Mobile | Khuyến nghị tải lên |
-|---|---|---|---|---|---|
-| 1 | Ảnh 1 — Dịch Vụ Bio-A Group (Shower-Gel.webp) | Dịch Vụ Bio-A Group | 0.62 : 1 | 300×375 · 174×217 · 295×315 | ≥ 879 px ngang |
-| 2 | Ảnh 2 — Dịch Vụ Bio-A Group (Shampoo.webp) | Dịch Vụ Bio-A Group | 0.62 : 1 | 300×375 · 174×217 · 295×315 | ≥ 879 px ngang |
-| 3 | Ảnh 3 — Dịch Vụ Bio-A Group (Conditioner.webp) | Dịch Vụ Bio-A Group | 0.62 : 1 | 300×375 · 174×217 · 295×315 | ≥ 879 px ngang |
-| 4 | Ảnh 4 — Dịch Vụ Bio-A Group (Soap.webp) | Dịch Vụ Bio-A Group | 0.62 : 1 | 300×375 · 174×217 · 295×315 | ≥ 879 px ngang |
-| 5 | Ảnh 5 — Dịch Vụ Bio-A Group (Body-Cream.webp) | Dịch Vụ Bio-A Group | 0.62 : 1 | 300×375 · 174×217 · 295×315 | ≥ 879 px ngang |
-| 6 | Biểu tượng 6 — Quy Trình Triển Khai Dịch Vụ (Group-7.svg) | Quy Trình Triển Khai Dịch Vụ | 1.04 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 7 | Biểu tượng 7 — Quy Trình Triển Khai Dịch Vụ (Group-2.svg) | Quy Trình Triển Khai Dịch Vụ | 0.88 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 8 | Biểu tượng 8 — Quy Trình Triển Khai Dịch Vụ (Group-2087325508-2.svg) | Quy Trình Triển Khai Dịch Vụ | 1.47 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 9 | Biểu tượng 9 — Quy Trình Triển Khai Dịch Vụ (Group-1-2.svg) | Quy Trình Triển Khai Dịch Vụ | 0.96 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 10 | Biểu tượng 10 — Quy Trình Triển Khai Dịch Vụ (icon-4-4.svg) | Quy Trình Triển Khai Dịch Vụ | 1.00 : 1 | 23×23 · 13×13 · 16×16 | SVG hoặc PNG nền trong |
-| 11 | Ảnh 11 — Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm (cosmetics-hero-bioa.webp) | Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm | 1.05 : 1 | 720×690 · 417×400 · 335×318 | ≥ 1440 px ngang |
+| # | Tên trong Studio | Mục | Bản cắt: tỷ lệ (rộng:cao) · khung Desktop · Tablet · Mobile | Khuyến nghị tải lên |
+|---|---|---|---|---|
+| 1 | Ảnh 1 — Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm | Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm (cùng vị trí trên máy tính và điện thoại: Dịch Vụ Hỗ Trợ Toàn Diện Cho Thương Hiệu Mỹ Phẩm) | tablet, máy tính: 1.05 : 1 · 720×690 · 417×400 · —<br>điện thoại: 1.05 : 1 · — · — · 335×318 | ≥ 1440 px ngang, JPEG/PNG/WebP |
+| 2 | Ảnh 2 — Sản Xuất & Gia Công Dược Mỹ Phẩm · Dịch Vụ Bio-A Group | Dịch Vụ Bio-A Group (cùng vị trí trên máy tính và điện thoại: Sản Xuất & Gia Công Dược Mỹ Phẩm) | tablet, máy tính: 0.62 : 1 · 300×375 · 174×217 · —<br>điện thoại: 0.62 : 1 · — · — · 295×315 | ≥ 879 px ngang, JPEG/PNG/WebP |
+| 3 | Ảnh 3 — Đóng Gói & Sang Chiết Mỹ Phẩm · Dịch Vụ Bio-A Group | Dịch Vụ Bio-A Group (cùng vị trí trên máy tính và điện thoại: Đóng Gói & Sang Chiết Mỹ Phẩm) | tablet, máy tính: 0.62 : 1 · 300×375 · 174×217 · —<br>điện thoại: 0.62 : 1 · — · — · 295×315 | ≥ 879 px ngang, JPEG/PNG/WebP |
+| 4 | Ảnh 4 — Đăng Ký Thương Hiệu & Công Bố · Dịch Vụ Bio-A Group | Dịch Vụ Bio-A Group (cùng vị trí trên máy tính và điện thoại: Đăng Ký Thương Hiệu & Công Bố) | tablet, máy tính: 0.62 : 1 · 300×375 · 174×217 · —<br>điện thoại: 0.62 : 1 · — · — · 295×315 | ≥ 879 px ngang, JPEG/PNG/WebP |
+| 5 | Ảnh 5 — Chai Lọ Mỹ Phẩm · Dịch Vụ Bio-A Group | Dịch Vụ Bio-A Group (cùng vị trí trên máy tính và điện thoại: Chai Lọ Mỹ Phẩm) | tablet, máy tính: 0.62 : 1 · 300×375 · 174×217 · —<br>điện thoại: 0.62 : 1 · — · — · 295×315 | ≥ 879 px ngang, JPEG/PNG/WebP |
+| 6 | Ảnh 6 — Thiết Kế Bao Bì Mỹ Phẩm · Dịch Vụ Bio-A Group | Dịch Vụ Bio-A Group (cùng vị trí trên máy tính và điện thoại: Thiết Kế Bao Bì Mỹ Phẩm) | tablet, máy tính: 0.62 : 1 · 300×375 · 174×217 · —<br>điện thoại: 0.62 : 1 · — · — · 295×315 | ≥ 879 px ngang, JPEG/PNG/WebP |
 
 ### Nội dung chữ
 
@@ -572,9 +519,9 @@ Tổng: **96 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN
 
 ### Ảnh
 
-| # | Tên trong Studio | Mục | Tỷ lệ khung (rộng:cao) | Hiển thị Desktop · Tablet · Mobile | Khuyến nghị tải lên |
-|---|---|---|---|---|---|
-| 1 | Ảnh 1 — Tuyển Dụng (career.webp) | Tuyển Dụng | 1.04 : 1 | 527×520 · 711×300 · 287×210 | ≥ 1422 px ngang |
+| # | Tên trong Studio | Mục | Bản cắt: tỷ lệ (rộng:cao) · khung Desktop · Tablet · Mobile | Khuyến nghị tải lên |
+|---|---|---|---|---|
+| 1 | Ảnh 1 — Tuyển Dụng | Tuyển Dụng | máy tính, tablet, điện thoại: 1.04 : 1 · 527×520 · 711×300 · 287×210 | ≥ 1422 px ngang, JPEG/PNG/WebP |
 
 ### Nội dung chữ
 
@@ -588,15 +535,6 @@ Tổng: **96 vị trí ảnh**, **410 đoạn chữ** (mỗi đoạn có VI + EN
 | Đồng Hành Cùng Bio-A Group | Đồng Hành Cùng Bio-A Group | 38 / 33 | 1 |
 | Đồng Hành Cùng Bio-A Group | Chưa thấy vị trí phù hợp? Hãy liên hệ Bio-A Group để được thông tin khi có đợt … | 127 / 105 | 1 |
 | Đồng Hành Cùng Bio-A Group | Đã sao chép! | 24 / 19 | 1 |
-
-## Dùng chung toàn site
-
-### Ảnh
-
-| # | Tên trong Studio | Mục | Tỷ lệ khung (rộng:cao) | Hiển thị Desktop · Tablet · Mobile | Khuyến nghị tải lên |
-|---|---|---|---|---|---|
-| 1 | Biểu tượng 1 — Biểu tượng cookie (cookie.svg) | Biểu tượng cookie | 1.00 : 1 | — · — · — | SVG hoặc PNG nền trong |
-| 2 | Biểu tượng 2 — Khung chat (bioa-sales-avatar.webp) | Khung chat | 1.00 : 1 | 62×62 · 37×37 · 52×52 | SVG hoặc PNG nền trong |
 
 ## Ngoài danh sách trên
 

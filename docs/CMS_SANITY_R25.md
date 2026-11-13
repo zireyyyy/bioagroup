@@ -2,9 +2,20 @@
 
 **Owner directive:** "BIO-A GROUP — SANITY CMS INTEGRATION / ONE IMPLEMENTATION, NO WEBSITE REDESIGN" (2026-11-13), after the owner confirmed R24RC2 PASS.
 **Base:** `main` `a062d59`. **Branch:** `cms/sanity-r25`.
-**Status:** CODE/BUILD/AUTOMATED PASS · PREVIEW publish→rebuild→rollback PASS · OWNER CMS REVIEW PENDING. Branch `cms/sanity-r25` pushed with owner approval (Preview only). Production untouched: `main` and Production config are unchanged, and maintenance stays ON.
+**Status:** CODE/BUILD/AUTOMATED PASS · PREVIEW publish→rebuild→rollback PASS (R25) · **R25b technical-review corrections** applied (see §0) · OWNER CMS REVIEW PENDING. Branch `cms/sanity-r25` pushed with owner approval (Preview only). Production untouched: `main` and Production config are unchanged, and maintenance stays ON.
 
-Read with `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md` (permanent contract), `docs/CMS_CONTENT_MAP.md` (every slot) and `docs/CMS_OWNER_GUIDE_VI.md` (owner guide).
+Read with `docs/CMS_CONTENT_RESPONSIVE_CONTRACT.md` (permanent contract), `docs/CMS_CONTENT_MAP.md` (every slot), `docs/CMS_IMAGE_SOURCES.md` (every image source and who manages it), `docs/CMS_RELEASE_PLAN.md` (Production release proposal) and `docs/CMS_OWNER_GUIDE_VI.md` (owner guide).
+
+## 0. R25b — technical review corrections (owner 2026-11-13, "CMS-R25 TECHNICAL REVIEW CORRECTIONS")
+
+| Item | Before (R25) | After (R25b) |
+|---|---|---|
+| **A. Production release control (P0)** | A Production build with `SANITY_*` would have read the latest published content | `tools/fetch-cms.mjs`: on `CF_PAGES_BRANCH=main` live mode is forbidden; Production extracts only the **pinned release** `cms/release/current.json` (sha256-verified archive, no network). Releases are created by `tools/cms-release.mjs create --approved-by` and rolled back by `pin`. No pin = repository content (byte-identical). Proposal for owner approval: `docs/CMS_RELEASE_PLAN.md`. No Production config changed. |
+| **B. Image slot integrity (P1)** | 96 slots keyed by URL: one URL = one slot, so `image-1_mobile.webp` (desktop "Tuýp & chai chân không" + mobile "Gói Sachet") was ONE slot; `<picture><source>` mobile files (e.g. Home hero `title_mobile.webp`) were not replaced; SVG uploads allowed | Registry v2: **41 slots = 41 positions, 67 targets**. A target = section signature + rank, kind (`img` / `source` / `bg`), URL and rank. Desktop↔mobile pairs merged only through reviewed `cms/slot-groups.json` (20 pairs, matched by card title); a `<picture>` source joins its `<img>`. Each target gets its own cut at its own ratio. **Locked** (123 references, with reason): SVG icons, raster icons ≤ 128 px, icon-size graphics ≤ 96 px (GMP/HACCP marks), BIO-A logos/Zalo, Careers card images (Careers docs), Header/Footer/cookie/chat. Uploads limited to JPEG/PNG/WebP (Studio + fetch; an SVG asset fails the build). Full inventory of HTML, `<picture>`, inline/`<style>`/file CSS, video poster, JS, og/JSON-LD sources: `docs/CMS_IMAGE_SOURCES.md`; only unmanaged item: the owner-PASS 404 page image. |
+| **C. SEO canonical (P1)** | Any `https://bioagroup.vn/...` accepted | Only the page's own approved canonical (`SITE + route` of that page and language): Studio validation, fetch (fails) and build (throws). Tests for valid and wrong canonicals. Current title/meta/canonical unchanged. |
+| **D. Legal approval gate** | Stamp valid if `approvedAt` within 10 min of `_updatedAt` | Stamp carries `contentHash` (SHA-256 of the canonical legal content, `cms/legal-hash.mjs`, shared by the Studio action and the fetch). Any change after approval (Studio edit + publish without approval, API patch, restore of other content) invalidates it, and the repository text is kept. |
+
+
 
 ## 1. Architecture: data only, static build kept
 
@@ -30,14 +41,12 @@ dist/  (CMS images self-hosted under /assets/cms/; no CMS host, token or script 
 ## 2. Slots: what can be edited (`cms/registry.json`)
 
 - Generated from the **built owner-PASS site** by `tools/cms-registry.mjs <dist> --measure`. Every slot exists today, VI/EN paired.
-- **Images:** 96 slots. Pages: Home 32, About 12, Cosmetics 38, Other Services 11, Careers list 1. Site-wide: cookie icon and chat avatar. For each slot the registry stores the original URL, natural size, rendered frame at 1440/834/390 and object-fit/background-size.
-  - Protected and never a slot: BIO-A logos and monogram, Zalo mark.
-  - Job card images belong to the Careers documents.
+- **Images (registry v2):** 41 position slots / 67 targets (Home 19/31, About 6/6, Cosmetics 9/14, Other Services 6/12, Careers list 1/1). Each target stores its key, kind, original URL, natural size and rendered frame at 1440/834/390 (object-fit/background-size). Locked references with reasons are listed per page (`locked`) and in `docs/CMS_IMAGE_SOURCES.md`.
 - **Texts:** 410 slots (VI+EN). Each slot's id is the content hash of its original.
   - Excluded: CTA/buttons, forms, nav, cookie banner, chat, owner-gated Careers blocks, Careers grid/filter, business identity strings.
   - A text shown in both the desktop and mobile variants of a section is one slot.
   - Envelope: max = max(1.25 × original, original + 12) characters.
-- **Locating a slot:** by its registered original value (URL, or exact text and tag) inside the page `<main>` or the site shell.
+- **Locating a slot:** image targets by their target key inside the page `<main>` (`imageTargets` in `bioa-cms.mjs`, shared with the registry tool); texts by exact original text and tag.
   - If a slot with a CMS value is no longer found, the build **fails**: the registry is out of date after a code change. Regenerate it, re-seed and redeploy the Studio.
   - If code text changes, the slot id changes and an old CMS value is simply not applied (no stale override).
 
@@ -45,12 +54,12 @@ dist/  (CMS images self-hosted under /assets/cms/; no CMS host, token or script 
 
 | Type | Documents | Notes |
 |---|---|---|
-| `imageSlot` | 96, fixed | Current-image preview, frame info, upload with crop/hotspot, alt VI/EN (required with an image). Cannot be created, deleted, duplicated or unpublished. |
+| `imageSlot` | 41, fixed (v1 96 docs removed after checking none held an upload or draft) | Current-image preview, per-cut frame info, upload JPEG/PNG/WebP with crop/hotspot, alt VI/EN required with an image. Cannot be created, deleted, duplicated or unpublished. |
 | `page_<key>` | 6 singletons | Text slots grouped by page section (collapsible), prefilled with the current VI/EN text, envelope validation, no `<` or `>`. |
 | `blogPost` | 38 imported + new | Same shape as the approved Blog template. Existing slugs are read-only, so URLs are preserved. `category` is internal only: the site has no category UI, and adding one is a new component needing owner approval. |
 | `career` | 3 imported (status `sample`) + new | Status `draft`, `sample`, `open` or `closed`. `open` requires the official badge, benefits, place and apply fields (VI/EN). Filter categories are fixed (sales, R&D, production). |
-| `seoPage` | 9 singletons | Title, description, OG image, canonical (only `https://bioagroup.vn/...`), prefilled with today's values. |
-| `legalPage` | 2 singletons | Paragraphs and links only (`mailto:`, `tel:`, internal paths). Publishing is only possible through the **Duyệt & xuất bản** action, which stamps the approver and time. |
+| `seoPage` | 9 singletons | Title, description, OG image, canonical (empty = approved default; only the page's own approved canonical accepted), prefilled with today's values. |
+| `legalPage` | 2 singletons | Paragraphs and links only (`mailto:`, `tel:`, internal paths). Publishing is only possible through the **Duyệt & xuất bản** action, which stamps approver, time and the content hash. |
 
 Seeding (`tools/cms-seed.mjs <dist>`) uses `createIfNotExists`: it never overwrites an editor's change. **No image was uploaded** (owner rule); images keep the current file as fallback.
 

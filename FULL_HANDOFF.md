@@ -1,6 +1,13 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
 **Date:** 2026-11-11. Covers the FINAL COMPLETION, the REVIEW CORRECTION, **R24 HOME REGRESSION RECOVERY**, R24CL and **R24FD final delivery** on the recovery branch. This is the one authoritative ACTIVE snapshot; everything below the divider is archival.
 
+## R25b — CMS TECHNICAL REVIEW CORRECTIONS 2026-11-13 (local commits on `cms/sanity-r25`, NOT pushed)
+- Base `2aefbea` (= origin/cms/sanity-r25); `main` `a062d59` untouched; no Production config change; maintenance ON.
+- **A:** Production builds (`CF_PAGES_BRANCH=main`) never read Sanity; they extract only the pinned release `cms/release/current.json` (sha256). No pin committed → Production = repository content. Plan for owner approval: `docs/CMS_RELEASE_PLAN.md`.
+- **B:** registry v2 = 41 position slots / 67 targets (desktop/mobile pairs `cms/slot-groups.json`, `<picture>` sources), 123 references locked with reasons, raster uploads only; inventory `docs/CMS_IMAGE_SOURCES.md`. Sanity: 96 v1 slot docs replaced by 41 (none had uploads); Studio redeployed.
+- **C:** canonical = the page's own approved canonical only. **D:** legal approval stamp carries a content hash (verified in Studio on a QA document, then deleted).
+- QA: `docs/CMS_R25B_REVIEW.md`; evidence `D:\BIOA_WORKSPACE\_reports\cms-r25b\`. Pending owner: release plan approval, Preview push confirmation, Studio checklist.
+
 ## R25CMS — SANITY CMS INTEGRATION 2026-11-13 (branch `cms/sanity-r25` pushed for Preview; `main` untouched)
 - Owner confirmed **R24RC2 PASS** (`main` = `a062d59`). Owner directive "SANITY CMS INTEGRATION — ONE IMPLEMENTATION, NO WEBSITE REDESIGN".
 - **Commits on `cms/sanity-r25`:** `be097b4` (code), `b28a150` (approval/gate), `a9a8625`, `7dd9bc7` (docs) + this handoff commit. Pushed with owner approval ("Yes, push branch"). **Not merged; `main` and Production unchanged.**

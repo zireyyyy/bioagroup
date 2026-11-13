@@ -10,7 +10,7 @@ Hướng dẫn này dành cho người không cần biết lập trình. Mọi t
 
 | Sửa được trong CMS | Không sửa qua CMS (giữ cố định, đã OWNER PASS) |
 |---|---|
-| Thay ảnh ở 96 vị trí trên 6 trang + biểu tượng cookie, ảnh khung chat | Bố cục, màu, font, khoảng cách, hiệu ứng, slider |
+| Thay ảnh ở 41 vị trí ảnh nội dung (Trang chủ, Về chúng tôi, Gia Công Mỹ Phẩm, Dịch Vụ Khác, trang Tuyển dụng) | Bố cục, màu, font, khoảng cách, hiệu ứng, slider; icon, logo, dấu chứng nhận, ảnh Header/Footer/cookie/chat (đã khóa) |
 | Sửa 410 đoạn chữ (VI + EN) của Trang chủ, Về chúng tôi, Gia Công Mỹ Phẩm, Dịch Vụ Khác, Liên hệ, trang Tuyển dụng | Header, menu, Footer, nút CTA, form báo giá, khung chat, banner cookie, logo BIO-A |
 | Viết và sửa bài Blog (VI/EN), ảnh đại diện, SEO bài viết | Thêm mục mới, bố cục mới trên trang (cần lập trình viên làm một lần rồi mới đưa vào CMS) |
 | Quản lý vị trí tuyển dụng (Nháp / Mẫu / Đang tuyển / Ngừng tuyển) | Đường dẫn của trang và bài viết đã có |
@@ -27,6 +27,7 @@ Bạn bấm "Publish" trong Studio
 ```
 
 - **Lưu nháp** (Studio tự lưu khi bạn gõ) **không bao giờ** lên website.
+- **Website chính (Production)** không đọc Sanity trực tiếp: chỉ hiển thị **gói nội dung đã được OWNER duyệt phát hành** (xem `docs/CMS_RELEASE_PLAN.md`). Bấm Publish chỉ cập nhật Preview.
 - Chỉ nội dung đã bấm **Publish** mới được đưa vào lần build kế tiếp.
 - Nếu CMS lỗi hoặc dữ liệu sai quy định (ví dụ chữ dài quá khung), lần build đó **dừng lại**; website giữ nguyên bản cũ.
 
@@ -51,14 +52,14 @@ Bạn bấm "Publish" trong Studio
 ## 3. Thay ảnh
 
 1. Mở vị trí ảnh. Phần **Ảnh đang hiển thị trên website** cho biết ảnh hiện tại, tỷ lệ khung và kích thước hiển thị trên máy tính, tablet, điện thoại.
-2. Ở **Ảnh mới (BIO-A)**, bấm **Upload** và chọn ảnh. Nên dùng ảnh có chiều ngang lớn hơn hoặc bằng mức khuyến nghị.
+2. Ở **Ảnh mới (BIO-A)**, bấm **Upload** và chọn ảnh **JPEG, PNG hoặc WebP** (không nhận SVG). Nên dùng ảnh có chiều ngang lớn hơn hoặc bằng mức khuyến nghị.
 3. Bấm biểu tượng **bút chì** trên ảnh để chọn:
    - **vùng cắt** (crop): phần ảnh được phép dùng;
    - **điểm lấy nét** (hotspot): phần quan trọng phải luôn nằm trong khung.
 4. Nhập **Mô tả ảnh** tiếng Việt và tiếng Anh. Hai ô này bắt buộc khi đã chọn ảnh mới.
 5. Bấm **Publish**.
 
-Website tự cắt ảnh theo đúng tỷ lệ khung cũ nên bố cục không đổi trên mọi thiết bị. Mỗi vị trí độc lập: thay ảnh này không ảnh hưởng ảnh khác, kể cả khi cùng một ảnh gốc đang dùng ở trang khác.
+Một vị trí có thể có nhiều khung: bản máy tính, bản điện thoại, hoặc bản `<picture>` riêng cho điện thoại. Studio ghi rõ từng bản. Website cắt **một bản cho từng khung** theo đúng tỷ lệ cũ, nên bố cục không đổi trên mọi thiết bị. Mỗi vị trí độc lập: thay ảnh này không ảnh hưởng vị trí khác, kể cả khi hai vị trí đang dùng chung một file gốc (ví dụ thẻ "Tuýp & chai chân không" và thẻ "Gói Sachet").
 
 ![Ảnh hiện tại và khung](cms-guide/03a-current-image.jpg)
 ![Ô tải ảnh mới](cms-guide/03b-upload.jpg)
@@ -115,7 +116,7 @@ Chỉ người được OWNER cho phép mới chuyển một vị trí sang **Đ
 
 ![Nút Duyệt & xuất bản](cms-guide/06-legal-approve.jpg)
 
-Studio lưu tên người duyệt và thời điểm duyệt. Website chỉ dùng nội dung pháp lý có dấu duyệt hợp lệ; nếu thiếu, website giữ nguyên văn bản cũ đã duyệt trong code.
+Studio lưu tên người duyệt, thời điểm duyệt và **mã nội dung**. Nếu nội dung bị sửa sau khi duyệt mà không bấm "Duyệt & xuất bản" lại, mã không còn khớp và website giữ văn bản cũ đã duyệt trong code.
 
 **Website chính (bioagroup.vn):** hiện **chưa** đọc dữ liệu CMS và vẫn ở chế độ bảo trì. CMS chỉ được bật cho website chính sau khi OWNER duyệt kết quả trên Preview; đó là một bước phát hành riêng.
 
