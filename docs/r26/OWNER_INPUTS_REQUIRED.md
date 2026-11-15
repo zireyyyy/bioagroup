@@ -1,0 +1,20 @@
+# Những gì chỉ OWNER mới quyết định được (R26, một danh sách duy nhất)
+
+Mỗi mục có: ưu tiên, việc cần làm, **mặc định an toàn** (đang áp dụng nếu bạn chưa trả lời) và tác động nếu để sau. Website vẫn ở chế độ bảo trì; không mục nào dưới đây chặn nghiệm thu kỹ thuật.
+
+| # | Ưu tiên | Việc cần OWNER | Mặc định an toàn (đang áp dụng) | Nếu để sau |
+|---|---|---|---|---|
+| 1 | **P0** | **Mở website công khai** (`BIOA_SITE_MODE=public`) — chỉ sau khi hoàn tất các mục P0/P1 dưới đây và UAT | Bảo trì BẬT; khách thấy trang "Website đang được hoàn thiện" | Không có khách truy cập; Google không lập chỉ mục |
+| 2 | **P0** | **Pháp lý:** duyệt Chính sách bảo mật và Chính sách cookie (VI/EN). Cần: tên pháp nhân đăng ký và trụ sở (L-1), thời hạn lưu trữ (L-2), hồ sơ chuyển dữ liệu xuyên biên giới (L-4, nghĩa vụ công ty), đầu mối tiếp nhận yêu cầu dữ liệu (L-5), luật sư xem lại (L-8). Duyệt bằng nút **Duyệt & xuất bản** trong Studio, hoặc báo để giữ văn bản trong code | Văn bản rút gọn trong code (R24OY); trang `noindex`; CMS không dùng văn bản pháp lý chưa có dấu duyệt | Không nên mở công khai hoặc nhận lead thật trước khi duyệt |
+| 3 | **P0** | **Lần phát hành nội dung CMS đầu tiên:** xem nội dung trên Preview, rồi ra lệnh "phát hành" (tạo gói ghim `cms/release/current.json`) | Production dùng nội dung trong repo (= bản R24RC2 + R26); **không có gói ghim** | Nội dung sửa trong Studio chỉ hiện trên Preview |
+| 4 | P1 | **Tuyển dụng thật:** vị trí nào mở, mức lương/quyền lợi, địa điểm, hình thức, kênh ứng tuyển. Đặt trạng thái **Đang tuyển** trong Studio (bắt buộc điền tab Thông tin chính thức) | 3 vị trí **Mẫu**, các phần chế độ/địa điểm/ứng tuyển ghi "đang cập nhật" | Trang Tuyển dụng chỉ giới thiệu, không tuyển thật |
+| 5 | P1 | **Ảnh BIO-A thật:** thay dần từng vị trí theo `MEDIA_REPLACEMENT_MAP.md` (ưu tiên P1: ảnh đầu trang) | 39/41 vị trí đang dùng ảnh tạm nguồn Merywood (OWNER đã xác nhận quyền dùng, OD-5) | Website hoạt động bình thường nhưng ảnh chưa phải của BIO-A |
+| 6 | P1 | **`www.bioagroup.vn` báo lỗi 522:** thêm `www.bioagroup.vn` làm custom domain của Pages project `bioagroup`, hoặc tạo Redirect Rule `www` → apex (Cloudflare dashboard → Workers & Pages → bioagroup → Custom domains → Add) | Không đổi DNS (ngoài phạm vi được giao) | Ai gõ `www.` sẽ thấy lỗi 522 |
+| 7 | P1 | **Hash URL của deployment Production cũ** (ví dụ `3045c564.bioagroup.pages.dev`) vẫn xem được toàn site (chứa bản R24RC2, `noindex`, `/api` khóa). Deployment Production **mới** từ R26 đã bị chặn bởi cổng bảo trì. Chọn: (a) xóa các deployment Production cũ (mất các mốc rollback đó), (b) bật Cloudflare Access cho `*.bioagroup.pages.dev`, hoặc (c) chấp nhận đến khi mở công khai | (c): giữ nguyên để còn mốc rollback | Người biết URL hash cũ vẫn xem được bản cũ |
+| 8 | P1 | **Hàng lead thử nghiệm** `bioa_MmD16AOJ6H3Y` ("QA TEST – please delete") trong D1 Production và dòng tương ứng trong Google Sheet | Giữ nguyên (không xóa khi chưa có lệnh) | Một dòng thử còn trong dữ liệu lead |
+| 9 | P2 | **Chatbot AI:** chọn nhà cung cấp, nơi chạy endpoint, ngân sách, lưu hội thoại hay không (retention/consent), quy tắc chuyển Zalo/hotline. Sau đó cần một lần nối UI (FUT-CHAT-1) và QA | Gateway `/api/chat` sẵn sàng, cờ **OFF**; khung chat trả lời trung thực rằng chưa kết nối | Khung chat chỉ dẫn khách sang Zalo/hotline/email |
+| 10 | P2 | **Đồ họa bị khóa trong CMS:** dấu chứng nhận GMP/HACCP và các icon. Mở khóa vị trí nào để thay bằng tài liệu thật của BIO-A? | Khóa (giữ giao diện đã PASS) | Không thay được qua Studio |
+| 11 | P2 | **Danh mục Blog:** trường "Danh mục" chỉ để sắp xếp trong CMS; hiển thị danh mục trên website là một thành phần mới cần OWNER duyệt thiết kế | Không hiển thị | Không có lọc theo danh mục |
+| 12 | P2 | **Quyền biên tập Studio:** hiện chỉ tài khoản `bioagroupsale` là thành viên. Ai được thêm, ai được đặt "Đang tuyển" và duyệt pháp lý? | Chỉ OWNER | Mọi thay đổi do OWNER tự làm |
+
+**Không cần OWNER làm gì để nhận bản kỹ thuật này.** Hãy xem web theo `OWNER_FINAL_UAT.md` rồi gửi một danh sách sửa/yêu cầu.

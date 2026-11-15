@@ -85,7 +85,8 @@ Quy tắc:
 
 ## 5. Xem trước
 
-- Sau khi bấm **Publish**, đợi 2–4 phút rồi mở website **Preview**: https://cms-sanity-r25.bioagroup.pages.dev/
+- Sau khi bấm **Publish**, đợi 2–4 phút rồi mở website **Preview**: https://cms-preview.bioagroup.pages.dev/ (nhánh `cms-preview`, luôn chạy cùng code với website chính).
+- Nếu một trang vừa bị **gỡ** mà vẫn còn hiện ở Preview, đó là bộ nhớ đệm của Cloudflare. Thêm `?v=1` vào cuối địa chỉ để xem bản mới nhất.
 - Kiểm tra trang vừa sửa trên máy tính, tablet và điện thoại.
 - Preview chỉ để kiểm tra, không được Google lập chỉ mục.
 - Lưu ý: link Preview ai có cũng mở xem được, nên không chia sẻ công khai.
@@ -118,7 +119,18 @@ Chỉ người được OWNER cho phép mới chuyển một vị trí sang **Đ
 
 Studio lưu tên người duyệt, thời điểm duyệt và **mã nội dung**. Nếu nội dung bị sửa sau khi duyệt mà không bấm "Duyệt & xuất bản" lại, mã không còn khớp và website giữ văn bản cũ đã duyệt trong code.
 
-**Website chính (bioagroup.vn):** hiện **chưa** đọc dữ liệu CMS và vẫn ở chế độ bảo trì. CMS chỉ được bật cho website chính sau khi OWNER duyệt kết quả trên Preview; đó là một bước phát hành riêng.
+**Website chính (bioagroup.vn) — phát hành nội dung:**
+- Website chính **không đọc Sanity trực tiếp**. Nó chỉ hiển thị **gói nội dung đã được OWNER duyệt phát hành**, gọi là gói ghim, gồm `cms/release/current.json` và kho lưu kèm.
+- Bấm Publish trong Studio chỉ cập nhật Preview. Push code, Retry hay Rebuild trên Cloudflare cũng **không** kéo nội dung mới vào website chính.
+
+Quy trình phát hành:
+1. Kiểm tra toàn bộ thay đổi trên Preview.
+2. Nhắn kỹ thuật: "Phát hành nội dung CMS", kèm tên người duyệt.
+3. Kỹ thuật chạy `node tools/cms-release.mjs create --approved-by "<tên>"`, commit gói lên `main`. Cloudflare build website chính từ đúng gói đó.
+4. **Hoàn tác phát hành:** ghim lại gói trước (`node tools/cms-release.mjs pin <gói-cũ> --approved-by "<tên>"`) rồi commit. Website trở lại đúng nội dung cũ, giống từng byte.
+5. Nếu đợt phát hành **gỡ** một trang (Blog/Tuyển dụng), sau khi deploy cần **Purge cache** của Cloudflare (Caching → Purge Everything) để trang cũ không còn trong bộ nhớ đệm.
+
+Website hiện vẫn ở chế độ bảo trì; việc mở công khai là quyết định riêng của OWNER.
 
 ## 7. Hoàn tác
 
