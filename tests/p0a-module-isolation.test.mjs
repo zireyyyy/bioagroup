@@ -50,7 +50,10 @@ const APPROVED = [
   { sha: "7df2e793d05c5d60b11b0411587f985964ee4f3d", phase: "R24RC", files: ["bioa-transform.mjs"] },
   // R25CMS (owner 2026-11-13, Sanity CMS integration): Blog posts merged with published CMS posts (3 lines, no-op
   // without a CMS snapshot: dist byte-identical to R24RC).
-  { sha: "be097b41f0ad8c3507a8f0cd189ef294f398bbe9", phase: "R25CMS", files: ["bioa-blog-refine.mjs"] }
+  { sha: "be097b41f0ad8c3507a8f0cd189ef294f398bbe9", phase: "R25CMS", files: ["bioa-blog-refine.mjs"] },
+  // R26 (owner master execution 2026-11-15): PROD-HASH-GATE — Production deployments' hash URLs behind maintenance
+  // when BIOA_DEPLOY_ENV=production; Preview deployments unchanged (tests/r26-production-hash-gate.test.mjs).
+  { sha: "4d724371765bbab46dd7f3c99fde064a71629b3e", phase: "R26", files: ["functions/_middleware.js"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
