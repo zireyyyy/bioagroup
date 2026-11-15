@@ -52,6 +52,6 @@ Studio https://bioagroup.sanity.studio/ (đăng nhập GitHub `bioagroupsale`):
 
 ## 5. Rollback
 
-- **Code:** these commits are local on `cms/sanity-r25`; `origin/cms/sanity-r25` stays at `2aefbea`; `main` stays at `a062d59`.
+- **Code:** these commits were pushed to `cms/sanity-r25` (`7943197`) with owner confirmation and merged to `main` in R26 (`docs/r26/DEPLOY_AND_ROLLBACK.md`); before R26, `main` was `a062d59`.
 - **Sanity:** v1 slots can be re-seeded from the R25 registry (`git show 2aefbea:cms/registry.json` + `tools/cms-seed.mjs` at `2aefbea`). No editor content existed.
 - **Studio:** redeploy from `2aefbea` (`cd studio && npx sanity deploy`).
