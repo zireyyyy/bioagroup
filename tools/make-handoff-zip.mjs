@@ -11,7 +11,8 @@
 // Usage (from the repo root):
 //   node tools/make-handoff-zip.mjs --phase FINAL-TECH-CLOSURE --status "OWNER QA READY" \
 //     --evidence D:/BIOA_WORKSPACE/_reports/final [--evidence <dir> ...] [--base d59f50d] \
-//     [--include <file> ...] [--runtime-handoff D:/BIOA_WORKSPACE/RUNTIME_HANDOFF.md] [--out D:/BIOA_WORKSPACE/_handoffs]
+//     [--include <file> ...] [--doc <file> ...] [--runtime-handoff D:/BIOA_WORKSPACE/RUNTIME_HANDOFF.md] [--out D:/BIOA_WORKSPACE/_handoffs]
+// --doc <file> (repeatable): a delivery document placed at the ZIP root under its own file name (e.g. START_HERE.md).
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdirSync } from "node:fs";
 import { join, relative, sep, basename, extname } from "node:path";
@@ -20,13 +21,13 @@ import { deflateRawSync } from "node:zlib";
 import { readZipEntries } from "./source-bundle.mjs";
 
 // ---------- args ----------
-const args = { evidence: [], include: [] };
+const args = { evidence: [], include: [], doc: [] };
 for (let i = 2; i < process.argv.length; i += 2){
   const k = process.argv[i].replace(/^--/, ""), v = process.argv[i + 1];
-  if (k === "evidence" || k === "include") args[k].push(v); else args[k] = v;
+  if (k === "evidence" || k === "include" || k === "doc") args[k].push(v); else args[k] = v;
 }
 if (!args.phase || !args.status){ console.error("required: --phase <NAME> --status <\"OWNER QA READY\" | \"BLOCKED: ...\" | \"FAIL: ...\">"); process.exit(2); }
-const PHASE = args.phase.toUpperCase().replace(/[^A-Z0-9-]+/g, "-");
+const PHASE = args.phase.toUpperCase().replace(/[^A-Z0-9_-]+/g, "-");
 const BASE = args.base || "d59f50d3884e66e6ae19c3b2b105bc0c4e368535";
 const OUT = args.out || "D:/BIOA_WORKSPACE/_handoffs";
 const RUNTIME = args["runtime-handoff"] || "D:/BIOA_WORKSPACE/RUNTIME_HANDOFF.md";
@@ -35,6 +36,7 @@ const git = (...a) => execFileSync("git", a, { encoding: "utf8", maxBuffer: 256 
 if (git("status", "--porcelain").trim() && args["allow-dirty"] !== "yes"){ console.error("REFUSED: working tree not clean; commit first so the ZIP matches HEAD"); process.exit(1); }
 const HEAD = git("rev-parse", "HEAD").trim(), HEAD7 = HEAD.slice(0, 7);
 const BRANCH = git("rev-parse", "--abbrev-ref", "HEAD").trim();
+const REMOTES = git("branch", "-r", "--contains", HEAD).split("\n").map(x => x.trim()).filter(x => x && !x.includes("->"));
 const ROOT = `BIOA_${PHASE}_${HEAD7}_REVIEW`;
 const entries = new Map();   // zip path -> Buffer
 const add = (p, data) => entries.set(ROOT + "/" + p.split(sep).join("/"), Buffer.isBuffer(data) ? data : Buffer.from(data, "utf8"));
@@ -86,6 +88,14 @@ for (const f of [].concat(args.include || [])){
   add("evidence/extra/" + basename(f), readFileSync(f)); evidenceLog.push("extra/" + basename(f));
 }
 
+// Delivery documents at the ZIP root (--doc <file>, repeatable; Markdown only, unique names).
+const rootDocs = [];
+for (const f of [].concat(args.doc || [])){
+  if (!existsSync(f) || extname(f).toLowerCase() !== ".md"){ console.error("REFUSED: --doc must be an existing .md file: " + f); process.exit(1); }
+  if (rootDocs.includes(basename(f))){ console.error("REFUSED: duplicate --doc name " + basename(f)); process.exit(1); }
+  add(basename(f), readFileSync(f)); rootDocs.push(basename(f));
+}
+
 // ---------- scans (fail closed) ----------
 const SECRET = [
   [/ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}/, "GitHub token"],
@@ -125,7 +135,7 @@ const readme = `# ${ROOT}
 |---|---|
 | Phase | ${PHASE} |
 | **Status** | **${args.status}** |
-| Repository | zireyyyy/bioagroup (local only, not pushed) |
+| Repository | zireyyyy/bioagroup (${REMOTES.length ? "HEAD is on " + REMOTES.join(", ") : "local only, not pushed"}) |
 | Branch | ${BRANCH} |
 | HEAD | ${HEAD} |
 | Base | ${BASE} |
@@ -135,7 +145,7 @@ const readme = `# ${ROOT}
 Status is the developer's technical status. OWNER VISUAL PASS and release are never declared here.
 
 ## Contents
-- \`docs/\` — FULL_HANDOFF (current snapshot), RUNTIME_HANDOFF (resume file), OWNER_ISSUE_LEDGER, OWNER_QA_CHECKLIST, RELEASE_ROLLBACK_PLAN, LEGAL_CONTENT_BLOCKERS, RUNTIME_DEPENDENCIES, AGENTS and source-pin notes.
+${rootDocs.length ? "- Delivery documents at the root: " + rootDocs.map(d => "`" + d + "`").join(", ") + " (read `" + (rootDocs.includes("START_HERE.md") ? "START_HERE.md" : rootDocs[0]) + "` first).\n" : ""}- \`docs/\` — FULL_HANDOFF (current snapshot), RUNTIME_HANDOFF (resume file), OWNER_ISSUE_LEDGER, OWNER_QA_CHECKLIST, RELEASE_ROLLBACK_PLAN, LEGAL_CONTENT_BLOCKERS, RUNTIME_DEPENDENCIES, AGENTS and source-pin notes.
 - \`git/\` — commit-log.txt, diffstat.txt, full.diff (${BASE.slice(0, 7)}..${HEAD7}), patches/ (one per commit, \`git am\`-able).
 - \`evidence/\` — test and browser logs/JSON (${evidenceLog.filter(x => !x.endsWith(".png")).length} files) and ${evidenceLog.filter(x => x.endsWith(".png")).length} screenshots (representative route families at 390/834/1440 + every deep-guard local/ref pair that differed).
 - \`SCAN.txt\` — secret / Merywood-source / personal-data scan result.

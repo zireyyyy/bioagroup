@@ -42,7 +42,7 @@ All times are UTC, 2026-11-15. Evidence is in `_reports/r26/` (ZIP `evidence/`).
 
 6. **CI on `main`.** "BIO-A Candidate Build Validation" success, and "Sync CMS preview branch" success.
 
-The final docs-only commit, which adds this folder and the handoff, is a second fast-forward of `main`. It rebuilds Production with the same website output, and its deployment is checked the same way (`production-deploy-final.txt`).
+The later commits (this folder + handoff, then the ZIP tool `--doc` option) are further fast-forwards of `main`. They rebuild Production with the same website output; the final deployment is checked the same way (`production-deploy-final.txt`).
 
 ## 4. Rollback
 

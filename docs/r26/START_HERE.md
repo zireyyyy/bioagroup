@@ -5,8 +5,8 @@
 | Item | Value |
 |---|---|
 | Repository | `zireyyyy/bioagroup` |
-| `main` (Production source) | the R26 head, fast-forwarded from the R24RC2 owner-PASS commit `a062d59`. The first R26 deploy was `36dfe57`. The docs commit that contains this file is the final `main` head; its SHA is in the ZIP name and in `FULL_HANDOFF.md` |
-| Cloudflare Production | project `bioagroup`, deployment `77390256` (commit `36dfe57`), then the deployment of the final docs commit (same website output) |
+| `main` (Production source) | the R26 head, fast-forwarded from the R24RC2 owner-PASS commit `a062d59`. The first R26 deploy was `36dfe57` (all code). Two later commits change only docs and the ZIP tool; the final `main` head is the SHA in the ZIP name |
+| Cloudflare Production | project `bioagroup`, deployment `77390256` (commit `36dfe57`), then the deployments of the docs/tool commits (same website output; final one in `evidence/r26/production-deploy-final.txt`) |
 | Site mode | **`BIOA_SITE_MODE=maintenance` (ON)**: `bioagroup.vn`, `bioagroup.pages.dev`, R26 Production hash URLs and `/api/*` all return 503 + `noindex` |
 | CMS on Production | `CMS mode: off`: no pinned release, so Production serves repository content. **No CMS content has been released to Production** |
 | CMS Preview for editors | https://cms-preview.bioagroup.pages.dev/: branch `cms-preview` = `main` (GitHub Action), live Sanity published content, rebuilt by the Sanity webhook |
