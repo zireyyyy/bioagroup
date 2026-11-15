@@ -57,7 +57,12 @@ export async function onRequest(context){
   // Preserve private production while allowing each hashed/branch Preview URL
   // to be viewed without an owner token. Never expose lead/config APIs on a
   // public preview: deployment config/bindings can differ by environment.
-  if(isPagesPreviewHost(host)){
+  // R26 PROD-HASH-GATE: a PRODUCTION deployment is also reachable at its own <hash>.bioagroup.pages.dev URL and
+  // runs with the Production environment. When that environment says BIOA_DEPLOY_ENV=production, the hash URL
+  // gets the same maintenance gate as bioagroup.vn (owner cookie per host). Preview deployments (Preview
+  // environment, no BIOA_DEPLOY_ENV) stay public static previews exactly as before.
+  const productionDeployment=String(env.BIOA_DEPLOY_ENV||"").trim().toLowerCase()==="production";
+  if(isPagesPreviewHost(host)&&!productionDeployment){
     if(url.pathname==="/robots.txt")return locked(request,url);
     if(isPreviewPrivatePath(url.pathname) || !["GET","HEAD"].includes(request.method))
       return locked(request,url);

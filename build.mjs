@@ -376,6 +376,19 @@ function localize($, route){
 
 let runtime, vendor;
 const builtRoutes=[];
+const noindexRoutes=new Set();
+
+// R26 SEO-HEAD-1 (head only, no visible change): every page names its VI and EN versions (same path authority as the
+// language switch, localPath) and x-default = VI; og:locale follows the page language (the source said en_US on VI).
+function applyLanguageAlternates($,route,lang){
+  const site="https://bioagroup.vn";
+  $('link[rel="alternate"][hreflang]').remove();
+  const links=[["vi",localPath(route,"vi")],["en",localPath(route,"en")],["x-default",localPath(route,"vi")]]
+    .map(([h,p])=>`<link rel="alternate" hreflang="${h}" href="${site}${p}">`).join("");
+  const canonical=$('link[rel="canonical"]').first();
+  if(canonical.length)canonical.after(links); else $("head").append(links);
+  $('meta[property="og:locale"]').attr("content",lang==="en"?"en_US":"vi_VN");
+}
 
 async function buildOne(route,sourceRoute){
   const raw=loadSource(sourceRoute);
@@ -402,6 +415,7 @@ async function buildOne(route,sourceRoute){
     applySourceHygiene($,lang,localPath(route,lang));
     removeUnusedCf7Scripts($,localPath(route,lang));
     applyCms($,localPath(route,lang),lang); // CMS-R25: published Sanity data only; no-op without .cms/snapshot.json
+    applyLanguageAlternates($,route,lang); // R26 SEO-HEAD-1
 
     const targetRoute=localPath(route,lang);
     const target=targetRoute==="/" ? path.join(OUT,"index.html") : path.join(OUT,targetRoute,"index.html");
@@ -410,6 +424,7 @@ async function buildOne(route,sourceRoute){
     assertNoCrawlerRefs(html,targetRoute);
     await fs.writeFile(target,html);
     builtRoutes.push(targetRoute);
+    if(/noindex/i.test($('meta[name="robots"]').attr("content")||""))noindexRoutes.add(targetRoute);
     console.log("built",lang,targetRoute);
   }
 }
@@ -442,7 +457,8 @@ async function build(){
   await fs.writeFile(path.join(OUT,"_headers"),"/*\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  X-Frame-Options: SAMEORIGIN\n");
   // P4: robots.txt (public mode) points to this sitemap; the maintenance/preview middleware
   // still answers robots.txt with Disallow and noindex.
-  const urls=[...builtRoutes].sort().map(r=>"  <url><loc>https://bioagroup.vn"+r+"</loc></url>").join("\n");
+  // R26 SEO-HEAD-1: pages that carry robots noindex (the policy pages) are not listed in the sitemap.
+  const urls=[...builtRoutes].filter(r=>!noindexRoutes.has(r)).sort().map(r=>"  <url><loc>https://bioagroup.vn"+r+"</loc></url>").join("\n");
   await fs.writeFile(path.join(OUT,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+"\n</urlset>\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   // D11: redirect pages for legacy Footer/About slugs (not in sitemap; see bioa-legacy-redirects.mjs).

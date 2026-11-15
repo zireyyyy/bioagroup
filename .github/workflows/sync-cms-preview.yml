@@ -1,0 +1,24 @@
+name: Sync CMS preview branch
+# R26: the Sanity "BIO-A Preview rebuild" webhook triggers a Cloudflare Pages deploy hook for the branch cms-preview.
+# That branch must run the same code as main so editors preview published CMS content with the Production code.
+# Fast-forward only: if cms-preview ever diverges, the push fails and nothing is overwritten.
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: write
+concurrency:
+  group: sync-cms-preview
+  cancel-in-progress: false
+jobs:
+  fast-forward:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fast-forward cms-preview to main
+        run: git push origin HEAD:refs/heads/cms-preview

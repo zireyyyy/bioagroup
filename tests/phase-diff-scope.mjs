@@ -66,7 +66,10 @@ const SCOPES = {
   R24RC: [[/\.html$/, "style#bioa-v3"]],
   // R25CMS (Sanity CMS integration 2026-11-13): with the CMS disabled (no SANITY_PROJECT_ID, Production today) the
   // build must stay byte-identical: no element and no file may change.
-  R25CMS: []
+  R25CMS: [],
+  // R26 SEO-HEAD-1 (2026-11-15): head only — hreflang vi/en/x-default links added next to the canonical, og:locale
+  // follows the page language; sitemap.xml may only drop the noindex policy pages (checked below).
+  R26: [[/\.html$/, 'link[rel="alternate"][hreflang]'], [/\.html$/, 'meta[property="og:locale"]']]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
@@ -94,6 +97,13 @@ for (const f of new Set([...a, ...b])){
     continue; }
   if (phases.includes("R24FD") && f.endsWith(".html") && (CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(y.toString("utf8"))))){
     changed.push(f + " [Careers page/stub]"); continue; }
+  if (phases.includes("R26") && f === "sitemap.xml"){ // R26: only the noindex policy pages may disappear
+    const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+    const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
+    const policy = /bioagroup\.vn\/(en\/)?(privacy-policy|cookie-policy)\/$/;
+    if (added.length || gone.some(u => !policy.test(u))) fails.push(f + ": sitemap changed beyond the noindex policy pages");
+    else changed.push(f + " [-" + gone.length + " noindex policy pages]");
+    continue; }
   if (phases.includes("R24") && f === "sitemap.xml"){ // only the two Careers URLs may disappear
     const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
     const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
