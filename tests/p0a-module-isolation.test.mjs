@@ -56,7 +56,11 @@ const APPROVED = [
   { sha: "4d724371765bbab46dd7f3c99fde064a71629b3e", phase: "R26", files: ["functions/_middleware.js"] },
   // R27 F04 (owner 2026-11-16): WWW-APEX — in the Production environment www.bioagroup.vn 301 to the apex before any
   // other handling (tests/r27-www-apex.test.mjs); apex, Preview and hash-URL behaviour unchanged.
-  { sha: "530e1ec268bf6a727631f54104357040ffe5ca10", phase: "R27", files: ["functions/_middleware.js"] }
+  { sha: "530e1ec268bf6a727631f54104357040ffe5ca10", phase: "R27", files: ["functions/_middleware.js"] },
+  // R27 (owner one-pass cleanup 2026-11-16): F01 Footer below 375px, F02 modal keyboard, chat CTA row (Home owner);
+  // F03 reviews removal + MOQ wording (transform); scenario labels (Cosmetics/Services) + their descriptions; About
+  // image alts; Blog pending-rewrite + serum title. Scope proven by tests/phase-diff-scope.mjs R27.
+  { sha: "d93a0f0a9a856dde4b9eca0d41bd5ee3fda866f2", phase: "R27", files: ["bioa-about-refine.mjs", "bioa-blog-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
