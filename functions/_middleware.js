@@ -62,6 +62,11 @@ export async function onRequest(context){
   // gets the same maintenance gate as bioagroup.vn (owner cookie per host). Preview deployments (Preview
   // environment, no BIOA_DEPLOY_ENV) stay public static previews exactly as before.
   const productionDeployment=String(env.BIOA_DEPLOY_ENV||"").trim().toLowerCase()==="production";
+  // R27 F04 WWW-APEX: www.bioagroup.vn is attached to the Pages project only so it can answer (an unregistered proxied
+  // www record returned Cloudflare 522). In the Production environment every www request goes to the apex with path
+  // and query kept, before any other handling, so www can never become a way around the apex maintenance gate.
+  // Without BIOA_DEPLOY_ENV=production, www stays a protected exact host as before.
+  if(productionDeployment&&host==="www.bioagroup.vn")return new Response(null,{status:301,headers:{"Location":"https://bioagroup.vn"+url.pathname+url.search,"Cache-Control":"public, max-age=3600","X-Robots-Tag":"noindex, nofollow, noarchive"}});
   if(isPagesPreviewHost(host)&&!productionDeployment){
     if(url.pathname==="/robots.txt")return locked(request,url);
     if(isPreviewPrivatePath(url.pathname) || !["GET","HEAD"].includes(request.method))
