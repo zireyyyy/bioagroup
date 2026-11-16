@@ -340,7 +340,7 @@ function finalizeHomeCopy($,lang){
   setPackagingCopy($,lang);setFormatsCopy($,lang);setRightChoiceCopy($,lang);
   $('.block-products-desctop .big-labels').each((_,list)=>{
     $(list).find('.big-labels__item-text-1').each((i,e)=>{
-      $(e).text(vi?'Theo dự án':'Per project');
+      $(e).text(vi?'Theo dự án':'Per project');
     });
     $(list).find('.big-labels__item-text-2').each((i,e)=>{
       const p=$(e).find('p').first();
@@ -352,7 +352,7 @@ function finalizeHomeCopy($,lang){
   });
   $('.block-products-mobile .info').each((_,list)=>{
     $(list).find('.info__item-text-1').each((i,e)=>{
-      $(e).text(vi?'Theo dự án':'Per project');
+      $(e).text(vi?'Theo dự án':'Per project');
     });
     $(list).find('.info__item-text-2').each((i,e)=>{
       const p=$(e).find('p').first();
