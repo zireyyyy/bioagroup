@@ -60,7 +60,9 @@ const APPROVED = [
   // R27 (owner one-pass cleanup 2026-11-16): F01 Footer below 375px, F02 modal keyboard, chat CTA row (Home owner);
   // F03 reviews removal + MOQ wording (transform); scenario labels (Cosmetics/Services) + their descriptions; About
   // image alts; Blog pending-rewrite + serum title. Scope proven by tests/phase-diff-scope.mjs R27.
-  { sha: "d93a0f0a9a856dde4b9eca0d41bd5ee3fda866f2", phase: "R27", files: ["bioa-about-refine.mjs", "bioa-blog-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs"] }
+  { sha: "d93a0f0a9a856dde4b9eca0d41bd5ee3fda866f2", phase: "R27", files: ["bioa-about-refine.mjs", "bioa-blog-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs"] },
+  // R27: non-breaking space in the Home MOQ label ("Theo dự án" wrapped as "Theo dự / án" on desktop).
+  { sha: "4cb426bed2a145267730f410efa2eef2e61eb0f4", phase: "R27", files: ["bioa-transform.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
