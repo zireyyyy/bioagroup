@@ -200,7 +200,8 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
       id: d.legacyId ?? Number.parseInt(sha256(slug).slice(0, 7), 16),
       slug, titleVi: d.titleVi, titleEn: d.titleEn, seoTitleVi: d.seoTitleVi || d.titleVi, seoTitleEn: d.seoTitleEn || d.titleEn,
       excerptVi: d.excerptVi, excerptEn: d.excerptEn, date: dmy(d.date), readMin: d.readMin, image,
-      introVi: d.introVi, introEn: d.introEn, sections, noteVi: d.noteVi || "", noteEn: d.noteEn || ""
+      introVi: d.introVi, introEn: d.introEn, sections, noteVi: d.noteVi || "", noteEn: d.noteEn || "",
+      rewriteApproved: d.rewriteApproved === true // R27 BLOG-PENDING: lists a rewritten article again
     });
   }
 

@@ -44,9 +44,9 @@ const content={
       ["Hồ Sơ Trọn Gói & Minh Bạch","Thông tin sản phẩm, nhãn, hồ sơ cần thiết và các mốc duyệt được phối hợp rõ ràng để thương hiệu dễ theo dõi xuyên suốt dự án."]
     ],
     scenarios:[
-      ["Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.","Tình Huống 01","Thương hiệu skincare • Nội dung mẫu"],
-      ["Thương hiệu đang có sản phẩm bán tốt muốn mở rộng thêm nhóm chăm sóc tóc. Quy trình tập trung vào R&D mẫu, đồng bộ bao bì và chuẩn bị kế hoạch sản xuất cho SKU mới.","Tình Huống 02","Thương hiệu hair care • Nội dung mẫu"],
-      ["Dự án cần công thức riêng và nhiều vòng tinh chỉnh cảm quan trước khi chốt. Bio-A Group hỗ trợ ghi nhận thay đổi, hoàn thiện mẫu và chuyển tiếp sang sản xuất theo từng mốc.","Tình Huống 03","Phát triển công thức riêng • Nội dung mẫu"]
+      ["Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.","Tình Huống 01","Thương hiệu skincare • Tình huống minh họa"],
+      ["Thương hiệu đang có sản phẩm bán tốt muốn mở rộng thêm nhóm chăm sóc tóc. Quy trình tập trung vào R&D mẫu, đồng bộ bao bì và chuẩn bị kế hoạch sản xuất cho SKU mới.","Tình Huống 02","Thương hiệu hair care • Tình huống minh họa"],
+      ["Dự án cần công thức riêng và nhiều vòng tinh chỉnh cảm quan trước khi chốt. Bio-A Group hỗ trợ ghi nhận thay đổi, hoàn thiện mẫu và chuyển tiếp sang sản xuất theo từng mốc.","Tình Huống 03","Phát triển công thức riêng • Tình huống minh họa"]
     ],
     roadmapTitle:"Đồng Hành Trọn Chu Kỳ",
     roadmap:[
@@ -71,9 +71,9 @@ const content={
       ["Complete & Transparent Documentation","Product information, labels, required documentation and approval milestones are coordinated clearly so the brand can follow project progress."]
     ],
     scenarios:[
-      ["A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.","Scenario 01","Skincare brand • Sample scenario"],
-      ["An established brand wants to add a hair-care category. The project focuses on sample R&D, packaging alignment and a production plan for the new SKU range.","Scenario 02","Hair-care brand • Sample scenario"],
-      ["A custom-formula project needs several sensory-refinement rounds before approval. Bio-A Group tracks revisions, finalizes samples and moves the project into production by agreed milestones.","Scenario 03","Custom formula • Sample scenario"]
+      ["A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.","Scenario 01","Skincare brand • Illustrative scenario"],
+      ["An established brand wants to add a hair-care category. The project focuses on sample R&D, packaging alignment and a production plan for the new SKU range.","Scenario 02","Hair-care brand • Illustrative scenario"],
+      ["A custom-formula project needs several sensory-refinement rounds before approval. Bio-A Group tracks revisions, finalizes samples and moves the project into production by agreed milestones.","Scenario 03","Custom formula • Illustrative scenario"]
     ],
     roadmapTitle:"Full-Cycle Support",
     roadmap:[
@@ -495,6 +495,8 @@ export function applyCosmeticsHubRefinement($,route,lang){
   const root=$(".page-main").first();
   if(!root.length)return;
   const key=lang==="en"?"en":"vi";
+  // R27 SEO: this page had the shared default description of Home; it now describes its own content.
+  {const d=key==="en"?"Turnkey OEM/ODM cosmetic manufacturing at Bio-A Group: formula R&D, samples, production, packaging and documentation for skin, hair, body, makeup and baby care products.":"Gia công mỹ phẩm trọn gói OEM/ODM tại Bio-A Group: R&D công thức, mẫu thử, sản xuất, bao bì và hồ sơ cho sản phẩm chăm sóc da, tóc, body, trang điểm và mẹ & bé.";$('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr("content",d);}
   const data=content[key];
 
   root.attr("data-bioa-page","cosmetics-hub");

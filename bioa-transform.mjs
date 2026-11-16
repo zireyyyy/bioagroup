@@ -334,30 +334,32 @@ function setFormatsCopy($,lang){
 }
 
 function finalizeHomeCopy($,lang){
+  // R27: the packaging MOQ figures were the Merywood source values (2500/5000 units), not BIO-A data; they are
+  // shown as project-based until the owner supplies verified MOQ (docs/r27/OWNER_CONTENT_INPUTS.md).
   const vi=lang==='vi';
   setPackagingCopy($,lang);setFormatsCopy($,lang);setRightChoiceCopy($,lang);
   $('.block-products-desctop .big-labels').each((_,list)=>{
     $(list).find('.big-labels__item-text-1').each((i,e)=>{
-      $(e).text(i%2===0?(vi?'2500 sản phẩm':'2500 units'):(vi?'5000 sản phẩm':'5000 units'));
+      $(e).text(vi?'Theo dự án':'Per project');
     });
     $(list).find('.big-labels__item-text-2').each((i,e)=>{
       const p=$(e).find('p').first();
       if(!p.length)return;
       p.html(i%2===0
-        ?(vi?'<b>Công thức có sẵn</b> — số lượng tối thiểu từ':'<b>Ready formula</b> — minimum order quantity from')
-        :(vi?'<b>Công thức độc quyền</b> — số lượng tối thiểu từ':'<b>Custom formula</b> — minimum order quantity from'));
+        ?(vi?'<b>Công thức có sẵn</b> — số lượng tối thiểu (MOQ)':'<b>Ready formula</b> — minimum order quantity (MOQ)')
+        :(vi?'<b>Công thức độc quyền</b> — số lượng tối thiểu (MOQ)':'<b>Custom formula</b> — minimum order quantity (MOQ)'));
     });
   });
   $('.block-products-mobile .info').each((_,list)=>{
     $(list).find('.info__item-text-1').each((i,e)=>{
-      $(e).text(i%2===0?(vi?'2500 sản phẩm':'2500 units'):(vi?'5000 sản phẩm':'5000 units'));
+      $(e).text(vi?'Theo dự án':'Per project');
     });
     $(list).find('.info__item-text-2').each((i,e)=>{
       const p=$(e).find('p').first();
       if(!p.length)return;
       p.html(i%2===0
-        ?(vi?'<b>Công thức có sẵn</b> — số lượng tối thiểu từ':'<b>Ready formula</b> — minimum order quantity from')
-        :(vi?'<b>Công thức độc quyền</b> — số lượng tối thiểu từ':'<b>Custom formula</b> — minimum order quantity from'));
+        ?(vi?'<b>Công thức có sẵn</b> — số lượng tối thiểu (MOQ)':'<b>Ready formula</b> — minimum order quantity (MOQ)')
+        :(vi?'<b>Công thức độc quyền</b> — số lượng tối thiểu (MOQ)':'<b>Custom formula</b> — minimum order quantity (MOQ)'));
     });
   });
   $('.block-title h1').first().text(vi?'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group':'Bio-A Group Cosmetic & Cosmeceutical Manufacturing Factory');
@@ -396,14 +398,8 @@ function resetHomeVI($){
     ['Sản xuất & bàn giao','Khi các hạng mục đã được xác nhận, nhà máy triển khai sản xuất, sang chiết, đóng gói và kiểm soát thành phẩm theo kế hoạch. Tiến độ bàn giao được theo dõi rõ ràng để khách hàng chủ động kế hoạch ra mắt, phân phối, bổ sung hàng và tiếp tục phát triển các SKU tiếp theo.']
   ];
   $('.block-how-works .title').text('Quy trình hợp tác');$('.block-how-works .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
-  $('.block-reviews .title').html('Khách hàng nhận được gì<br>khi đồng hành cùng Bio-A Group');
-  const rev=[
-    'Chúng tôi bắt đầu với một dòng sản phẩm nhỏ và cần đội ngũ có thể hỗ trợ từ công thức đến bao bì. Bio-A Group phối hợp khá sát ở từng giai đoạn, đặc biệt trong quá trình chỉnh mẫu và lựa chọn quy cách phù hợp ngân sách. Khi dự án chuyển sang sản xuất, các mốc công việc được trao đổi rõ nên đội ngũ của chúng tôi dễ chủ động kế hoạch ra mắt và chuẩn bị kênh bán.',
-    'Điểm chúng tôi đánh giá cao là khả năng trao đổi nhanh giữa R&D, sản xuất và bộ phận phụ trách dự án. Những thay đổi ở mẫu thử được ghi nhận rõ ràng, giúp quá trình chốt công thức thuận lợi hơn. Khi cần mở rộng thêm SKU, đội ngũ vẫn giữ được cách làm việc nhất quán nên tiết kiệm khá nhiều thời gian.',
-    'Bio-A Group hỗ trợ chúng tôi từ việc xác định hướng sản phẩm, thử mẫu đến lựa chọn bao bì và chuẩn bị sản xuất. Dù yêu cầu thay đổi vài lần trong quá trình phát triển, các bước vẫn được theo dõi rõ và phản hồi tương đối nhanh. Thành phẩm cuối phù hợp với định hướng thương hiệu mà chúng tôi đặt ra ban đầu.',
-    'Trong quá trình hoàn thiện sản phẩm, chúng tôi cần điều chỉnh một số chi tiết về kết cấu, mùi hương và quy cách đóng gói. Bio-A Group phản hồi khá nhanh, giúp từng thay đổi được xử lý theo thứ tự rõ ràng thay vì phải làm lại toàn bộ. Cách phối hợp này giúp dự án giữ được tiến độ và dễ kiểm soát hơn.'
-  ];
-  $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Khách hàng Bio-A Group');$(e).find('.review__author-info').text('Nội dung đánh giá mẫu – sẽ cập nhật')});
+  // R27 F03: no owner-confirmed client testimonials exist, so the Home reviews block (sample quotes) is removed.
+  $('.block-reviews').remove();
   const roadmapSteps=[
     ['Tư vấn & lập kế hoạch',[
       'Bio-A Group cùng khách hàng làm rõ ý tưởng,',
@@ -458,9 +454,8 @@ function resetHomeEN($){
   });
   const steps=[['Consultation & planning','Align product goals, budget and timeline.'],['Research & development','Develop formulas, ingredients and samples for your brand direction.'],['Packaging & branding','Select packaging, labels and required brand assets.'],['Product documentation','Prepare the documentation and product information required.'],['Production & delivery','Manufacture, pack and deliver to the agreed plan.']];
   $('.block-how-works .title').text('How we work');$('.block-how-works .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
-  $('.block-reviews .title').html('What clients receive<br>when working with Bio-A Group');
-  const rev=['A clear process, responsive support and close follow-up on product requirements.','Flexible sample refinement helps shorten development time.','Bio-A Group supports formulation, packaging and production planning.','Stable timelines make it easier to expand additional SKUs.'];
-  $('.block-reviews .review').each((i,e)=>{$(e).find('.review__text').text(rev[i%4]);$(e).find('.review__author-name').text('Bio-A Group client');$(e).find('.review__author-info').text('Sample testimonial — to be updated')});
+  // R27 F03: no owner-confirmed client testimonials exist, so the Home reviews block (sample quotes) is removed.
+  $('.block-reviews').remove();
   const roadmapSteps=[
     ['Consultation & planning',[
       'Bio-A Group aligns the product idea, target customer,',

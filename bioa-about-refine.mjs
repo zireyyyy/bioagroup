@@ -51,7 +51,7 @@ function setAboutHero($,lang){
     card.find(".mwa-stat__n").first().text(d[0]);
     card.find(".mwa-stat__l").first().text(d[1]);
   });
-  hero.find("img").first().attr("alt",vi?"Nhà máy và năng lực Bio-A Group":"Bio-A Group manufacturing capabilities");
+  hero.find("img").first().attr("alt",vi?"Ảnh minh họa sản xuất mỹ phẩm":"Illustrative image of cosmetic manufacturing"); // R27: temporary image (MEDIA_REPLACEMENT_MAP), not a photo of the BIO-A factory
 }
 
 function setAboutStory($,lang){
@@ -136,7 +136,7 @@ function setAboutTeam($,lang){
     btn.attr("href",localPath("/careers/",lang));
     btn.find(".btn__text").text(vi?"Xem Cơ Hội Nghề Nghiệp":"Explore Careers");
   }
-  sec.find(".mwa-team__media img").attr("alt",vi?"Đội ngũ Bio-A Group":"Bio-A Group team");
+  sec.find(".mwa-team__media img").attr("alt",vi?"Ảnh minh họa làm việc nhóm":"Illustrative image of teamwork"); // R27: temporary image, not the BIO-A team
 }
 
 function setAboutActivity($,lang){

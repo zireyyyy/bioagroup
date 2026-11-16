@@ -698,8 +698,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "talk",
-     "altEn": "talk",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-1-9.webp#0",
@@ -740,8 +740,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "hands",
-     "altEn": "hands",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-2-9.webp#0",
@@ -782,8 +782,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "blank",
-     "altEn": "blank",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-3-10.webp#0",
@@ -824,8 +824,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "cert",
-     "altEn": "cert",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-4-7.webp#0",
@@ -866,8 +866,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "whiteboxes",
-     "altEn": "whiteboxes",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-5-5.webp#0",
@@ -1768,7 +1768,7 @@
      "maxEn": 19
     },
     {
-     "id": "t_d438d058",
+     "id": "t_de714827",
      "page": "home",
      "tags": [
       "div"
@@ -1777,12 +1777,12 @@
       "Vỉ Định Hình",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "2500 sản phẩm",
-     "en": "2500 units",
-     "occurrences": 4,
+     "vi": "Theo dự án",
+     "en": "Per project",
+     "occurrences": 8,
      "multiline": false,
-     "maxVi": 25,
-     "maxEn": 22
+     "maxVi": 22,
+     "maxEn": 23
     },
     {
      "id": "t_12f89b02",
@@ -1800,23 +1800,6 @@
      "multiline": false,
      "maxVi": 28,
      "maxEn": 25
-    },
-    {
-     "id": "t_ce093240",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Vỉ Định Hình",
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "5000 sản phẩm",
-     "en": "5000 units",
-     "occurrences": 4,
-     "multiline": false,
-     "maxVi": 25,
-     "maxEn": 22
     },
     {
      "id": "t_05f2598d",
@@ -3000,118 +2983,6 @@
      "maxEn": 84
     },
     {
-     "id": "t_d47347a6",
-     "page": "home",
-     "tags": [
-      "h2"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Khách Hàng Nhận Được Gì\nKhi Đồng Hành Cùng Bio-A Group",
-     "en": "What clients receive\nwhen working with Bio-A Group",
-     "occurrences": 2,
-     "multiline": true,
-     "maxVi": 68,
-     "maxEn": 63
-    },
-    {
-     "id": "t_7f0f59b0",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Chúng tôi bắt đầu với một dòng sản phẩm nhỏ và cần đội ngũ có thể hỗ trợ từ công thức đến bao bì. Bio-A Group phối hợp khá sát ở từng giai đoạn, đặc biệt trong quá trình chỉnh mẫu và lựa chọn quy cách phù hợp ngân sách. Khi dự án chuyển sang sản xuất, các mốc công việc được trao đổi rõ nên đội ngũ của chúng tôi dễ chủ động kế hoạch ra mắt và chuẩn bị kênh bán.",
-     "en": "A clear process, responsive support and close follow-up on product requirements.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 453,
-     "maxEn": 100
-    },
-    {
-     "id": "t_e3d7249a",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Khách hàng Bio-A Group",
-     "en": "Bio-A Group client",
-     "occurrences": 12,
-     "multiline": false,
-     "maxVi": 34,
-     "maxEn": 30
-    },
-    {
-     "id": "t_8d544337",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Nội dung đánh giá mẫu – sẽ cập nhật",
-     "en": "Sample testimonial — to be updated",
-     "occurrences": 12,
-     "multiline": false,
-     "maxVi": 47,
-     "maxEn": 46
-    },
-    {
-     "id": "t_db637ffd",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Điểm chúng tôi đánh giá cao là khả năng trao đổi nhanh giữa R&D, sản xuất và bộ phận phụ trách dự án. Những thay đổi ở mẫu thử được ghi nhận rõ ràng, giúp quá trình chốt công thức thuận lợi hơn. Khi cần mở rộng thêm SKU, đội ngũ vẫn giữ được cách làm việc nhất quán nên tiết kiệm khá nhiều thời gian.",
-     "en": "Flexible sample refinement helps shorten development time.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 375,
-     "maxEn": 73
-    },
-    {
-     "id": "t_dae29770",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Bio-A Group hỗ trợ chúng tôi từ việc xác định hướng sản phẩm, thử mẫu đến lựa chọn bao bì và chuẩn bị sản xuất. Dù yêu cầu thay đổi vài lần trong quá trình phát triển, các bước vẫn được theo dõi rõ và phản hồi tương đối nhanh. Thành phẩm cuối phù hợp với định hướng thương hiệu mà chúng tôi đặt ra ban đầu.",
-     "en": "Bio-A Group supports formulation, packaging and production planning.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 383,
-     "maxEn": 85
-    },
-    {
-     "id": "t_964d80fa",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Trong quá trình hoàn thiện sản phẩm, chúng tôi cần điều chỉnh một số chi tiết về kết cấu, mùi hương và quy cách đóng gói. Bio-A Group phản hồi khá nhanh, giúp từng thay đổi được xử lý theo thứ tự rõ ràng thay vì phải làm lại toàn bộ. Cách phối hợp này giúp dự án giữ được tiến độ và dễ kiểm soát hơn.",
-     "en": "Stable timelines make it easier to expand additional SKUs.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 375,
-     "maxEn": 73
-    },
-    {
      "id": "t_b8442be3",
      "page": "home",
      "tags": [
@@ -3433,8 +3304,8 @@
       "Về Bio-A Group"
      ],
      "pairNote": "",
-     "altVi": "Nhà máy và năng lực Bio-A Group",
-     "altEn": "Bio-A Group manufacturing capabilities",
+     "altVi": "Ảnh minh họa sản xuất mỹ phẩm",
+     "altEn": "Illustrative image of cosmetic manufacturing",
      "targets": [
       {
        "key": "section.block.mwa-hero#0|img|https://merywood.com/wp-content/uploads/2026/07/hero2.webp#0",
@@ -3505,8 +3376,8 @@
       "Đội Ngũ Đồng Hành Cùng Sản Phẩm"
      ],
      "pairNote": "",
-     "altVi": "Đội ngũ Bio-A Group",
-     "altEn": "Bio-A Group team",
+     "altVi": "Ảnh minh họa làm việc nhóm",
+     "altEn": "Illustrative image of teamwork",
      "targets": [
       {
        "key": "section.block.mwa-team#0|img|https://merywood.com/wp-content/uploads/2026/07/IMG_6258-1.png#0",
@@ -5046,8 +4917,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "talk",
-     "altEn": "talk",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-1-9.webp#0",
@@ -5088,8 +4959,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "hands",
-     "altEn": "hands",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-2-9.webp#0",
@@ -5130,8 +5001,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "blank",
-     "altEn": "blank",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-3-10.webp#0",
@@ -5172,8 +5043,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "cert",
-     "altEn": "cert",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-4-7.webp#0",
@@ -7367,7 +7238,7 @@
      "maxEn": 23
     },
     {
-     "id": "t_bc83b9c9",
+     "id": "t_fb370546",
      "page": "cosmetics",
      "tags": [
       "div"
@@ -7375,12 +7246,12 @@
      "sections": [
       "Kịch Bản Hợp Tác Tiêu Biểu"
      ],
-     "vi": "Thương hiệu skincare • Nội dung mẫu",
-     "en": "Skincare brand • Sample scenario",
+     "vi": "Thương hiệu skincare • Tình huống minh họa",
+     "en": "Skincare brand • Illustrative scenario",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 47,
-     "maxEn": 44
+     "maxVi": 54,
+     "maxEn": 50
     },
     {
      "id": "t_76c6b6a7",
@@ -7415,7 +7286,7 @@
      "maxEn": 23
     },
     {
-     "id": "t_7c2f3176",
+     "id": "t_30a6ab55",
      "page": "cosmetics",
      "tags": [
       "div"
@@ -7423,12 +7294,12 @@
      "sections": [
       "Kịch Bản Hợp Tác Tiêu Biểu"
      ],
-     "vi": "Thương hiệu hair care • Nội dung mẫu",
-     "en": "Hair-care brand • Sample scenario",
+     "vi": "Thương hiệu hair care • Tình huống minh họa",
+     "en": "Hair-care brand • Illustrative scenario",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 48,
-     "maxEn": 45
+     "maxVi": 55,
+     "maxEn": 51
     },
     {
      "id": "t_cfed5e45",
@@ -7463,7 +7334,7 @@
      "maxEn": 23
     },
     {
-     "id": "t_bf06ff70",
+     "id": "t_1b2a1190",
      "page": "cosmetics",
      "tags": [
       "div"
@@ -7471,12 +7342,12 @@
      "sections": [
       "Kịch Bản Hợp Tác Tiêu Biểu"
      ],
-     "vi": "Phát triển công thức riêng • Nội dung mẫu",
-     "en": "Custom formula • Sample scenario",
+     "vi": "Phát triển công thức riêng • Tình huống minh họa",
+     "en": "Custom formula • Illustrative scenario",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 53,
-     "maxEn": 44
+     "maxVi": 60,
+     "maxEn": 50
     },
     {
      "id": "t_7cb05392",
@@ -9023,7 +8894,7 @@
      "maxEn": 28
     },
     {
-     "id": "t_7267bbe1",
+     "id": "t_e69ecefd",
      "page": "services",
      "tags": [
       "p"
@@ -9031,12 +8902,12 @@
      "sections": [
       "Giải Pháp Theo Từng Nhu Cầu"
      ],
-     "vi": "Giải pháp mẫu",
-     "en": "Sample solution",
+     "vi": "Gói dịch vụ gợi ý",
+     "en": "Suggested service mix",
      "occurrences": 12,
      "multiline": false,
-     "maxVi": 25,
-     "maxEn": 27
+     "maxVi": 29,
+     "maxEn": 33
     },
     {
      "id": "t_a9233fd6",
@@ -9558,7 +9429,7 @@
      "maxEn": 262
     },
     {
-     "id": "t_c06724fe",
+     "id": "t_9e2ca263",
      "page": "careers",
      "tags": [
       "div"
@@ -9566,11 +9437,11 @@
      "sections": [
       "Cùng Bio-A Group Phát Triển"
      ],
-     "vi": "Vị trí công việc",
-     "en": "Roles",
+     "vi": "Nhóm công việc",
+     "en": "Teams",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 28,
+     "maxVi": 26,
      "maxEn": 17
     },
     {
@@ -9590,7 +9461,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_f359eb35",
+     "id": "t_8da0a1b8",
      "page": "careers",
      "tags": [
       "p"
@@ -9598,12 +9469,12 @@
      "sections": [
       "Cùng Bio-A Group Phát Triển"
      ],
-     "vi": "Thông tin tuyển dụng chính thức (thời gian, địa điểm, chế độ) sẽ được cập nhật khi vị trí được mở.",
-     "en": "Official hiring details (timing, location and terms) will be published when a role opens.",
+     "vi": "Hiện Bio-A Group chưa mở đợt tuyển dụng chính thức cho các nhóm công việc dưới đây. Thời gian, địa điểm và chế độ sẽ được công bố khi có vị trí mở tuyển.",
+     "en": "Bio-A Group has no official hiring round open for the teams below at the moment. Timing, location and terms will be published when a role opens.",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 123,
-     "maxEn": 112
+     "maxVi": 192,
+     "maxEn": 180
     },
     {
      "id": "t_d2393d33",

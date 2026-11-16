@@ -5,6 +5,7 @@ const company = {
   email:BUSINESS.email,
   phone:BUSINESS.phone,
   phoneIntl:BUSINESS.phoneIntl,
+  phoneHref:BUSINESS.phoneHref,
   address:BUSINESS.addressVi,
   taxId:BUSINESS.taxId,
   whatsapp:BUSINESS.whatsapp,
@@ -2817,6 +2818,26 @@ const patchC4AShellCss = `
 
 
 const patchC4BComposerCss = `
+/* R27 CHAT-CTA — the composer shell holds the two real contact channels instead of a message box
+   that sent nothing. Same 44px pill geometry as CHAT-C4B below. */
+.bioa-chat__composer--cta .bioa-chat__cta{
+  flex:1 1 50%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  height:100%!important;
+  padding:0 8px!important;
+  color:var(--bioa-primary)!important;
+  font-size:13px!important;
+  line-height:1.2!important;
+  font-weight:600;
+  text-decoration:none!important;
+  white-space:nowrap!important;
+}
+.bioa-chat__composer--cta .bioa-chat__cta + .bioa-chat__cta{border-left:1px solid #dedede!important}
+.bioa-chat__composer--cta .bioa-chat__cta:hover{background:var(--bioa-primary)!important;color:#fff!important}
+.bioa-chat__composer--cta .bioa-chat__cta:focus-visible{outline:2px solid var(--bioa-primary)!important;outline-offset:-3px!important}
+
 /* CHAT-C4B — one-piece composer matching the supplied input reference.
    Keep existing form markup; integrate the send control inside the same shell. */
 .bioa-chat__composer{
@@ -3169,6 +3190,18 @@ const patchD4FooterHierarchyCss = `
   .footer-top__nav > ul > li:first-child > a{
     font-size:16px!important;
   }
+}
+/* R27 F01 FOOTER-NARROW — owner-requested exception to the rule above, below 375px only. The Merywood mobile grid
+   (1fr 167px, 60px column gap) needs ~338px of content width; at 312-374px CSS (e.g. a 390px phone at 125% zoom)
+   the fixed 167px "Services" column overflowed the viewport by up to 13px. Two equal shrinkable columns with a
+   24px gap keep every link visible and wrapping. 375px and wider are unchanged (owner-PASS geometry). */
+@media(max-width:374px){
+  .footer-top__menu{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    column-gap:24px!important;
+  }
+  .footer-top__nav{min-width:0!important}
+  .footer-top__nav a{overflow-wrap:break-word!important}
 }
 `;
 
@@ -5133,13 +5166,10 @@ function addContactLauncher($,lang){
     ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
     :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
   const intro=vi
-    ?'Chào bạn 👋 Tôi là Khánh Như từ Bio-A Group. Bạn đang muốn phát triển dòng mỹ phẩm nào? Tôi có thể hỗ trợ về công thức, MOQ, bao bì và tiến độ sản xuất.'
-    :'Hi 👋 I’m Khánh Như from Bio-A Group. What product line are you planning? I can help with formula, MOQ, packaging and production timeline.';
-  // Local preview reply: no backend receives chat messages yet (docs/CHAT_AI_INTEGRATION.md), so it
-  // must not claim the request was recorded; it points to the real channels instead.
-  const previewReply=vi
-    ?'Cảm ơn bạn. Khung chat này chưa kết nối tư vấn viên trực tuyến nên tin nhắn chưa được gửi tới Bio-A Group. Vui lòng nhắn Zalo hoặc gọi '+company.phone+' để được hỗ trợ ngay.'
-    :'Thank you. This chat is not yet connected to a live advisor, so your message has not been sent to Bio-A Group. Please message us on Zalo or call '+company.phoneIntl+' for immediate help.';
+    ?'Chào bạn 👋 Đây là Khánh Như từ Bio-A Group. Khung chat này chưa nhận tin nhắn trực tuyến. Để được tư vấn về công thức, MOQ, bao bì và tiến độ sản xuất, bạn vui lòng nhắn Zalo hoặc gọi hotline bên dưới.'
+    :'Hi 👋 This is Khánh Như from Bio-A Group. This chat does not take messages online yet. For advice on formula, MOQ, packaging and production timeline, please message us on Zalo or call the hotline below.';
+  // R27: no backend receives chat messages (AI LIVE is OFF, docs/CHAT_AI_INTEGRATION.md). The former message box only
+  // simulated a conversation, so the composer row now offers the two real channels (Zalo, hotline) in the same shell.
 
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
     <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">
@@ -5180,12 +5210,10 @@ function addContactLauncher($,lang){
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
 
-      <form class="bioa-chat__composer">
-        <input class="bioa-chat__input" type="text" autocomplete="off" placeholder="${vi?'Nhập tin nhắn...':'Type your message...'}">
-        <button class="bioa-chat__send" type="submit" aria-label="${vi?'Gửi':'Send'}">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-        </button>
-      </form>
+      <div class="bioa-chat__composer bioa-chat__composer--cta">
+        <a class="bioa-chat__cta" href="${company.zalo}" target="_blank" rel="noopener noreferrer">${vi?'Nhắn Zalo':'Message on Zalo'}</a>
+        <a class="bioa-chat__cta" href="${company.phoneHref}">${vi?'Gọi ':'Call '}${vi?company.phone:company.phoneIntl}</a>
+      </div>
     </div>
 
     <button class="bioa-contact-fab__toggle" type="button" aria-expanded="false" aria-label="${vi?'Mở tư vấn':'Open support'}">
@@ -5199,11 +5227,9 @@ function addContactLauncher($,lang){
     var collapse=root.querySelector('.bioa-chat__collapse');
     var teaser=root.querySelector('.bioa-chat__teaser');
     var teaserClose=root.querySelector('.bioa-chat__teaser-close');
-    var form=root.querySelector('.bioa-chat__composer');
-    var input=root.querySelector('.bioa-chat__input');
+    var input=root.querySelector('.bioa-chat__cta');
     var history=root.querySelector('.bioa-chat__history');
     var messages=root.querySelector('.bioa-chat__messages');
-    var previewReply=${JSON.stringify(previewReply)};
     var avatar=${JSON.stringify(avatar)};
     var agentName='Khánh Như Bio-A';
     var teaserDismissed=false;
@@ -5254,27 +5280,6 @@ function addContactLauncher($,lang){
       hideTeaser();
     });
     if(collapse)collapse.addEventListener('click',close);
-
-    if(form)form.addEventListener('submit',function(e){
-      e.preventDefault();
-      var v=(input&&input.value||'').trim();
-      if(!v)return;
-      var user=document.createElement('div');
-      user.className='bioa-chat__msg bioa-chat__msg--user';
-      user.innerHTML='<div class="bioa-chat__bubble"><strong>${vi?'Bạn':'You'}</strong></div>';
-      user.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(v));
-      messages.appendChild(user);
-      input.value='';
-      setTimeout(function(){
-        var reply=document.createElement('div');
-        reply.className='bioa-chat__msg';
-        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="'+avatar+'" alt=""></div><div class="bioa-chat__bubble"><strong>'+agentName+'</strong></div>';
-        reply.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(previewReply));
-        messages.appendChild(reply);
-        history.scrollTop=history.scrollHeight;
-      },320);
-      history.scrollTop=history.scrollHeight;
-    });
 
     document.addEventListener('click',function(e){
       if(root.classList.contains('is-open')&&!root.contains(e.target))close();
@@ -5444,6 +5449,73 @@ const sharedShellCss =
   patchMobileHeaderScrollCss+
   patchMobileHeaderSourceParityCss+patchWhyChooseIconCss+sourceComponentCss;
 
+
+/* R27 F02 MODAL-KEYS — the Merywood modal (runtime modal.js) only closes by click. Esc now closes the active
+   modal through the modal's own close button (same Merywood close path, timing and scroll behaviour), focus moves
+   into the dialog on open, Tab stays inside it while open, and focus returns to the control that opened it. */
+function addModalKeyboard($){
+  $('#bioa-modal-keys').remove();
+  $('.modal').each((_,el)=>{
+    const m=$(el);
+    if(!m.attr('role'))m.attr('role','dialog');
+    m.attr('aria-modal','true');
+    const vi=!String($('html').attr('lang')||'vi').startsWith('en');
+    m.find('.modal__close').attr('type','button').attr('aria-label',vi?'Đóng':'Close');
+    m.find('.wpcf7[lang]').attr('lang',vi?'vi':'en');
+    const title=m.find('.cf-modal__title,.modal__title,.title,h2,h3').first();
+    if(title.length&&!m.attr('aria-label')&&!m.attr('aria-labelledby'))m.attr('aria-label',title.text().replace(/\s+/g,' ').trim().slice(0,80)||'Bio-A Group');
+  });
+  $('body').append(`<script id="bioa-modal-keys">(function(){
+    var opener=null;
+    var FOCUSABLE='a[href],button:not([disabled]),input:not([disabled]):not([type=hidden]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+    function active(){var list=document.querySelectorAll('.modal.open');return list.length?list[list.length-1]:null;}
+    function visible(el){return !!(el.offsetWidth||el.offsetHeight||el.getClientRects().length);}
+    document.addEventListener('click',function(e){
+      var o=e.target.closest&&e.target.closest('[modal]');
+      if(!o)return;
+      opener=o;
+      var id=o.getAttribute('modal');
+      setTimeout(function(){
+        var m=document.getElementById(id);
+        if(!m||!m.classList.contains('open'))return;
+        var c=m.querySelector('.modal__close')||m;
+        if(c===m&&!m.hasAttribute('tabindex'))m.setAttribute('tabindex','-1');
+        try{c.focus({preventScroll:true});}catch(_){}
+      },160);
+    },true);
+    document.addEventListener('keydown',function(e){
+      var m=active();
+      if(!m)return;
+      if(e.key==='Escape'||e.key==='Esc'){
+        if(e.defaultPrevented||e.isComposing)return;
+        var t=e.target;
+        if(t&&t.tagName==='SELECT'&&t.matches(':focus')&&t.size>1)return;
+        var close=m.querySelector('.modal__close');
+        if(!close)return;
+        e.preventDefault();
+        close.click();
+        var back=opener;opener=null;
+        if(back&&document.contains(back)&&visible(back)){try{back.focus({preventScroll:true});}catch(_){}}
+        return;
+      }
+      if(e.key==='Tab'){
+        var f=[].filter.call(m.querySelectorAll(FOCUSABLE),visible);
+        if(!f.length)return;
+        var first=f[0],last=f[f.length-1],cur=document.activeElement;
+        if(!m.contains(cur)){e.preventDefault();first.focus();return;}
+        if(e.shiftKey&&cur===first){e.preventDefault();last.focus();}
+        else if(!e.shiftKey&&cur===last){e.preventDefault();first.focus();}
+      }
+    });
+    document.addEventListener('click',function(e){
+      var c=e.target.closest&&e.target.closest('.modal__close,.modal__shadow');
+      if(!c)return;
+      var back=opener;opener=null;
+      if(back&&document.contains(back)&&visible(back)){setTimeout(function(){try{back.focus({preventScroll:true});}catch(_){}},0);}
+    });
+  })();</script>`);
+}
+
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
   $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+patchTabletType3Css+'</style>');
@@ -5466,6 +5538,7 @@ export function applySharedShell($,route,lang){
   addMobileHeaderScroll($);
   addSharedPageReveal($,route);
   addContactLauncher($,lang);
+  addModalKeyboard($);
   normalizeViTitleCase($,lang);
 }
 
@@ -5492,5 +5565,6 @@ export function applyHomeRefinement($,route,lang){
   addHomeReveal($);
   addHomeRoadmapColdLoadSync($);
   addContactLauncher($,lang);
+  addModalKeyboard($);
   normalizeViTitleCase($,lang);
 }

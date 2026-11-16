@@ -6,10 +6,10 @@ import { applyHomeRefinement, applySharedShell } from "./bioa-home-refine.mjs";
 import { applyAboutRefinement } from "./bioa-about-refine.mjs";
 import { applyCosmeticsHubRefinement } from "./bioa-cosmetics-refine.mjs";
 import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
-import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
+import { applyBlogRefinement, blogRouteDefs, blogRetiredIndexRedirects } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
-import { legacyRedirectFiles } from "./bioa-legacy-redirects.mjs";
+import { legacyRedirectFiles, retiredRedirectFiles } from "./bioa-legacy-redirects.mjs";
 import { applyFormatsToggle } from "./bioa-formats-toggle.mjs";
 import { applyViLeftoverTranslations } from "./bioa-i18n-fixes.mjs";
 import { applyIdentityFixes } from "./bioa-identity-fixes.mjs";
@@ -462,7 +462,8 @@ async function build(){
   await fs.writeFile(path.join(OUT,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+"\n</urlset>\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   // D11: redirect pages for legacy Footer/About slugs (not in sitemap; see bioa-legacy-redirects.mjs).
-  for(const f of legacyRedirectFiles(builtRoutes)){
+  // R27: retired Blog index pages (fewer listed posts after the content audit) redirect to the Blog home.
+  for(const f of [...legacyRedirectFiles(builtRoutes),...retiredRedirectFiles(blogRetiredIndexRedirects,builtRoutes)]){
     await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
     await fs.writeFile(path.join(OUT,f.out),f.body);
   }
