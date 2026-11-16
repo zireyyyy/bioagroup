@@ -41,7 +41,7 @@ jobs:
           node --check tests/first-paint-browser.test.mjs
           node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
-        run: node --test tests/maintenance-host-gate.test.mjs tests/r26-production-hash-gate.test.mjs
+        run: node --test tests/maintenance-host-gate.test.mjs tests/r26-production-hash-gate.test.mjs tests/r27-www-apex.test.mjs
       - name: Responsive source regression
         run: npm run test:responsive
       - name: Fetch private source bundle (fail closed)
