@@ -1,6 +1,6 @@
 // Chat UI probe (OWNER PASS design, still the local preview mock): real Chrome, VI/EN,
-// Mobile/Tablet/Desktop. Opens the launcher, sends a message, expects the user bubble and the
-// preview reply, closes; asserts the panel stays inside the viewport, no horizontal overflow,
+// Mobile/Tablet/Desktop. Opens the launcher, checks the R27 contact-CTA row (no simulated message box) and the
+// honest intro, closes; asserts the panel stays inside the viewport, no horizontal overflow,
 // no request to /api/chat (UI not wired, flag OFF) and no non-GET request at all.
 // Read-only. Env: BIOA_CHROME_PATH, BIOA_REPORTS, CHAT_SHOTS=1 for screenshots.
 import { chromium } from "playwright";
@@ -36,12 +36,15 @@ for (const route of ROUTES) for (const width of WIDTHS){
     if (!st.open) fail.push("panel did not open");
     if (st.r[0] < -0.5 || st.r[2] > st.vw + 0.5 || st.r[1] < -0.5 || st.r[3] > st.vh + 0.5) fail.push("panel outside viewport " + st.r.map(Math.round).join(","));
     if (st.overflow > 1) fail.push("horizontal overflow " + st.overflow);
-    await page.fill("#bioa-contact-fab .bioa-chat__input", route.includes("/en/") ? "Hello, serum OEM" : "Xin chào, gia công serum");
-    await page.click("#bioa-contact-fab .bioa-chat__send"); await page.waitForTimeout(900);
-    const msgs = await page.evaluate(() => [...document.querySelectorAll("#bioa-contact-fab .bioa-chat__messages .bioa-chat__msg")].map(m => m.className.includes("--user") ? "user" : "reply"));
-    if (msgs.join(",") !== "user,reply") fail.push("messages " + msgs.join(","));
-    const reply = await page.evaluate(() => { const r = [...document.querySelectorAll("#bioa-contact-fab .bioa-chat__messages .bioa-chat__msg:not(.bioa-chat__msg--user) .bioa-chat__bubble")].pop(); return r ? r.textContent : ""; });
-    if (/ghi nhận|đã nhận|noted|received/i.test(reply) || !/Zalo/.test(reply)) fail.push("preview reply must not claim the request was recorded: " + reply.slice(0, 80));
+    // R27: the message box only simulated a conversation (nothing was sent). The composer row now holds the two real
+    // channels; the intro must say that the chat takes no online messages.
+    const cta = await page.evaluate(() => { const root = document.getElementById("bioa-contact-fab"); const p = root.querySelector(".bioa-contact-fab__panel").getBoundingClientRect();
+      return { input: !!root.querySelector(".bioa-chat__input,form"), links: [...root.querySelectorAll(".bioa-chat__cta")].map(a => { const r = a.getBoundingClientRect(); return { href: a.getAttribute("href"), w: r.width, inside: r.left >= p.left - 0.5 && r.right <= p.right + 0.5, clipped: a.scrollWidth > a.clientWidth + 1 }; }),
+        intro: (root.querySelector(".bioa-chat__msg--intro .bioa-chat__bubble") || {}).textContent || "" }; });
+    if (cta.input) fail.push("message box still present");
+    if (cta.links.length !== 2 || !/zalo\.me/.test(cta.links[0].href) || !/^tel:\+84/.test(cta.links[1].href)) fail.push("contact CTAs " + JSON.stringify(cta.links));
+    if (cta.links.some(l => !l.inside || l.clipped || l.w < 60)) fail.push("CTA clipped or outside panel " + JSON.stringify(cta.links));
+    if (!/chưa nhận tin nhắn trực tuyến|does not take messages online/.test(cta.intro)) fail.push("intro does not say the chat is offline: " + cta.intro.slice(0, 80));
     if (process.env.CHAT_SHOTS) await page.screenshot({ path: join(OUT, "chat-shots", (route.replace(/\W+/g, "_") || "_") + "-" + width + ".png") });
     await page.locator("#bioa-contact-fab .bioa-chat__collapse").click(); await page.waitForTimeout(300);
     if (await page.evaluate(() => document.getElementById("bioa-contact-fab").classList.contains("is-open"))) fail.push("panel did not close");
