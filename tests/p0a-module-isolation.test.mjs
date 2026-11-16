@@ -53,7 +53,10 @@ const APPROVED = [
   { sha: "be097b41f0ad8c3507a8f0cd189ef294f398bbe9", phase: "R25CMS", files: ["bioa-blog-refine.mjs"] },
   // R26 (owner master execution 2026-11-15): PROD-HASH-GATE — Production deployments' hash URLs behind maintenance
   // when BIOA_DEPLOY_ENV=production; Preview deployments unchanged (tests/r26-production-hash-gate.test.mjs).
-  { sha: "4d724371765bbab46dd7f3c99fde064a71629b3e", phase: "R26", files: ["functions/_middleware.js"] }
+  { sha: "4d724371765bbab46dd7f3c99fde064a71629b3e", phase: "R26", files: ["functions/_middleware.js"] },
+  // R27 F04 (owner 2026-11-16): WWW-APEX — in the Production environment www.bioagroup.vn 301 to the apex before any
+  // other handling (tests/r27-www-apex.test.mjs); apex, Preview and hash-URL behaviour unchanged.
+  { sha: "530e1ec268bf6a727631f54104357040ffe5ca10", phase: "R27", files: ["functions/_middleware.js"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
