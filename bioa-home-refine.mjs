@@ -3803,8 +3803,16 @@ const patchWhyChooseIconCss = `
 /* Mobile service slots use the SAME monogram class and Home-approved
    artwork dimensions. One shared owner; no route-local icon CSS. */
 @media(max-width:768px){
-  .block-how-works .step__icon:has(> img.bioa-why-icon-bioa),
-  .block-right-choice .client__icon:has(> img.bioa-why-icon-bioa){
+  /* R28 ICON-LIST-1 (owner iPhone report, /dich-vu-khac/): the 42px badge is the service-CARD slot. In the process
+     list (.block-right-choice, one BIO-A slot among five Merywood icons) the BIO-A slot keeps the source list
+     footprint like its siblings: 30px badge, 16px artwork (monogram contained, never stretched). */
+  .block-right-choice img.bioa-why-icon-bioa{
+    width:16px!important;
+    max-width:16px!important;
+    height:16px!important;
+    max-height:16px!important;
+  }
+  .block-how-works .step__icon:has(> img.bioa-why-icon-bioa){
     display:flex!important;
     align-items:center!important;
     justify-content:center!important;
@@ -4162,7 +4170,16 @@ function viTitleCaseText(value){
     'zalo':'Zalo',
     'facebook':'Facebook',
     'telegram':'Telegram',
-    'whatsapp':'WhatsApp'
+    'whatsapp':'WhatsApp',
+    // R28 TITLECASE-ACRONYM: Blog headings rendered "Spf", "Uva", "Tp.hcm", "Pet, Pp Và Pe" (also in 2 approved articles).
+    'spf':'SPF',
+    'uv':'UV',
+    'uva':'UVA',
+    'uvb':'UVB',
+    'tp.hcm':'TP.HCM',
+    'pet':'PET',
+    'pp':'PP',
+    'pe':'PE'
   };
   return String(value||'').replace(/[A-Za-zÀ-ỹĐđ][A-Za-zÀ-ỹĐđ0-9&+/.\-]*/gu,function(word){
     const key=word.toLocaleLowerCase('vi');
@@ -5246,10 +5263,24 @@ function addContactLauncher($,lang){
       var bounds=footer.getBoundingClientRect();
       return bounds.top<window.innerHeight&&bounds.bottom>0;
     }
+    /* R28 CHAT-TEASER-M1: on Mobile the suggestion bubble covered the text being read until it was dismissed. It now
+       hides itself after 8 s or once the visitor keeps scrolling (~1/3 screen). The avatar button stays; Tablet and
+       Desktop behaviour is unchanged. */
+    var mobileTeaser=window.matchMedia&&window.matchMedia('(max-width:768px)').matches;
     function showTeaser(){
       if(teaserShown||teaserDismissed||root.classList.contains('is-open')||footerVisibleOnTablet())return;
       teaserShown=true;
       root.classList.add('is-teaser');
+      if(mobileTeaser){
+        var startY=window.scrollY;
+        var hideTimer=setTimeout(hideTeaser,8000);
+        var onReadScroll=function(){
+          if(Math.abs(window.scrollY-startY)>window.innerHeight*0.33){
+            clearTimeout(hideTimer);hideTeaser();window.removeEventListener('scroll',onReadScroll);
+          }
+        };
+        window.addEventListener('scroll',onReadScroll,{passive:true});
+      }
     }
     function open(){
       hideTeaser();
