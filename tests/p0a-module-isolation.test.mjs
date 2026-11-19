@@ -62,7 +62,10 @@ const APPROVED = [
   // image alts; Blog pending-rewrite + serum title. Scope proven by tests/phase-diff-scope.mjs R27.
   { sha: "d93a0f0a9a856dde4b9eca0d41bd5ee3fda866f2", phase: "R27", files: ["bioa-about-refine.mjs", "bioa-blog-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs"] },
   // R27: non-breaking space in the Home MOQ label ("Theo dự án" wrapped as "Theo dự / án" on desktop).
-  { sha: "4cb426bed2a145267730f410efa2eef2e61eb0f4", phase: "R27", files: ["bioa-transform.mjs"] }
+  { sha: "4cb426bed2a145267730f410efa2eef2e61eb0f4", phase: "R27", files: ["bioa-transform.mjs"] },
+  // R27b (owner content review 2026-11-19): cosmetics-only packaging carousel + formats headings (transform), service
+  // paths (Cosmetics/Services), hidden Footer surplus labels emptied (Home owner), REDIRECT-301 (middleware).
+  { sha: "c3a3f0d518c4eea618a7682ccbcf28e80dc70cf9", phase: "R27", files: ["bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs", "functions/_middleware.js"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
