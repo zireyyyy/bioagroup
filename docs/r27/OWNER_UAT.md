@@ -22,14 +22,24 @@
 
 ## B. Nội dung đã làm sạch (5 phút)
 
-5. **Trang chủ › "Giải pháp bao bì phù hợp sản phẩm":** dòng MOQ ghi "**Theo dự án**" thay cho 2500/5000.
-6. **Gia Công Mỹ Phẩm › "Kịch Bản Hợp Tác Tiêu Biểu":** nhãn ghi "Tình huống minh họa".
-7. **Dịch Vụ Khác › "Giải Pháp Theo Từng Nhu Cầu":** nhãn ghi "Gói dịch vụ gợi ý".
-8. **Tuyển dụng (VI/EN):** 3 thẻ ghi "**Chưa mở tuyển**" / "Not currently hiring". Mở 1 vị trí: không có nút ứng tuyển, không có lương giả.
+5. **Trang chủ › "Giải pháp bao bì phù hợp sản phẩm"** (máy tính: bấm mũi tên qua 3 slide; điện thoại: vuốt 4 thẻ):
+   - chỉ còn **Tuýp & chai chân không**, **Hũ mỹ phẩm**, **Gói sachet**, **Túi doypack**;
+   - **không còn** viên nang, viên nén, thực phẩm bổ sung, dinh dưỡng thể thao, đồ uống;
+   - dòng MOQ ghi "**Theo dự án**";
+   - trên điện thoại, tên mỗi thẻ khớp với ảnh của thẻ đó.
+   - *Lưu ý:* ảnh slide "Hũ mỹ phẩm" (máy tính) vẫn có lọ và vỉ thuốc của Merywood. Đây là ảnh tạm, bạn sẽ thay sau (OWNER_CONTENT_INPUTS #7).
+6. **Gia Công Mỹ Phẩm › "Lộ Trình Hợp Tác Theo Nhu Cầu":**
+   - 3 thẻ mô tả dịch vụ ("Dành cho thương hiệu…") kèm các bước dịch vụ (R&D • Mẫu thử • …);
+   - không còn chữ "Tình huống", không có dấu ngoặc kép kiểu lời chứng thực.
+7. **Dịch Vụ Khác › "Giải Pháp Theo Từng Nhu Cầu":** dòng dưới tên thẻ là các dịch vụ liên quan (ví dụ "Chai lọ • Sang chiết • Đóng gói • Nhãn"), không còn "Gói dịch vụ gợi ý".
+8. **Tuyển dụng (VI/EN):**
+   - 3 thẻ ghi "**Chưa mở tuyển**" / "Not currently hiring".
+   - Mở 1 vị trí: dòng in đậm đầu tiên nói rõ "Hiện chưa mở tuyển…"; không có nút ứng tuyển, không có lương giả.
 9. **Khung chat** (góc phải): mở ra thấy lời chào nói rõ chưa nhận tin nhắn trực tuyến, và 2 nút **Nhắn Zalo** / **Gọi 0779 399 379**. Trên điện thoại, bấm Gọi thì mở trình quay số.
 10. **Blog:** danh sách còn **9 bài** (2 trang).
-    - Mở link cũ `/blog/page/4/`: tự chuyển về trang Blog đầu.
+    - Gõ link cũ `/blog/page/4/`: chuyển ngay về trang Blog đầu (chuyển hướng 301 thật).
     - Một bài "chờ viết lại" (ví dụ `/blog/an-gi-de-chong-lao-hoa-da/`) vẫn mở được, nhưng không có trong danh sách.
+    - Muốn chọn bài viết lại trước: xem `BLOG_REWRITE_PRIORITY.md`.
 
 ## C. Không bị ảnh hưởng (3 phút)
 

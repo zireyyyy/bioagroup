@@ -74,3 +74,19 @@ No URL was deleted.
 - MOQ (#3).
 - Document proof (#4).
 - Legal (#1).
+
+
+## 6. R27b (2026-11-19, after the owner's ChatGPT review)
+
+| Area | Change |
+|---|---|
+| Home packaging carousel (VI/EN) | food-supplement products and uses removed; tube/airless, jar, sachet, doypack described per image with cosmetic uses only (CONTENT_INVENTORY §1) |
+| Home product-format panels | hidden headings follow the visible tabs (no "Supplements / Sports nutrition / Pet supplements") |
+| Footer (all pages) | hidden surplus items emptied (no "Vitamin K/E, Omega 3, Probiotics, Diabet" in the HTML) |
+| Cosmetics / Dịch Vụ Khác cards | service paths with the services involved; no scenario or "suggested package" wording |
+| Careers role pages (6 URLs) | "not hiring" note first; `robots noindex, follow`; removed from the sitemap |
+| `/en/dich-vu-khac/` description | shortened to 161 characters (was 173) |
+| **Redirects** | every static redirect page now answers with a **real HTTP 301** on Cloudflare Pages: the middleware reads `/_bioa-redirects.json` (46 entries, written by the build), because Pages does not apply `_redirects` to requests served by Functions. Retired `/blog/page/3–6/` and `/en/blog/page/3–6/` → `/blog/` / `/en/blog/` (query kept); D11 legacy slugs and Careers slugs likewise. Meta-refresh pages remain as a fallback. Production guests still get the 503 maintenance page |
+| sitemap.xml | 40 → **34** URLs (−6 role pages) |
+
+Blog titles of 66–81 characters on 11 listed article pages were reviewed. They are complete, unique and within the locked Blog content contract, so they are not changed (a SERP may truncate them).

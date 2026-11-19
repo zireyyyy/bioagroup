@@ -83,6 +83,21 @@ The **19 differences are all intentional R27 changes:**
 | `https://www.bioagroup.vn/*` | 301 → apex (path + query); `http://www…` → https → apex (2 hops); certificate valid (Google Trust Services, SAN `www.bioagroup.vn`) |
 | Production deployment `d187b3a4` (`9d044a7`) | `CMS mode: off`, `BIOA_SITE_MODE=maintenance`, `BIOA_DEPLOY_ENV=production`, `secret in log: false` |
 
+## 6. R27b re-run (code `cc14ad3`/`fb8edd8`, 2026-11-19)
+
+| Check | Result |
+|---|---|
+| Full gate suite (`gates/summary.txt`, frozen build `dist-final-r27`: 196 files, tree `1cc7b05f…`, unchanged after QA) | all PASS: candidate, p0a, responsive 15, 404 6, Turnstile 7, chat 8, middleware incl. **r27-redirect-301 4/4**, scope R27 + R26+R27, SEO audit, **R27 content audit** (extended), p0b1 24/24, D11, careers 186/186, R27 browser 72/72, P1/P2, roadmap 36/36 + 36/36, how-works 28/28, home sections 20/20, route smoke 204/204, chat probe 60/60, lead probe 36/36, tablet suites. `test:cms`: the first run had 13/15 because 2 assertions encoded the old (shifted) packaging pairing; after updating them to the image-based pairing, 15/15 |
+| Extended `r27-content-audit` on the earlier R27 build | FAIL as expected (Vitamin/Omega/Probiotics hidden Footer labels ×102 pages, "Viên nang", carousel/image mismatch, sample role pages indexable without note, missing 301 map): the new rules catch the defects |
+| Off-domain rendered-text scan (`r27b-offdomain-before.txt` → `-after.txt`) | 31 distinct hits → 8, all "dose" (cosmetic dispensing) in 2 EN Blog articles |
+| Live CMS build vs CMS off (after the R27b Sanity sync) | byte-identical, 196 files |
+| CMS Preview deploys `ff6b8a2e` (`cc14ad3`) and final `490ee5cf` (`fb8edd8`) | `CMS mode: live`; 13/13 and 8/8 sampled files byte-identical to the local build; real **HTTP 301** for `/blog/page/3-6/`, `/en/blog/page/3-6`, `/lien-he/`, `/nang-luc/`, `/careers/*` (query kept); `/blog/page/2/` 200 |
+| **Preview E2E (`e2e-preview-r27b/`)** | 102 routes (sitemap 34 + 4 policy + 58 pending articles + 6 sample role pages) + 12 redirect stubs + 2 not-found; widths **312, 320, 375, 390, 768, 1024, 1440, 1920** + zoom 1152@125 % and 312@125 %: **850 loads, 0 failed**, **11/11 flows** |
+| `r27-browser-defects` on the R27b Preview | 72/72 |
+| Visual/geometry vs R26 (`visual-r27b/`) | 44/72 identical. 28 intentional: Home ×6 (reviews removed, MOQ), Cosmetics EN @390 and Services VI/EN @390 (service-path card text height), Blog ×5, pending article ×4, Careers ×4, **career detail ×6** ("not hiring" note) |
+| Screenshots | `pack-before-*` / `pack-after-*` (carousel), `cards-*` (service paths, career note) |
+| GitHub CI on PR `zireyyyy/bioagroup#13` at `fb8edd8` | **pass** (`ci-pr13-r27b.txt`) |
+
 ## Not verified by the developer
 
 - Real phones/tablets (browser emulation only).

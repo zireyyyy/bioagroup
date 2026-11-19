@@ -90,3 +90,18 @@ Each field was changed only if Sanity still held the old website value.
    - `bioagroup.vn` and the hash URL 503, `/api` 503;
    - `www` 301.
 3. Rollback after promotion: use the Cloudflare rollback to `d187b3a4`, as rehearsed in R26.
+
+## 6. R27b update (2026-11-19)
+
+| Item | Value |
+|---|---|
+| Code | `c3a3f0d` (content + REDIRECT-301) + `cc14ad3` (module-isolation approval) + `fb8edd8` (CMS test) on `r27/content-cleanup` |
+| CMS Preview | `cms-preview` fast-forwarded `7edb4ec..cc14ad3` (deployment `ff6b8a2e`, 13/13 files byte-identical, `r27b-preview-deploy.txt`), then `..fb8edd8` (test-only) → **final deployment `490ee5cf-fc83-484e-8a4a-dc6527f942f8`**, `CMS mode: live`, 8/8 files byte-identical (`r27b-preview-deploy-final.txt`) |
+| Production | unchanged: `main` `9d044a7`, deployment `d187b3a4`, maintenance ON |
+| Real 301 on the Preview | `/blog/page/3/` → `/blog/`, `/en/blog/page/5` → `/en/blog/`, `/lien-he/` → `/contacts/`, `/careers/b2b-sales-executive/` → `/tuyen-dung/nhan-vien-kinh-doanh-b2b/` (query kept) |
+| Sanity | backup `D:\BIOA_WORKSPACE\_private\sanity\backups\r27b-before-2026-11-19T043656739Z.json`. Text slots synced (`page-home`, `page-cosmetics`, `page-services`; 0 conflicts). `seo-services` EN description. Image slots: 5 empty documents of the old packaging pairs deleted, 5 new ones seeded (`tools/cms-seed.mjs`, create-if-missing). 41 positions |
+
+**Rollback of R27b only:**
+- Code: `git revert --no-edit cc14ad3 c3a3f0d` on the branch, then fast-forward `cms-preview`.
+- Sanity: restore `page-home`, `page-cosmetics`, `page-services`, `seo-services` and the five old `imageSlot-home_*` documents from the backup file.
+- Without `/_bioa-redirects.json` (or the middleware change) the meta-refresh pages still redirect as before.
