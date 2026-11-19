@@ -44,9 +44,10 @@ const content={
       ["Hồ Sơ Trọn Gói & Minh Bạch","Thông tin sản phẩm, nhãn, hồ sơ cần thiết và các mốc duyệt được phối hợp rõ ràng để thương hiệu dễ theo dõi xuyên suốt dự án."]
     ],
     scenarios:[
-      ["Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.","Tình Huống 01","Thương hiệu skincare • Tình huống minh họa"],
-      ["Thương hiệu đang có sản phẩm bán tốt muốn mở rộng thêm nhóm chăm sóc tóc. Quy trình tập trung vào R&D mẫu, đồng bộ bao bì và chuẩn bị kế hoạch sản xuất cho SKU mới.","Tình Huống 02","Thương hiệu hair care • Tình huống minh họa"],
-      ["Dự án cần công thức riêng và nhiều vòng tinh chỉnh cảm quan trước khi chốt. Bio-A Group hỗ trợ ghi nhận thay đổi, hoàn thiện mẫu và chuyển tiếp sang sản xuất theo từng mốc.","Tình Huống 03","Phát triển công thức riêng • Tình huống minh họa"]
+      // R27b: service paths described as services Bio-A Group offers, not as client cases.
+      ["Dành cho thương hiệu ra mắt dòng sản phẩm đầu tiên: Bio-A Group hỗ trợ làm rõ brief, R&D công thức, làm mẫu thử, chọn bao bì và lập kế hoạch sản xuất theo từng mốc.","Phát Triển Dòng Sản Phẩm Mới","R&D • Mẫu thử • Bao bì • Sản xuất"],
+      ["Dành cho thương hiệu mở rộng sang nhóm sản phẩm mới như chăm sóc tóc hoặc body: R&D mẫu cho nhóm sản phẩm mới, đồng bộ bao bì với dòng hiện có và lập kế hoạch sản xuất cho SKU mới.","Mở Rộng Danh Mục Sản Phẩm","R&D • Bao bì • Kế hoạch SKU"],
+      ["Dành cho dự án cần công thức riêng: R&D phát triển công thức theo yêu cầu, tinh chỉnh kết cấu, màu và mùi qua các vòng mẫu, ghi nhận thay đổi và chuyển sang sản xuất khi mẫu được duyệt.","Phát Triển Công Thức Riêng","R&D • Tinh chỉnh mẫu • Duyệt mẫu"]
     ],
     roadmapTitle:"Đồng Hành Trọn Chu Kỳ",
     roadmap:[
@@ -71,9 +72,9 @@ const content={
       ["Complete & Transparent Documentation","Product information, labels, required documentation and approval milestones are coordinated clearly so the brand can follow project progress."]
     ],
     scenarios:[
-      ["A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.","Scenario 01","Skincare brand • Illustrative scenario"],
-      ["An established brand wants to add a hair-care category. The project focuses on sample R&D, packaging alignment and a production plan for the new SKU range.","Scenario 02","Hair-care brand • Illustrative scenario"],
-      ["A custom-formula project needs several sensory-refinement rounds before approval. Bio-A Group tracks revisions, finalizes samples and moves the project into production by agreed milestones.","Scenario 03","Custom formula • Illustrative scenario"]
+      ["For brands launching a first product line: Bio-A Group helps clarify the brief, develops the formula, prepares samples, selects packaging and plans production by milestone.","New Product Line Development","R&D • Samples • Packaging • Production"],
+      ["For brands adding a new category such as hair or body care: sample R&D for the new category, packaging aligned with the existing range and a production plan for the new SKUs.","Product Range Expansion","R&D • Packaging • SKU planning"],
+      ["For projects that need a custom formula: R&D develops the formula to brief, refines texture, colour and fragrance through sample rounds, records changes and moves to production once the sample is approved.","Custom Formula Projects","R&D • Sample refinement • Approval"]
     ],
     roadmapTitle:"Full-Cycle Support",
     roadmap:[
@@ -465,13 +466,14 @@ function applyHeroAndCtas($,lang){
 
 function applyScenarios($,lang){
   const data=content[lang];
-  $(".block-reviews .title").each((_,el)=>$(el).text(lang==="vi"?"Kịch Bản Hợp Tác Tiêu Biểu":"Typical Collaboration Scenarios"));
+  $(".block-reviews .title").each((_,el)=>$(el).text(lang==="vi"?"Lộ Trình Hợp Tác Theo Nhu Cầu":"Collaboration Paths by Project Need")); // R27b: service paths, not client scenarios
   $(".block-reviews .review").each((i,el)=>{
     const d=data.scenarios[i%data.scenarios.length];
     const root=$(el);
     root.find(".review__text").first().text(d[0]);
     root.find(".review__author-name").first().text(d[1]);
     root.find(".review__author-info").first().text(d[2]);
+    root.find(".review__author-quotes").remove(); // R27b: no testimonial quote mark on a service description (same as Dịch Vụ Khác)
   });
 }
 

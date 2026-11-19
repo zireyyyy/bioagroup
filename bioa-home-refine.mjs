@@ -4509,7 +4509,8 @@ function refineFooterNavigation($,lang){
     lis.each((j,li)=>{
       if(j>col.items.length){
         // CONTENT-C1: a hidden surplus source item must not keep a Merywood link target.
-        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused').find('a').removeAttr('href');
+        // R27b: nor its Merywood supplement label (Vitamin K/E, Omega 3, Probiotics, Diabet): the hidden item stays empty.
+        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused').find('a').removeAttr('href').text('');
       }
     });
   });

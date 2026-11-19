@@ -241,31 +241,72 @@ function setHomeStats($,stats){
 }
 
 function setPackagingCopy($,lang){
+  // R27b (owner content review 2026-11-19): the Merywood carousel was built for food supplements (blister packs for
+  // capsules/tablets, doypacks for sports-nutrition and wellness-drink mixes). BIO-A is a cosmetics manufacturer, so:
+  // - the blister-pack product is removed (desktop slide 2 right column, mobile slide 3 whose image is a blister);
+  // - every column is filled explicitly per slide image (no Merywood text left in uncovered columns/items);
+  // - doypack/sachet uses are cosmetic only. Images stay (owner replaces Merywood images later, MEDIA_REPLACEMENT_MAP).
   const vi=lang==='vi';
-  const data=vi?[
-    ['Tuýp & chai chân không',['Kem','Gel','Lotion'],['Thiết kế gọn, phù hợp mỹ phẩm chăm sóc da.','Hạn chế công thức tiếp xúc trực tiếp với không khí.','Thuận tiện sử dụng và tạo cảm giác cao cấp.','Phù hợp nhiều dòng kem, gel và lotion.','Dễ tùy chỉnh dung tích và nhận diện thương hiệu.']],
-    ['Hũ mỹ phẩm',['Kem đặc','Mặt nạ','Tẩy tế bào chết'],['Có thể lựa chọn nhựa hoặc thủy tinh.','Phù hợp sản phẩm có kết cấu đặc.','Dễ đồng bộ nắp, màu và nhãn thương hiệu.']],
-    ['Vỉ định hình',['Viên nang','Viên nén'],['Đóng gói từng đơn vị sản phẩm rõ ràng.','Thuận tiện kiểm soát liều dùng.','Hỗ trợ bảo quản và vận chuyển gọn gàng.']],
-    ['Gói sachet',['Mẫu dùng thử','Liều dùng một lần','Sản phẩm cỡ du lịch'],['Phù hợp thử mẫu và chương trình marketing.','Nhẹ, dễ phân phối và vận chuyển.','Có thể dùng cho nhiều kết cấu mỹ phẩm.']],
-    ['Túi doypack',['Bột đóng gói','Sản phẩm refill','Hỗn hợp pha'],['Nhẹ và tiết kiệm không gian đóng gói.','Thuận tiện cho sản phẩm refill.','Phù hợp bán hàng trực tuyến và vận chuyển.']]
-  ]:[
-    ['Tubes & airless containers',['Creams','Gels','Lotions'],['Compact packaging for skincare products.','Helps reduce direct formula exposure to air.','Convenient use with a premium presentation.','Suitable for creams, gels and lotions.','Flexible sizes and brand customization.']],
-    ['Cosmetic jars',['Rich creams','Masks','Body scrubs'],['Available in plastic or glass.','Suitable for thicker product textures.','Flexible lid, color and label customization.']],
-    ['Blister packs',['Capsules','Tablets'],['Clear single-unit packaging.','Convenient dose control.','Compact for storage and shipping.']],
-    ['Sachets',['Samples','Single use','Travel size'],['Ideal for samples and promotions.','Lightweight and easy to distribute.','Suitable for multiple cosmetic textures.']],
-    ['Doypacks',['Bulk powders','Refill products','Drink mixes'],['Lightweight and space-efficient.','Convenient for refill products.','Well suited to ecommerce shipping.']]
-  ];
-  $('.block-products-desctop .swiper-slide .product,.block-products-mobile .swiper-slide .product').each((i,el)=>{
-    const d=data[i%data.length],root=$(el);
-    root.find('.product__title .title,.product__title').first().text(d[0]);
-    root.find('.product__ideal-for .label').text(vi?'Phù hợp với':'Ideal for');
-    root.find('.product__ideal-for .labels__item').each((j,e)=>{if(d[1][j])$(e).find('p').first().text(d[1][j])});
-    root.find('.product__key-advantages .label').text(vi?'Ưu điểm nổi bật':'Key advantages');
-    root.find('.product__key-advantages .list__item').each((j,e)=>{
-      if(!d[2][j])return;
-      const t=$(e).find('.list__item-text').first();
-      if(t.length)t.text(d[2][j]);else $(e).find('p').first().text(d[2][j]);
-    });
+  const P=vi?{
+    tube:{title:'Tuýp & chai chân không',ideal:['Kem','Gel','Lotion'],adv:['Thiết kế gọn, phù hợp mỹ phẩm chăm sóc da.','Hạn chế công thức tiếp xúc trực tiếp với không khí.','Thuận tiện sử dụng và tạo cảm giác cao cấp.','Phù hợp nhiều dòng kem, gel và lotion.','Dễ tùy chỉnh dung tích và nhận diện thương hiệu.']},
+    jar:{title:'Hũ mỹ phẩm',ideal:['Kem đặc','Mặt nạ','Tẩy tế bào chết'],adv:['Có thể lựa chọn nhựa hoặc thủy tinh.','Phù hợp sản phẩm có kết cấu đặc.','Dễ đồng bộ nắp, màu và nhãn thương hiệu.']},
+    sachet:{title:'Gói sachet',ideal:['Mẫu dùng thử','Gói dùng một lần','Sản phẩm cỡ du lịch'],adv:['Phù hợp thử mẫu và chương trình marketing.','Nhẹ, dễ phân phối và vận chuyển.','Có thể dùng cho nhiều kết cấu mỹ phẩm.','Mang lại trải nghiệm vệ sinh và tiện lợi.','Phù hợp dòng chăm sóc da và thương hiệu mỹ phẩm gia công.']},
+    doypack:{title:'Túi doypack',ideal:['Sữa tắm, dầu gội refill','Mặt nạ dạng bột'],adv:['Nhẹ và tiết kiệm không gian đóng gói.','Thuận tiện cho sản phẩm refill.','Phù hợp bán hàng trực tuyến và vận chuyển.']}
+  }:{
+    tube:{title:'Tubes & airless containers',ideal:['Creams','Gels','Lotions'],adv:['Compact packaging for skincare products.','Helps reduce direct formula exposure to air.','Convenient use with a premium presentation.','Suitable for creams, gels and lotions.','Flexible sizes and brand customization.']},
+    jar:{title:'Cosmetic jars',ideal:['Rich creams','Masks','Body scrubs'],adv:['Available in plastic or glass.','Suitable for thicker product textures.','Flexible lid, color and label customization.']},
+    sachet:{title:'Sachets',ideal:['Trial samples','Single-use packs','Travel sizes'],adv:['Ideal for samples and promotions.','Lightweight and easy to distribute.','Suitable for multiple cosmetic textures.','Hygienic and convenient to use.','Well suited to skincare lines and private-label beauty brands.']},
+    doypack:{title:'Doypacks',ideal:['Body wash and shampoo refills','Powder masks'],adv:['Lightweight and space-efficient.','Convenient for refill products.','Well suited to ecommerce shipping.']}
+  };
+  // Make a list hold exactly the given items (clone the first item when more are needed, drop the rest).
+  const fitList=(list,items,write)=>{
+    const lis=list.children('li');
+    if(!lis.length)return;
+    lis.slice(items.length).remove();
+    for(let k=list.children('li').length;k<items.length;k++)list.append(lis.first().clone());
+    list.children('li').each((j,li)=>write($(li),items[j],j));
+  };
+  const writeTitle=(col,text)=>{
+    const t=col.find('.product__title').first();
+    if(!t.length)return;
+    const h=t.find('.title').first();
+    if(h.length)h.text(text);else t.html('<h3 class="title">'+text.replace(/&/g,'&amp;')+'</h3>');
+  };
+  const writeIdeal=(col,items)=>fitList(col.find('.product__ideal-for .labels').first(),items,(li,txt)=>{const q=li.find('p').first();(q.length?q:li).text(txt);});
+  const writeAdv=(col,items)=>fitList(col.find('.product__key-advantages .list').first(),items,(li,txt,j)=>{
+    const t=li.find('.list__item-text').first();
+    if(t.length){t.text(txt);li.find('.list__item-number').first().text(String(j+1).padStart(2,'0'));}
+    else{const q=li.find('p').first();(q.length?q:li).text(txt);}
+  });
+  const labels=root=>{root.find('.product__ideal-for .label').text(vi?'Phù hợp với':'Ideal for');root.find('.product__key-advantages .label').text(vi?'Ưu điểm nổi bật':'Key advantages');};
+
+  // Desktop: 3 slides x 2 columns. Images: 0 tube+airless, 1 jar (+ Merywood bottle/blister), 2 sachet + doypack.
+  $('.block-products-desctop .swiper-slide').each((i,slide)=>{
+    const cols=$(slide).find('.product__row').first().children('.product__col');
+    if(cols.length<2)return;
+    const L=cols.eq(0),R=cols.eq(1);
+    if(i===0){writeTitle(L,P.tube.title);writeIdeal(L,P.tube.ideal);writeAdv(R,P.tube.adv);}
+    else if(i===1){
+      // Same layout as slide 0: left = title, uses, MOQ; right = advantages (the blister product is removed).
+      writeTitle(L,P.jar.title);writeIdeal(L,P.jar.ideal);
+      const adv=L.find('.product__key-advantages').first();
+      R.children('.product__title,.product__ideal-for').remove();
+      if(adv.length){R.children('.product__key-advantages').remove();R.prepend(adv);}
+      writeAdv(R,P.jar.adv);
+    }
+    else if(i===2){writeTitle(L,P.sachet.title);writeIdeal(L,P.sachet.ideal);writeAdv(L,P.sachet.adv.slice(0,3));writeTitle(R,P.doypack.title);writeIdeal(R,P.doypack.ideal);writeAdv(R,P.doypack.adv);}
+    labels($(slide));
+    $(slide).find('.product__open-text').text(vi?'Xem thêm':'Show more');
+  });
+  // Mobile: 5 slides, images 0 tube+airless, 1 jar (+ Merywood bottle), 2 blister (removed), 3 sachet, 4 doypack.
+  const mob=$('.block-products-mobile .swiper-slide');
+  const order=['tube','jar',null,'sachet','doypack'];
+  mob.each((i,slide)=>{
+    const key=order[i];
+    if(i<order.length&&key===null){$(slide).remove();return;}
+    const d=P[key||order[i%order.length]||'tube'],root=$(slide);
+    root.find('.product__title').first().text(d.title);
+    writeIdeal(root,d.ideal);writeAdv(root,d.adv);labels(root);
     root.find('.product__open-text').text(vi?'Xem thêm':'Show more');
   });
   $('.block-products-mobile .title-wrapper .title').text(vi?'Giải pháp bao bì phù hợp sản phẩm':'Packaging solutions for your product');
@@ -326,6 +367,9 @@ function setFormatsCopy($,lang){
   $('.block-product-formats .title').text(vi?'Các dòng sản phẩm Bio-A Group có thể gia công':'Product lines Bio-A Group can manufacture');
   $('.block-product-formats .formats__lede').text(vi?'Các dòng dưới đây có thể phát triển theo công thức có sẵn hoặc công thức riêng; số lượng tối thiểu được tư vấn theo từng sản phẩm.':'Available as ready-formula or custom-formula projects; minimum quantities vary by product.');
   $('.block-product-formats .formats__tab').each((i,e)=>$(e).text(tabs[i]||$(e).text()));
+  // R27b: the hidden panel headings (screen readers / crawlers) still named the Merywood panels (Supplements, Sports
+  // nutrition, Pet supplements); they follow the visible tab of the same panel.
+  $('.block-product-formats .formats__panel').each((i,p)=>{if(tabs[i])$(p).find('.formats__panel-title').first().text(tabs[i]);});
   $('.block-product-formats .formats__panel').each((i,p)=>$(p).find('.formats__item-title').each((j,e)=>$(e).text(formats[i%4][j%formats[i%4].length])));
   $('.block-product-formats .formats__cta-title').text(vi?'Chưa thấy sản phẩm bạn cần?':'Do not see your product?');
   $('.block-product-formats .formats__cta-description').text(vi?'Gửi ý tưởng sản phẩm, Bio-A Group sẽ kiểm tra và tư vấn phương án phù hợp.':'Share your idea and Bio-A Group will recommend a suitable approach.');

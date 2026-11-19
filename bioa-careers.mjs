@@ -199,6 +199,7 @@ const T = {
     copy: "Sao chép email", copied: "Đã sao chép!",
     back: "‹ Quay lại Tuyển dụng",
     introTitle: "Gia nhập Bio-A Group",
+    notOpenNote: "Hiện chưa mở tuyển. Trang này mô tả nhóm công việc tại Bio-A Group để bạn tham khảo; thông tin tuyển dụng chính thức (số lượng, chế độ, địa điểm, cách ứng tuyển) chỉ được công bố khi vị trí mở tuyển.",
     duties: "Mô tả công việc", reqs: "Yêu cầu",
     benefitsTitle: "Quyền lợi",
     benefits: "Mức thu nhập, chế độ và phúc lợi của vị trí sẽ được Bio-A Group công bố cùng thông báo tuyển dụng chính thức.",
@@ -231,6 +232,7 @@ const T = {
     copy: "Copy email", copied: "Copied!",
     back: "‹ Back to Careers",
     introTitle: "Join Bio-A Group",
+    notOpenNote: "Not currently hiring. This page describes a team at Bio-A Group for reference; official hiring details (openings, terms, location, how to apply) are published only when the role opens.",
     duties: "What you'll do", reqs: "What we're looking for",
     benefitsTitle: "What we offer",
     benefits: "Pay, terms and benefits for this role will be published by Bio-A Group with the official job announcement.",
@@ -387,7 +389,9 @@ export function applyCareersDetail($, route, lang){
 
   const intro = single.find(".mwc-intro");
   intro.find("p").remove();
-  intro.find(".mwc-intro__title").text(t.introTitle).after(j.intro.map(p => "<p>" + esc(p) + "</p>").join(""));
+  // R27b: a role that is not open says so first, in the intro text (same paragraph style), so the role description
+  // below cannot be read as a live job advertisement.
+  intro.find(".mwc-intro__title").text(t.introTitle).after((open ? [] : ['<p class="bioa-career-not-open"><strong>' + esc(t.notOpenNote) + "</strong></p>"]).join("") + j.intro.map(p => "<p>" + esc(p) + "</p>").join(""));
 
   const cards = single.find(".mwc-two__card");
   const fill = (card, title, items) => {
@@ -433,4 +437,10 @@ export function applyCareersDetail($, route, lang){
   setEmailRows($, t);
   fixScripts($);
   setMeta($, j.title + " | " + t.jobSuffix, j.desc);
+  // R27b: a role description that is not an open position is kept out of search results (noindex, follow) and,
+  // through build.mjs, out of sitemap.xml. An owner-approved open role (CMS status "open") is indexable again.
+  if (!open){
+    if ($('meta[name="robots"]').length) $('meta[name="robots"]').attr("content", "noindex, follow");
+    else $("head").append('<meta name="robots" content="noindex, follow">');
+  }
 }

@@ -463,10 +463,14 @@ async function build(){
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   // D11: redirect pages for legacy Footer/About slugs (not in sitemap; see bioa-legacy-redirects.mjs).
   // R27: retired Blog index pages (fewer listed posts after the content audit) redirect to the Blog home.
-  for(const f of [...legacyRedirectFiles(builtRoutes),...retiredRedirectFiles(blogRetiredIndexRedirects,builtRoutes)]){
+  const redirectFiles=[...legacyRedirectFiles(builtRoutes),...retiredRedirectFiles(blogRetiredIndexRedirects,builtRoutes)];
+  for(const f of redirectFiles){
     await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
     await fs.writeFile(path.join(OUT,f.out),f.body);
   }
+  // R27b REDIRECT-301: the same redirects as data for the Pages middleware, which answers them with a real HTTP 301.
+  const redirectMap=Object.fromEntries(redirectFiles.map(f=>[f.route,f.target]).sort(([a],[b])=>a.localeCompare(b)));
+  await fs.writeFile(path.join(OUT,"_bioa-redirects.json"),JSON.stringify(redirectMap,null,1)+"\n");
   // Auth middleware must intercept assets and APIs, not only HTML.
   await fs.writeFile(path.join(OUT,"_routes.json"),JSON.stringify({version:1,include:["/*"],exclude:[]},null,2)+"\n");
   console.log("build complete in",Date.now()-started,"ms");

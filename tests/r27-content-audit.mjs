@@ -17,7 +17,11 @@ const sitemap = fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8");
 
 const BANNED_TEXT = [/sample testimonial/i, /to be updated/i, /nội dung mẫu/i, /giải pháp mẫu/i, /sample solution/i, /sample scenario/i,
   /chi tiết đang cập nhật/i, /details to be confirmed/i, /\b2500 (sản phẩm|units)\b/i, /\b5000 (sản phẩm|units)\b/i, /khách hàng bio-a group/i, /bio-a group client/i,
-  /serum đặc trị/i];
+  /serum đặc trị/i,
+  // R27b: food-supplement content left from the Merywood carousel/tabs, scenario/"suggested package" storylines.
+  /viên nang|viên nén|thực phẩm bổ sung|thực phẩm chức năng|dinh dưỡng thể thao|đồ uống chăm sóc|hỗn hợp pha|liều dùng|sản phẩm thú cưng/i,
+  /\b(capsules?|tablets?|supplements?|sports nutrition|drink mix(es)?|wellness drink|pet supplements?|probiotics|omega 3|vitamin [a-k])\b/i,
+  /tình huống minh họa|gói dịch vụ gợi ý|kịch bản hợp tác|illustrative scenario|suggested service mix|typical collaboration scenarios|\bscenario 0\d/i];
 const BAD_ALTS = new Set(["icon", "talk", "hands", "blank", "cert", "whiteboxes", "nhà máy và năng lực bio-a group", "đội ngũ bio-a group", "bio-a group team", "bio-a group manufacturing capabilities"]);
 
 for (const p of real) {
@@ -31,6 +35,35 @@ for (const p of real) {
   if ($(".bioa-chat__input,form.bioa-chat__composer").length) fail(p.route, "chat still shows a message box that sends nothing");
   if ($("#bioa-contact-fab").length && $(".bioa-chat__cta").length !== 2) fail(p.route, "chat contact CTAs missing");
 }
+// R27b: hidden surplus Footer items keep no Merywood label.
+for (const p of real) { const $ = cheerio.load(p.html); $(".bioa-footer-nav-unused").each((_, e) => { if ($(e).text().trim()) fail(p.route, "hidden Footer item still has text: " + $(e).text().trim()); }); }
+// R27b: Home packaging carousel: no blister product, every mobile slide title matches its image.
+for (const r of ["/", "/en/"]) {
+  const p = real.find(x => x.route === r); const $ = cheerio.load(p.html);
+  const mob = $(".block-products-mobile .swiper-slide").map((_, e) => ($(e).find("img").attr("src") || "").split("/").pop() + "=" + $(e).find(".product__title").first().text().trim().toLowerCase()).get();
+  const want = [/image-1_mobile.*=(tuýp|tubes)/, /image-2_mobile.*=(hũ|cosmetic jars)/, /image-4_mobile.*=(gói sachet|sachets)/, /image-5_mobile.*=(túi doypack|doypacks)/];
+  if (mob.length !== 4 || want.some((re, i) => !re.test(mob[i] || ""))) fail(r, "packaging mobile slides/images: " + JSON.stringify(mob));
+}
+// R27b: real 301 map for every static redirect page.
+{
+  const mapFile = path.join(dist, "_bioa-redirects.json");
+  if (!fs.existsSync(mapFile)) fail("_bioa-redirects.json", "missing");
+  else {
+    const map = JSON.parse(fs.readFileSync(mapFile, "utf8"));
+    for (const p of pages.filter(x => /bioa-legacy-redirect/.test(x.html))) {
+      const target = (p.html.match(/bioa-legacy-redirect" content="([^"]+)"/) || [])[1];
+      if (map[p.route] !== target) fail(p.route, "redirect page not in the 301 map (or different target): " + map[p.route] + " vs " + target);
+    }
+  }
+}
+// R27b: a role that is not open is not indexable and says so first.
+for (const p of real.filter(x => /^\/(tuyen-dung|en\/careers)\/[a-z0-9-]+\/$/.test(x.route))) {
+  const $ = cheerio.load(p.html);
+  if (!/noindex/.test($('meta[name="robots"]').attr("content") || "")) fail(p.route, "sample role page is indexable");
+  if (!$(".bioa-career-not-open").length) fail(p.route, "sample role page lacks the not-hiring note");
+  if (/JobPosting/.test(p.html)) fail(p.route, "JobPosting structured data on a role that is not open");
+}
+
 // No fabricated ratings in structured data.
 for (const p of real) if (/"@type"\s*:\s*"(Review|AggregateRating|Rating)"|aggregateRating|ratingValue/.test(p.html)) fail(p.route, "Review/AggregateRating structured data");
 

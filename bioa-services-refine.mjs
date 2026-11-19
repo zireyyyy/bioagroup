@@ -14,9 +14,9 @@ const serviceContent={
     ],
     scenariosTitle:"Giải Pháp Theo Từng Nhu Cầu",
     scenarios:[
-      ["Thương hiệu mới có thể kết hợp sản xuất, lựa chọn chai lọ, thiết kế bao bì và chuẩn bị lộ trình hồ sơ trong cùng một kế hoạch triển khai.","Khởi Tạo Thương Hiệu","Gói dịch vụ gợi ý"],
-      ["Dự án đã có công thức hoặc bán thành phẩm có thể tập trung vào chai lọ, sang chiết, đóng gói và hoàn thiện nhãn trước khi ra thị trường.","Sang Chiết & Hoàn Thiện","Gói dịch vụ gợi ý"],
-      ["Doanh nghiệp đã có sản phẩm có thể sử dụng riêng từng dịch vụ như thiết kế bao bì, thay đổi chai lọ hoặc hỗ trợ hồ sơ & công bố.","Mở Rộng & Chuẩn Hóa","Gói dịch vụ gợi ý"]
+      ["Thương hiệu mới có thể kết hợp sản xuất, lựa chọn chai lọ, thiết kế bao bì và chuẩn bị lộ trình hồ sơ trong cùng một kế hoạch triển khai.","Khởi Tạo Thương Hiệu","Sản xuất • Chai lọ • Thiết kế bao bì • Hồ sơ"],
+      ["Dự án đã có công thức hoặc bán thành phẩm có thể tập trung vào chai lọ, sang chiết, đóng gói và hoàn thiện nhãn trước khi ra thị trường.","Sang Chiết & Hoàn Thiện","Chai lọ • Sang chiết • Đóng gói • Nhãn"],
+      ["Doanh nghiệp đã có sản phẩm có thể sử dụng riêng từng dịch vụ như thiết kế bao bì, thay đổi chai lọ hoặc hỗ trợ hồ sơ & công bố.","Mở Rộng & Chuẩn Hóa","Thiết kế bao bì • Chai lọ • Hồ sơ & công bố"]
     ],
     rangeTitle:"Dịch Vụ Bio-A Group",
     range:[
@@ -42,9 +42,9 @@ const serviceContent={
     ],
     scenariosTitle:"Solutions for Different Project Needs",
     scenarios:[
-      ["A new brand can combine manufacturing, container selection, packaging design and documentation planning in one coordinated rollout.","New Brand Launch","Suggested service mix"],
-      ["A project with an existing formula or bulk product can focus on containers, filling, packing and label completion before market launch.","Filling & Finishing","Suggested service mix"],
-      ["An established business can use individual services such as packaging design, container changes or documentation and notification support.","Portfolio Expansion","Suggested service mix"]
+      ["A new brand can combine manufacturing, container selection, packaging design and documentation planning in one coordinated rollout.","New Brand Launch","Manufacturing • Containers • Packaging design • Documentation"],
+      ["A project with an existing formula or bulk product can focus on containers, filling, packing and label completion before market launch.","Filling & Finishing","Containers • Filling • Packing • Labels"],
+      ["An established business can use individual services such as packaging design, container changes or documentation and notification support.","Portfolio Expansion","Packaging design • Containers • Documentation & notification"]
     ],
     rangeTitle:"Bio-A Group Services",
     range:[
@@ -205,7 +205,7 @@ export function applyOtherServicesRefinement($,route,lang="vi"){
   if(route!=="/dich-vu-khac/")return;
   const key=lang==="en"?"en":"vi";
   // R27 SEO: this page had the shared default description of Home; it now describes its own content.
-  {const d=key==="en"?"Bio-A Group services for cosmetic brands: contract manufacturing, containers, filling and packing, packaging design, and brand registration and product notification support.":"Dịch vụ hỗ trợ thương hiệu mỹ phẩm của Bio-A Group: sản xuất gia công, chai lọ, sang chiết và đóng gói, thiết kế bao bì, đăng ký thương hiệu và hồ sơ công bố sản phẩm.";$('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr("content",d);}
+  {const d=key==="en"?"Bio-A Group services for cosmetic brands: contract manufacturing, containers, filling and packing, packaging design, brand registration and product notification.":"Dịch vụ hỗ trợ thương hiệu mỹ phẩm của Bio-A Group: sản xuất gia công, chai lọ, sang chiết và đóng gói, thiết kế bao bì, đăng ký thương hiệu và hồ sơ công bố sản phẩm.";$('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr("content",d);}
   applyHero($,key);
   applyWhy($);
   applyProcess($,key);
