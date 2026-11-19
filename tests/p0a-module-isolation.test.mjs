@@ -65,7 +65,11 @@ const APPROVED = [
   { sha: "4cb426bed2a145267730f410efa2eef2e61eb0f4", phase: "R27", files: ["bioa-transform.mjs"] },
   // R27b (owner content review 2026-11-19): cosmetics-only packaging carousel + formats headings (transform), service
   // paths (Cosmetics/Services), hidden Footer surplus labels emptied (Home owner), REDIRECT-301 (middleware).
-  { sha: "c3a3f0d518c4eea618a7682ccbcf28e80dc70cf9", phase: "R27", files: ["bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs", "functions/_middleware.js"] }
+  { sha: "c3a3f0d518c4eea618a7682ccbcf28e80dc70cf9", phase: "R27", files: ["bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs", "functions/_middleware.js"] },
+  // R28 (owner master prompt 2026-11-19): Mobile process-list BIO-A icon slot, Mobile chat teaser auto-hide, VI heading
+  // acronyms (Home/shared owner); rewrite of the 29 noindex pending Blog articles (Blog data). Scope: phase-diff-scope R28.
+  { sha: "410a4ad9e66fe81f13d6f92536f662b0e6bc2f6f", phase: "R28", files: ["bioa-home-refine.mjs"] },
+  { sha: "81f0042d19260a8beda41a34848bf4da0e44d570", phase: "R28", files: ["bioa-blog-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
