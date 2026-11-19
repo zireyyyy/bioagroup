@@ -89,7 +89,15 @@ const SCOPES = {
     [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, ".mwc-pill"],
     [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"],
     [/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'],
-    [/^(en\/)?blog\/dia-chi-gia-cong-cac-loai-serum-dac-tri-dat-chuan\/index\.html$/, 'title, meta[property="og:title"], meta[name="twitter:title"], h1, img[alt^="Gia Công Serum"], a.btp-share__link[href^="mailto:"]']]
+    [/^(en\/)?blog\/dia-chi-gia-cong-cac-loai-serum-dac-tri-dat-chuan\/index\.html$/, 'title, meta[property="og:title"], meta[name="twitter:title"], h1, img[alt^="Gia Công Serum"], a.btp-share__link[href^="mailto:"]']],
+  // R28 (owner master prompt 2026-11-19): ICON-LIST-1 (Mobile process-list BIO-A slot) + CHAT-TEASER-M1 (Mobile teaser
+  // auto-hide) in the Home/shared owners; BLOG-REWRITE of the 29 noindex pending articles (head, article body, JSON-LD,
+  // share links); TITLECASE-ACRONYM (SPF/UV/UVA/TP.HCM kept upper case in VI headings, also in 2 approved articles).
+  // The CMS content stamp _bioa-cms.json is checked below. Pending articles stay noindex and out of the sitemap.
+  R28: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"],
+    [new RegExp("^(en\\/)?blog\\/(" + [...readFileSync("bioa-blog-refine.mjs", "utf8").split("BLOG_PENDING_REWRITE=new Set([")[1].split("]);")[0].matchAll(/'([a-z0-9-]+)'/g)].map(m => m[1]).join("|") + ")\\/index\\.html$"),
+      'title, meta[name="description"], meta[property^="og:"], meta[name^="twitter:"], script[type="application/ld+json"], main, a.btp-share__link'],
+    [/^blog\/(10-tieu-chi-quan-trong-cac-boss-can-luu-y-khi-gia-cong-kem-chong-nang|dia-chi-gia-cong-san-xuat-my-pham-uy-tin-chat-luong-tai-tphcm)\/index\.html$/, "h1, h2, h3, .bb-toc"]]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
@@ -107,7 +115,8 @@ for (const f of new Set([...a, ...b])){
     const vendorFile = phases.includes("R12") && !a.includes(f) && f.startsWith("assets/vendor/");
     const fd = phases.includes("R24FD") && !a.includes(f) && (/^assets\/runtime\/(merywood-modal\.js|merywood-input\.js|cf7-styles\.css)$/.test(f)
       || CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(readFileSync(path.join("dist", f), "utf8"))));
-    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f)) && !(phases.includes("R27") && f === "_bioa-redirects.json" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
+    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f)) && !(phases.includes("R27") && f === "_bioa-redirects.json" && !a.includes(f))
+      && !(phases.includes("R28") && f === "_bioa-cms.json" && !a.includes(f) && readFileSync(path.join("dist", f), "utf8") === '{\n "mode": "off"\n}\n')) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
   const x = readFileSync(path.join(base, f)), y = readFileSync(path.join("dist", f));
   if (x.equals(y)) continue;
   if (phases.includes("R24FD") && f === "sitemap.xml"){ // only Careers URLs may be added
