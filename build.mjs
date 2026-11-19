@@ -473,7 +473,7 @@ async function build(){
   await fs.writeFile(path.join(OUT,"_bioa-redirects.json"),JSON.stringify(redirectMap,null,1)+"\n");
   // R28 CMS-STAMP: which published Sanity content this build carries, so a stale CMS Preview is detectable
   // (tools/cms-preview-status.mjs compares it with the latest Publish). No snapshot (CMS off) = constant {"mode":"off"}.
-  const cmsStamp=CMS?{mode:"live",snapshotSha:CMS.sha,fetchedAt:CMS.fetchedAt,blogPosts:CMS.blog.length,commit:(process.env.CF_PAGES_COMMIT_SHA||"").slice(0,12)||null}:{mode:"off"};
+  const cmsStamp=CMS?{mode:"live",snapshotSha:CMS.sha,fetchedAt:CMS.fetchedAt,blogPosts:CMS.blog.length,waitingEn:CMS.waitingEn||[],commit:(process.env.CF_PAGES_COMMIT_SHA||"").slice(0,12)||null}:{mode:"off"};
   await fs.writeFile(path.join(OUT,"_bioa-cms.json"),JSON.stringify(cmsStamp,null,1)+"\n");
   // Auth middleware must intercept assets and APIs, not only HTML.
   await fs.writeFile(path.join(OUT,"_routes.json"),JSON.stringify({version:1,include:["/*"],exclude:[]},null,2)+"\n");

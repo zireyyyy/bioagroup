@@ -127,7 +127,9 @@ function replaceImages($, root, slots, lang, where){
       if (t.kind === "img"){
         node.attr("src", file).removeAttr("srcset").removeAttr("sizes");
         const alt = lang === "en" ? rep.altEn : rep.altVi;
-        if (alt) node.attr("alt", alt);
+        // R28 VI-FIRST: a replaced image whose EN alt is not translated yet gets an empty alt on the EN page, never the
+        // old image's description.
+        if (alt) node.attr("alt", alt); else if (lang === "en" && rep.altEn === "") node.attr("alt", "");
       } else if (t.kind === "source") node.attr("srcset", file);
       else node.attr("style", (node.attr("style") || "").split(t.url).join(file));
     }
