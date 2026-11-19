@@ -1,16 +1,18 @@
 import {CaseIcon} from '@sanity/icons/Case'
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {EN_HINT, enOptional, i18nField} from './i18n'
 
 const noHtml = (Rule: any) =>
   Rule.custom((v: unknown) => (/[<>]/.test(JSON.stringify(v ?? '')) ? 'Không dùng ký tự < hoặc > (không nhận mã HTML)' : true))
-const list = (name: string, title: string, group: string) =>
+const list = (name: string, title: string, group: string, en = false) =>
   defineField({
     name,
     title,
     type: 'array',
     group,
     of: [defineArrayMember({type: 'text', rows: 2})],
-    validation: (R: any) => [R.required().min(1).max(10), noHtml(R)],
+    ...(en ? {description: EN_HINT} : {}),
+    validation: (R: any) => [en ? enOptional(R) : R.required().min(1), R.max(10), noHtml(R)],
   })
 
 // Official details are owner-gated: a role is only "Đang tuyển" when pay/benefits, place/work type and the
@@ -22,12 +24,15 @@ const officialRequired = (Rule: any) =>
 
 const localized = (lang: 'vi' | 'en') => {
   const L = lang === 'vi' ? 'VI' : 'EN'
+  // R28 VI-FIRST: Vietnamese is required; English is translated automatically (empty = warning, never a blocker).
+  const req = (R: any) => (lang === 'vi' ? R.required() : enOptional(R))
+  const hint = lang === 'en' ? {description: EN_HINT} : {}
   return [
-    defineField({name: 'title' + L, title: `Tên vị trí (${L})`, type: 'string', group: lang, validation: (R) => [R.required(), R.max(70), noHtml(R)]}),
-    defineField({name: 'desc' + L, title: `Mô tả ngắn trên thẻ (${L})`, type: 'text', rows: 3, group: lang, validation: (R) => [R.required(), R.max(200), noHtml(R)]}),
-    list('intro' + L, `Giới thiệu (${L})`, lang),
-    list('duties' + L, `Mô tả công việc (${L})`, lang),
-    list('reqs' + L, `Yêu cầu (${L})`, lang),
+    defineField({name: 'title' + L, title: `Tên vị trí (${L})`, type: 'string', group: lang, ...hint, validation: (R) => [req(R), R.max(70), noHtml(R)]}),
+    defineField({name: 'desc' + L, title: `Mô tả ngắn trên thẻ (${L})`, type: 'text', rows: 3, group: lang, ...hint, validation: (R) => [req(R), R.max(200), noHtml(R)]}),
+    list('intro' + L, `Giới thiệu (${L})`, lang, lang === 'en'),
+    list('duties' + L, `Mô tả công việc (${L})`, lang, lang === 'en'),
+    list('reqs' + L, `Yêu cầu (${L})`, lang, lang === 'en'),
     defineField({name: 'badge' + L, title: `Hình thức · Địa điểm (${L})`, description: 'Ví dụ: Toàn thời gian · TP. Hồ Chí Minh', type: 'string', group: 'official', validation: (R) => [R.max(60), noHtml(R), officialRequired(R)]}),
     defineField({name: 'benefits' + L, title: `Quyền lợi (${L})`, type: 'text', rows: 4, group: 'official', validation: (R) => [R.max(600), noHtml(R), officialRequired(R)]}),
     defineField({name: 'place' + L, title: `Địa điểm & hình thức làm việc (${L})`, type: 'text', rows: 3, group: 'official', validation: (R) => [R.max(400), noHtml(R), officialRequired(R)]}),
@@ -47,6 +52,7 @@ export const career = defineType({
     {name: 'official', title: 'Thông tin chính thức'},
   ],
   fields: [
+    i18nField('main'),
     defineField({
       name: 'status',
       title: 'Trạng thái',

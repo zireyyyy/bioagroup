@@ -1,5 +1,6 @@
 import {DocumentsIcon} from '@sanity/icons/Documents'
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {EN_HINT, enFieldset, enOptional, i18nField} from './i18n'
 
 const noHtml = (Rule: any) =>
   Rule.custom((v: unknown) => (/[<>]/.test(JSON.stringify(v ?? '')) ? 'Không dùng ký tự < hoặc > (không nhận mã HTML)' : true))
@@ -27,9 +28,12 @@ export const blogPost = defineType({
     {name: 'seo', title: 'SEO & ảnh'},
     {name: 'admin', title: 'Quản trị'},
   ],
+  // R28 VI-FIRST: the owner writes Vietnamese; English is translated automatically and kept in a collapsed section.
+  fieldsets: [enFieldset],
   fields: [
+    i18nField('content'),
     defineField({name: 'titleVi', title: 'Tiêu đề (VI)', type: 'string', group: 'content', validation: (R) => [R.required(), R.max(110), noHtml(R)]}),
-    defineField({name: 'titleEn', title: 'Tiêu đề (EN)', type: 'string', group: 'content', validation: (R) => [R.required(), R.max(110), noHtml(R)]}),
+    defineField({name: 'titleEn', title: 'Tiêu đề (EN)', type: 'string', group: 'content', fieldset: 'en', description: EN_HINT, validation: (R) => [enOptional(R), R.max(110), noHtml(R)]}),
     defineField({
       name: 'slug',
       title: 'Đường dẫn (URL)',
@@ -47,9 +51,9 @@ export const blogPost = defineType({
     defineField({name: 'date', title: 'Ngày đăng', type: 'date', group: 'content', options: {dateFormat: 'DD.MM.YYYY'}, validation: (R) => R.required()}),
     defineField({name: 'readMin', title: 'Thời gian đọc (phút)', type: 'number', group: 'content', validation: (R) => R.required().integer().min(1).max(60)}),
     defineField({name: 'excerptVi', title: 'Tóm tắt (VI) — cũng là mô tả SEO', type: 'text', rows: 3, group: 'content', validation: (R) => [R.required(), R.max(200), noHtml(R)]}),
-    defineField({name: 'excerptEn', title: 'Tóm tắt (EN) — cũng là mô tả SEO', type: 'text', rows: 3, group: 'content', validation: (R) => [R.required(), R.max(200), noHtml(R)]}),
+    defineField({name: 'excerptEn', title: 'Tóm tắt (EN) — cũng là mô tả SEO', type: 'text', rows: 3, group: 'content', fieldset: 'en', description: EN_HINT, validation: (R) => [enOptional(R), R.max(200), noHtml(R)]}),
     paragraphs('introVi', 'Mở bài (VI)', true, 'content'),
-    paragraphs('introEn', 'Mở bài (EN)', true, 'content'),
+    {...paragraphs('introEn', 'Mở bài (EN)', false, 'content'), fieldset: 'en', description: EN_HINT},
     defineField({
       name: 'sections',
       title: 'Các mục (mỗi mục là một tiêu đề trong mục lục)',
@@ -61,13 +65,14 @@ export const blogPost = defineType({
           type: 'object',
           name: 'blogSection',
           title: 'Mục',
+          fieldsets: [enFieldset],
           fields: [
             defineField({name: 'headingVi', title: 'Tiêu đề mục (VI)', type: 'string', validation: (R) => [R.required(), R.max(90), noHtml(R)]}),
-            defineField({name: 'headingEn', title: 'Tiêu đề mục (EN)', type: 'string', validation: (R) => [R.required(), R.max(90), noHtml(R)]}),
+            defineField({name: 'headingEn', title: 'Tiêu đề mục (EN)', type: 'string', fieldset: 'en', description: EN_HINT, validation: (R) => [enOptional(R), R.max(90), noHtml(R)]}),
             paragraphs('paragraphsVi', 'Đoạn văn (VI)', true),
-            paragraphs('paragraphsEn', 'Đoạn văn (EN)', true),
+            {...paragraphs('paragraphsEn', 'Đoạn văn (EN)', false), fieldset: 'en'},
             bullets('bulletsVi', 'Gạch đầu dòng (VI, không bắt buộc)'),
-            bullets('bulletsEn', 'Gạch đầu dòng (EN, không bắt buộc)'),
+            {...bullets('bulletsEn', 'Gạch đầu dòng (EN, không bắt buộc)'), fieldset: 'en'},
             defineField({name: 'anchor', title: 'Mã neo mục lục (giữ nguyên với bài cũ)', type: 'string', readOnly: true, hidden: ({value}) => !value}),
           ],
           preview: {select: {title: 'headingVi', subtitle: 'headingEn'}},
@@ -75,7 +80,7 @@ export const blogPost = defineType({
       ],
     }),
     defineField({name: 'noteVi', title: 'Ghi chú cuối bài (VI)', type: 'text', rows: 3, group: 'content', validation: (R) => [R.max(400), noHtml(R)]}),
-    defineField({name: 'noteEn', title: 'Ghi chú cuối bài (EN)', type: 'text', rows: 3, group: 'content', validation: (R) => [R.max(400), noHtml(R)]}),
+    defineField({name: 'noteEn', title: 'Ghi chú cuối bài (EN)', type: 'text', rows: 3, group: 'content', fieldset: 'en', validation: (R) => [R.max(400), noHtml(R)]}),
     defineField({
       name: 'seoTitleVi',
       title: 'Tiêu đề SEO (VI)',
@@ -84,7 +89,7 @@ export const blogPost = defineType({
       group: 'seo',
       validation: (R) => [R.max(70).warning('Google thường chỉ hiển thị khoảng 60–70 ký tự'), noHtml(R)],
     }),
-    defineField({name: 'seoTitleEn', title: 'Tiêu đề SEO (EN)', type: 'string', group: 'seo', validation: (R) => [R.max(70).warning('Google thường chỉ hiển thị khoảng 60–70 ký tự'), noHtml(R)]}),
+    defineField({name: 'seoTitleEn', title: 'Tiêu đề SEO (EN)', description: EN_HINT, type: 'string', group: 'seo', validation: (R) => [R.max(70).warning('Google thường chỉ hiển thị khoảng 60–70 ký tự'), noHtml(R)]}),
     defineField({
       name: 'image',
       title: 'Ảnh đại diện',

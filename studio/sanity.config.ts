@@ -3,6 +3,7 @@ import {structureTool} from 'sanity/structure'
 import {LegalApproveAction} from './actions/legalApprove'
 import {CREATABLE_TYPES, FIXED_TYPES, schemaTypes} from './schemaTypes'
 import {structure} from './structure'
+import {I18nBadge} from './schemaTypes/i18n'
 
 // BIO-A Group content studio. The website is a static build: published content reaches the Preview site after
 // the automatic rebuild; Production changes only after the owner approves a release (docs/CMS_SANITY_R25.md).
@@ -17,6 +18,8 @@ export default defineConfig({
     templates: (prev) => prev.filter((t) => CREATABLE_TYPES.has(t.schemaType)),
   },
   document: {
+    // R28 VI-FIRST: every translatable document shows its EN status next to Publish.
+    badges: (prev) => [...prev, I18nBadge],
     newDocumentOptions: (prev) => prev.filter((item) => CREATABLE_TYPES.has((item as any).templateId)),
     actions: (prev, ctx) => {
       if (ctx.schemaType === 'legalPage')
