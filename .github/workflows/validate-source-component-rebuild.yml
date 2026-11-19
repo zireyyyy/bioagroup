@@ -41,7 +41,7 @@ jobs:
           node --check tests/first-paint-browser.test.mjs
           node --check tests/footer-en-layout-browser.test.mjs
       - name: Host isolation gate regression
-        run: node --test tests/maintenance-host-gate.test.mjs tests/r26-production-hash-gate.test.mjs tests/r27-www-apex.test.mjs
+        run: node --test tests/maintenance-host-gate.test.mjs tests/r26-production-hash-gate.test.mjs tests/r27-www-apex.test.mjs tests/r27-redirect-301.test.mjs
       - name: Responsive source regression
         run: npm run test:responsive
       - name: Fetch private source bundle (fail closed)
@@ -57,6 +57,8 @@ jobs:
         run: npm run test:cms
       - name: SEO and content audit (canonical, hreflang, sitemap, leaks, links)
         run: node tests/r26-seo-content-audit.mjs dist
+      - name: R27 content audit (no sample testimonials or labels, Blog pending-rewrite controls, unique titles and descriptions)
+        run: node tests/r27-content-audit.mjs dist
       - name: Verify Phase 2B Other Services dead-data and owner-PASS output
         run: node tests/phase2b-services-convergence.test.mjs
       - name: Verify Phase 2B Cosmetics owner cleanup

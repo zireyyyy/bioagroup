@@ -16,7 +16,7 @@ const [base, out] = [process.argv[2]?.replace(/\/$/, ""), process.argv[3]];
 const quick = process.argv.includes("--quick");
 if (!base || !out){ console.error("usage: node tests/r26-preview-e2e.mjs <baseUrl> <outDir> [--quick]"); process.exit(2); }
 fs.mkdirSync(out, { recursive: true });
-const WIDTHS = quick ? [390, 834, 1440] : [375, 390, 768, 834, 1024, 1440, 1920];
+const WIDTHS = process.env.E2E_WIDTHS ? process.env.E2E_WIDTHS.split(",").map(Number) : quick ? [390, 834, 1440] : [375, 390, 768, 834, 1024, 1440, 1920]; // R27: E2E_WIDTHS override
 const ZOOM = [{ w: 1152, h: 720, dpr: 1.25, label: "1440@125%" }, { w: 312, h: 640, dpr: 1.25, label: "390@125%" }];
 
 async function getText(u){ const r = await fetch(u); return { status: r.status, text: await r.text() }; }
@@ -27,7 +27,9 @@ if (!routes.length){
   console.error("no routes from sitemap", sm.status); process.exit(1);
 }
 routes.push("/privacy-policy/", "/en/privacy-policy/", "/cookie-policy/", "/en/cookie-policy/");
-const STUBS = ["/lien-he/", "/nang-luc/", "/tuyen-dung-rd/", "/tuyen-dung-nv-sales/", "/chai-lo-my-pham/", "/en/lien-he/"];
+// R27: pages that are intentionally out of the sitemap (noindex) can be added, e.g. Blog articles pending rewrite.
+if (process.env.E2E_EXTRA_ROUTES) routes.push(...process.env.E2E_EXTRA_ROUTES.split(",").filter(Boolean));
+const STUBS = ["/lien-he/", "/nang-luc/", "/tuyen-dung-rd/", "/tuyen-dung-nv-sales/", "/chai-lo-my-pham/", "/en/lien-he/", ...(process.env.E2E_EXTRA_STUBS || "").split(",").filter(Boolean)];
 const NOTFOUND = ["/bioa-r26-no-such-page/", "/en/bioa-r26-no-such-page/"];
 routes = [...new Set(routes)];
 

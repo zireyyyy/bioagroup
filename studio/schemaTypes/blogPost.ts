@@ -114,6 +114,16 @@ export const blogPost = defineType({
     }),
     defineField({name: 'legacyId', title: 'Mã bài gốc', type: 'number', group: 'admin', readOnly: true, hidden: ({document}) => !(document as any)?.legacyId}),
     defineField({name: 'order', title: 'Thứ tự gốc', type: 'number', group: 'admin', readOnly: true, hidden: true}),
+    // R27: 29 legacy articles share one generated paragraph skeleton; the website keeps their URLs but leaves them out of
+    // the Blog list and sitemap (noindex) until rewritten. Switch this on after rewriting the article to list it again.
+    defineField({
+      name: 'rewriteApproved',
+      title: 'Đã viết lại — hiển thị lại trên danh sách Blog',
+      type: 'boolean',
+      group: 'admin',
+      initialValue: false,
+      description: 'Chỉ dùng cho bài đang “chờ viết lại” (R27). Bật sau khi đã viết lại nội dung riêng cho bài; bài sẽ hiện lại trong danh sách Blog, sitemap và được Google lập chỉ mục. Không ảnh hưởng bài khác.',
+    }),
   ],
   orderings: [{title: 'Ngày đăng (mới nhất)', name: 'dateDesc', by: [{field: 'date', direction: 'desc'}]}],
   preview: {

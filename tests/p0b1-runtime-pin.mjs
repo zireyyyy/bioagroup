@@ -23,7 +23,7 @@ const browser = await chromium.launch(launch);
 
 // Expected Swiper sections per route (slide counts as recorded by CI run 38864607899 on 2026-10-16).
 const EXPECT = {
-  "/": { "block-reviews": 6 },
+  "/": {}, // R27 F03: the Home reviews swiper (sample testimonials) was removed; Home is still loaded for runtime errors
   "/contract-manufacturing-cosmetics/": { "block-reviews": 6 },
   "/dich-vu-khac/": { "block-reviews": 6, "block-how-works": 5 }
 };

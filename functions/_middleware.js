@@ -50,6 +50,22 @@ function locked(request,url){
   const html=(request.method==="GET"||request.method==="HEAD")&&((request.headers.get("Accept")||"").includes("text/html")||url.pathname==="/"||url.pathname.endsWith("/"));
   return new Response(request.method==="HEAD"?null:(html?maintenancePage():"Service temporarily unavailable"),{status:503,headers:{...privateHeaders,"Retry-After":"3600","Content-Type":html?"text/html; charset=utf-8":"text/plain; charset=utf-8"}});
 }
+// R27b REDIRECT-301: Cloudflare Pages does not apply a _redirects file to requests served by Functions, and this
+// middleware serves every path. The build writes /_bioa-redirects.json (path -> target of every static redirect page:
+// D11 legacy slugs, Careers slugs, retired Blog index pages); the redirect is answered here as a real HTTP 301. The
+// static meta-refresh pages stay in the build as a fallback. No ASSETS binding (unit tests) = no redirect map.
+let redirectMap=null;
+async function redirectTarget(context,url){
+  const assets=context.env&&context.env.ASSETS;
+  if(!assets||typeof assets.fetch!=="function")return null;
+  if(!redirectMap)redirectMap=assets.fetch(new Request(new URL("/_bioa-redirects.json",url).toString())).then(r=>r.ok?r.json():{}).catch(()=>({}));
+  const map=await redirectMap;
+  const path=url.pathname.endsWith("/")?url.pathname:url.pathname+"/";
+  const to=Object.prototype.hasOwnProperty.call(map,path)?map[path]:null;
+  return typeof to==="string"&&to.startsWith("/")&&!to.startsWith("//")?to+url.search:null;
+}
+const redirect301=(to,extra={})=>new Response(null,{status:301,headers:{"Location":to,"Cache-Control":"public, max-age=3600",...extra}});
+
 export async function onRequest(context){
   const {request,env}=context,url=new URL(request.url);
   const host=url.hostname.toLowerCase();
@@ -71,12 +87,17 @@ export async function onRequest(context){
     if(url.pathname==="/robots.txt")return locked(request,url);
     if(isPreviewPrivatePath(url.pathname) || !["GET","HEAD"].includes(request.method))
       return locked(request,url);
+    const previewTo=await redirectTarget(context,url);
+    if(previewTo)return redirect301(previewTo,{"X-Robots-Tag":"noindex, nofollow, noarchive"});
     return previewStaticResponse(context);
   }
 
   // Existing explicit owner publishing switch still applies to Production.
   // With BIOA_SITE_MODE=maintenance (or unset), exact hosts remain private.
-  if(String(env.BIOA_SITE_MODE||"").trim().toLowerCase()==="public")return context.next();
+  if(String(env.BIOA_SITE_MODE||"").trim().toLowerCase()==="public"){
+    const publicTo=["GET","HEAD"].includes(request.method)?await redirectTarget(context,url):null;
+    return publicTo?redirect301(publicTo):context.next();
+  }
   const secret=secretOf(env);
   if(url.pathname===ENTRY+"/exit")return new Response(null,{status:303,headers:{...privateHeaders,"Location":"/","Set-Cookie":COOKIE+"=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0"}});
   if(url.pathname===ENTRY){
@@ -84,6 +105,8 @@ export async function onRequest(context){
     return new Response(null,{status:303,headers:{...privateHeaders,"Location":"/","Set-Cookie":await makeCookie(secret,host)}});
   }
   if(!secret||!await isOwner(request,secret,host))return locked(request,url);
+  const ownerTo=["GET","HEAD"].includes(request.method)?await redirectTarget(context,url):null;
+  if(ownerTo)return redirect301(ownerTo,{...privateHeaders});
   const response=await context.next(),out=new Response(response.body,response);
   out.headers.set("Cache-Control","private, no-store, max-age=0");
   out.headers.set("X-Robots-Tag","noindex, nofollow, noarchive");

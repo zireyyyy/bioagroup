@@ -3,6 +3,7 @@
 // Source: Merywood /careers/ (list) and /careers/b2b-sales-manager/ (detail) from the pinned bundle;
 // DOM, classes, inline .mwc CSS and responsive rules are kept. Only text, links, images with a
 // Merywood brand trace, the people/e-mail blocks and the AJAX filter (WordPress admin-ajax) change.
+// R27: the three roles are labelled "Chưa mở tuyển" / "Not currently hiring" (no hiring round is open).
 // The three roles are SAMPLE content for owner approval, not confirmed openings: salary, benefits,
 // location, work type and the application channel are NOT invented (data-owner-approval="required").
 // This module must not import bioa-transform.mjs (bioa-transform imports CAREER_VI_PATHS from here).
@@ -186,11 +187,11 @@ const T = {
     heroTitle: "Tuyển dụng",
     heroText: "Bio-A Group là nhà máy sản xuất dược mỹ phẩm, đồng hành cùng các thương hiệu từ nghiên cứu công thức, sản xuất đến hoàn thiện sản phẩm. Trang này giới thiệu các nhóm vị trí công việc tại Bio-A Group.",
     follow: "Theo dõi trên Facebook",
-    scroll: "Xem các vị trí ↓",
-    eyebrow: "Vị trí công việc",
+    scroll: "Xem các nhóm công việc ↓",
+    eyebrow: "Nhóm công việc",
     rolesTitle: "Cùng Bio-A Group phát triển",
-    rolesSub: "Thông tin tuyển dụng chính thức (thời gian, địa điểm, chế độ) sẽ được cập nhật khi vị trí được mở.",
-    pending: "Chi tiết đang cập nhật",
+    rolesSub: "Hiện Bio-A Group chưa mở đợt tuyển dụng chính thức cho các nhóm công việc dưới đây. Thời gian, địa điểm và chế độ sẽ được công bố khi có vị trí mở tuyển.",
+    pending: "Chưa mở tuyển",
     closed: "Đã ngừng tuyển",
     more: "Xem chi tiết",
     ctaTitle: "Đồng hành cùng Bio-A Group",
@@ -198,6 +199,7 @@ const T = {
     copy: "Sao chép email", copied: "Đã sao chép!",
     back: "‹ Quay lại Tuyển dụng",
     introTitle: "Gia nhập Bio-A Group",
+    notOpenNote: "Hiện chưa mở tuyển. Trang này mô tả nhóm công việc tại Bio-A Group để bạn tham khảo; thông tin tuyển dụng chính thức (số lượng, chế độ, địa điểm, cách ứng tuyển) chỉ được công bố khi vị trí mở tuyển.",
     duties: "Mô tả công việc", reqs: "Yêu cầu",
     benefitsTitle: "Quyền lợi",
     benefits: "Mức thu nhập, chế độ và phúc lợi của vị trí sẽ được Bio-A Group công bố cùng thông báo tuyển dụng chính thức.",
@@ -218,11 +220,11 @@ const T = {
     heroTitle: "Careers",
     heroText: "Bio-A Group is a cosmetic and cosmeceutical manufacturing factory that supports brands from formulation research and production to finished products. This page introduces the roles we work with at Bio-A Group.",
     follow: "Follow on Facebook",
-    scroll: "See the roles ↓",
-    eyebrow: "Roles",
+    scroll: "See our teams ↓",
+    eyebrow: "Teams",
     rolesTitle: "Grow with Bio-A Group",
-    rolesSub: "Official hiring details (timing, location and terms) will be published when a role opens.",
-    pending: "Details to be confirmed",
+    rolesSub: "Bio-A Group has no official hiring round open for the teams below at the moment. Timing, location and terms will be published when a role opens.",
+    pending: "Not currently hiring",
     closed: "Position closed",
     more: "Read more",
     ctaTitle: "Work with Bio-A Group",
@@ -230,6 +232,7 @@ const T = {
     copy: "Copy email", copied: "Copied!",
     back: "‹ Back to Careers",
     introTitle: "Join Bio-A Group",
+    notOpenNote: "Not currently hiring. This page describes a team at Bio-A Group for reference; official hiring details (openings, terms, location, how to apply) are published only when the role opens.",
     duties: "What you'll do", reqs: "What we're looking for",
     benefitsTitle: "What we offer",
     benefits: "Pay, terms and benefits for this role will be published by Bio-A Group with the official job announcement.",
@@ -386,7 +389,9 @@ export function applyCareersDetail($, route, lang){
 
   const intro = single.find(".mwc-intro");
   intro.find("p").remove();
-  intro.find(".mwc-intro__title").text(t.introTitle).after(j.intro.map(p => "<p>" + esc(p) + "</p>").join(""));
+  // R27b: a role that is not open says so first, in the intro text (same paragraph style), so the role description
+  // below cannot be read as a live job advertisement.
+  intro.find(".mwc-intro__title").text(t.introTitle).after((open ? [] : ['<p class="bioa-career-not-open"><strong>' + esc(t.notOpenNote) + "</strong></p>"]).join("") + j.intro.map(p => "<p>" + esc(p) + "</p>").join(""));
 
   const cards = single.find(".mwc-two__card");
   const fill = (card, title, items) => {
@@ -432,4 +437,10 @@ export function applyCareersDetail($, route, lang){
   setEmailRows($, t);
   fixScripts($);
   setMeta($, j.title + " | " + t.jobSuffix, j.desc);
+  // R27b: a role description that is not an open position is kept out of search results (noindex, follow) and,
+  // through build.mjs, out of sitemap.xml. An owner-approved open role (CMS status "open") is indexable again.
+  if (!open){
+    if ($('meta[name="robots"]').length) $('meta[name="robots"]').attr("content", "noindex, follow");
+    else $("head").append('<meta name="robots" content="noindex, follow">');
+  }
 }

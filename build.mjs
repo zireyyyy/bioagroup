@@ -6,10 +6,10 @@ import { applyHomeRefinement, applySharedShell } from "./bioa-home-refine.mjs";
 import { applyAboutRefinement } from "./bioa-about-refine.mjs";
 import { applyCosmeticsHubRefinement } from "./bioa-cosmetics-refine.mjs";
 import { applyOtherServicesRefinement } from "./bioa-services-refine.mjs";
-import { applyBlogRefinement, blogRouteDefs } from "./bioa-blog-refine.mjs";
+import { applyBlogRefinement, blogRouteDefs, blogRetiredIndexRedirects } from "./bioa-blog-refine.mjs";
 import { applyContactsRefinement } from "./bioa-contacts-refine.mjs";
 import { renderNotFound } from "./bioa-404.mjs";
-import { legacyRedirectFiles } from "./bioa-legacy-redirects.mjs";
+import { legacyRedirectFiles, retiredRedirectFiles } from "./bioa-legacy-redirects.mjs";
 import { applyFormatsToggle } from "./bioa-formats-toggle.mjs";
 import { applyViLeftoverTranslations } from "./bioa-i18n-fixes.mjs";
 import { applyIdentityFixes } from "./bioa-identity-fixes.mjs";
@@ -462,10 +462,15 @@ async function build(){
   await fs.writeFile(path.join(OUT,"sitemap.xml"),'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+"\n</urlset>\n");
   await fs.writeFile(path.join(OUT,"robots.txt"),"User-agent: *\nAllow: /\nSitemap: https://bioagroup.vn/sitemap.xml\n");
   // D11: redirect pages for legacy Footer/About slugs (not in sitemap; see bioa-legacy-redirects.mjs).
-  for(const f of legacyRedirectFiles(builtRoutes)){
+  // R27: retired Blog index pages (fewer listed posts after the content audit) redirect to the Blog home.
+  const redirectFiles=[...legacyRedirectFiles(builtRoutes),...retiredRedirectFiles(blogRetiredIndexRedirects,builtRoutes)];
+  for(const f of redirectFiles){
     await fs.mkdir(path.dirname(path.join(OUT,f.out)),{recursive:true});
     await fs.writeFile(path.join(OUT,f.out),f.body);
   }
+  // R27b REDIRECT-301: the same redirects as data for the Pages middleware, which answers them with a real HTTP 301.
+  const redirectMap=Object.fromEntries(redirectFiles.map(f=>[f.route,f.target]).sort(([a],[b])=>a.localeCompare(b)));
+  await fs.writeFile(path.join(OUT,"_bioa-redirects.json"),JSON.stringify(redirectMap,null,1)+"\n");
   // Auth middleware must intercept assets and APIs, not only HTML.
   await fs.writeFile(path.join(OUT,"_routes.json"),JSON.stringify({version:1,include:["/*"],exclude:[]},null,2)+"\n");
   console.log("build complete in",Date.now()-started,"ms");

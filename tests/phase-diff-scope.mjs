@@ -69,7 +69,27 @@ const SCOPES = {
   R25CMS: [],
   // R26 SEO-HEAD-1 (2026-11-15): head only — hreflang vi/en/x-default links added next to the canonical, og:locale
   // follows the page language; sitemap.xml may only drop the noindex policy pages (checked below).
-  R26: [[/\.html$/, 'link[rel="alternate"][hreflang]'], [/\.html$/, 'meta[property="og:locale"]']]
+  R26: [[/\.html$/, 'link[rel="alternate"][hreflang]'], [/\.html$/, 'meta[property="og:locale"]']],
+  // R27 (owner one-pass cleanup 2026-11-16): F01 narrow Footer rule + F02 modal keyboard (shared style/script owners,
+  // modal dialog attributes), honest chat CTA row, F03 Home reviews block removed, Merywood MOQ figures -> project-based,
+  // scenario "sample" labels, decorative file-name alts, About temporary-image alts, Careers status copy, per-page
+  // descriptions (Cosmetics, Services, Blog page 2), Blog pending-rewrite (list/nav/robots) and the serum title claim.
+  R27: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "#bioa-contact-fab"],
+    [/\.html$/, "script:not([src])"], [/\.html$/, "#get-a-quote"],
+    [/\.html$/, 'img[alt="icon"], img[alt="talk"], img[alt="hands"], img[alt="blank"], img[alt="cert"], img[alt="whiteboxes"], img[alt=""]'],
+    [/^(en\/)?index\.html$/, ".block-reviews"], [/^(en\/)?index\.html$/, ".block-products-desctop"], [/^(en\/)?index\.html$/, ".block-products-mobile"],
+    // R27b: Home packaging carousel without food-supplement products, formats panel headings, hidden Footer surplus
+    // labels emptied, Careers role pages say "not hiring" first and are noindex.
+    [/^(en\/)?index\.html$/, ".formats__panel-title"], [/\.html$/, ".bioa-footer-nav-unused"],
+    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, '.mwc-intro, meta[name="robots"]'],
+    [/^(en\/)?(contract-manufacturing-cosmetics|dich-vu-khac)\/index\.html$/, ".block-reviews"],
+    [/^(en\/)?(contract-manufacturing-cosmetics|dich-vu-khac|blog\/page\/\d+)\/index\.html$/, 'meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]'],
+    [/^(en\/)?about\/index\.html$/, ".mwa-hero img, .mwa-team__media img"],
+    [/^(tuyen-dung|en\/careers)\/index\.html$/, ".mwc-roles__eyebrow, .mwc-roles__sub, .mwc-hero3__scroll, .mwc-card__loc"],
+    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, ".mwc-pill"],
+    [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"],
+    [/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'],
+    [/^(en\/)?blog\/dia-chi-gia-cong-cac-loai-serum-dac-tri-dat-chuan\/index\.html$/, 'title, meta[property="og:title"], meta[name="twitter:title"], h1, img[alt^="Gia Công Serum"], a.btp-share__link[href^="mailto:"]']]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
@@ -87,7 +107,7 @@ for (const f of new Set([...a, ...b])){
     const vendorFile = phases.includes("R12") && !a.includes(f) && f.startsWith("assets/vendor/");
     const fd = phases.includes("R24FD") && !a.includes(f) && (/^assets\/runtime\/(merywood-modal\.js|merywood-input\.js|cf7-styles\.css)$/.test(f)
       || CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(readFileSync(path.join("dist", f), "utf8"))));
-    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
+    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f)) && !(phases.includes("R27") && f === "_bioa-redirects.json" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
   const x = readFileSync(path.join(base, f)), y = readFileSync(path.join("dist", f));
   if (x.equals(y)) continue;
   if (phases.includes("R24FD") && f === "sitemap.xml"){ // only Careers URLs may be added
@@ -97,6 +117,17 @@ for (const f of new Set([...a, ...b])){
     continue; }
   if (phases.includes("R24FD") && f.endsWith(".html") && (CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(y.toString("utf8"))))){
     changed.push(f + " [Careers page/stub]"); continue; }
+  if (phases.includes("R27") && f === "sitemap.xml"){ // R27: only pending-rewrite Blog articles and retired Blog index pages may disappear
+    const urls = z => new Set([...z.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+    const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
+    const pend = new Set([...readFileSync("bioa-blog-refine.mjs", "utf8").split("BLOG_PENDING_REWRITE=new Set([")[1].split("]);")[0].matchAll(/'([a-z0-9-]+)'/g)].map(m => m[1]));
+    const ok = u => { const m = u.match(/bioagroup\.vn\/(?:en\/)?blog\/([a-z0-9-]+)\/$/); return (m && pend.has(m[1])) || /bioagroup\.vn\/(en\/)?blog\/page\/[3-6]\/$/.test(u) || /bioagroup\.vn\/(en\/)?(privacy-policy|cookie-policy)\/$/.test(u) || /bioagroup\.vn\/(tuyen-dung|en\/careers)\/[a-z0-9-]+\/$/.test(u); };
+    if (added.length || gone.some(u => !ok(u))) fails.push(f + ": sitemap changed beyond R27 Blog pending/retired pages");
+    else changed.push(f + " [-" + gone.length + " pending/retired Blog URLs]");
+    continue; }
+  if (phases.includes("R27") && f === "_bioa-redirects.json"){ changed.push(f + " [R27b 301 map]"); continue; }
+  if (phases.includes("R27") && /^(en\/)?blog\/page\/[3-6]\/index\.html$/.test(f) && new RegExp('bioa-legacy-redirect" content="' + (f.startsWith("en/") ? "/en" : "") + '/blog/"').test(y.toString("utf8"))){
+    changed.push(f + " [retired Blog index page -> redirect to Blog home]"); continue; }
   if (phases.includes("R26") && f === "sitemap.xml"){ // R26: only the noindex policy pages may disappear
     const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
     const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
