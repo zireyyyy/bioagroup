@@ -70,10 +70,11 @@ export function units(doc) {
     out.push(str("title", doc.vi?.title, doc.en?.title, "en.title"));
     out.push(str("description", doc.vi?.description, doc.en?.description, "en.description"));
   } else if (t === "career") {
-    for (const f of ["title", "desc", "badge"]) if (!empty(doc[f + "Vi"])) out.push(str(f, doc[f + "Vi"], doc[f + "En"], f + "En"));
-    for (const f of ["intro", "duties", "reqs"]) if (!empty(doc[f + "Vi"])) out.push(arr(f, doc[f + "Vi"], doc[f + "En"], f + "En"));
+    // Career fields are named titleVI / titleEN (studio/schemaTypes/career.ts).
+    for (const f of ["title", "desc", "badge"]) if (!empty(doc[f + "VI"])) out.push(str(f, doc[f + "VI"], doc[f + "EN"], f + "EN"));
+    for (const f of ["intro", "duties", "reqs"]) if (!empty(doc[f + "VI"])) out.push(arr(f, doc[f + "VI"], doc[f + "EN"], f + "EN"));
     // Hiring terms are official business information: translated, but always flagged for review.
-    for (const f of ["benefits", "place", "apply"]) if (!empty(doc[f + "Vi"])) out.push(str(f, doc[f + "Vi"], doc[f + "En"], f + "En", { review: true }));
+    for (const f of ["benefits", "place", "apply"]) if (!empty(doc[f + "VI"])) out.push(str(f, doc[f + "VI"], doc[f + "EN"], f + "EN", { review: true }));
   } else if (t === "imageSlot") {
     if (!empty(doc.altVi)) out.push(str("alt", doc.altVi, doc.altEn, "altEn"));
   } else if (/^page_/.test(t || "")) {

@@ -296,3 +296,14 @@ test("Worker glue: unsigned request refused; signed publish → translated EN st
     assert.ok(!calls.some((u) => u.includes("deploy-hook")), "no build before the status/EN write");
   } finally { globalThis.fetch = real; }
 });
+
+test("career units use the Studio field names (titleVI/titleEN) and flag official hiring terms for review", async () => {
+  const job = { _id: "career-x", _type: "career", titleVI: "Nhân viên kinh doanh", titleEN: "Sales executive", descVI: "Mô tả", descEN: "Description",
+    introVI: ["Giới thiệu"], introEN: ["Intro"], dutiesVI: ["Việc 1"], dutiesEN: ["Duty 1"], reqsVI: ["Yêu cầu"], reqsEN: ["Req"], benefitsVI: "Lương theo năng lực" };
+  assert.deepEqual(units(job).map((u) => u.set), ["titleEN", "descEN", "introEN", "dutiesEN", "reqsEN", "benefitsEN"]);
+  const s = fakeStore([job]), b = [], p = T();
+  s.events.push("career-x"); await drain(s, p, b);
+  assert.equal(s.peek("career-x").benefitsEN, "[EN-TEST] Lương theo năng lực");
+  assert.equal(s.peek("career-x").i18n.status, STATUS.REVIEW_REQUIRED);
+  assert.equal(s.peek("career-x").titleEN, "Sales executive");
+});
