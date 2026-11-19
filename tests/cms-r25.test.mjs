@@ -41,9 +41,12 @@ const slotWith = (page, pred) => REG.pages[page].images.find(pred);
 test("registry v2: one slot per position — shared files split, desktop/mobile pairs and <picture> sources explicit", () => {
   const home = REG.pages.home.images;
   const uses = name => home.filter(s => s.targets.some(t => t.url.endsWith("/" + name)));
-  // image-1_mobile.webp is used by two DIFFERENT products (desktop "Tuýp & chai chân không", mobile "Gói Sachet").
-  assert.equal(uses("image-1_mobile.webp").length, 2);
-  assert.deepEqual(uses("image-1_mobile.webp").map(s => s.label).sort(), ["Gói Sachet", "Tuýp & chai chân không"]);
+  // R27b: image-1_mobile.webp shows the tube & airless product on desktop AND mobile (the R25b pairing followed shifted
+  // mobile titles). It is one position with two targets; the sachet and doypack mobile images are their own positions.
+  assert.equal(uses("image-1_mobile.webp").length, 1);
+  assert.equal(uses("image-1_mobile.webp")[0].targets.length, 2);
+  assert.match(uses("image-1_mobile.webp")[0].label, /^Tuýp/i);
+  assert.equal(uses("image-3_mobile.webp").length, 0, "the blister image (food supplements) is no longer a position");
   // produce-1 = one position on desktop and mobile (+ the desktop <picture> mobile source); produce-2 differs on mobile.
   assert.equal(uses("produce-1.webp").length, 1);
   assert.equal(uses("produce-1.webp")[0].targets.length, 3);
@@ -62,7 +65,7 @@ test("registry v2: one slot per position — shared files split, desktop/mobile 
 
 test("image slot: every target replaced (img, <picture> source, background) on its page only", () => {
   const hero = slotWith("home", s => s.targets.some(t => t.kind === "source" && t.url.endsWith("title_mobile.webp")));
-  const tube = slotWith("home", s => s.label === "Tuýp & chai chân không");
+  const tube = slotWith("home", s => /^Tuýp/i.test(s.label) && s.targets.length === 2);
   const bg = slotWith("about", s => s.targets.some(t => t.kind === "bg"));
   const snap = { images: { [hero.id]: { files: files(hero), altVi: "Hero vi", altEn: "Hero en" }, [tube.id]: { files: files(tube), altVi: "Tuýp", altEn: "Tube" }, [bg.id]: { files: files(bg), altVi: "x", altEn: "x" } } };
   const r = run(snap, `
@@ -71,9 +74,9 @@ test("image slot: every target replaced (img, <picture> source, background) on i
     const about = page("/about/"); cms.applyCms(about, "/about/", "vi");
     const cos = page("/contract-manufacturing-cosmetics/"); const cosBefore = cos.html(); cms.applyCms(cos, "/contract-manufacturing-cosmetics/", "vi");
     const src = home("main picture source").filter((_, e) => (home(e).attr("srcset") || "").startsWith("/assets/cms/${hero.id}")).length;
-    const sachet = home(".block-products-mobile .swiper-slide").first().find("img").attr("src");
+    const sachet = home(".block-products-mobile .swiper-slide").eq(2).find("img").attr("src");
     return { heroImg: home("main img[src^='/assets/cms/${hero.id}']").attr("alt"), heroSource: src,
-      tube: home("main img[src^='/assets/cms/${tube.id}']").length, sachetUnchanged: /image-1_mobile\\.webp$/.test(sachet),
+      tube: home("main img[src^='/assets/cms/${tube.id}']").length, sachetUnchanged: /image-4_mobile\\.webp$/.test(sachet),
       enAlt: en("main img[src^='/assets/cms/${hero.id}']").attr("alt"), about: about("[style*='/assets/cms/${bg.id}']").length, cosmeticsUnchanged: cosBefore === cos.html() };`);
   assert.ok(r.ok, r.err);
   assert.equal(r.value.heroImg, "Hero vi");
