@@ -13,6 +13,8 @@ Tất cả giờ là UTC, ngày 19/11/2026. Bằng chứng nằm trong `evidence
 | Preview đọc Sanity (`/_bioa-cms.json` → `fetchedAt`) | 08:13:48 |
 | Preview phục vụ nội dung mới | 08:14:27, **≈ 53 giây** sau Publish |
 | `tools/cms-preview-status.mjs` | **UP TO DATE**; Draft chưa Publish: 0 |
+| Số build do lần Publish này | 29 tài liệu trong 1 giao dịch → 29 lần gọi webhook → Cloudflare gộp còn **2 build** (`19400072` lúc 08:13:36, `e4ebeadc` lúc 08:13:38: một đang chạy + một xếp hàng; các lần gọi khác trả 304 = đã có build chờ). Bản xếp hàng sau đọc dữ liệu mới nhất. Một Publish một tài liệu = 1 build |
+| Deployment Preview cuối (docs R28) | `c74cbfb9-59bc-48fc-bfbe-2be9e7a19ea2` (`d09264d`), `/_bioa-cms.json`: snapshot `dcaa3326f660df5f`, UP TO DATE |
 | Nội dung Preview đang phục vụ | 77 trang tải về (`preview-mirror`); `tests/r28-blog-rewrite-audit.mjs` trên chính các trang này: **58/58 trang PASS**, độ trùng tối đa 0,099, 29 bài vẫn noindex và không có trong sitemap |
 | Giá trị "123" của Owner | Còn nguyên (đọc lại sau khi ghi) |
 
