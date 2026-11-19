@@ -59,6 +59,8 @@ jobs:
         run: node tests/r26-seo-content-audit.mjs dist
       - name: R27 content audit (no sample testimonials or labels, Blog pending-rewrite controls, unique titles and descriptions)
         run: node tests/r27-content-audit.mjs dist
+      - name: R28 Blog rewrite audit (29 pending articles unique and paired VI/EN, own SEO head, locked modules, still noindex)
+        run: node tests/r28-blog-rewrite-audit.mjs dist
       - name: Verify Phase 2B Other Services dead-data and owner-PASS output
         run: node tests/phase2b-services-convergence.test.mjs
       - name: Verify Phase 2B Cosmetics owner cleanup
