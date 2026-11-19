@@ -1,6 +1,6 @@
 // P1 + P2 — Home canonical Bio-A icon parity and scoped Tablet readability.
 // P1: Home Why Choose 04 == Other Services monogram at every width; Desktop/Mobile 22x27 (Production
-//     OWNER PASS), Tablet 769-1200 keeps the PR #10 source footprint (1.5625vw); icons 01/02 keep the
+//     OWNER PASS; R28: on Mobile the Other Services process-list slot is 16x16 like its list siblings), Tablet 769-1200 keeps the PR #10 source footprint (1.5625vw); icons 01/02 keep the
 //     cream filter; no artwork overflows its badge.
 // P2: 769-1200 only — Home steps not clipped, formats lede / modal consent readable; Desktop/Mobile unchanged.
 // Read-only; never submits forms. Env: BIOA_CHROME_PATH (optional).
@@ -35,7 +35,7 @@ async function measure(route, width){
     const vis = e => e.getBoundingClientRect().width > 0;
     const icons = [...document.querySelectorAll("#why-choose-us img,.block-how-works .step__icon img,.block-right-choice .client__icon img")].filter(vis).map(e => {
       const r = e.getBoundingClientRect(), q = e.parentElement.getBoundingClientRect();
-      return { src: e.src.split("/").pop(), w: r.width, h: r.height, overflow: r.width > q.width + .5 || r.height > q.height + .5, filter: getComputedStyle(e).filter };
+      return { src: e.src.split("/").pop(), list: !!e.closest(".block-right-choice"), w: r.width, h: r.height, overflow: r.width > q.width + .5 || r.height > q.height + .5, filter: getComputedStyle(e).filter };
     });
     const steps = [...document.querySelectorAll(".block-how-works .step__text")].filter(vis);
     const m = document.getElementById("get-a-quote");
@@ -56,6 +56,9 @@ for (const lang of ["", "/en"]) for (const width of [375, 390, 768, 769, 834, 10
   const mono = [...home.icons, ...svc.icons].filter(i => /bioa-monogram-cream/.test(i.src));
   if (mono.length < 3) fails.push(id + " expected Home + Services monograms, found " + mono.length);
   for (const i of mono){
+    // R28 ICON-LIST-1 (owner iPhone report 2026-11-19): on Mobile the Other Services process-list slot follows its
+    // Merywood list siblings (16 px artwork in a 30 px badge) instead of the 22x27 card/Why-Choose slot.
+    if (i.list && width <= 768){ if (!near(i.w, 16) || !near(i.h, 16)) fails.push(id + " process-list monogram " + i.w.toFixed(2) + "x" + i.h.toFixed(2) + " != 16x16 (R28)"); continue; }
     if (!near(i.w, exp[0]) || !near(i.h, exp[1])) fails.push(id + " monogram " + i.w.toFixed(2) + "x" + i.h.toFixed(2) + " != " + exp.map(x => x.toFixed(2)).join("x"));
     if (i.overflow) fails.push(id + " monogram overflows badge");
   }
