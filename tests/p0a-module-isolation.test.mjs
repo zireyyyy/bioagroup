@@ -69,7 +69,11 @@ const APPROVED = [
   // R28 (owner master prompt 2026-11-19): Mobile process-list BIO-A icon slot, Mobile chat teaser auto-hide, VI heading
   // acronyms (Home/shared owner); rewrite of the 29 noindex pending Blog articles (Blog data). Scope: phase-diff-scope R28.
   { sha: "410a4ad9e66fe81f13d6f92536f662b0e6bc2f6f", phase: "R28", files: ["bioa-home-refine.mjs"] },
-  { sha: "81f0042d19260a8beda41a34848bf4da0e44d570", phase: "R28", files: ["bioa-blog-refine.mjs"] }
+  { sha: "81f0042d19260a8beda41a34848bf4da0e44d570", phase: "R28", files: ["bioa-blog-refine.mjs"] },
+  // R28b (owner fix after the R28 Preview review): Mobile service-card icon slot/spacing + consultation popup bottom row
+  // (Home/shared owner); CMS-Preview-only listing of the pending articles (Blog owner, off in Production). Scope: R28b.
+  { sha: "2c29e08ca2743252257bcd183f61254fa2ef92c9", phase: "R28b", files: ["bioa-home-refine.mjs"] },
+  { sha: "644c2a4075affb44055bddbf84d2a8e1c9abb181", phase: "R28b", files: ["bioa-blog-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 

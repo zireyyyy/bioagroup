@@ -97,7 +97,11 @@ const SCOPES = {
   R28: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"],
     [new RegExp("^(en\\/)?blog\\/(" + [...readFileSync("bioa-blog-refine.mjs", "utf8").split("BLOG_PENDING_REWRITE=new Set([")[1].split("]);")[0].matchAll(/'([a-z0-9-]+)'/g)].map(m => m[1]).join("|") + ")\\/index\\.html$"),
       'title, meta[name="description"], meta[property^="og:"], meta[name^="twitter:"], script[type="application/ld+json"], main, a.btp-share__link'],
-    [/^blog\/(10-tieu-chi-quan-trong-cac-boss-can-luu-y-khi-gia-cong-kem-chong-nang|dia-chi-gia-cong-san-xuat-my-pham-uy-tin-chat-luong-tai-tphcm)\/index\.html$/, "h1, h2, h3, .bb-toc"]]
+    [/^blog\/(10-tieu-chi-quan-trong-cac-boss-can-luu-y-khi-gia-cong-kem-chong-nang|dia-chi-gia-cong-san-xuat-my-pham-uy-tin-chat-luong-tai-tphcm)\/index\.html$/, "h1, h2, h3, .bb-toc"]],
+  // R28b (owner fix after the R28 Preview review): SERVICE-CARD-ICON-1/-SPACE-1 (Mobile "Dịch Vụ Bio-A Group" card
+  // CSS in the Home owner) and CHAT-RESTORE-1 (consultation popup bottom row + Esc). BLOG-PREVIEW-LIST is off in this
+  // default (Production) build, so no Blog list, sitemap or article may change here.
+  R28b: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"], [/\.html$/, "#bioa-contact-fab"]]
 };
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
