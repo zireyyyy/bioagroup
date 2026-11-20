@@ -61,8 +61,8 @@ jobs:
         run: node tests/r27-content-audit.mjs dist
       - name: R28 Blog rewrite audit (29 pending articles unique and paired VI/EN, own SEO head, locked modules, still noindex)
         run: node tests/r28-blog-rewrite-audit.mjs dist
-      - name: R28b Blog list in the Production build (approved articles only; pending noindex and out of the sitemap)
-        run: node tests/r28b-blog-preview-list.mjs dist --mode production
+      - name: R28c Blog published (38 articles listed and indexable VI/EN, old slugs 301 to the new ones)
+        run: node tests/r28c-blog-published.mjs dist
       - name: Verify Phase 2B Other Services dead-data and owner-PASS output
         run: node tests/phase2b-services-convergence.test.mjs
       - name: Verify Phase 2B Cosmetics owner cleanup

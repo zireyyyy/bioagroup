@@ -1,5 +1,6 @@
-// R28 BLOG-REWRITE: the 29 pending Blog articles are rewritten (unique VI/EN content, own SEO head) while the locked
-// Blog detail modules stay and every article stays noindex/unlisted until the owner sets rewriteApproved.
+// R28 BLOG-REWRITE: the 29 formerly pending Blog articles are rewritten (unique VI/EN content, own SEO head) while the
+// locked Blog detail modules stay. R28c (owner 2026-11-20): all 29 approved for publication, 13 under a new slug (old
+// URL 301) — they are now indexable and listed in sitemap.xml.
 // Usage: node tests/r28-blog-rewrite-audit.mjs [dist] [--report <file.json>]
 import fs from "node:fs";
 import path from "node:path";
@@ -7,7 +8,8 @@ import * as cheerio from "cheerio";
 // The Blog module keeps its data private; read it from the source the same way the renderer does.
 const blogSrc = fs.readFileSync(new URL("../bioa-blog-refine.mjs", import.meta.url), "utf8");
 const blogPosts = JSON.parse(blogSrc.match(/const blogPosts\s*=\s*(\[.*?\]);\n/s)[1]);
-const BLOG_PENDING_REWRITE = new Set(JSON.parse(blogSrc.match(/BLOG_PENDING_REWRITE\s*=\s*new Set\((\[[^\]]*\])/s)[1].replace(/'/g, '"')));
+import { R28_REWRITTEN } from "./r28-rewritten-slugs.mjs";
+const BLOG_PENDING_REWRITE = new Set(R28_REWRITTEN); // the 29 rewritten articles (name kept: R28 audit scope)
 
 const dist = path.resolve(process.argv[2] && !process.argv[2].startsWith("--") ? process.argv[2] : "dist");
 const reportAt = process.argv.indexOf("--report");
@@ -21,7 +23,8 @@ const CLAIMS = [/\btop\s?\d+\b/i, /số\s?1\b|hàng đầu|tốt nhất|uy tín 
   /\bFDA\b|chứng nhận quốc tế|công suất \d|\d+\s?(khách hàng|clients)\b/i];
 const sitemap = fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8");
 const pending = blogPosts.filter((p) => BLOG_PENDING_REWRITE.has(p.slug));
-if (pending.length !== 29) fail("data", "expected 29 pending articles, got " + pending.length);
+if (pending.length !== 29) fail("data", "expected 29 rewritten articles, got " + pending.length);
+if (blogPosts.length !== 38) fail("data", "expected 38 articles, got " + blogPosts.length);
 
 const titles = new Map(), descs = new Map(), rows = [];
 const bodies = new Map();
@@ -46,8 +49,9 @@ for (const post of blogPosts) {
     if (d !== post["excerpt" + L]) fail(route, "description is not the article excerpt");
     if (d.length < 90 || d.length > 210) fail(route, "description length " + d.length);
     if (post["seoTitle" + L].length > 66) fail(route, "SEO title length " + post["seoTitle" + L].length);
-    if (!/noindex/.test($('meta[name="robots"]').attr("content") || "")) fail(route, "pending article is indexable");
-    if (sitemap.includes(SITE + route)) fail(route, "pending article is in the sitemap");
+    // R28c: approved — indexable and in the sitemap.
+    if (/noindex/.test($('meta[name="robots"]').attr("content") || "")) fail(route, "approved article is noindex");
+    if (!sitemap.includes("<loc>" + SITE + route + "</loc>")) fail(route, "approved article missing from the sitemap");
     const h1 = $(".block-title-post__title").text().trim();
     if (h1 !== post["title" + L]) fail(route, "H1 '" + h1 + "' != title");
     if ($("h1").filter((_, e) => !/block-title-post(-mobile)?__title/.test($(e).attr("class") || "")).length) fail(route, "extra H1 outside the locked title block");

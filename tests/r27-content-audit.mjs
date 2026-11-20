@@ -77,26 +77,31 @@ for (const r of ["/tuyen-dung/", "/en/careers/"]) {
   if (!pills.length || pills.some(t => t !== want)) fail(r, "career status pills: " + JSON.stringify(pills));
 }
 
-// Blog pending-rewrite controls.
-const blogSrc = fs.readFileSync(new URL("../bioa-blog-refine.mjs", import.meta.url), "utf8");
-const pending = [...blogSrc.matchAll(/'([a-z0-9-]+)'/g)].map(m => m[1]).filter(s => blogSrc.indexOf("BLOG_PENDING_REWRITE=new Set([") < blogSrc.indexOf("'" + s + "'") && blogSrc.indexOf("'" + s + "'") < blogSrc.indexOf("]);", blogSrc.indexOf("BLOG_PENDING_REWRITE=new Set([")));
-if (pending.length !== 29) fail("blog", "pending list size " + pending.length);
-for (const slug of pending) for (const pre of ["", "/en"]) {
-  const r = pre + "/blog/" + slug + "/";
-  const p = real.find(x => x.route === r); if (!p) { fail(r, "pending article route missing (URL must keep working)"); continue; }
-  if (!/<meta name="robots" content="noindex, follow">/.test(p.html)) fail(r, "pending article not noindex,follow");
-  if (sitemap.includes("https://bioagroup.vn" + r + "<")) fail(r, "pending article in sitemap");
-}
+// Blog: the R27 pending-rewrite controls are superseded by the R28c owner approval (2026-11-20). The 29 rewritten
+// articles are published (indexable, in the sitemap, linked from the Blog list); the 13 renamed ones keep their old URL
+// as a 301 redirect page; Blog index pages 3-6 are real list pages again.
 const listedLinks = new Set();
-for (const p of real.filter(x => /^(\/en)?\/blog\/(page\/\d+\/)?$/.test(x.route) || (/^(\/en)?\/blog\/[a-z0-9-]+\/$/.test(x.route) && !/noindex/.test(x.html)))) {
+for (const p of real.filter(x => /^(\/en)?\/blog\/(page\/\d+\/)?$/.test(x.route))) {
   const $ = cheerio.load(p.html);
   $("a[href]").each((_, a) => listedLinks.add($(a).attr("href")));
 }
-for (const slug of pending) for (const pre of ["", "/en"]) if (listedLinks.has(pre + "/blog/" + slug + "/")) fail(pre + "/blog/" + slug + "/", "pending article linked from a listed Blog page");
-for (const pre of ["", "/en"]) for (const n of [3, 4, 5, 6]) {
-  const f = path.join(dist, pre.slice(1), "blog", "page", String(n), "index.html");
-  if (!fs.existsSync(f) || !fs.readFileSync(f, "utf8").includes('bioa-legacy-redirect" content="' + pre + '/blog/"')) fail(pre + "/blog/page/" + n + "/", "retired Blog index page does not redirect to the Blog home");
+for (const old of R27_PENDING) for (const pre of ["", "/en"]) {
+  const slug = R28C_RENAMES[old] || old, r = pre + "/blog/" + slug + "/";
+  const p = real.find(x => x.route === r); if (!p) { fail(r, "approved article page missing"); continue; }
+  if (/noindex/.test(p.html.match(/<meta name="robots"[^>]*>/)?.[0] || "")) fail(r, "approved article is noindex");
+  if (!sitemap.includes("https://bioagroup.vn" + r + "<")) fail(r, "approved article not in sitemap");
+  if (!listedLinks.has(r)) fail(r, "approved article not linked from the Blog list");
+  if (slug !== old) {
+    const f = path.join(dist, pre.slice(1), "blog", old, "index.html");
+    if (!fs.existsSync(f) || !fs.readFileSync(f, "utf8").includes('bioa-legacy-redirect" content="' + r + '"')) fail(pre + "/blog/" + old + "/", "old slug does not redirect to " + r);
+    if (sitemap.includes("https://bioagroup.vn" + pre + "/blog/" + old + "/<")) fail(pre + "/blog/" + old + "/", "old slug still in sitemap");
+  }
 }
+for (const pre of ["", "/en"]) for (const n of [2, 3, 4, 5, 6]) {
+  const p = real.find(x => x.route === pre + "/blog/page/" + n + "/");
+  if (!p || /bioa-legacy-redirect/.test(p.html)) fail(pre + "/blog/page/" + n + "/", "Blog list page missing");
+}
+import { R27_PENDING, R28C_RENAMES } from "./r28-rewritten-slugs.mjs";
 
 // SEO uniqueness on indexable pages (one visible H1 per breakpoint is source structure; duplicate desktop/mobile H1 is reported, not failed).
 const titles = new Map(), descs = new Map();
@@ -116,7 +121,7 @@ for (const p of real) {
 for (const [t, r] of titles) if (r.length > 1) fail(r.join(","), "duplicate title: " + t);
 for (const [d, r] of descs) if (r.length > 1) fail(r.join(","), "duplicate description: " + d.slice(0, 60));
 
-console.log(JSON.stringify({ pages: real.length, indexable, pendingBlog: pending.length, sitemapUrls: (sitemap.match(/<url>/g) || []).length, fails: fails.length }));
+console.log(JSON.stringify({ pages: real.length, indexable, approvedBlog: R27_PENDING.length, sitemapUrls: (sitemap.match(/<url>/g) || []).length, fails: fails.length }));
 for (const f of fails) console.log("FAIL " + f);
 console.log(fails.length ? "R27 content audit: FAIL" : "R27 content audit: PASS");
 process.exit(fails.length ? 1 : 0);
