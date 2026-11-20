@@ -27,7 +27,14 @@ const BLOG_PENDING_REWRITE=new Set([
   'xu-huong-thi-truong-tay-te-bao-chet-2026-co-hoi-cho-thuong-hieu-my-pham-moi'
 ]);
 export const isBlogPendingRewrite=p=>BLOG_PENDING_REWRITE.has(p.slug)&&p.rewriteApproved!==true;
-const listedPosts=blogPosts.filter(p=>!isBlogPendingRewrite(p));
+/* R28b BLOG-PREVIEW-LIST (owner): on the CMS Preview build only (Cloudflare Pages branch cms-preview, or
+   BIOA_BLOG_PREVIEW_PENDING=1 for local QA) the articles pending rewrite are also listed, after the approved ones in
+   their existing order, so the owner can review them from /blog/. They keep robots noindex,follow and therefore stay
+   out of sitemap.xml; rewriteApproved is not touched. Production (branch main) lists only approved articles. */
+export const BLOG_PREVIEW_LIST_PENDING=process.env.CF_PAGES_BRANCH==='cms-preview'||process.env.BIOA_BLOG_PREVIEW_PENDING==='1';
+const listedPosts=BLOG_PREVIEW_LIST_PENDING
+  ?[...blogPosts.filter(p=>!isBlogPendingRewrite(p)),...blogPosts.filter(p=>isBlogPendingRewrite(p))]
+  :blogPosts.filter(p=>!isBlogPendingRewrite(p));
 // Index pages that existed before R27 (38 posts / 7 per page) and no longer have posts redirect to the Blog home.
 export const blogRetiredIndexRedirects=(()=>{
   const out=[];
@@ -103,6 +110,12 @@ function applyBlogIndex($,lang,route='/blog/'){
   const totalPages=Math.max(1,Math.ceil(listedPosts.length/BLOG_PAGE_SIZE));
   const safePage=Math.min(page,totalPages);
   const pagePosts=listedPosts.slice((safePage-1)*BLOG_PAGE_SIZE,safePage*BLOG_PAGE_SIZE);
+  // R28b BLOG-PREVIEW-LIST: a list page that shows any article pending rewrite (CMS Preview only) is noindex,follow too,
+  // so neither those articles nor the pages listing them reach sitemap.xml.
+  if(pagePosts.some(isBlogPendingRewrite)){
+    if($('meta[name="robots"]').length)$('meta[name="robots"]').attr('content','noindex, follow');
+    else $('head').append('<meta name="robots" content="noindex, follow">');
+  }
   const hero=$('.blog-hero');
   $('body').addClass('bioa-blog-index');
   setText(hero,'.title',isEn?'Bio-A Group Blog':'Blog Bio-A Group');
@@ -420,14 +433,14 @@ function applyBlogArticle($,route,lang){
   $('.btp-share__link[href*="facebook.com/sharer"]').attr('href','https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl));
   $('.btp-share__link[href^="/cdn-cgi/l/email-protection#"]').attr('href','mailto:?subject='+encodeURIComponent(title)+'&body='+encodeURIComponent(shareUrl));
 
-  // R27: previous/next only walk the listed articles; an article pending rewrite links to the newest listed one.
+  // R27: previous/next only walk the listed articles; an article not in the list links to the newest listed one.
   const pending=isBlogPendingRewrite(bySlug.get(slug)||{slug});
   if(pending){
     if($('meta[name="robots"]').length)$('meta[name="robots"]').attr('content','noindex, follow');
     else $('head').append('<meta name="robots" content="noindex, follow">');
   }
-  const idx=pending?-1:listedPosts.findIndex(p=>p.slug===slug);
-  const prev=idx>0?listedPosts[idx-1]:null; const next=pending?(listedPosts[0]||null):(idx>=0&&idx<listedPosts.length-1?listedPosts[idx+1]:null);
+  const idx=listedPosts.findIndex(p=>p.slug===slug);
+  const prev=idx>0?listedPosts[idx-1]:null; const next=idx<0?(listedPosts[0]||null):(idx<listedPosts.length-1?listedPosts[idx+1]:null);
   const nav=$('.bb-post-nav').first();
   if(nav.length){
     const linkTemplate=nav.find('.bb-post-nav__link').first().clone();
