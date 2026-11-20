@@ -104,10 +104,12 @@ for (const [route, w] of [["/", 390], ["/en/", 1440]]) {
   await page.waitForTimeout(600);
   const r = await page.evaluate(() => ({
     input: !!document.querySelector(".bioa-chat__input"),
+    zalo: document.querySelectorAll("#bioa-contact-fab a[href*='zalo.me']").length,
     ctas: [...document.querySelectorAll(".bioa-chat__cta")].map(a => ({ href: a.getAttribute("href"), text: a.textContent.trim(), w: Math.round(a.getBoundingClientRect().width) })),
     intro: document.querySelector(".bioa-chat__msg--intro .bioa-chat__bubble")?.textContent.trim().slice(0, 90)
   }));
-  const ok = !r.input && r.ctas.length === 2 && /zalo\.me/.test(r.ctas[0].href) && /^tel:\+84/.test(r.ctas[1].href) && r.ctas.every(c => c.w > 60);
+  // R28b CHAT-RESTORE-1 (owner): the approved one-piece shell holds the hotline; Zalo stays once, in the icon row.
+  const ok = !r.input && r.ctas.length === 1 && /^tel:\+84/.test(r.ctas[0].href) && r.zalo === 1 && r.ctas.every(c => c.w > 60);
   record(ok, `chat CTA ${route} @${w}`, JSON.stringify(r));
   await ctx.close();
 }

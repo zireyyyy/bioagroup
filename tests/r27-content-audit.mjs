@@ -33,7 +33,8 @@ for (const p of real) {
   if (p.route === "/" || p.route === "/en/") if ($(".block-reviews").length) fail(p.route, "Home still renders a reviews/testimonial block");
   $("img[alt]").each((_, e) => { const a = ($(e).attr("alt") || "").trim().toLowerCase(); if (BAD_ALTS.has(a)) fail(p.route, "misleading or file-name alt: " + a); });
   if ($(".bioa-chat__input,form.bioa-chat__composer").length) fail(p.route, "chat still shows a message box that sends nothing");
-  if ($("#bioa-contact-fab").length && $(".bioa-chat__cta").length !== 2) fail(p.route, "chat contact CTAs missing");
+  // R28b CHAT-RESTORE-1 (owner): one bottom shell = hotline link; Zalo only once, in the channel icon row.
+  if ($("#bioa-contact-fab").length && ($(".bioa-chat__cta").length !== 1 || !/^tel:/.test($(".bioa-chat__cta").attr("href") || "") || $("#bioa-contact-fab a[href*='zalo.me']").length !== 1)) fail(p.route, "chat contact row: expected one hotline shell and Zalo once");
 }
 // R27b: hidden surplus Footer items keep no Merywood label.
 for (const p of real) { const $ = cheerio.load(p.html); $(".bioa-footer-nav-unused").each((_, e) => { if ($(e).text().trim()) fail(p.route, "hidden Footer item still has text: " + $(e).text().trim()); }); }

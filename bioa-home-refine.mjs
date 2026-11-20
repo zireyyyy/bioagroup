@@ -2818,25 +2818,28 @@ const patchC4AShellCss = `
 
 
 const patchC4BComposerCss = `
-/* R27 CHAT-CTA — the composer shell holds the two real contact channels instead of a message box
-   that sent nothing. Same 44px pill geometry as CHAT-C4B below. */
-.bioa-chat__composer--cta .bioa-chat__cta{
-  flex:1 1 50%!important;
+/* R28b CHAT-RESTORE-1 — the owner-approved C4B shell below, as one hotline link (no message box). The label takes
+   the C4B input footprint (42px, 14px left / 50px right padding, 13px Manrope); the inset green round button is the
+   approved send control. */
+.bioa-chat__composer--call{
+  text-decoration:none!important;
+  cursor:pointer!important;
+}
+.bioa-chat__call-label{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  height:42px!important;
+  padding:0 50px 0 14px!important;
   display:flex!important;
   align-items:center!important;
-  justify-content:center!important;
-  height:100%!important;
-  padding:0 8px!important;
   color:var(--bioa-primary)!important;
-  font-size:13px!important;
-  line-height:1.2!important;
-  font-weight:600;
-  text-decoration:none!important;
+  font:600 13px/1 "Manrope",sans-serif;
   white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
 }
-.bioa-chat__composer--cta .bioa-chat__cta + .bioa-chat__cta{border-left:1px solid #dedede!important}
-.bioa-chat__composer--cta .bioa-chat__cta:hover{background:var(--bioa-primary)!important;color:#fff!important}
-.bioa-chat__composer--cta .bioa-chat__cta:focus-visible{outline:2px solid var(--bioa-primary)!important;outline-offset:-3px!important}
+.bioa-chat__composer--call:hover .bioa-chat__send{background:var(--bioa-dark)!important}
+.bioa-chat__composer--call:focus-visible{outline:2px solid var(--bioa-primary)!important;outline-offset:2px!important}
 
 /* CHAT-C4B — one-piece composer matching the supplied input reference.
    Keep existing form markup; integrate the send control inside the same shell. */
@@ -3803,7 +3806,7 @@ const patchWhyChooseIconCss = `
 /* Mobile service slots use the SAME monogram class and Home-approved
    artwork dimensions. One shared owner; no route-local icon CSS. */
 @media(max-width:768px){
-  /* R28 ICON-LIST-1 (owner iPhone report, /dich-vu-khac/): the 42px badge is the service-CARD slot. In the process
+  /* R28 ICON-LIST-1 (owner iPhone report, /dich-vu-khac/): the service-CARD slot is handled below. In the process
      list (.block-right-choice, one BIO-A slot among five Merywood icons) the BIO-A slot keeps the source list
      footprint like its siblings: 30px badge, 16px artwork (monogram contained, never stretched). */
   .block-right-choice img.bioa-why-icon-bioa{
@@ -3812,14 +3815,33 @@ const patchWhyChooseIconCss = `
     height:16px!important;
     max-height:16px!important;
   }
+  /* R28b SERVICE-CARD-ICON-1 (owner iPhone report, "Dịch Vụ Bio-A Group" cards): the earlier 42px slot was
+     larger than the 37px number badge beside it and the 22x27 art nearly filled it. Restore Merywood mobile
+     source geometry: .step__icon 37x37 (= .step__number), .step__icon .icon 20x20 (monogram contained). */
   .block-how-works .step__icon:has(> img.bioa-why-icon-bioa){
     display:flex!important;
     align-items:center!important;
     justify-content:center!important;
-    width:42px!important;
-    min-width:42px!important;
-    height:42px!important;
-    min-height:42px!important;
+    width:37px!important;
+    min-width:37px!important;
+    height:37px!important;
+    min-height:37px!important;
+  }
+  .block-how-works img.bioa-why-icon-bioa{
+    width:20px!important;
+    max-width:20px!important;
+    height:20px!important;
+    max-height:20px!important;
+  }
+  /* R28b SERVICE-CARD-SPACE-1: source min-height 421px was sized for Merywood's longer copy; BIO-A service copy is
+     3-5 lines, leaving ~140px empty. Info row takes the tallest card's content (rows 1fr/auto inside the
+     Swiper auto-height slide), so every slide stays equal height and the image keeps its source 295/315 ratio. */
+  .block-how-works .step:has(.step__icon > img.bioa-why-icon-bioa){
+    grid-template-rows:1fr auto;
+    height:100%;
+  }
+  .block-how-works .step__info:has(.step__icon > img.bioa-why-icon-bioa){
+    min-height:0;
   }
 }
 `;
@@ -5184,10 +5206,12 @@ function addContactLauncher($,lang){
     ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
     :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
   const intro=vi
-    ?'Chào bạn 👋 Đây là Khánh Như từ Bio-A Group. Khung chat này chưa nhận tin nhắn trực tuyến. Để được tư vấn về công thức, MOQ, bao bì và tiến độ sản xuất, bạn vui lòng nhắn Zalo hoặc gọi hotline bên dưới.'
-    :'Hi 👋 This is Khánh Như from Bio-A Group. This chat does not take messages online yet. For advice on formula, MOQ, packaging and production timeline, please message us on Zalo or call the hotline below.';
-  // R27: no backend receives chat messages (AI LIVE is OFF, docs/CHAT_AI_INTEGRATION.md). The former message box only
-  // simulated a conversation, so the composer row now offers the two real channels (Zalo, hotline) in the same shell.
+    ?'Chào bạn 👋 Đây là Khánh Như từ Bio-A Group. Khung chat này chưa nhận tin nhắn trực tuyến. Để được tư vấn về công thức, MOQ, bao bì và tiến độ sản xuất, bạn vui lòng nhắn Zalo ở trên hoặc gọi hotline bên dưới.'
+    :'Hi 👋 This is Khánh Như from Bio-A Group. This chat does not take messages online yet. For advice on formula, MOQ, packaging and production timeline, please message us on Zalo above or call the hotline below.';
+  // R27: no backend receives chat messages (AI LIVE is OFF, docs/CHAT_AI_INTEGRATION.md); the old message box only
+  // simulated a conversation. R28b CHAT-RESTORE-1 (owner): R27 split the bottom row into two buttons, repeating the
+  // Zalo channel already in the icon row. The owner-approved CHAT-C4B one-piece shell (44px pill, inset green round
+  // button) is restored; it now carries the single hotline action, Zalo stays in the channel row. No message box.
 
   $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
     <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">
@@ -5228,10 +5252,10 @@ function addContactLauncher($,lang){
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
 
-      <div class="bioa-chat__composer bioa-chat__composer--cta">
-        <a class="bioa-chat__cta" href="${company.zalo}" target="_blank" rel="noopener noreferrer">${vi?'Nhắn Zalo':'Message on Zalo'}</a>
-        <a class="bioa-chat__cta" href="${company.phoneHref}">${vi?'Gọi ':'Call '}${vi?company.phone:company.phoneIntl}</a>
-      </div>
+      <a class="bioa-chat__composer bioa-chat__composer--call bioa-chat__cta" href="${company.phoneHref}">
+        <span class="bioa-chat__call-label">${vi?'Gọi hotline ':'Call '}${vi?company.phone:company.phoneIntl}</span>
+        <span class="bioa-chat__send" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+      </a>
     </div>
 
     <button class="bioa-contact-fab__toggle" type="button" aria-expanded="false" aria-label="${vi?'Mở tư vấn':'Open support'}">
@@ -5315,6 +5339,10 @@ function addContactLauncher($,lang){
 
     document.addEventListener('click',function(e){
       if(root.classList.contains('is-open')&&!root.contains(e.target))close();
+    });
+    /* R28b: Esc closes the open panel and returns focus to the avatar button (keyboard parity with the quote modal). */
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&root.classList.contains('is-open')){close();if(toggle)toggle.focus({preventScroll:true});}
     });
 
     /* Smooth Scrollbar moves content with transforms; IntersectionObserver
