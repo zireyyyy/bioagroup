@@ -73,7 +73,7 @@
 | Blog: tải về 12 trang danh sách + 76 trang bài + sitemap (`preview-mirror/`) rồi chạy `r28b-blog-preview-list --mode preview` | **328/328 PASS** |
 | `r28b-owner-fix`, **Chrome** | **1090/1090 PASS** |
 | `r28b-owner-fix`, **WebKit** (engine Safari) | **1090/1090 PASS** |
-| Ảnh trước/sau, Chrome + WebKit | `shots/` (132 ảnh) |
+| Ảnh trước/sau, Chrome + WebKit | 132 ảnh trong `_reports/r28b/shots/`; 102 ảnh tiêu biểu (390 / 1440) trong ZIP ở `evidence/r28b-screens/` |
 | GitHub CI PR `zireyyyy/bioagroup#14` | Cloudflare Pages PASS; `candidate-validation` PASS ở `f8dcd24` (`ci-pr14.txt`) |
 
 ## 4. Production (chỉ đọc, `prod-check.txt`)

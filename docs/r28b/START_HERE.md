@@ -17,13 +17,14 @@
 
 ## Ảnh trước / sau
 
-Trong ZIP: `evidence/r28b/shots/`.
+Trong ZIP: `evidence/r28b-screens/`, 102 ảnh ở 390px và 1440px. Bộ đầy đủ 132 ảnh (thêm 320, 375, 428) nằm ở `D:\BIOA_WORKSPACE\_reports\r28b\shots\`.
 
-**Thẻ dịch vụ** (`card-<vi|en>-<rộng>-s<1..5>-<before|after>[-webkit].png`):
-- `card-icon-*`: phóng to ô logo + ô số;
-- `card-*`: cả thẻ, để thấy khoảng trắng.
+**Thẻ dịch vụ** (`<before|after>-card[-icon]-<vi|en>-s<1..5>[-webkit]-390.png`):
+- `card-icon`: phóng to ô logo + ô số;
+- `card`: cả thẻ, để thấy khoảng trắng;
+- đủ 5 slide, Chrome và WebKit.
 
-**Popup** (`popup-<375|390|1440>-<approved|before|after>[-webkit].png`):
-- `approved` = bản Owner đã duyệt `9d044a7`.
+**Popup** (`<mw-popup-approved|before-popup|after-popup>[-webkit]-<390|1440>.png`):
+- `mw-popup-approved` = bản Owner đã duyệt `9d044a7`.
 
-**Blog** (`blog-*-after.png`): danh sách trên bản Preview.
+**Blog** (`after-blog-<vi|en>[-page-N]-<390|1440>.png`): danh sách trên bản Preview.

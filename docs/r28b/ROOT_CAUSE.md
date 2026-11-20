@@ -1,9 +1,9 @@
 # R28b — Nguyên nhân gốc hai lỗi giao diện
 
-Ảnh trước/sau nằm trong ZIP, thư mục `evidence/r28b/shots/`:
+Ảnh trước/sau nằm trong ZIP, thư mục `evidence/r28b-screens/` (cách đặt tên: `START_HERE.md`):
 - `before` = bản R28 `4205597`;
 - `after` = bản R28b;
-- `approved` = bản Owner đã duyệt `9d044a7`.
+- `mw-popup-approved` = bản Owner đã duyệt `9d044a7`.
 
 ## 1. Icon thẻ "Dịch Vụ Bio-A Group" trên Mobile (`/dich-vu-khac/`, `/en/dich-vu-khac/`)
 
@@ -27,4 +27,4 @@
 | Phần còn lại | Header, hàng biểu tượng mạng xã hội, vùng tin nhắn và kích thước khung **giống hệt** bản đã duyệt. Đo ở 375 / 834 / 1440, sai khác 0px (`tests/r28b-owner-fix.mjs --chat-ref`). Kể từ CHAT-C7 không có commit nào khác đổi bố cục popup; `d78f66a` chỉ thống nhất hình Zalo |
 | Cách sửa | Khôi phục ô một khối đã duyệt (CSS CHAT-C4B giữ nguyên). Ô này là **một liên kết gọi hotline** (`tel:+84779399379`), không phải ô nhập tin nhắn: không gửi tin, không AI. Zalo còn một lần, ở hàng biểu tượng. Lời chào sửa 3 từ: "nhắn Zalo **ở trên** hoặc gọi hotline bên dưới". Thêm phím **Esc** để đóng popup (trả focus về nút ảnh đại diện) |
 | Không đổi | Tên, ảnh đại diện, hotline, URL Zalo / WhatsApp / Facebook / Telegram, hiệu ứng mở/đóng, bong bóng gợi ý, AI vẫn OFF |
-| Cần Owner xác nhận | Header, hàng biểu tượng và khoảng trắng vùng tin nhắn **đúng như bản đã duyệt**, nên tôi **không tự thu nhỏ** để không thay đổi thiết kế lớn khi chưa được phép. Ảnh so sánh: `popup-375/390/1440-{approved,before,after}.png`. Nếu Owner muốn gọn hơn bản đã duyệt, cần chỉ rõ (ví dụ: header thấp hơn, icon nhỏ hơn) để làm một bản sửa riêng |
+| Cần Owner xác nhận | Header, hàng biểu tượng và khoảng trắng vùng tin nhắn **đúng như bản đã duyệt**, nên tôi **không tự thu nhỏ** để không thay đổi thiết kế lớn khi chưa được phép. Ảnh so sánh: `mw-popup-approved-*`, `before-popup-*`, `after-popup-*`. Nếu Owner muốn gọn hơn bản đã duyệt, cần chỉ rõ (ví dụ: header thấp hơn, icon nhỏ hơn) để làm một bản sửa riêng |
