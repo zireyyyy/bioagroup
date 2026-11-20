@@ -3,6 +3,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { R28C_RENAMES } from "./r28-rewritten-slugs.mjs";
 
 const MAP = { "/blog/page/4/": "/blog/", "/en/blog/page/6/": "/en/blog/", "/lien-he/": "/contacts/" };
 const secret = "f".repeat(48);
@@ -56,6 +57,13 @@ test("the built map lists every redirect page with a site-relative target", () =
   const f = new URL("../dist/_bioa-redirects.json", import.meta.url);
   if (!fs.existsSync(f)) return; // unit run without a build
   const map = JSON.parse(fs.readFileSync(f, "utf8"));
-  for (const n of [3, 4, 5, 6]) { assert.equal(map["/blog/page/" + n + "/"], "/blog/"); assert.equal(map["/en/blog/page/" + n + "/"], "/en/blog/"); }
+  // R28c (owner 2026-11-20): with the 29 rewritten articles published, /blog/page/2-6/ are real list pages again, so a
+  // built list page must never be redirected; the 13 renamed articles map old slug -> new slug (VI/EN).
+  for (const pre of ["", "/en"]) for (const n of [2, 3, 4, 5, 6]) {
+    const route = pre + "/blog/page/" + n + "/";
+    if (fs.existsSync(new URL("../dist" + route + "index.html", import.meta.url)) && !/bioa-legacy-redirect/.test(fs.readFileSync(new URL("../dist" + route + "index.html", import.meta.url), "utf8"))) assert.equal(map[route], undefined, route + " is a real list page");
+    else assert.equal(map[route], pre + "/blog/", route);
+  }
+  for (const [o, n] of Object.entries(R28C_RENAMES)) for (const pre of ["", "/en"]) assert.equal(map[pre + "/blog/" + o + "/"], pre + "/blog/" + n + "/");
   for (const [from, to] of Object.entries(map)) { assert.match(from, /^\/[a-z0-9/-]*\/$/); assert.match(to, /^\/(?!\/)/); }
 });
