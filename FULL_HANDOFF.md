@@ -1,5 +1,11 @@
 # CURRENT RUNTIME SNAPSHOT — BIO-A GROUP
-**Date:** 2026-11-19. **R28 (on top of R27/R27b) is on CMS Preview (owner UAT pending; VI-first auto-translation BLOCKED on owner decisions); Production = R26 + F04 `www` redirect, maintenance ON.** This is the one authoritative ACTIVE
+**Date:** 2026-11-20. **R28 + R28b (on top of R27/R27b) are on CMS Preview (owner UAT pending; CMS Sync owner PASS; VI-first auto-translation BLOCKED on owner decisions); Production = R26 + F04 `www` redirect, maintenance ON.** This is the one authoritative ACTIVE
+## R28b — OWNER FIX + BLOG PREVIEW LIST 2026-11-20 (CMS Preview; owner UAT pending)
+- Same branch `r28/blog-icon-cms`, code head `f8dcd24` + docs; `cms-preview` = R28b head. `main` unchanged (`9d044a7`). Owner confirmed **CMS Sync PASS** (closed; do not redo).
+- SERVICE-CARD-ICON-1/-SPACE-1 (`bioa-home-refine.mjs`, Mobile <=768, only `.block-how-works` cards holding the BIO-A monogram): slot 37x37 = number badge (Merywood source; was 42 from `bb5d29c`), artwork 20x20 contained, no `min-height:421px` empty band, slides equal height. Tablet/Desktop/Home unchanged.
+- CHAT-RESTORE-1: R27 `d93a0f0` had split the approved CHAT-C4B one-piece composer into "Nhắn Zalo" + "Gọi" (Zalo duplicated). Approved shell restored as ONE hotline link (no input, no AI); header/icon row/history identical to approved `9d044a7`; Esc closes. Owner may still ask for a more compact design than the approved one (new design decision, not done).
+- BLOG-PREVIEW-LIST (`bioa-blog-refine.mjs` `BLOG_PREVIEW_LIST_PENDING`): only when `CF_PAGES_BRANCH=cms-preview` (or `BIOA_BLOG_PREVIEW_PENDING=1` locally) the 29 pending articles are listed after the 9 approved; pending pages and list pages 2-6 noindex, out of sitemap; `rewriteApproved` untouched. Production lists 9.
+- Tests `tests/r28b-owner-fix.mjs`, `tests/r28b-blog-preview-list.mjs` (CI: production mode); R27 chat contracts and P1/P2 updated. Docs `docs/r28b/`.
 ## R28 — BLOG 29 REWRITE, MOBILE ICON, CMS SYNC, VI-FIRST CMS 2026-11-19 (CMS Preview; owner UAT pending)
 - Branch `r28/blog-icon-cms` (from R27b `52c25ac`), draft PR `zireyyyy/bioagroup#14` (CI only, do not merge). `cms-preview` = R28 head; code deployment `d478ffe7`. `main` unchanged (`9d044a7`).
 - Blog: the 29 `BLOG_PENDING_REWRITE` articles rewritten VI/EN (still noindex; owner sets `rewriteApproved` per article), synced to Sanity with `tools/cms-sync-blog.mjs` (ifRevisionID, conflict-aware). Gate `tests/r28-blog-rewrite-audit.mjs` (CI). Slug changes only proposed (`docs/r28/BLOG_29_REWRITE_REPORT.md`).
