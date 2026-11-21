@@ -2818,28 +2818,15 @@ const patchC4AShellCss = `
 
 
 const patchC4BComposerCss = `
-/* R28b CHAT-RESTORE-1 — the owner-approved C4B shell below, as one hotline link (no message box). The label takes
-   the C4B input footprint (42px, 14px left / 50px right padding, 13px Manrope); the inset green round button is the
-   approved send control. */
-.bioa-chat__composer--call{
-  text-decoration:none!important;
-  cursor:pointer!important;
-}
-.bioa-chat__call-label{
-  flex:1 1 auto!important;
-  min-width:0!important;
-  height:42px!important;
-  padding:0 50px 0 14px!important;
-  display:flex!important;
-  align-items:center!important;
-  color:var(--bioa-primary)!important;
-  font:600 13px/1 "Manrope",sans-serif;
-  white-space:nowrap!important;
-  overflow:hidden!important;
-  text-overflow:ellipsis!important;
-}
-.bioa-chat__composer--call:hover .bioa-chat__send{background:var(--bioa-dark)!important}
-.bioa-chat__composer--call:focus-visible{outline:2px solid var(--bioa-primary)!important;outline-offset:2px!important}
+/* R28d CHAT-RESTORE-2 — reply hand-off link (Zalo VI / Telegram EN, from bioa-business.mjs) inside the reply bubble,
+   and the AI notice line shown above the form only when the chat API flag is on. Composer below = approved C4B/C7. */
+.bioa-chat__handoff{display:block!important;margin-top:8px!important}
+.bioa-chat__handoff-link{display:inline-flex!important;align-items:center!important;min-height:32px!important;padding:0 14px!important;border-radius:16px!important;background:var(--bioa-primary)!important;color:#fff!important;font:600 12px/1 "Manrope",sans-serif;text-decoration:none!important}
+.bioa-chat__handoff-link:hover{background:var(--bioa-dark)!important}
+.bioa-chat__handoff-link:focus-visible{outline:2px solid var(--bioa-primary)!important;outline-offset:2px!important}
+.bioa-chat__handoff-more{display:block!important;margin-top:6px!important;font-size:11px!important;opacity:.75!important}
+.bioa-chat__notice{margin:6px 12px 0!important;font:400 11px/1.4 "Manrope",sans-serif;color:var(--bioa-primary)!important;opacity:.8!important}
+.bioa-chat__send:disabled{opacity:.55!important;cursor:wait!important}
 
 /* CHAT-C4B — one-piece composer matching the supplied input reference.
    Keep existing form markup; integrate the send control inside the same shell. */
@@ -5206,14 +5193,26 @@ function addContactLauncher($,lang){
     ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
     :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
   const intro=vi
-    ?'Chào bạn 👋 Đây là Khánh Như từ Bio-A Group. Khung chat này chưa nhận tin nhắn trực tuyến. Để được tư vấn về công thức, MOQ, bao bì và tiến độ sản xuất, bạn vui lòng nhắn Zalo ở trên hoặc gọi hotline bên dưới.'
-    :'Hi 👋 This is Khánh Như from Bio-A Group. This chat does not take messages online yet. For advice on formula, MOQ, packaging and production timeline, please message us on Zalo above or call the hotline below.';
-  // R27: no backend receives chat messages (AI LIVE is OFF, docs/CHAT_AI_INTEGRATION.md); the old message box only
-  // simulated a conversation. R28b CHAT-RESTORE-1 (owner): R27 split the bottom row into two buttons, repeating the
-  // Zalo channel already in the icon row. The owner-approved CHAT-C4B one-piece shell (44px pill, inset green round
-  // button) is restored; it now carries the single hotline action, Zalo stays in the channel row. No message box.
+    ?'Chào bạn 👋 Đây là Khánh Như từ Bio-A Group. Bạn có thể hỏi nhanh về dịch vụ của Bio-A Group tại đây. Để trao đổi dự án cụ thể (công thức, MOQ, bao bì, tiến độ), vui lòng nhắn Zalo ở trên.'
+    :'Hi 👋 This is Khánh Như from Bio-A Group. You can ask quick questions about Bio-A Group services here. To discuss a specific project (formula, MOQ, packaging, timeline), please message us on Telegram above.';
+  // R28d CHAT-RESTORE-2 (owner FAIL on the R28b hotline link, 2026-11-21): the owner-approved CHAT-C4B/C7 form is
+  // restored (text input + inset green send button). Without the chat API flag the reply is local and honest: the
+  // message is NOT sent to Bio-A and the visitor is pointed to Zalo (VI) / Telegram (EN). With BIOA_CHAT_UI_API=1 at
+  // build time the form posts to /api/chat (lib/chat/gateway.js); any error falls back to the same honest reply.
+  // Reply text is always inserted with textContent; channel links come only from bioa-business.mjs.
+  const chatApi=process.env.BIOA_CHAT_UI_API==='1';
+  const preferred=vi?{href:company.zalo,label:'Nhắn Zalo cho Bio-A'}:{href:company.telegram,label:'Message Bio-A on Telegram'};
+  const previewReply=vi
+    ?'Cảm ơn bạn. Khung chat này chưa kết nối tư vấn viên trực tuyến nên tin nhắn chưa được gửi tới Bio-A Group. Vui lòng nhắn Zalo hoặc gọi '+company.phone+' để được hỗ trợ ngay.'
+    :'Thank you. This chat is not yet connected to a live advisor, so your message has not been sent to Bio-A Group. Please message us on Telegram or Zalo, or call '+company.phoneIntl+' for immediate help.';
+  const errorReply=vi
+    ?'Xin lỗi, trợ lý hiện chưa trả lời được. Tin nhắn chưa được gửi tới Bio-A Group. Vui lòng nhắn Zalo hoặc gọi '+company.phone+' để được hỗ trợ.'
+    :'Sorry, the assistant cannot answer right now. Your message has not been sent to Bio-A Group. Please message us on Telegram or Zalo, or call '+company.phoneIntl+'.';
+  const aiNotice=vi
+    ?'Trợ lý tự động chỉ giải đáp thông tin chung về Bio-A Group. Vui lòng không gửi thông tin cá nhân hoặc nhạy cảm.'
+    :'The automated assistant only answers general questions about Bio-A Group. Please do not send personal or sensitive information.';
 
-  $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
+  $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab"${chatApi?' data-chat-api="1"':''}>
     <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">
       <div class="bioa-chat__teaser-avatar"><img src="${avatar}" alt=""></div>
       <div class="bioa-chat__teaser-copy">
@@ -5252,10 +5251,13 @@ function addContactLauncher($,lang){
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
 
-      <a class="bioa-chat__composer bioa-chat__composer--call bioa-chat__cta" href="${company.phoneHref}">
-        <span class="bioa-chat__call-label">${vi?'Gọi hotline ':'Call '}${vi?company.phone:company.phoneIntl}</span>
-        <span class="bioa-chat__send" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
-      </a>
+${chatApi?`<p class="bioa-chat__notice">${aiNotice}</p>`:''}
+      <form class="bioa-chat__composer">
+        <input class="bioa-chat__input" type="text" autocomplete="off" maxlength="1000" placeholder="${vi?'Nhập tin nhắn...':'Type your message...'}" aria-label="${vi?'Nhập tin nhắn':'Type your message'}">
+        <button class="bioa-chat__send" type="submit" aria-label="${vi?'Gửi':'Send'}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </button>
+      </form>
     </div>
 
     <button class="bioa-contact-fab__toggle" type="button" aria-expanded="false" aria-label="${vi?'Mở tư vấn':'Open support'}">
@@ -5269,9 +5271,20 @@ function addContactLauncher($,lang){
     var collapse=root.querySelector('.bioa-chat__collapse');
     var teaser=root.querySelector('.bioa-chat__teaser');
     var teaserClose=root.querySelector('.bioa-chat__teaser-close');
-    var input=root.querySelector('.bioa-chat__cta');
+    var form=root.querySelector('.bioa-chat__composer');
+    var input=root.querySelector('.bioa-chat__input');
+    var sendBtn=root.querySelector('.bioa-chat__send');
     var history=root.querySelector('.bioa-chat__history');
     var messages=root.querySelector('.bioa-chat__messages');
+    var previewReply=${JSON.stringify(previewReply)};
+    var errorReply=${JSON.stringify(errorReply)};
+    var preferred=${JSON.stringify(preferred)};
+    var otherChannels=${JSON.stringify(vi?'hoặc chọn kênh khác ở trên':'or pick another channel above')};
+    var youLabel=${JSON.stringify(vi?'Bạn':'You')};
+    var locale=${JSON.stringify(vi?'vi':'en')};
+    var useApi=root.getAttribute('data-chat-api')==='1';
+    var busy=false;
+    var sessionId=(function(){var a=new Uint8Array(12);if(window.crypto&&crypto.getRandomValues)crypto.getRandomValues(a);else for(var i=0;i<a.length;i++)a[i]=Math.random()*256|0;return 'c'+Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2)}).join('')})();
     var avatar=${JSON.stringify(avatar)};
     var agentName='Khánh Như Bio-A';
     var teaserDismissed=false;
@@ -5336,6 +5349,56 @@ function addContactLauncher($,lang){
       hideTeaser();
     });
     if(collapse)collapse.addEventListener('click',close);
+
+    function addUser(text){
+      var user=document.createElement('div');
+      user.className='bioa-chat__msg bioa-chat__msg--user';
+      var bubble=document.createElement('div');bubble.className='bioa-chat__bubble';
+      var who=document.createElement('strong');who.textContent=youLabel;
+      bubble.appendChild(who);bubble.appendChild(document.createTextNode(text));
+      user.appendChild(bubble);messages.appendChild(user);
+    }
+    function addReply(text,handoff){
+      var reply=document.createElement('div');
+      reply.className='bioa-chat__msg';
+      var av=document.createElement('div');av.className='bioa-chat__msg-avatar';
+      var img=document.createElement('img');img.src=avatar;img.alt='';av.appendChild(img);
+      var bubble=document.createElement('div');bubble.className='bioa-chat__bubble';
+      var who=document.createElement('strong');who.textContent=agentName;
+      bubble.appendChild(who);bubble.appendChild(document.createTextNode(text));
+      if(handoff){
+        var row=document.createElement('span');row.className='bioa-chat__handoff';
+        var a=document.createElement('a');a.className='bioa-chat__handoff-link';a.href=preferred.href;a.target='_blank';a.rel='noopener noreferrer';a.textContent=preferred.label;
+        var more=document.createElement('span');more.className='bioa-chat__handoff-more';more.textContent=otherChannels;
+        row.appendChild(a);row.appendChild(more);bubble.appendChild(row);
+      }
+      reply.appendChild(av);reply.appendChild(bubble);messages.appendChild(reply);
+      history.scrollTop=history.scrollHeight;
+    }
+    function setBusy(v){busy=v;if(sendBtn)sendBtn.disabled=v;messages.setAttribute('aria-busy',v?'true':'false');}
+    if(form)form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=(input&&input.value||'').trim().slice(0,1000);
+      if(!v||busy)return;
+      addUser(v);
+      input.value='';
+      history.scrollTop=history.scrollHeight;
+      setBusy(true);
+      if(!useApi||typeof fetch!=='function'){
+        setTimeout(function(){addReply(previewReply,true);setBusy(false);},320);
+        return;
+      }
+      var ctl=typeof AbortController==='function'?new AbortController():null;
+      var timer=setTimeout(function(){if(ctl)ctl.abort();},16000);
+      fetch('/api/chat',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sessionId,locale:locale,message:v,website:''}),signal:ctl?ctl.signal:undefined})
+        .then(function(r){return r.json().catch(function(){return null;});})
+        .then(function(j){
+          if(j&&j.ok===true&&typeof j.reply==='string'&&j.reply.trim())addReply(j.reply.trim().slice(0,1200),j.handoff===true);
+          else addReply(errorReply,true);
+        })
+        .catch(function(){addReply(errorReply,true);})
+        .then(function(){clearTimeout(timer);setBusy(false);});
+    });
 
     document.addEventListener('click',function(e){
       if(root.classList.contains('is-open')&&!root.contains(e.target))close();

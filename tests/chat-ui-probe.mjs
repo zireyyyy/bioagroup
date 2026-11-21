@@ -41,11 +41,10 @@ for (const route of ROUTES) for (const width of WIDTHS){
     const cta = await page.evaluate(() => { const root = document.getElementById("bioa-contact-fab"); const p = root.querySelector(".bioa-contact-fab__panel").getBoundingClientRect();
       return { input: !!root.querySelector(".bioa-chat__input,form"), zalo: root.querySelectorAll(".bioa-contact-fab__panel a[href*='zalo.me']").length, links: [...root.querySelectorAll(".bioa-chat__cta")].map(a => { const r = a.getBoundingClientRect(); return { href: a.getAttribute("href"), w: r.width, inside: r.left >= p.left - 0.5 && r.right <= p.right + 0.5, clipped: a.scrollWidth > a.clientWidth + 1 }; }),
         intro: (root.querySelector(".bioa-chat__msg--intro .bioa-chat__bubble") || {}).textContent || "" }; });
-    if (cta.input) fail.push("message box still present");
-    // R28b CHAT-RESTORE-1 (owner): one approved bottom shell = hotline link; Zalo once (channel icon row).
-    if (cta.links.length !== 1 || !/^tel:\+84/.test(cta.links[0].href) || cta.zalo !== 1) fail.push("contact row " + JSON.stringify(cta));
-    if (cta.links.some(l => !l.inside || l.clipped || l.w < 60)) fail.push("CTA clipped or outside panel " + JSON.stringify(cta.links));
-    if (!/chưa nhận tin nhắn trực tuyến|does not take messages online/.test(cta.intro)) fail.push("intro does not say the chat is offline: " + cta.intro.slice(0, 80));
+    // R28d CHAT-RESTORE-2 (owner): the approved C4B/C7 form is back; no tel: link in the composer; Zalo once (icon row).
+    if (!cta.input) fail.push("approved message form missing");
+    if (cta.links.length || cta.zalo !== 1) fail.push("contact row " + JSON.stringify(cta));
+    if (!/Zalo|Telegram/.test(cta.intro)) fail.push("intro does not point to Zalo/Telegram: " + cta.intro.slice(0, 80));
     if (process.env.CHAT_SHOTS) await page.screenshot({ path: join(OUT, "chat-shots", (route.replace(/\W+/g, "_") || "_") + "-" + width + ".png") });
     await page.locator("#bioa-contact-fab .bioa-chat__collapse").click(); await page.waitForTimeout(300);
     if (await page.evaluate(() => document.getElementById("bioa-contact-fab").classList.contains("is-open"))) fail.push("panel did not close");

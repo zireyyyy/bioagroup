@@ -116,8 +116,9 @@ async function chat(url, w, how = "click", measureOnly = false) {
   const tag = `chat ${url.replace(/^https?:\/\/[^/]+/, "")} @${w} ${how}`;
   ok(g.open, `${tag} did not open`);
   if (g.open) {
-    ok(g.composerTag === "A" && /^tel:\+?\d+$/.test(g.composerHref || ""), `${tag} bottom shell is not the hotline link (${g.composerTag} ${g.composerHref})`);
-    ok(g.inputs === 0, `${tag} has a message input/form`);
+    // R28d CHAT-RESTORE-2 (owner override): the bottom shell is the approved C4B/C7 form again (input + send), not a tel: link.
+    ok(g.composerTag === "FORM" && !g.composerHref, `${tag} bottom shell is not the approved form (${g.composerTag} ${g.composerHref})`);
+    ok(g.inputs === 2, `${tag} expected one form + one text input, got ${g.inputs}`);
     ok(g.zaloLinks === 1, `${tag} Zalo appears ${g.zaloLinks}x in the panel (expected once, in the icon row)`);
     ok(g.composer && close(g.composer.h, 44), `${tag} bottom shell height ${g.composer?.h} != approved 44px`);
     ok(g.send && g.composer && g.send.x + g.send.w <= g.composer.x + g.composer.w + 0.5 && close(g.send.w, 34), `${tag} round button not inset in the shell`);
@@ -146,7 +147,7 @@ for (const route of ["/dich-vu-khac/", "/en/dich-vu-khac/", "/", "/en/blog/"]) f
   if (chatRef && (w === 375 || w === 1440 || w === 834) && g.open) {
     const a = await chat(chatRef + route, w, "click", true);
     for (const k of ["panel", "head", "channels", "history"]) ok(a[k] && close(g[k].w, a[k].w) && close(g[k].h, a[k].h) && close(g[k].x, a[k].x) && close(g[k].y, a[k].y), `chat ${route} @${w} ${k} differs from approved: ${JSON.stringify(g[k])} vs ${JSON.stringify(a[k])}`);
-    ok(a.composer && close(g.composer.h, a.composer.h, 6) && close(g.composer.w, a.composer.w, 1), `chat ${route} @${w} bottom shell differs from approved: ${JSON.stringify(g.composer)} vs ${JSON.stringify(a.composer)}`);
+    ok(a.composer && close(g.composer.h, a.composer.h, 1) && close(g.composer.w, a.composer.w, 1) && close(g.composer.y, a.composer.y, 1) && g.send && a.send && close(g.send.x, a.send.x, 1) && close(g.send.w, a.send.w, 1), `chat ${route} @${w} bottom shell differs from approved: ${JSON.stringify(g.composer)} vs ${JSON.stringify(a.composer)}`);
   }
 }
 for (const w of [375, 390]) await chat(base + "/dich-vu-khac/", w, "tap");

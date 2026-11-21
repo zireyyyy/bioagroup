@@ -103,13 +103,13 @@ for (const [route, w] of [["/", 390], ["/en/", 1440]]) {
   await page.locator(".bioa-contact-fab__toggle").click();
   await page.waitForTimeout(600);
   const r = await page.evaluate(() => ({
-    input: !!document.querySelector(".bioa-chat__input"),
+    input: !!document.querySelector("form.bioa-chat__composer .bioa-chat__input"),
     zalo: document.querySelectorAll("#bioa-contact-fab a[href*='zalo.me']").length,
     ctas: [...document.querySelectorAll(".bioa-chat__cta")].map(a => ({ href: a.getAttribute("href"), text: a.textContent.trim(), w: Math.round(a.getBoundingClientRect().width) })),
     intro: document.querySelector(".bioa-chat__msg--intro .bioa-chat__bubble")?.textContent.trim().slice(0, 90)
   }));
-  // R28b CHAT-RESTORE-1 (owner): the approved one-piece shell holds the hotline; Zalo stays once, in the icon row.
-  const ok = !r.input && r.ctas.length === 1 && /^tel:\+84/.test(r.ctas[0].href) && r.zalo === 1 && r.ctas.every(c => c.w > 60);
+  // R28d CHAT-RESTORE-2 (owner): the approved C4B/C7 form (no tel: link in the composer); Zalo once, in the icon row.
+  const ok = r.input && r.ctas.length === 0 && r.zalo === 1;
   record(ok, `chat CTA ${route} @${w}`, JSON.stringify(r));
   await ctx.close();
 }

@@ -32,9 +32,10 @@ for (const p of real) {
   for (const re of BANNED_TEXT) { const m = text.match(re); if (m && !(/serum đặc trị/i.test(m[0]) && /noindex/.test(robots))) fail(p.route, "banned text: " + m[0]); }
   if (p.route === "/" || p.route === "/en/") if ($(".block-reviews").length) fail(p.route, "Home still renders a reviews/testimonial block");
   $("img[alt]").each((_, e) => { const a = ($(e).attr("alt") || "").trim().toLowerCase(); if (BAD_ALTS.has(a)) fail(p.route, "misleading or file-name alt: " + a); });
-  if ($(".bioa-chat__input,form.bioa-chat__composer").length) fail(p.route, "chat still shows a message box that sends nothing");
-  // R28b CHAT-RESTORE-1 (owner): one bottom shell = hotline link; Zalo only once, in the channel icon row.
-  if ($("#bioa-contact-fab").length && ($(".bioa-chat__cta").length !== 1 || !/^tel:/.test($(".bioa-chat__cta").attr("href") || "") || $("#bioa-contact-fab a[href*='zalo.me']").length !== 1)) fail(p.route, "chat contact row: expected one hotline shell and Zalo once");
+  // R28d CHAT-RESTORE-2 (owner override of R27/R28b): the approved CHAT-C4B/C7 form is back (input + send button);
+  // its local reply says honestly that nothing was sent. No tel: link in the composer; Zalo only once (icon row).
+  if ($("#bioa-contact-fab").length && ($("form.bioa-chat__composer input.bioa-chat__input").length !== 1 || $("form.bioa-chat__composer button.bioa-chat__send[type=submit]").length !== 1 || $(".bioa-chat__composer[href], .bioa-chat__cta").length || $("#bioa-contact-fab a[href*='zalo.me']").length !== 1)) fail(p.route, "chat composer: expected the approved form (input + send) without a tel: link, Zalo once");
+  if ($("#bioa-contact-fab").length && !/chưa được gửi tới Bio-A Group|has not been sent to Bio-A Group/.test($("#bioa-contact-fab-js").html() || $("script").text())) fail(p.route, "chat local reply does not say the message was not sent");
 }
 // R27b: hidden surplus Footer items keep no Merywood label.
 for (const p of real) { const $ = cheerio.load(p.html); $(".bioa-footer-nav-unused").each((_, e) => { if ($(e).text().trim()) fail(p.route, "hidden Footer item still has text: " + $(e).text().trim()); }); }
