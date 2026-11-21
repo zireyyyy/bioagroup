@@ -108,7 +108,10 @@ const SCOPES = {
   // R28c (owner 2026-11-20): the 29 rewritten articles are published (robots), Blog lists and previous/next links take
   // all 38 articles, 13 articles move to a new slug and their old URL becomes a 301 redirect page. Whole-file changes
   // (old slug -> redirect page, new slug page, list pages 3-6) and sitemap/redirect-map changes are checked below.
-  R28c: [[/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'], [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"]]
+  R28c: [[/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'], [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"]],
+  // R28d CHAT-RESTORE-2 (owner FAIL 2026-11-21): the consultation popup's approved C4B/C7 form is back (markup, chat
+  // script, its CSS in the Home/shared shell); intro + local reply wording; hand-off link styles. Chat owner only.
+  R28d: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"], [/\.html$/, "#bioa-contact-fab"]]
 };
 const R28C_OLD = Object.keys(R28C_RENAMES), R28C_NEW = Object.values(R28C_RENAMES);
 // R28c whole-file allowances: a renamed article's old page became a redirect page to its new URL; a new-slug page; a
