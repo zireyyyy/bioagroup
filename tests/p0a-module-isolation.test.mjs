@@ -75,7 +75,9 @@ const APPROVED = [
   { sha: "2c29e08ca2743252257bcd183f61254fa2ef92c9", phase: "R28b", files: ["bioa-home-refine.mjs"] },
   { sha: "644c2a4075affb44055bddbf84d2a8e1c9abb181", phase: "R28b", files: ["bioa-blog-refine.mjs"] },
   // R28c (owner 2026-11-20): the 29 rewritten Blog articles published, 13 renamed with 301 (Blog owner). Scope: R28c.
-  { sha: "ddcbb9c7bc692a3e79842effd58c8ba76e3e7353", phase: "R28c", files: ["bioa-blog-refine.mjs"] }
+  { sha: "ddcbb9c7bc692a3e79842effd58c8ba76e3e7353", phase: "R28c", files: ["bioa-blog-refine.mjs"] },
+  // R28d-A (owner FAIL 2026-11-21): CHAT-RESTORE-2, the approved CHAT-C4B/C7 form back in the chat owner. Scope: R28d.
+  { sha: "6ef278f1ab0fbce126febf78d9fc6b7f73195cac", phase: "R28d", files: ["bioa-home-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
