@@ -62,6 +62,8 @@ export async function handleDocumentEvent({ id, store, provider, triggerBuild, n
     hard.push(...v.hard.map((m) => t.key + ": " + m));
     review.push(...v.soft.map((m) => t.key + ": " + m));
   }
+  // R28d: a machine-translated job posting is never published as final; the owner reviews the EN first.
+  if (doc._type === "career") review.push("tin tuyển dụng: Owner cần xem lại bản EN");
   if (hard.length) {
     const i18n = { ...(doc.i18n || {}), status: STATUS.FAILED, lastError: "Bản dịch không đạt kiểm tra cấu trúc: " + hard.slice(0, 3).join("; "), failedHash: p.viHash, failedAt: now(), resyncRequest: null };
     const r = await store.patch(baseId, doc._rev, { set: { i18n } });

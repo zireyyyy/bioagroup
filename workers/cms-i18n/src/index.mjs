@@ -4,9 +4,12 @@
 //
 // Secrets (wrangler secret put, never in code): SANITY_WRITE_TOKEN (Editor robot token, dataset production),
 // SANITY_WEBHOOK_SECRET, PREVIEW_DEPLOY_HOOK_URL, and ANTHROPIC_API_KEY only if I18N_PROVIDER = "anthropic".
-// Vars: I18N_PROVIDER (none | workers-ai | anthropic), I18N_MODEL (optional).
+// Vars: I18N_PROVIDER (none | workers-ai | anthropic), I18N_MODEL (optional), I18N_COST_GATE ("verified" only after the
+// owner checked the Workers plan and quota, docs/r28d/COST_AND_SECURITY.md), I18N_DAILY_NEURONS (<= 6000).
+// Bindings for workers-ai: [ai] AI, [[d1_databases]] BIOA_AI_BUDGET_DB (shared budget table with the chat, flow "i18n").
 import { handleDocumentEvent, sanityStore, verifySanitySignature } from "../../../cms/i18n/orchestrate.mjs";
 import { createProvider } from "../../../cms/i18n/providers.mjs";
+import { d1Budget } from "../../../lib/chat/budget.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -19,7 +22,8 @@ export default {
     if (!id) return new Response("Bad request", { status: 400 });
     const store = sanityStore({ projectId: env.SANITY_PROJECT_ID || "hfmu7ifg", dataset: env.SANITY_DATASET || "production", token: env.SANITY_WRITE_TOKEN });
     let provider;
-    try { provider = createProvider(env.I18N_PROVIDER || "none", { env }); } catch { provider = createProvider("none"); }
+    const budget = env.BIOA_AI_BUDGET_DB ? d1Budget(env.BIOA_AI_BUDGET_DB, { flow: "i18n", cap: Number(env.I18N_DAILY_NEURONS) || 3000 }) : null;
+    try { provider = createProvider(env.I18N_PROVIDER || "none", { env, budget }); } catch { provider = createProvider("none"); }
     const triggerBuild = async () => {
       const r = await fetch(env.PREVIEW_DEPLOY_HOOK_URL, { method: "POST" });
       // 304 = Cloudflare already has a queued build for the branch (deduplicated): not an error.
