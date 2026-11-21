@@ -11,6 +11,24 @@
 
 **Kết luận:** điều kiện hoàn thành "Owner chỉ sửa VI, EN tự cập nhật trên website" **chưa được chứng minh end-to-end với dịch vụ dịch thật**, nên **chưa báo hoàn thành**. Các bước kích hoạt ở mục 6.
 
+> **Cập nhật R28d (21/11/2026): dịch vụ dịch đã chọn là Cloudflare Workers AI, chi phí mục tiêu $0.**
+>
+> **Đã làm (mã nguồn):**
+> - Provider `workers-ai` dừng an toàn (fail closed) nếu thiếu `I18N_COST_GATE=verified` hoặc bộ giới hạn chi phí D1 (`lib/chat/budget.js`, luồng `i18n` ≤ 6.000 Neuron/ngày).
+> - Dịch theo từng đoạn ≤ 2.500 ký tự; trước mỗi đoạn, giữ chỗ chi phí xấu nhất.
+> - Model mặc định `@cf/google/gemma-4-26b-a4b-it`.
+> - Bài tuyển dụng luôn ở trạng thái REVIEW_REQUIRED sau khi dịch máy.
+> - Test: `tests/r28d-i18n.test.mjs`.
+>
+> **Chạy chỉ đọc ngày 21/11:** 97 tài liệu SYNCED, chưa có baseline; backfill dry run sẽ ghi 97 baseline. **Chưa ghi.**
+>
+> **Kích hoạt thật vẫn BLOCKED** (xem `docs/r28d/COST_AND_SECURITY.md` §5):
+> - xác minh gói Workers;
+> - token Sanity Editor mới;
+> - deploy Studio và Worker;
+> - chuyển webhook;
+> - E2E có bản sao lưu.
+
 ## 1. Kiểm tra hạ tầng hiện có (chỉ đọc, `evidence/r28/i18n-infra-audit.txt`)
 
 - **Schema:** VI/EN theo từng trường:

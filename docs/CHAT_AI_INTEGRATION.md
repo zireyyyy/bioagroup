@@ -1,4 +1,27 @@
-# BIO-A Chat — AI integration readiness (2026-11-10)
+# BIO-A Chat — AI integration readiness (2026-11-10; R28d update 2026-11-21)
+
+> **R28d (2026-11-21) supersedes the rows below where they differ.**
+>
+> **UI.** The owner-approved CHAT-C4B/C7 form is back (R28b's `tel:` link was an owner FAIL).
+> - Without the build flag `BIOA_CHAT_UI_API=1`, the reply stays local and honest. It always says the message was not sent and shows one hand-off link: Zalo on VI pages, Telegram on EN pages.
+> - With the flag, the form posts contract v1 to `/api/chat` and shows `reply` as text. Any error shows the honest reply instead.
+>
+> **Gateway.**
+> - `handoff_channels` gains `telegram`.
+> - New status `503 quota_exhausted`.
+> - New mode `faq`.
+>
+> **Adapters.**
+> - `faq`: deterministic, $0, no model.
+> - `workers-ai`: env `AI` binding, plus `BIOA_AI_COST_GATE=verified`, plus D1 `BIOA_AI_BUDGET_DB` (atomic daily Neuron budget, chat ≤ 3,000), plus `BIOA_CHAT_MODEL` (default `@cf/google/gemma-4-26b-a4b-it`). If any is missing: `503 misconfigured`.
+>
+> **Answer sources.** Sensitive topics (price, MOQ, lead time, contract, certification, medical, contact) and prompt-injection probes never reach the model. Model answers use only `lib/chat/knowledge.js` facts and are validated server-side.
+>
+> **Status.** Everything is OFF. Live activation is BLOCKED on the owner's plan check, legal notice and Cloudflare bindings.
+>
+> **Docs and tests.**
+> - Docs: `docs/r28d/COST_AND_SECURITY.md`, `docs/r28d/CHAT_FAQ_REVIEW.md`.
+> - Tests: `tests/r28d-chat-ai.test.mjs` (in `npm run test:chat`) and `tests/r28d-chat-restore.mjs` (browser).
 
 | Item | Status |
 |---|---|
