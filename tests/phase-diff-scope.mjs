@@ -7,6 +7,9 @@ import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import path from "node:path";
 import { load } from "cheerio";
 import { stripCyrillicJsComments, removeTraceMarkup } from "../bioa-source-hygiene.mjs";
+import { R27_PENDING, R28C_RENAMES, R28_REWRITTEN } from "./r28-rewritten-slugs.mjs";
+// The 29 R27 pending-rewrite articles under their R27 and their final (R28c) slugs.
+const R28_ALL = [...new Set([...R27_PENDING, ...R28_REWRITTEN])];
 
 const SCOPES = {
   // P1: Home bundle gains the canonical icon CSS (style#bioa-home-refine) — Home only.
@@ -69,8 +72,57 @@ const SCOPES = {
   R25CMS: [],
   // R26 SEO-HEAD-1 (2026-11-15): head only — hreflang vi/en/x-default links added next to the canonical, og:locale
   // follows the page language; sitemap.xml may only drop the noindex policy pages (checked below).
-  R26: [[/\.html$/, 'link[rel="alternate"][hreflang]'], [/\.html$/, 'meta[property="og:locale"]']]
+  R26: [[/\.html$/, 'link[rel="alternate"][hreflang]'], [/\.html$/, 'meta[property="og:locale"]']],
+  // R27 (owner one-pass cleanup 2026-11-16): F01 narrow Footer rule + F02 modal keyboard (shared style/script owners,
+  // modal dialog attributes), honest chat CTA row, F03 Home reviews block removed, Merywood MOQ figures -> project-based,
+  // scenario "sample" labels, decorative file-name alts, About temporary-image alts, Careers status copy, per-page
+  // descriptions (Cosmetics, Services, Blog page 2), Blog pending-rewrite (list/nav/robots) and the serum title claim.
+  R27: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "#bioa-contact-fab"],
+    [/\.html$/, "script:not([src])"], [/\.html$/, "#get-a-quote"],
+    [/\.html$/, 'img[alt="icon"], img[alt="talk"], img[alt="hands"], img[alt="blank"], img[alt="cert"], img[alt="whiteboxes"], img[alt=""]'],
+    [/^(en\/)?index\.html$/, ".block-reviews"], [/^(en\/)?index\.html$/, ".block-products-desctop"], [/^(en\/)?index\.html$/, ".block-products-mobile"],
+    // R27b: Home packaging carousel without food-supplement products, formats panel headings, hidden Footer surplus
+    // labels emptied, Careers role pages say "not hiring" first and are noindex.
+    [/^(en\/)?index\.html$/, ".formats__panel-title"], [/\.html$/, ".bioa-footer-nav-unused"],
+    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, '.mwc-intro, meta[name="robots"]'],
+    [/^(en\/)?(contract-manufacturing-cosmetics|dich-vu-khac)\/index\.html$/, ".block-reviews"],
+    [/^(en\/)?(contract-manufacturing-cosmetics|dich-vu-khac|blog\/page\/\d+)\/index\.html$/, 'meta[name="description"], meta[property="og:description"], meta[name="twitter:description"]'],
+    [/^(en\/)?about\/index\.html$/, ".mwa-hero img, .mwa-team__media img"],
+    [/^(tuyen-dung|en\/careers)\/index\.html$/, ".mwc-roles__eyebrow, .mwc-roles__sub, .mwc-hero3__scroll, .mwc-card__loc"],
+    [/^(tuyen-dung|en\/careers)\/[a-z0-9-]+\/index\.html$/, ".mwc-pill"],
+    [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"],
+    [/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'],
+    [/^(en\/)?blog\/dia-chi-gia-cong-cac-loai-serum-dac-tri-dat-chuan\/index\.html$/, 'title, meta[property="og:title"], meta[name="twitter:title"], h1, img[alt^="Gia Công Serum"], a.btp-share__link[href^="mailto:"]']],
+  // R28 (owner master prompt 2026-11-19): ICON-LIST-1 (Mobile process-list BIO-A slot) + CHAT-TEASER-M1 (Mobile teaser
+  // auto-hide) in the Home/shared owners; BLOG-REWRITE of the 29 noindex pending articles (head, article body, JSON-LD,
+  // share links); TITLECASE-ACRONYM (SPF/UV/UVA/TP.HCM kept upper case in VI headings, also in 2 approved articles).
+  // The CMS content stamp _bioa-cms.json is checked below. Pending articles stay noindex and out of the sitemap.
+  R28: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"],
+    [new RegExp("^(en\\/)?blog\\/(" + R28_ALL.join("|") + ")\\/index\\.html$"),
+      'title, meta[name="description"], meta[property^="og:"], meta[name^="twitter:"], script[type="application/ld+json"], main, a.btp-share__link'],
+    [/^blog\/(10-tieu-chi-quan-trong-cac-boss-can-luu-y-khi-gia-cong-kem-chong-nang|dia-chi-gia-cong-san-xuat-my-pham-uy-tin-chat-luong-tai-tphcm)\/index\.html$/, "h1, h2, h3, .bb-toc"]],
+  // R28b (owner fix after the R28 Preview review): SERVICE-CARD-ICON-1/-SPACE-1 (Mobile "Dịch Vụ Bio-A Group" card
+  // CSS in the Home owner) and CHAT-RESTORE-1 (consultation popup bottom row + Esc). BLOG-PREVIEW-LIST is off in this
+  // default (Production) build, so no Blog list, sitemap or article may change here.
+  R28b: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"], [/\.html$/, "#bioa-contact-fab"]],
+  // R28c (owner 2026-11-20): the 29 rewritten articles are published (robots), Blog lists and previous/next links take
+  // all 38 articles, 13 articles move to a new slug and their old URL becomes a 301 redirect page. Whole-file changes
+  // (old slug -> redirect page, new slug page, list pages 3-6) and sitemap/redirect-map changes are checked below.
+  R28c: [[/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'], [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"]],
+  // R28d CHAT-RESTORE-2 (owner FAIL 2026-11-21): the consultation popup's approved C4B/C7 form is back (markup, chat
+  // script, its CSS in the Home/shared shell); intro + local reply wording; hand-off link styles. Chat owner only.
+  R28d: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"], [/\.html$/, "#bioa-contact-fab"]]
 };
+const R28C_OLD = Object.keys(R28C_RENAMES), R28C_NEW = Object.values(R28C_RENAMES);
+// R28c whole-file allowances: a renamed article's old page became a redirect page to its new URL; a new-slug page; a
+// Blog list page (3-6 were redirect pages while their posts were pending).
+function r28cFile(f, y){
+  const m = f.match(/^(en\/)?blog\/([a-z0-9-]+)\/index\.html$/), pre = f.startsWith("en/") ? "/en" : "";
+  if (m && R28C_RENAMES[m[2]] && y && y.includes('bioa-legacy-redirect" content="' + pre + "/blog/" + R28C_RENAMES[m[2]] + '/"')) return "old slug -> 301 redirect page";
+  if (m && R28C_NEW.includes(m[2])) return "article under its new slug";
+  if (/^(en\/)?blog\/page\/[2-6]\/index\.html$/.test(f)) return "Blog list page";
+  return null;
+}
 // R24FD CAREERS-1: the Careers pages that may be added/replaced, and the stub targets they may get.
 const CAREER_PAGE = /^(tuyen-dung\/([a-z0-9-]+\/)?|en\/careers\/([a-z0-9-]+\/)?)index\.html$/;
 const CAREER_STUB = /^(en\/)?(careers\/([a-z0-9-]+\/)?|tuyen-dung\/([a-z0-9-]+\/)?|tuyen-dung-rd\/|tuyen-dung-nv-sales\/)index\.html$/;
@@ -83,11 +135,27 @@ const list = d => { const out = []; (function w(x){ for (const f of readdirSync(
 const a = list(base), b = list("dist");
 const fails = [], changed = [];
 for (const f of new Set([...a, ...b])){
+  if (phases.includes("R28c")){
+    const inA = a.includes(f), inB = b.includes(f);
+    if (inA && inB && readFileSync(path.join(base, f)).equals(readFileSync(path.join("dist", f)))) continue;
+    const why = f.endsWith(".html") ? r28cFile(f, inB ? readFileSync(path.join("dist", f), "utf8") : null) : (f === "_bioa-redirects.json" ? "redirect map" : null);
+    if (why && inB){ changed.push(f + " [R28c " + why + "]"); continue; }
+    if (f === "sitemap.xml" && inA && inB){
+      const urls = z => new Set([...readFileSync(z, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+      const ua = urls(path.join(base, f)), ub = urls(path.join("dist", f)), diff = [...ua].filter(u => !ub.has(u)).concat([...ub].filter(u => !ua.has(u)));
+      const ok = u => { const m = u.match(/bioagroup\.vn\/(?:en\/)?blog\/([a-z0-9-]+)\/$/); return (m && R28_ALL.includes(m[1])) || /bioagroup\.vn\/(en\/)?blog\/page\/[2-6]\/$/.test(u)
+        || (phases.includes("R27") && (/bioagroup\.vn\/(en\/)?(privacy-policy|cookie-policy)\/$/.test(u) || /bioagroup\.vn\/(tuyen-dung|en\/careers)\/[a-z0-9-]+\/$/.test(u)))
+        || (phases.includes("R24FD") && /bioagroup\.vn\/(tuyen-dung|en\/careers)\//.test(u)); };
+      if (diff.some(u => !ok(u))) fails.push(f + ": sitemap changed beyond R28c Blog URLs: " + diff.filter(u => !ok(u)).slice(0, 5).join(" "));
+      else changed.push(f + " [R28c " + diff.length + " Blog URL changes]");
+      continue; }
+  }
   if (!a.includes(f) || !b.includes(f)){ const legacyStub = phases.includes("R1") && !a.includes(f) && /bioa-legacy-redirect/.test(readFileSync(path.join("dist", f), "utf8"));
     const vendorFile = phases.includes("R12") && !a.includes(f) && f.startsWith("assets/vendor/");
     const fd = phases.includes("R24FD") && !a.includes(f) && (/^assets\/runtime\/(merywood-modal\.js|merywood-input\.js|cf7-styles\.css)$/.test(f)
       || CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(readFileSync(path.join("dist", f), "utf8"))));
-    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f))) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
+    if (!legacyStub && !vendorFile && !fd && !(phases.includes("P4") && f === "sitemap.xml" && !a.includes(f)) && !(phases.includes("R27") && f === "_bioa-redirects.json" && !a.includes(f))
+      && !(phases.includes("R28") && f === "_bioa-cms.json" && !a.includes(f) && readFileSync(path.join("dist", f), "utf8") === '{\n "mode": "off"\n}\n')) fails.push(f + ": file added/removed"); else changed.push(f + " [added]"); continue; }
   const x = readFileSync(path.join(base, f)), y = readFileSync(path.join("dist", f));
   if (x.equals(y)) continue;
   if (phases.includes("R24FD") && f === "sitemap.xml"){ // only Careers URLs may be added
@@ -97,6 +165,17 @@ for (const f of new Set([...a, ...b])){
     continue; }
   if (phases.includes("R24FD") && f.endsWith(".html") && (CAREER_PAGE.test(f) || (CAREER_STUB.test(f) && careerTarget(y.toString("utf8"))))){
     changed.push(f + " [Careers page/stub]"); continue; }
+  if (phases.includes("R27") && f === "sitemap.xml"){ // R27: only pending-rewrite Blog articles and retired Blog index pages may disappear
+    const urls = z => new Set([...z.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
+    const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));
+    const pend = new Set(R28_ALL);
+    const ok = u => { const m = u.match(/bioagroup\.vn\/(?:en\/)?blog\/([a-z0-9-]+)\/$/); return (m && pend.has(m[1])) || /bioagroup\.vn\/(en\/)?blog\/page\/[3-6]\/$/.test(u) || /bioagroup\.vn\/(en\/)?(privacy-policy|cookie-policy)\/$/.test(u) || /bioagroup\.vn\/(tuyen-dung|en\/careers)\/[a-z0-9-]+\/$/.test(u); };
+    if (added.length || gone.some(u => !ok(u))) fails.push(f + ": sitemap changed beyond R27 Blog pending/retired pages");
+    else changed.push(f + " [-" + gone.length + " pending/retired Blog URLs]");
+    continue; }
+  if (phases.includes("R27") && f === "_bioa-redirects.json"){ changed.push(f + " [R27b 301 map]"); continue; }
+  if (phases.includes("R27") && /^(en\/)?blog\/page\/[3-6]\/index\.html$/.test(f) && new RegExp('bioa-legacy-redirect" content="' + (f.startsWith("en/") ? "/en" : "") + '/blog/"').test(y.toString("utf8"))){
+    changed.push(f + " [retired Blog index page -> redirect to Blog home]"); continue; }
   if (phases.includes("R26") && f === "sitemap.xml"){ // R26: only the noindex policy pages may disappear
     const urls = s => new Set([...s.toString("utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]));
     const ua = urls(x), ub = urls(y), gone = [...ua].filter(u => !ub.has(u)), added = [...ub].filter(u => !ua.has(u));

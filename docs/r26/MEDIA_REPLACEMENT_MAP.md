@@ -22,9 +22,9 @@ Một vị trí có thể có nhiều khung: một ảnh tải lên được c�
 | 7 | Ảnh 7 — Bao Bì & Nhận Diện · Quy Trình Hợp Tác | tablet, máy tính: 0.94:1<br>điện thoại: 0.94:1 | ảnh tạm (nguồn Merywood) | 665px ngang | P2 |
 | 8 | Ảnh 8 — Hồ Sơ Sản Phẩm · Quy Trình Hợp Tác | tablet, máy tính: 0.94:1<br>điện thoại: 0.94:1 | ảnh tạm (nguồn Merywood) | 665px ngang | P2 |
 | 9 | Ảnh 9 — Sản Xuất & Bàn Giao · Quy Trình Hợp Tác | tablet, máy tính: 0.94:1<br>điện thoại: 0.94:1 | ảnh tạm (nguồn Merywood) | 665px ngang | P2 |
-| 10 | Ảnh 10 — Tuýp & chai chân không · Vỉ Định Hình | tablet, máy tính: 0.97:1<br>điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 1000px ngang | P2 |
-| 11 | Ảnh 11 — Hũ mỹ phẩm · Vỉ Định Hình | tablet, máy tính: 1.00:1<br>điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 1000px ngang | P2 |
-| 12 | Ảnh 12 — Vỉ định hình · Vỉ Định Hình | tablet, máy tính: 1.07:1<br>điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 1000px ngang | P2 |
+| 10 | Ảnh 10 — Tuýp & Chai Chân Không | tablet, máy tính: 0.97:1<br>điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 1000px ngang | P2 |
+| 11 | Ảnh 11 — Hũ Mỹ Phẩm · Tuýp & Chai Chân Không | tablet, máy tính: 1.00:1<br>điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 1000px ngang | P2 |
+| 12 | Ảnh 12 — Gói Sachet · Tuýp & Chai Chân Không | tablet, máy tính: 1.07:1 | ảnh tạm (nguồn Merywood) | 1000px ngang | P2 |
 | 13 | Ảnh 13 — Gói Sachet · Giải Pháp Bao Bì Phù Hợp Sản Phẩm | điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 600px ngang | P2 |
 | 14 | Ảnh 14 — Túi Doypack · Giải Pháp Bao Bì Phù Hợp Sản Phẩm | điện thoại: 0.97:1 | ảnh tạm (nguồn Merywood) | 600px ngang | P2 |
 | 15 | Ảnh 15 — Tư Vấn & Lập Kế Hoạch · Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói | máy tính, tablet, điện thoại: 1.07:1 | ảnh tạm (nguồn Merywood) | 1262px ngang | P2 |

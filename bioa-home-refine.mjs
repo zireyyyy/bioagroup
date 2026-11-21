@@ -5,6 +5,7 @@ const company = {
   email:BUSINESS.email,
   phone:BUSINESS.phone,
   phoneIntl:BUSINESS.phoneIntl,
+  phoneHref:BUSINESS.phoneHref,
   address:BUSINESS.addressVi,
   taxId:BUSINESS.taxId,
   whatsapp:BUSINESS.whatsapp,
@@ -2817,6 +2818,16 @@ const patchC4AShellCss = `
 
 
 const patchC4BComposerCss = `
+/* R28d CHAT-RESTORE-2 — reply hand-off link (Zalo VI / Telegram EN, from bioa-business.mjs) inside the reply bubble,
+   and the AI notice line shown above the form only when the chat API flag is on. Composer below = approved C4B/C7. */
+.bioa-chat__handoff{display:block!important;margin-top:8px!important}
+.bioa-chat__handoff-link{display:inline-flex!important;align-items:center!important;min-height:32px!important;padding:0 14px!important;border-radius:16px!important;background:var(--bioa-primary)!important;color:#fff!important;font:600 12px/1 "Manrope",sans-serif;text-decoration:none!important}
+.bioa-chat__handoff-link:hover{background:var(--bioa-dark)!important}
+.bioa-chat__handoff-link:focus-visible{outline:2px solid var(--bioa-primary)!important;outline-offset:2px!important}
+.bioa-chat__handoff-more{display:block!important;margin-top:6px!important;font-size:11px!important;opacity:.75!important}
+.bioa-chat__notice{margin:6px 12px 0!important;font:400 11px/1.4 "Manrope",sans-serif;color:var(--bioa-primary)!important;opacity:.8!important}
+.bioa-chat__send:disabled{opacity:.55!important;cursor:wait!important}
+
 /* CHAT-C4B — one-piece composer matching the supplied input reference.
    Keep existing form markup; integrate the send control inside the same shell. */
 .bioa-chat__composer{
@@ -3169,6 +3180,18 @@ const patchD4FooterHierarchyCss = `
   .footer-top__nav > ul > li:first-child > a{
     font-size:16px!important;
   }
+}
+/* R27 F01 FOOTER-NARROW — owner-requested exception to the rule above, below 375px only. The Merywood mobile grid
+   (1fr 167px, 60px column gap) needs ~338px of content width; at 312-374px CSS (e.g. a 390px phone at 125% zoom)
+   the fixed 167px "Services" column overflowed the viewport by up to 13px. Two equal shrinkable columns with a
+   24px gap keep every link visible and wrapping. 375px and wider are unchanged (owner-PASS geometry). */
+@media(max-width:374px){
+  .footer-top__menu{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    column-gap:24px!important;
+  }
+  .footer-top__nav{min-width:0!important}
+  .footer-top__nav a{overflow-wrap:break-word!important}
 }
 `;
 
@@ -3770,15 +3793,42 @@ const patchWhyChooseIconCss = `
 /* Mobile service slots use the SAME monogram class and Home-approved
    artwork dimensions. One shared owner; no route-local icon CSS. */
 @media(max-width:768px){
-  .block-how-works .step__icon:has(> img.bioa-why-icon-bioa),
-  .block-right-choice .client__icon:has(> img.bioa-why-icon-bioa){
+  /* R28 ICON-LIST-1 (owner iPhone report, /dich-vu-khac/): the service-CARD slot is handled below. In the process
+     list (.block-right-choice, one BIO-A slot among five Merywood icons) the BIO-A slot keeps the source list
+     footprint like its siblings: 30px badge, 16px artwork (monogram contained, never stretched). */
+  .block-right-choice img.bioa-why-icon-bioa{
+    width:16px!important;
+    max-width:16px!important;
+    height:16px!important;
+    max-height:16px!important;
+  }
+  /* R28b SERVICE-CARD-ICON-1 (owner iPhone report, "Dịch Vụ Bio-A Group" cards): the earlier 42px slot was
+     larger than the 37px number badge beside it and the 22x27 art nearly filled it. Restore Merywood mobile
+     source geometry: .step__icon 37x37 (= .step__number), .step__icon .icon 20x20 (monogram contained). */
+  .block-how-works .step__icon:has(> img.bioa-why-icon-bioa){
     display:flex!important;
     align-items:center!important;
     justify-content:center!important;
-    width:42px!important;
-    min-width:42px!important;
-    height:42px!important;
-    min-height:42px!important;
+    width:37px!important;
+    min-width:37px!important;
+    height:37px!important;
+    min-height:37px!important;
+  }
+  .block-how-works img.bioa-why-icon-bioa{
+    width:20px!important;
+    max-width:20px!important;
+    height:20px!important;
+    max-height:20px!important;
+  }
+  /* R28b SERVICE-CARD-SPACE-1: source min-height 421px was sized for Merywood's longer copy; BIO-A service copy is
+     3-5 lines, leaving ~140px empty. Info row takes the tallest card's content (rows 1fr/auto inside the
+     Swiper auto-height slide), so every slide stays equal height and the image keeps its source 295/315 ratio. */
+  .block-how-works .step:has(.step__icon > img.bioa-why-icon-bioa){
+    grid-template-rows:1fr auto;
+    height:100%;
+  }
+  .block-how-works .step__info:has(.step__icon > img.bioa-why-icon-bioa){
+    min-height:0;
   }
 }
 `;
@@ -4129,7 +4179,16 @@ function viTitleCaseText(value){
     'zalo':'Zalo',
     'facebook':'Facebook',
     'telegram':'Telegram',
-    'whatsapp':'WhatsApp'
+    'whatsapp':'WhatsApp',
+    // R28 TITLECASE-ACRONYM: Blog headings rendered "Spf", "Uva", "Tp.hcm", "Pet, Pp Và Pe" (also in 2 approved articles).
+    'spf':'SPF',
+    'uv':'UV',
+    'uva':'UVA',
+    'uvb':'UVB',
+    'tp.hcm':'TP.HCM',
+    'pet':'PET',
+    'pp':'PP',
+    'pe':'PE'
   };
   return String(value||'').replace(/[A-Za-zÀ-ỹĐđ][A-Za-zÀ-ỹĐđ0-9&+/.\-]*/gu,function(word){
     const key=word.toLocaleLowerCase('vi');
@@ -4476,7 +4535,8 @@ function refineFooterNavigation($,lang){
     lis.each((j,li)=>{
       if(j>col.items.length){
         // CONTENT-C1: a hidden surplus source item must not keep a Merywood link target.
-        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused').find('a').removeAttr('href');
+        // R27b: nor its Merywood supplement label (Vitamin K/E, Omega 3, Probiotics, Diabet): the hidden item stays empty.
+        $(li).attr('hidden','hidden').addClass('bioa-footer-nav-unused').find('a').removeAttr('href').text('');
       }
     });
   });
@@ -5133,15 +5193,26 @@ function addContactLauncher($,lang){
     ?'Bạn đang có ý tưởng sản phẩm? Trao đổi với Bio-A Group về công thức, MOQ và lộ trình sản xuất.'
     :'Planning a new product? Talk with Bio-A Group about formula, MOQ and production roadmap.';
   const intro=vi
-    ?'Chào bạn 👋 Tôi là Khánh Như từ Bio-A Group. Bạn đang muốn phát triển dòng mỹ phẩm nào? Tôi có thể hỗ trợ về công thức, MOQ, bao bì và tiến độ sản xuất.'
-    :'Hi 👋 I’m Khánh Như from Bio-A Group. What product line are you planning? I can help with formula, MOQ, packaging and production timeline.';
-  // Local preview reply: no backend receives chat messages yet (docs/CHAT_AI_INTEGRATION.md), so it
-  // must not claim the request was recorded; it points to the real channels instead.
+    ?'Chào bạn 👋 Đây là Khánh Như từ Bio-A Group. Bạn có thể hỏi nhanh về dịch vụ của Bio-A Group tại đây. Để trao đổi dự án cụ thể (công thức, MOQ, bao bì, tiến độ), vui lòng nhắn Zalo ở trên.'
+    :'Hi 👋 This is Khánh Như from Bio-A Group. You can ask quick questions about Bio-A Group services here. To discuss a specific project (formula, MOQ, packaging, timeline), please message us on Telegram above.';
+  // R28d CHAT-RESTORE-2 (owner FAIL on the R28b hotline link, 2026-11-21): the owner-approved CHAT-C4B/C7 form is
+  // restored (text input + inset green send button). Without the chat API flag the reply is local and honest: the
+  // message is NOT sent to Bio-A and the visitor is pointed to Zalo (VI) / Telegram (EN). With BIOA_CHAT_UI_API=1 at
+  // build time the form posts to /api/chat (lib/chat/gateway.js); any error falls back to the same honest reply.
+  // Reply text is always inserted with textContent; channel links come only from bioa-business.mjs.
+  const chatApi=process.env.BIOA_CHAT_UI_API==='1';
+  const preferred=vi?{href:company.zalo,label:'Nhắn Zalo cho Bio-A'}:{href:company.telegram,label:'Message Bio-A on Telegram'};
   const previewReply=vi
     ?'Cảm ơn bạn. Khung chat này chưa kết nối tư vấn viên trực tuyến nên tin nhắn chưa được gửi tới Bio-A Group. Vui lòng nhắn Zalo hoặc gọi '+company.phone+' để được hỗ trợ ngay.'
-    :'Thank you. This chat is not yet connected to a live advisor, so your message has not been sent to Bio-A Group. Please message us on Zalo or call '+company.phoneIntl+' for immediate help.';
+    :'Thank you. This chat is not yet connected to a live advisor, so your message has not been sent to Bio-A Group. Please message us on Telegram or Zalo, or call '+company.phoneIntl+' for immediate help.';
+  const errorReply=vi
+    ?'Xin lỗi, trợ lý hiện chưa trả lời được. Tin nhắn chưa được gửi tới Bio-A Group. Vui lòng nhắn Zalo hoặc gọi '+company.phone+' để được hỗ trợ.'
+    :'Sorry, the assistant cannot answer right now. Your message has not been sent to Bio-A Group. Please message us on Telegram or Zalo, or call '+company.phoneIntl+'.';
+  const aiNotice=vi
+    ?'Trợ lý tự động chỉ giải đáp thông tin chung về Bio-A Group. Vui lòng không gửi thông tin cá nhân hoặc nhạy cảm.'
+    :'The automated assistant only answers general questions about Bio-A Group. Please do not send personal or sensitive information.';
 
-  $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab">
+  $('body').append(`<div class="bioa-contact-fab" id="bioa-contact-fab"${chatApi?' data-chat-api="1"':''}>
     <div class="bioa-chat__teaser" role="button" tabindex="0" aria-label="${vi?'Mở tư vấn Bio-A Group':'Open Bio-A Group consultation'}">
       <div class="bioa-chat__teaser-avatar"><img src="${avatar}" alt=""></div>
       <div class="bioa-chat__teaser-copy">
@@ -5180,8 +5251,9 @@ function addContactLauncher($,lang){
         <div class="bioa-chat__messages" aria-live="polite"></div>
       </div>
 
+${chatApi?`<p class="bioa-chat__notice">${aiNotice}</p>`:''}
       <form class="bioa-chat__composer">
-        <input class="bioa-chat__input" type="text" autocomplete="off" placeholder="${vi?'Nhập tin nhắn...':'Type your message...'}">
+        <input class="bioa-chat__input" type="text" autocomplete="off" maxlength="1000" placeholder="${vi?'Nhập tin nhắn...':'Type your message...'}" aria-label="${vi?'Nhập tin nhắn':'Type your message'}">
         <button class="bioa-chat__send" type="submit" aria-label="${vi?'Gửi':'Send'}">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
         </button>
@@ -5201,9 +5273,18 @@ function addContactLauncher($,lang){
     var teaserClose=root.querySelector('.bioa-chat__teaser-close');
     var form=root.querySelector('.bioa-chat__composer');
     var input=root.querySelector('.bioa-chat__input');
+    var sendBtn=root.querySelector('.bioa-chat__send');
     var history=root.querySelector('.bioa-chat__history');
     var messages=root.querySelector('.bioa-chat__messages');
     var previewReply=${JSON.stringify(previewReply)};
+    var errorReply=${JSON.stringify(errorReply)};
+    var preferred=${JSON.stringify(preferred)};
+    var otherChannels=${JSON.stringify(vi?'hoặc chọn kênh khác ở trên':'or pick another channel above')};
+    var youLabel=${JSON.stringify(vi?'Bạn':'You')};
+    var locale=${JSON.stringify(vi?'vi':'en')};
+    var useApi=root.getAttribute('data-chat-api')==='1';
+    var busy=false;
+    var sessionId=(function(){var a=new Uint8Array(12);if(window.crypto&&crypto.getRandomValues)crypto.getRandomValues(a);else for(var i=0;i<a.length;i++)a[i]=Math.random()*256|0;return 'c'+Array.prototype.map.call(a,function(b){return ('0'+b.toString(16)).slice(-2)}).join('')})();
     var avatar=${JSON.stringify(avatar)};
     var agentName='Khánh Như Bio-A';
     var teaserDismissed=false;
@@ -5219,10 +5300,24 @@ function addContactLauncher($,lang){
       var bounds=footer.getBoundingClientRect();
       return bounds.top<window.innerHeight&&bounds.bottom>0;
     }
+    /* R28 CHAT-TEASER-M1: on Mobile the suggestion bubble covered the text being read until it was dismissed. It now
+       hides itself after 8 s or once the visitor keeps scrolling (~1/3 screen). The avatar button stays; Tablet and
+       Desktop behaviour is unchanged. */
+    var mobileTeaser=window.matchMedia&&window.matchMedia('(max-width:768px)').matches;
     function showTeaser(){
       if(teaserShown||teaserDismissed||root.classList.contains('is-open')||footerVisibleOnTablet())return;
       teaserShown=true;
       root.classList.add('is-teaser');
+      if(mobileTeaser){
+        var startY=window.scrollY;
+        var hideTimer=setTimeout(hideTeaser,8000);
+        var onReadScroll=function(){
+          if(Math.abs(window.scrollY-startY)>window.innerHeight*0.33){
+            clearTimeout(hideTimer);hideTeaser();window.removeEventListener('scroll',onReadScroll);
+          }
+        };
+        window.addEventListener('scroll',onReadScroll,{passive:true});
+      }
     }
     function open(){
       hideTeaser();
@@ -5255,29 +5350,62 @@ function addContactLauncher($,lang){
     });
     if(collapse)collapse.addEventListener('click',close);
 
-    if(form)form.addEventListener('submit',function(e){
-      e.preventDefault();
-      var v=(input&&input.value||'').trim();
-      if(!v)return;
+    function addUser(text){
       var user=document.createElement('div');
       user.className='bioa-chat__msg bioa-chat__msg--user';
-      user.innerHTML='<div class="bioa-chat__bubble"><strong>${vi?'Bạn':'You'}</strong></div>';
-      user.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(v));
-      messages.appendChild(user);
-      input.value='';
-      setTimeout(function(){
-        var reply=document.createElement('div');
-        reply.className='bioa-chat__msg';
-        reply.innerHTML='<div class="bioa-chat__msg-avatar"><img src="'+avatar+'" alt=""></div><div class="bioa-chat__bubble"><strong>'+agentName+'</strong></div>';
-        reply.querySelector('.bioa-chat__bubble').appendChild(document.createTextNode(previewReply));
-        messages.appendChild(reply);
-        history.scrollTop=history.scrollHeight;
-      },320);
+      var bubble=document.createElement('div');bubble.className='bioa-chat__bubble';
+      var who=document.createElement('strong');who.textContent=youLabel;
+      bubble.appendChild(who);bubble.appendChild(document.createTextNode(text));
+      user.appendChild(bubble);messages.appendChild(user);
+    }
+    function addReply(text,handoff){
+      var reply=document.createElement('div');
+      reply.className='bioa-chat__msg';
+      var av=document.createElement('div');av.className='bioa-chat__msg-avatar';
+      var img=document.createElement('img');img.src=avatar;img.alt='';av.appendChild(img);
+      var bubble=document.createElement('div');bubble.className='bioa-chat__bubble';
+      var who=document.createElement('strong');who.textContent=agentName;
+      bubble.appendChild(who);bubble.appendChild(document.createTextNode(text));
+      if(handoff){
+        var row=document.createElement('span');row.className='bioa-chat__handoff';
+        var a=document.createElement('a');a.className='bioa-chat__handoff-link';a.href=preferred.href;a.target='_blank';a.rel='noopener noreferrer';a.textContent=preferred.label;
+        var more=document.createElement('span');more.className='bioa-chat__handoff-more';more.textContent=otherChannels;
+        row.appendChild(a);row.appendChild(more);bubble.appendChild(row);
+      }
+      reply.appendChild(av);reply.appendChild(bubble);messages.appendChild(reply);
       history.scrollTop=history.scrollHeight;
+    }
+    function setBusy(v){busy=v;if(sendBtn)sendBtn.disabled=v;messages.setAttribute('aria-busy',v?'true':'false');}
+    if(form)form.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=(input&&input.value||'').trim().slice(0,1000);
+      if(!v||busy)return;
+      addUser(v);
+      input.value='';
+      history.scrollTop=history.scrollHeight;
+      setBusy(true);
+      if(!useApi||typeof fetch!=='function'){
+        setTimeout(function(){addReply(previewReply,true);setBusy(false);},320);
+        return;
+      }
+      var ctl=typeof AbortController==='function'?new AbortController():null;
+      var timer=setTimeout(function(){if(ctl)ctl.abort();},16000);
+      fetch('/api/chat',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:sessionId,locale:locale,message:v,website:''}),signal:ctl?ctl.signal:undefined})
+        .then(function(r){return r.json().catch(function(){return null;});})
+        .then(function(j){
+          if(j&&j.ok===true&&typeof j.reply==='string'&&j.reply.trim())addReply(j.reply.trim().slice(0,1200),j.handoff===true);
+          else addReply(errorReply,true);
+        })
+        .catch(function(){addReply(errorReply,true);})
+        .then(function(){clearTimeout(timer);setBusy(false);});
     });
 
     document.addEventListener('click',function(e){
       if(root.classList.contains('is-open')&&!root.contains(e.target))close();
+    });
+    /* R28b: Esc closes the open panel and returns focus to the avatar button (keyboard parity with the quote modal). */
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&root.classList.contains('is-open')){close();if(toggle)toggle.focus({preventScroll:true});}
     });
 
     /* Smooth Scrollbar moves content with transforms; IntersectionObserver
@@ -5444,6 +5572,73 @@ const sharedShellCss =
   patchMobileHeaderScrollCss+
   patchMobileHeaderSourceParityCss+patchWhyChooseIconCss+sourceComponentCss;
 
+
+/* R27 F02 MODAL-KEYS — the Merywood modal (runtime modal.js) only closes by click. Esc now closes the active
+   modal through the modal's own close button (same Merywood close path, timing and scroll behaviour), focus moves
+   into the dialog on open, Tab stays inside it while open, and focus returns to the control that opened it. */
+function addModalKeyboard($){
+  $('#bioa-modal-keys').remove();
+  $('.modal').each((_,el)=>{
+    const m=$(el);
+    if(!m.attr('role'))m.attr('role','dialog');
+    m.attr('aria-modal','true');
+    const vi=!String($('html').attr('lang')||'vi').startsWith('en');
+    m.find('.modal__close').attr('type','button').attr('aria-label',vi?'Đóng':'Close');
+    m.find('.wpcf7[lang]').attr('lang',vi?'vi':'en');
+    const title=m.find('.cf-modal__title,.modal__title,.title,h2,h3').first();
+    if(title.length&&!m.attr('aria-label')&&!m.attr('aria-labelledby'))m.attr('aria-label',title.text().replace(/\s+/g,' ').trim().slice(0,80)||'Bio-A Group');
+  });
+  $('body').append(`<script id="bioa-modal-keys">(function(){
+    var opener=null;
+    var FOCUSABLE='a[href],button:not([disabled]),input:not([disabled]):not([type=hidden]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+    function active(){var list=document.querySelectorAll('.modal.open');return list.length?list[list.length-1]:null;}
+    function visible(el){return !!(el.offsetWidth||el.offsetHeight||el.getClientRects().length);}
+    document.addEventListener('click',function(e){
+      var o=e.target.closest&&e.target.closest('[modal]');
+      if(!o)return;
+      opener=o;
+      var id=o.getAttribute('modal');
+      setTimeout(function(){
+        var m=document.getElementById(id);
+        if(!m||!m.classList.contains('open'))return;
+        var c=m.querySelector('.modal__close')||m;
+        if(c===m&&!m.hasAttribute('tabindex'))m.setAttribute('tabindex','-1');
+        try{c.focus({preventScroll:true});}catch(_){}
+      },160);
+    },true);
+    document.addEventListener('keydown',function(e){
+      var m=active();
+      if(!m)return;
+      if(e.key==='Escape'||e.key==='Esc'){
+        if(e.defaultPrevented||e.isComposing)return;
+        var t=e.target;
+        if(t&&t.tagName==='SELECT'&&t.matches(':focus')&&t.size>1)return;
+        var close=m.querySelector('.modal__close');
+        if(!close)return;
+        e.preventDefault();
+        close.click();
+        var back=opener;opener=null;
+        if(back&&document.contains(back)&&visible(back)){try{back.focus({preventScroll:true});}catch(_){}}
+        return;
+      }
+      if(e.key==='Tab'){
+        var f=[].filter.call(m.querySelectorAll(FOCUSABLE),visible);
+        if(!f.length)return;
+        var first=f[0],last=f[f.length-1],cur=document.activeElement;
+        if(!m.contains(cur)){e.preventDefault();first.focus();return;}
+        if(e.shiftKey&&cur===first){e.preventDefault();last.focus();}
+        else if(!e.shiftKey&&cur===last){e.preventDefault();first.focus();}
+      }
+    });
+    document.addEventListener('click',function(e){
+      var c=e.target.closest&&e.target.closest('.modal__close,.modal__shadow');
+      if(!c)return;
+      var back=opener;opener=null;
+      if(back&&document.contains(back)&&visible(back)){setTimeout(function(){try{back.focus({preventScroll:true});}catch(_){}},0);}
+    });
+  })();</script>`);
+}
+
 export function applySharedShell($,route,lang){
   $('#bioa-shared-shell').remove();
   $('head').append('<style id="bioa-shared-shell">'+sharedShellCss+patchTabletType3Css+'</style>');
@@ -5466,6 +5661,7 @@ export function applySharedShell($,route,lang){
   addMobileHeaderScroll($);
   addSharedPageReveal($,route);
   addContactLauncher($,lang);
+  addModalKeyboard($);
   normalizeViTitleCase($,lang);
 }
 
@@ -5492,5 +5688,6 @@ export function applyHomeRefinement($,route,lang){
   addHomeReveal($);
   addHomeRoadmapColdLoadSync($);
   addContactLauncher($,lang);
+  addModalKeyboard($);
   normalizeViTitleCase($,lang);
 }

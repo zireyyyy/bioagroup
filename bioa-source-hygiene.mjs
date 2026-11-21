@@ -76,6 +76,8 @@ export function removeTraceMarkup($){
   $('meta[name="generator"]').filter((_, e) => /wordpress/i.test($(e).attr("content") || "")).remove();
 }
 
+const DECORATIVE_ALTS = new Set(["icon", "talk", "hands", "blank", "cert", "whiteboxes"]);
+
 export function applySourceHygiene($, lang, label){
   $("style").each((_, e) => { const t = $(e).html(); if (t && CYR.test(t)) $(e).html(stripCyrillicCssComments(t)); });
   $("script").each((_, e) => {
@@ -85,6 +87,9 @@ export function applySourceHygiene($, lang, label){
     const t = $(e).html(); if (t && CYR.test(t)) $(e).html(stripCyrillicJsComments(t, label + " inline script"));
   });
   removeTraceMarkup($);
+  // R27 SEO/a11y: Merywood source icons carry file-name alts ("icon", "talk", "cert"...). They are decorative, so the
+  // alt is emptied (screen readers skip them); meaningful alts are untouched.
+  $("img").each((_, e) => { if (DECORATIVE_ALTS.has(($(e).attr("alt") || "").trim().toLowerCase())) $(e).attr("alt", ""); });
   $("[aria-label]").each((_, e) => { const v = $(e).attr("aria-label"); if (ARIA[v]) $(e).attr("aria-label", ARIA[v][lang === "en" ? "en" : "vi"]); });
   const left = $.html().match(/.{0,60}[Ѐ-ӿ].{0,60}/);
   if (left) throw new Error("CLEANUP-1: Cyrillic left in " + label + ": " + left[0]);

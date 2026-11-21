@@ -1,0 +1,21 @@
+# R28 VI-FIRST translator Worker. NOT DEPLOYED (owner approval pending: provider/cost, Sanity write token, webhook).
+# Deploy steps: docs/r28/VI_FIRST_CMS.md §6. No secret is ever written in this file.
+name = "bioa-cms-i18n"
+main = "src/index.mjs"
+compatibility_date = "2026-11-01"
+workers_dev = true
+preview_urls = false
+
+[vars]
+SANITY_PROJECT_ID = "hfmu7ifg"
+SANITY_DATASET = "production"
+I18N_PROVIDER = "none"
+
+# R28d: only after the owner's cost gate (docs/r28d/COST_AND_SECURITY.md) — uncomment, then set I18N_PROVIDER =
+# "workers-ai" and I18N_COST_GATE = "verified":
+# [ai]
+# binding = "AI"
+# [[d1_databases]]
+# binding = "BIOA_AI_BUDGET_DB"
+# database_name = "bioa-ai-budget"
+# database_id = "<owner creates the D1 database; id is not a secret but is filled in only at activation>"

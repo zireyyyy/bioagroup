@@ -36,24 +36,17 @@
    ]
   },
   {
-   "note": "cùng vị trí trên máy tính và điện thoại: Tuýp & chai chân không",
+   "note": "cùng vị trí trên máy tính và điện thoại: Tuýp & chai chân không (R27b: ghép theo nội dung ảnh)",
    "targets": [
     "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp#0",
-    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3_mobile.webp#0"
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp#0"
    ]
   },
   {
-   "note": "cùng vị trí trên máy tính và điện thoại: Hũ mỹ phẩm",
+   "note": "cùng vị trí trên máy tính và điện thoại: Hũ mỹ phẩm (R27b: ghép theo nội dung ảnh)",
    "targets": [
     "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2-8.webp#0",
-    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp#0"
-   ]
-  },
-  {
-   "note": "cùng vị trí trên máy tính và điện thoại: Vỉ định hình",
-   "targets": [
-    "section.block.block-products-desctop#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3-9.webp#0",
-    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp#0"
+    "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2_mobile.webp#0"
    ]
   },
   {

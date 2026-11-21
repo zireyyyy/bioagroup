@@ -56,7 +56,28 @@ const APPROVED = [
   { sha: "4d724371765bbab46dd7f3c99fde064a71629b3e", phase: "R26", files: ["functions/_middleware.js"] },
   // R27 F04 (owner 2026-11-16): WWW-APEX — in the Production environment www.bioagroup.vn 301 to the apex before any
   // other handling (tests/r27-www-apex.test.mjs); apex, Preview and hash-URL behaviour unchanged.
-  { sha: "530e1ec268bf6a727631f54104357040ffe5ca10", phase: "R27", files: ["functions/_middleware.js"] }
+  { sha: "530e1ec268bf6a727631f54104357040ffe5ca10", phase: "R27", files: ["functions/_middleware.js"] },
+  // R27 (owner one-pass cleanup 2026-11-16): F01 Footer below 375px, F02 modal keyboard, chat CTA row (Home owner);
+  // F03 reviews removal + MOQ wording (transform); scenario labels (Cosmetics/Services) + their descriptions; About
+  // image alts; Blog pending-rewrite + serum title. Scope proven by tests/phase-diff-scope.mjs R27.
+  { sha: "d93a0f0a9a856dde4b9eca0d41bd5ee3fda866f2", phase: "R27", files: ["bioa-about-refine.mjs", "bioa-blog-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs"] },
+  // R27: non-breaking space in the Home MOQ label ("Theo dự án" wrapped as "Theo dự / án" on desktop).
+  { sha: "4cb426bed2a145267730f410efa2eef2e61eb0f4", phase: "R27", files: ["bioa-transform.mjs"] },
+  // R27b (owner content review 2026-11-19): cosmetics-only packaging carousel + formats headings (transform), service
+  // paths (Cosmetics/Services), hidden Footer surplus labels emptied (Home owner), REDIRECT-301 (middleware).
+  { sha: "c3a3f0d518c4eea618a7682ccbcf28e80dc70cf9", phase: "R27", files: ["bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-services-refine.mjs", "bioa-transform.mjs", "functions/_middleware.js"] },
+  // R28 (owner master prompt 2026-11-19): Mobile process-list BIO-A icon slot, Mobile chat teaser auto-hide, VI heading
+  // acronyms (Home/shared owner); rewrite of the 29 noindex pending Blog articles (Blog data). Scope: phase-diff-scope R28.
+  { sha: "410a4ad9e66fe81f13d6f92536f662b0e6bc2f6f", phase: "R28", files: ["bioa-home-refine.mjs"] },
+  { sha: "81f0042d19260a8beda41a34848bf4da0e44d570", phase: "R28", files: ["bioa-blog-refine.mjs"] },
+  // R28b (owner fix after the R28 Preview review): Mobile service-card icon slot/spacing + consultation popup bottom row
+  // (Home/shared owner); CMS-Preview-only listing of the pending articles (Blog owner, off in Production). Scope: R28b.
+  { sha: "2c29e08ca2743252257bcd183f61254fa2ef92c9", phase: "R28b", files: ["bioa-home-refine.mjs"] },
+  { sha: "644c2a4075affb44055bddbf84d2a8e1c9abb181", phase: "R28b", files: ["bioa-blog-refine.mjs"] },
+  // R28c (owner 2026-11-20): the 29 rewritten Blog articles published, 13 renamed with 301 (Blog owner). Scope: R28c.
+  { sha: "ddcbb9c7bc692a3e79842effd58c8ba76e3e7353", phase: "R28c", files: ["bioa-blog-refine.mjs"] },
+  // R28d-A (owner FAIL 2026-11-21): CHAT-RESTORE-2, the approved CHAT-C4B/C7 form back in the chat owner. Scope: R28d.
+  { sha: "6ef278f1ab0fbce126febf78d9fc6b7f73195cac", phase: "R28d", files: ["bioa-home-refine.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 

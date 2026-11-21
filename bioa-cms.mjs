@@ -127,7 +127,9 @@ function replaceImages($, root, slots, lang, where){
       if (t.kind === "img"){
         node.attr("src", file).removeAttr("srcset").removeAttr("sizes");
         const alt = lang === "en" ? rep.altEn : rep.altVi;
-        if (alt) node.attr("alt", alt);
+        // R28 VI-FIRST: a replaced image whose EN alt is not translated yet gets an empty alt on the EN page, never the
+        // old image's description.
+        if (alt) node.attr("alt", alt); else if (lang === "en" && rep.altEn === "") node.attr("alt", "");
       } else if (t.kind === "source") node.attr("srcset", file);
       else node.attr("style", (node.attr("style") || "").split(t.url).join(file));
     }
@@ -193,13 +195,15 @@ export function applyCms($, route, lang){
 
 // ---- Data merges for the code-owned renderers (Blog, Careers, Legal) ----
 
-export function mergeCmsBlogPosts(repoPosts){
+export function mergeCmsBlogPosts(repoPosts, renames = {}){
   if (!CMS?.blog?.length) return repoPosts;
-  const cms = new Map(CMS.blog.map(p => [p.slug, p]));
+  // R28c: a Sanity post still carrying a renamed (old) slug is matched under its new slug, never listed twice.
+  const cmsBlog = CMS.blog.map(p => renames[p.slug] ? { ...p, slug: renames[p.slug] } : p);
+  const cms = new Map(cmsBlog.map(p => [p.slug, p]));
   const repoSlugs = new Set(repoPosts.map(p => p.slug));
   const merged = repoPosts.map(p => cms.get(p.slug) || p);
   const iso = d => String(d).split(".").reverse().join("-");
-  for (const post of CMS.blog.filter(p => !repoSlugs.has(p.slug)).sort((a, b) => iso(b.date).localeCompare(iso(a.date)))){
+  for (const post of cmsBlog.filter(p => !repoSlugs.has(p.slug)).sort((a, b) => iso(b.date).localeCompare(iso(a.date)))){
     const at = merged.findIndex(p => iso(p.date) <= iso(post.date));
     merged.splice(at < 0 ? merged.length : at, 0, post);
   }
