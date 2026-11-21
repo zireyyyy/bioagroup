@@ -100,9 +100,12 @@ test("17 prompt injection / system prompt probe / hotline change -> fixed reply,
   assert.equal(env.AI.calls.length, 0);
 });
 
+// AbortSignal.timeout() uses an unref'd timer: with a never-resolving fake model the event loop can empty
+// first (Node 22 in CI) and the runner cancels the suite. A ref'd timer keeps the loop alive until the abort.
+const refTimeout = ms => { const c = new AbortController(); setTimeout(() => c.abort(new DOMException("timeout", "TimeoutError")), ms); return c.signal; };
 test("18 model timeout -> 504 with hand-off channels (Zalo + Telegram)", async () => {
   const env = AIENV({ AI: { async run() { return new Promise(() => {}); } } });
-  const r = await ask("Bio-A có làm nước hoa không?", env, { deps: { timeoutSignal: () => AbortSignal.timeout(30) } });
+  const r = await ask("Bio-A có làm nước hoa không?", env, { deps: { timeoutSignal: refTimeout } });
   assert.equal(r.status, 504); assert.equal(r.body.status, "timeout");
   assert.equal(r.body.handoff_channels.telegram, "https://t.me/bioagroup"); assert.ok(r.body.handoff_channels.zalo.startsWith("https://zalo.me/"));
 });
