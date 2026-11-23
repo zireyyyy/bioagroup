@@ -85,3 +85,27 @@
 Đã chạy (chỉ đọc):
 - `tools/cms-i18n.mjs status`: 97 tài liệu, tất cả SYNCED, chưa có baseline.
 - Backfill dry run: sẽ ghi 97 baseline. **Chưa ghi.**
+
+## 5. Tiếp nối 23/11/2026 (D0 / C0)
+
+**Bản build:**
+- Build lại tại commit tiếp nối: 223 tệp, **giống hệt từng byte** `QA_EVIDENCE/dist-final-r28d` (`6889ec9`).
+- Vì vậy các cổng trình duyệt và hình ảnh của mục 1–2 (Chrome / WebKit 469/469, `r28b-owner-fix` 1090/1090, Tablet, Roadmap…) vẫn đúng cho bản này. Lần này chỉ chạy lại các cổng tĩnh / unit.
+
+| Cổng | Kết quả |
+|---|---|
+| `test:candidate` | PASS (danh tính 176 trang) |
+| `test:p0a` (determinism, module isolation) | PASS |
+| `test:responsive` | PASS |
+| `test:chat` (gateway 8 + R28d 20, gồm test 27–28 mới) | **28/28 PASS** |
+| `test:cms` (gồm `r28d-content-parity` 4 test mới) | **45/45 PASS** |
+| **`test:content`** (`r28d-content-guard`, 55 cặp VI/EN, baseline 23/11) | **PASS**; thử với lỗi cố ý chèn vào thì báo đúng 12 lỗi |
+| Middleware (host gate, hash gate, www, 301) | PASS, không đổi |
+| SEO R26, nội dung R27, Blog R28, `r28c-blog-published` | PASS, PASS, PASS, 402/402 |
+| `liveSnapshot` trên dữ liệu Sanity thật (chỉ đọc) | `waitingEn: []`, snapshot `97d6dcb9621d54a1` không đổi |
+
+**Bằng chứng:** `D:\BIOA_WORKSPACE\_reports\r28d-d0\gates\`.
+
+**Không chạy:**
+- E2E chatbot AI thật (C1 BLOCKED);
+- ghi Sanity (D1 chờ Owner).

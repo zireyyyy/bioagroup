@@ -1,4 +1,71 @@
-# R28d — Kết quả (21/11/2026)
+# R28d — Kết quả
+
+## Tiếp nối 23/11/2026: nội dung thật VI/EN + chatbot Workers Free
+
+**Quyết định Owner (không hỏi lại):**
+
+| Mục | Quyết định |
+|---|---|
+| A | OWNER PASS 5/5 |
+| B | DEFERRED: sửa VI/EN thủ công |
+| C | Chỉ Workers Free; VI → Zalo, EN → Telegram; đồng ý về nguyên tắc 8 nhóm FAQ + câu thông báo AI, với điều kiện đồng bộ thông tin nhà máy |
+| D (mới) | Kiểm nội dung thật + VI/EN |
+| Gói Workers | Free, đã xác nhận |
+
+**D0: đã kiểm (chỉ đọc).**
+- 13 cặp trang VI/EN: 3.056 mục hiển thị.
+- 38 bài Blog: 995 cặp trường.
+- 393 ô chữ CMS (Sanity = repo).
+- 9 + 38 phần SEO.
+- Kết quả: **24 mục** (7 mức H). Chi tiết `VI_EN_PARITY_AUDIT.md`.
+- Phát hiện chính:
+  - **Trang chủ EN là bản tóm tắt cũ**: Why choose (4 thẻ), We Produce (2), How we work (5), mô tả đầu trang, đoạn dòng sản phẩm. VI đã được viết dài ra nhưng EN chưa cập nhật. Nguyên nhân: Studio đang chạy cho phép sửa VI mà không cảnh báo EN.
+  - **Lỗi ở bản VI:**
+    - "Phù Hợp Với": ý của "Thương Hiệu Mới" và "Đơn Vị Phân Phối" bị đảo;
+    - "Danh Mục Sản Xuất" trên điện thoại khác máy tính, thẻ "Bao Bì & Hoàn Thiện" mang nội dung khác.
+  - **Thông tin nhà máy chưa có giấy tờ:**
+    - "đạt chuẩn GMP Bộ Y Tế" (VI có, EN không);
+    - HACCP mô tả là an toàn **thực phẩm**;
+    - 4 con số 2.000+ / 5+ năm / 10.000.000 / 1.000 m²;
+    - mẹ & bé, kiểm nghiệm, đăng ký thương hiệu, các dạng bao bì / sản phẩm.
+  - **Câu ghi chú kỹ thuật lọt ra website:** "nội dung nguồn Bio-A ghi nhận…" / "legacy Bio-A source".
+  - **Tên tiếng Anh chính thức có 3 cách viết** ("Pharmaceutical & Cosmetic" cả trong Chính sách bảo mật).
+  - **Không cần sửa:** Blog 38 bài, Liên hệ, Tuyển dụng, Dịch vụ Khác (trừ 2 điểm nhỏ), Pháp lý.
+
+**D1: OWNER CONTENT APPROVAL PENDING.**
+- **Chưa sửa** một chữ nào trên website và **chưa ghi Sanity**.
+- Lý do:
+  - các câu sai nằm trong ô chữ CMS, nên muốn sửa phải ghi Sanity đã xuất bản, cần Owner duyệt riêng từng đợt;
+  - phần VI còn chứa thông tin nhà máy đang chờ xác nhận.
+- Đã chuẩn bị sẵn câu VI/EN đề xuất.
+
+**Bảo vệ mới (không đổi website):**
+- **VI sửa mà EN cũ**: hiện trong `/_bioa-cms.json` `waitingEn` và log build; **không cho tạo bản phát hành Production**.
+- `npm run test:content` (CI) chặn:
+  - thiếu / thừa EN;
+  - chữ Việt trên trang EN;
+  - **thêm** chứng nhận / số liệu nhà máy mới;
+  - lệch số VI/EN mới.
+
+**C0:**
+- `lib/chat/knowledge.js` `2026-11-23.1`:
+  - mẹ & bé và đăng ký thương hiệu **không đưa cho AI**; khách hỏi thì chuyển Zalo / Telegram;
+  - FAQ dịch vụ nhận cả "manufacture".
+- 10 câu trong kịch bản test của Owner: 9 câu trả lời cố định ($0), 1 câu ("serum") cho AI.
+- Model Free đã kiểm theo tài liệu Cloudflare 18/11/2026.
+- Test chat 28/28.
+
+**C1: AI LIVE BLOCKED.**
+- Preview khóa `/api` với mọi người (theo thiết kế).
+- Đường test riêng cho Owner đã được viết nhưng bị trình phân loại an toàn của phiên chặn khi sửa cổng bảo vệ, nên **chưa áp dụng**. Cần Owner cho phép rõ ràng (`CHAT_ACTIVATION.md` §2).
+- Còn cần:
+  - tạo D1, binding và biến môi trường trên Dashboard;
+  - duyệt `PRIVACY_AI_ADDITION.md`.
+- **0 lượt gọi AI, $0.**
+
+---
+
+## Lần đầu (21/11/2026)
 
 **Trạng thái chung:**
 - **A: OWNER QA READY** trên CMS Preview.

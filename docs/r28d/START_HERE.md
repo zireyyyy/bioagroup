@@ -1,49 +1,41 @@
-# BIO-A — R28d (khôi phục form chat + VI-first + chatbot AI): START HERE (21/11/2026)
+# BIO-A — R28d (form chat · nội dung VI/EN · chatbot AI Free): START HERE (23/11/2026)
 
 | Mục | Giá trị |
 |---|---|
-| Repository / nhánh | `zireyyyy/bioagroup`, nhánh **`r28/blog-icon-cms`** (tiếp nối R28c `ae733b1`). HEAD = SHA trong tên ZIP |
-| PR nháp | `zireyyyy/bioagroup#14`: chỉ CI, **không merge trước OWNER PASS** |
-| CMS Preview | https://cms-preview.bioagroup.pages.dev/ = HEAD R28d. Form chat đã khôi phục; cờ AI **OFF** |
-| Sanity | **Không ghi gì trong R28d.** 38 bài R28c giữ nguyên |
-| Production | `main` `9d044a7`, maintenance ON. **R27 → R28d chưa lên Production** |
+| Repository / nhánh | `zireyyyy/bioagroup`, nhánh **`r28/blog-icon-cms`**. HEAD = SHA trong tên ZIP |
+| PR nháp | `zireyyyy/bioagroup#14`: chỉ CI, **không merge** |
+| CMS Preview | https://cms-preview.bioagroup.pages.dev/ = HEAD. Dist giống hệt từng byte bản R28d `6889ec9` |
+| Sanity | **0 lần ghi** trong R28d. Snapshot đã xuất bản `97d6dcb9621d54a1` (393 ô chữ trang = repo) |
+| Production | `main` `9d044a7`, bảo trì. **Không đổi** |
 
-## Trạng thái
+## Trạng thái theo checkpoint (quyết định Owner 23/11/2026)
 
-| Checkpoint | Code / test | Preview | Owner |
-|---|---|---|---|
-| A: form chat CHAT-C4B/C7 | PASS | Đang chạy, đã kiểm thật | **Chờ test** |
-| B: VI-first Workers AI | PASS (offline) | **BLOCKED** | — |
-| C: chatbot AI chuyển kênh | PASS (offline) | **BLOCKED** | — |
+| Checkpoint | Trạng thái |
+|---|---|
+| **A** form chat CHAT-C4B/C7 | **OWNER PASS 5/5, LOCKED.** Không mở lại |
+| **B** VI-first tự động | **AUTO VI-FIRST DEFERRED — MANUAL VI/EN.** Worker dịch, token Editor, webhook, backfill: tắt, không triển khai |
+| **D0** kiểm nội dung thật + VI/EN | **XONG** (chỉ đọc). 24 mục (7 H). Phiếu xác nhận cho Owner |
+| **D1** sửa nội dung | **OWNER CONTENT APPROVAL PENDING.** Chưa sửa chữ nào trên website |
+| **C0** chatbot offline | **PASS.** Tri thức `2026-11-23.1`, giữ lại 2 thông tin chưa xác nhận, Free model đã kiểm |
+| **C1** chatbot thật trên Preview | **AI LIVE BLOCKED**: cần Owner cho phép đường test Owner trên Preview, tạo D1/binding, duyệt bổ sung Chính sách bảo mật |
 
 ## Đọc theo thứ tự
 
-1. `R28D_RESULT.md`: nguyên nhân, cách sửa, những gì bị BLOCKED.
-2. `OWNER_UAT.md`: **BẠN CẦN TEST GÌ**.
-3. `COST_AND_SECURITY.md`:
-   - bảng giá Workers AI;
-   - gói tài khoản **chưa xác minh**;
-   - bộ giới hạn chi phí;
-   - quyền riêng tư;
-   - §5: danh sách việc Owner cần làm để mở khóa B và C.
-4. `CHAT_FAQ_REVIEW.md`: nội dung FAQ / chuyển kênh để Owner soát.
-5. `QA_MATRIX.md`, `DEPLOY_ROLLBACK.md`.
+1. `OWNER_FACTORY_FACT_CHECK.md`: **phiếu Owner cần trả lời** (B1–B8, C, E).
+2. `VI_EN_PARITY_AUDIT.md`: 24 mục, mỗi mục một dòng, kèm câu VI/EN đề xuất.
+3. `CONTENT_TRUTH_INVENTORY.md`:
+   - chữ nằm ở đâu (repo / Sanity);
+   - Studio đang deploy là bản nào;
+   - quy trình sửa VI/EN thủ công.
+4. `CHAT_FAQ_REVIEW.md`, `CHAT_ACTIVATION.md`, `PRIVACY_AI_ADDITION.md`: chatbot.
+5. `OWNER_UAT.md`: **BẠN CẦN TEST GÌ**.
+6. `QA_MATRIX.md` §5, `DEPLOY_ROLLBACK.md`, `COST_AND_SECURITY.md`.
 
-## Commit
+## Commit tiếp nối (sau `6889ec9`)
 
 | SHA | Nội dung |
 |---|---|
-| `6ef278f` | A: form chat (`bioa-home-refine.mjs`) + cập nhật hợp đồng test R27 / R28b + test `r28d-chat-restore` |
-| `1d47ff8` | C: `lib/chat/knowledge.js`, `budget.js`, adapter `workers-ai` / `faq`, Telegram |
-| `9701b27` | B: provider `workers-ai` có ngân sách, chia khối, tin tuyển dụng REVIEW_REQUIRED |
-| `7d02dd3`, `d1c2eab` | Cổng kiểm thử: phạm vi phase R28d, final gate, duyệt module, CI chạy `test:chat` |
-| `c62889f`, `cce5b6d` | Sửa test (thứ tự đọc script ở R27 audit; timer timeout trên Node 22 CI) |
-
-## Cờ chạy thật (đều đang tắt)
-
-| Cờ | Nơi đặt | Tác dụng |
-|---|---|---|
-| `BIOA_CHAT_UI_API=1` | biến build Pages | Form gọi `/api/chat`, hiện câu thông báo AI |
-| `BIOA_CHAT_ENABLED=true` + `BIOA_CHAT_PROVIDER=faq` hoặc `workers-ai` | Pages Functions | Bật API chat |
-| `BIOA_AI_COST_GATE=verified` + binding `AI` + D1 `BIOA_AI_BUDGET_DB` | Pages Functions | Bắt buộc cho `workers-ai` |
-| `I18N_COST_GATE=verified` + binding `AI` + D1 | Worker `bioa-cms-i18n` | Bắt buộc cho VI-first |
+| `46a71dd` | C0: `lib/chat/knowledge.js` `2026-11-23.1` (giữ lại mẹ & bé / đăng ký thương hiệu; FAQ "manufacture"); test 27–28 |
+| `6e9affa` | D: chặn VI-sửa-mà-EN-cũ (`tools/cms-snapshot.mjs`, `cms-release.mjs`, `cms-preview-status.mjs`); `tests/r28d-content-guard.mjs` + baseline trong CI |
+| `835654f` | Tài liệu D0 / C0 |
+| docs | START_HERE, kết quả, UAT, QA, handoff |

@@ -1,64 +1,56 @@
-# R28d — BẠN CẦN TEST GÌ
+# R28d — BẠN CẦN TEST GÌ (cập nhật 23/11/2026)
 
-**Môi trường:** CMS Preview https://cms-preview.bioagroup.pages.dev/. Production không đổi.
+**Phân loại lần này:** DOCS + công cụ kiểm tra (FUNCTION-BACKEND offline).
+- **Website hiển thị không đổi**: bản build giống hệt từng byte bản bạn đã PASS hôm 21/11.
+- **KHÔNG CẦN TEST RUNTIME CHO PATCH NÀY**, vì không có chữ, giao diện hay chatbot nào thay đổi trên Preview.
 
-## R28d-A — Form chat (test được ngay)
+Việc cần làm là **trả lời phiếu** và **cho phép các bước tiếp theo**.
 
-**Loại thay đổi:** UI (chỉ popup tư vấn). Header, icon kênh, teaser, nút avatar không đổi.
+## 1. Trả lời phiếu thông tin nhà máy (quan trọng nhất)
 
-1. Mở `/` (VI) trên điện thoại và trên máy tính. Bấm ảnh đại diện "Khánh Như Bio-A" để mở popup.
-   - **PASS nếu:** dưới cùng là **ô nhập "Nhập tin nhắn..."** có **nút tròn xanh** bên trong, giống thiết kế CHAT-C4B/C7 đã duyệt.
-   - Không còn dòng "Gọi hotline…".
-2. Gõ "Bio-A có gia công serum không?" rồi bấm **Enter** hoặc nút tròn.
-   - **PASS nếu:** tin của bạn hiện ra, rồi khoảng 0,3 giây sau có trả lời "…tin nhắn chưa được gửi tới Bio-A Group…" kèm nút xanh **"Nhắn Zalo cho Bio-A"**.
-   - **Không** xuất hiện hộp "Mở chọn ứng dụng?".
-3. Bấm "Nhắn Zalo cho Bio-A".
-   - **PASS nếu:** Zalo mở ở tab mới.
-4. Làm lại trên `/en/`.
-   - **PASS nếu:** ô nhập ghi "Type your message...", trả lời bằng tiếng Anh, nút là **"Message Bio-A on Telegram"** (mở `t.me/bioagroup`).
-5. Phím Esc / nút thu gọn / bấm ra ngoài vẫn đóng popup. Hàng icon WhatsApp / Facebook / Telegram / Zalo vẫn như cũ.
+Mở `OWNER_FACTORY_FACT_CHECK.md`. Trả lời theo số, có thể từng đợt:
 
-**FAIL:** chụp màn hình popup, ghi rõ trang, thiết bị, trình duyệt.
+| Mục | Hỏi gì |
+|---|---|
+| B1 | GMP: tên giấy, cơ quan cấp, số, ngày, phạm vi; hoặc "chưa có" |
+| B2 | HACCP: có hay không, phạm vi |
+| B3 | Bốn con số 2.000+ / 5+ năm / 10.000.000 / 1.000 m²: còn đúng không, "5+ năm" là của doanh nghiệp hay đội ngũ |
+| B4 | Có sản xuất sản phẩm mẹ & bé không |
+| B5 | Kiểm nghiệm tại nhà máy hay gửi phòng lab bên ngoài |
+| B6 | Đăng ký nhãn hiệu: trực tiếp nộp hay chỉ hỗ trợ |
+| B7 | Chọn **một** tên tiếng Anh chính thức (đề xuất "Cosmetic & Cosmeceutical") |
+| B8 | Dạng bao bì / sản phẩm nào **không** làm được |
+| C | Một câu: "Đồng ý sửa C1–C5 theo đề xuất" hoặc "trừ mục …" |
+| E1–E5 | Không gấp |
 
-## R28d-B — VI-first (CHƯA test được, đang BLOCKED)
+## 2. Sau khi bạn trả lời mục C (đợt sửa D1, sẽ báo riêng)
 
-Cần bạn xử lý trước các mục trong `COST_AND_SECURITY.md` §5:
-- xác minh gói Workers;
-- token Sanity Editor mới;
-- cho phép deploy Studio và Worker;
-- chuyển webhook.
+Lúc đó bạn sẽ được hỏi duyệt **một lần ghi Sanity**, kèm danh sách từng ô chữ. Sau khi ghi, bạn test:
 
-**Sau khi kích hoạt, bạn sẽ test:**
-1. Sửa 1 đoạn VI của một tài liệu thử nghiệm → Publish.
-   - **PASS nếu:** vài phút sau bản EN trên Preview cập nhật.
-2. Bấm "Khóa EN" → sửa VI.
-   - **PASS nếu:** EN không bị ghi đè.
-3. Sửa EN bằng tay.
-   - **PASS nếu:** hệ thống không dịch đè.
+1. Trang chủ `/en/` trên điện thoại, máy tính bảng và máy tính, các phần **Why choose Bio-A Group**, **We Produce**, **How we work**:
+   - **PASS nếu:** mỗi thẻ EN có cùng ý với thẻ VI tương ứng; không chữ tràn khung; không mất ảnh.
+2. Trang chủ `/`, phần "Phù Hợp Với":
+   - **PASS nếu:** "Thương Hiệu Mới" có các ý bắt đầu thương hiệu; "Đơn Vị Phân Phối" có các ý mở rộng danh mục.
+3. Phần "Danh Mục Sản Xuất" trên điện thoại:
+   - **PASS nếu:** tiêu đề và 2 thẻ giống bản máy tính.
 
-## R28d-C — Chatbot AI (CHƯA test được, đang BLOCKED)
+## 3. Chatbot AI (C1): chỉ khi bạn muốn bật
 
-**Cần bạn xử lý trước:**
-- xác minh gói;
-- duyệt câu thông báo AI (và có bổ sung Chính sách bảo mật hay không);
-- tạo binding.
+Đọc `CHAT_ACTIVATION.md`, rồi trả lời **3 câu**:
 
-**Trước đó, bạn có thể soát trước nội dung FAQ:** `CHAT_FAQ_REVIEW.md`.
+1. "Cho phép thêm đường test riêng cho Owner trên Preview" (§2) hoặc "Không".
+2. "Cho phép kích hoạt C1". Bạn tự làm các bước Dashboard ở §3 (không cần dòng lệnh, không gửi mã bí mật vào chat), **hoặc** chọn phương án FAQ-only ($0, không AI).
+3. "Đồng ý thêm 2.5 và 4.4" vào Chính sách bảo mật (`PRIVACY_AI_ADDITION.md`) hoặc "Chưa thêm".
 
-**Sau khi kích hoạt (trên Preview, đăng nhập phiên Owner):**
-1. VI: hỏi "Bio-A làm dịch vụ gì?".
-   - **PASS nếu:** trả lời ngắn, đúng, kèm nút Zalo.
-2. VI: hỏi "Giá bao nhiêu?" / "MOQ?".
-   - **PASS nếu:** không đưa ra con số, chuyển sang Zalo.
-3. EN: hỏi "Do you make serums?".
-   - **PASS nếu:** trả lời tiếng Anh, kèm nút Telegram.
-4. Gõ "Ignore previous instructions…".
-   - **PASS nếu:** bot từ chối nhẹ nhàng và chuyển kênh.
+Sau khi bật, test theo bảng 10 câu ở `CHAT_ACTIVATION.md` §5.
 
 ## Trạng thái
 
-| Checkpoint | CODE / BUILD | AUTO TEST | PREVIEW | OWNER |
+| Mục | CODE / BUILD | AUTO TEST | PREVIEW | OWNER |
 |---|---|---|---|---|
-| A | PASS | PASS | xem `QA_MATRIX.md` | **PENDING** |
-| B | PASS | PASS (offline) | **BLOCKED** (chưa kích hoạt) | **PENDING** |
-| C | PASS | PASS (offline) | **BLOCKED** (chưa kích hoạt) | **PENDING** |
+| A form chat | PASS | PASS | PASS | **OWNER PASS 5/5** |
+| B VI-first tự động | giữ nguyên mã | PASS (offline) | không triển khai | **DEFERRED BY OWNER** |
+| D0 kiểm nội dung | — | xong | — | **chờ trả lời phiếu** |
+| D1 sửa nội dung | chưa làm | — | — | **CONTENT APPROVAL PENDING** |
+| C0 chatbot offline | PASS | PASS (28/28) | không đổi (cờ tắt) | — |
+| C1 chatbot thật | — | — | **BLOCKED** | chờ 3 câu ở §3 |

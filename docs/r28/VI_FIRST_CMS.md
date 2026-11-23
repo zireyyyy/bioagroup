@@ -1,5 +1,11 @@
 # R28 — CMS VI-first: tiếng Việt là nguồn, tiếng Anh tự động dịch
 
+> **23/11/2026: AUTO VI-FIRST DEFERRED BY OWNER — MANUAL VI/EN.** Website được sửa thủ công cả tiếng Việt và tiếng Anh.
+> - **Không** deploy Worker dịch, **không** tạo token Sanity Editor, **không** đổi webhook, **không** chạy backfill `i18n`, **không** bật `I18N_AUTO_ACTIVE`.
+> - **Không** deploy giao diện Studio R28 (nhãn "Tự động dịch…").
+> - Mã bên dưới được giữ ở trạng thái ngủ, đã test.
+> - Quy trình hiện hành: `docs/r28d/CONTENT_TRUTH_INVENTORY.md` §3.
+
 **Trạng thái thật (không phóng đại):**
 
 | Phần | Trạng thái |

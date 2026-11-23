@@ -42,3 +42,16 @@ Các việc sau tôi **không làm**, vì phải có Owner phê duyệt hoặc t
 - deploy Studio / Worker;
 - đổi webhook;
 - mọi thay đổi Production.
+
+## Tiếp nối 23/11/2026 (D0 / C0)
+
+| Thay đổi | Ảnh hưởng | Khôi phục |
+|---|---|---|
+| `46a71dd` tri thức chatbot `2026-11-23.1` | Không ảnh hưởng gì đang chạy (cờ API tắt) | `git revert 46a71dd` |
+| `6e9affa` công cụ CMS (`cms-snapshot`, `cms-release`, `cms-preview-status`) + `test:content` trong CI | Bản build giống hệt từng byte. Chỉ thêm cảnh báo `waitingEn` và chặn tạo bản phát hành Production khi VI sửa mà EN cũ | `git revert 6e9affa` (bỏ cả kiểm tra CI) |
+| Tài liệu `docs/r28d/*` | — | — |
+
+- **Sanity:** không ghi gì nên không cần khôi phục.
+- **Middleware:** không đổi.
+- **Production:** không đổi.
+- Push lên `cms-preview` theo kiểu fast-forward; Preview chạy lại bản build giống hệt.
