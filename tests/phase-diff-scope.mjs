@@ -111,7 +111,11 @@ const SCOPES = {
   R28c: [[/^(en\/)?blog\/[a-z0-9-]+\/index\.html$/, 'meta[name="robots"], .bb-post-nav'], [/^(en\/)?blog\/(page\/\d+\/)?index\.html$/, "main"]],
   // R28d CHAT-RESTORE-2 (owner FAIL 2026-11-21): the consultation popup's approved C4B/C7 form is back (markup, chat
   // script, its CSS in the Home/shared shell); intro + local reply wording; hand-off link styles. Chat owner only.
-  R28d: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"], [/\.html$/, "#bioa-contact-fab"]]
+  R28d: [[/\.html$/, "style#bioa-home-refine"], [/\.html$/, "style#bioa-shared-shell"], [/\.html$/, "script:not([src])"], [/\.html$/, "#bioa-contact-fab"]],
+  // R28d-D1 (owner 2026-11-23, VI frozen): EN copy follows the current VI. ONLY the three EN pages, ONLY the sections whose
+  // EN text was rewritten; every VI page and every other element must stay byte-identical.
+  R28dD1: [[/^en\/index\.html$/, ".block-title .text-large, .block-why-choose-us, .block-we-produce, .bioa-produce-mobile-clean, .block-how-works, .block-product-formats .formats__note, .block-right-choice, .block-roadmap"],
+    [/^en\/about\/index\.html$/, ".mwa-produce"], [/^en\/contract-manufacturing-cosmetics\/index\.html$/, ".bioa-cosmetics-categories, .block-we-conduct"]]
 };
 const R28C_OLD = Object.keys(R28C_RENAMES), R28C_NEW = Object.values(R28C_RENAMES);
 // R28c whole-file allowances: a renamed article's old page became a redirect page to its new URL; a new-slug page; a
