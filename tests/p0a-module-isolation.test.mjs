@@ -80,7 +80,8 @@ const APPROVED = [
   { sha: "6ef278f1ab0fbce126febf78d9fc6b7f73195cac", phase: "R28d", files: ["bioa-home-refine.mjs"] },
   // R28d-D1 EN parity (owner 2026-11-23): EN strings only; scope proven by phase-diff-scope R28dD1 (3 EN pages).
   { sha: "9e889fd01379982479ef95984872477eec79f894", phase: "R28dD1", files: ["bioa-about-refine.mjs", "bioa-cosmetics-refine.mjs", "bioa-home-refine.mjs", "bioa-transform.mjs"] },
-  { sha: "f276e2be37364847cdd119c405fe65f73c08bae6", phase: "R28dD1", files: ["bioa-transform.mjs"] }
+  { sha: "f276e2be37364847cdd119c405fe65f73c08bae6", phase: "R28dD1", files: ["bioa-transform.mjs"] },
+  { sha: "1f03ec15b98a9c30b7ac221030418491f187e06b", phase: "R28dD1", files: ["bioa-cosmetics-refine.mjs", "bioa-transform.mjs"] }
 ];
 const git = (...a) => spawnSync("git", a, { encoding: "utf8" });
 
