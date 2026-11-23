@@ -32,6 +32,10 @@ try {
   console.log("Preview:", PREVIEW);
   if (!stamp) { console.log("STATUS: CANNOT CHECK — the Preview has no /_bioa-cms.json (deployment older than R28?)"); process.exit(2); }
   console.log(`Preview build: mode ${stamp.mode}, Sanity read at ${stamp.fetchedAt || "-"}, snapshot ${stamp.snapshotSha || "-"}, commit ${stamp.commit || "-"}`);
+  // R28d-D manual VI/EN: items whose EN is missing or still the old text (held out, or not releasable to Production).
+  const waiting = Array.isArray(stamp.waitingEn) ? stamp.waitingEn : [];
+  console.log(waiting.length ? `EN not updated yet (${waiting.length}) — fix in the Studio before a Production release:` : "EN not updated yet: 0");
+  for (const w of waiting) console.log("  " + w);
   const newer = latest.filter(d => !stamp.fetchedAt || d._updatedAt > stamp.fetchedAt);
   console.log("Latest published changes:");
   for (const d of latest) console.log(`  ${d._updatedAt}  ${d._id}${newer.includes(d) ? "   <- NOT in the Preview yet" : ""}`);

@@ -13,7 +13,7 @@
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { liveSnapshot, packRelease, extractRelease, sha256, summary, CmsError } from "./cms-snapshot.mjs";
+import { liveSnapshot, packRelease, extractRelease, sha256, summary, CmsError, staleEnTexts } from "./cms-snapshot.mjs";
 
 const PIN = "cms/release/current.json";
 const arg = name => { const i = process.argv.indexOf(name); return i > 0 ? process.argv[i + 1] : undefined; };
@@ -34,6 +34,9 @@ try{
     const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "bioa-cms-release-"));
     const registry = JSON.parse(fs.readFileSync("cms/registry.json", "utf8"));
     const s = await liveSnapshot({ pid: process.env.SANITY_PROJECT_ID, ds: process.env.SANITY_DATASET || "production", token: process.env.SANITY_READ_TOKEN, outDir: tmp, registry });
+    // R28d-D manual VI/EN: never release a page text whose Vietnamese changed while its English did not.
+    const stale = staleEnTexts(s);
+    if (stale.length){ fs.rmSync(tmp, { recursive: true, force: true }); throw new CmsError(`release refused: Vietnamese changed but English not updated for ${stale.length} text(s): ${stale.join(", ")} — update EN in the Studio and Publish first`); }
     const buf = packRelease(tmp);
     fs.rmSync(tmp, { recursive: true, force: true });
     const stamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 12);

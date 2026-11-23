@@ -20,7 +20,8 @@
     "test:chat": "node --test tests/chat-gateway.test.mjs tests/r28d-chat-ai.test.mjs",
     "test:home-visual": "node tests/home-roadmap-visual.mjs && node tests/home-howworks-tablet.mjs",
     "test:careers": "node tests/careers-flow.mjs",
-    "test:cms": "node --test tests/cms-r25.test.mjs tests/cms-i18n.test.mjs tests/r28d-i18n.test.mjs",
+    "test:cms": "node --test tests/cms-r25.test.mjs tests/cms-i18n.test.mjs tests/r28d-i18n.test.mjs tests/r28d-content-parity.test.mjs",
+    "test:content": "node tests/r28d-content-guard.mjs dist",
     "handoff:zip": "node tools/make-handoff-zip.mjs",
     "cms:release": "node tools/cms-release.mjs"
   },

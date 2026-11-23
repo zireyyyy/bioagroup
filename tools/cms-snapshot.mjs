@@ -148,6 +148,15 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
         if (!slot.multiline && t.includes("\n")) fail(`text ${key}.${slot.id}.${lang} has a line break in a single-line slot`);
         entry[lang] = t;
       }
+      // R28d-D MANUAL VI/EN (owner 2026-11-23: both languages are edited by hand, no auto-translation): a text whose
+      // Vietnamese was changed while its English is still the original is NOT silently published as a mismatched pair.
+      // The Preview shows it (that is where editors review) but it is listed in waitingEn (/_bioa-cms.json, build log)
+      // and tools/cms-release.mjs refuses to pin a Production release until the English is updated too.
+      const norm = s => String(s).split("\n").map(x => x.replace(/[ \t]+/g, " ").trim()).join("\n").trim();
+      if (entry.vi != null && entry.vi !== norm(slot.vi) && (entry.en == null || entry.en === norm(slot.en))){
+        snapshot.waitingEn.push("text:" + key + "." + slot.id);
+        console.warn(`CMS: ${key}.${slot.id} — Vietnamese changed but English not updated (manual VI/EN): update the EN field before a Production release`);
+      }
       values[slot.id] = entry;
     }
     snapshot.texts[key] = values;
@@ -283,6 +292,8 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
   return snapshot;
 }
 
+// R28d-D manual VI/EN: page texts whose Vietnamese changed while the English is still the original (see page texts above).
+export const staleEnTexts = s => (s.waitingEn || []).filter(x => x.startsWith("text:"));
 export const summary = s => `${Object.keys(s.images).length} image slots, ${Object.keys(s.texts).length} pages, ${s.blog.length} blog posts, ${s.careers.length} careers, ${Object.keys(s.seo).length} SEO pages, ${Object.keys(s.legal).length} approved legal pages`;
 
 // ---- Pinned releases ----

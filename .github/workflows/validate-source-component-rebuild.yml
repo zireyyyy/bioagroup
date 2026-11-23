@@ -65,6 +65,8 @@ jobs:
         run: node tests/r28-blog-rewrite-audit.mjs dist
       - name: R28c Blog published (38 articles listed and indexable VI/EN, old slugs 301 to the new ones)
         run: node tests/r28c-blog-published.mjs dist
+      - name: R28d content-truth guard (VI/EN pairs complete, no new factory claims, no Vietnamese on EN pages)
+        run: npm run test:content
       - name: Verify Phase 2B Other Services dead-data and owner-PASS output
         run: node tests/phase2b-services-convergence.test.mjs
       - name: Verify Phase 2B Cosmetics owner cleanup
