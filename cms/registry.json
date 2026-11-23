@@ -1153,7 +1153,7 @@
      "maxEn": 73
     },
     {
-     "id": "t_6b1244ef",
+     "id": "t_9f8286e1",
      "page": "home",
      "tags": [
       "div"
@@ -1162,11 +1162,11 @@
       "Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group"
      ],
      "vi": "Bio-A Group đồng hành cùng thương hiệu từ R&D công thức, lựa chọn nguyên liệu, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm theo định hướng riêng.",
-     "en": "From formula R&D and OEM/ODM manufacturing to packaging and finished products.",
+     "en": "Bio-A Group partners with brands from formula R&D and ingredient selection through OEM/ODM manufacturing to packaging and finished products, following each brand’s own direction.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 190,
-     "maxEn": 98
+     "maxEn": 223
     },
     {
      "id": "t_87766b5b",
@@ -1320,7 +1320,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_425311a5",
+     "id": "t_c38eef51",
      "page": "home",
      "tags": [
       "p"
@@ -1329,11 +1329,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Bio-A Group phát triển giải pháp theo mục tiêu sản phẩm, nhóm khách hàng và định vị thương hiệu. Từ ý tưởng ban đầu, lựa chọn công thức, nguyên liệu, bao bì đến kế hoạch sản xuất, đội ngũ phối hợp theo từng giai đoạn để dự án có lộ trình rõ ràng, linh hoạt điều chỉnh và thuận tiện mở rộng thêm sản phẩm khi cần.",
-     "en": "Consulting around product goals, customers and brand positioning.",
+     "en": "Bio-A Group develops solutions around your product goals, target customers and brand positioning. From the initial idea, formula, ingredients and packaging to the production plan, our team coordinates every stage so the project has a clear roadmap, stays flexible to adjust and can easily expand with new products when needed.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 390,
-     "maxEn": 82
+     "maxEn": 408
     },
     {
      "id": "t_403e1f38",
@@ -1352,7 +1352,7 @@
      "maxEn": 29
     },
     {
-     "id": "t_2ad9edb5",
+     "id": "t_88fc6fd1",
      "page": "home",
      "tags": [
       "p"
@@ -1361,11 +1361,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Đội ngũ R&D hỗ trợ phát triển công thức, lựa chọn nguyên liệu, làm mẫu thử và điều chỉnh cảm quan theo yêu cầu dự án. Khách hàng có thể lựa chọn nền công thức phù hợp, tinh chỉnh thành phần, kết cấu, mùi hương, màu sắc và định hướng công dụng trước khi chốt mẫu để chuyển sang các bước bao bì và sản xuất.",
-     "en": "Formula development, sampling and refinement for each project.",
+     "en": "Our R&D team supports formula development, ingredient selection, sampling and sensory adjustments to each project’s requirements. Clients can choose a suitable formula base and fine-tune ingredients, texture, fragrance, color and intended benefits before approving the sample and moving on to packaging and production.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 382,
-     "maxEn": 78
+     "maxEn": 398
     },
     {
      "id": "t_d497dfd9",
@@ -1384,7 +1384,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_d7eb5acc",
+     "id": "t_6314217b",
      "page": "home",
      "tags": [
       "p"
@@ -1393,11 +1393,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Bio-A Group đồng hành chuẩn bị thông tin sản phẩm, nội dung nhãn và các hạng mục hồ sơ cần thiết theo từng nhóm hàng. Quy trình được phối hợp song song với R&D và bao bì để giảm thời gian chờ giữa các bước, hạn chế phải sửa lại nhiều vòng và giúp dự án sẵn sàng hơn trước khi đưa vào kế hoạch sản xuất.",
-     "en": "Support for dossiers, notifications and label information.",
+     "en": "Bio-A Group helps prepare product information, label content and the documentation required for each product category. This runs in parallel with R&D and packaging to reduce waiting time between steps, limit repeated revisions and get the project better prepared before it enters the production plan.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 378,
-     "maxEn": 73
+     "maxEn": 375
     },
     {
      "id": "t_9d0e6c96",
@@ -1416,7 +1416,7 @@
      "maxEn": 27
     },
     {
-     "id": "t_fdaf9a70",
+     "id": "t_ed33a410",
      "page": "home",
      "tags": [
       "p"
@@ -1425,11 +1425,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Từ mẫu thử đến thành phẩm, các tiêu chí về nguyên liệu, cảm quan, kết cấu, mùi hương, quy cách đóng gói và độ ổn định được theo dõi theo từng giai đoạn. Mục tiêu là duy trì chất lượng nhất quán, hạn chế sai lệch giữa mẫu đã duyệt và lô sản xuất thực tế, đồng thời bảo đảm sản phẩm phù hợp định hướng thương hiệu.",
-     "en": "Quality monitoring throughout development and production.",
+     "en": "From sample to finished product, criteria for ingredients, sensory profile, texture, fragrance, packing specifications and stability are monitored at each stage. The aim is to maintain consistent quality, limit deviation between the approved sample and the actual production batch, and ensure the product matches the brand direction.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 390,
-     "maxEn": 72
+     "maxEn": 417
     },
     {
      "id": "t_f03cf781",
@@ -1448,6 +1448,24 @@
      "maxEn": 26
     },
     {
+     "id": "t_69160827",
+     "page": "home",
+     "tags": [
+      "p",
+      "div"
+     ],
+     "sections": [
+      "Danh Mục Sản Xuất",
+      "Danh Mục Gia Công"
+     ],
+     "vi": "Bio-A Group nhận R&D và sản xuất OEM/ODM các dòng dược mỹ phẩm theo định hướng thương hiệu. Dự án có thể bắt đầu từ công thức nền hoặc phát triển công thức riêng, đồng thời phối hợp nguyên liệu, mẫu thử, bao bì và kế hoạch sản xuất để tạo thành phẩm đồng bộ.",
+     "en": "Bio-A Group provides R&D and OEM/ODM manufacturing for cosmeceutical lines based on each brand’s direction. A project can start from a base formula or a custom formula, coordinating ingredients, samples, packaging and production planning into a consistent finished product.",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 323,
+     "maxEn": 342
+    },
+    {
      "id": "t_51538b07",
      "page": "home",
      "tags": [
@@ -1464,7 +1482,25 @@
      "maxEn": 21
     },
     {
-     "id": "t_ccd5a801",
+     "id": "t_c50e8e5d",
+     "page": "home",
+     "tags": [
+      "p",
+      "div"
+     ],
+     "sections": [
+      "Danh Mục Sản Xuất",
+      "Danh Mục Gia Công"
+     ],
+     "vi": "Các dòng mỹ phẩm được phát triển theo nhu cầu sử dụng, phân khúc khách hàng và định vị thương hiệu. Bio-A Group hỗ trợ từ công thức, kết cấu, mùi hương, lựa chọn chai lọ đến sang chiết, đóng gói và hoàn thiện sản phẩm trước khi bàn giao.",
+     "en": "Cosmetic lines are developed around usage needs, customer segments and brand positioning. Bio-A Group supports everything from formula, texture, fragrance and container selection to filling, packing and finishing before handover.",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 297,
+     "maxEn": 287
+    },
+    {
+     "id": "t_eead0765",
      "page": "home",
      "tags": [
       "h3"
@@ -1473,11 +1509,11 @@
       "Danh Mục Gia Công"
      ],
      "vi": "Gia Công Dược Mỹ Phẩm",
-     "en": "Cosmetic manufacturing",
+     "en": "Cosmeceutical manufacturing",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 33,
-     "maxEn": 34
+     "maxEn": 39
     },
     {
      "id": "t_9193309c",
@@ -1529,7 +1565,7 @@
      "maxEn": 35
     },
     {
-     "id": "t_6be5e218",
+     "id": "t_defba1d9",
      "page": "home",
      "tags": [
       "div"
@@ -1538,11 +1574,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Bắt đầu bằng việc làm rõ ý tưởng, nhóm sản phẩm, khách hàng mục tiêu, ngân sách và tiến độ mong muốn. Từ đó Bio-A Group cùng khách hàng xây dựng lộ trình phù hợp cho công thức có sẵn, công thức riêng hoặc kế hoạch mở rộng danh mục, với các mốc R&D, bao bì và sản xuất được xác định ngay từ đầu.",
-     "en": "Align product goals, budget and timeline.",
+     "en": "We start by clarifying the idea, product category, target customers, budget and desired timeline. Bio-A Group then builds a suitable roadmap with the client for a ready formula, a custom formula or a range expansion, with R&D, packaging and production milestones set from the start.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 368,
-     "maxEn": 53
+     "maxEn": 353
     },
     {
      "id": "t_627badbc",
@@ -1562,7 +1598,7 @@
      "maxEn": 34
     },
     {
-     "id": "t_d6108fdc",
+     "id": "t_d798f9a8",
      "page": "home",
      "tags": [
       "div"
@@ -1571,11 +1607,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Đội ngũ R&D triển khai công thức, lựa chọn nguyên liệu, làm mẫu và tinh chỉnh theo phản hồi. Mỗi vòng thử nghiệm tập trung vào cảm quan, kết cấu, mùi hương, màu sắc, định hướng công dụng và khả năng sản xuất ổn định khi chuyển từ mẫu thử sang quy mô thực tế của nhà máy.",
-     "en": "Develop formulas, ingredients and samples for your brand direction.",
+     "en": "The R&D team develops the formula, selects ingredients, prepares samples and refines them based on feedback. Each trial round focuses on sensory profile, texture, fragrance, color, intended benefits and stable manufacturability when moving from sample to the factory’s actual production scale.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 338,
-     "maxEn": 84
+     "maxEn": 367
     },
     {
      "id": "t_815f5987",
@@ -1595,7 +1631,7 @@
      "maxEn": 32
     },
     {
-     "id": "t_73672340",
+     "id": "t_1031ac66",
      "page": "home",
      "tags": [
       "div"
@@ -1604,11 +1640,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Sau khi công thức ổn định, dự án tiếp tục với lựa chọn chai lọ, quy cách đóng gói, nhãn và các yếu tố nhận diện thương hiệu. Bio-A Group phối hợp để bao bì phù hợp với đặc tính sản phẩm, thuận tiện sang chiết và sản xuất, đồng thời giữ hình ảnh nhất quán khi đưa sản phẩm ra thị trường.",
-     "en": "Select packaging, labels and required brand assets.",
+     "en": "Once the formula is stable, the project moves on to bottles, packing specifications, labels and brand identity elements. Bio-A Group coordinates packaging that suits the product’s characteristics, is practical to fill and produce, and keeps a consistent image when the product goes to market.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 358,
-     "maxEn": 64
+     "maxEn": 365
     },
     {
      "id": "t_591a8796",
@@ -1628,7 +1664,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_503d0ab5",
+     "id": "t_26ae80f0",
      "page": "home",
      "tags": [
       "div"
@@ -1637,11 +1673,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Bio-A Group phối hợp rà soát thông tin sản phẩm, nội dung nhãn và tài liệu cần chuẩn bị theo từng nhóm hàng. Công việc được triển khai song song với các bước cuối của R&D và bao bì để hạn chế chỉnh sửa nhiều vòng và giữ tiến độ sản xuất dự kiến.",
-     "en": "Prepare the documentation and product information required.",
+     "en": "Bio-A Group reviews product information, label content and the documents to prepare for each product category. This runs in parallel with the final R&D and packaging steps to limit repeated revisions and keep the planned production schedule.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 307,
-     "maxEn": 74
+     "maxEn": 302
     },
     {
      "id": "t_66666192",
@@ -1661,7 +1697,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_c0d136fc",
+     "id": "t_c9bedd3a",
      "page": "home",
      "tags": [
       "div"
@@ -1670,11 +1706,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Khi các hạng mục đã được xác nhận, nhà máy triển khai sản xuất, sang chiết, đóng gói và kiểm soát thành phẩm theo kế hoạch. Tiến độ bàn giao được theo dõi rõ ràng để khách hàng chủ động kế hoạch ra mắt, phân phối, bổ sung hàng và tiếp tục phát triển các SKU tiếp theo.",
-     "en": "Manufacture, pack and deliver to the agreed plan.",
+     "en": "Once all items are confirmed, the factory carries out production, filling, packing and finished-goods control according to plan. Delivery progress is tracked clearly so clients can plan their launch, distribution, restocking and the development of further SKUs.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 335,
-     "maxEn": 62
+     "maxEn": 327
     },
     {
      "id": "t_157419fd",
@@ -2436,7 +2472,7 @@
      "maxEn": 17
     },
     {
-     "id": "t_1e56a053",
+     "id": "t_4632a519",
      "page": "home",
      "tags": [
       "p"
@@ -2445,11 +2481,11 @@
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
      "vi": "Kết cấu, nguyên liệu, màu sắc, mùi hương, hoạt chất và quy cách bao bì có thể điều chỉnh theo định hướng thương hiệu. Một số dòng có thể phát triển nhiều phiên bản công thức hoặc dung tích cho từng kênh bán.",
-     "en": "Texture, ingredients, color, fragrance and format can be customized for your brand.",
+     "en": "Texture, ingredients, color, fragrance, actives and packaging format can be adjusted to your brand direction. Some lines can be developed in several formula versions or sizes for each sales channel.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 259,
-     "maxEn": 104
+     "maxEn": 248
     },
     {
      "id": "t_48468995",
@@ -2836,7 +2872,7 @@
      "maxEn": 22
     },
     {
-     "id": "t_4778889c",
+     "id": "t_0a004dd6",
      "page": "home",
      "tags": [
       "li"
@@ -2845,14 +2881,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Mở rộng danh mục sản phẩm theo từng phân khúc và nhu cầu của nhóm khách hàng mục tiêu",
-     "en": "Start with a clear product-development roadmap.",
+     "en": "Expand your product range by segment and the needs of your target customers",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 107,
-     "maxEn": 59
+     "maxEn": 94
     },
     {
-     "id": "t_3c761d64",
+     "id": "t_6bb9aa2d",
      "page": "home",
      "tags": [
       "li"
@@ -2861,14 +2897,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Bổ sung sản phẩm thương hiệu riêng với mức giá và quy cách phù hợp chiến lược phân phối",
-     "en": "Optimize budget by development stage.",
+     "en": "Add private-label products with pricing and formats that fit your distribution strategy",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 109,
-     "maxEn": 49
+     "maxEn": 109
     },
     {
-     "id": "t_57934a90",
+     "id": "t_5d6d4cea",
      "page": "home",
      "tags": [
       "li"
@@ -2877,11 +2913,11 @@
       "Phù Hợp Với"
      ],
      "vi": "Duy trì trải nghiệm đồng nhất để tăng mức độ tin cậy và khả năng mua lại của khách hàng",
-     "en": "Get support from sampling through production.",
+     "en": "Keep a consistent experience that builds customer trust and repeat purchases",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 109,
-     "maxEn": 57
+     "maxEn": 95
     },
     {
      "id": "t_71bf686b",
@@ -2900,7 +2936,7 @@
      "maxEn": 31
     },
     {
-     "id": "t_558aaadf",
+     "id": "t_5fb7812a",
      "page": "home",
      "tags": [
       "li"
@@ -2909,14 +2945,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Tạo khác biệt bằng công thức, kết cấu và quy cách sản phẩm phù hợp với thị trường mục tiêu",
-     "en": "Expand your range with new formulas and packaging.",
+     "en": "Stand out with formulas, textures and product formats suited to your target market",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 113,
-     "maxEn": 63
+     "maxEn": 103
     },
     {
-     "id": "t_16c84862",
+     "id": "t_95c5500c",
      "page": "home",
      "tags": [
       "li"
@@ -2925,14 +2961,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Giảm phụ thuộc vào danh mục phổ biến bằng cách phát triển thêm dòng sản phẩm và phân khúc mới",
-     "en": "Flexible OEM/ODM development for your positioning.",
+     "en": "Rely less on mainstream categories by developing new product lines and segments",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 117,
-     "maxEn": 63
+     "maxEn": 99
     },
     {
-     "id": "t_d4d28e47",
+     "id": "t_a3137771",
      "page": "home",
      "tags": [
       "li"
@@ -2941,11 +2977,11 @@
       "Phù Hợp Với"
      ],
      "vi": "Phối hợp R&D, bao bì và sản xuất theo một lộ trình rõ để tối ưu thời gian triển khai dự án",
-     "en": "Align R&D, documentation and production planning.",
+     "en": "Coordinate R&D, packaging and production on one clear roadmap to optimize rollout time",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 113,
-     "maxEn": 62
+     "maxEn": 108
     },
     {
      "id": "t_5941b2e1",
@@ -2964,7 +3000,7 @@
      "maxEn": 24
     },
     {
-     "id": "t_2d37f331",
+     "id": "t_6eb3199f",
      "page": "home",
      "tags": [
       "li"
@@ -2973,14 +3009,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Bắt đầu thương hiệu với lộ trình sản phẩm rõ ràng và ngân sách được phân bổ theo từng giai đoạn",
-     "en": "Develop products under your own brand.",
+     "en": "Start your brand with a clear product roadmap and a budget allocated stage by stage",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 119,
-     "maxEn": 50
+     "maxEn": 104
     },
     {
-     "id": "t_5189564e",
+     "id": "t_b1b7843c",
      "page": "home",
      "tags": [
       "li"
@@ -2989,14 +3025,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Tiếp cận quy trình R&D, bao bì và sản xuất mà không cần tự xây dựng toàn bộ hệ thống vận hành",
-     "en": "Choose formats and positioning independently.",
+     "en": "Access R&D, packaging and production without building the whole operation yourself",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 117,
-     "maxEn": 57
+     "maxEn": 103
     },
     {
-     "id": "t_b788a037",
+     "id": "t_32dd941d",
      "page": "home",
      "tags": [
       "li"
@@ -3005,11 +3041,11 @@
       "Phù Hợp Với"
      ],
      "vi": "Giảm tải công việc triển khai bằng cách phối hợp các hạng mục phát triển sản phẩm với Bio-A Group",
-     "en": "Scale with additional SKUs as demand grows.",
+     "en": "Lighten your rollout workload by coordinating product development with Bio-A Group",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 122,
-     "maxEn": 55
+     "maxEn": 103
     },
     {
      "id": "t_d1862f71",
@@ -3028,7 +3064,7 @@
      "maxEn": 70
     },
     {
-     "id": "t_dc1ec5be",
+     "id": "t_d08a0572",
      "page": "home",
      "tags": [
       "p"
@@ -3037,14 +3073,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Bio-A Group cùng khách hàng làm rõ ý tưởng,\nnhóm sản phẩm, khách hàng mục tiêu, ngân sách\nvà tiến độ mong muốn để xây dựng lộ trình\nphù hợp ngay từ đầu cho R&D và sản xuất.",
-     "en": "Bio-A Group aligns the product idea, target customer,\nbudget and expected timeline with your team,\nthen defines the formula, quantity and milestones\nbefore R&D and production planning begin.",
+     "en": "Bio-A Group works with you to clarify the idea,\nproduct category, target customers, budget\nand desired timeline to build a suitable roadmap\nfor R&D and production from the very start.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 215,
-     "maxEn": 238
+     "maxEn": 229
     },
     {
-     "id": "t_5e3fe5f4",
+     "id": "t_557e9322",
      "page": "home",
      "tags": [
       "p"
@@ -3053,14 +3089,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Đội ngũ R&D lựa chọn nền công thức, nguyên liệu,\nlàm mẫu thử và tinh chỉnh cảm quan theo phản hồi,\nđồng thời rà soát khả năng triển khai thực tế\ntrước khi chốt mẫu đưa vào sản xuất.",
-     "en": "Our R&D team selects formula directions and ingredients,\nprepares samples and refines sensory details,\nwhile checking production feasibility\nbefore the final sample is approved.",
+     "en": "Our R&D team selects formula bases and ingredients,\nprepares samples and refines sensory details from feedback,\nwhile reviewing practical production feasibility\nbefore the sample is finalized for production.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 227,
-     "maxEn": 222
+     "maxEn": 259
     },
     {
-     "id": "t_e7475ad7",
+     "id": "t_0019f083",
      "page": "home",
      "tags": [
       "p"
@@ -3069,14 +3105,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Sau khi công thức ổn định, dự án tiếp tục với\nlựa chọn chai lọ, quy cách đóng gói và nhãn,\nđể bao bì phù hợp đặc tính sản phẩm\nvà đồng bộ với định hướng thương hiệu.",
-     "en": "Once the formula is stable, the project moves to\nbottles, filling format, labels and brand assets,\nso packaging fits the product characteristics\nand remains consistent with the brand direction.",
+     "en": "Once the formula is stable, the project moves to\nbottles, packing specifications and labels,\nso packaging fits the product characteristics\nand remains consistent with the brand direction.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 207,
-     "maxEn": 242
+     "maxEn": 234
     },
     {
-     "id": "t_993d0615",
+     "id": "t_cc50b1ce",
      "page": "home",
      "tags": [
       "p"
@@ -3085,14 +3121,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Bio-A Group phối hợp rà soát thông tin sản phẩm,\nnội dung nhãn và các tài liệu cần chuẩn bị,\nsong song với giai đoạn hoàn thiện bao bì\nđể hạn chế phát sinh chỉnh sửa về sau.",
-     "en": "Bio-A Group reviews product information, label content\nand the documentation required for each category,\nalongside final packaging preparation\nto reduce later-stage revisions.",
+     "en": "Bio-A Group reviews product information,\nlabel content and the documents to prepare,\nin parallel with final packaging preparation\nto limit later-stage revisions.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 217,
-     "maxEn": 219
+     "maxEn": 202
     },
     {
-     "id": "t_c66cd6ee",
+     "id": "t_2e6d5b9d",
      "page": "home",
      "tags": [
       "p"
@@ -3101,11 +3137,11 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Nhà máy triển khai sản xuất, sang chiết, đóng gói\nvà kiểm soát thành phẩm theo kế hoạch đã thống nhất,\ngiúp khách hàng chủ động thời điểm ra mắt\nvà kế hoạch phân phối sản phẩm.",
-     "en": "The factory manufactures, fills, packs and controls\nfinished goods according to the agreed production plan,\nhelping the brand keep launch timing predictable\nand prepare distribution with confidence.",
+     "en": "The factory manufactures, fills, packs and controls\nfinished goods according to the agreed plan,\nso the brand stays in control of launch timing\nand product distribution plans.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 220,
-     "maxEn": 248
+     "maxEn": 219
     }
    ]
   },
@@ -4088,7 +4124,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_5c3eed19",
+     "id": "t_3ed13f05",
      "page": "about",
      "tags": [
       "p"
@@ -4097,11 +4133,11 @@
       "Danh Mục Gia Công"
      ],
      "vi": "Dầu gội, dầu xả, tinh chất và các giải pháp chăm sóc tóc theo yêu cầu.",
-     "en": "Shampoo, conditioner, treatments and hair-care solutions developed to your brief.",
+     "en": "Shampoo, conditioner, hair serums and hair-care solutions developed to your brief.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 88,
-     "maxEn": 102
+     "maxEn": 103
     },
     {
      "id": "t_23709f57",
@@ -5661,7 +5697,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_808d4fc2",
+     "id": "t_e4bb3318",
      "page": "cosmetics",
      "tags": [
       "p"
@@ -5670,11 +5706,11 @@
       "Danh Mục Gia Công Mỹ Phẩm"
      ],
      "vi": "Dầu gội, dầu xả, tinh chất và các giải pháp chăm sóc tóc được phát triển theo yêu cầu dự án.",
-     "en": "Shampoo, conditioner, treatments and hair-care solutions developed to the project brief.",
+     "en": "Shampoo, conditioner, hair serums and hair-care solutions developed to the project brief.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 115,
-     "maxEn": 110
+     "maxEn": 112
     },
     {
      "id": "t_533a6e09",
@@ -7507,7 +7543,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_e81c428a",
+     "id": "t_64c4ab2f",
      "page": "cosmetics",
      "tags": [
       "div"
@@ -7516,11 +7552,11 @@
       "Hạng Mục Kiểm Tra"
      ],
      "vi": "Các thông số và đặc tính cảm quan được theo dõi trong quá trình sản xuất để hạn chế sai lệch so với mẫu đã duyệt.",
-     "en": "Product parameters and sensory characteristics are monitored during manufacturing.",
+     "en": "Product parameters and sensory characteristics are monitored during manufacturing to limit deviation from the approved sample.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 142,
-     "maxEn": 103
+     "maxEn": 158
     },
     {
      "id": "t_fa6ec1b7",

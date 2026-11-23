@@ -4372,18 +4372,18 @@ function replaceMobileProduceSection($,lang){
 
   const cards=[
     {
-      title:vi?'Gia công dược mỹ phẩm':'Cosmetic manufacturing',
+      title:vi?'Gia công dược mỹ phẩm':'Cosmeceutical manufacturing',
       copy:vi
         ?'Bio-A Group nhận R&D và sản xuất OEM/ODM các dòng dược mỹ phẩm theo định hướng thương hiệu. Dự án có thể bắt đầu từ công thức nền hoặc phát triển công thức riêng, đồng thời phối hợp nguyên liệu, mẫu thử, bao bì và kế hoạch sản xuất để tạo thành phẩm đồng bộ.'
-        :'Formula R&D and OEM/ODM production for your brand direction.',
+        :'Bio-A Group provides R&D and OEM/ODM manufacturing for cosmeceutical lines based on each brand’s direction. A project can start from a base formula or a custom formula, coordinating ingredients, samples, packaging and production planning into a consistent finished product.',
       src:'https://merywood.com/wp-content/uploads/2026/04/produce-1.webp',
-      alt:vi?'Gia công dược mỹ phẩm':'Cosmetic manufacturing'
+      alt:vi?'Gia công dược mỹ phẩm':'Cosmeceutical manufacturing'
     },
     {
       title:vi?'Bao bì & hoàn thiện':'Packaging & finishing',
       copy:vi
         ?'Các dòng mỹ phẩm được phát triển theo nhu cầu sử dụng, phân khúc khách hàng và định vị thương hiệu. Bio-A Group hỗ trợ từ công thức, kết cấu, mùi hương, lựa chọn chai lọ đến sang chiết, đóng gói và hoàn thiện sản phẩm trước khi bàn giao.'
-        :'Bottles, filling, packing and finished-product preparation.',
+        :'Cosmetic lines are developed around usage needs, customer segments and brand positioning. Bio-A Group supports everything from formula, texture, fragrance and container selection to filling, packing and finishing before handover.',
       src:'https://merywood.com/wp-content/uploads/2026/04/produce-2.webp',
       alt:vi?'Bao bì và hoàn thiện':'Packaging and finishing'
     }

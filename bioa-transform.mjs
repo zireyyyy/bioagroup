@@ -320,9 +320,9 @@ function setRightChoiceCopy($,lang){
     ['Tạo khác biệt bằng công thức, kết cấu và quy cách sản phẩm phù hợp với thị trường mục tiêu','Giảm phụ thuộc vào danh mục phổ biến bằng cách phát triển thêm dòng sản phẩm và phân khúc mới','Phối hợp R&D, bao bì và sản xuất theo một lộ trình rõ để tối ưu thời gian triển khai dự án'],
     ['Bắt đầu thương hiệu với lộ trình sản phẩm rõ ràng và ngân sách được phân bổ theo từng giai đoạn','Tiếp cận quy trình R&D, bao bì và sản xuất mà không cần tự xây dựng toàn bộ hệ thống vận hành','Giảm tải công việc triển khai bằng cách phối hợp các hạng mục phát triển sản phẩm với Bio-A Group']
   ]:[
-    ['Start with a clear product-development roadmap.','Optimize budget by development stage.','Get support from sampling through production.'],
-    ['Expand your range with new formulas and packaging.','Flexible OEM/ODM development for your positioning.','Align R&D, documentation and production planning.'],
-    ['Develop products under your own brand.','Choose formats and positioning independently.','Scale with additional SKUs as demand grows.']
+    ['Expand your product range by segment and the needs of your target customers','Add private-label products with pricing and formats that fit your distribution strategy','Keep a consistent experience that builds customer trust and repeat purchases'],
+    ['Stand out with formulas, textures and product formats suited to your target market','Rely less on mainstream categories by developing new product lines and segments','Coordinate R&D, packaging and production on one clear roadmap to optimize rollout time'],
+    ['Start your brand with a clear product roadmap and a budget allocated stage by stage','Access R&D, packaging and production without building the whole operation yourself','Lighten your rollout workload by coordinating product development with Bio-A Group']
   ];
   $('.block-right-choice').each((_,block)=>{
     const root=$(block);root.find('.title').first().text(vi?'Phù hợp với':'Built for');
@@ -339,8 +339,8 @@ function localizeWeProduceSourceText($,lang){
     ['Dược mỹ phẩm','Bio-A Group nhận R&D và sản xuất OEM/ODM các dòng dược mỹ phẩm theo định hướng thương hiệu. Dự án có thể bắt đầu từ công thức nền hoặc phát triển công thức riêng, đồng thời phối hợp nguyên liệu, mẫu thử, bao bì và kế hoạch sản xuất để tạo thành phẩm đồng bộ.'],
     ['Mỹ phẩm','Các dòng mỹ phẩm được phát triển theo nhu cầu sử dụng, phân khúc khách hàng và định vị thương hiệu. Bio-A Group hỗ trợ từ công thức, kết cấu, mùi hương, lựa chọn chai lọ đến sang chiết, đóng gói và hoàn thiện sản phẩm trước khi bàn giao.']
   ]:[
-    ['Cosmeceuticals','Formula R&D, sampling and OEM/ODM manufacturing for your brand.'],
-    ['Cosmetics','From formula and ingredients to packaging and finished products.']
+    ['Cosmeceuticals','Bio-A Group provides R&D and OEM/ODM manufacturing for cosmeceutical lines based on each brand’s direction. A project can start from a base formula or a custom formula, coordinating ingredients, samples, packaging and production planning into a consistent finished product.'],
+    ['Cosmetics','Cosmetic lines are developed around usage needs, customer segments and brand positioning. Bio-A Group supports everything from formula, texture, fragrance and container selection to filling, packing and finishing before handover.']
   ];
   $('.block-we-produce > .container > .title-wrapper > .title').first().text(vi?'Danh mục sản xuất':'We Produce');
   $('.block-we-produce > .container > .grid > .item').each((i,e)=>{
@@ -374,7 +374,7 @@ function setFormatsCopy($,lang){
   $('.block-product-formats .formats__cta-title').text(vi?'Chưa thấy sản phẩm bạn cần?':'Do not see your product?');
   $('.block-product-formats .formats__cta-description').text(vi?'Gửi ý tưởng sản phẩm, Bio-A Group sẽ kiểm tra và tư vấn phương án phù hợp.':'Share your idea and Bio-A Group will recommend a suitable approach.');
   $('.block-product-formats .formats__cta-btn .btn__text').text(vi?'Chia sẻ ý tưởng':'Tell us your idea');
-  $('.block-product-formats .formats__note').text(vi?'Kết cấu, nguyên liệu, màu sắc, mùi hương, hoạt chất và quy cách bao bì có thể điều chỉnh theo định hướng thương hiệu. Một số dòng có thể phát triển nhiều phiên bản công thức hoặc dung tích cho từng kênh bán.':'Texture, ingredients, color, fragrance and format can be customized for your brand.');
+  $('.block-product-formats .formats__note').text(vi?'Kết cấu, nguyên liệu, màu sắc, mùi hương, hoạt chất và quy cách bao bì có thể điều chỉnh theo định hướng thương hiệu. Một số dòng có thể phát triển nhiều phiên bản công thức hoặc dung tích cho từng kênh bán.':'Texture, ingredients, color, fragrance, actives and packaging format can be adjusted to your brand direction. Some lines can be developed in several formula versions or sizes for each sales channel.');
 }
 
 function finalizeHomeCopy($,lang){
@@ -407,7 +407,7 @@ function finalizeHomeCopy($,lang){
     });
   });
   $('.block-title h1').first().text(vi?'Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group':'Bio-A Group Cosmetic & Cosmeceutical Manufacturing Factory');
-  $('.block-title .text-large').first().text(vi?'Bio-A Group đồng hành cùng thương hiệu từ R&D công thức, lựa chọn nguyên liệu, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm theo định hướng riêng.':'From formula R&D and OEM/ODM manufacturing to packaging and finished products.');
+  $('.block-title .text-large').first().text(vi?'Bio-A Group đồng hành cùng thương hiệu từ R&D công thức, lựa chọn nguyên liệu, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm theo định hướng riêng.':'Bio-A Group partners with brands from formula R&D and ingredient selection through OEM/ODM manufacturing to packaging and finished products, following each brand’s own direction.');
   $('.whatsapp__title').text(vi?'Trao đổi ý tưởng cùng Bio-A Group':'Discuss your idea with Bio-A Group');
   $('.whatsapp__description').text(vi?'Liên hệ Bio-A Group để trao đổi về công thức, MOQ, bao bì và tiến độ dự kiến cho dự án.':'Contact Bio-A Group on Zalo for formula, quantity and production-timeline advice.');
   $('.page-main *').contents().each((_,n)=>{
@@ -488,7 +488,7 @@ function resetHomeVI($){
 function resetHomeEN($){
   const stats=[['2,000+','R&D samples'],['5+','Years of experience'],['10,000,000','Products / year'],['1,000 m²','Factory scale'],['OEM/ODM','Full-service manufacturing']];setHomeStats($,stats);
   $('#why-choose-us .title').first().text('Why choose Bio-A Group');
-  const why=[['Tailored solutions','Consulting around product goals, customers and brand positioning.'],['R&D & formulation','Formula development, sampling and refinement for each project.'],['Documentation support','Support for dossiers, notifications and label information.'],['Quality control','Quality monitoring throughout development and production.']];
+  const why=[['Tailored solutions','Bio-A Group develops solutions around your product goals, target customers and brand positioning. From the initial idea, formula, ingredients and packaging to the production plan, our team coordinates every stage so the project has a clear roadmap, stays flexible to adjust and can easily expand with new products when needed.'],['R&D & formulation','Our R&D team supports formula development, ingredient selection, sampling and sensory adjustments to each project’s requirements. Clients can choose a suitable formula base and fine-tune ingredients, texture, fragrance, color and intended benefits before approving the sample and moving on to packaging and production.'],['Documentation support','Bio-A Group helps prepare product information, label content and the documentation required for each product category. This runs in parallel with R&D and packaging to reduce waiting time between steps, limit repeated revisions and get the project better prepared before it enters the production plan.'],['Quality control','From sample to finished product, criteria for ingredients, sensory profile, texture, fragrance, packing specifications and stability are monitored at each stage. The aim is to maintain consistent quality, limit deviation between the approved sample and the actual production batch, and ensure the product matches the brand direction.']];
   $('#why-choose-us .grid .item,#why-choose-us .mobile .item').each((i,e)=>{
     const d=why[i%why.length],root=$(e);
     const title=root.find('.item__title').first(),titleP=title.find('p').first();
@@ -496,40 +496,40 @@ function resetHomeEN($){
     const body=root.find('.item__body').first(),bodyP=body.find('p').first();
     (bodyP.length?bodyP:body).text(d[1]);
   });
-  const steps=[['Consultation & planning','Align product goals, budget and timeline.'],['Research & development','Develop formulas, ingredients and samples for your brand direction.'],['Packaging & branding','Select packaging, labels and required brand assets.'],['Product documentation','Prepare the documentation and product information required.'],['Production & delivery','Manufacture, pack and deliver to the agreed plan.']];
+  const steps=[['Consultation & planning','We start by clarifying the idea, product category, target customers, budget and desired timeline. Bio-A Group then builds a suitable roadmap with the client for a ready formula, a custom formula or a range expansion, with R&D, packaging and production milestones set from the start.'],['Research & development','The R&D team develops the formula, selects ingredients, prepares samples and refines them based on feedback. Each trial round focuses on sensory profile, texture, fragrance, color, intended benefits and stable manufacturability when moving from sample to the factory’s actual production scale.'],['Packaging & branding','Once the formula is stable, the project moves on to bottles, packing specifications, labels and brand identity elements. Bio-A Group coordinates packaging that suits the product’s characteristics, is practical to fill and produce, and keeps a consistent image when the product goes to market.'],['Product documentation','Bio-A Group reviews product information, label content and the documents to prepare for each product category. This runs in parallel with the final R&D and packaging steps to limit repeated revisions and keep the planned production schedule.'],['Production & delivery','Once all items are confirmed, the factory carries out production, filling, packing and finished-goods control according to plan. Delivery progress is tracked clearly so clients can plan their launch, distribution, restocking and the development of further SKUs.']];
   $('.block-how-works .title').text('How we work');$('.block-how-works .step').each((i,e)=>{const x=steps[i%5];$(e).find('.step__title').text(x[0]);$(e).find('.step__text').text(x[1])});
   // R27 F03: no owner-confirmed client testimonials exist, so the Home reviews block (sample quotes) is removed.
   $('.block-reviews').remove();
   const roadmapSteps=[
     ['Consultation & planning',[
-      'Bio-A Group aligns the product idea, target customer,',
-      'budget and expected timeline with your team,',
-      'then defines the formula, quantity and milestones',
-      'before R&D and production planning begin.'
+      'Bio-A Group works with you to clarify the idea,',
+      'product category, target customers, budget',
+      'and desired timeline to build a suitable roadmap',
+      'for R&D and production from the very start.'
     ]],
     ['Research & development',[
-      'Our R&D team selects formula directions and ingredients,',
-      'prepares samples and refines sensory details,',
-      'while checking production feasibility',
-      'before the final sample is approved.'
+      'Our R&D team selects formula bases and ingredients,',
+      'prepares samples and refines sensory details from feedback,',
+      'while reviewing practical production feasibility',
+      'before the sample is finalized for production.'
     ]],
     ['Packaging & branding',[
       'Once the formula is stable, the project moves to',
-      'bottles, filling format, labels and brand assets,',
+      'bottles, packing specifications and labels,',
       'so packaging fits the product characteristics',
       'and remains consistent with the brand direction.'
     ]],
     ['Product documentation',[
-      'Bio-A Group reviews product information, label content',
-      'and the documentation required for each category,',
-      'alongside final packaging preparation',
-      'to reduce later-stage revisions.'
+      'Bio-A Group reviews product information,',
+      'label content and the documents to prepare,',
+      'in parallel with final packaging preparation',
+      'to limit later-stage revisions.'
     ]],
     ['Production & delivery',[
       'The factory manufactures, fills, packs and controls',
-      'finished goods according to the agreed production plan,',
-      'helping the brand keep launch timing predictable',
-      'and prepare distribution with confidence.'
+      'finished goods according to the agreed plan,',
+      'so the brand stays in control of launch timing',
+      'and product distribution plans.'
     ]]
   ];
   $('.block-roadmap .title').html('From idea to finished product —<br>a full-cycle partnership');$('.block-roadmap .step').each((i,e)=>{

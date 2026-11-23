@@ -190,7 +190,7 @@ function setAboutProducts($,lang){
     ["Sản Phẩm Mẹ & Bé","Nhóm sản phẩm chăm sóc mẹ và bé với định hướng công thức phù hợp từng dự án.",[["Xem Dòng Mẹ & Bé","/gia-cong-san-pham-me-be/"]]]
   ]:[
     ["Makeup Products","Makeup lines developed around color, texture and brand positioning.",[["Explore Makeup","/gia-cong-my-pham-trang-diem/"]]],
-    ["Hair Care Products","Shampoo, conditioner, treatments and hair-care solutions developed to your brief.",[["Explore Hair Care","/gia-cong-my-pham-toc/"]]],
+    ["Hair Care Products","Shampoo, conditioner, hair serums and hair-care solutions developed to your brief.",[["Explore Hair Care","/gia-cong-my-pham-toc/"]]],
     ["Body Care Products","Body wash, lotions, scrubs and other body-care formats.",[["Explore Body Care","/gia-cong-my-pham-cham-soc-body/"]]],
     ["Facial Skin Care","Creams, serums, gels, masks and facial-care lines aligned with your brand direction.",[["Explore Skin Care","/gia-cong-my-cham-soc-da-mat/"]]],
     ["Personal Care Products","Personal-care lines developed for specific usage needs and sales channels.",[["Explore Personal Care","/gia-cong-my-pham-ca-nhan/"]]],
