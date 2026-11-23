@@ -1320,7 +1320,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_c38eef51",
+     "id": "t_5247c8d8",
      "page": "home",
      "tags": [
       "p"
@@ -1329,11 +1329,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Bio-A Group phát triển giải pháp theo mục tiêu sản phẩm, nhóm khách hàng và định vị thương hiệu. Từ ý tưởng ban đầu, lựa chọn công thức, nguyên liệu, bao bì đến kế hoạch sản xuất, đội ngũ phối hợp theo từng giai đoạn để dự án có lộ trình rõ ràng, linh hoạt điều chỉnh và thuận tiện mở rộng thêm sản phẩm khi cần.",
-     "en": "Bio-A Group develops solutions around your product goals, target customers and brand positioning. From the initial idea, formula, ingredients and packaging to the production plan, our team coordinates every stage so the project has a clear roadmap, stays flexible to adjust and can easily expand with new products when needed.",
+     "en": "Bio-A Group builds solutions around your product goals, target customers and brand positioning. From the first idea, formula, ingredients and packaging to the production plan, our team coordinates each stage for a clear roadmap, flexible adjustments and easy expansion with new products when needed.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 390,
-     "maxEn": 408
+     "maxEn": 374
     },
     {
      "id": "t_403e1f38",
@@ -1352,7 +1352,7 @@
      "maxEn": 29
     },
     {
-     "id": "t_88fc6fd1",
+     "id": "t_930785d3",
      "page": "home",
      "tags": [
       "p"
@@ -1361,11 +1361,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Đội ngũ R&D hỗ trợ phát triển công thức, lựa chọn nguyên liệu, làm mẫu thử và điều chỉnh cảm quan theo yêu cầu dự án. Khách hàng có thể lựa chọn nền công thức phù hợp, tinh chỉnh thành phần, kết cấu, mùi hương, màu sắc và định hướng công dụng trước khi chốt mẫu để chuyển sang các bước bao bì và sản xuất.",
-     "en": "Our R&D team supports formula development, ingredient selection, sampling and sensory adjustments to each project’s requirements. Clients can choose a suitable formula base and fine-tune ingredients, texture, fragrance, color and intended benefits before approving the sample and moving on to packaging and production.",
+     "en": "Our R&D team supports formula development, ingredient selection, sampling and sensory adjustments to project requirements. Clients can choose a suitable formula base and fine-tune ingredients, texture, fragrance, color and intended benefits before approving the sample for packaging and production.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 382,
-     "maxEn": 398
+     "maxEn": 373
     },
     {
      "id": "t_d497dfd9",
@@ -1416,7 +1416,7 @@
      "maxEn": 27
     },
     {
-     "id": "t_ed33a410",
+     "id": "t_ee6fbf5d",
      "page": "home",
      "tags": [
       "p"
@@ -1425,11 +1425,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Từ mẫu thử đến thành phẩm, các tiêu chí về nguyên liệu, cảm quan, kết cấu, mùi hương, quy cách đóng gói và độ ổn định được theo dõi theo từng giai đoạn. Mục tiêu là duy trì chất lượng nhất quán, hạn chế sai lệch giữa mẫu đã duyệt và lô sản xuất thực tế, đồng thời bảo đảm sản phẩm phù hợp định hướng thương hiệu.",
-     "en": "From sample to finished product, criteria for ingredients, sensory profile, texture, fragrance, packing specifications and stability are monitored at each stage. The aim is to maintain consistent quality, limit deviation between the approved sample and the actual production batch, and ensure the product matches the brand direction.",
+     "en": "From sample to finished product, ingredients, sensory profile, texture, fragrance, packing specifications and stability are monitored at each stage, to keep quality consistent, limit deviation between the approved sample and the actual production batch, and ensure the product matches the brand direction.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 390,
-     "maxEn": 417
+     "maxEn": 382
     },
     {
      "id": "t_f03cf781",
@@ -7543,7 +7543,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_64c4ab2f",
+     "id": "t_377beddb",
      "page": "cosmetics",
      "tags": [
       "div"
@@ -7552,11 +7552,11 @@
       "Hạng Mục Kiểm Tra"
      ],
      "vi": "Các thông số và đặc tính cảm quan được theo dõi trong quá trình sản xuất để hạn chế sai lệch so với mẫu đã duyệt.",
-     "en": "Product parameters and sensory characteristics are monitored during manufacturing to limit deviation from the approved sample.",
+     "en": "Parameters and sensory characteristics are monitored during production to limit deviation from the approved sample.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 142,
-     "maxEn": 158
+     "maxEn": 144
     },
     {
      "id": "t_fa6ec1b7",
