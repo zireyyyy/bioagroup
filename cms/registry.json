@@ -1565,7 +1565,7 @@
      "maxEn": 35
     },
     {
-     "id": "t_defba1d9",
+     "id": "t_cb7299e7",
      "page": "home",
      "tags": [
       "div"
@@ -1574,11 +1574,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Bắt đầu bằng việc làm rõ ý tưởng, nhóm sản phẩm, khách hàng mục tiêu, ngân sách và tiến độ mong muốn. Từ đó Bio-A Group cùng khách hàng xây dựng lộ trình phù hợp cho công thức có sẵn, công thức riêng hoặc kế hoạch mở rộng danh mục, với các mốc R&D, bao bì và sản xuất được xác định ngay từ đầu.",
-     "en": "We start by clarifying the idea, product category, target customers, budget and desired timeline. Bio-A Group then builds a suitable roadmap with the client for a ready formula, a custom formula or a range expansion, with R&D, packaging and production milestones set from the start.",
+     "en": "We start by clarifying the idea, product category, target customers, budget and desired timeline. Bio-A Group then builds a suitable roadmap with you for a ready formula, a custom formula or a range expansion, with R&D, packaging and production milestones set upfront.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 368,
-     "maxEn": 353
+     "maxEn": 335
     },
     {
      "id": "t_627badbc",
@@ -1598,7 +1598,7 @@
      "maxEn": 34
     },
     {
-     "id": "t_d798f9a8",
+     "id": "t_07c33a75",
      "page": "home",
      "tags": [
       "div"
@@ -1607,11 +1607,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Đội ngũ R&D triển khai công thức, lựa chọn nguyên liệu, làm mẫu và tinh chỉnh theo phản hồi. Mỗi vòng thử nghiệm tập trung vào cảm quan, kết cấu, mùi hương, màu sắc, định hướng công dụng và khả năng sản xuất ổn định khi chuyển từ mẫu thử sang quy mô thực tế của nhà máy.",
-     "en": "The R&D team develops the formula, selects ingredients, prepares samples and refines them based on feedback. Each trial round focuses on sensory profile, texture, fragrance, color, intended benefits and stable manufacturability when moving from sample to the factory’s actual production scale.",
+     "en": "The R&D team develops the formula, selects ingredients, makes samples and refines them from feedback. Each trial round focuses on sensory profile, texture, fragrance, color, intended benefits and stable production when moving from sample to actual factory scale.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 338,
-     "maxEn": 367
+     "maxEn": 328
     },
     {
      "id": "t_815f5987",
@@ -1631,7 +1631,7 @@
      "maxEn": 32
     },
     {
-     "id": "t_1031ac66",
+     "id": "t_b1c29fad",
      "page": "home",
      "tags": [
       "div"
@@ -1640,11 +1640,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Sau khi công thức ổn định, dự án tiếp tục với lựa chọn chai lọ, quy cách đóng gói, nhãn và các yếu tố nhận diện thương hiệu. Bio-A Group phối hợp để bao bì phù hợp với đặc tính sản phẩm, thuận tiện sang chiết và sản xuất, đồng thời giữ hình ảnh nhất quán khi đưa sản phẩm ra thị trường.",
-     "en": "Once the formula is stable, the project moves on to bottles, packing specifications, labels and brand identity elements. Bio-A Group coordinates packaging that suits the product’s characteristics, is practical to fill and produce, and keeps a consistent image when the product goes to market.",
+     "en": "Once the formula is stable, the project moves on to bottles, packing specifications, labels and brand identity. Bio-A Group coordinates packaging that suits the product’s characteristics, is easy to fill and produce, and keeps a consistent image when it goes to market.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 358,
-     "maxEn": 365
+     "maxEn": 337
     },
     {
      "id": "t_591a8796",
