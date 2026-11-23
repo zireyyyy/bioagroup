@@ -13,7 +13,7 @@
 
 **Routes:** Home, About and Cosmetic Manufacturing, VI and EN. These are the only 3 EN pages that changed. Every other page and every VI page is **byte-identical** (HTML hash and phase-scope gate), so its rendering cannot change.
 
-**Tools:** `tests/r28d-d1-layout-qa.mjs` and `tests/r28d-d1-layout-compare.mjs`. Evidence: `evidence/r28d-d1/compare/`, `before/shots`, `after/shots`.
+**Tools:** `tests/r28d-d1-layout-qa.mjs` and `tests/r28d-d1-layout-compare.mjs`. Evidence: `evidence/r28d-d1-zip/compare/` and `evidence/r28d-d1-zip/shots/`.
 
 **What is measured for every text box:**
 - DOMRect and computed font-size / family / weight / line-height;
@@ -116,7 +116,8 @@
 
 ## 6. Screenshots
 
-`evidence/r28d-d1/before/shots/` and `after/shots/` (Chrome, 320 / 390 / 834 / 1024 / 1440).
+`evidence/r28d-d1-zip/shots/` (Chrome 390 / 834 / 1024 / 1440).
 - Each changed section: Hero, Why Choose, We Produce desktop + mobile, How We Work, product formats, Built For, Roadmap, About categories, Cosmetics categories / QC.
-- File name: `<engine>-<route>-<width>-<section>.png`.
-- VI (`_`) and EN (`_en_`) before / after pairs.
+- File name: `before-<vi|en>-<page>-<section>-<width>.png` and `after-en-<page>-<section>-<width>.png`.
+- VI is byte-identical, so only its before shots are included.
+- 320 px shots and the raw measurements stay in `D:\BIOA_WORKSPACE\_reports\r28d-d1\`.
