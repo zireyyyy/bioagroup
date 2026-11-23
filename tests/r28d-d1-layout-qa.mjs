@@ -21,6 +21,41 @@ fs.mkdirSync(outDir, { recursive: true });
 const browser = await (engineName === "webkit" ? webkit : chromium).launch(engineName === "chromium" && process.env.BIOA_CHROME_PATH ? { executablePath: process.env.BIOA_CHROME_PATH } : {});
 const out = { meta: { base, engine: engineName, widths: WIDTHS, routes: ROUTES, at: new Date().toISOString() }, pages: [] };
 
+// Section screenshots. On Desktop/Tablet the page scrolls inside Smooth Scrollbar (transform-based), so element
+// screenshots must scroll through that instance; a tall viewport keeps whole sections in one frame.
+async function sectionShots(route, width){
+  const ctx = await browser.newContext({ viewport: { width, height: 2400 }, deviceScaleFactor: 1 });
+  const page = await ctx.newPage();
+  await page.goto(base + route, { waitUntil: "load", timeout: 90000 });
+  await page.evaluate(() => document.querySelector(".mw-deny")?.click()).catch(() => {});
+  await page.addStyleTag({ content: "[data-bioa-aos]{opacity:1!important;transform:none!important;transition:none!important}" });
+  await page.evaluate(() => document.fonts && document.fonts.ready); await page.waitForTimeout(600);
+  const files = [];
+  fs.mkdirSync(path.join(outDir, "shots"), { recursive: true });
+  for (const sel of SHOT_SECTIONS){
+    const rect = await page.evaluate(async (sel) => {
+      const el = [...document.querySelectorAll(sel)].find(e => { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && getComputedStyle(e).display !== "none"; });
+      if (!el) return null;
+      const sb = window.Scrollbar && window.Scrollbar.getAll ? window.Scrollbar.getAll()[0] : null;
+      if (sb) sb.scrollIntoView(el, { alignToTop: true, offsetTop: 100, onlyScrollIfNeeded: false }); else { el.scrollIntoView({ block: "start" }); scrollBy(0, -90); }
+      await new Promise(r => setTimeout(r, 450));
+      const b = el.getBoundingClientRect();
+      return { x: Math.max(0, b.x), y: Math.max(0, b.y), width: Math.min(b.width, innerWidth), height: Math.min(b.height, innerHeight - Math.max(0, b.y)) };
+    }, sel);
+    if (!rect || rect.height < 4) continue;
+    const file = `${engineName}-${route.replace(/\//g, "_") || "_"}-${width}-${sel.replace(/[^a-z0-9]+/gi, "")}.png`;
+    await page.screenshot({ path: path.join(outDir, "shots", file), clip: rect }).catch(() => {});
+    files.push(file);
+  }
+  await ctx.close();
+  return files;
+}
+
+if (args.includes("--shots-only")){
+  for (const route of ROUTES) for (const width of WIDTHS.filter(w => SHOT_WIDTHS.has(w))){ await sectionShots(route, width); process.stdout.write(`${route}@${width} `); }
+  await browser.close(); console.log("\nshots only"); process.exit(0);
+}
+
 for (const route of ROUTES) for (const width of WIDTHS){
   const ctx = await browser.newContext({ viewport: { width, height: width < 769 ? 844 : 900 }, deviceScaleFactor: 1 });
   const page = await ctx.newPage();
@@ -90,15 +125,7 @@ for (const route of ROUTES) for (const width of WIDTHS){
     const sections = [...document.querySelectorAll("main section, section, header.header, footer")].map(s => ({ key: keyOf(s), cls: s.className.toString().split(/\s+/).slice(0, 3).join("."), rect: r(s) }));
     return { docW: document.documentElement.scrollWidth, vw: innerWidth, docH: document.documentElement.scrollHeight, boxes, rows, sections };
   });
-  const shots = [];
-  if (SHOTS && SHOT_WIDTHS.has(width)) for (const sel of SHOT_SECTIONS){
-    const loc = page.locator(sel).first();
-    if (!(await loc.count()) || !(await loc.isVisible().catch(() => false))) continue;
-    const file = `${engineName}-${route.replace(/\//g, "_") || "_"}-${width}-${sel.replace(/[^a-z0-9]+/gi, "")}.png`;
-    await loc.scrollIntoViewIfNeeded().catch(() => {}); await page.waitForTimeout(250);
-    await loc.screenshot({ path: path.join(outDir, "shots", file) }).catch(() => {});
-    shots.push(file);
-  }
+  const shots = SHOTS && SHOT_WIDTHS.has(width) ? await sectionShots(route, width) : [];
   out.pages.push({ route, width, sliders, shots, ...data });
   await ctx.close();
   process.stdout.write(`${route}@${width} `);
