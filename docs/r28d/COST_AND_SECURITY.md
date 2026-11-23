@@ -1,5 +1,16 @@
 # R28d — Chi phí, bảo mật, quyền riêng tư (VI-first + chatbot AI)
 
+> **Cập nhật 23/11/2026 (Owner quyết định tiếp tục R28d).** Mục này thay cho các dòng "chưa xác minh" bên dưới.
+>
+> - **Gói Workers = Free** (Owner xác nhận). Không nâng cấp, không bật AI Gateway trả trước.
+> - Tài liệu Cloudflare đã kiểm lại 23/11/2026 (pricing 18/11/2026; changelog 28/07/2026): `gemma-4-26b-a4b-it` và `glm-4.7-flash` vẫn dùng được trên gói Free; bảng giá Neurons khớp với `lib/chat/budget.js`.
+> - **R28d-B VI-first tự động: DEFERRED BY OWNER.** Website được sửa **thủ công cả VI và EN**. Worker dịch, token Sanity Editor, chuyển webhook, backfill `i18n` và `I18N_AUTO_ACTIVE` đều **tắt và không triển khai**; mã đã test được giữ nguyên ở trạng thái ngủ. Ngân sách dịch (`FLOW_MAX.i18n`) không được dùng.
+> - **R28d-C:** Owner đồng ý về nguyên tắc với 8 nhóm FAQ và câu thông báo AI, **với điều kiện đồng bộ thông tin nhà máy** (R28d-D).
+>   - Hai thông tin chưa xác nhận (mẹ & bé, đăng ký thương hiệu) đang bị giữ lại, không đưa cho AI.
+>   - Phần bổ sung Chính sách bảo mật: `PRIVACY_AI_ADDITION.md` (chưa áp dụng).
+>   - Hướng dẫn kích hoạt và cổng Preview `/api`: `CHAT_ACTIVATION.md`.
+> - Lượt gọi AI thật đến nay: **0**. Chi phí: **$0**.
+
 **Trạng thái:** mã nguồn xong, **chưa gọi AI thật lần nào** (0 Neuron, $0). Kích hoạt thật = **BLOCKED** cho tới khi Owner hoàn thành các mục ở §5.
 
 ## 1. Chính sách giá Cloudflare Workers AI
