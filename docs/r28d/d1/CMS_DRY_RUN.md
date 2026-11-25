@@ -107,3 +107,30 @@ The Preview text is the same before and after step 2 (Sanity values = repository
 **B. Last resort:** restore the 3 documents from the backup with `createOrReplace` pinned to the current `_rev`.
 
 **Production:** `main` is not involved; nothing to roll back.
+
+## 6. APPLIED: Owner approval "Duyệt D1" (25/11/2026)
+
+**Trước khi ghi** (đọc lại 25/11):
+- `_rev` của cả 3 tài liệu **không đổi** so với 23/11;
+- không có bản nháp;
+- bản sao lưu mới `r28d-d1-before-2026-11-25T014218577Z.json` có nội dung giống hệt bản 23/11 (sha256 `625251ce…`);
+- dry run trùng khớp: +28 / −26, +1 / −1, +2 / −2, 0 xung đột.
+
+**Code:** fast-forward `r28/blog-icon-cms` và `cms-preview` `bbf21b3` → `676a668`, không force.
+
+**Ghi Sanity:** `node tools/cms-sync-slots.mjs --from bbf21b3 --apply`.
+
+| Tài liệu | `_rev` trước → sau | Transaction | Ghi lúc |
+|---|---|---|---|
+| `page-home` | `ehgitTyVwN7DzeQ1YVw1Ap` → `rDjQeA2teu1HkTJ2oipWU0` | `rDjQeA2teu1HkTJ2oipWU0` | 01:42:43Z |
+| `page-about` | `WIhnXGDtfVOQnknZsfaoqQ` → `rDjQeA2teu1HkTJ2oipWWH` | `rDjQeA2teu1HkTJ2oipWWH` | 01:42:45Z |
+| `page-cosmetics` | `WIhnXGDtfVOQnknZsfaoqQ` → `GsTwF7O1T30fo6QWvQSm7d` | `GsTwF7O1T30fo6QWvQSm7d` | 01:42:47Z |
+
+**Kiểm tra sau khi ghi** (so với bản sao lưu và registry):
+- 31 ô mới đúng VI + EN của registry;
+- 29 ô cũ đã gỡ;
+- **0 trường khác bị đổi**;
+- mọi ô trong registry đều có giá trị;
+- dry run mới: +0 / −0.
+
+Bản sau khi ghi được lưu riêng tại `_private/sanity/backups/r28d-d1-after-*.json`.

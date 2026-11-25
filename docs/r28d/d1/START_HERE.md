@@ -1,15 +1,14 @@
 # BIO-A — R28d-D1 (EN theo đúng VI hiện tại + kiểm khung chữ toàn site): START HERE (23/11/2026)
 
-**Trạng thái: APPROVAL PENDING.**
-- Code và QA cục bộ xong. **Chưa ghi Sanity, chưa đưa lên CMS Preview.**
+**Trạng thái (25/11/2026): Owner đã duyệt "Duyệt D1". Đã đưa lên CMS Preview và ghi Sanity; chờ Owner UAT trên CMS Preview.**
 - Không có mục nào được tuyên bố OWNER PASS.
 
 | Mục | Giá trị |
 |---|---|
 | Nhánh D1 | **`r28d/d1-en-parity`** (từ `bbf21b3`). HEAD = SHA trong tên ZIP |
 | Bản xem thử D1 | https://r28d-d1-en-parity.bioagroup.pages.dev/en/ : bản riêng của nhánh, `noindex`, đọc Sanity đã xuất bản (chỉ đọc) |
-| CMS Preview | `cms-preview` = `r28/blog-icon-cms` = **`bbf21b3`, KHÔNG đổi** |
-| Sanity | **0 lần ghi.** Dry run 3 tài liệu, 0 xung đột (`CMS_DRY_RUN.md`) |
+| CMS Preview | `cms-preview` = `r28/blog-icon-cms` = nhánh D1 (fast-forward từ `bbf21b3`) |
+| Sanity | **1 lần ghi đã duyệt** (25/11): 3 tài liệu, 3 transaction, 0 xung đột, 0 trường khác bị đổi (`CMS_DRY_RUN.md` §6) |
 | Production | `main` `9d044a7`, bảo trì, **không đổi**. PR #14 vẫn Draft |
 
 ## Bảng trạng thái
@@ -22,9 +21,9 @@
 | Có khung đổi kích thước không? | Có, đúng dự kiến (EN từ 1 dòng thành đoạn đầy đủ). Còn **2 chỗ cao hơn bản VI**, đều ở **320 px**: Why Choose +24 px, Cosmetics QC +21 px. Không cắt chữ (`LAYOUT_QA_MATRIX.md`) |
 | Chỉ sửa nội dung hay có sửa giao diện? | **Chỉ nội dung.** 0 dòng CSS / JS giao diện; cổng phạm vi chứng minh chỉ chữ trong các phần đã sửa thay đổi |
 | Build cục bộ? | PASS |
-| CMS Preview? | **Chưa**, chờ duyệt |
-| Sanity? | **Chưa ghi**, chờ duyệt |
-| Cần Owner duyệt? | **Có**: mục "Xin duyệt" bên dưới |
+| CMS Preview? | **Đã lên** (xem mục "Kiểm tra trên CMS Preview") |
+| Sanity? | **Đã ghi** theo đúng dry run |
+| Cần Owner duyệt? | Đã duyệt (25/11). Còn **Owner UAT** trên CMS Preview |
 
 ## Xin duyệt (một lần, cho đúng các thay đổi này)
 

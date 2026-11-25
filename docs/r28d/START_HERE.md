@@ -15,7 +15,7 @@
 | **A** form chat CHAT-C4B/C7 | **OWNER PASS 5/5, LOCKED.** Không mở lại |
 | **B** VI-first tự động | **AUTO VI-FIRST DEFERRED — MANUAL VI/EN.** Worker dịch, token Editor, webhook, backfill: tắt, không triển khai |
 | **D0** kiểm nội dung thật + VI/EN | **XONG** (chỉ đọc). 24 mục (7 H). Phiếu xác nhận cho Owner |
-| **D1** EN theo VI hiện tại | **APPROVAL PENDING.** Đã làm trên nhánh `r28d/d1-en-parity` (VI giữ nguyên, 0 ghi Sanity). Xem `docs/r28d/d1/START_HERE.md` |
+| **D1** EN theo VI hiện tại | **Owner đã duyệt (25/11), đã lên CMS Preview, đã ghi Sanity (3 tài liệu).** Chờ Owner UAT. Xem `docs/r28d/d1/START_HERE.md` |
 | **C0** chatbot offline | **PASS.** Tri thức `2026-11-23.1`, giữ lại 2 thông tin chưa xác nhận, Free model đã kiểm |
 | **C1** chatbot thật trên Preview | **AI LIVE BLOCKED**: cần Owner cho phép đường test Owner trên Preview, tạo D1/binding, duyệt bổ sung Chính sách bảo mật |
 
