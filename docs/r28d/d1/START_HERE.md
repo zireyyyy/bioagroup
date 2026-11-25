@@ -74,3 +74,15 @@
 | Bản xem thử nhánh D1 (đã phục vụ thật) | Toàn bộ VI giống hệt CMS Preview; chỉ 3 trang EN khác; Sanity đọc trực tiếp, `waitingEn = []` |
 
 **Không chạy:** CI GitHub (workflow chỉ chạy cho nhánh của PR #14; sẽ chạy khi D1 được fast-forward sau khi duyệt).
+
+## Kiểm tra trên CMS Preview (25/11/2026, sau khi ghi)
+
+| Kiểm tra | Kết quả |
+|---|---|
+| `/_bioa-cms.json` | commit `e52f49c`, snapshot `ace6e005fffd48b5`: **trùng khớp** snapshot tính lại từ Sanity sau khi ghi; `waitingEn = []`; 38 bài |
+| Lưu ý về bản build trước đó | Bản build `676a668` đọc Sanity đúng lúc đang ghi (01:42:45Z, giữa 3 transaction). Đã build lại bằng commit tài liệu; chữ hiển thị giống hệt vì giá trị Sanity = chữ trong repo |
+| Chữ VI / EN đang phục vụ (12 trang) | Giống hệt bản thử nhánh D1 đã QA |
+| Khung chữ, Preview so với bản cục bộ đã QA (Chrome 12 độ rộng + WebKit 5) | 34.748 ô chữ: **0** khác chữ, **0** khác font, **0** cắt chữ, **0** đè ảnh / nút, **0** trượt ngang, **0** slider hỏng. Chỉ slider tự chạy "Collaboration paths" (không sửa) lệch kích thước theo thời điểm |
+| Bảo vệ | Khách gọi `/api/chat` và `/api/lead/config`: 503; `noindex`; 38 bài; slug cũ 301; form chat có mặt |
+| CI PR #14 (`e52f49c`) | **PASS** (chat 28, CMS 45, Blog 402/402, content guard) |
+| Production | `main` `9d044a7`, 503 bảo trì, **không đổi** |
