@@ -68,3 +68,11 @@ export function legacyRedirectFiles(builtRoutes){
   }
   return files;
 }
+
+// R27: redirect pages for URLs that existed before and were retired on purpose (e.g. Blog index pages that no longer
+// have posts after the R27 content audit). Same stub as D11: noindex, canonical to the target, never in the sitemap.
+export function retiredRedirectFiles(pairs, builtRoutes){
+  const real = new Set(builtRoutes);
+  return pairs.filter(([route]) => !real.has(route)).map(([route, href]) =>
+    ({ route, out: route.slice(1) + "index.html", body: stub(route.startsWith("/en/") ? "en" : "vi", null, href), target: href }));
+}

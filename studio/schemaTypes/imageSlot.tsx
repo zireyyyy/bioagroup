@@ -1,5 +1,6 @@
 import {ImageIcon} from '@sanity/icons/Image'
 import {defineField, defineType} from 'sanity'
+import {EN_HINT, enOptional, i18nField} from './i18n'
 import {CurrentImage} from '../components/CurrentImage'
 
 const altRule = (lang: 'VI' | 'EN') => (Rule: any) =>
@@ -17,6 +18,7 @@ export const imageSlot = defineType({
   type: 'document',
   icon: ImageIcon,
   fields: [
+    i18nField(),
     defineField({name: 'title', title: 'Vị trí', type: 'string', readOnly: true}),
     defineField({name: 'pageLabel', title: 'Trang', type: 'string', readOnly: true}),
     defineField({name: 'section', title: 'Mục trên trang', type: 'string', readOnly: true}),
@@ -37,7 +39,7 @@ export const imageSlot = defineType({
       validation: (Rule: any) => Rule.custom((v: any) => (v?.asset?._ref && /-svg$/.test(v.asset._ref) ? 'Không nhận ảnh SVG (chỉ JPEG, PNG, WebP)' : true)),
     }),
     defineField({name: 'altVi', title: 'Mô tả ảnh (tiếng Việt)', description: 'Đọc bởi trình đọc màn hình và Google. Ví dụ: "Dây chuyền chiết rót kem tại nhà máy Bio-A".', type: 'string', validation: altRule('VI')}),
-    defineField({name: 'altEn', title: 'Mô tả ảnh (tiếng Anh)', type: 'string', validation: altRule('EN')}),
+    defineField({name: 'altEn', title: 'Mô tả ảnh (tiếng Anh)', description: EN_HINT, type: 'string', validation: (Rule: any) => [Rule.max(160), enOptional(Rule)]}),
     defineField({name: 'frameInfo', title: 'Khung ảnh', type: 'string', readOnly: true, hidden: true}),
     defineField({name: 'page', type: 'string', readOnly: true, hidden: true}),
     defineField({name: 'slotId', type: 'string', readOnly: true, hidden: true}),

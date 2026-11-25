@@ -51,7 +51,7 @@ function setAboutHero($,lang){
     card.find(".mwa-stat__n").first().text(d[0]);
     card.find(".mwa-stat__l").first().text(d[1]);
   });
-  hero.find("img").first().attr("alt",vi?"Nhà máy và năng lực Bio-A Group":"Bio-A Group manufacturing capabilities");
+  hero.find("img").first().attr("alt",vi?"Ảnh minh họa sản xuất mỹ phẩm":"Illustrative image of cosmetic manufacturing"); // R27: temporary image (MEDIA_REPLACEMENT_MAP), not a photo of the BIO-A factory
 }
 
 function setAboutStory($,lang){
@@ -136,7 +136,7 @@ function setAboutTeam($,lang){
     btn.attr("href",localPath("/careers/",lang));
     btn.find(".btn__text").text(vi?"Xem Cơ Hội Nghề Nghiệp":"Explore Careers");
   }
-  sec.find(".mwa-team__media img").attr("alt",vi?"Đội ngũ Bio-A Group":"Bio-A Group team");
+  sec.find(".mwa-team__media img").attr("alt",vi?"Ảnh minh họa làm việc nhóm":"Illustrative image of teamwork"); // R27: temporary image, not the BIO-A team
 }
 
 function setAboutActivity($,lang){
@@ -190,7 +190,7 @@ function setAboutProducts($,lang){
     ["Sản Phẩm Mẹ & Bé","Nhóm sản phẩm chăm sóc mẹ và bé với định hướng công thức phù hợp từng dự án.",[["Xem Dòng Mẹ & Bé","/gia-cong-san-pham-me-be/"]]]
   ]:[
     ["Makeup Products","Makeup lines developed around color, texture and brand positioning.",[["Explore Makeup","/gia-cong-my-pham-trang-diem/"]]],
-    ["Hair Care Products","Shampoo, conditioner, treatments and hair-care solutions developed to your brief.",[["Explore Hair Care","/gia-cong-my-pham-toc/"]]],
+    ["Hair Care Products","Shampoo, conditioner, hair serums and hair-care solutions developed to your brief.",[["Explore Hair Care","/gia-cong-my-pham-toc/"]]],
     ["Body Care Products","Body wash, lotions, scrubs and other body-care formats.",[["Explore Body Care","/gia-cong-my-pham-cham-soc-body/"]]],
     ["Facial Skin Care","Creams, serums, gels, masks and facial-care lines aligned with your brand direction.",[["Explore Skin Care","/gia-cong-my-cham-soc-da-mat/"]]],
     ["Personal Care Products","Personal-care lines developed for specific usage needs and sales channels.",[["Explore Personal Care","/gia-cong-my-pham-ca-nhan/"]]],

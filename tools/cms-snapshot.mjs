@@ -112,7 +112,7 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
     return { file: "/assets/cms/" + file, w: W, h: H, type: "image/webp" };
   }
 
-  const snapshot = { version: 2, projectId: pid, dataset: ds, fetchedAt: new Date().toISOString(), images: {}, texts: {}, seo: {}, blog: [], careers: [], legal: {} };
+  const snapshot = { version: 2, projectId: pid, dataset: ds, fetchedAt: new Date().toISOString(), images: {}, texts: {}, seo: {}, blog: [], careers: [], legal: {}, waitingEn: [] };
 
   // ---- Image slots: one upload, one file per target, each cut to the ratio that target shows today. ----
   const slots = new Map(Object.values(registry.pages).flatMap(p => p.images).map(s => [s.id, s]));
@@ -120,10 +120,13 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
     const slot = slots.get(d.slotId);
     if (!slot){ console.warn("CMS: image slot not in registry (ignored):", d.slotId); continue; }
     if (hasHtml([d.altVi, d.altEn])) fail("alt text with < or > in " + slot.id);
-    if (!String(d.altVi || "").trim() || !String(d.altEn || "").trim()) fail("alt text VI/EN required for " + slot.id);
+    if (!String(d.altVi || "").trim()) fail("alt text VI required for " + slot.id);
+    // R28 VI-FIRST: a new image goes online with its VI alt; until the EN alt is translated the EN page uses an empty
+    // alt (never Vietnamese or invented text on the English page).
+    if (!String(d.altEn || "").trim()) snapshot.waitingEn.push("image:" + slot.id);
     const files = {};
     for (const t of slot.targets) files[t.key] = (await saveImage(d.img, slot.id, targetSize(t))).file;
-    snapshot.images[slot.id] = { files, altVi: d.altVi.trim(), altEn: d.altEn.trim() };
+    snapshot.images[slot.id] = { files, altVi: d.altVi.trim(), altEn: String(d.altEn || "").trim() };
   }
 
   // ---- Page texts ----
@@ -144,6 +147,15 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
         if (/[<>]/.test(t)) fail(`text ${key}.${slot.id}.${lang} contains < or >`);
         if (!slot.multiline && t.includes("\n")) fail(`text ${key}.${slot.id}.${lang} has a line break in a single-line slot`);
         entry[lang] = t;
+      }
+      // R28d-D MANUAL VI/EN (owner 2026-11-23: both languages are edited by hand, no auto-translation): a text whose
+      // Vietnamese was changed while its English is still the original is NOT silently published as a mismatched pair.
+      // The Preview shows it (that is where editors review) but it is listed in waitingEn (/_bioa-cms.json, build log)
+      // and tools/cms-release.mjs refuses to pin a Production release until the English is updated too.
+      const norm = s => String(s).split("\n").map(x => x.replace(/[ \t]+/g, " ").trim()).join("\n").trim();
+      if (entry.vi != null && entry.vi !== norm(slot.vi) && (entry.en == null || entry.en === norm(slot.en))){
+        snapshot.waitingEn.push("text:" + key + "." + slot.id);
+        console.warn(`CMS: ${key}.${slot.id} — Vietnamese changed but English not updated (manual VI/EN): update the EN field before a Production release`);
       }
       values[slot.id] = entry;
     }
@@ -178,13 +190,20 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
     if (slugsSeen.has(slug)) fail("duplicate blog slug: " + slug);
     slugsSeen.add(slug);
     if (hasHtml([d.titleVi, d.titleEn, d.seoTitleVi, d.seoTitleEn, d.excerptVi, d.excerptEn, d.introVi, d.introEn, d.sections, d.noteVi, d.noteEn])) fail("blog post with < or >: " + slug);
-    for (const k of ["titleVi", "titleEn", "excerptVi", "excerptEn"]) if (!isStr(d[k]) || !d[k].trim()) fail(`blog ${slug}: ${k} missing`);
-    if (!strArr(d.introVi) || !strArr(d.introEn) || !d.introVi.length || !d.introEn.length) fail(`blog ${slug}: intro missing`);
+    for (const k of ["titleVi", "excerptVi"]) if (!isStr(d[k]) || !d[k].trim()) fail(`blog ${slug}: ${k} missing`);
+    if (!strArr(d.introVi) || !d.introVi.length) fail(`blog ${slug}: intro missing`);
     if (!Array.isArray(d.sections) || d.sections.length < 1) fail(`blog ${slug}: sections missing`);
     if (!Number.isInteger(d.readMin) || d.readMin < 1) fail(`blog ${slug}: readMin invalid`);
+    for (const s of d.sections) if (!isStr(s.headingVi) || !s.headingVi.trim() || !strArr(s.paragraphsVi) || !s.paragraphsVi.length) fail(`blog ${slug}: incomplete section`);
+    // R28 VI-FIRST: English is translated after Publish. Until every EN part exists (same paragraph structure), the
+    // article is held out of this build: no empty or half-English page is ever generated. The repository version of
+    // the same slug (if any) stays online; the Studio shows the EN status. The next build after the translation
+    // includes the article in both languages.
+    const enOk = isStr(d.titleEn) && d.titleEn.trim() && isStr(d.excerptEn) && d.excerptEn.trim() && strArr(d.introEn) && d.introEn.length
+      && d.sections.every(s => isStr(s.headingEn) && s.headingEn.trim() && strArr(s.paragraphsEn) && s.paragraphsEn.length === s.paragraphsVi.length);
+    if (!enOk){ snapshot.waitingEn.push("blog:" + slug); console.warn(`CMS: blog ${slug} has no complete EN yet — held out of this build`); continue; }
     const ids = new Set();
     const sections = d.sections.map(s => {
-      if (!isStr(s.headingVi) || !isStr(s.headingEn) || !strArr(s.paragraphsVi) || !strArr(s.paragraphsEn)) fail(`blog ${slug}: incomplete section`);
       let id = s.anchor || slugify(s.headingVi), n = 2;
       while (ids.has(id) || id === "tim-hieu-them") id = (s.anchor || slugify(s.headingVi)) + "-" + n++;
       ids.add(id);
@@ -200,7 +219,8 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
       id: d.legacyId ?? Number.parseInt(sha256(slug).slice(0, 7), 16),
       slug, titleVi: d.titleVi, titleEn: d.titleEn, seoTitleVi: d.seoTitleVi || d.titleVi, seoTitleEn: d.seoTitleEn || d.titleEn,
       excerptVi: d.excerptVi, excerptEn: d.excerptEn, date: dmy(d.date), readMin: d.readMin, image,
-      introVi: d.introVi, introEn: d.introEn, sections, noteVi: d.noteVi || "", noteEn: d.noteEn || ""
+      introVi: d.introVi, introEn: d.introEn, sections, noteVi: d.noteVi || "", noteEn: d.noteEn || "",
+      rewriteApproved: d.rewriteApproved === true // R27 BLOG-PENDING: lists a rewritten article again
     });
   }
 
@@ -218,13 +238,17 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
     routesSeen.add(route);
     if (hasHtml(d)) fail("career with < or >: " + route);
     const t = {};
+    let enMissing = false;
     for (const [lang, L] of [["vi", "VI"], ["en", "EN"]]){
       const x = { title: d["title" + L], desc: d["desc" + L], intro: d["intro" + L], duties: d["duties" + L], reqs: d["reqs" + L],
         badge: d["badge" + L] || "", benefits: d["benefits" + L] || "", place: d["place" + L] || "", apply: d["apply" + L] || "" };
-      if (!isStr(x.title) || !isStr(x.desc) || !strArr(x.intro) || !strArr(x.duties) || !strArr(x.reqs)) fail(`career ${route}: ${L} content incomplete`);
+      const incomplete = !isStr(x.title) || !isStr(x.desc) || !strArr(x.intro) || !strArr(x.duties) || !strArr(x.reqs);
+      if (incomplete && lang === "en"){ enMissing = true; break; } // R28 VI-FIRST: EN pending → held out (see Blog)
+      if (incomplete) fail(`career ${route}: ${L} content incomplete`);
       if (st === "open" && (!x.badge || !x.benefits || !x.place || !x.apply)) fail(`career ${route}: "open" requires the official ${L} details`);
       t[lang] = x;
     }
+    if (enMissing){ snapshot.waitingEn.push("career:" + route); console.warn(`CMS: career ${route} has no complete EN yet — held out of this build`); continue; }
     let image = d.legacyImage || "";
     if (d.img?.asset) image = (await saveImage(d.img, "career-" + en, { ratio: 1024 / 683, width: 1024 })).file;
     if (!image && st !== "draft") fail(`career ${route}: image missing`);
@@ -268,6 +292,8 @@ export async function liveSnapshot({ pid, ds = "production", token, outDir, regi
   return snapshot;
 }
 
+// R28d-D manual VI/EN: page texts whose Vietnamese changed while the English is still the original (see page texts above).
+export const staleEnTexts = s => (s.waitingEn || []).filter(x => x.startsWith("text:"));
 export const summary = s => `${Object.keys(s.images).length} image slots, ${Object.keys(s.texts).length} pages, ${s.blog.length} blog posts, ${s.careers.length} careers, ${Object.keys(s.seo).length} SEO pages, ${Object.keys(s.legal).length} approved legal pages`;
 
 // ---- Pinned releases ----

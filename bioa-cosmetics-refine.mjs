@@ -44,9 +44,10 @@ const content={
       ["Hồ Sơ Trọn Gói & Minh Bạch","Thông tin sản phẩm, nhãn, hồ sơ cần thiết và các mốc duyệt được phối hợp rõ ràng để thương hiệu dễ theo dõi xuyên suốt dự án."]
     ],
     scenarios:[
-      ["Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.","Tình Huống 01","Thương hiệu skincare • Nội dung mẫu"],
-      ["Thương hiệu đang có sản phẩm bán tốt muốn mở rộng thêm nhóm chăm sóc tóc. Quy trình tập trung vào R&D mẫu, đồng bộ bao bì và chuẩn bị kế hoạch sản xuất cho SKU mới.","Tình Huống 02","Thương hiệu hair care • Nội dung mẫu"],
-      ["Dự án cần công thức riêng và nhiều vòng tinh chỉnh cảm quan trước khi chốt. Bio-A Group hỗ trợ ghi nhận thay đổi, hoàn thiện mẫu và chuyển tiếp sang sản xuất theo từng mốc.","Tình Huống 03","Phát triển công thức riêng • Nội dung mẫu"]
+      // R27b: service paths described as services Bio-A Group offers, not as client cases.
+      ["Dành cho thương hiệu ra mắt dòng sản phẩm đầu tiên: Bio-A Group hỗ trợ làm rõ brief, R&D công thức, làm mẫu thử, chọn bao bì và lập kế hoạch sản xuất theo từng mốc.","Phát Triển Dòng Sản Phẩm Mới","R&D • Mẫu thử • Bao bì • Sản xuất"],
+      ["Dành cho thương hiệu mở rộng sang nhóm sản phẩm mới như chăm sóc tóc hoặc body: R&D mẫu cho nhóm sản phẩm mới, đồng bộ bao bì với dòng hiện có và lập kế hoạch sản xuất cho SKU mới.","Mở Rộng Danh Mục Sản Phẩm","R&D • Bao bì • Kế hoạch SKU"],
+      ["Dành cho dự án cần công thức riêng: R&D phát triển công thức theo yêu cầu, tinh chỉnh kết cấu, màu và mùi qua các vòng mẫu, ghi nhận thay đổi và chuyển sang sản xuất khi mẫu được duyệt.","Phát Triển Công Thức Riêng","R&D • Tinh chỉnh mẫu • Duyệt mẫu"]
     ],
     roadmapTitle:"Đồng Hành Trọn Chu Kỳ",
     roadmap:[
@@ -71,9 +72,9 @@ const content={
       ["Complete & Transparent Documentation","Product information, labels, required documentation and approval milestones are coordinated clearly so the brand can follow project progress."]
     ],
     scenarios:[
-      ["A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.","Scenario 01","Skincare brand • Sample scenario"],
-      ["An established brand wants to add a hair-care category. The project focuses on sample R&D, packaging alignment and a production plan for the new SKU range.","Scenario 02","Hair-care brand • Sample scenario"],
-      ["A custom-formula project needs several sensory-refinement rounds before approval. Bio-A Group tracks revisions, finalizes samples and moves the project into production by agreed milestones.","Scenario 03","Custom formula • Sample scenario"]
+      ["For brands launching a first product line: Bio-A Group helps clarify the brief, develops the formula, prepares samples, selects packaging and plans production by milestone.","New Product Line Development","R&D • Samples • Packaging • Production"],
+      ["For brands adding a new category such as hair or body care: sample R&D for the new category, packaging aligned with the existing range and a production plan for the new SKUs.","Product Range Expansion","R&D • Packaging • SKU planning"],
+      ["For projects that need a custom formula: R&D develops the formula to brief, refines texture, colour and fragrance through sample rounds, records changes and moves to production once the sample is approved.","Custom Formula Projects","R&D • Sample refinement • Approval"]
     ],
     roadmapTitle:"Full-Cycle Support",
     roadmap:[
@@ -202,7 +203,7 @@ const cosmeticsManufacturingCategories={
     intro:"Explore six product groups Bio-A Group can develop and manufacture around each brand's product direction.",
     items:[
       ["Makeup Products","Makeup products developed around color, texture, positioning and each brand's specific requirements."],
-      ["Hair Care Products","Shampoo, conditioner, treatments and hair-care solutions developed to the project brief."],
+      ["Hair Care Products","Shampoo, conditioner, hair serums and hair-care solutions developed to the project brief."],
       ["Body Care Products","Body wash, lotions, scrubs and other body-care formats aligned with the brand direction."],
       ["Facial Skin Care","Creams, serums, gels, masks and facial-care products across multiple formula and texture directions."],
       ["Personal Care Products","Personal-care lines developed for specific usage needs, market segments and sales channels."],
@@ -345,7 +346,7 @@ const cosmeticsDeepContent={
       ]
     },
     certification:{title:"Manufacturing Capability & Quality Control",cards:[["GMP — Vietnam Ministry of Health","Bio-A Group operates to GMP requirements recorded in the legacy Bio-A source, with controlled cosmetic and cosmeceutical manufacturing processes."],["HACCP","A food-safety management system that supports identification and control of relevant operational risks."],["Quality Control","Materials, approved samples, production, packaging and finished goods are followed through project stages."]],footer:"Bio-A Group supports brands from the initial idea through finished products with practical manufacturing solutions, quality focus and clear project milestones."},
-    quality:{pretitle:"Product Quality Testing",subtitle:"Testing scope is selected according to product category, formula and documentation requirements so quality-control milestones remain clear.",title:"Testing Scope",checks:["Heavy-Metal Testing","Stability & Sensory Review","Product-Specific Safety Parameters","Microbiological Testing"],description:"Testing parameters are selected according to formula characteristics and intended product use.",highlight:"Testing, packaging, approved samples and manufacturing specifications are coordinated to support stable finished-product quality.",qcTitle:"Stage-by-Stage Quality Control",qc:[["Incoming Material Review","Incoming materials are reviewed against relevant criteria before production."],["In-Process Control","Product parameters and sensory characteristics are monitored during manufacturing."],["Finished-Goods Inspection","Finished goods are checked for sensory quality, packaging specifications and required project criteria before delivery."]]}
+    quality:{pretitle:"Product Quality Testing",subtitle:"Testing scope is selected according to product category, formula and documentation requirements so quality-control milestones remain clear.",title:"Testing Scope",checks:["Heavy-Metal Testing","Stability & Sensory Review","Product-Specific Safety Parameters","Microbiological Testing"],description:"Testing parameters are selected according to formula characteristics and intended product use.",highlight:"Testing, packaging, approved samples and manufacturing specifications are coordinated to support stable finished-product quality.",qcTitle:"Stage-by-Stage Quality Control",qc:[["Incoming Material Review","Incoming materials are reviewed against relevant criteria before production."],["In-Process Control","Parameters and sensory characteristics are monitored during production to limit deviation from the approved sample."],["Finished-Goods Inspection","Finished goods are checked for sensory quality, packaging specifications and required project criteria before delivery."]]}
   }
 };
 
@@ -465,13 +466,14 @@ function applyHeroAndCtas($,lang){
 
 function applyScenarios($,lang){
   const data=content[lang];
-  $(".block-reviews .title").each((_,el)=>$(el).text(lang==="vi"?"Kịch Bản Hợp Tác Tiêu Biểu":"Typical Collaboration Scenarios"));
+  $(".block-reviews .title").each((_,el)=>$(el).text(lang==="vi"?"Lộ Trình Hợp Tác Theo Nhu Cầu":"Collaboration Paths by Project Need")); // R27b: service paths, not client scenarios
   $(".block-reviews .review").each((i,el)=>{
     const d=data.scenarios[i%data.scenarios.length];
     const root=$(el);
     root.find(".review__text").first().text(d[0]);
     root.find(".review__author-name").first().text(d[1]);
     root.find(".review__author-info").first().text(d[2]);
+    root.find(".review__author-quotes").remove(); // R27b: no testimonial quote mark on a service description (same as Dịch Vụ Khác)
   });
 }
 
@@ -495,6 +497,8 @@ export function applyCosmeticsHubRefinement($,route,lang){
   const root=$(".page-main").first();
   if(!root.length)return;
   const key=lang==="en"?"en":"vi";
+  // R27 SEO: this page had the shared default description of Home; it now describes its own content.
+  {const d=key==="en"?"Turnkey OEM/ODM cosmetic manufacturing at Bio-A Group: formula R&D, samples, production, packaging and documentation for skin, hair, body, makeup and baby care products.":"Gia công mỹ phẩm trọn gói OEM/ODM tại Bio-A Group: R&D công thức, mẫu thử, sản xuất, bao bì và hồ sơ cho sản phẩm chăm sóc da, tóc, body, trang điểm và mẹ & bé.";$('meta[name="description"],meta[property="og:description"],meta[name="twitter:description"]').attr("content",d);}
   const data=content[key];
 
   root.attr("data-bioa-page","cosmetics-hub");

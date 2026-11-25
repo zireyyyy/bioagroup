@@ -469,14 +469,14 @@
      ]
     },
     {
-     "id": "home_a4a33ba7",
+     "id": "home_11154d89",
      "page": "home",
-     "label": "Tuýp & chai chân không",
+     "label": "Tuýp & Chai Chân Không",
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "pairNote": "cùng vị trí trên máy tính và điện thoại: Tuýp & chai chân không",
+     "pairNote": "cùng vị trí trên máy tính và điện thoại: Tuýp & chai chân không (R27b: ghép theo nội dung ảnh)",
      "altVi": "",
      "altEn": "",
      "targets": [
@@ -504,9 +504,9 @@
        }
       },
       {
-       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-3_mobile.webp#0",
+       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp#0",
        "kind": "img",
-       "url": "https://merywood.com/wp-content/uploads/2026/04/image-3_mobile.webp",
+       "url": "https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp",
        "natural": {
         "w": 600,
         "h": 620
@@ -523,14 +523,14 @@
      ]
     },
     {
-     "id": "home_4c49ce2c",
+     "id": "home_297ea3d1",
      "page": "home",
-     "label": "Hũ mỹ phẩm",
+     "label": "Hũ Mỹ Phẩm",
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "pairNote": "cùng vị trí trên máy tính và điện thoại: Hũ mỹ phẩm",
+     "pairNote": "cùng vị trí trên máy tính và điện thoại: Hũ mỹ phẩm (R27b: ghép theo nội dung ảnh)",
      "altVi": "",
      "altEn": "",
      "targets": [
@@ -558,9 +558,9 @@
        }
       },
       {
-       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp#0",
+       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2_mobile.webp#0",
        "kind": "img",
-       "url": "https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp",
+       "url": "https://merywood.com/wp-content/uploads/2026/04/image-2_mobile.webp",
        "natural": {
         "w": 600,
         "h": 620
@@ -577,14 +577,13 @@
      ]
     },
     {
-     "id": "home_29d7b5a2",
+     "id": "home_ea10e110",
      "page": "home",
-     "label": "Vỉ định hình",
+     "label": "Gói Sachet",
      "sections": [
-      "Vỉ Định Hình",
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
+      "Tuýp & Chai Chân Không"
      ],
-     "pairNote": "cùng vị trí trên máy tính và điện thoại: Vỉ định hình",
+     "pairNote": "",
      "altVi": "",
      "altEn": "",
      "targets": [
@@ -610,28 +609,11 @@
          "bgSize": null
         }
        }
-      },
-      {
-       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp#0",
-       "kind": "img",
-       "url": "https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp",
-       "natural": {
-        "w": 600,
-        "h": 620
-       },
-       "frames": {
-        "390": {
-         "w": 300,
-         "h": 310,
-         "fit": "contain",
-         "bgSize": null
-        }
-       }
       }
      ]
     },
     {
-     "id": "home_7fead799",
+     "id": "home_16d19dc8",
      "page": "home",
      "label": "Gói Sachet",
      "sections": [
@@ -642,9 +624,9 @@
      "altEn": "",
      "targets": [
       {
-       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp#0",
+       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp#0",
        "kind": "img",
-       "url": "https://merywood.com/wp-content/uploads/2026/04/image-1_mobile.webp",
+       "url": "https://merywood.com/wp-content/uploads/2026/04/image-4_mobile.webp",
        "natural": {
         "w": 600,
         "h": 620
@@ -661,7 +643,7 @@
      ]
     },
     {
-     "id": "home_ea701072",
+     "id": "home_ed4a19b0",
      "page": "home",
      "label": "Túi Doypack",
      "sections": [
@@ -672,9 +654,9 @@
      "altEn": "",
      "targets": [
       {
-       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-2_mobile.webp#0",
+       "key": "section.block.block-products-mobile#0|img|https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp#0",
        "kind": "img",
-       "url": "https://merywood.com/wp-content/uploads/2026/04/image-2_mobile.webp",
+       "url": "https://merywood.com/wp-content/uploads/2026/04/image-5_mobile.webp",
        "natural": {
         "w": 600,
         "h": 620
@@ -698,8 +680,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "talk",
-     "altEn": "talk",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-1-9.webp#0",
@@ -740,8 +722,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "hands",
-     "altEn": "hands",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-2-9.webp#0",
@@ -782,8 +764,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "blank",
-     "altEn": "blank",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-3-10.webp#0",
@@ -824,8 +806,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "cert",
-     "altEn": "cert",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-4-7.webp#0",
@@ -866,8 +848,8 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "pairNote": "",
-     "altVi": "whiteboxes",
-     "altEn": "whiteboxes",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-5-5.webp#0",
@@ -1171,7 +1153,7 @@
      "maxEn": 73
     },
     {
-     "id": "t_6b1244ef",
+     "id": "t_9f8286e1",
      "page": "home",
      "tags": [
       "div"
@@ -1180,11 +1162,11 @@
       "Nhà Máy Sản Xuất Dược Mỹ Phẩm Bio-A Group"
      ],
      "vi": "Bio-A Group đồng hành cùng thương hiệu từ R&D công thức, lựa chọn nguyên liệu, sản xuất OEM/ODM đến bao bì và hoàn thiện sản phẩm theo định hướng riêng.",
-     "en": "From formula R&D and OEM/ODM manufacturing to packaging and finished products.",
+     "en": "Bio-A Group partners with brands from formula R&D and ingredient selection through OEM/ODM manufacturing to packaging and finished products, following each brand’s own direction.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 190,
-     "maxEn": 98
+     "maxEn": 223
     },
     {
      "id": "t_87766b5b",
@@ -1338,7 +1320,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_425311a5",
+     "id": "t_5247c8d8",
      "page": "home",
      "tags": [
       "p"
@@ -1347,11 +1329,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Bio-A Group phát triển giải pháp theo mục tiêu sản phẩm, nhóm khách hàng và định vị thương hiệu. Từ ý tưởng ban đầu, lựa chọn công thức, nguyên liệu, bao bì đến kế hoạch sản xuất, đội ngũ phối hợp theo từng giai đoạn để dự án có lộ trình rõ ràng, linh hoạt điều chỉnh và thuận tiện mở rộng thêm sản phẩm khi cần.",
-     "en": "Consulting around product goals, customers and brand positioning.",
+     "en": "Bio-A Group builds solutions around your product goals, target customers and brand positioning. From the first idea, formula, ingredients and packaging to the production plan, our team coordinates each stage for a clear roadmap, flexible adjustments and easy expansion with new products when needed.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 390,
-     "maxEn": 82
+     "maxEn": 374
     },
     {
      "id": "t_403e1f38",
@@ -1370,7 +1352,7 @@
      "maxEn": 29
     },
     {
-     "id": "t_2ad9edb5",
+     "id": "t_930785d3",
      "page": "home",
      "tags": [
       "p"
@@ -1379,11 +1361,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Đội ngũ R&D hỗ trợ phát triển công thức, lựa chọn nguyên liệu, làm mẫu thử và điều chỉnh cảm quan theo yêu cầu dự án. Khách hàng có thể lựa chọn nền công thức phù hợp, tinh chỉnh thành phần, kết cấu, mùi hương, màu sắc và định hướng công dụng trước khi chốt mẫu để chuyển sang các bước bao bì và sản xuất.",
-     "en": "Formula development, sampling and refinement for each project.",
+     "en": "Our R&D team supports formula development, ingredient selection, sampling and sensory adjustments to project requirements. Clients can choose a suitable formula base and fine-tune ingredients, texture, fragrance, color and intended benefits before approving the sample for packaging and production.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 382,
-     "maxEn": 78
+     "maxEn": 373
     },
     {
      "id": "t_d497dfd9",
@@ -1402,7 +1384,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_d7eb5acc",
+     "id": "t_6314217b",
      "page": "home",
      "tags": [
       "p"
@@ -1411,11 +1393,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Bio-A Group đồng hành chuẩn bị thông tin sản phẩm, nội dung nhãn và các hạng mục hồ sơ cần thiết theo từng nhóm hàng. Quy trình được phối hợp song song với R&D và bao bì để giảm thời gian chờ giữa các bước, hạn chế phải sửa lại nhiều vòng và giúp dự án sẵn sàng hơn trước khi đưa vào kế hoạch sản xuất.",
-     "en": "Support for dossiers, notifications and label information.",
+     "en": "Bio-A Group helps prepare product information, label content and the documentation required for each product category. This runs in parallel with R&D and packaging to reduce waiting time between steps, limit repeated revisions and get the project better prepared before it enters the production plan.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 378,
-     "maxEn": 73
+     "maxEn": 375
     },
     {
      "id": "t_9d0e6c96",
@@ -1434,7 +1416,7 @@
      "maxEn": 27
     },
     {
-     "id": "t_fdaf9a70",
+     "id": "t_ee6fbf5d",
      "page": "home",
      "tags": [
       "p"
@@ -1443,11 +1425,11 @@
       "Vì Sao Chọn Bio-A Group"
      ],
      "vi": "Từ mẫu thử đến thành phẩm, các tiêu chí về nguyên liệu, cảm quan, kết cấu, mùi hương, quy cách đóng gói và độ ổn định được theo dõi theo từng giai đoạn. Mục tiêu là duy trì chất lượng nhất quán, hạn chế sai lệch giữa mẫu đã duyệt và lô sản xuất thực tế, đồng thời bảo đảm sản phẩm phù hợp định hướng thương hiệu.",
-     "en": "Quality monitoring throughout development and production.",
+     "en": "From sample to finished product, ingredients, sensory profile, texture, fragrance, packing specifications and stability are monitored at each stage, to keep quality consistent, limit deviation between the approved sample and the actual production batch, and ensure the product matches the brand direction.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 390,
-     "maxEn": 72
+     "maxEn": 382
     },
     {
      "id": "t_f03cf781",
@@ -1466,7 +1448,59 @@
      "maxEn": 26
     },
     {
-     "id": "t_ccd5a801",
+     "id": "t_69160827",
+     "page": "home",
+     "tags": [
+      "p",
+      "div"
+     ],
+     "sections": [
+      "Danh Mục Sản Xuất",
+      "Danh Mục Gia Công"
+     ],
+     "vi": "Bio-A Group nhận R&D và sản xuất OEM/ODM các dòng dược mỹ phẩm theo định hướng thương hiệu. Dự án có thể bắt đầu từ công thức nền hoặc phát triển công thức riêng, đồng thời phối hợp nguyên liệu, mẫu thử, bao bì và kế hoạch sản xuất để tạo thành phẩm đồng bộ.",
+     "en": "Bio-A Group provides R&D and OEM/ODM manufacturing for cosmeceutical lines based on each brand’s direction. A project can start from a base formula or a custom formula, coordinating ingredients, samples, packaging and production planning into a consistent finished product.",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 323,
+     "maxEn": 342
+    },
+    {
+     "id": "t_51538b07",
+     "page": "home",
+     "tags": [
+      "p"
+     ],
+     "sections": [
+      "Danh Mục Sản Xuất"
+     ],
+     "vi": "Mỹ phẩm",
+     "en": "Cosmetics",
+     "occurrences": 1,
+     "multiline": false,
+     "maxVi": 19,
+     "maxEn": 21
+    },
+    {
+     "id": "t_c50e8e5d",
+     "page": "home",
+     "tags": [
+      "p",
+      "div"
+     ],
+     "sections": [
+      "Danh Mục Sản Xuất",
+      "Danh Mục Gia Công"
+     ],
+     "vi": "Các dòng mỹ phẩm được phát triển theo nhu cầu sử dụng, phân khúc khách hàng và định vị thương hiệu. Bio-A Group hỗ trợ từ công thức, kết cấu, mùi hương, lựa chọn chai lọ đến sang chiết, đóng gói và hoàn thiện sản phẩm trước khi bàn giao.",
+     "en": "Cosmetic lines are developed around usage needs, customer segments and brand positioning. Bio-A Group supports everything from formula, texture, fragrance and container selection to filling, packing and finishing before handover.",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 297,
+     "maxEn": 287
+    },
+    {
+     "id": "t_eead0765",
      "page": "home",
      "tags": [
       "h3"
@@ -1475,11 +1509,11 @@
       "Danh Mục Gia Công"
      ],
      "vi": "Gia Công Dược Mỹ Phẩm",
-     "en": "Cosmetic manufacturing",
+     "en": "Cosmeceutical manufacturing",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 33,
-     "maxEn": 34
+     "maxEn": 39
     },
     {
      "id": "t_9193309c",
@@ -1531,7 +1565,7 @@
      "maxEn": 35
     },
     {
-     "id": "t_6be5e218",
+     "id": "t_cb7299e7",
      "page": "home",
      "tags": [
       "div"
@@ -1540,11 +1574,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Bắt đầu bằng việc làm rõ ý tưởng, nhóm sản phẩm, khách hàng mục tiêu, ngân sách và tiến độ mong muốn. Từ đó Bio-A Group cùng khách hàng xây dựng lộ trình phù hợp cho công thức có sẵn, công thức riêng hoặc kế hoạch mở rộng danh mục, với các mốc R&D, bao bì và sản xuất được xác định ngay từ đầu.",
-     "en": "Align product goals, budget and timeline.",
+     "en": "We start by clarifying the idea, product category, target customers, budget and desired timeline. Bio-A Group then builds a suitable roadmap with you for a ready formula, a custom formula or a range expansion, with R&D, packaging and production milestones set upfront.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 368,
-     "maxEn": 53
+     "maxEn": 335
     },
     {
      "id": "t_627badbc",
@@ -1564,7 +1598,7 @@
      "maxEn": 34
     },
     {
-     "id": "t_d6108fdc",
+     "id": "t_07c33a75",
      "page": "home",
      "tags": [
       "div"
@@ -1573,11 +1607,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Đội ngũ R&D triển khai công thức, lựa chọn nguyên liệu, làm mẫu và tinh chỉnh theo phản hồi. Mỗi vòng thử nghiệm tập trung vào cảm quan, kết cấu, mùi hương, màu sắc, định hướng công dụng và khả năng sản xuất ổn định khi chuyển từ mẫu thử sang quy mô thực tế của nhà máy.",
-     "en": "Develop formulas, ingredients and samples for your brand direction.",
+     "en": "The R&D team develops the formula, selects ingredients, makes samples and refines them from feedback. Each trial round focuses on sensory profile, texture, fragrance, color, intended benefits and stable production when moving from sample to actual factory scale.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 338,
-     "maxEn": 84
+     "maxEn": 328
     },
     {
      "id": "t_815f5987",
@@ -1597,7 +1631,7 @@
      "maxEn": 32
     },
     {
-     "id": "t_73672340",
+     "id": "t_b1c29fad",
      "page": "home",
      "tags": [
       "div"
@@ -1606,11 +1640,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Sau khi công thức ổn định, dự án tiếp tục với lựa chọn chai lọ, quy cách đóng gói, nhãn và các yếu tố nhận diện thương hiệu. Bio-A Group phối hợp để bao bì phù hợp với đặc tính sản phẩm, thuận tiện sang chiết và sản xuất, đồng thời giữ hình ảnh nhất quán khi đưa sản phẩm ra thị trường.",
-     "en": "Select packaging, labels and required brand assets.",
+     "en": "Once the formula is stable, the project moves on to bottles, packing specifications, labels and brand identity. Bio-A Group coordinates packaging that suits the product’s characteristics, is easy to fill and produce, and keeps a consistent image when it goes to market.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 358,
-     "maxEn": 64
+     "maxEn": 337
     },
     {
      "id": "t_591a8796",
@@ -1630,7 +1664,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_503d0ab5",
+     "id": "t_26ae80f0",
      "page": "home",
      "tags": [
       "div"
@@ -1639,11 +1673,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Bio-A Group phối hợp rà soát thông tin sản phẩm, nội dung nhãn và tài liệu cần chuẩn bị theo từng nhóm hàng. Công việc được triển khai song song với các bước cuối của R&D và bao bì để hạn chế chỉnh sửa nhiều vòng và giữ tiến độ sản xuất dự kiến.",
-     "en": "Prepare the documentation and product information required.",
+     "en": "Bio-A Group reviews product information, label content and the documents to prepare for each product category. This runs in parallel with the final R&D and packaging steps to limit repeated revisions and keep the planned production schedule.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 307,
-     "maxEn": 74
+     "maxEn": 302
     },
     {
      "id": "t_66666192",
@@ -1663,7 +1697,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_c0d136fc",
+     "id": "t_c9bedd3a",
      "page": "home",
      "tags": [
       "div"
@@ -1672,11 +1706,11 @@
       "Quy Trình Hợp Tác"
      ],
      "vi": "Khi các hạng mục đã được xác nhận, nhà máy triển khai sản xuất, sang chiết, đóng gói và kiểm soát thành phẩm theo kế hoạch. Tiến độ bàn giao được theo dõi rõ ràng để khách hàng chủ động kế hoạch ra mắt, phân phối, bổ sung hàng và tiếp tục phát triển các SKU tiếp theo.",
-     "en": "Manufacture, pack and deliver to the agreed plan.",
+     "en": "Once all items are confirmed, the factory carries out production, filling, packing and finished-goods control according to plan. Delivery progress is tracked clearly so clients can plan their launch, distribution, restocking and the development of further SKUs.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 335,
-     "maxEn": 62
+     "maxEn": 327
     },
     {
      "id": "t_157419fd",
@@ -1695,18 +1729,35 @@
      "maxEn": 38
     },
     {
+     "id": "t_42fc7270",
+     "page": "home",
+     "tags": [
+      "h3"
+     ],
+     "sections": [
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
+     ],
+     "vi": "Tuýp & Chai Chân Không",
+     "en": "Tubes & airless containers",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 34,
+     "maxEn": 38
+    },
+    {
      "id": "t_f88f31db",
      "page": "home",
      "tags": [
       "div"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Phù hợp với",
      "en": "Ideal for",
-     "occurrences": 10,
+     "occurrences": 8,
      "multiline": false,
      "maxVi": 23,
      "maxEn": 21
@@ -1719,7 +1770,7 @@
       "h4"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm",
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
@@ -1738,7 +1789,7 @@
       "h4"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm",
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
@@ -1757,32 +1808,33 @@
       "h4"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm",
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
      "vi": "Lotion",
      "en": "Lotions",
-     "occurrences": 3,
+     "occurrences": 4,
      "multiline": false,
      "maxVi": 18,
      "maxEn": 19
     },
     {
-     "id": "t_d438d058",
+     "id": "t_95e1d71c",
      "page": "home",
      "tags": [
       "div"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "2500 sản phẩm",
-     "en": "2500 units",
-     "occurrences": 4,
+     "vi": "Theo dự án",
+     "en": "Per project",
+     "occurrences": 8,
      "multiline": false,
-     "maxVi": 25,
-     "maxEn": 22
+     "maxVi": 22,
+     "maxEn": 23
     },
     {
      "id": "t_12f89b02",
@@ -1791,7 +1843,7 @@
       "b"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Công thức có sẵn",
@@ -1802,30 +1854,13 @@
      "maxEn": 25
     },
     {
-     "id": "t_ce093240",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Vỉ Định Hình",
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "5000 sản phẩm",
-     "en": "5000 units",
-     "occurrences": 4,
-     "multiline": false,
-     "maxVi": 25,
-     "maxEn": 22
-    },
-    {
      "id": "t_05f2598d",
      "page": "home",
      "tags": [
       "b"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Công thức độc quyền",
@@ -1842,12 +1877,12 @@
       "div"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Ưu điểm nổi bật",
      "en": "Key advantages",
-     "occurrences": 10,
+     "occurrences": 8,
      "multiline": false,
      "maxVi": 27,
      "maxEn": 26
@@ -1860,7 +1895,7 @@
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Thiết kế gọn, phù hợp mỹ phẩm chăm sóc da.",
@@ -1878,7 +1913,7 @@
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Hạn chế công thức tiếp xúc trực tiếp với không khí.",
@@ -1896,7 +1931,7 @@
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Thuận tiện sử dụng và tạo cảm giác cao cấp.",
@@ -1910,14 +1945,16 @@
      "id": "t_243ccada",
      "page": "home",
      "tags": [
-      "p"
+      "p",
+      "span"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Phù hợp nhiều dòng kem, gel và lotion.",
      "en": "Suitable for creams, gels and lotions.",
-     "occurrences": 1,
+     "occurrences": 2,
      "multiline": false,
      "maxVi": 50,
      "maxEn": 50
@@ -1926,17 +1963,36 @@
      "id": "t_78c229d0",
      "page": "home",
      "tags": [
-      "p"
+      "p",
+      "span"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Dễ tùy chỉnh dung tích và nhận diện thương hiệu.",
      "en": "Flexible sizes and brand customization.",
-     "occurrences": 1,
+     "occurrences": 2,
      "multiline": false,
      "maxVi": 60,
      "maxEn": 51
+    },
+    {
+     "id": "t_c4ae0450",
+     "page": "home",
+     "tags": [
+      "h3"
+     ],
+     "sections": [
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
+     ],
+     "vi": "Hũ Mỹ Phẩm",
+     "en": "Cosmetic jars",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 22,
+     "maxEn": 25
     },
     {
      "id": "t_a6086462",
@@ -1945,7 +2001,7 @@
       "p"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Kem đặc",
@@ -1963,7 +2019,7 @@
       "h4"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm",
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
@@ -1982,7 +2038,7 @@
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Có thể lựa chọn nhựa hoặc thủy tinh.",
@@ -2000,7 +2056,7 @@
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Phù hợp sản phẩm có kết cấu đặc.",
@@ -2018,7 +2074,7 @@
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Dễ đồng bộ nắp, màu và nhãn thương hiệu.",
@@ -2029,156 +2085,126 @@
      "maxEn": 56
     },
     {
-     "id": "t_de3d7b3f",
+     "id": "t_75f73c31",
      "page": "home",
      "tags": [
-      "p"
+      "h3"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Viên nang",
-     "en": "Capsules",
-     "occurrences": 3,
+     "vi": "Gói Sachet",
+     "en": "Sachets",
+     "occurrences": 2,
      "multiline": false,
-     "maxVi": 21,
-     "maxEn": 20
-    },
-    {
-     "id": "t_d85a954a",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Vỉ Định Hình",
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Viên nén",
-     "en": "Tablets",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 20,
+     "maxVi": 22,
      "maxEn": 19
     },
     {
-     "id": "t_fff474bb",
+     "id": "t_11351210",
      "page": "home",
      "tags": [
       "p"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Định dạng liều đơn kín, có dấu hiệu chống mở.",
-     "en": "Tamper-evident, secure unit-dose format.",
-     "occurrences": 1,
+     "vi": "Mẫu dùng thử",
+     "en": "Trial samples",
+     "occurrences": 2,
      "multiline": false,
-     "maxVi": 57,
-     "maxEn": 52
+     "maxVi": 24,
+     "maxEn": 25
     },
     {
-     "id": "t_8179c689",
+     "id": "t_61bc99b4",
      "page": "home",
      "tags": [
       "p"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Đảm bảo liều dùng chính xác, có kiểm soát.",
-     "en": "Ensures accurate, controlled intake.",
-     "occurrences": 1,
+     "vi": "Gói dùng một lần",
+     "en": "Single-use packs",
+     "occurrences": 2,
      "multiline": false,
-     "maxVi": 54,
-     "maxEn": 48
+     "maxVi": 28,
+     "maxEn": 28
     },
     {
-     "id": "t_f2790dec",
+     "id": "t_861a71b4",
      "page": "home",
      "tags": [
       "p"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Giữ an toàn sản phẩm và kéo dài hạn sử dụng.",
-     "en": "Maintains product safety and extends shelf life.",
-     "occurrences": 1,
+     "vi": "Sản phẩm cỡ du lịch",
+     "en": "Travel sizes",
+     "occurrences": 2,
      "multiline": false,
-     "maxVi": 56,
-     "maxEn": 60
+     "maxVi": 31,
+     "maxEn": 24
     },
     {
-     "id": "t_79ed3186",
-     "page": "home",
-     "tags": [
-      "span"
-     ],
-     "sections": [
-      "Vỉ Định Hình"
-     ],
-     "vi": "(thực phẩm bổ sung hoặc mỹ phẩm)",
-     "en": "(supplements or cosmetics)",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 44,
-     "maxEn": 38
-    },
-    {
-     "id": "t_2631cf5a",
+     "id": "t_c02bd7d7",
      "page": "home",
      "tags": [
       "p",
       "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Đóng gói từng đơn vị sản phẩm rõ ràng.",
-     "en": "Clear single-unit packaging.",
+     "vi": "Phù hợp thử mẫu và chương trình marketing.",
+     "en": "Ideal for samples and promotions.",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 54,
+     "maxEn": 45
+    },
+    {
+     "id": "t_66f3869c",
+     "page": "home",
+     "tags": [
+      "p",
+      "span"
+     ],
+     "sections": [
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
+     ],
+     "vi": "Nhẹ, dễ phân phối và vận chuyển.",
+     "en": "Lightweight and easy to distribute.",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 44,
+     "maxEn": 47
+    },
+    {
+     "id": "t_6de1199d",
+     "page": "home",
+     "tags": [
+      "p",
+      "span"
+     ],
+     "sections": [
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
+     ],
+     "vi": "Có thể dùng cho nhiều kết cấu mỹ phẩm.",
+     "en": "Suitable for multiple cosmetic textures.",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 50,
-     "maxEn": 40
-    },
-    {
-     "id": "t_41833748",
-     "page": "home",
-     "tags": [
-      "p",
-      "span"
-     ],
-     "sections": [
-      "Vỉ Định Hình",
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Thuận tiện kiểm soát liều dùng.",
-     "en": "Convenient dose control.",
-     "occurrences": 2,
-     "multiline": false,
-     "maxVi": 43,
-     "maxEn": 36
-    },
-    {
-     "id": "t_39a434c8",
-     "page": "home",
-     "tags": [
-      "p",
-      "span"
-     ],
-     "sections": [
-      "Vỉ Định Hình",
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Hỗ trợ bảo quản và vận chuyển gọn gàng.",
-     "en": "Compact for storage and shipping.",
-     "occurrences": 2,
-     "multiline": false,
-     "maxVi": 51,
-     "maxEn": 45
+     "maxEn": 52
     },
     {
      "id": "t_d967d7d2",
@@ -2187,7 +2213,7 @@
       "h3"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
      "vi": "Túi Doypack",
@@ -2198,102 +2224,92 @@
      "maxEn": 20
     },
     {
-     "id": "t_ced40985",
+     "id": "t_c98cf33c",
      "page": "home",
      "tags": [
       "p"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Bột đóng gói",
-     "en": "Bulk powders",
+     "vi": "Sữa tắm, dầu gội refill",
+     "en": "Body wash and shampoo refills",
      "occurrences": 2,
      "multiline": false,
-     "maxVi": 24,
+     "maxVi": 35,
+     "maxEn": 41
+    },
+    {
+     "id": "t_6ecc01ff",
+     "page": "home",
+     "tags": [
+      "p"
+     ],
+     "sections": [
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
+     ],
+     "vi": "Mặt nạ dạng bột",
+     "en": "Powder masks",
+     "occurrences": 2,
+     "multiline": false,
+     "maxVi": 27,
      "maxEn": 24
     },
     {
-     "id": "t_af1ab1d9",
+     "id": "t_e0f11582",
      "page": "home",
      "tags": [
-      "p"
+      "p",
+      "span"
      ],
      "sections": [
-      "Vỉ Định Hình",
+      "Tuýp & Chai Chân Không",
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Hỗn hợp dinh dưỡng thể thao",
-     "en": "Sports nutrition blends",
+     "vi": "Nhẹ và tiết kiệm không gian đóng gói.",
+     "en": "Lightweight and space-efficient.",
      "occurrences": 2,
      "multiline": false,
-     "maxVi": 39,
-     "maxEn": 35
+     "maxVi": 49,
+     "maxEn": 44
     },
     {
-     "id": "t_2c827109",
+     "id": "t_c358e882",
      "page": "home",
      "tags": [
-      "p"
+      "p",
+      "span"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Hỗn hợp đồ uống chăm sóc sức khỏe",
-     "en": "Wellness drink mixes",
-     "occurrences": 1,
+     "vi": "Thuận tiện cho sản phẩm refill.",
+     "en": "Convenient for refill products.",
+     "occurrences": 2,
      "multiline": false,
-     "maxVi": 45,
-     "maxEn": 32
+     "maxVi": 43,
+     "maxEn": 43
     },
     {
-     "id": "t_c4860f62",
+     "id": "t_3fd8302b",
      "page": "home",
      "tags": [
-      "p"
+      "p",
+      "span"
      ],
      "sections": [
-      "Vỉ Định Hình"
+      "Tuýp & Chai Chân Không",
+      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Nhẹ, gọn và tiết kiệm chi phí vận chuyển.",
-     "en": "Lightweight, compact, and cost-efficient for shipping.",
-     "occurrences": 1,
+     "vi": "Phù hợp bán hàng trực tuyến và vận chuyển.",
+     "en": "Well suited to ecommerce shipping.",
+     "occurrences": 2,
      "multiline": false,
-     "maxVi": 53,
-     "maxEn": 68
-    },
-    {
-     "id": "t_6b8349bb",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Vỉ Định Hình"
-     ],
-     "vi": "Dễ phân phối và vận chuyển.",
-     "en": "Easy to distribute and ship.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 39,
-     "maxEn": 40
-    },
-    {
-     "id": "t_dd282356",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Vỉ Định Hình"
-     ],
-     "vi": "Phù hợp bán lẻ trực tuyến và thương hiệu bán trực tiếp.",
-     "en": "Excellent for online retail and direct-to-consumer brands.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 69,
-     "maxEn": 73
+     "maxVi": 54,
+     "maxEn": 46
     },
     {
      "id": "t_c70f0515",
@@ -2312,150 +2328,6 @@
      "maxEn": 48
     },
     {
-     "id": "t_75f73c31",
-     "page": "home",
-     "tags": [
-      "h3"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Gói Sachet",
-     "en": "Sachets",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 22,
-     "maxEn": 19
-    },
-    {
-     "id": "t_c02bd7d7",
-     "page": "home",
-     "tags": [
-      "span"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Phù hợp thử mẫu và chương trình marketing.",
-     "en": "Ideal for samples and promotions.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 54,
-     "maxEn": 45
-    },
-    {
-     "id": "t_66f3869c",
-     "page": "home",
-     "tags": [
-      "span"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Nhẹ, dễ phân phối và vận chuyển.",
-     "en": "Lightweight and easy to distribute.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 44,
-     "maxEn": 47
-    },
-    {
-     "id": "t_6de1199d",
-     "page": "home",
-     "tags": [
-      "span"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Có thể dùng cho nhiều kết cấu mỹ phẩm.",
-     "en": "Suitable for multiple cosmetic textures.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 50,
-     "maxEn": 52
-    },
-    {
-     "id": "t_16469528",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Mang lại trải nghiệm vệ sinh và cao cấp.",
-     "en": "Offers a hygienic and premium user experience.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 52,
-     "maxEn": 58
-    },
-    {
-     "id": "t_fa0e21c2",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Phù hợp dòng chăm sóc da và thương hiệu mỹ phẩm gia công.",
-     "en": "Perfect for skincare lines and private label beauty brands.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 72,
-     "maxEn": 74
-    },
-    {
-     "id": "t_93509fa9",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Mẫu dùng thử",
-     "en": "Samples",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 24,
-     "maxEn": 19
-    },
-    {
-     "id": "t_72d74e7c",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Liều dùng một lần",
-     "en": "Single use",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 29,
-     "maxEn": 22
-    },
-    {
-     "id": "t_a5e003f6",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Sản phẩm cỡ du lịch",
-     "en": "Travel size",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 31,
-     "maxEn": 23
-    },
-    {
      "id": "t_25727a97",
      "page": "home",
      "tags": [
@@ -2466,13 +2338,13 @@
      ],
      "vi": "Xem thêm",
      "en": "Show more",
-     "occurrences": 5,
+     "occurrences": 4,
      "multiline": false,
      "maxVi": 20,
      "maxEn": 21
     },
     {
-     "id": "t_e0f11582",
+     "id": "t_0978968f",
      "page": "home",
      "tags": [
       "span"
@@ -2480,31 +2352,15 @@
      "sections": [
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Nhẹ và tiết kiệm không gian đóng gói.",
-     "en": "Lightweight and space-efficient.",
+     "vi": "Mang lại trải nghiệm vệ sinh và tiện lợi.",
+     "en": "Hygienic and convenient to use.",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 49,
-     "maxEn": 44
-    },
-    {
-     "id": "t_c358e882",
-     "page": "home",
-     "tags": [
-      "span"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Thuận tiện cho sản phẩm refill.",
-     "en": "Convenient for refill products.",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 43,
+     "maxVi": 53,
      "maxEn": 43
     },
     {
-     "id": "t_3fd8302b",
+     "id": "t_6931268b",
      "page": "home",
      "tags": [
       "span"
@@ -2512,44 +2368,12 @@
      "sections": [
       "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
      ],
-     "vi": "Phù hợp bán hàng trực tuyến và vận chuyển.",
-     "en": "Well suited to ecommerce shipping.",
+     "vi": "Phù hợp dòng chăm sóc da và thương hiệu mỹ phẩm gia công.",
+     "en": "Well suited to skincare lines and private-label beauty brands.",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 54,
-     "maxEn": 46
-    },
-    {
-     "id": "t_8f47d159",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Sản phẩm refill",
-     "en": "Refill products",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 27,
-     "maxEn": 27
-    },
-    {
-     "id": "t_fcd3cc54",
-     "page": "home",
-     "tags": [
-      "p"
-     ],
-     "sections": [
-      "Giải Pháp Bao Bì Phù Hợp Sản Phẩm"
-     ],
-     "vi": "Hỗn hợp pha",
-     "en": "Drink mixes",
-     "occurrences": 1,
-     "multiline": false,
-     "maxVi": 23,
-     "maxEn": 23
+     "maxVi": 72,
+     "maxEn": 78
     },
     {
      "id": "t_450d9348",
@@ -2584,7 +2408,7 @@
      "maxEn": 113
     },
     {
-     "id": "t_8a74fedb",
+     "id": "t_4709d704",
      "page": "home",
      "tags": [
       "h3"
@@ -2592,12 +2416,12 @@
      "sections": [
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
-     "vi": "Dược Mỹ Phẩm",
-     "en": "Supplements",
+     "vi": "Chăm Sóc Da",
+     "en": "Skin care",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 24,
-     "maxEn": 23
+     "maxVi": 23,
+     "maxEn": 21
     },
     {
      "id": "t_093a809a",
@@ -2648,7 +2472,7 @@
      "maxEn": 17
     },
     {
-     "id": "t_1e56a053",
+     "id": "t_4632a519",
      "page": "home",
      "tags": [
       "p"
@@ -2657,14 +2481,14 @@
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
      "vi": "Kết cấu, nguyên liệu, màu sắc, mùi hương, hoạt chất và quy cách bao bì có thể điều chỉnh theo định hướng thương hiệu. Một số dòng có thể phát triển nhiều phiên bản công thức hoặc dung tích cho từng kênh bán.",
-     "en": "Texture, ingredients, color, fragrance and format can be customized for your brand.",
+     "en": "Texture, ingredients, color, fragrance, actives and packaging format can be adjusted to your brand direction. Some lines can be developed in several formula versions or sizes for each sales channel.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 259,
-     "maxEn": 104
+     "maxEn": 248
     },
     {
-     "id": "t_2fa2aa5e",
+     "id": "t_48468995",
      "page": "home",
      "tags": [
       "h3"
@@ -2672,12 +2496,12 @@
      "sections": [
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
-     "vi": "Dinh Dưỡng Thể Thao",
-     "en": "Sports nutrition",
+     "vi": "Chăm Sóc Tóc",
+     "en": "Hair care",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 31,
-     "maxEn": 28
+     "maxVi": 24,
+     "maxEn": 21
     },
     {
      "id": "t_73239044",
@@ -2776,7 +2600,7 @@
      "maxEn": 23
     },
     {
-     "id": "t_fcf208ae",
+     "id": "t_3d683735",
      "page": "home",
      "tags": [
       "h3"
@@ -2784,12 +2608,12 @@
      "sections": [
       "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
      ],
-     "vi": "Sản Phẩm Thú Cưng",
-     "en": "Pet supplements",
+     "vi": "Chăm Sóc Body",
+     "en": "Body care",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 29,
-     "maxEn": 27
+     "maxVi": 25,
+     "maxEn": 21
     },
     {
      "id": "t_0bb487c1",
@@ -2870,6 +2694,22 @@
      "multiline": false,
      "maxVi": 20,
      "maxEn": 20
+    },
+    {
+     "id": "t_a0ddc65c",
+     "page": "home",
+     "tags": [
+      "h3"
+     ],
+     "sections": [
+      "Các Dòng Sản Phẩm Bio-A Group Có Thể Gia Công"
+     ],
+     "vi": "Trang Điểm",
+     "en": "Makeup",
+     "occurrences": 1,
+     "multiline": false,
+     "maxVi": 22,
+     "maxEn": 18
     },
     {
      "id": "t_1c700d7e",
@@ -3000,118 +2840,6 @@
      "maxEn": 84
     },
     {
-     "id": "t_d47347a6",
-     "page": "home",
-     "tags": [
-      "h2"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Khách Hàng Nhận Được Gì\nKhi Đồng Hành Cùng Bio-A Group",
-     "en": "What clients receive\nwhen working with Bio-A Group",
-     "occurrences": 2,
-     "multiline": true,
-     "maxVi": 68,
-     "maxEn": 63
-    },
-    {
-     "id": "t_7f0f59b0",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Chúng tôi bắt đầu với một dòng sản phẩm nhỏ và cần đội ngũ có thể hỗ trợ từ công thức đến bao bì. Bio-A Group phối hợp khá sát ở từng giai đoạn, đặc biệt trong quá trình chỉnh mẫu và lựa chọn quy cách phù hợp ngân sách. Khi dự án chuyển sang sản xuất, các mốc công việc được trao đổi rõ nên đội ngũ của chúng tôi dễ chủ động kế hoạch ra mắt và chuẩn bị kênh bán.",
-     "en": "A clear process, responsive support and close follow-up on product requirements.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 453,
-     "maxEn": 100
-    },
-    {
-     "id": "t_e3d7249a",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Khách hàng Bio-A Group",
-     "en": "Bio-A Group client",
-     "occurrences": 12,
-     "multiline": false,
-     "maxVi": 34,
-     "maxEn": 30
-    },
-    {
-     "id": "t_8d544337",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Nội dung đánh giá mẫu – sẽ cập nhật",
-     "en": "Sample testimonial — to be updated",
-     "occurrences": 12,
-     "multiline": false,
-     "maxVi": 47,
-     "maxEn": 46
-    },
-    {
-     "id": "t_db637ffd",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Điểm chúng tôi đánh giá cao là khả năng trao đổi nhanh giữa R&D, sản xuất và bộ phận phụ trách dự án. Những thay đổi ở mẫu thử được ghi nhận rõ ràng, giúp quá trình chốt công thức thuận lợi hơn. Khi cần mở rộng thêm SKU, đội ngũ vẫn giữ được cách làm việc nhất quán nên tiết kiệm khá nhiều thời gian.",
-     "en": "Flexible sample refinement helps shorten development time.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 375,
-     "maxEn": 73
-    },
-    {
-     "id": "t_dae29770",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Bio-A Group hỗ trợ chúng tôi từ việc xác định hướng sản phẩm, thử mẫu đến lựa chọn bao bì và chuẩn bị sản xuất. Dù yêu cầu thay đổi vài lần trong quá trình phát triển, các bước vẫn được theo dõi rõ và phản hồi tương đối nhanh. Thành phẩm cuối phù hợp với định hướng thương hiệu mà chúng tôi đặt ra ban đầu.",
-     "en": "Bio-A Group supports formulation, packaging and production planning.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 383,
-     "maxEn": 85
-    },
-    {
-     "id": "t_964d80fa",
-     "page": "home",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Khách Hàng Nhận Được GìKhi Đồng Hành Cùng Bio-A Group"
-     ],
-     "vi": "Trong quá trình hoàn thiện sản phẩm, chúng tôi cần điều chỉnh một số chi tiết về kết cấu, mùi hương và quy cách đóng gói. Bio-A Group phản hồi khá nhanh, giúp từng thay đổi được xử lý theo thứ tự rõ ràng thay vì phải làm lại toàn bộ. Cách phối hợp này giúp dự án giữ được tiến độ và dễ kiểm soát hơn.",
-     "en": "Stable timelines make it easier to expand additional SKUs.",
-     "occurrences": 3,
-     "multiline": false,
-     "maxVi": 375,
-     "maxEn": 73
-    },
-    {
      "id": "t_b8442be3",
      "page": "home",
      "tags": [
@@ -3144,7 +2872,7 @@
      "maxEn": 22
     },
     {
-     "id": "t_4778889c",
+     "id": "t_0a004dd6",
      "page": "home",
      "tags": [
       "li"
@@ -3153,14 +2881,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Mở rộng danh mục sản phẩm theo từng phân khúc và nhu cầu của nhóm khách hàng mục tiêu",
-     "en": "Start with a clear product-development roadmap.",
+     "en": "Expand your product range by segment and the needs of your target customers",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 107,
-     "maxEn": 59
+     "maxEn": 94
     },
     {
-     "id": "t_3c761d64",
+     "id": "t_6bb9aa2d",
      "page": "home",
      "tags": [
       "li"
@@ -3169,14 +2897,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Bổ sung sản phẩm thương hiệu riêng với mức giá và quy cách phù hợp chiến lược phân phối",
-     "en": "Optimize budget by development stage.",
+     "en": "Add private-label products with pricing and formats that fit your distribution strategy",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 109,
-     "maxEn": 49
+     "maxEn": 109
     },
     {
-     "id": "t_57934a90",
+     "id": "t_5d6d4cea",
      "page": "home",
      "tags": [
       "li"
@@ -3185,11 +2913,11 @@
       "Phù Hợp Với"
      ],
      "vi": "Duy trì trải nghiệm đồng nhất để tăng mức độ tin cậy và khả năng mua lại của khách hàng",
-     "en": "Get support from sampling through production.",
+     "en": "Keep a consistent experience that builds customer trust and repeat purchases",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 109,
-     "maxEn": 57
+     "maxEn": 95
     },
     {
      "id": "t_71bf686b",
@@ -3208,7 +2936,7 @@
      "maxEn": 31
     },
     {
-     "id": "t_558aaadf",
+     "id": "t_5fb7812a",
      "page": "home",
      "tags": [
       "li"
@@ -3217,14 +2945,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Tạo khác biệt bằng công thức, kết cấu và quy cách sản phẩm phù hợp với thị trường mục tiêu",
-     "en": "Expand your range with new formulas and packaging.",
+     "en": "Stand out with formulas, textures and product formats suited to your target market",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 113,
-     "maxEn": 63
+     "maxEn": 103
     },
     {
-     "id": "t_16c84862",
+     "id": "t_95c5500c",
      "page": "home",
      "tags": [
       "li"
@@ -3233,14 +2961,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Giảm phụ thuộc vào danh mục phổ biến bằng cách phát triển thêm dòng sản phẩm và phân khúc mới",
-     "en": "Flexible OEM/ODM development for your positioning.",
+     "en": "Rely less on mainstream categories by developing new product lines and segments",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 117,
-     "maxEn": 63
+     "maxEn": 99
     },
     {
-     "id": "t_d4d28e47",
+     "id": "t_a3137771",
      "page": "home",
      "tags": [
       "li"
@@ -3249,11 +2977,11 @@
       "Phù Hợp Với"
      ],
      "vi": "Phối hợp R&D, bao bì và sản xuất theo một lộ trình rõ để tối ưu thời gian triển khai dự án",
-     "en": "Align R&D, documentation and production planning.",
+     "en": "Coordinate R&D, packaging and production on one clear roadmap to optimize rollout time",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 113,
-     "maxEn": 62
+     "maxEn": 108
     },
     {
      "id": "t_5941b2e1",
@@ -3272,7 +3000,7 @@
      "maxEn": 24
     },
     {
-     "id": "t_2d37f331",
+     "id": "t_6eb3199f",
      "page": "home",
      "tags": [
       "li"
@@ -3281,14 +3009,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Bắt đầu thương hiệu với lộ trình sản phẩm rõ ràng và ngân sách được phân bổ theo từng giai đoạn",
-     "en": "Develop products under your own brand.",
+     "en": "Start your brand with a clear product roadmap and a budget allocated stage by stage",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 119,
-     "maxEn": 50
+     "maxEn": 104
     },
     {
-     "id": "t_5189564e",
+     "id": "t_b1b7843c",
      "page": "home",
      "tags": [
       "li"
@@ -3297,14 +3025,14 @@
       "Phù Hợp Với"
      ],
      "vi": "Tiếp cận quy trình R&D, bao bì và sản xuất mà không cần tự xây dựng toàn bộ hệ thống vận hành",
-     "en": "Choose formats and positioning independently.",
+     "en": "Access R&D, packaging and production without building the whole operation yourself",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 117,
-     "maxEn": 57
+     "maxEn": 103
     },
     {
-     "id": "t_b788a037",
+     "id": "t_32dd941d",
      "page": "home",
      "tags": [
       "li"
@@ -3313,11 +3041,11 @@
       "Phù Hợp Với"
      ],
      "vi": "Giảm tải công việc triển khai bằng cách phối hợp các hạng mục phát triển sản phẩm với Bio-A Group",
-     "en": "Scale with additional SKUs as demand grows.",
+     "en": "Lighten your rollout workload by coordinating product development with Bio-A Group",
      "occurrences": 2,
      "multiline": false,
      "maxVi": 122,
-     "maxEn": 55
+     "maxEn": 103
     },
     {
      "id": "t_d1862f71",
@@ -3336,7 +3064,7 @@
      "maxEn": 70
     },
     {
-     "id": "t_dc1ec5be",
+     "id": "t_d08a0572",
      "page": "home",
      "tags": [
       "p"
@@ -3345,14 +3073,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Bio-A Group cùng khách hàng làm rõ ý tưởng,\nnhóm sản phẩm, khách hàng mục tiêu, ngân sách\nvà tiến độ mong muốn để xây dựng lộ trình\nphù hợp ngay từ đầu cho R&D và sản xuất.",
-     "en": "Bio-A Group aligns the product idea, target customer,\nbudget and expected timeline with your team,\nthen defines the formula, quantity and milestones\nbefore R&D and production planning begin.",
+     "en": "Bio-A Group works with you to clarify the idea,\nproduct category, target customers, budget\nand desired timeline to build a suitable roadmap\nfor R&D and production from the very start.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 215,
-     "maxEn": 238
+     "maxEn": 229
     },
     {
-     "id": "t_5e3fe5f4",
+     "id": "t_557e9322",
      "page": "home",
      "tags": [
       "p"
@@ -3361,14 +3089,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Đội ngũ R&D lựa chọn nền công thức, nguyên liệu,\nlàm mẫu thử và tinh chỉnh cảm quan theo phản hồi,\nđồng thời rà soát khả năng triển khai thực tế\ntrước khi chốt mẫu đưa vào sản xuất.",
-     "en": "Our R&D team selects formula directions and ingredients,\nprepares samples and refines sensory details,\nwhile checking production feasibility\nbefore the final sample is approved.",
+     "en": "Our R&D team selects formula bases and ingredients,\nprepares samples and refines sensory details from feedback,\nwhile reviewing practical production feasibility\nbefore the sample is finalized for production.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 227,
-     "maxEn": 222
+     "maxEn": 259
     },
     {
-     "id": "t_e7475ad7",
+     "id": "t_0019f083",
      "page": "home",
      "tags": [
       "p"
@@ -3377,14 +3105,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Sau khi công thức ổn định, dự án tiếp tục với\nlựa chọn chai lọ, quy cách đóng gói và nhãn,\nđể bao bì phù hợp đặc tính sản phẩm\nvà đồng bộ với định hướng thương hiệu.",
-     "en": "Once the formula is stable, the project moves to\nbottles, filling format, labels and brand assets,\nso packaging fits the product characteristics\nand remains consistent with the brand direction.",
+     "en": "Once the formula is stable, the project moves to\nbottles, packing specifications and labels,\nso packaging fits the product characteristics\nand remains consistent with the brand direction.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 207,
-     "maxEn": 242
+     "maxEn": 234
     },
     {
-     "id": "t_993d0615",
+     "id": "t_cc50b1ce",
      "page": "home",
      "tags": [
       "p"
@@ -3393,14 +3121,14 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Bio-A Group phối hợp rà soát thông tin sản phẩm,\nnội dung nhãn và các tài liệu cần chuẩn bị,\nsong song với giai đoạn hoàn thiện bao bì\nđể hạn chế phát sinh chỉnh sửa về sau.",
-     "en": "Bio-A Group reviews product information, label content\nand the documentation required for each category,\nalongside final packaging preparation\nto reduce later-stage revisions.",
+     "en": "Bio-A Group reviews product information,\nlabel content and the documents to prepare,\nin parallel with final packaging preparation\nto limit later-stage revisions.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 217,
-     "maxEn": 219
+     "maxEn": 202
     },
     {
-     "id": "t_c66cd6ee",
+     "id": "t_2e6d5b9d",
      "page": "home",
      "tags": [
       "p"
@@ -3409,11 +3137,11 @@
       "Từ Ý Tưởng Đến Thành Phẩm —Quy Trình Đồng Hành Trọn Gói"
      ],
      "vi": "Nhà máy triển khai sản xuất, sang chiết, đóng gói\nvà kiểm soát thành phẩm theo kế hoạch đã thống nhất,\ngiúp khách hàng chủ động thời điểm ra mắt\nvà kế hoạch phân phối sản phẩm.",
-     "en": "The factory manufactures, fills, packs and controls\nfinished goods according to the agreed production plan,\nhelping the brand keep launch timing predictable\nand prepare distribution with confidence.",
+     "en": "The factory manufactures, fills, packs and controls\nfinished goods according to the agreed plan,\nso the brand stays in control of launch timing\nand product distribution plans.",
      "occurrences": 1,
      "multiline": true,
      "maxVi": 220,
-     "maxEn": 248
+     "maxEn": 219
     }
    ]
   },
@@ -3433,8 +3161,8 @@
       "Về Bio-A Group"
      ],
      "pairNote": "",
-     "altVi": "Nhà máy và năng lực Bio-A Group",
-     "altEn": "Bio-A Group manufacturing capabilities",
+     "altVi": "Ảnh minh họa sản xuất mỹ phẩm",
+     "altEn": "Illustrative image of cosmetic manufacturing",
      "targets": [
       {
        "key": "section.block.mwa-hero#0|img|https://merywood.com/wp-content/uploads/2026/07/hero2.webp#0",
@@ -3505,8 +3233,8 @@
       "Đội Ngũ Đồng Hành Cùng Sản Phẩm"
      ],
      "pairNote": "",
-     "altVi": "Đội ngũ Bio-A Group",
-     "altEn": "Bio-A Group team",
+     "altVi": "Ảnh minh họa làm việc nhóm",
+     "altEn": "Illustrative image of teamwork",
      "targets": [
       {
        "key": "section.block.mwa-team#0|img|https://merywood.com/wp-content/uploads/2026/07/IMG_6258-1.png#0",
@@ -4396,7 +4124,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_5c3eed19",
+     "id": "t_3ed13f05",
      "page": "about",
      "tags": [
       "p"
@@ -4405,11 +4133,11 @@
       "Danh Mục Gia Công"
      ],
      "vi": "Dầu gội, dầu xả, tinh chất và các giải pháp chăm sóc tóc theo yêu cầu.",
-     "en": "Shampoo, conditioner, treatments and hair-care solutions developed to your brief.",
+     "en": "Shampoo, conditioner, hair serums and hair-care solutions developed to your brief.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 88,
-     "maxEn": 102
+     "maxEn": 103
     },
     {
      "id": "t_23709f57",
@@ -5046,8 +4774,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "talk",
-     "altEn": "talk",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-1-9.webp#0",
@@ -5088,8 +4816,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "hands",
-     "altEn": "hands",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-2-9.webp#0",
@@ -5130,8 +4858,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "blank",
-     "altEn": "blank",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-3-10.webp#0",
@@ -5172,8 +4900,8 @@
       "Đồng Hành Trọn Chu Kỳ"
      ],
      "pairNote": "",
-     "altVi": "cert",
-     "altEn": "cert",
+     "altVi": "",
+     "altEn": "",
      "targets": [
       {
        "key": "section.block.block-roadmap#0|img|https://merywood.com/wp-content/uploads/2025/06/image-4-7.webp#0",
@@ -5969,7 +5697,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_808d4fc2",
+     "id": "t_e4bb3318",
      "page": "cosmetics",
      "tags": [
       "p"
@@ -5978,11 +5706,11 @@
       "Danh Mục Gia Công Mỹ Phẩm"
      ],
      "vi": "Dầu gội, dầu xả, tinh chất và các giải pháp chăm sóc tóc được phát triển theo yêu cầu dự án.",
-     "en": "Shampoo, conditioner, treatments and hair-care solutions developed to the project brief.",
+     "en": "Shampoo, conditioner, hair serums and hair-care solutions developed to the project brief.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 115,
-     "maxEn": 110
+     "maxEn": 112
     },
     {
      "id": "t_533a6e09",
@@ -7319,164 +7047,164 @@
      "maxEn": 144
     },
     {
-     "id": "t_86f5c7e3",
+     "id": "t_96ae77d6",
      "page": "cosmetics",
      "tags": [
       "h2"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Kịch Bản Hợp Tác Tiêu Biểu",
-     "en": "Typical Collaboration Scenarios",
+     "vi": "Lộ Trình Hợp Tác Theo Nhu Cầu",
+     "en": "Collaboration Paths by Project Need",
      "occurrences": 2,
      "multiline": false,
-     "maxVi": 38,
-     "maxEn": 43
+     "maxVi": 41,
+     "maxEn": 47
     },
     {
-     "id": "t_4d368dfe",
+     "id": "t_53145eff",
      "page": "cosmetics",
      "tags": [
       "div"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Thương hiệu skincare mới cần phát triển một dòng sản phẩm nhỏ từ công thức, mẫu thử đến bao bì. Bio-A Group phối hợp từng giai đoạn để dự án có lộ trình rõ và dễ kiểm soát tiến độ.",
-     "en": "A new skincare brand needs a focused first line covering formula, sampling and packaging. Bio-A Group coordinates each stage so the project has a clear, manageable development path.",
-     "occurrences": 4,
-     "multiline": false,
-     "maxVi": 225,
-     "maxEn": 227
-    },
-    {
-     "id": "t_66438877",
-     "page": "cosmetics",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
-     ],
-     "vi": "Tình Huống 01",
-     "en": "Scenario 01",
-     "occurrences": 4,
-     "multiline": false,
-     "maxVi": 25,
-     "maxEn": 23
-    },
-    {
-     "id": "t_bc83b9c9",
-     "page": "cosmetics",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
-     ],
-     "vi": "Thương hiệu skincare • Nội dung mẫu",
-     "en": "Skincare brand • Sample scenario",
-     "occurrences": 4,
-     "multiline": false,
-     "maxVi": 47,
-     "maxEn": 44
-    },
-    {
-     "id": "t_76c6b6a7",
-     "page": "cosmetics",
-     "tags": [
-      "div"
-     ],
-     "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
-     ],
-     "vi": "Thương hiệu đang có sản phẩm bán tốt muốn mở rộng thêm nhóm chăm sóc tóc. Quy trình tập trung vào R&D mẫu, đồng bộ bao bì và chuẩn bị kế hoạch sản xuất cho SKU mới.",
-     "en": "An established brand wants to add a hair-care category. The project focuses on sample R&D, packaging alignment and a production plan for the new SKU range.",
+     "vi": "Dành cho thương hiệu ra mắt dòng sản phẩm đầu tiên: Bio-A Group hỗ trợ làm rõ brief, R&D công thức, làm mẫu thử, chọn bao bì và lập kế hoạch sản xuất theo từng mốc.",
+     "en": "For brands launching a first product line: Bio-A Group helps clarify the brief, develops the formula, prepares samples, selects packaging and plans production by milestone.",
      "occurrences": 4,
      "multiline": false,
      "maxVi": 205,
-     "maxEn": 194
+     "maxEn": 215
     },
     {
-     "id": "t_b0a7c1b7",
+     "id": "t_2421281c",
      "page": "cosmetics",
      "tags": [
       "div"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Tình Huống 02",
-     "en": "Scenario 02",
+     "vi": "Phát Triển Dòng Sản Phẩm Mới",
+     "en": "New Product Line Development",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 25,
-     "maxEn": 23
+     "maxVi": 40,
+     "maxEn": 40
     },
     {
-     "id": "t_7c2f3176",
+     "id": "t_4d66f0cc",
      "page": "cosmetics",
      "tags": [
       "div"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Thương hiệu hair care • Nội dung mẫu",
-     "en": "Hair-care brand • Sample scenario",
+     "vi": "R&D • Mẫu thử • Bao bì • Sản xuất",
+     "en": "R&D • Samples • Packaging • Production",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 48,
-     "maxEn": 45
+     "maxVi": 45,
+     "maxEn": 50
     },
     {
-     "id": "t_cfed5e45",
+     "id": "t_126c9b0d",
      "page": "cosmetics",
      "tags": [
       "div"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Dự án cần công thức riêng và nhiều vòng tinh chỉnh cảm quan trước khi chốt. Bio-A Group hỗ trợ ghi nhận thay đổi, hoàn thiện mẫu và chuyển tiếp sang sản xuất theo từng mốc.",
-     "en": "A custom-formula project needs several sensory-refinement rounds before approval. Bio-A Group tracks revisions, finalizes samples and moves the project into production by agreed milestones.",
+     "vi": "Dành cho thương hiệu mở rộng sang nhóm sản phẩm mới như chăm sóc tóc hoặc body: R&D mẫu cho nhóm sản phẩm mới, đồng bộ bao bì với dòng hiện có và lập kế hoạch sản xuất cho SKU mới.",
+     "en": "For brands adding a new category such as hair or body care: sample R&D for the new category, packaging aligned with the existing range and a production plan for the new SKUs.",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 215,
-     "maxEn": 237
+     "maxVi": 225,
+     "maxEn": 218
     },
     {
-     "id": "t_e7d581b2",
+     "id": "t_64a28bb5",
      "page": "cosmetics",
      "tags": [
       "div"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Tình Huống 03",
-     "en": "Scenario 03",
+     "vi": "Mở Rộng Danh Mục Sản Phẩm",
+     "en": "Product Range Expansion",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 25,
-     "maxEn": 23
+     "maxVi": 37,
+     "maxEn": 35
     },
     {
-     "id": "t_bf06ff70",
+     "id": "t_e9a1c106",
      "page": "cosmetics",
      "tags": [
       "div"
      ],
      "sections": [
-      "Kịch Bản Hợp Tác Tiêu Biểu"
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
      ],
-     "vi": "Phát triển công thức riêng • Nội dung mẫu",
-     "en": "Custom formula • Sample scenario",
+     "vi": "R&D • Bao bì • Kế hoạch SKU",
+     "en": "R&D • Packaging • SKU planning",
      "occurrences": 4,
      "multiline": false,
-     "maxVi": 53,
-     "maxEn": 44
+     "maxVi": 39,
+     "maxEn": 42
+    },
+    {
+     "id": "t_be1cc295",
+     "page": "cosmetics",
+     "tags": [
+      "div"
+     ],
+     "sections": [
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
+     ],
+     "vi": "Dành cho dự án cần công thức riêng: R&D phát triển công thức theo yêu cầu, tinh chỉnh kết cấu, màu và mùi qua các vòng mẫu, ghi nhận thay đổi và chuyển sang sản xuất khi mẫu được duyệt.",
+     "en": "For projects that need a custom formula: R&D develops the formula to brief, refines texture, colour and fragrance through sample rounds, records changes and moves to production once the sample is approved.",
+     "occurrences": 4,
+     "multiline": false,
+     "maxVi": 232,
+     "maxEn": 257
+    },
+    {
+     "id": "t_ac515700",
+     "page": "cosmetics",
+     "tags": [
+      "div"
+     ],
+     "sections": [
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
+     ],
+     "vi": "Phát Triển Công Thức Riêng",
+     "en": "Custom Formula Projects",
+     "occurrences": 4,
+     "multiline": false,
+     "maxVi": 38,
+     "maxEn": 35
+    },
+    {
+     "id": "t_be336eb4",
+     "page": "cosmetics",
+     "tags": [
+      "div"
+     ],
+     "sections": [
+      "Lộ Trình Hợp Tác Theo Nhu Cầu"
+     ],
+     "vi": "R&D • Tinh chỉnh mẫu • Duyệt mẫu",
+     "en": "R&D • Sample refinement • Approval",
+     "occurrences": 4,
+     "multiline": false,
+     "maxVi": 44,
+     "maxEn": 46
     },
     {
      "id": "t_7cb05392",
@@ -7815,7 +7543,7 @@
      "maxEn": 30
     },
     {
-     "id": "t_e81c428a",
+     "id": "t_377beddb",
      "page": "cosmetics",
      "tags": [
       "div"
@@ -7824,11 +7552,11 @@
       "Hạng Mục Kiểm Tra"
      ],
      "vi": "Các thông số và đặc tính cảm quan được theo dõi trong quá trình sản xuất để hạn chế sai lệch so với mẫu đã duyệt.",
-     "en": "Product parameters and sensory characteristics are monitored during manufacturing.",
+     "en": "Parameters and sensory characteristics are monitored during production to limit deviation from the approved sample.",
      "occurrences": 1,
      "multiline": false,
      "maxVi": 142,
-     "maxEn": 103
+     "maxEn": 144
     },
     {
      "id": "t_fa6ec1b7",
@@ -9023,7 +8751,7 @@
      "maxEn": 28
     },
     {
-     "id": "t_7267bbe1",
+     "id": "t_5d4c80e9",
      "page": "services",
      "tags": [
       "p"
@@ -9031,12 +8759,12 @@
      "sections": [
       "Giải Pháp Theo Từng Nhu Cầu"
      ],
-     "vi": "Giải pháp mẫu",
-     "en": "Sample solution",
-     "occurrences": 12,
+     "vi": "Sản xuất • Chai lọ • Thiết kế bao bì • Hồ sơ",
+     "en": "Manufacturing • Containers • Packaging design • Documentation",
+     "occurrences": 4,
      "multiline": false,
-     "maxVi": 25,
-     "maxEn": 27
+     "maxVi": 56,
+     "maxEn": 77
     },
     {
      "id": "t_a9233fd6",
@@ -9071,6 +8799,22 @@
      "maxEn": 31
     },
     {
+     "id": "t_74001c33",
+     "page": "services",
+     "tags": [
+      "p"
+     ],
+     "sections": [
+      "Giải Pháp Theo Từng Nhu Cầu"
+     ],
+     "vi": "Chai lọ • Sang chiết • Đóng gói • Nhãn",
+     "en": "Containers • Filling • Packing • Labels",
+     "occurrences": 4,
+     "multiline": false,
+     "maxVi": 50,
+     "maxEn": 51
+    },
+    {
      "id": "t_028b161a",
      "page": "services",
      "tags": [
@@ -9101,6 +8845,22 @@
      "multiline": false,
      "maxVi": 31,
      "maxEn": 31
+    },
+    {
+     "id": "t_6bc91c39",
+     "page": "services",
+     "tags": [
+      "p"
+     ],
+     "sections": [
+      "Giải Pháp Theo Từng Nhu Cầu"
+     ],
+     "vi": "Thiết kế bao bì • Chai lọ • Hồ sơ & công bố",
+     "en": "Packaging design • Containers • Documentation & notification",
+     "occurrences": 4,
+     "multiline": false,
+     "maxVi": 55,
+     "maxEn": 75
     }
    ]
   },
@@ -9558,7 +9318,7 @@
      "maxEn": 262
     },
     {
-     "id": "t_c06724fe",
+     "id": "t_9e2ca263",
      "page": "careers",
      "tags": [
       "div"
@@ -9566,11 +9326,11 @@
      "sections": [
       "Cùng Bio-A Group Phát Triển"
      ],
-     "vi": "Vị trí công việc",
-     "en": "Roles",
+     "vi": "Nhóm công việc",
+     "en": "Teams",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 28,
+     "maxVi": 26,
      "maxEn": 17
     },
     {
@@ -9590,7 +9350,7 @@
      "maxEn": 33
     },
     {
-     "id": "t_f359eb35",
+     "id": "t_8da0a1b8",
      "page": "careers",
      "tags": [
       "p"
@@ -9598,12 +9358,12 @@
      "sections": [
       "Cùng Bio-A Group Phát Triển"
      ],
-     "vi": "Thông tin tuyển dụng chính thức (thời gian, địa điểm, chế độ) sẽ được cập nhật khi vị trí được mở.",
-     "en": "Official hiring details (timing, location and terms) will be published when a role opens.",
+     "vi": "Hiện Bio-A Group chưa mở đợt tuyển dụng chính thức cho các nhóm công việc dưới đây. Thời gian, địa điểm và chế độ sẽ được công bố khi có vị trí mở tuyển.",
+     "en": "Bio-A Group has no official hiring round open for the teams below at the moment. Timing, location and terms will be published when a role opens.",
      "occurrences": 1,
      "multiline": false,
-     "maxVi": 123,
-     "maxEn": 112
+     "maxVi": 192,
+     "maxEn": 180
     },
     {
      "id": "t_d2393d33",

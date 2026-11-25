@@ -1,5 +1,6 @@
 import {SearchIcon} from '@sanity/icons/Search'
 import {defineField, defineType} from 'sanity'
+import {i18nField} from './i18n'
 
 export const SEO_PAGES: {key: string; labelVi: string; vi: string; en: string}[] = [
   {key: 'home', labelVi: 'Trang chủ', vi: '/', en: '/en/'},
@@ -29,7 +30,7 @@ const canonicalRule = (lang: 'vi' | 'en') => (Rule: any) =>
 const block = (lang: 'vi' | 'en') =>
   defineField({
     name: lang,
-    title: lang === 'vi' ? 'Tiếng Việt' : 'Tiếng Anh',
+    title: lang === 'vi' ? 'Tiếng Việt' : 'Tiếng Anh (tự động dịch — chỉ sửa khi cần)',
     type: 'object',
     options: {collapsible: true, collapsed: lang === 'en'},
     fields: [
@@ -48,6 +49,7 @@ export const seoPage = defineType({
   icon: SearchIcon,
   fields: [
     defineField({name: 'pageLabel', title: 'Trang', type: 'string', readOnly: true}),
+    i18nField(),
     defineField({name: 'routes', title: 'Đường dẫn', type: 'string', readOnly: true}),
     block('vi'),
     block('en'),

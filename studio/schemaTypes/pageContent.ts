@@ -1,5 +1,6 @@
 import {DocumentTextIcon} from '@sanity/icons/DocumentText'
 import {defineField, defineType} from 'sanity'
+import {EN_HINT, i18nField} from './i18n'
 import {REGISTRY, TEXT_PAGE_KEYS, pageDocType, type TextSlot} from '../lib/registry'
 
 const short = (s: string, n = 64) => {
@@ -15,7 +16,8 @@ function localeField(slot: TextSlot, lang: 'vi' | 'en') {
     title: lang === 'vi' ? 'Tiếng Việt' : 'Tiếng Anh',
     type: slot.multiline ? 'text' : 'string',
     ...(slot.multiline ? {rows: Math.min(6, original.split('\n').length + 1)} : {}),
-    description: `Tối đa ${max} ký tự.${slot.multiline ? ' Mỗi dòng xuống hàng ở đây là một lần xuống dòng trên website.' : ''} Bản gốc: “${original.replace(/\n/g, ' / ')}”`,
+    ...(lang === 'en' ? {fieldset: 'en'} : {}),
+    description: `${lang === 'en' ? EN_HINT + ' ' : ''}Tối đa ${max} ký tự.${slot.multiline ? ' Mỗi dòng xuống hàng ở đây là một lần xuống dòng trên website.' : ''} Bản gốc: “${original.replace(/\n/g, ' / ')}”`,
     validation: (Rule: any) => [
       Rule.max(max).error(`Dài hơn khung đã duyệt (${max} ký tự). Hãy rút gọn.`),
       Rule.custom((v: string | undefined) => (String(v ?? '').trim() ? true : 'Để trống: website dùng lại nội dung gốc')).warning(),
@@ -37,6 +39,7 @@ export const pageContentTypes = TEXT_PAGE_KEYS.map((key) => {
     fieldsets: sectionNames.map((s, i) => ({name: 's' + i, title: s, options: {collapsible: true, collapsed: i > 0}})),
     fields: [
       defineField({name: 'pageLabel', title: 'Trang', type: 'string', readOnly: true}),
+      i18nField(),
       ...page.texts.map((slot) =>
         defineField({
           name: slot.id,
@@ -45,6 +48,7 @@ export const pageContentTypes = TEXT_PAGE_KEYS.map((key) => {
           type: 'object',
           fieldset: 's' + sectionNames.indexOf(slot.sections[0]),
           options: {columns: 1},
+          fieldsets: [{name: 'en', title: 'Tiếng Anh (tự động dịch)', options: {collapsible: true, collapsed: true}}],
           fields: [localeField(slot, 'vi'), localeField(slot, 'en')],
         }),
       ),
